@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.tax.model.TaxClass;
@@ -52,7 +54,7 @@ public class TransactionItem extends AccountingItem {
      * @return the plu
      */
     public String getPlu() {
-        return plu;
+        return (StringUtils.isNotEmpty(plu) ? plu : null);
     }
 
     /**
