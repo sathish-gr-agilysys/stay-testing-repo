@@ -1,0 +1,128 @@
+/**
+ * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
+package com.agilysys.pms.account.api;
+
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+
+import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.pms.account.model.payagent.PayAgentTransactionView;
+import com.agilysys.pms.account.model.payagent.PayTransactionRequest;
+import com.agilysys.pms.account.model.payagent.PayTransactionUpdateRequest;
+
+//TODO: Determine whether or not we will always have an account id before calling this service
+//@Path("/tenants/{tenantId}/properties/{propertyId}/accounts/{accountId}/payTransactions")
+@Path("/tenants/{tenantId}/properties/{propertyId}/payTransactions")
+public interface PayAgentTransactionInterface {
+    public static final String TENANT_ID = "tenantId";
+    public static final String PROPERTY_ID = "propertyId";
+    //    public static final String ACCOUNT_ID = "accountId";
+    public static final String PAY_TRANSACTION_ID = "payTransactionId";
+
+    /**
+     * Retrieve a transaction by captureId
+     *
+     * @param tenantId         id of tenant where the account exists
+     * @param propertyId       id of property where the account exists
+     * @param payTransactionId reference id of the account to retrieve
+     * @return an account for the tenant and referenceId
+     * @throws ServiceException
+     */
+    @GET
+    @Path("/{payTransactionId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public PayAgentTransactionView getPayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          //            @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(PAY_TRANSACTION_ID) String payTransactionId) throws ServiceException;
+
+    /**
+     * Post a request for a captureId and accompanying
+     * payload to be sent to an rGuest Pay Agent
+     *
+     * @param tenantId   id of tenant where the account exists
+     * @param propertyId id of property where the account exists
+     * @param request    request object with account id and type of payload requested
+     *                   (auth, sale, token, etc) based on the rGuest Pay
+     *                   endpoint that will be called
+     * @return a PayTransactionResponse object with the required payload, account id, and reference id
+     * @throws ServiceException
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public PayAgentTransactionView createPayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          //            @PathParam(ACCOUNT_ID) String accountId,
+          PayTransactionRequest request) throws ServiceException;
+
+    /**
+     * Completes an existing pay transaction with the supplied response
+     * from the Pay Agent
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param payTransactionId
+     * @param request
+     * @return the updated PayTransactionResponse
+     * @throws ServiceException
+     */
+    @PUT
+    @Path("/{payTransactionId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public PayAgentTransactionView completePayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          //            @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(PAY_TRANSACTION_ID) String payTransactionId, PayTransactionUpdateRequest request)
+          throws ServiceException;
+
+    /**
+     * Indicates that the identified pay agent transaction is
+     * complete and should be queried from the Pay Event
+     * Service for processing
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param payTransactionId
+     * @param id
+     * @return the updated PayTransactionResponse
+     * @throws ServiceException
+     */
+    @POST
+    @Path("/{payTransactionId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public PayAgentTransactionView reportRemotePayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId, String id)
+          throws ServiceException;
+
+    /**
+     * Cancels an existing pay transaction
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param payTransactionId
+     * @return the updated PayTransactionResponse
+     * @throws ServiceException
+     */
+    @DELETE
+    @Path("/{payTransactionId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public PayAgentTransactionView cancelPayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          //            @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(PAY_TRANSACTION_ID) String payTransactionId) throws ServiceException;
+
+}
