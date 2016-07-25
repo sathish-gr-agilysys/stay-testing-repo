@@ -1,0 +1,127 @@
+package com.agilysys.pms.account.api;
+
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+
+import com.agilysys.intapp.model.FolioPostingCodes;
+import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.schema.Validated;
+import com.agilysys.pms.account.model.TransactionItem;
+import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+
+/**
+ * CRUD methods for TransactionItem
+ */
+@Path("/tenants/{tenantId}/properties/{propertyId}/config/transactionItems")
+public interface TransactionItemConfigServiceInterface {
+    public static final String TENANT_ID = "tenantId";
+    public static final String PROPERTY_ID = "propertyId";
+    public static final String ITEM_ID = "id";
+    public static final String ITEM_ID_PATH = "{id}";
+    public static final String INCLUDE_INTERNAL = "includeInternal";
+    public static final String COMTROL_VALUE = "comtrolValue";
+    public static final String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
+
+    /**
+     * Retrieve all TransactionItems
+     *
+     * @param tenantId the tenantId to retrieve TransactionItems for
+     * @return List of TransactionItem
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    public List<TransactionItem> getTransactionItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws ServiceException;
+
+    /**
+     * Retrieve a transaction item comtrol mapping
+     *
+     * @param tenantId         the tenantId to retrieve TransactionItems for
+     * @param folioPostingCode the mapping that is used by the relay service to map a comtrol charge to a {@link
+     *                         TransactionItem}
+     * @return List of TransactionItem
+     */
+    @GET
+    @Path(COMTROL_VALUE_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    public TransactionItem getTransactionItemByComtrolValue(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMTROL_VALUE) FolioPostingCodes folioPostingCode)
+          throws ServiceException;
+
+    /**
+     * Retrieve a specific TransactionItem
+     *
+     * @param tenantId the tenantId to retrieve the TransactionItem for
+     * @param itemId   the ID of the TransactionItems to retrieve
+     * @return the TransactionItem identified by itemId
+     */
+    @GET
+    @Path(ITEM_ID_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    public TransactionItem getTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId) throws ServiceException;
+
+    /**
+     * Create a new TransactionItem
+     *
+     * @param tenantId the tenantId to create a TransactionItem for
+     * @param item     the new TransactionItem to persist
+     * @return the newly create TransactionItem with auto-generated ID
+     */
+    @POST
+    @CreatedOnSuccess
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Validated(TransactionItem.class)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    public TransactionItem createTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, TransactionItem item) throws ServiceException;
+
+    /**
+     * Modify an existing TransactionItem
+     *
+     * @param tenantId the tenantId to modify the TransactionItem for
+     * @param itemId   the ID of the TransactionItems to modify
+     * @param item     the modified TransactionItem to persist
+     * @return the modified TransactionItem
+     */
+    @PUT
+    @Path(ITEM_ID_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Validated(TransactionItem.class)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    public TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId, TransactionItem item)
+          throws ServiceException;
+
+    /**
+     * Delete an existing TransactionItem
+     *
+     * @param tenantId the tenantId to delete the TransactionItem for
+     * @param itemId   the ID of the TransactionItems to delete
+     */
+    @DELETE
+    @Path(ITEM_ID_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    public void deleteTransactionItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ITEM_ID) String itemId) throws ServiceException;
+}
