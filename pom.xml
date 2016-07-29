@@ -1,25 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>1.39.0-SNAPSHOT</version>
-
+    <version>1.40.0-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
         <version>1.37.0-SNAPSHOT</version>
     </parent>
-
     <properties>
         <com.agilysys.pms.common.version>1.37.0-SNAPSHOT</com.agilysys.pms.common.version>
         <com.agilysys.pms.payment.version>1.31.0-SNAPSHOT</com.agilysys.pms.payment.version>
         <com.agilysys.pms.property.version>3.28.0-SNAPSHOT</com.agilysys.pms.property.version>
         <com.agilysys.pms.rguestpayshim.version>1.15.0-SNAPSHOT</com.agilysys.pms.rguestpayshim.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
@@ -75,7 +70,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <scm>
         <connection>scm:git:ssh://git@stash.bellevue.agilysys.com:7999/pms/accountinterface.git</connection>
         <developerConnection>scm:git:ssh://git@stash.bellevue.agilysys.com:7999/pms/accountinterface.git</developerConnection>
