@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.agilysys.common.model.PaymentSetting;
+import com.agilysys.platform.common.constants.ValidationConstants;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
+import com.agilysys.platform.common.json.schema.PatternRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -40,6 +42,7 @@ public class AccountSummary {
 
     @MinLengthRestriction(4)
     @MaxLengthRestriction(22)
+    @PatternRestriction(ValidationConstants.CODE_REGEX)
     protected String number;
 
     @MinLengthRestriction(1)
