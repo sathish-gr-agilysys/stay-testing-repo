@@ -41,7 +41,7 @@ public class AccountSummary {
     protected AccountsReceivableSettings accountsReceivableSettings;
 
     @MinLengthRestriction(4)
-    @MaxLengthRestriction(22)
+    @MaxLengthRestriction(12)
     @PatternRestriction(ValidationConstants.CODE_REGEX)
     protected String number;
 
