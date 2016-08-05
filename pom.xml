@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>1.39.1-SNAPSHOT</version>
+    <version>1.39.1</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>1.38.1-SNAPSHOT</version>
+        <version>1.38.1</version>
     </parent>
     <properties>
         <com.agilysys.pms.common.version>1.37.0</com.agilysys.pms.common.version>
