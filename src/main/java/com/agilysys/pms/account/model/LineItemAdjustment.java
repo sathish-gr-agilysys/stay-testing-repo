@@ -31,6 +31,7 @@ public class LineItemAdjustment {
     @JsonProperty(required = true)
     private BigDecimal amount;
 
+    @JsonProperty(required = true)
     @MaxLengthRestriction(250)
     private String reason;
 
