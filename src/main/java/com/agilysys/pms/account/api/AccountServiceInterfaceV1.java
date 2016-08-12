@@ -61,6 +61,8 @@ import com.agilysys.pms.account.model.Payment;
 import com.agilysys.pms.account.model.PaymentInstrumentAuthStatus;
 import com.agilysys.pms.account.model.PaymentRefund;
 import com.agilysys.pms.account.model.PayoffBalanceRequest;
+import com.agilysys.pms.account.model.PostChargesRequest;
+import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
@@ -568,8 +570,8 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, List<Charge> charges);
+    PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, PostChargesRequest charges);
 
     /**
      * Posts a credit to an account
