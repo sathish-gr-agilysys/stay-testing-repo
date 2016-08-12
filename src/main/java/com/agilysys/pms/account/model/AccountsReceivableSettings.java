@@ -17,6 +17,7 @@ public class AccountsReceivableSettings {
     private int defaultTerms;
     private boolean emailPreferred;
     private DefaultRoutingRule defaultRoutingRule;
+    @Deprecated
     private String accountNumber;
 
     public BigDecimal getCreditLimit() {
