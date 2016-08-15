@@ -571,9 +571,10 @@ public interface AccountServiceInterfaceV1 {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, PostChargesRequest charges);
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("grouped") boolean grouped, PostChargesRequest charges);
 
-    /**
+
+   /**
      * Posts a credit to an account
      *
      * @param accountId  the Account to post to
