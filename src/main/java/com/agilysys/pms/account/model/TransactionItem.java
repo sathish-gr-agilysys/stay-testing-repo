@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
@@ -122,5 +124,19 @@ public class TransactionItem extends AccountingItem {
 
     public void setGlCode(String glCode) {
         this.glCode = glCode;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object obj)
+    {
+        return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int hashCode()
+    {
+        return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
     }
 }
