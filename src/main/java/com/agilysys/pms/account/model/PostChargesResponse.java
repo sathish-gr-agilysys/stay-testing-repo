@@ -6,8 +6,7 @@ import java.math.BigDecimal;
 public class PostChargesResponse {
 
     private String groupId;
-    private BigDecimal totalCharge;
-    private BigDecimal chargesCount;
+    private GroupSummary groupSummary;
 
     private List<LineItemView> lineItemsList;
 
@@ -27,19 +26,11 @@ public class PostChargesResponse {
         this.groupId = groupId;
     }
 
-    public BigDecimal getTotalCharge() {
-        return totalCharge;
+    public GroupSummary getGroupSummary() {
+        return groupSummary;
     }
 
-    public void setTotalCharge(BigDecimal totalCharge) {
-        this.totalCharge = totalCharge;
-    }
-
-    public BigDecimal getChargesCount() {
-        return chargesCount;
-    }
-
-    public void setChargesCount(BigDecimal chargesCount) {
-        this.chargesCount = chargesCount;
+    public void setGroupSummary(GroupSummary groupSummary) {
+        this.groupSummary = groupSummary;
     }
 }
