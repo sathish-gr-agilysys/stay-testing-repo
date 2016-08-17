@@ -5,6 +5,9 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,5 +35,19 @@ public class TransactionSubCategory extends AccountingObjectBase {
      */
     public void setCategoryIds(List<String> categoryIds) {
         this.categoryIds = categoryIds;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object obj)
+    {
+        return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int hashCode()
+    {
+        return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
     }
 }

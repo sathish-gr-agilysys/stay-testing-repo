@@ -5,6 +5,9 @@ package com.agilysys.pms.account.model;
 
 import java.util.Set;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.agilysys.common.model.PaymentMethodSetting;
 import com.agilysys.pms.common.model.annotation.DataPortInline;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
@@ -88,5 +91,19 @@ public class PaymentMethod extends AccountingItem {
 
     public void setGlCode(String glCode) {
         this.glCode = glCode;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object obj)
+    {
+        return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int hashCode()
+    {
+        return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
     }
 }

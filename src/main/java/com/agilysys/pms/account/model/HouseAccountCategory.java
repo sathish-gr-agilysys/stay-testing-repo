@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.validation.annotation.Validated;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
@@ -41,5 +43,19 @@ public class HouseAccountCategory extends AccountingObjectBase {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object obj)
+    {
+        return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int hashCode()
+    {
+        return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
     }
 }
