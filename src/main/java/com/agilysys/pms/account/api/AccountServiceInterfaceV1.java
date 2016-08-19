@@ -134,6 +134,7 @@ public interface AccountServiceInterfaceV1 {
     String FILTERED = "/filtered";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
+    String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1146,4 +1147,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void payOffBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, PayoffBalanceRequest request) throws ServiceException;
+
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + FIX_LEDGER_BALANCES_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
 }
