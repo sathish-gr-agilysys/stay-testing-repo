@@ -60,6 +60,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String recurringChargeId;
     private boolean routed;
     private boolean roomRevenue;
+    private String parentId;
 
     /**
      * @return the ID of the LineItem
@@ -594,6 +595,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setRoomRevenue(boolean roomRevenue) {
         this.roomRevenue = roomRevenue;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     @Override
