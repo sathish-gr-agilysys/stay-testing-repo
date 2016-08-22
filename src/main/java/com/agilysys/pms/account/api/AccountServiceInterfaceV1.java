@@ -23,6 +23,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
 import org.joda.time.LocalDate;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.model.PaymentSetting;
@@ -47,6 +48,7 @@ import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
+import com.agilysys.pms.account.model.GetFoliosRequest;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
 import com.agilysys.pms.account.model.InvoiceRequest;
@@ -296,6 +298,21 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws ServiceException;
 
+    /**
+     * Retrieve paginated folios from an account
+     *
+     * @param tenantId   id of tenant where the account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountId  id of account to retrieve folios from
+     * @return List of folios
+     */
+    @POST
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + "Pag")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Validated(GetFoliosRequest.class)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Page<FolioDetail> getFoliosPag(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, GetFoliosRequest foliosRequest) throws ServiceException;
     /**
      * Retrieves all of the Folios along with their balances for a given accountId
      *
