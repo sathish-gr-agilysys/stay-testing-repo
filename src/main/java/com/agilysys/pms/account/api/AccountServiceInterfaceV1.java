@@ -396,7 +396,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(FolioSummary.class)
+    // @Validated(FolioSummary.class) - Due to platform bug: PLAT-6718
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<FolioSummary> updateFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, List<FolioSummary> folios) throws ServiceException;
