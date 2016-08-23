@@ -9,6 +9,7 @@ import java.util.List;
 public class NonInvoicedSourceAccountDetail {
     private String sourceAccountId;
     private String sourceAccountType;
+    private String sourceAccountName;
     private String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
     private List<LineItemView> nonInvoicedCharges;
     private List<LineItemView> nonInvoicePayments;
@@ -27,6 +28,14 @@ public class NonInvoicedSourceAccountDetail {
 
     public void setSourceAccountType(String sourceAccountType) {
         this.sourceAccountType = sourceAccountType;
+    }
+
+    public String getSourceAccountName() {
+        return sourceAccountName;
+    }
+
+    public void setSourceAccountName(String sourceAccountName) {
+        this.sourceAccountName = sourceAccountName;
     }
 
     public String getReferenceId() {
