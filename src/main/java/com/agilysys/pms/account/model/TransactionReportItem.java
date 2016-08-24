@@ -29,6 +29,7 @@ public class TransactionReportItem {
     private String accountType;
     private String referenceId;
     private String refundReferenceId;
+    private String accountName;
 
     public String getId() {
         return id;
@@ -166,4 +167,11 @@ public class TransactionReportItem {
         this.refundReferenceId = refundReferenceId;
     }
 
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
 }
