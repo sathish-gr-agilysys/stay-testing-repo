@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 public class PostChargesResponse {
 
-    private String groupId;
+    private String parentId;
     private GroupSummary groupSummary;
 
     private List<LineItemView> lineItemsList;
@@ -18,12 +18,12 @@ public class PostChargesResponse {
         this.lineItemsList = lineItemsList;
     }
 
-    public String getGroupId() {
-        return groupId;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public GroupSummary getGroupSummary() {

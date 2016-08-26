@@ -62,6 +62,12 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean roomRevenue;
     private String parentId;
 
+    // boolean fields added for display logic
+    private boolean grouped;
+    private boolean adjusted;
+    private boolean refunded;
+    private boolean credited;
+
     /**
      * @return the ID of the LineItem
      */
@@ -603,6 +609,38 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public boolean isGrouped() {
+        return grouped;
+    }
+
+    public void setGrouped(boolean grouped) {
+        this.grouped = grouped;
+    }
+
+    public boolean isAdjusted() {
+        return adjusted;
+    }
+
+    public void setAdjusted(boolean adjusted) {
+        this.adjusted = adjusted;
+    }
+
+    public boolean isRefunded() {
+        return refunded;
+    }
+
+    public void setRefunded(boolean refunded) {
+        this.refunded = refunded;
+    }
+
+    public boolean isCredited() {
+        return credited;
+    }
+
+    public void setCredited(boolean credited) {
+        this.credited = credited;
     }
 
     @Override
