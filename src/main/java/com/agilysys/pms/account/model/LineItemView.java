@@ -562,7 +562,7 @@ public class LineItemView implements Comparable<LineItemView> {
      * @return the reference
      */
     public String getReference() {
-        return reference;
+        return reference != null ? reference : "";
     }
 
     /**
