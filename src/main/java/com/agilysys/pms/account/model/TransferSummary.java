@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-public class TransactionSummary {
+public class TransferSummary {
     private String sourceAccountId;
     private String destinationAccountId;
     private String sourceAccountType;
