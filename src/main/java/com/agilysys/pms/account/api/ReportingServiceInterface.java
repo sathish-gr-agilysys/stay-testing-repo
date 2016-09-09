@@ -27,6 +27,7 @@ import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
 import com.agilysys.pms.account.model.TransactionReportItem;
+import com.agilysys.pms.account.model.TransactionReportRequest;
 import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/reports")
@@ -93,6 +94,20 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
           throws ServiceException;
 
+    /**
+     * get the transaction report
+     *
+     * @param tenantId   the tenant ID
+     * @param propertyId the property ID
+     * @param request    the body request with filter to get the report for
+     */
+    @POST
+    @Path(TRANS_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    List<TransactionReportItem> getTransactionReportByAccountIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
+          throws ServiceException;
     /**
      * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
      * cashier.
