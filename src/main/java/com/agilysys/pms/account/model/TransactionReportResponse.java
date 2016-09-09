@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public class TransactionReportResponse {
-    Map<String, List<TransactionReportItem>> transactionLineItemByAccount;
+    Map<String, List<TransactionReportItem>> transactionsByAccountId;
 
-    public Map<String, List<TransactionReportItem>> getTransactionLineItemByAccount() {
-        return transactionLineItemByAccount;
+    public Map<String, List<TransactionReportItem>> getTransactionsByAccountId() {
+        return transactionsByAccountId;
     }
 
-    public void setTransactionLineItemByAccount(Map<String, List<TransactionReportItem>> transactionLineItemByAccount) {
-        this.transactionLineItemByAccount = transactionLineItemByAccount;
+    public void setTransactionsByAccountId(Map<String, List<TransactionReportItem>> transactionsByAccountId) {
+        this.transactionsByAccountId = transactionsByAccountId;
     }
 }
