@@ -30,6 +30,7 @@ public class TransactionReportItem {
     private String referenceId;
     private String refundReferenceId;
     private String accountName;
+    private TransferSummary transferSummary;
 
     public String getId() {
         return id;
@@ -173,5 +174,13 @@ public class TransactionReportItem {
 
     public void setAccountName(String accountName) {
         this.accountName = accountName;
+    }
+
+    public TransferSummary getTransferSummary() {
+        return transferSummary;
+    }
+
+    public void setTransferSummary(TransferSummary transferSummary) {
+        this.transferSummary = transferSummary;
     }
 }
