@@ -81,6 +81,7 @@ public interface AccountServiceInterfaceV1 {
     String TYPES_PATH = "types";
     String STATUSES_PATH = "statuses";
     String ACCOUNT_ID = "accountId";
+    String GROUPED = "grouped";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
@@ -293,7 +294,7 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters, @QueryParam(GROUPED) boolean grouped)
           throws ServiceException;
 
     /**
@@ -361,7 +362,7 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     FolioDetail getFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId) throws ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId, @QueryParam(GROUPED) boolean grouped) throws ServiceException;
 
     /**
      * Update folio for an account
@@ -571,7 +572,7 @@ public interface AccountServiceInterfaceV1 {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("grouped") boolean grouped, PostChargesRequest charges);
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges);
 
 
    /**
