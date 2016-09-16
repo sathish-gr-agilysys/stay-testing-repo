@@ -9,6 +9,8 @@ public class TransferSummary {
     private String sourceAccountType;
     private String destinationAccountType;
 
+    private TransferDirection direction;
+
     public String getSourceAccountId() {
         return sourceAccountId;
     }
@@ -39,5 +41,13 @@ public class TransferSummary {
 
     public void setDestinationAccountType(String destinationAccountType) {
         this.destinationAccountType = destinationAccountType;
+    }
+
+    public TransferDirection getDirection() {
+        return direction;
+    }
+
+    public void setDirection(TransferDirection direction) {
+        this.direction = direction;
     }
 }
