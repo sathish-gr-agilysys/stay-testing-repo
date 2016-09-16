@@ -29,6 +29,7 @@ public class TransactionReportItem {
     private String accountType;
     private String referenceId;
     private String refundReferenceId;
+    private String taxReferenceId;
     private String accountName;
     private TransferSummary transferSummary;
 
@@ -182,5 +183,13 @@ public class TransactionReportItem {
 
     public void setTransferSummary(TransferSummary transferSummary) {
         this.transferSummary = transferSummary;
+    }
+
+    public String getTaxReferenceId() {
+        return taxReferenceId;
+    }
+
+    public void setTaxReferenceId(String taxReferenceId) {
+        this.taxReferenceId = taxReferenceId;
     }
 }
