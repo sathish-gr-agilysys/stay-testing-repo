@@ -33,22 +33,22 @@ import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/reports")
 public interface ReportingServiceInterface {
-    public static final String LEDGER_PATH = "/ledger";
-    public static final String CASHIER_PATH = "/cashier";
-    public static final String CASHIERS_LIST_PATH = "/cashiersList";
-    public static final String TRANS_PATH = "/transaction";
-    public static final String TO_DATE_TOTALS_PATH = "/toDateTotals";
-    public static final String ACCOUNT_BALANCES_PATH = "/accountBalances";
-    public static final String REVENUE_PATH = "/revenueDetails";
-    public static final String RECURRING_CHARGES_PATH = "/recurringCharges";
-    public static final String TENANT_ID = "tenantId";
-    public static final String PROPERTY_ID = "propertyId";
-    public static final String PROPERTY_DATE = "propertyDate";
-    public static final String START_DATE = "startDate";
-    public static final String END_DATE = "endDate";
-    public static final String ROOM_REVENUE = "roomRevenue";
-    public static final String BY_CASHIER = "byCashier";
-    public static final String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
+    String LEDGER_PATH = "/ledger";
+    String CASHIER_PATH = "/cashier";
+    String CASHIERS_LIST_PATH = "/cashiersList";
+    String TO_DATE_TOTALS_PATH = "/toDateTotals";
+    String TRANS_PATH = "/transaction";
+    String ACCOUNT_BALANCES_PATH = "/accountBalances";
+    String REVENUE_PATH = "/revenueDetails";
+    String RECURRING_CHARGES_PATH = "/recurringCharges";
+    String TENANT_ID = "tenantId";
+    String PROPERTY_ID = "propertyId";
+    String PROPERTY_DATE = "propertyDate";
+    String START_DATE = "startDate";
+    String END_DATE = "endDate";
+    String ROOM_REVENUE = "roomRevenue";
+    String BY_CASHIER = "byCashier";
+    String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
 
     /**
      * get the ledger report
@@ -61,7 +61,7 @@ public interface ReportingServiceInterface {
     @Path(LEDGER_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'DateRoll')")
-    public List<NightAuditReport> ledgerReport(@PathParam(TENANT_ID) String tenantId,
+    List<NightAuditReport> ledgerReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
           throws ServiceException;
 
@@ -76,7 +76,7 @@ public interface ReportingServiceInterface {
     @Path(CASHIER_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'DateRoll')")
-    public List<NightAuditReport> cashierReport(@PathParam(TENANT_ID) String tenantId,
+    List<NightAuditReport> cashierReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
           throws ServiceException;
 
@@ -91,7 +91,7 @@ public interface ReportingServiceInterface {
     @Path(TRANS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    public List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
+    List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
           throws ServiceException;
 
@@ -123,7 +123,7 @@ public interface ReportingServiceInterface {
     @Path(TRANS_PATH + TO_DATE_TOTALS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    public TransactionToDateTotalsResult getTransactionToDateTotals(@PathParam(TENANT_ID) String tenantId,
+    TransactionToDateTotalsResult getTransactionToDateTotals(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate,
           @QueryParam(BY_CASHIER) Boolean breakdownByCashier) throws ServiceException;
 
@@ -141,7 +141,7 @@ public interface ReportingServiceInterface {
     @Path(REVENUE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    public RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
+    RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean isRoomRevenue);
 
@@ -157,7 +157,7 @@ public interface ReportingServiceInterface {
     @Path(RECURRING_CHARGES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    public RecurringChargesReportResult getRecurringChargesReport(@PathParam(TENANT_ID) String tenantId,
+    RecurringChargesReportResult getRecurringChargesReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam("date") LocalDate date);
 
     /**
@@ -173,9 +173,9 @@ public interface ReportingServiceInterface {
     @Path(TAX_EXEMPT_ACCOUNTS)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    public TaxExemptReportResult getTaxExemptReport(@PathParam(TENANT_ID) String tenantId,
+    TaxExemptReportResult getTaxExemptReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate);
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenueOnly);
 
     /**
      * @deprecated use {@link  #getAccountBalances(String, String,
@@ -187,7 +187,7 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     @Deprecated
-    public AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
+    AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws ServiceException;
 
     /**
@@ -203,7 +203,7 @@ public interface ReportingServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(AccountBalancesRequest.class)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
-    public AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
+    AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountBalancesRequest request) throws ServiceException;
 
     /**
@@ -215,7 +215,6 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
-    public List<Cashier> getCashiersList(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws ServiceException;
+    List<Cashier> getCashiersList(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws ServiceException;
 }
