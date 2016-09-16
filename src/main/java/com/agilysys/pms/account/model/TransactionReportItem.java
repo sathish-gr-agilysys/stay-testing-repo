@@ -29,6 +29,7 @@ public class TransactionReportItem {
     private String accountType;
     private String referenceId;
     private String refundReferenceId;
+    // this can reference a folioLine id that originated the tax like a charge, correction, transferred charge
     private String taxReferenceId;
     private String accountName;
     private TransferSummary transferSummary;
