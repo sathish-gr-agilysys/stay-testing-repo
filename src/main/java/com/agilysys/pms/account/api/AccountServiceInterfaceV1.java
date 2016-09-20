@@ -70,6 +70,7 @@ import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewfoliosRequest;
+import com.agilysys.pms.account.model.ViewfoliosResponse;
 import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
@@ -304,7 +305,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+    List<ViewfoliosResponse> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId, @QueryParam("detailed") boolean detailed, ViewfoliosRequest viewfoliosRequest)
           throws ServiceException;
 
