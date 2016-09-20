@@ -294,7 +294,7 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters, @QueryParam(GROUPED) boolean grouped)
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws ServiceException;
 
     /**
@@ -362,7 +362,7 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     FolioDetail getFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId, @QueryParam(GROUPED) boolean grouped) throws ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId) throws ServiceException;
 
     /**
      * Update folio for an account

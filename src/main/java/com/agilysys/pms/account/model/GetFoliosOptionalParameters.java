@@ -3,7 +3,6 @@ package com.agilysys.pms.account.model;
 public class GetFoliosOptionalParameters {
     private boolean groupTaxLineItems = false;
     private String transactionIds;
-    private String parentIds;
 
     public boolean isGroupTaxLineItems() {
         return groupTaxLineItems;
@@ -21,11 +20,4 @@ public class GetFoliosOptionalParameters {
         this.transactionIds = transactionIds;
     }
 
-    public String getParentIds() {
-        return parentIds;
-    }
-
-    public void setParentIds(String parentIds) {
-        this.parentIds = parentIds;
-    }
 }
