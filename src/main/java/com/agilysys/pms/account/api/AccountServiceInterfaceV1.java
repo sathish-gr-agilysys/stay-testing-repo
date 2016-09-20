@@ -304,7 +304,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<LineItemView> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+    List<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId, @QueryParam("detailed") boolean detailed, ViewfoliosRequest viewfoliosRequest)
           throws ServiceException;
 
