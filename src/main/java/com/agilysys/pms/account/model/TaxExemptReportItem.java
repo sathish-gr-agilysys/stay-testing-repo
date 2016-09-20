@@ -1,5 +1,6 @@
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -9,24 +10,33 @@ import com.agilysys.common.json.serialize.LocalDateJsonKeyDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class TaxExemptReportItem {
+    private String referenceId;
+    private String taxId;
 
-    private AccountSummary accountInfo;
     @JsonDeserialize(keyUsing = LocalDateJsonKeyDeserializer.class)
-    private Map<LocalDate, List<String>> taxExemptions;
+    private Map<LocalDate, Map<String, BigDecimal>> taxExemptions;
 
-    public AccountSummary getAccountInfo() {
-        return accountInfo;
+    public String getReferenceId() {
+        return referenceId;
     }
 
-    public void setAccountInfo(AccountSummary accountInfo) {
-        this.accountInfo = accountInfo;
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
     }
 
-    public Map<LocalDate, List<String>> getTaxExemptions() {
+    public String getTaxId() {
+        return taxId;
+    }
+
+    public void setTaxId(String taxId) {
+        this.taxId = taxId;
+    }
+
+    public Map<LocalDate, Map<String, BigDecimal>> getTaxExemptions() {
         return taxExemptions;
     }
 
-    public void setTaxExemptions(Map<LocalDate, List<String>> taxExemptions) {
+    public void setTaxExemptions(Map<LocalDate, Map<String, BigDecimal>> taxExemptions) {
         this.taxExemptions = taxExemptions;
     }
 }
