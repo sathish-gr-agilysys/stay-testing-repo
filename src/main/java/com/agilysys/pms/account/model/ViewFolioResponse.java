@@ -2,7 +2,7 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
-public class ViewfoliosResponse {
+public class ViewFolioResponse {
 
     private int totalElements;
     private int totalPages;

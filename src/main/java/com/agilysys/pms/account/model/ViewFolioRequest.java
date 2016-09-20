@@ -1,12 +1,13 @@
 package com.agilysys.pms.account.model;
 
 
-public class ViewfoliosRequest {
+public class ViewFolioRequest {
 
     private String[] transactionIds;
     private String[] parentIds;
     private int page;
     private int count;
+    private boolean isDetailed;
 
     public String[] getTransactionIds() {
         return transactionIds;
@@ -38,5 +39,13 @@ public class ViewfoliosRequest {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public boolean isDetailed() {
+        return isDetailed;
+    }
+
+    public void setIsDetailed(boolean isDetailed) {
+        this.isDetailed = isDetailed;
     }
 }
