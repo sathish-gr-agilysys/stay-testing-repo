@@ -46,6 +46,7 @@ import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioSummary;
+import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
@@ -69,12 +70,12 @@ import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
-import com.agilysys.pms.account.model.ViewFolioResponse;
 import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.wordnik.swagger.annotations.ApiParam;
+import org.springframework.data.domain.Page;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 public interface AccountServiceInterfaceV1 {
@@ -304,7 +305,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<ViewFolioResponse> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+    Page<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId, ViewFolioRequest viewfoliosRequest)
           throws ServiceException;
 

@@ -6,7 +6,7 @@ public class GroupSummary {
     private int chargesCount;
     private BigDecimal totalCharge;
     private BigDecimal totalTax;
-    private  BigDecimal totalAmount;
+    private BigDecimal totalAmount;
     private BigDecimal totalRefund;
     private BigDecimal totalAdjustment;
     private BigDecimal totalCorrection;
