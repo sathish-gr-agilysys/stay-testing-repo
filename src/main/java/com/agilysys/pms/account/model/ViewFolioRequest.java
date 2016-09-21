@@ -1,13 +1,15 @@
 package com.agilysys.pms.account.model;
 
-
+/**
+ * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 public class ViewFolioRequest {
 
     private String[] transactionIds;
     private String[] parentIds;
     private int page;
     private int count;
-    private boolean isDetailed;
+    private boolean includeDetails;
 
     public String[] getTransactionIds() {
         return transactionIds;
@@ -41,11 +43,11 @@ public class ViewFolioRequest {
         this.count = count;
     }
 
-    public boolean isDetailed() {
-        return isDetailed;
+    public boolean isIncludeDetails() {
+        return includeDetails;
     }
 
-    public void setIsDetailed(boolean isDetailed) {
-        this.isDetailed = isDetailed;
+    public void setIncludeDetails(boolean includeDetails) {
+        this.includeDetails = includeDetails;
     }
 }

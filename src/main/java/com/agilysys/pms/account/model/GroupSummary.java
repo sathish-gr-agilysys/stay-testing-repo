@@ -2,6 +2,9 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
+/**
+ * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 public class GroupSummary {
     private int chargesCount;
     private BigDecimal totalCharge;
