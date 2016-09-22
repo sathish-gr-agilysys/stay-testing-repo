@@ -81,12 +81,14 @@ public interface ReportingServiceInterface {
           throws ServiceException;
 
     /**
+     * This endpoint is deprecated in favor of getTransactionReportByAccountIdsAndPropertyDateRange
      * get the transaction report
      *
      * @param tenantId     the tenant ID
      * @param propertyId   the property ID
      * @param propertyDate the propertyDate to get the report for
      */
+    @Deprecated
     @GET
     @Path(TRANS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
@@ -107,7 +109,7 @@ public interface ReportingServiceInterface {
     @Path(TRANS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    TransactionReportResponse getTransactionReportByAccountIds(@PathParam(TENANT_ID) String tenantId,
+    TransactionReportResponse getTransactionReportByAccountIdsAndPropertyDateRange(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws ServiceException;
     /**
      * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
