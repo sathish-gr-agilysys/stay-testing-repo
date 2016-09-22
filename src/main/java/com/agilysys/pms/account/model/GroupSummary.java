@@ -2,18 +2,30 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
-public class GroupSummary {
-    private BigDecimal chargesCount;
-    private BigDecimal totalCharge;
-    private BigDecimal totaltax;
-    private BigDecimal totalPayments;
-    private BigDecimal totalBalance;
 
-    public BigDecimal getChargesCount() {
+public class GroupSummary {
+    private int chargesCount;
+    private BigDecimal totalCharge;
+    private BigDecimal totalTax;
+    private BigDecimal totalAmount;
+    private BigDecimal totalRefund;
+    private BigDecimal totalAdjustment;
+    private BigDecimal totalCorrection;
+    private BigDecimal totalPayments;
+
+    public BigDecimal getTotalCorrection() {
+        return totalCorrection;
+    }
+
+    public void setTotalCorrection(BigDecimal totalCorrection) {
+        this.totalCorrection = totalCorrection;
+    }
+
+    public int getChargesCount() {
         return chargesCount;
     }
 
-    public void setChargesCount(BigDecimal chargesCount) {
+    public void setChargesCount(int chargesCount) {
         this.chargesCount = chargesCount;
     }
 
@@ -25,12 +37,36 @@ public class GroupSummary {
         this.totalCharge = totalCharge;
     }
 
-    public BigDecimal getTotaltax() {
-        return totaltax;
+    public BigDecimal getTotalTax() {
+        return totalTax;
     }
 
-    public void setTotaltax(BigDecimal totaltax) {
-        this.totaltax = totaltax;
+    public void setTotalTax(BigDecimal totalTax) {
+        this.totalTax = totalTax;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public BigDecimal getTotalRefund() {
+        return totalRefund;
+    }
+
+    public void setTotalRefund(BigDecimal totalRefund) {
+        this.totalRefund = totalRefund;
+    }
+
+    public BigDecimal getTotalAdjustment() {
+        return totalAdjustment;
+    }
+
+    public void setTotalAdjustment(BigDecimal totalAdjustment) {
+        this.totalAdjustment = totalAdjustment;
     }
 
     public BigDecimal getTotalPayments() {
@@ -39,13 +75,5 @@ public class GroupSummary {
 
     public void setTotalPayments(BigDecimal totalPayments) {
         this.totalPayments = totalPayments;
-    }
-
-    public BigDecimal getTotalBalance() {
-        return totalBalance;
-    }
-
-    public void setTotalBalance(BigDecimal totalBalance) {
-        this.totalBalance = totalBalance;
     }
 }

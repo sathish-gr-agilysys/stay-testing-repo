@@ -62,7 +62,6 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean roomRevenue;
     private String parentId;
 
-
     /**
      * @return the ID of the LineItem
      */
@@ -605,7 +604,6 @@ public class LineItemView implements Comparable<LineItemView> {
     public void setParentId(String parentId) {
         this.parentId = parentId;
     }
-
 
     @Override
     public int compareTo(LineItemView other) {
