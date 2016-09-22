@@ -109,7 +109,7 @@ public interface ReportingServiceInterface {
     @Path(TRANS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    TransactionReportResponse getTransactionReportByAccountIdsAndPropertyDateRange(@PathParam(TENANT_ID) String tenantId,
+    TransactionReportResponse getTransactions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws ServiceException;
     /**
      * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
