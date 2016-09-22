@@ -11,13 +11,13 @@ import java.util.Map;
 import org.joda.time.LocalDate;
 
 public class TransactionReportResponse {
-    Map<LocalDate, List<TransactionReportItem>> transactionsByAccountId;
+    Map<LocalDate, List<TransactionReportItem>> transactionsByDate;
 
-    public Map<LocalDate, List<TransactionReportItem>> getTransactionsByAccountId() {
-        return transactionsByAccountId;
+    public Map<LocalDate, List<TransactionReportItem>> getTransactionsByDate() {
+        return transactionsByDate;
     }
 
-    public void setTransactionsByAccountId(Map<LocalDate, List<TransactionReportItem>> transactionsByAccountId) {
-        this.transactionsByAccountId = transactionsByAccountId;
+    public void setTransactionsByDate(Map<LocalDate, List<TransactionReportItem>> transactionsByDate) {
+        this.transactionsByDate = transactionsByDate;
     }
 }
