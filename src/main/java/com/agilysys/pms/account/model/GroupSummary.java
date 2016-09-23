@@ -1,5 +1,5 @@
 /*
- * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ * (C) 2016 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
@@ -13,7 +13,7 @@ public class GroupSummary {
     private BigDecimal totalRefund;
     private BigDecimal totalAdjustment;
     private BigDecimal totalCorrection;
-    private BigDecimal totalPayments;
+    private BigDecimal totalPayment;
 
     public BigDecimal getTotalCorrection() {
         return totalCorrection;
@@ -71,11 +71,11 @@ public class GroupSummary {
         this.totalAdjustment = totalAdjustment;
     }
 
-    public BigDecimal getTotalPayments() {
-        return totalPayments;
+    public BigDecimal getTotalPayment() {
+        return totalPayment;
     }
 
-    public void setTotalPayments(BigDecimal totalPayments) {
-        this.totalPayments = totalPayments;
+    public void setTotalPayment(BigDecimal totalPayments) {
+        this.totalPayment = totalPayments;
     }
 }
