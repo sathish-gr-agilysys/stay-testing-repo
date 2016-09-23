@@ -1,10 +1,10 @@
+/*
+ * (C) 2016 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
-/**
- * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
- */
 public class GroupSummary {
     private int chargesCount;
     private BigDecimal totalCharge;
@@ -13,6 +13,7 @@ public class GroupSummary {
     private BigDecimal totalRefund;
     private BigDecimal totalAdjustment;
     private BigDecimal totalCorrection;
+    private BigDecimal totalPayment;
 
     public BigDecimal getTotalCorrection() {
         return totalCorrection;
@@ -68,5 +69,13 @@ public class GroupSummary {
 
     public void setTotalAdjustment(BigDecimal totalAdjustment) {
         this.totalAdjustment = totalAdjustment;
+    }
+
+    public BigDecimal getTotalPayment() {
+        return totalPayment;
+    }
+
+    public void setTotalPayment(BigDecimal totalPayments) {
+        this.totalPayment = totalPayments;
     }
 }

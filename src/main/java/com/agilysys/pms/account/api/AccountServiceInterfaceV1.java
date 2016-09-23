@@ -85,6 +85,7 @@ public interface AccountServiceInterfaceV1 {
     String TYPES_PATH = "types";
     String STATUSES_PATH = "statuses";
     String ACCOUNT_ID = "accountId";
+    String GROUPED = "grouped";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
@@ -584,9 +585,10 @@ public interface AccountServiceInterfaceV1 {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, PostChargesRequest charges);
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges);
 
-    /**
+
+   /**
      * Posts a credit to an account
      *
      * @param accountId  the Account to post to
