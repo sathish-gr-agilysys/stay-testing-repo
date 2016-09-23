@@ -19,5 +19,4 @@ public class GetFoliosOptionalParameters {
     public void setTransactionIds(String transactionIds) {
         this.transactionIds = transactionIds;
     }
-
 }

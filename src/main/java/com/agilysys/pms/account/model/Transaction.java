@@ -39,10 +39,6 @@ public abstract class Transaction {
     private Boolean ignoreRules = true;
     private String terminalId;
     private LocalDate postingDate;
-
-    /*
-    this property is used to track a grouped charge payment
-     */
     private String parentId;
 
     /**
