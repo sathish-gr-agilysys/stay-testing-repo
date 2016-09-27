@@ -39,6 +39,7 @@ public abstract class Transaction {
     private Boolean ignoreRules = true;
     private String terminalId;
     private LocalDate postingDate;
+    private String parentId;
 
     /**
      * @return the accountId
@@ -176,6 +177,14 @@ public abstract class Transaction {
      */
     public void setPostingDate(LocalDate postingDate) {
         this.postingDate = postingDate;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     @Override

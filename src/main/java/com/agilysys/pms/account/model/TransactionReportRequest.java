@@ -6,11 +6,12 @@ package com.agilysys.pms.account.model;
 
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.joda.time.LocalDate;
 
 public class TransactionReportRequest {
-    @JsonProperty(required = true)
     private Set<String> accountIds;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     public Set<String> getAccountIds() {
         return accountIds;
@@ -18,5 +19,21 @@ public class TransactionReportRequest {
 
     public void setAccountIds(Set<String> accountIds) {
         this.accountIds = accountIds;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }

@@ -8,14 +8,16 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Map;
 
-public class TransactionReportResponse {
-    Map<String, List<TransactionReportItem>> transactionsByAccountId;
+import org.joda.time.LocalDate;
 
-    public Map<String, List<TransactionReportItem>> getTransactionsByAccountId() {
-        return transactionsByAccountId;
+public class TransactionReportResponse {
+    Map<LocalDate, List<TransactionReportItem>> transactionsByDate;
+
+    public Map<LocalDate, List<TransactionReportItem>> getTransactionsByDate() {
+        return transactionsByDate;
     }
 
-    public void setTransactionsByAccountId(Map<String, List<TransactionReportItem>> transactionsByAccountId) {
-        this.transactionsByAccountId = transactionsByAccountId;
+    public void setTransactionsByDate(Map<LocalDate, List<TransactionReportItem>> transactionsByDate) {
+        this.transactionsByDate = transactionsByDate;
     }
 }

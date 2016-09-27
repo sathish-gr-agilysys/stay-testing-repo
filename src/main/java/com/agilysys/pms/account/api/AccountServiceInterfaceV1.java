@@ -46,6 +46,7 @@ import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioSummary;
+import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
@@ -68,10 +69,13 @@ import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
+import com.agilysys.pms.account.model.ViewFolioRequest;
+import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.wordnik.swagger.annotations.ApiParam;
+import org.springframework.data.domain.Page;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 public interface AccountServiceInterfaceV1 {
@@ -81,6 +85,7 @@ public interface AccountServiceInterfaceV1 {
     String TYPES_PATH = "types";
     String STATUSES_PATH = "statuses";
     String ACCOUNT_ID = "accountId";
+    String GROUPED = "grouped";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
@@ -134,6 +139,7 @@ public interface AccountServiceInterfaceV1 {
     String FILTERED = "/filtered";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
+    String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
 
     /**
      * Retrieve all accounts from a tenant
@@ -294,6 +300,14 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
+          throws ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Page<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId, ViewFolioRequest viewfoliosRequest)
           throws ServiceException;
 
     /**
@@ -571,9 +585,10 @@ public interface AccountServiceInterfaceV1 {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, PostChargesRequest charges);
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges);
 
-    /**
+
+   /**
      * Posts a credit to an account
      *
      * @param accountId  the Account to post to
@@ -1146,4 +1161,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void payOffBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, PayoffBalanceRequest request) throws ServiceException;
+
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + FIX_LEDGER_BALANCES_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
 }

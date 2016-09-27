@@ -29,6 +29,8 @@ public class TransactionReportItem {
     private String accountType;
     private String referenceId;
     private String refundReferenceId;
+    // this can reference a folioLine id that originated the tax like a charge, correction, transferred charge
+    private String taxReferenceId;
     private String accountName;
     private TransferSummary transferSummary;
 
@@ -182,5 +184,13 @@ public class TransactionReportItem {
 
     public void setTransferSummary(TransferSummary transferSummary) {
         this.transferSummary = transferSummary;
+    }
+
+    public String getTaxReferenceId() {
+        return taxReferenceId;
+    }
+
+    public void setTaxReferenceId(String taxReferenceId) {
+        this.taxReferenceId = taxReferenceId;
     }
 }
