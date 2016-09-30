@@ -22,6 +22,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
+import org.apache.cxf.jaxrs.ext.StreamingResponse;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -126,6 +127,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
+    String INVOICE_STREAM_PATH = "/invoice-stream";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
@@ -926,6 +928,15 @@ public interface AccountServiceInterfaceV1 {
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam("accountId") String accountId, @LogParam("params") InvoiceFilteringOptionalParams params)
+          throws ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    StreamingResponse<List<InvoiceView>> findInvoiceStreaming(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam("accountId") String accountId, @LogParam("params") InvoiceFilteringOptionalParams params)
           throws ServiceException;
 
