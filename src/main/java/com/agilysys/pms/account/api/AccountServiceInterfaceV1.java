@@ -917,7 +917,7 @@ public interface AccountServiceInterfaceV1 {
           throws ServiceException;
 
     @GET
-    @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
+    @Path(ACCOUNT_ID_PATH + INVOICE_STREAM_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
