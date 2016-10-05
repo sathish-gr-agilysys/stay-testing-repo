@@ -50,6 +50,7 @@ import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
+import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
@@ -126,6 +127,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
+    String INVOICE_REPORT_PATH = "/invoice-report";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
@@ -928,6 +930,24 @@ public interface AccountServiceInterfaceV1 {
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam("accountId") String accountId, @LogParam("params") InvoiceFilteringOptionalParams params)
           throws ServiceException;
+
+
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    InvoiceReportProgressView createInvoiceReport(String tenantId, String propertyId, String accountId,
+          InvoiceFilteringOptionalParams params);
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    InvoiceReportProgressView getInvoiceReportProgress(String tenantId, String propertyId, String accountId,
+          InvoiceFilteringOptionalParams params);
 
     /**
      * Add line items to an invoice for an account
