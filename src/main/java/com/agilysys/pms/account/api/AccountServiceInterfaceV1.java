@@ -349,6 +349,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<FolioSummary> createFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, List<FolioSummary> folios) throws ServiceException;
+
     /**
      * Retrieve folio
      *
@@ -573,7 +574,8 @@ public interface AccountServiceInterfaceV1 {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, PostChargesRequest charges);
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
+          PostChargesRequest charges);
 
     /**
      * Posts a credit to an account
@@ -916,8 +918,6 @@ public interface AccountServiceInterfaceV1 {
           @PathParam("accountId") String accountId, @LogParam("params") InvoiceFilteringOptionalParams params)
           throws ServiceException;
 
-
-
     @POST
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_PATH)
     @Produces(MediaType.APPLICATION_JSON)
@@ -1114,7 +1114,8 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Boolean checkAccountNumberAvailability(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_NUMBER) String accountNumber) throws ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_NUMBER) String accountNumber)
+          throws ServiceException;
 
     /**
      * authorizes any additional credit cards associated with an
