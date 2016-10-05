@@ -21,7 +21,7 @@ public class ProgressStatusView {
     private DateTime expiration;
     private String mutexClass;
     private String tag;
-    RecurringChargesPostingResult result;
+    private RecurringChargesPostingResult result;
 
     /**
      * @return the totalCount
