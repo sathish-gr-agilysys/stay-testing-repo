@@ -122,7 +122,8 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
-    String INVOICE_REPORT_PATH = "/invoice-report";
+    String INVOICE_REPORT_START = "/invoice-report-start";
+    String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
@@ -918,23 +919,23 @@ public interface AccountServiceInterfaceV1 {
           @PathParam("accountId") String accountId, @LogParam("params") InvoiceFilteringOptionalParams params)
           throws ServiceException;
 
-    @POST
-    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_PATH)
+    @GET
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
     @Produces(MediaType.APPLICATION_JSON)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          InvoiceFilteringOptionalParams params);
+          @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed);
 
     @GET
-    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_PATH)
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
     @Produces(MediaType.APPLICATION_JSON)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     InvoiceReportProgressView getInvoiceReportProgress(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          InvoiceFilteringOptionalParams params);
+          @QueryParam("includeClosed") String includeClosed);
 
     /**
      * Add line items to an invoice for an account
