@@ -923,7 +923,8 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    InvoiceReportProgressView createInvoiceReport(String tenantId, String propertyId, String accountId,
+    InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           InvoiceFilteringOptionalParams params);
 
     @GET
@@ -931,7 +932,8 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    InvoiceReportProgressView getInvoiceReportProgress(String tenantId, String propertyId, String accountId,
+    InvoiceReportProgressView getInvoiceReportProgress(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           InvoiceFilteringOptionalParams params);
 
     /**
