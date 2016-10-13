@@ -6,21 +6,17 @@ package com.agilysys.pms.account.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ViewFolioRequest {
 
     private Set<String> transactionIds;
     private Set<String> parentIds;
-    private int page;
-    private int count;
+    @JsonProperty(required = true)
+    private Integer page;
+    @JsonProperty(required = true)
+    private Integer size;
     private boolean includeDetails;
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
 
     public Set<String> getTransactionIds() {
         return transactionIds;
@@ -38,19 +34,27 @@ public class ViewFolioRequest {
         this.parentIds = parentIds;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
     public boolean isIncludeDetails() {
         return includeDetails;
     }
 
     public void setIncludeDetails(boolean includeDetails) {
         this.includeDetails = includeDetails;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
     }
 }
