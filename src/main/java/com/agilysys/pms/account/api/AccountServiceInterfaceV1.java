@@ -23,6 +23,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
 import org.joda.time.LocalDate;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.model.PaymentSetting;
@@ -75,7 +76,6 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.wordnik.swagger.annotations.ApiParam;
-import org.springframework.data.domain.Page;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 public interface AccountServiceInterfaceV1 {
@@ -306,6 +306,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Validated(ViewFolioRequest.class)
     Page<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId, ViewFolioRequest viewfoliosRequest)
           throws ServiceException;
