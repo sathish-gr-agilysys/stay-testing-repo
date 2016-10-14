@@ -3,17 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>1.41.3-SNAPSHOT</version>
+    <version>1.42.1-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>1.39.0</version>
+        <version>1.41.0</version>
     </parent>
     <properties>
-        <com.agilysys.pms.common.version>1.37.0</com.agilysys.pms.common.version>
-        <com.agilysys.pms.payment.version>1.31.0</com.agilysys.pms.payment.version>
-        <com.agilysys.pms.property.version>3.28.0</com.agilysys.pms.property.version>
-        <com.agilysys.pms.rguestpayshim.version>1.15.0</com.agilysys.pms.rguestpayshim.version>
+        <com.agilysys.pms.common.version>1.40.0</com.agilysys.pms.common.version>
+        <com.agilysys.pms.payment.version>1.34.0</com.agilysys.pms.payment.version>
+        <com.agilysys.pms.property.version>3.31.0</com.agilysys.pms.property.version>
+        <com.agilysys.pms.rguestpayshim.version>1.18.0</com.agilysys.pms.rguestpayshim.version>
     </properties>
     <dependencies>
         <dependency>
