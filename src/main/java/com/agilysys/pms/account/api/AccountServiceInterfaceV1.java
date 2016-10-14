@@ -50,6 +50,7 @@ import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
+import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
@@ -126,6 +127,8 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
+    String INVOICE_REPORT_START = "/invoice-report-start";
+    String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
@@ -361,6 +364,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<FolioSummary> createFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, List<FolioSummary> folios) throws ServiceException;
+
     /**
      * Retrieve folio
      *
@@ -929,6 +933,24 @@ public interface AccountServiceInterfaceV1 {
           @PathParam("accountId") String accountId, @LogParam("params") InvoiceFilteringOptionalParams params)
           throws ServiceException;
 
+    @GET
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
+    @Produces(MediaType.APPLICATION_JSON)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed);
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
+    @Produces(MediaType.APPLICATION_JSON)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    InvoiceReportProgressView getInvoiceReportProgress(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("includeClosed") String includeClosed);
+
     /**
      * Add line items to an invoice for an account
      *
@@ -1109,7 +1131,8 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Boolean checkAccountNumberAvailability(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_NUMBER) String accountNumber) throws ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_NUMBER) String accountNumber)
+          throws ServiceException;
 
     /**
      * authorizes any additional credit cards associated with an
