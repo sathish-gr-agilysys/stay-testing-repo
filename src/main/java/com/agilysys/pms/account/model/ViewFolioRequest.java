@@ -6,16 +6,15 @@ package com.agilysys.pms.account.model;
 
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.joda.time.DateTime;
 
 public class ViewFolioRequest {
 
     private Set<String> transactionIds;
     private Set<String> parentIds;
-    @JsonProperty(required = true)
     private Integer page;
-    @JsonProperty(required = true)
     private Integer size;
+    private DateTime timeStamp;
     private boolean includeDetails;
 
     public Set<String> getTransactionIds() {
@@ -56,5 +55,13 @@ public class ViewFolioRequest {
 
     public void setSize(Integer size) {
         this.size = size;
+    }
+
+    public DateTime getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(DateTime timeStamp) {
+        this.timeStamp = timeStamp;
     }
 }
