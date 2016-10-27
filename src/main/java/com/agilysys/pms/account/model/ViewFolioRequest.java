@@ -8,12 +8,17 @@ import java.util.Set;
 
 import org.joda.time.DateTime;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ViewFolioRequest {
 
     private Set<String> transactionIds;
     private Set<String> parentIds;
+    @JsonProperty(required = true)
     private Integer page;
+    @JsonProperty(required = true)
     private Integer size;
+    @JsonProperty(required = true)
     private DateTime timeStamp;
     private boolean includeDetails;
 
