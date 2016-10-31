@@ -61,8 +61,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean routed;
     private boolean roomRevenue;
     private String parentId;
-    private boolean distributedCharge;
-    private String distributedChargeName;
+    private boolean distributed;
+    private String name;
 
     /**
      * @return the ID of the LineItem
@@ -607,20 +607,20 @@ public class LineItemView implements Comparable<LineItemView> {
         this.parentId = parentId;
     }
 
-    public boolean isDistributedCharge() {
-        return distributedCharge;
+    public boolean isDistributed() {
+        return distributed;
     }
 
-    public void setDistributedCharge(boolean distributedCharge) {
-        this.distributedCharge = distributedCharge;
+    public void setDistributed(boolean distributed) {
+        this.distributed = distributed;
     }
 
-    public String getDistributedChargeName() {
-        return distributedChargeName;
+    public String getName() {
+        return name;
     }
 
-    public void setDistributedChargeName(String distributedChargeName) {
-        this.distributedChargeName = distributedChargeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
