@@ -14,8 +14,6 @@ public class GroupSummary {
     private BigDecimal totalAdjustment;
     private BigDecimal totalCorrection;
     private BigDecimal totalPayment;
-    private boolean distributed;
-    private String name;
 
     public BigDecimal getTotalCorrection() {
         return totalCorrection;
@@ -81,19 +79,4 @@ public class GroupSummary {
         this.totalPayment = totalPayments;
     }
 
-    public boolean isDistributed() {
-        return distributed;
-    }
-
-    public void setDistributed(boolean distributed) {
-        this.distributed = distributed;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
