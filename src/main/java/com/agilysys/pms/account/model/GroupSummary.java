@@ -14,6 +14,7 @@ public class GroupSummary {
     private BigDecimal totalAdjustment;
     private BigDecimal totalCorrection;
     private BigDecimal totalPayment;
+    private int quantity;
 
     public BigDecimal getTotalCorrection() {
         return totalCorrection;
@@ -79,4 +80,10 @@ public class GroupSummary {
         this.totalPayment = totalPayments;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
