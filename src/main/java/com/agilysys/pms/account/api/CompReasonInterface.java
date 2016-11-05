@@ -19,6 +19,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.CompThreshold;
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 
 /**
@@ -43,7 +44,7 @@ public interface CompReasonInterface {
     @Path("/compReasons")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
     List<CompInfo> getCompReasons(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     /**
      * Retrieve a comp reason by id
@@ -57,7 +58,7 @@ public interface CompReasonInterface {
     @Path("/compReasons/{id}")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
     CompInfo getCompReason(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id) throws ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id) throws RGuestException, ServiceException;
 
     /**
      * Add a CompReason
@@ -72,7 +73,7 @@ public interface CompReasonInterface {
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
     @Validated(CompInfo.class)
     CompInfo addCompReason(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, CompInfo compInfo) throws ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, CompInfo compInfo) throws RGuestException, ServiceException;
 
     /**
      * Modify a CompReason
@@ -89,7 +90,7 @@ public interface CompReasonInterface {
     @Validated(CompInfo.class)
     CompInfo updateCompReason(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, CompInfo compInfo)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * Set the comp threshold

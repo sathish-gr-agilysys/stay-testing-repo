@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 
 /**
  * CRUD methods for credit terms
@@ -18,7 +19,7 @@ import com.agilysys.platform.common.exception.ServiceException;
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/creditTerms")
 @Produces(MediaType.APPLICATION_JSON)
 public interface CreditTermsInterface {
-    public static final String CREDIT_TERMS_PATH = "setup/accounts/creditTerms";
+    String CREDIT_TERMS_PATH = "setup/accounts/creditTerms";
 
     /**
      * Retrieve all credit terms
@@ -29,6 +30,6 @@ public interface CreditTermsInterface {
      */
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    public List<Integer> getCreditTerms(@PathParam("tenantId") String tenantId,
-          @PathParam("propertyId") String propertyId) throws ServiceException;
+    List<Integer> getCreditTerms(@PathParam("tenantId") String tenantId, @PathParam("propertyId") String propertyId)
+          throws RGuestException, ServiceException;
 }

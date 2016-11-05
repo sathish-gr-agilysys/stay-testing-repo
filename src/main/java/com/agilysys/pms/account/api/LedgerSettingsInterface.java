@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.LedgerSettingView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -30,20 +31,21 @@ public interface LedgerSettingsInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     LedgerSettingView createLedgerSetting(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, LedgerSettingView ledgerSetting) throws ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, LedgerSettingView ledgerSetting)
+          throws RGuestException, ServiceException;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<LedgerSettingView> getAllLedgerSettings(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     @GET
     @Path(LEDGER_SETTING_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     @Produces(MediaType.APPLICATION_JSON)
     LedgerSettingView getLedgerSetting(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(LEDGER_SETTING_ID) String ledgerSettingId) throws ServiceException;
+          @PathParam(LEDGER_SETTING_ID) String ledgerSettingId) throws RGuestException, ServiceException;
 
     @PUT
     @Path(LEDGER_SETTING_ID_PATH)
@@ -52,5 +54,5 @@ public interface LedgerSettingsInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     LedgerSettingView updateLedgerSetting(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(LEDGER_SETTING_ID) String ledgerSettingId,
-          LedgerSettingView ledgerSetting) throws ServiceException;
+          LedgerSettingView ledgerSetting) throws RGuestException, ServiceException;
 }

@@ -28,6 +28,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
@@ -159,7 +160,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("accountType") String accountTypes, @QueryParam("accountStatus") String accountStatuses)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieve an account by reference id
@@ -311,8 +312,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     @Validated(ViewFolioRequest.class)
     Page<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId, ViewFolioRequest viewfoliosRequest)
-          throws ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId,
+          ViewFolioRequest viewfoliosRequest) throws ServiceException;
 
     /**
      * Retrieves all of the Folios along with their balances for a given accountId
@@ -590,10 +591,10 @@ public interface AccountServiceInterfaceV1 {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges);
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
+          @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges);
 
-
-   /**
+    /**
      * Posts a credit to an account
      *
      * @param accountId  the Account to post to
@@ -1186,12 +1187,11 @@ public interface AccountServiceInterfaceV1 {
     void payOffBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, PayoffBalanceRequest request) throws ServiceException;
 
-
     @POST
     @Path(ACCOUNT_ID_PATH + FIX_LEDGER_BALANCES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
+    List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
 }

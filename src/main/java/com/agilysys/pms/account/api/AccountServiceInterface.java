@@ -26,6 +26,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
@@ -76,61 +77,61 @@ import com.wordnik.swagger.annotations.ApiParam;
  */
 @Path("/tenants/{tenantId}/accounts")
 public interface AccountServiceInterface {
-    public static final String TENANT_ID = "tenantId";
-    public static final String ACCOUNT_ID = "accountId";
-    public static final String ACCOUNT_ID_PATH = "{accountId}";
-    public static final String REFERENCE_ID_PATH = "/reference/{referenceId}";
-    public static final String REFERENCE_ID = "referenceId";
-    public static final String ACCOUNT_STATUS_PATH = "/status/{accountStatus}";
-    public static final String ACCOUNT_STATUS = "accountStatus";
-    public static final String FOLIO_PATH = "/folios";
-    public static final String NON_INVOICED_PATH = "/nonInvoicedDetails";
-    public static final String FOLIO_ID = "folioId";
-    public static final String FOLIO_ID_PATH = "/{folioId}";
-    public static final String FOLIO_BALANCES_PATH = "/folioBalances";
+    String TENANT_ID = "tenantId";
+    String ACCOUNT_ID = "accountId";
+    String ACCOUNT_ID_PATH = "{accountId}";
+    String REFERENCE_ID_PATH = "/reference/{referenceId}";
+    String REFERENCE_ID = "referenceId";
+    String ACCOUNT_STATUS_PATH = "/status/{accountStatus}";
+    String ACCOUNT_STATUS = "accountStatus";
+    String FOLIO_PATH = "/folios";
+    String NON_INVOICED_PATH = "/nonInvoicedDetails";
+    String FOLIO_ID = "folioId";
+    String FOLIO_ID_PATH = "/{folioId}";
+    String FOLIO_BALANCES_PATH = "/folioBalances";
 
-    public static final String INVOICE_ID = "invoiceId";
-    public static final String INVOICE_ID_PATH = "/{invoiceId}";
-    public static final String INVOICES_PATH = "/invoices";
-    public static final String INVOICE_ADD_ITEMS_PATH = "/addItems";
-    public static final String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
-    public static final String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
-    public static final String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
-    public static final String POSTING_RULES_PATH = "/postingRules";
-    public static final String POSTING_RULE_ID = "postingRulesId";
-    public static final String POSTING_RULE_ID_PATH = "/{postingRulesId}";
-    public static final String CHARGES_PATH = "/charges";
-    public static final String PAYMENTS_PATH = "/payments";
-    public static final String PAYOFF_BALANCE_PATH = "/payOffBalance";
-    public static final String CREDIT_PATH = "/credit";
-    public static final String REFUNDS_PATH = "/refunds"; //Used for generic refunds
-    public static final String REFUND_PATH = "/refund"; //Used for a refund of a specific line item
-    public static final String TRANSFER_CHARGES_PATH = "/transferCharges";
-    public static final String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
-    public static final String VERIFY_CHECKOUT_ALLOWED_PATH = "/verifyCheckoutAllowed";
-    public static final String LEDGER_BALANCES_PATH = "/ledgerBalances";
-    public static final String PAYMENT_SETTINGS_PATH = "/paymentSettings";
-    public static final String TAXEXEMPT_SETTINGS_BYDATE_PATH = "/taxExemptSettingsByDate";
-    public static final String GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
-    public static final String TRANSFER_AMOUNT_PATH = "/transferAmount";
-    public static final String CHARGE_TAX_AMOUNT_PATH = "/calculateChargeTaxAmount";
-    public static final String ADJUSTMENT_PATH = "/adjustment";
-    public static final String CORRECTION_PATH = "/correction";
-    public static final String SEARCH_PATH = "/search";
-    public static final String SEARCH_TERM = "searchTerm";
-    public static final String SEARCH_TERM_PATH = "/{searchTerm}";
-    public static final String REMAINING_PATH = "/{path:.*}";
-    public static final String PATH = "path";
-    public static final String TYPES_PATH = "types";
-    public static final String STATUSES_PATH = "statuses";
-    public static final String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
-    public static final String APPLY_PAYMENTS = "/applyPayments";
-    public static final String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
-    public static final String MIGRATE_ACCOUNTS_RECEIVABLE = "/migrateAccountsReceivable";
-    public static final String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
-    public static final String FILTERED = "/filtered";
-    public static final String START_DATE = "startDate";
-    public static final String END_DATE = "endDate";
+    String INVOICE_ID = "invoiceId";
+    String INVOICE_ID_PATH = "/{invoiceId}";
+    String INVOICES_PATH = "/invoices";
+    String INVOICE_ADD_ITEMS_PATH = "/addItems";
+    String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
+    String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
+    String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
+    String POSTING_RULES_PATH = "/postingRules";
+    String POSTING_RULE_ID = "postingRulesId";
+    String POSTING_RULE_ID_PATH = "/{postingRulesId}";
+    String CHARGES_PATH = "/charges";
+    String PAYMENTS_PATH = "/payments";
+    String PAYOFF_BALANCE_PATH = "/payOffBalance";
+    String CREDIT_PATH = "/credit";
+    String REFUNDS_PATH = "/refunds"; //Used for generic refunds
+    String REFUND_PATH = "/refund"; //Used for a refund of a specific line item
+    String TRANSFER_CHARGES_PATH = "/transferCharges";
+    String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
+    String VERIFY_CHECKOUT_ALLOWED_PATH = "/verifyCheckoutAllowed";
+    String LEDGER_BALANCES_PATH = "/ledgerBalances";
+    String PAYMENT_SETTINGS_PATH = "/paymentSettings";
+    String TAXEXEMPT_SETTINGS_BYDATE_PATH = "/taxExemptSettingsByDate";
+    String GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
+    String TRANSFER_AMOUNT_PATH = "/transferAmount";
+    String CHARGE_TAX_AMOUNT_PATH = "/calculateChargeTaxAmount";
+    String ADJUSTMENT_PATH = "/adjustment";
+    String CORRECTION_PATH = "/correction";
+    String SEARCH_PATH = "/search";
+    String SEARCH_TERM = "searchTerm";
+    String SEARCH_TERM_PATH = "/{searchTerm}";
+    String REMAINING_PATH = "/{path:.*}";
+    String PATH = "path";
+    String TYPES_PATH = "types";
+    String STATUSES_PATH = "statuses";
+    String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
+    String APPLY_PAYMENTS = "/applyPayments";
+    String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
+    String MIGRATE_ACCOUNTS_RECEIVABLE = "/migrateAccountsReceivable";
+    String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
+    String FILTERED = "/filtered";
+    String START_DATE = "startDate";
+    String END_DATE = "endDate";
 
     /**
      * Retrieve all accounts from a tenant
@@ -143,7 +144,7 @@ public interface AccountServiceInterface {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId) throws ServiceException;
+    List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
 
     /**
      * Retrieve an account by reference id
@@ -157,8 +158,8 @@ public interface AccountServiceInterface {
     @Path(REFERENCE_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public AccountSummary getAccountByReferenceId(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(REFERENCE_ID) String referenceId) throws ServiceException;
+    AccountSummary getAccountByReferenceId(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(REFERENCE_ID) String referenceId) throws RGuestException, ServiceException;
 
     /**
      * Retrieve an account
@@ -173,8 +174,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public AccountSummary getAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId)
-          throws ServiceException;
+    AccountSummary getAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieve all account types
@@ -187,7 +188,7 @@ public interface AccountServiceInterface {
     @Path(TYPES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public List<String> getAccountTypes(@PathParam(TENANT_ID) String tenantId) throws ServiceException;
+    List<String> getAccountTypes(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
 
     /**
      * Retrieve all account statuses
@@ -200,7 +201,7 @@ public interface AccountServiceInterface {
     @Path(STATUSES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public List<String> getAccountStatuses(@PathParam(TENANT_ID) String tenantId) throws ServiceException;
+    List<String> getAccountStatuses(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
 
     /**
      * Create an account for a tenant
@@ -217,8 +218,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(CreateAccountSummary.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public AccountDetail createAccount(@PathParam(TENANT_ID) String tenantId, CreateAccountSummary account)
-          throws ServiceException;
+    AccountDetail createAccount(@PathParam(TENANT_ID) String tenantId, CreateAccountSummary account)
+          throws RGuestException, ServiceException;
 
     /**
      * Update the status of an existing account for a tenant
@@ -235,8 +236,8 @@ public interface AccountServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public void updateAccountStatus(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(ACCOUNT_STATUS) String accountStatus) throws ServiceException;
+    void updateAccountStatus(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(ACCOUNT_STATUS) String accountStatus) throws RGuestException, ServiceException;
 
     /**
      * Update the AR settings on an existing company account
@@ -255,9 +256,9 @@ public interface AccountServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public AccountSummary updateAccountsReceivableSettings(@PathParam(TENANT_ID) String tenantId,
+    AccountSummary updateAccountsReceivableSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(ACCOUNT_ID) String accountId, AccountsReceivableSettings accountsReceivableSettings)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieve folios from an account
@@ -271,8 +272,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("") GetFoliosOptionalParameters optionalParameters) throws ServiceException;
+    List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("") GetFoliosOptionalParameters optionalParameters) throws RGuestException, ServiceException;
 
     /**
      * Retrieves all of the Folios along with their balances for a given accountId
@@ -286,8 +287,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + FOLIO_BALANCES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public List<FolioBalance> getFolioBalances(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
+    List<FolioBalance> getFolioBalances(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
 
     /**
      * Create a folio for an account
@@ -305,8 +306,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(FolioSummary.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public FolioSummary createFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          FolioSummary folio) throws ServiceException;
+    FolioSummary createFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          FolioSummary folio) throws RGuestException, ServiceException;
 
     /**
      * Retrieve folio
@@ -321,8 +322,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public FolioDetail getFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(FOLIO_ID) String folioId) throws ServiceException;
+    FolioDetail getFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(FOLIO_ID) String folioId) throws RGuestException, ServiceException;
 
     /**
      * Update folio for an account
@@ -340,8 +341,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(FolioSummary.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public FolioSummary updateFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(FOLIO_ID) String folioId, FolioSummary folio) throws ServiceException;
+    FolioSummary updateFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(FOLIO_ID) String folioId, FolioSummary folio) throws RGuestException, ServiceException;
 
     /**
      * Update folio for an account
@@ -358,8 +359,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(FolioSummary.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<FolioSummary> updateFolios(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, List<FolioSummary> folios) throws ServiceException;
+    List<FolioSummary> updateFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          List<FolioSummary> folios) throws RGuestException, ServiceException;
 
     /**
      * Delete a folio from an account
@@ -373,8 +374,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public void deleteFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(FOLIO_ID) String folioId) throws ServiceException;
+    void deleteFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(FOLIO_ID) String folioId) throws RGuestException, ServiceException;
 
     /* Posting Rules */
 
@@ -390,8 +391,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public PostingRuleDetailView getPostingRules(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
+    PostingRuleDetailView getPostingRules(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
 
     /**
      * Create a rule for an account
@@ -409,8 +410,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(PostingRuleDetail.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public PostingRuleDetail createPostingRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, PostingRuleDetail postingRuleDetail) throws ServiceException;
+    PostingRuleDetail createPostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          PostingRuleDetail postingRuleDetail) throws RGuestException, ServiceException;
 
     /**
      * Retrieve a rule for an account
@@ -425,9 +426,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public PostingRuleDetail getPostingRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(POSTING_RULE_ID) String postingRuleId)
-          throws ServiceException;
+    PostingRuleDetail getPostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(POSTING_RULE_ID) String postingRuleId) throws RGuestException, ServiceException;
 
     /**
      * Update an existing rule for an account
@@ -445,9 +445,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(PostingRuleDetail.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public PostingRuleDetail updatePostingRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(POSTING_RULE_ID) String postingRuleId,
-          PostingRuleDetail postingRuleDetail) throws ServiceException;
+    PostingRuleDetail updatePostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(POSTING_RULE_ID) String postingRuleId, PostingRuleDetail postingRuleDetail)
+          throws RGuestException, ServiceException;
 
     /**
      * Update all PostingRules at once
@@ -463,8 +463,9 @@ public interface AccountServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<PostingRuleDetail> updatePostingRules(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, List<PostingRuleDetail> postingRuleDetails) throws ServiceException;
+    List<PostingRuleDetail> updatePostingRules(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId, List<PostingRuleDetail> postingRuleDetails)
+          throws RGuestException, ServiceException;
 
     /**
      * Delete a rule from an account
@@ -478,8 +479,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public void deletePostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(POSTING_RULE_ID) String postingRuleId) throws ServiceException;
+    void deletePostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(POSTING_RULE_ID) String postingRuleId) throws RGuestException, ServiceException;
 
     /**
      * Posts a charge to an account
@@ -501,8 +502,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(Charge.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<LineItemView> postCharge(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge) throws ServiceException;
+    List<LineItemView> postCharge(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge) throws RGuestException, ServiceException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are
@@ -511,7 +512,7 @@ public interface AccountServiceInterface {
 
     // Not sure why it's written this way where you will have a public method without any CXF annotations.
     // Someday, we should fix this: VCTRS-42410
-    public List<LineItemView> postCharges(String tenantId, String accountId, boolean ignoreAuth, List<Charge> charges,
+    List<LineItemView> postCharges(String tenantId, String accountId, boolean ignoreAuth, List<Charge> charges,
           Boolean isRecurring);
 
     /**
@@ -529,8 +530,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(Credit.class)
     @PreAuthorize("hasPermission('Required', 'AllowCredits')")
-    public LineItemView postCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          Credit credit) throws ServiceException;
+    LineItemView postCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          Credit credit) throws RGuestException, ServiceException;
 
     /**
      * Posts a payment to an account
@@ -547,9 +548,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(Payment.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, Payment payment,
-          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws ServiceException;
+    List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          Payment payment, @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth)
+          throws RGuestException, ServiceException;
 
     /**
      * Refunds a payment to an account
@@ -566,8 +567,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(Payment.class)
     @PreAuthorize("hasPermission('Required', 'AllowRefunds')")
-    public List<LineItemView> postRefunds(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, Payment payment) throws ServiceException;
+    List<LineItemView> postRefunds(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          Payment payment) throws RGuestException, ServiceException;
 
     /**
      * Transfers folio line items from a source folio to a destination folio either on the same account or on a
@@ -584,8 +585,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(LineItemTransfer.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, LineItemTransfer transferInfo) throws ServiceException;
+    List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId, LineItemTransfer transferInfo)
+          throws RGuestException, ServiceException;
 
     @Deprecated
     @POST
@@ -594,8 +596,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(AmountTransfer.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<LineItemView> transferAmountToAccount(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, AmountTransfer transferInfo) throws ServiceException;
+    List<LineItemView> transferAmountToAccount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId, AmountTransfer transferInfo)
+          throws RGuestException, ServiceException;
 
     /**
      * Performs an adjustment on a give folio line item
@@ -612,8 +615,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(LineItemAdjustment.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public LineItemView adjustment(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          LineItemAdjustment adjustmentInfo) throws ServiceException;
+    LineItemView adjustment(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          LineItemAdjustment adjustmentInfo) throws RGuestException, ServiceException;
 
     /**
      * Performs a correction on a given folio line item
@@ -630,8 +633,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(LineItemAdjustment.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<LineItemView> correction(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          LineItemAdjustment correctionInfo) throws ServiceException;
+    List<LineItemView> correction(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          LineItemAdjustment correctionInfo) throws RGuestException, ServiceException;
 
     /**
      * Performs a refund on a given line item on a folio
@@ -649,8 +652,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(PaymentRefund.class)
     @PreAuthorize("hasPermission('Required', 'AllowRefunds')")
-    public LineItemView refundPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          PaymentRefund paymentRefund) throws ServiceException;
+    LineItemView refundPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          PaymentRefund paymentRefund) throws RGuestException, ServiceException;
 
     @Deprecated
     @POST
@@ -659,8 +662,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(ChargeTaxAmountRequest.class)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public ChargeTaxAmountInfo calculateChargeTaxAmount(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, ChargeTaxAmountRequest request) throws ServiceException;
+    ChargeTaxAmountInfo calculateChargeTaxAmount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId, ChargeTaxAmountRequest request)
+          throws RGuestException, ServiceException;
 
     /* Payment Settings */
 
@@ -676,8 +680,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + PAYMENT_SETTINGS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public List<PaymentSetting> getPaymentSettings(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
+    List<PaymentSetting> getPaymentSettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
 
     /**
      * Save paymentSettings for an account
@@ -694,7 +698,7 @@ public interface AccountServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<PaymentSetting> savePaymentSettings(@PathParam(TENANT_ID) String tenantId,
+    List<PaymentSetting> savePaymentSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(ACCOUNT_ID) String accountId, List<PaymentSetting> paymentSettings);
 
     /**
@@ -709,8 +713,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + TAXEXEMPT_SETTINGS_BYDATE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public TaxExemptSettingsByDate getTaxExemptSettingsByDate(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
+    TaxExemptSettingsByDate getTaxExemptSettingsByDate(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
 
     /**
      * Save tax exempt settings for an account by individual dates.
@@ -728,7 +732,7 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(TaxExemptSettingsByDate.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public TaxExemptSettingsByDate saveTaxExemptSettingsByDate(@PathParam(TENANT_ID) String tenantId,
+    TaxExemptSettingsByDate saveTaxExemptSettingsByDate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(ACCOUNT_ID) String accountId, TaxExemptSettingsByDate taxExemptSettingsByDate);
 
     /**
@@ -743,8 +747,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public GroupCompanyTaxExemptSettings getGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
+    GroupCompanyTaxExemptSettings getGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
 
     /**
      * Save tax exempt settings for an account by a range of dates.
@@ -761,7 +765,7 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(GroupCompanyTaxExemptSettings.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public GroupCompanyTaxExemptSettings saveGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
+    GroupCompanyTaxExemptSettings saveGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(ACCOUNT_ID) String accountId, GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings);
 
     /**
@@ -782,9 +786,8 @@ public interface AccountServiceInterface {
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + REMAINING_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(SEARCH_TERM) String searchTerm, @PathParam(PATH) String optionalSearchParamsPath)
-          throws ServiceException;
+    List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(SEARCH_TERM) String searchTerm,
+          @PathParam(PATH) String optionalSearchParamsPath) throws RGuestException, ServiceException;
 
     /**
      * Retrieve balances for a date
@@ -798,8 +801,8 @@ public interface AccountServiceInterface {
     @Path(LEDGER_BALANCES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public Map<String, BigDecimal> getLedgerBalances(@PathParam(TENANT_ID) String tenantId,
-          LedgerBalancesInfo ledgerBalancesInfo) throws ServiceException;
+    Map<String, BigDecimal> getLedgerBalances(@PathParam(TENANT_ID) String tenantId,
+          LedgerBalancesInfo ledgerBalancesInfo) throws RGuestException, ServiceException;
 
     /**
      * Determines if this account can checkout
@@ -812,7 +815,7 @@ public interface AccountServiceInterface {
     @GET
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+    void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("allowBalance") boolean allowBalance);
 
     /**
@@ -825,7 +828,7 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_ALLOWED_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     @Deprecated
-    public void verifyCheckoutAllowed(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId);
+    void verifyCheckoutAllowed(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId);
 
     /**
      * Attempts to pay off the balances of an account associated using the default payment setting id
@@ -843,8 +846,8 @@ public interface AccountServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public void payOffBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("terminalId") String terminalId) throws ServiceException;
+    void payOffBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("terminalId") String terminalId) throws RGuestException, ServiceException;
 
     /**
      * Retrieves the non-invoiced details of a COMPANY account
@@ -858,8 +861,8 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + NON_INVOICED_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    public NonInvoicedARDetail getNonInvoicedARDetail(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
+    NonInvoicedARDetail getNonInvoicedARDetail(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
 
     /**
      * Create an invoice for an account
@@ -877,8 +880,8 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(InvoiceRequest.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
-    public InvoiceView createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          InvoiceRequest invoice) throws ServiceException;
+    InvoiceView createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          InvoiceRequest invoice) throws RGuestException, ServiceException;
 
     /**
      * Retrieve an invoice by Id
@@ -894,9 +897,10 @@ public interface AccountServiceInterface {
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    public InvoiceView getInvoiceById(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+    InvoiceView getInvoiceById(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(INVOICE_ID) String invoiceId,
-          @QueryParam("") @LogParam("optionalParams") InvoiceOptionalParams optionalParams) throws ServiceException;
+          @QueryParam("") @LogParam("optionalParams") InvoiceOptionalParams optionalParams)
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieves the invoices associated with an A/R account
@@ -912,9 +916,9 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    public List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params) throws ServiceException;
+    List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
+          throws RGuestException, ServiceException;
 
     /**
      * Add line items to an invoice for an account
@@ -933,9 +937,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(UpdateInvoiceLineItemsRequest.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
-    public InvoiceView addInvoiceLineItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
-          UpdateInvoiceLineItemsRequest lineItems) throws ServiceException;
+    InvoiceView addInvoiceLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(INVOICE_ID) String invoiceId, UpdateInvoiceLineItemsRequest lineItems)
+          throws RGuestException, ServiceException;
 
     /**
      * Remove line items from an invoice for an account
@@ -954,9 +958,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(UpdateInvoiceLineItemsRequest.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
-    public InvoiceView removeInvoiceLineItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
-          UpdateInvoiceLineItemsRequest lineItems) throws ServiceException;
+    InvoiceView removeInvoiceLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(INVOICE_ID) String invoiceId, UpdateInvoiceLineItemsRequest lineItems)
+          throws RGuestException, ServiceException;
 
     /**
      * Update terms on an invoice
@@ -975,9 +979,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(UpdateInvoiceTermsRequest.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
-    public InvoiceView updateInvoiceTerms(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
-          UpdateInvoiceTermsRequest terms) throws ServiceException;
+    InvoiceView updateInvoiceTerms(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(INVOICE_ID) String invoiceId, UpdateInvoiceTermsRequest terms)
+          throws RGuestException, ServiceException;
 
     /**
      * Mark invoice as sent by email or printed and sent by mail
@@ -993,8 +997,9 @@ public interface AccountServiceInterface {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_SET_INVOICE_SENT)
     @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
-    public InvoiceView setInvoiceSent(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(INVOICE_ID) String invoiceId, @QueryParam("isEmail") boolean isEmail) throws ServiceException;
+    InvoiceView setInvoiceSent(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(INVOICE_ID) String invoiceId, @QueryParam("isEmail") boolean isEmail)
+          throws RGuestException, ServiceException;
 
     /**
      * Applies payments to one or more invoices
@@ -1012,9 +1017,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(ApplyInvoicePaymentRequest.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
-    public List<InvoiceView> applyInvoicePayments(@PathParam(TENANT_ID) String tenantId,
+    List<InvoiceView> applyInvoicePayments(@PathParam(TENANT_ID) String tenantId,
           @PathParam(ACCOUNT_ID) String accountId, ApplyInvoicePaymentRequest applyInvoicePaymentRequest)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * Performs a refund against a given invoice payment item
@@ -1033,9 +1038,9 @@ public interface AccountServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(InvoicePaymentRefund.class)
     @PreAuthorize("hasPermission('Required', 'AllowRefunds')")
-    public InvoiceView refundInvoicePayment(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
-          InvoicePaymentRefund invoicePaymentRefund) throws ServiceException;
+    InvoiceView refundInvoicePayment(@PathParam(TENANT_ID) String tenantId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(INVOICE_ID) String invoiceId, InvoicePaymentRefund invoicePaymentRefund)
+          throws RGuestException, ServiceException;
 
     /**
      * Fetches the next unused AR account number from the database
@@ -1049,7 +1054,8 @@ public interface AccountServiceInterface {
     @Path(NEXT_ACCOUNT_NUMBER_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    NextAccountNumberInfo getNextArAccountNumber(@PathParam(TENANT_ID) String tenantId) throws ServiceException;
+    NextAccountNumberInfo getNextArAccountNumber(@PathParam(TENANT_ID) String tenantId)
+          throws RGuestException, ServiceException;
 
     /**
      * modifies existing data and/or creates new data to migrate existing
@@ -1060,7 +1066,7 @@ public interface AccountServiceInterface {
     @POST
     @Path(MIGRATE_ACCOUNTS_RECEIVABLE)
     @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
-    public void migrateAccountsReceivable() throws ServiceException;
+    void migrateAccountsReceivable() throws RGuestException, ServiceException;
 
     /**
      * authorizes any additional credit cards associated with an
@@ -1073,17 +1079,17 @@ public interface AccountServiceInterface {
     @Path(ACCOUNT_ID_PATH + AUTH_CARDS_ON_ACCOUNT_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public List<PaymentInstrumentAuthStatus> authAllCardsOnAccount(@PathParam(TENANT_ID) String tenantId,
+    List<PaymentInstrumentAuthStatus> authAllCardsOnAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws ServiceException;
+          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     @Deprecated
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path(FILTERED)
-    public CollectionResponse<AccountSummary> findAccounts(
+    CollectionResponse<AccountSummary> findAccounts(
           @ApiParam(value = "tenant id", required = true) @PathParam(TENANT_ID) @LogParam("tenantId") String tenantId,
           @ApiParam(value = "collection request", required = false) @LogParam("params")
-          AccountsCollectionRequest collectionRequest) throws ServiceException;
+          AccountsCollectionRequest collectionRequest) throws RGuestException, ServiceException;
 }

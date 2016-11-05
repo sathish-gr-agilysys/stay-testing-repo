@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.PaymentMethod;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -27,10 +28,10 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
  */
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/paymentMethods")
 public interface PaymentMethodInterface {
-    public static final String TENANT_ID = "tenantId";
-    public static final String PROPERTY_ID = "propertyId";
-    public static final String PAYMENT_METHOD_ID = "id";
-    public static final String PAYMENT_METHOD_ID_PATH = "{id}";
+    String TENANT_ID = "tenantId";
+    String PROPERTY_ID = "propertyId";
+    String PAYMENT_METHOD_ID = "id";
+    String PAYMENT_METHOD_ID_PATH = "{id}";
 
     /**
      * Retrieve all PaymentMethods
@@ -42,8 +43,8 @@ public interface PaymentMethodInterface {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    public List<PaymentMethod> getPaymentMethods(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws ServiceException;
+    List<PaymentMethod> getPaymentMethods(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     /**
      * Retrieve a specific PaymentMethod
@@ -57,9 +58,8 @@ public interface PaymentMethodInterface {
     @Path(PAYMENT_METHOD_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    public PaymentMethod getPaymentMethod(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAYMENT_METHOD_ID) String paymentMethodId)
-          throws ServiceException;
+    PaymentMethod getPaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException, ServiceException;
 
     /**
      * Create a new PaymentMethod
@@ -75,8 +75,8 @@ public interface PaymentMethodInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(PaymentMethod.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public PaymentMethod createPaymentMethod(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, PaymentMethod paymentMethod) throws ServiceException;
+    PaymentMethod createPaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          PaymentMethod paymentMethod) throws RGuestException, ServiceException;
 
     /**
      * Modify an existing PaymentMethod
@@ -93,9 +93,9 @@ public interface PaymentMethodInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(PaymentMethod.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public PaymentMethod updatePaymentMethod(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAYMENT_METHOD_ID) String paymentMethodId,
-          PaymentMethod paymentMethod) throws ServiceException;
+    PaymentMethod updatePaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(PAYMENT_METHOD_ID) String paymentMethodId, PaymentMethod paymentMethod)
+          throws RGuestException, ServiceException;
 
     /**
      * Delete an existing PaymentMethod
@@ -108,6 +108,6 @@ public interface PaymentMethodInterface {
     @Path(PAYMENT_METHOD_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public void deletePaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(PAYMENT_METHOD_ID) String paymentMethodId) throws ServiceException;
+    void deletePaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException, ServiceException;
 }
