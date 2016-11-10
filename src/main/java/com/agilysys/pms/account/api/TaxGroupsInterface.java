@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.TaxGroupView;
 
 @Path("/v1/tenants/{tenantId}/properties/{propertyId}/taxGroups")
@@ -38,7 +39,7 @@ public interface TaxGroupsInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     // TODO check this
     List<TaxGroupView> getTaxGroups(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * Create a new tax group.

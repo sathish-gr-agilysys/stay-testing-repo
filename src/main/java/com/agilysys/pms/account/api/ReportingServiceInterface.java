@@ -18,6 +18,7 @@ import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
@@ -63,7 +64,7 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'DateRoll')")
     List<NightAuditReport> ledgerReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * get the cashier report
@@ -99,9 +100,10 @@ public interface ReportingServiceInterface {
 
     /**
      * get the transaction report
+     *
      * @param tenantId   the tenant ID
      * @param propertyId the property ID
-     * @param request TransactionReportRequest object that holds accountIds filter
+     * @param request    TransactionReportRequest object that holds accountIds filter
      * @return TransactionReportResponse object that holds TransactionReportItem mapped by account id
      * @throws ServiceException
      */
@@ -111,6 +113,7 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     TransactionReportResponse getTransactions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws ServiceException;
+
     /**
      * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
      * cashier.

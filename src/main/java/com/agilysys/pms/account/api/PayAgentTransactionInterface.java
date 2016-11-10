@@ -15,18 +15,16 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.payagent.PayAgentTransactionView;
 import com.agilysys.pms.account.model.payagent.PayTransactionRequest;
 import com.agilysys.pms.account.model.payagent.PayTransactionUpdateRequest;
 
-//TODO: Determine whether or not we will always have an account id before calling this service
-//@Path("/tenants/{tenantId}/properties/{propertyId}/accounts/{accountId}/payTransactions")
 @Path("/tenants/{tenantId}/properties/{propertyId}/payTransactions")
 public interface PayAgentTransactionInterface {
-    public static final String TENANT_ID = "tenantId";
-    public static final String PROPERTY_ID = "propertyId";
-    //    public static final String ACCOUNT_ID = "accountId";
-    public static final String PAY_TRANSACTION_ID = "payTransactionId";
+    String TENANT_ID = "tenantId";
+    String PROPERTY_ID = "propertyId";
+    String PAY_TRANSACTION_ID = "payTransactionId";
 
     /**
      * Retrieve a transaction by captureId
@@ -41,10 +39,9 @@ public interface PayAgentTransactionInterface {
     @Path("/{payTransactionId}")
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public PayAgentTransactionView getPayTransaction(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          //            @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(PAY_TRANSACTION_ID) String payTransactionId) throws ServiceException;
+    PayAgentTransactionView getPayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId)
+          throws RGuestException, ServiceException;
 
     /**
      * Post a request for a captureId and accompanying
@@ -61,10 +58,9 @@ public interface PayAgentTransactionInterface {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public PayAgentTransactionView createPayTransaction(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          //            @PathParam(ACCOUNT_ID) String accountId,
-          PayTransactionRequest request) throws ServiceException;
+    PayAgentTransactionView createPayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, PayTransactionRequest request)
+          throws RGuestException, ServiceException;
 
     /**
      * Completes an existing pay transaction with the supplied response
@@ -81,11 +77,9 @@ public interface PayAgentTransactionInterface {
     @Path("/{payTransactionId}")
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public PayAgentTransactionView completePayTransaction(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          //            @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(PAY_TRANSACTION_ID) String payTransactionId, PayTransactionUpdateRequest request)
-          throws ServiceException;
+    PayAgentTransactionView completePayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId,
+          PayTransactionUpdateRequest request) throws RGuestException, ServiceException;
 
     /**
      * Indicates that the identified pay agent transaction is
@@ -103,9 +97,9 @@ public interface PayAgentTransactionInterface {
     @Path("/{payTransactionId}")
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public PayAgentTransactionView reportRemotePayTransaction(@PathParam(TENANT_ID) String tenantId,
+    PayAgentTransactionView reportRemotePayTransaction(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId, String id)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * Cancels an existing pay transaction
@@ -120,9 +114,8 @@ public interface PayAgentTransactionInterface {
     @Path("/{payTransactionId}")
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public PayAgentTransactionView cancelPayTransaction(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          //            @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(PAY_TRANSACTION_ID) String payTransactionId) throws ServiceException;
+    PayAgentTransactionView cancelPayTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId)
+          throws RGuestException, ServiceException;
 
 }

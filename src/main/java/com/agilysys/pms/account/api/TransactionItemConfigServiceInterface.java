@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -27,13 +28,13 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
  */
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/transactionItems")
 public interface TransactionItemConfigServiceInterface {
-    public static final String TENANT_ID = "tenantId";
-    public static final String PROPERTY_ID = "propertyId";
-    public static final String ITEM_ID = "id";
-    public static final String ITEM_ID_PATH = "{id}";
-    public static final String INCLUDE_INTERNAL = "includeInternal";
-    public static final String COMTROL_VALUE = "comtrolValue";
-    public static final String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
+    String TENANT_ID = "tenantId";
+    String PROPERTY_ID = "propertyId";
+    String ITEM_ID = "id";
+    String ITEM_ID_PATH = "{id}";
+    String INCLUDE_INTERNAL = "includeInternal";
+    String COMTROL_VALUE = "comtrolValue";
+    String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
 
     /**
      * Retrieve all TransactionItems
@@ -44,9 +45,10 @@ public interface TransactionItemConfigServiceInterface {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    public List<TransactionItem> getTransactionItems(@PathParam(TENANT_ID) String tenantId,
+    List<TransactionItem> getTransactionItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
-          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws ServiceException;
+          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieve a transaction item comtrol mapping
@@ -60,9 +62,9 @@ public interface TransactionItemConfigServiceInterface {
     @Path(COMTROL_VALUE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    public TransactionItem getTransactionItemByComtrolValue(@PathParam(TENANT_ID) String tenantId,
+    TransactionItem getTransactionItemByComtrolValue(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMTROL_VALUE) FolioPostingCodes folioPostingCode)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieve a specific TransactionItem
@@ -75,8 +77,8 @@ public interface TransactionItemConfigServiceInterface {
     @Path(ITEM_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    public TransactionItem getTransactionItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId) throws ServiceException;
+    TransactionItem getTransactionItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
 
     /**
      * Create a new TransactionItem
@@ -91,8 +93,8 @@ public interface TransactionItemConfigServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(TransactionItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public TransactionItem createTransactionItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionItem item) throws ServiceException;
+    TransactionItem createTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, TransactionItem item) throws RGuestException, ServiceException;
 
     /**
      * Modify an existing TransactionItem
@@ -108,9 +110,9 @@ public interface TransactionItemConfigServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(TransactionItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
+    TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId, TransactionItem item)
-          throws ServiceException;
+          throws RGuestException, ServiceException;
 
     /**
      * Delete an existing TransactionItem
@@ -122,6 +124,6 @@ public interface TransactionItemConfigServiceInterface {
     @Path(ITEM_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public void deleteTransactionItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId) throws ServiceException;
+    void deleteTransactionItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
 }

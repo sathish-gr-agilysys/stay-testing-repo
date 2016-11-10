@@ -8,6 +8,7 @@ import com.agilysys.platform.rest.provider.ClientProviderConfigurer;
 import com.agilysys.pms.account.api.AccountServiceInterface;
 import com.agilysys.pms.common.client.InheritedExceptionReader;
 import com.agilysys.pms.common.client.StayServiceClient;
+import com.agilysys.pms.common.exceptions.NextGenExceptionToggle;
 import com.agilysys.pms.payment.exception.PaymentServiceExceptionReader;
 import com.agilysys.pms.rguestpayshim.exception.reader.PayExceptionReader;
 
@@ -19,10 +20,12 @@ public class AccountServiceClient extends StayServiceClient<AccountServiceInterf
         super(AccountServiceInterface.class, uri, providerConfigurer());
     }
 
-    private static ClientProviderConfigurer providerConfigurer() {
-        ClientProviderConfigurer configurer = new ClientProviderConfigurer();
-        configurer.getReaderMap()
-              .put(null, new InheritedExceptionReader(new PayExceptionReader(), new PaymentServiceExceptionReader()));
+    protected static ClientProviderConfigurer providerConfigurer() {
+        ClientProviderConfigurer configurer = StayServiceClient.clientProviderConfigurer();
+        if (!NextGenExceptionToggle.isEnabled()) {
+            configurer.getReaderMap().put(null,
+                  new InheritedExceptionReader(new PayExceptionReader(), new PaymentServiceExceptionReader()));
+        }
         return configurer;
     }
 }

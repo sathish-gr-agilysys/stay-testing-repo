@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
+import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.TransactionCategory;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -27,11 +28,11 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/transactionCategories")
 @Produces(MediaType.APPLICATION_JSON)
 public interface TransactionCategoryConfigServiceInterface {
-    public static final String TENANT_ID = "tenantId";
-    public static final String PROPERTY_ID = "propertyId";
-    public static final String CATEGORY_ID = "id";
-    public static final String CATEGORY_ID_PATH = "{id}";
-    public static final String INCLUDE_INTERNAL = "includeInternal";
+    String TENANT_ID = "tenantId";
+    String PROPERTY_ID = "propertyId";
+    String CATEGORY_ID = "id";
+    String CATEGORY_ID_PATH = "{id}";
+    String INCLUDE_INTERNAL = "includeInternal";
 
     /**
      * Retrieve all TransactionCategories
@@ -41,9 +42,10 @@ public interface TransactionCategoryConfigServiceInterface {
      */
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    public List<TransactionCategory> getTransactionCategories(@PathParam(TENANT_ID) String tenantId,
+    List<TransactionCategory> getTransactionCategories(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
-          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws ServiceException;
+          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieve a specific TransactionCategory
@@ -55,8 +57,9 @@ public interface TransactionCategoryConfigServiceInterface {
     @GET
     @Path(CATEGORY_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    public TransactionCategory getTransactionCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId) throws ServiceException;
+    TransactionCategory getTransactionCategory(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId)
+          throws RGuestException, ServiceException;
 
     /**
      * Create a new TransactionCategory
@@ -70,8 +73,9 @@ public interface TransactionCategoryConfigServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(TransactionCategory.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public TransactionCategory createTransactionCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionCategory category) throws ServiceException;
+    TransactionCategory createTransactionCategory(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, TransactionCategory category)
+          throws RGuestException, ServiceException;
 
     /**
      * Modify an existing TransactionCategory
@@ -86,9 +90,9 @@ public interface TransactionCategoryConfigServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(TransactionCategory.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public TransactionCategory updateTransactionCategory(@PathParam(TENANT_ID) String tenantId,
+    TransactionCategory updateTransactionCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId,
-          TransactionCategory category) throws ServiceException;
+          TransactionCategory category) throws RGuestException, ServiceException;
 
     /**
      * Delete an existing TransactionCategory
@@ -99,6 +103,6 @@ public interface TransactionCategoryConfigServiceInterface {
     @DELETE
     @Path(CATEGORY_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public void deleteTransactionCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId) throws ServiceException;
+    void deleteTransactionCategory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(CATEGORY_ID) String categoryId) throws RGuestException, ServiceException;
 }
