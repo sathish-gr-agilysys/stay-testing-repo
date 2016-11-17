@@ -3,11 +3,14 @@
  */
 package com.agilysys.pms.account.model.payagent;
 
+import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountException;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.agilysys.pms.account.exception.AccountServiceException;
+import com.agilysys.pms.account.exception.ServiceError;
 import com.agilysys.pms.account.model.PaymentTransaction;
+import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 
 /**
  * This is the generic request coming up from browser to request the payload
@@ -267,7 +270,6 @@ public class PayTransactionRequest {
     }
 
     private void throwException() {
-        throw new AccountServiceException(AccountServiceException.ServiceError.CLIENT_INVALID_REQUEST, this,
-              PayTransactionRequest.class, 404);
+        throw accountException(AccountErrorCode.REQUEST_INVALID).asininePayload(ServiceError.CLIENT_INVALID_REQUEST, 404).buildCompatible();
     }
 }

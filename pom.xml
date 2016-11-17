@@ -7,13 +7,13 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>1.43.0-SNAPSHOT</version>
+        <version>1.44.0-SNAPSHOT</version>
     </parent>
     <properties>
-        <com.agilysys.pms.common.version>1.42.0-SNAPSHOT</com.agilysys.pms.common.version>
-        <com.agilysys.pms.payment.version>1.36.0-SNAPSHOT</com.agilysys.pms.payment.version>
-        <com.agilysys.pms.property.version>3.33.0-SNAPSHOT</com.agilysys.pms.property.version>
-        <com.agilysys.pms.rguestpayshim.version>1.20.0-SNAPSHOT</com.agilysys.pms.rguestpayshim.version>
+        <com.agilysys.pms.common.version>1.43.0-SNAPSHOT</com.agilysys.pms.common.version>
+        <com.agilysys.pms.payment.version>1.37.0-SNAPSHOT</com.agilysys.pms.payment.version>
+        <com.agilysys.pms.property.version>3.34.0-SNAPSHOT</com.agilysys.pms.property.version>
+        <com.agilysys.pms.rguestpayshim.version>1.21.0-SNAPSHOT</com.agilysys.pms.rguestpayshim.version>
     </properties>
     <dependencies>
         <dependency>

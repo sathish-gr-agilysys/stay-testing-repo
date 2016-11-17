@@ -10,7 +10,7 @@ import org.elasticsearch.common.collect.Lists;
 import org.springframework.data.annotation.Transient;
 
 import com.agilysys.common.model.PaymentSetting;
-import com.agilysys.pms.account.exception.AccountServiceException;
+import com.agilysys.pms.account.exception.ServiceError;
 import com.google.common.collect.Maps;
 
 /**
@@ -18,7 +18,7 @@ import com.google.common.collect.Maps;
  */
 public class AccountProcessedEvent extends PayAgentTransactionEvent {
     private String accountLogs;
-    private AccountServiceException.ServiceError serviceError;
+    private ServiceError serviceError;
     private Map<String, Object> errorEntityMap = Maps.newHashMap();
     private PaymentSetting paymentSetting;
 
@@ -39,14 +39,14 @@ public class AccountProcessedEvent extends PayAgentTransactionEvent {
     /**
      * @return the serviceError
      */
-    public AccountServiceException.ServiceError getServiceError() {
+    public ServiceError getServiceError() {
         return serviceError;
     }
 
     /**
      * @param serviceError the serviceError to set
      */
-    public void setServiceError(AccountServiceException.ServiceError serviceError) {
+    public void setServiceError(ServiceError serviceError) {
         this.serviceError = serviceError;
     }
 
