@@ -71,7 +71,7 @@
         </dependency>
     </dependencies>
     <scm>
-        <connection>scm:git:ssh://git@stash.bellevue.agilysys.com:7999/pms/accountinterface.git</connection>
-        <developerConnection>scm:git:ssh://git@stash.bellevue.agilysys.com:7999/pms/accountinterface.git</developerConnection>
+        <connection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</connection>
+        <developerConnection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</developerConnection>
     </scm>
 </project>
