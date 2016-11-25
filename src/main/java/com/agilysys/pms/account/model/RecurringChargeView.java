@@ -4,10 +4,14 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.joda.time.LocalDate;
+
+import com.agilysys.common.model.rate.ComponentRateSnapshot;
 
 /**
  * Recurring Charges view object
@@ -15,6 +19,8 @@ import org.joda.time.LocalDate;
 public class RecurringChargeView {
     String recurringChargeId;
     LocalDate chargeDate;
+
+    // For a package, this will be just the room charge.
     BigDecimal amount;
     String sourceId;
     String accountId;
@@ -24,8 +30,11 @@ public class RecurringChargeView {
     Boolean posted;
     Boolean roomCharge;
     String overrideReason;
+
+    // For a package, this will be the estimated tax for the room charge
     ChargeTaxAmountInfo estimatedTaxInfo;
     String routedFolioId;
+    List<ComponentChargeView> componentCharges = new ArrayList<>();
 
     /**
      * EVERY = Every Night
@@ -165,5 +174,13 @@ public class RecurringChargeView {
 
     public void setRoutedFolioId(String routedFolioId) {
         this.routedFolioId = routedFolioId;
+    }
+
+    public List<ComponentChargeView> getComponentCharges() {
+        return componentCharges;
+    }
+
+    public void setComponentCharges(List<ComponentChargeView> componentCharges) {
+        this.componentCharges = componentCharges;
     }
 }
