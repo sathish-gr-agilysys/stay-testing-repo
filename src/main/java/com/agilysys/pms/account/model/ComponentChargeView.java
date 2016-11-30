@@ -4,7 +4,10 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.agilysys.common.model.rate.ComponentRateSnapshot;
 
 public class ComponentChargeView {
 
@@ -56,5 +59,21 @@ public class ComponentChargeView {
 
     public void setEstimatedTaxInfo(ChargeTaxAmountInfo estimatedTaxInfo) {
         this.estimatedTaxInfo = estimatedTaxInfo;
+    }
+
+    public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
+        ComponentChargeView componentChargeView = new ComponentChargeView();
+        componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
+        componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
+        componentChargeView.setAmount(componentRateSnapshot.getAmount());
+
+        return componentChargeView;
+    }
+
+    public static List<ComponentChargeView> fromComponentRateSnapshots(List<ComponentRateSnapshot> componentRateSnapshots) {
+
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
+        componentRateSnapshots.stream().forEach(componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
+        return componentChargeViews;
     }
 }
