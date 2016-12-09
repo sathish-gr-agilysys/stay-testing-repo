@@ -234,18 +234,6 @@ public interface RecurringChargesServiceInterface {
      * Retrieves the amount to be authed on a card for checkin
      */
     @GET
-    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + CHECKIN_AUTH_AMOUNT)
-    @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    @Deprecated
-    BigDecimal getCheckinAuthAmount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(NUM_ADULTS) int numAdults);
-
-    /**
-     * Retrieves the amount to be authed on a card for checkin
-     */
-    @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + AUTH_DETAILS)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
