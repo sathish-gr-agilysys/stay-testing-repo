@@ -201,23 +201,6 @@ public interface RecurringChargesServiceInterface {
      * @param accountId
      * @param startDate
      * @param endDate
-     * @return The estimated charges for the given date range, or the current date if date range not given.
-     */
-    @GET
-    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + ESTIMATED_CHARGES_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    EstimatedChargesView getEstimatedCharges(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
-          throws RGuestException, ServiceException;
-
-    /**
-     * @param tenantId
-     * @param propertyId
-     * @param accountId
-     * @param startDate
-     * @param endDate
      * @return The estimated charges for the given date range, or the current
      * date if date range not given. Returns an estimated charges views
      * for each payment setting on the account.
