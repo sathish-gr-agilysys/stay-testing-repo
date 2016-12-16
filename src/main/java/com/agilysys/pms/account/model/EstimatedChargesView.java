@@ -34,46 +34,10 @@ public class EstimatedChargesView {
     private BigDecimal futureCharges = BigDecimal.ZERO;
 
     /**
-     * Total of future taxes, for both room and non-room charges
-     */
-    @Deprecated
-    private BigDecimal futureTaxes = BigDecimal.ZERO;
-
-    /**
      * Total of posted, non-room charges
      */
     @Deprecated
     private BigDecimal postedCharges = BigDecimal.ZERO;
-
-    /**
-     * Total of posted payments (as a negative number)
-     */
-    @Deprecated
-    private BigDecimal postedPayments = BigDecimal.ZERO;
-
-    /**
-     * Total of posted taxes, for both room and non-room charges
-     */
-    @Deprecated
-    private BigDecimal postedTaxes = BigDecimal.ZERO;
-
-    /**
-     * Total taxes, for all of posted and future, room and non-room charges
-     */
-    @Deprecated
-    private BigDecimal taxes = BigDecimal.ZERO;
-
-    /**
-     * Total cost, including all charges and taxes
-     */
-    @Deprecated
-    private BigDecimal total = BigDecimal.ZERO;
-
-    /**
-     * Total remaining cost (total plus posted payments)
-     */
-    @Deprecated
-    private BigDecimal estimatedAtCheckout = BigDecimal.ZERO;
 
     private Boolean thirdParty;
     private String paymentSettingId;
@@ -114,54 +78,6 @@ public class EstimatedChargesView {
         this.futureCharges = futureCharges;
     }
 
-    /**
-     * Gets the total of future taxes, for both room and non-room charges
-     */
-    @Deprecated
-    public BigDecimal getFutureTaxes() {
-        return futureTaxes;
-    }
-
-    /**
-     * Sets the total of future taxes, for both room and non-room charges
-     */
-    @Deprecated
-    public void setFutureTaxes(BigDecimal futureTaxes) {
-        this.futureTaxes = futureTaxes;
-    }
-
-    /**
-     * Gets the total cost, including all charges and taxes
-     */
-    @Deprecated
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    /**
-     * Sets the total cost, including all charges and taxes
-     */
-    @Deprecated
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    /**
-     * Gets the total remaining cost (total plus posted payments)
-     */
-    @Deprecated
-    public BigDecimal getEstimatedAtCheckout() {
-        return estimatedAtCheckout;
-    }
-
-    /**
-     * Sets the total remaining cost (total plus posted payments)
-     */
-    @Deprecated
-    public void setEstimatedAtCheckout(BigDecimal estimatedAtCheckout) {
-        this.estimatedAtCheckout = estimatedAtCheckout;
-    }
-
     public BigDecimal getRoomRate() {
         return roomRate;
     }
@@ -192,54 +108,6 @@ public class EstimatedChargesView {
     @Deprecated
     public void setPostedCharges(BigDecimal postedCharges) {
         this.postedCharges = postedCharges;
-    }
-
-    /**
-     * Gets the total of posted payments (as a negative number)
-     */
-    @Deprecated
-    public BigDecimal getPostedPayments() {
-        return postedPayments;
-    }
-
-    /**
-     * Sets the total of posted payments (as a negative number)
-     */
-    @Deprecated
-    public void setPostedPayments(BigDecimal postedPayments) {
-        this.postedPayments = postedPayments;
-    }
-
-    /**
-     * Gets the total of posted taxes, for both room and non-room charges
-     */
-    @Deprecated
-    public BigDecimal getPostedTaxes() {
-        return postedTaxes;
-    }
-
-    /**
-     * Sets the total of posted taxes, for both room and non-room charges
-     */
-    @Deprecated
-    public void setPostedTaxes(BigDecimal postedTaxes) {
-        this.postedTaxes = postedTaxes;
-    }
-
-    /**
-     * Gets the total taxes, for all of posted and future, room and non-room charges
-     */
-    @Deprecated
-    public BigDecimal getTaxes() {
-        return taxes;
-    }
-
-    /**
-     * Sets the total taxes, for all of posted and future, room and non-room charges
-     */
-    @Deprecated
-    public void setTaxes(BigDecimal taxes) {
-        this.taxes = taxes;
     }
 
     public List<RecurringChargeView> getRecurringCharges() {

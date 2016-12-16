@@ -103,7 +103,7 @@ public interface CompReasonInterface {
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
     @Validated(CompThreshold.class)
     void setCompThreshold(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, CompThreshold threshold);
+          @PathParam(PROPERTY_ID) String propertyId, CompThreshold threshold) throws RGuestException, ServiceException;
 
     /**
      * Get the comp threshold
@@ -115,6 +115,6 @@ public interface CompReasonInterface {
     @Path("/compThreshold")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
     CompThreshold getCompThreshold(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId);
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
 }
