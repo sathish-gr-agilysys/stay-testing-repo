@@ -65,6 +65,7 @@ public class ComponentChargeView {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
+        componentChargeView.setComponentBundleId(componentRateSnapshot.getComponentBundleId());
         componentChargeView.setAmount(componentRateSnapshot.getAmount());
 
         return componentChargeView;

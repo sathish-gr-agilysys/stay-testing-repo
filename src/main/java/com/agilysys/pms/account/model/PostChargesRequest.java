@@ -9,6 +9,7 @@ public class PostChargesRequest {
 
     private List<Charge> charges;
     private boolean distributed;
+    private boolean isRecurring;
     private String name;
 
 
@@ -33,6 +34,14 @@ public class PostChargesRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isRecurring() {
+        return isRecurring;
+    }
+
+    public void setIsRecurring(boolean isRecurring) {
+        this.isRecurring = isRecurring;
     }
 }
 
