@@ -3,13 +3,15 @@
  */
 package com.agilysys.pms.account.model;
 
+import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountException;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.agilysys.platform.common.exception.ValidationException;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
+import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateRecurringCharge {
@@ -97,7 +99,7 @@ public class CreateRecurringCharge {
         if (occurrenceDays != null) {
             for (Integer day : occurrenceDays) {
                 if (day < 1 || day > 7) {
-                    throw new ValidationException("Occurrence days must be 1-7 inclusive.");
+                    throw accountException(AccountErrorCode.OCCURRENCE_DAYS_INVALID).buildCompatible();
                 }
             }
         }
