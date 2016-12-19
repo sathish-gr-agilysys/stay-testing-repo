@@ -21,24 +21,6 @@ public class EstimatedChargesView {
     @Deprecated
     private BigDecimal roomTotal = BigDecimal.ZERO;
 
-    /**
-     * Total of posted room charges
-     */
-    @Deprecated
-    private BigDecimal roomPostedCharges = BigDecimal.ZERO;
-
-    /**
-     * Total of future, non-room charges
-     */
-    @Deprecated
-    private BigDecimal futureCharges = BigDecimal.ZERO;
-
-    /**
-     * Total of posted, non-room charges
-     */
-    @Deprecated
-    private BigDecimal postedCharges = BigDecimal.ZERO;
-
     private Boolean thirdParty;
     private String paymentSettingId;
 
@@ -62,22 +44,6 @@ public class EstimatedChargesView {
         this.roomTotal = roomTotal;
     }
 
-    /**
-     * Gets the total of future, non-room charges
-     */
-    @Deprecated
-    public BigDecimal getFutureCharges() {
-        return futureCharges;
-    }
-
-    /**
-     * Sets the total of future, non-room charges
-     */
-    @Deprecated
-    public void setFutureCharges(BigDecimal futureCharges) {
-        this.futureCharges = futureCharges;
-    }
-
     public BigDecimal getRoomRate() {
         return roomRate;
     }
@@ -94,21 +60,6 @@ public class EstimatedChargesView {
         this.rateCode = rateCode;
     }
 
-    /**
-     * Gets the total of posted, non-room charges
-     */
-    @Deprecated
-    public BigDecimal getPostedCharges() {
-        return postedCharges;
-    }
-
-    /**
-     * Sets the total of posted, non-room charges
-     */
-    @Deprecated
-    public void setPostedCharges(BigDecimal postedCharges) {
-        this.postedCharges = postedCharges;
-    }
 
     public List<RecurringChargeView> getRecurringCharges() {
         return recurringCharges;
@@ -134,21 +85,6 @@ public class EstimatedChargesView {
         this.paymentSettingId = paymentSettingId;
     }
 
-    /**
-     * Gets the total of posted room charges
-     */
-    @Deprecated
-    public BigDecimal getRoomPostedCharges() {
-        return roomPostedCharges;
-    }
-
-    /**
-     * Sets the total of posted room charges
-     */
-    @Deprecated
-    public void setRoomPostedCharges(BigDecimal roomPostedCharges) {
-        this.roomPostedCharges = roomPostedCharges;
-    }
 
     public EstimatedChargesSummaryView getSummary() {
         return summary;
