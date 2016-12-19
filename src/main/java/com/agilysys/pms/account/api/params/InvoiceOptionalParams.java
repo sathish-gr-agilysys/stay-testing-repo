@@ -3,10 +3,13 @@
  */
 package com.agilysys.pms.account.api.params;
 
+import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountException;
+import static com.agilysys.pms.common.exceptions.account.AccountContextKey.VALUE;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
-import com.agilysys.platform.common.exception.ValidationException;
+import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 
 public class InvoiceOptionalParams {
     private String expectedVersion;
@@ -34,7 +37,8 @@ public class InvoiceOptionalParams {
         try {
             return Long.parseLong(expectedVersion);
         } catch (Exception e) {
-            throw new ValidationException("Failed to parse numeric value: " + expectedVersion);
+            throw accountException(AccountErrorCode.NUMBER_PARSE_FAILED).put(VALUE, expectedVersion).cause(e)
+                  .buildCompatible();
         }
     }
 
@@ -44,7 +48,7 @@ public class InvoiceOptionalParams {
         try {
             return ISODateTimeFormat.dateTime().parseDateTime(asOf);
         } catch (Exception e) {
-            throw new ValidationException("Failed to parse ISO date: " + asOf);
+            throw accountException(AccountErrorCode.DATE_PARSE_FAILED).put(VALUE, asOf).cause(e).buildCompatible();
         }
     }
 

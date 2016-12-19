@@ -8,6 +8,8 @@ import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountExcepti
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.Response.Status;
+
 import com.agilysys.pms.account.exception.ServiceError;
 import com.agilysys.pms.account.model.PaymentTransaction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
@@ -270,6 +272,7 @@ public class PayTransactionRequest {
     }
 
     private void throwException() {
-        throw accountException(AccountErrorCode.REQUEST_INVALID).asininePayload(ServiceError.CLIENT_INVALID_REQUEST, 404).buildCompatible();
+        throw accountException(AccountErrorCode.REQUEST_INVALID)
+              .asininePayload(ServiceError.CLIENT_INVALID_REQUEST, Status.NOT_FOUND).buildCompatible();
     }
 }
