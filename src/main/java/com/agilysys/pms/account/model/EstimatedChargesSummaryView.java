@@ -114,7 +114,7 @@ public class EstimatedChargesSummaryView {
     public void setEstimatedRoomRate(BigDecimal estimatedRoomRate) {
         this.estimatedRoomRate = estimatedRoomRate;
     }
-    
+
     /**
      * Gets the taxes for estimated charges
      */

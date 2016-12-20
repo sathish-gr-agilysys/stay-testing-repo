@@ -3,7 +3,6 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,46 +10,13 @@ import java.util.List;
  * Describes estimated charges for an account
  */
 public class EstimatedChargesView {
+
     private List<RecurringChargeView> recurringCharges = new ArrayList<>();
-    private BigDecimal roomRate = BigDecimal.ZERO;
     private Boolean isForDefaultFolio = Boolean.FALSE;
-
-    /**
-     * Total of room charges, both posted and future
-     */
-    @Deprecated
-    private BigDecimal roomTotal = BigDecimal.ZERO;
-
     private Boolean thirdParty;
     private String paymentSettingId;
-
     private String rateCode;
-
     private EstimatedChargesSummaryView summary;
-
-    /**
-     * Gets the total of room charges, both posted and future
-     */
-    @Deprecated
-    public BigDecimal getRoomTotal() {
-        return roomTotal;
-    }
-
-    /**
-     * Sets the total of room charges, both posted and future
-     */
-    @Deprecated
-    public void setRoomTotal(BigDecimal roomTotal) {
-        this.roomTotal = roomTotal;
-    }
-
-    public BigDecimal getRoomRate() {
-        return roomRate;
-    }
-
-    public void setRoomRate(BigDecimal roomRate) {
-        this.roomRate = roomRate;
-    }
 
     public String getRateCode() {
         return rateCode;
