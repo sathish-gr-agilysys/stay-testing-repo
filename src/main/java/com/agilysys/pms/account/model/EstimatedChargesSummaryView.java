@@ -12,9 +12,14 @@ public class EstimatedChargesSummaryView {
     private BigDecimal estimatedPayment = BigDecimal.ZERO;
 
     /**
-     * The estimated charges for the stay
+     * The estimated charges for the stay (includes room and non-room charges)
      */
     private BigDecimal estimatedCharges = BigDecimal.ZERO;
+
+    /**
+     * The estimated room rate = total room charges / length of stay
+     */
+    private BigDecimal estimatedRoomRate = BigDecimal.ZERO;
 
     /**
      * The estimated room charges for the stay
@@ -102,6 +107,14 @@ public class EstimatedChargesSummaryView {
         this.estimatedRoomCharges = estimatedRoomCharges;
     }
 
+    public BigDecimal getEstimatedRoomRate() {
+        return estimatedRoomRate;
+    }
+
+    public void setEstimatedRoomRate(BigDecimal estimatedRoomRate) {
+        this.estimatedRoomRate = estimatedRoomRate;
+    }
+    
     /**
      * Gets the taxes for estimated charges
      */
