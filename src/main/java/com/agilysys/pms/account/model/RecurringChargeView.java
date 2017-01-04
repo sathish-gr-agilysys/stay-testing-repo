@@ -30,6 +30,7 @@ public class RecurringChargeView {
     Boolean posted;
     Boolean roomCharge;
     String overrideReason;
+    String ratePlanName;
 
     // For a package, this will be the estimated tax for the room charge
     ChargeTaxAmountInfo estimatedTaxInfo;
@@ -182,5 +183,13 @@ public class RecurringChargeView {
 
     public void setComponentCharges(List<ComponentChargeView> componentCharges) {
         this.componentCharges = componentCharges;
+    }
+
+    public String getRatePlanName() {
+        return ratePlanName;
+    }
+
+    public void setRatePlanName(String ratePlanName) {
+        this.ratePlanName = ratePlanName;
     }
 }
