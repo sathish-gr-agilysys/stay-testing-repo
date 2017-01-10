@@ -20,6 +20,7 @@ import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
+import com.agilysys.platform.tax.model.TaxRuleData;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -125,5 +126,12 @@ public interface TransactionItemConfigServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteTransactionItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ITEM_ID_PATH + "/associatedTaxRules")
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    List<TaxRuleData> getAssociatedTaxRules(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
 }
