@@ -43,7 +43,7 @@ public interface CompReasonInterface {
     @GET
     @Path("/compReasons")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
-    List<CompInfo> getCompReasons(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
+    List<CompInfo> getCompReasons(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     /**
@@ -57,7 +57,7 @@ public interface CompReasonInterface {
     @GET
     @Path("/compReasons/{id}")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
-    CompInfo getCompReason(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
+    CompInfo getCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id) throws RGuestException, ServiceException;
 
     /**
@@ -72,7 +72,7 @@ public interface CompReasonInterface {
     @Path("/compReasons")
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
     @Validated(CompInfo.class)
-    CompInfo addCompReason(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
+    CompInfo addCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, CompInfo compInfo) throws RGuestException, ServiceException;
 
     /**
@@ -88,7 +88,7 @@ public interface CompReasonInterface {
     @Path("/compReasons/{id}")
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
     @Validated(CompInfo.class)
-    CompInfo updateCompReason(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
+    CompInfo updateCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, CompInfo compInfo)
           throws RGuestException, ServiceException;
 
@@ -102,7 +102,7 @@ public interface CompReasonInterface {
     @Path("/compThreshold")
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
     @Validated(CompThreshold.class)
-    void setCompThreshold(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
+    void setCompThreshold(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, CompThreshold threshold) throws RGuestException, ServiceException;
 
     /**
@@ -114,7 +114,7 @@ public interface CompReasonInterface {
     @GET
     @Path("/compThreshold")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
-    CompThreshold getCompThreshold(@PathParam(AccountServiceInterface.TENANT_ID) String tenantId,
+    CompThreshold getCompThreshold(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
 }
