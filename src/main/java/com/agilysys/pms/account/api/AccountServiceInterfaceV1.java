@@ -594,6 +594,16 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
           @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges);
 
+    // This doesn't get exposed as an endpoint yet.
+    // It exists on the interface because we are
+    // auto-wiring this Interface instead of the implementation,
+    // and RecurringCharges needs to call this.
+
+    // Not sure why it's written this way where you will have a public method without any CXF annotations.
+    // Someday, we should fix this: VCTRS-42410
+    List<LineItemView> postCharges(String tenantId, String propertyId, String accountId, boolean ignoreAuth,
+          List<Charge> charges, Boolean isRecurring);
+
     /**
      * Posts a credit to an account
      *
