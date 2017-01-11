@@ -63,6 +63,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String parentId;
     private boolean distributed;
     private String name;
+    private String paymentSettingId;
 
     /**
      * @return the ID of the LineItem
@@ -621,6 +622,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPaymentSettingId() {
+        return paymentSettingId;
+    }
+
+    public void setPaymentSettingId(String paymentSettingId) {
+        this.paymentSettingId = paymentSettingId;
     }
 
     @Override
