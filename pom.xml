@@ -43,7 +43,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>${stay.rate-interface.version}</version>
+            <version>69.0.0.3-VCTRS-53481-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
