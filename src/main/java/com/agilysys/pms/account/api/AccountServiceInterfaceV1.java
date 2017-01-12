@@ -80,6 +80,8 @@ import com.agilysys.pms.common.model.CollectionResponse;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface AccountServiceInterfaceV1 {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
