@@ -928,7 +928,6 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
