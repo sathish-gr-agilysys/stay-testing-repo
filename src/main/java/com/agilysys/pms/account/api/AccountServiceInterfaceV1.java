@@ -80,6 +80,8 @@ import com.agilysys.pms.common.model.CollectionResponse;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface AccountServiceInterfaceV1 {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
@@ -928,7 +930,6 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
