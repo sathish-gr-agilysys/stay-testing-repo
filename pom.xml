@@ -41,6 +41,11 @@
             <version>${stay.rguest-pay-shim.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.agilysys.pms</groupId>
+            <artifactId>rate-service-interface</artifactId>
+            <version>${stay.rate-interface.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.agilysys.platform</groupId>
             <artifactId>tax-service-interface</artifactId>
         </dependency>
