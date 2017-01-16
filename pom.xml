@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>69.0.0.4-SNAPSHOT</version>
+    <version>69.0.0.7-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
@@ -39,6 +39,11 @@
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
             <version>${stay.rguest-pay-shim.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms</groupId>
+            <artifactId>rate-service-interface</artifactId>
+            <version>${stay.rate-interface.version}</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
