@@ -16,7 +16,7 @@ public class EstimatedChargesView {
     private Boolean thirdParty;
     private String paymentSettingId;
     private String rateCode;
-    private EstimatedChargesSummaryView summary;
+    private EstimatedChargesSummaryView summary = new EstimatedChargesSummaryView();
 
     public String getRateCode() {
         return rateCode;
