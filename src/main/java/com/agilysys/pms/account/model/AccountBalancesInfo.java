@@ -8,6 +8,7 @@ public class AccountBalancesInfo {
     private Map<String, AccountBalanceDetail> accountBalances = Collections.emptyMap();
 
     private BigDecimal grandTotal = BigDecimal.ZERO;
+    private BigDecimal grandTaxTotal = BigDecimal.ZERO;
 
     public Map<String, AccountBalanceDetail> getAccountBalances() {
         return accountBalances;
@@ -23,5 +24,13 @@ public class AccountBalancesInfo {
 
     public void setGrandTotal(BigDecimal grandTotal) {
         this.grandTotal = grandTotal;
+    }
+
+    public BigDecimal getGrandTaxTotal() {
+        return grandTaxTotal;
+    }
+
+    public void setGrandTaxTotal(BigDecimal grandTaxTotal) {
+        this.grandTaxTotal = grandTaxTotal;
     }
 }

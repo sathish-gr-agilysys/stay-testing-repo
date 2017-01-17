@@ -10,6 +10,7 @@ import java.math.BigDecimal;
  */
 public class FolioBalance extends FolioSummary {
     private BigDecimal balance;
+    private BigDecimal taxBalance;
 
     public BigDecimal getBalance() {
         return balance;
@@ -19,4 +20,11 @@ public class FolioBalance extends FolioSummary {
         this.balance = balance;
     }
 
+    public BigDecimal getTaxBalance() {
+        return taxBalance;
+    }
+
+    public void setTaxBalance(BigDecimal taxBalance) {
+        this.taxBalance = taxBalance;
+    }
 }
