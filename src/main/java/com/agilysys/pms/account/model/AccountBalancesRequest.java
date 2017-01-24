@@ -18,6 +18,8 @@ public class AccountBalancesRequest {
 
     private BigDecimal maxBalance;
 
+    private Boolean includeZeroBalance;
+
     public Set<String> getAccountIds() {
         return accountIds;
     }
@@ -56,5 +58,13 @@ public class AccountBalancesRequest {
 
     public void setMaxBalance(BigDecimal maxBalance) {
         this.maxBalance = maxBalance;
+    }
+
+    public Boolean getIncludeZeroBalance() {
+        return includeZeroBalance;
+    }
+
+    public void setIncludeZeroBalance(Boolean includeZeroBalance) {
+        this.includeZeroBalance = includeZeroBalance;
     }
 }
