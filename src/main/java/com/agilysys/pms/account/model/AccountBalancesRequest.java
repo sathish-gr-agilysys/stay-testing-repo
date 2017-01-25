@@ -14,11 +14,15 @@ public class AccountBalancesRequest {
 
     private Set<String> accountStatuses;
 
+    private Set<String> paymentMethodIds;
+
     private BigDecimal minBalance;
 
     private BigDecimal maxBalance;
 
-    private Boolean includeZeroBalance;
+    private Boolean includeZeroBalanceForHouseAccounts;
+
+    private Boolean includeZeroBalanceForCompanyAccounts;
 
     public Set<String> getAccountIds() {
         return accountIds;
@@ -44,6 +48,14 @@ public class AccountBalancesRequest {
         this.accountStatuses = accountStatuses;
     }
 
+    public Set<String> getPaymentMethodIds() {
+        return paymentMethodIds;
+    }
+
+    public void setPaymentMethodIds(Set<String> paymentMethodIds) {
+        this.paymentMethodIds = paymentMethodIds;
+    }
+
     public BigDecimal getMinBalance() {
         return minBalance;
     }
@@ -60,11 +72,19 @@ public class AccountBalancesRequest {
         this.maxBalance = maxBalance;
     }
 
-    public Boolean getIncludeZeroBalance() {
-        return includeZeroBalance;
+    public Boolean getIncludeZeroBalanceForHouseAccounts() {
+        return includeZeroBalanceForHouseAccounts;
     }
 
-    public void setIncludeZeroBalance(Boolean includeZeroBalance) {
-        this.includeZeroBalance = includeZeroBalance;
+    public void setIncludeZeroBalanceForHouseAccounts(Boolean includeZeroBalanceForHouseAccounts) {
+        this.includeZeroBalanceForHouseAccounts = includeZeroBalanceForHouseAccounts;
+    }
+
+    public Boolean getIncludeZeroBalanceForCompanyAccounts() {
+        return includeZeroBalanceForCompanyAccounts;
+    }
+
+    public void setIncludeZeroBalanceForCompanyAccounts(Boolean includeZeroBalanceForCompanyAccounts) {
+        this.includeZeroBalanceForCompanyAccounts = includeZeroBalanceForCompanyAccounts;
     }
 }
