@@ -27,12 +27,12 @@ public interface MaintenanceInterface {
 
     @POST
     @Path(ACCOUNT_BALANCES_COLLECTION + "/rebuild")
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
+    @PreAuthorize("hasPermission('Required', 'Platform_writeTenants')")
     Job rebuildAccountBalances(Boolean forReal) throws RGuestException, ServiceException;
 
     @POST
     @Path(ACCOUNT_BALANCES_COLLECTION + "/refresh")
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
+    @PreAuthorize("hasPermission('Required', 'Platform_writeTenants')")
     Job refreshAccountBalances() throws RGuestException, ServiceException;
 
     @GET
