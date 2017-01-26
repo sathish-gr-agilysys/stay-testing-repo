@@ -9,20 +9,13 @@ import java.util.Set;
 
 public class AccountBalancesRequest {
     private Set<String> accountIds;
-
     private Set<String> accountTypes;
-
     private Set<String> accountStatuses;
-
     private Set<String> paymentMethodIds;
-
     private BigDecimal minBalance;
-
     private BigDecimal maxBalance;
-
-    private Boolean includeZeroBalanceForHouseAccounts;
-
     private Boolean includeZeroBalanceForCompanyAccounts;
+    private Boolean includeZeroBalanceForHouseAccounts;
 
     public Set<String> getAccountIds() {
         return accountIds;
@@ -72,19 +65,19 @@ public class AccountBalancesRequest {
         this.maxBalance = maxBalance;
     }
 
-    public Boolean getIncludeZeroBalanceForHouseAccounts() {
-        return includeZeroBalanceForHouseAccounts;
-    }
-
-    public void setIncludeZeroBalanceForHouseAccounts(Boolean includeZeroBalanceForHouseAccounts) {
-        this.includeZeroBalanceForHouseAccounts = includeZeroBalanceForHouseAccounts;
-    }
-
     public Boolean getIncludeZeroBalanceForCompanyAccounts() {
         return includeZeroBalanceForCompanyAccounts;
     }
 
     public void setIncludeZeroBalanceForCompanyAccounts(Boolean includeZeroBalanceForCompanyAccounts) {
         this.includeZeroBalanceForCompanyAccounts = includeZeroBalanceForCompanyAccounts;
+    }
+
+    public Boolean getIncludeZeroBalanceForHouseAccounts() {
+        return includeZeroBalanceForHouseAccounts;
+    }
+
+    public void setIncludeZeroBalanceForHouseAccounts(Boolean includeZeroBalanceForHouseAccounts) {
+        this.includeZeroBalanceForHouseAccounts = includeZeroBalanceForHouseAccounts;
     }
 }
