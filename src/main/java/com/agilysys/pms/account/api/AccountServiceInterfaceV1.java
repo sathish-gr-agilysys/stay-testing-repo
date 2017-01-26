@@ -875,7 +875,7 @@ public interface AccountServiceInterfaceV1 {
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam("accountId") String accountId, @LogParam("params") InvoiceFilteringOptionalParams params)
+          @PathParam("accountId") String accountId, @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
           throws ServiceException;
 
     @GET
