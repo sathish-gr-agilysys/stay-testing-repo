@@ -20,6 +20,7 @@ public class ApplyInvoicePaymentRequest {
     // fields that need to be provided when the payment method is of type Credit Card
     private String paymentInstrumentId;
     private String terminalId;
+    private String invoiceNumber;
 
     public void setInvoicePayments(List<InvoicePaymentRequest> invoicePayments) {
         this.invoicePayments = invoicePayments;
@@ -51,5 +52,13 @@ public class ApplyInvoicePaymentRequest {
 
     public String getTerminalId() {
         return terminalId;
+    }
+
+    public String getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public void setInvoiceNumber(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
     }
 }
