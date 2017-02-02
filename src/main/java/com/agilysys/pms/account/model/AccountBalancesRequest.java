@@ -14,8 +14,7 @@ public class AccountBalancesRequest {
     private Set<String> paymentMethodIds;
     private BigDecimal minBalance;
     private BigDecimal maxBalance;
-    private Boolean includeZeroBalanceForCompanyAccounts;
-    private Boolean includeZeroBalanceForHouseAccounts;
+    private IgnoreZeroBalance ignoreZeroBalance;
 
     public Set<String> getAccountIds() {
         return accountIds;
@@ -65,19 +64,32 @@ public class AccountBalancesRequest {
         this.maxBalance = maxBalance;
     }
 
-    public Boolean getIncludeZeroBalanceForCompanyAccounts() {
-        return includeZeroBalanceForCompanyAccounts;
+    public IgnoreZeroBalance getIgnoreZeroBalance() {
+        return ignoreZeroBalance;
     }
 
-    public void setIncludeZeroBalanceForCompanyAccounts(Boolean includeZeroBalanceForCompanyAccounts) {
-        this.includeZeroBalanceForCompanyAccounts = includeZeroBalanceForCompanyAccounts;
+    public void setIgnoreZeroBalance(IgnoreZeroBalance ignoreZeroBalance) {
+        this.ignoreZeroBalance = ignoreZeroBalance;
     }
 
-    public Boolean getIncludeZeroBalanceForHouseAccounts() {
-        return includeZeroBalanceForHouseAccounts;
-    }
+    public static class IgnoreZeroBalance {
+        private Boolean excludeCompanyAccounts;
+        private Boolean excludeHouseAccounts;
 
-    public void setIncludeZeroBalanceForHouseAccounts(Boolean includeZeroBalanceForHouseAccounts) {
-        this.includeZeroBalanceForHouseAccounts = includeZeroBalanceForHouseAccounts;
+        public Boolean getExcludeCompanyAccounts() {
+            return excludeCompanyAccounts;
+        }
+
+        public void setExcludeCompanyAccounts(Boolean excludeCompanyAccounts) {
+            this.excludeCompanyAccounts = excludeCompanyAccounts;
+        }
+
+        public Boolean getExcludeHouseAccounts() {
+            return excludeHouseAccounts;
+        }
+
+        public void setExcludeHouseAccounts(Boolean excludeHouseAccounts) {
+            this.excludeHouseAccounts = excludeHouseAccounts;
+        }
     }
 }
