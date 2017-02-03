@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>70.0.0.177</version>
+    <version>70.0.0.178-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
