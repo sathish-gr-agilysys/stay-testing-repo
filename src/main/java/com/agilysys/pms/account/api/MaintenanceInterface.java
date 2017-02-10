@@ -45,16 +45,6 @@ public interface MaintenanceInterface {
 
     @POST
     @PreAuthorize("hasPermission('Required', 'WriteTenants')")
-    @Path(ES_INDEX_ACCOUNTS +"/tenants/{tenantId}")
-    Job reIndexAccounts(@PathParam("tenantId") String tenantId) throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
-    @Path(ES_INDEX_ACCOUNTS +"/tenants")
-    Job reIndexAllAccounts() throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
     @Path(ES_INDEX_ACCOUNTS +"/bulk")
     BulkReindexJobResult bulkReIndex(BulkReindexRequest request);
 
