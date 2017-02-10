@@ -13,6 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.agilysys.pms.maintenance.domain.BulkReindexJobDetail;
+import com.agilysys.pms.maintenance.domain.BulkReindexJobResult;
+import com.agilysys.pms.maintenance.domain.BulkReindexRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
@@ -24,6 +27,7 @@ import com.agilysys.pms.maintenance.model.Job;
 @Produces(MediaType.APPLICATION_JSON)
 public interface MaintenanceInterface {
     String ACCOUNT_BALANCES_COLLECTION = "/accountBalances";
+    String ES_INDEX_ACCOUNTS = "/elasticsearch/indices";
 
     @POST
     @Path(ACCOUNT_BALANCES_COLLECTION + "/rebuild")
@@ -38,4 +42,23 @@ public interface MaintenanceInterface {
     @GET
     @Path("/requests/{requestId}")
     List<Job> retrieveJobs(@PathParam("requestId") String requestId) throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
+    @Path(ES_INDEX_ACCOUNTS +"/tenants/{tenantId}")
+    Job reIndexAccounts(@PathParam("tenantId") String tenantId) throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
+    @Path(ES_INDEX_ACCOUNTS +"/tenants")
+    Job reIndexAllAccounts() throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
+    @Path(ES_INDEX_ACCOUNTS +"/bulk")
+    BulkReindexJobResult bulkReIndex(BulkReindexRequest request);
+
+    @GET
+    @Path(ES_INDEX_ACCOUNTS+ "/bulk/requests/{requestId}")
+    List<BulkReindexJobDetail> retrieveBulkJobs(@PathParam("requestId") String requestId);
 }
