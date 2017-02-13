@@ -25,6 +25,8 @@ public class AccountSearchResult {
 
     private String name;
 
+    private String number;
+
     private BigDecimal accountBalance;
 
     private List<FolioBalance> folios;
@@ -176,5 +178,13 @@ public class AccountSearchResult {
 
     public void setGroupCode(String groupCode) {
         this.groupCode = groupCode;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }
