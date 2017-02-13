@@ -43,12 +43,4 @@ public interface MaintenanceInterface {
     @Path("/requests/{requestId}")
     List<Job> retrieveJobs(@PathParam("requestId") String requestId) throws RGuestException, ServiceException;
 
-    @POST
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
-    @Path(ES_INDEX_ACCOUNTS +"/bulk")
-    BulkReindexJobResult bulkReIndex(BulkReindexRequest request);
-
-    @GET
-    @Path(ES_INDEX_ACCOUNTS+ "/bulk/requests/{requestId}")
-    List<BulkReindexJobDetail> retrieveBulkJobs(@PathParam("requestId") String requestId);
 }
