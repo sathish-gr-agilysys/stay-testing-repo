@@ -18,25 +18,7 @@ import com.agilysys.platform.common.json.schema.MinValueRestriction;
 public class Charge extends Transaction {
     private String mealPeriodId;
 
-    @MinValueRestriction(1)
-    private int quantity;
-
     private String recurringChargeId;
-
-    /**
-     * @return the quantity
-     */
-    public int getQuantity() {
-        return (quantity < 1 ? 1 : quantity);
-    }
-
-    /**
-     * @param quantity Optional quantity. Must be greater than or equal to 1. If less
-     *                 than 1, will automatically be set to 1.
-     */
-    public void setQuantity(int quantity) {
-        this.quantity = (quantity < 1 ? 1 : quantity);
-    }
 
     /**
      * @return the mealPeriodId
@@ -62,7 +44,7 @@ public class Charge extends Transaction {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(7).append(mealPeriodId).append(recurringChargeId).append(quantity)
+        return new HashCodeBuilder().appendSuper(7).append(mealPeriodId).append(recurringChargeId).append(getQuantity())
               .toHashCode();
     }
 
@@ -79,7 +61,7 @@ public class Charge extends Transaction {
         }
         Charge rhs = (Charge) obj;
         return new EqualsBuilder().appendSuper(super.equals(obj)).append(mealPeriodId, rhs.mealPeriodId)
-              .append(recurringChargeId, rhs.recurringChargeId).append(quantity, rhs.quantity).isEquals();
+              .append(recurringChargeId, rhs.recurringChargeId).append(getQuantity(), rhs.getQuantity()).isEquals();
     }
 
 }

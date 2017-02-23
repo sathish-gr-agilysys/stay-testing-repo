@@ -14,6 +14,8 @@ import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.agilysys.platform.common.json.schema.MinValueRestriction;
+
 /**
  * Base class for different transaction types
  */
@@ -40,6 +42,8 @@ public abstract class Transaction {
     private String terminalId;
     private LocalDate postingDate;
     private String parentId;
+
+    @MinValueRestriction(1)
     private int quantity = 0;
 
     /**
