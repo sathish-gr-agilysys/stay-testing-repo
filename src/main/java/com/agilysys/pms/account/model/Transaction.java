@@ -40,7 +40,7 @@ public abstract class Transaction {
     private String terminalId;
     private LocalDate postingDate;
     private String parentId;
-    private int quantity = 0;
+    private int quantity;
 
     /**
      * @return the accountId
