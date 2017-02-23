@@ -1,7 +1,9 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.joda.time.LocalDate;
@@ -15,6 +17,7 @@ public class RecurringChargeReportItem {
     private String reservationId;
     private String itemId;
     private String itemName;
+    List<ComponentChargeView> componentCharges = new ArrayList<>();
     /**
      * EVERY = Every Night
      * FIRST = First Night Only
@@ -113,5 +116,13 @@ public class RecurringChargeReportItem {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public List<ComponentChargeView> getComponentCharges() {
+        return componentCharges;
+    }
+
+    public void setComponentCharges(List<ComponentChargeView> componentCharges) {
+        this.componentCharges = componentCharges;
     }
 }
