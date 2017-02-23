@@ -40,6 +40,7 @@ public abstract class Transaction {
     private String terminalId;
     private LocalDate postingDate;
     private String parentId;
+    private int quantity = 0;
 
     /**
      * @return the accountId
@@ -185,6 +186,14 @@ public abstract class Transaction {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
