@@ -15,6 +15,8 @@ public class ComponentChargeView {
 
     private String transactionItemId;
 
+    private String transactionItemName;
+
     private BigDecimal amount;
 
     private int quantity;
@@ -59,6 +61,14 @@ public class ComponentChargeView {
 
     public void setEstimatedTaxInfo(ChargeTaxAmountInfo estimatedTaxInfo) {
         this.estimatedTaxInfo = estimatedTaxInfo;
+    }
+
+    public String getTransactionItemName() {
+        return transactionItemName;
+    }
+
+    public void setTransactionItemName(String transactionItemName) {
+        this.transactionItemName = transactionItemName;
     }
 
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
