@@ -44,7 +44,7 @@ public abstract class Transaction {
     private String parentId;
 
     @MinValueRestriction(1)
-    private int quantity = 0;
+    private int quantity = 1;
 
     /**
      * @return the accountId
