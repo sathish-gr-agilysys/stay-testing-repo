@@ -14,6 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.joda.time.LocalDate;
+import com.agilysys.pms.maintenance.domain.BulkReindexJobDetail;
+import com.agilysys.pms.maintenance.domain.BulkReindexJobResult;
+import com.agilysys.pms.maintenance.domain.BulkReindexRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
