@@ -44,7 +44,7 @@ public interface MaintenanceInterface {
     @POST
     @Path(ACCOUNT_BALANCES_COLLECTION + "/refresh")
     @PreAuthorize("hasPermission('Required', 'Platform_writeTenants')")
-    Job repairAccountBalances() throws RGuestException, ServiceException;
+    Job refreshAccountBalances() throws RGuestException, ServiceException;
 
     @POST
     @Path("/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}" + ACCOUNT_BALANCES_COLLECTION + "/{" + DATE +
