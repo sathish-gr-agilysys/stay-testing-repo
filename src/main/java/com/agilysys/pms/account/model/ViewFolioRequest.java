@@ -7,6 +7,7 @@ package com.agilysys.pms.account.model;
 import java.util.Set;
 
 import org.joda.time.DateTime;
+import org.springframework.data.domain.Sort.Direction;
 
 public class ViewFolioRequest {
 
@@ -14,6 +15,8 @@ public class ViewFolioRequest {
     private Set<String> parentIds;
     private Integer page;
     private Integer size;
+    private String parentSortOrder = Direction.DESC.name();
+    private String childrenSortOrder = Direction.ASC.name();
     private DateTime timeStamp;
     private boolean includeDetails;
 
@@ -63,5 +66,21 @@ public class ViewFolioRequest {
 
     public void setTimeStamp(DateTime timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    public String getParentSortOrder() {
+        return parentSortOrder;
+    }
+
+    public void setParentSortOrder(String parentSortOrder) {
+        this.parentSortOrder = parentSortOrder;
+    }
+
+    public String getChildrenSortOrder() {
+        return childrenSortOrder;
+    }
+
+    public void setChildrenSortOrder(String childrenSortOrder) {
+        this.childrenSortOrder = childrenSortOrder;
     }
 }
