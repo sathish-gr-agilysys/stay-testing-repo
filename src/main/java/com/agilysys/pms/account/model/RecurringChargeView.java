@@ -11,8 +11,6 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
-import com.agilysys.common.model.rate.ComponentRateSnapshot;
-
 /**
  * Recurring Charges view object
  */
@@ -31,6 +29,7 @@ public class RecurringChargeView {
     Boolean roomCharge;
     String overrideReason;
     String ratePlanName;
+    private boolean isPackage;
 
     // For a package, this will be the estimated tax for the room charge
     ChargeTaxAmountInfo estimatedTaxInfo;
@@ -191,5 +190,13 @@ public class RecurringChargeView {
 
     public void setRatePlanName(String ratePlanName) {
         this.ratePlanName = ratePlanName;
+    }
+
+    public boolean isPackage() {
+        return isPackage;
+    }
+
+    public void setPackage(boolean aPackage) {
+        isPackage = aPackage;
     }
 }
