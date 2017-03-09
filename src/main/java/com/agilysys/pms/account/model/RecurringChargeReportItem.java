@@ -17,7 +17,9 @@ public class RecurringChargeReportItem {
     private String reservationId;
     private String itemId;
     private String itemName;
-    List<ComponentChargeView> componentCharges = new ArrayList<>();
+    private List<ComponentChargeView> componentCharges = new ArrayList<>();
+    private boolean isPackage;
+
     /**
      * EVERY = Every Night
      * FIRST = First Night Only
@@ -124,5 +126,13 @@ public class RecurringChargeReportItem {
 
     public void setComponentCharges(List<ComponentChargeView> componentCharges) {
         this.componentCharges = componentCharges;
+    }
+
+    public boolean isPackage() {
+        return isPackage;
+    }
+
+    public void setPackage(boolean aPackage) {
+        isPackage = aPackage;
     }
 }
