@@ -28,8 +28,6 @@ public class RecurringChargeView {
     Boolean posted;
     Boolean roomCharge;
     String overrideReason;
-    String ratePlanName;
-    private boolean isPackage;
     private String ratePlanId;
 
     // For a package, this will be the estimated tax for the room charge
@@ -185,14 +183,6 @@ public class RecurringChargeView {
         this.componentCharges = componentCharges;
     }
 
-    public String getRatePlanName() {
-        return ratePlanName;
-    }
-
-    public void setRatePlanName(String ratePlanName) {
-        this.ratePlanName = ratePlanName;
-    }
-
     public String getRatePlanId() {
         return ratePlanId;
     }
@@ -201,11 +191,4 @@ public class RecurringChargeView {
         this.ratePlanId = ratePlanId;
     }
 
-    public boolean isPackage() {
-        return isPackage;
-    }
-
-    public void setIsPackage(boolean isPackage) {
-        this.isPackage = isPackage;
-    }
 }
