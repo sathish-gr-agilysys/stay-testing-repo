@@ -37,6 +37,7 @@ import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
 import com.agilysys.pms.account.model.AccountSearchResult;
 import com.agilysys.pms.account.model.AccountStatement;
+import com.agilysys.pms.account.model.AccountStatementsRequest;
 import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
@@ -283,11 +284,11 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AccountsReceivableSettings accountsReceivableSettings) throws ServiceException;
 
-    @GET
-    @Path(ACCOUNT_ID_PATH + ACCOUNT_BALANCES_PATH)
+    @POST
+    @Path(ACCOUNT_BALANCES_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    AccountStatement getAccountBalance(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws ServiceException;
+    List<AccountStatement> getAccountBalances(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest) throws ServiceException;
 
     /**
      * Retrieve folios from an account
