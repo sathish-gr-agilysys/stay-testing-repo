@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class AccountStatement {
 
-    private Balance balance;
+    private Balance balance = new Balance();
 
     private Map<String, Balance> folioBalances = new HashMap<>();
 
@@ -27,4 +27,5 @@ public class AccountStatement {
     public void setFolioBalances(Map<String, Balance> folioBalances) {
         this.folioBalances = folioBalances;
     }
+
 }

@@ -37,6 +37,7 @@ import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
 import com.agilysys.pms.account.model.AccountSearchResult;
 import com.agilysys.pms.account.model.AccountStatement;
+import com.agilysys.pms.account.model.AccountStatementResponse;
 import com.agilysys.pms.account.model.AccountStatementsRequest;
 import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.AccountsCollectionRequest;
@@ -287,7 +288,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_BALANCES_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountStatement> getAccountBalances(@PathParam(TENANT_ID) String tenantId,
+    AccountStatementResponse getAccountBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest) throws ServiceException;
 
     /**

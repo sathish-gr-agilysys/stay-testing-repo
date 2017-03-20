@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 
 public class Balance {
 
+    public Balance() {
+    }
+
     private BigDecimal subtotal;
 
     private BigDecimal tax;
