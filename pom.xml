@@ -75,4 +75,5 @@
         <connection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</connection>
         <developerConnection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</developerConnection>
     </scm>
+    <!--[rbuild-feature] VCTRS-55345-call-graph-->
 </project>
