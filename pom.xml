@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>42.5.0-SNAPSHOT</version>
+    <version>72.0-VCTRS-001-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>42.5.0</version>
+        <version>72.0-VCTRS-001</version>
     </parent>
     <properties>
     </properties>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>42.5.0</version>
+            <version>73.1-VCTRS-001</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>42.5.0</version>
+            <version>72.0-VCTRS-001</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
