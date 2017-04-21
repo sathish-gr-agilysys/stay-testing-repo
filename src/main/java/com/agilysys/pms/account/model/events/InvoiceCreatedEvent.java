@@ -19,20 +19,23 @@ public class InvoiceCreatedEvent extends InvoiceEvent {
     private List<String> folioLineItemIds;
     private int terms;
     private String invoiceNumber;
+    private boolean closed;
 
     public InvoiceCreatedEvent() {
         super();
     }
 
     public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, InvoiceRequest invoiceRequest,
-          String invoiceNumber) {
+          String invoiceNumber, boolean closed) {
         super();
+
         this.id = id;
         this.accountId = accountId;
         this.invoiceDate = invoiceRequest.getInvoiceDate();
         this.folioLineItemIds = invoiceRequest.getFolioLineItemIds();
         this.terms = invoiceRequest.getTerms();
         this.invoiceNumber = invoiceNumber;
+        this.closed = closed;
     }
 
     public PropertyLevelIdentifier getId() {
@@ -69,6 +72,8 @@ public class InvoiceCreatedEvent extends InvoiceEvent {
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
+
+    public boolean isClosed() { return closed; }
 
     @Override
     public List<String> getHistoryMessages() {
