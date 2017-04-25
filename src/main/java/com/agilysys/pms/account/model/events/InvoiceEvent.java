@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model.events;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,24 +16,28 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 @JsonTypeInfo(use = Id.CLASS)
 public abstract class InvoiceEvent extends StayDomainEvent {
-    protected List<Map<String, Object>> historyMetadata = new LinkedList<>();
+    protected List<Map<String, Object>> historyMetadata;
 
-    public InvoiceEvent() {
-        super();
-    }
+    public InvoiceEvent() { this(null); }
 
     public InvoiceEvent(DateTime eventDate) {
         super(eventDate);
+
+        historyMetadata = new ArrayList<>();
     }
+
+    public InvoiceEvent(DateTime eventDate, List<Map<String, Object>> historyMetadata) {
+        super(eventDate);
+
+        this.historyMetadata = historyMetadata;
+    }
+
+    public List<Map<String, Object>> getHistoryMetadata() { return historyMetadata; }
+
+    public abstract List<String> getHistoryMessages();
 
     @Override
     public String toString() {
         return ReflectionToStringBuilder.toString(this);
     }
-
-    public List<Map<String, Object>> getHistoryMetadata() {
-        return historyMetadata;
-    }
-
-    public abstract List<String> getHistoryMessages();
 }

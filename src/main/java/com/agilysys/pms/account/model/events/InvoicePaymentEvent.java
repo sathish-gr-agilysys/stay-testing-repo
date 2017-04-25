@@ -11,7 +11,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-public class InvoicePaymentEvent extends InvoiceEvent {
+public class InvoicePaymentEvent extends InvoiceModificationEvent {
     private BigDecimal amount;
     private String folioLineItemId;
     private String paymentMethodId;
@@ -26,8 +26,8 @@ public class InvoicePaymentEvent extends InvoiceEvent {
     public InvoicePaymentEvent(BigDecimal amount, String folioLineItemId, String paymentMethodId,
           String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          boolean isFullAmountApplied) {
-        super();
+          boolean isFullAmountApplied, boolean closed) {
+        super(closed);
 
         this.amount = amount;
         this.folioLineItemId = folioLineItemId;

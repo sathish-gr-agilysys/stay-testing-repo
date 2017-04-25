@@ -10,14 +10,14 @@ import java.util.Map;
 
 import org.springframework.data.annotation.Transient;
 
-public class AddInvoiceLineItemsEvent extends InvoiceEvent {
+public class AddInvoiceLineItemsEvent extends InvoiceModificationEvent {
     private List<String> folioLineItemIds;
 
-    public AddInvoiceLineItemsEvent(List<String> folioLineItemIds, List<Map<String, Object>> historyMetadata) {
-        super();
+    public AddInvoiceLineItemsEvent(List<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
+          boolean closed) {
+        super(null, historyMetadata, closed);
 
         this.folioLineItemIds = folioLineItemIds;
-        this.historyMetadata = historyMetadata;
     }
 
     public List<String> getFolioLineItemIds() {
@@ -39,21 +39,21 @@ public class AddInvoiceLineItemsEvent extends InvoiceEvent {
     public List<String> getHistoryMessages() {
         if (historyMetadata.isEmpty()) {
             return Arrays.asList(getDisplayName());
-        } else {
-            List<String> historyMessages = new LinkedList<>();
-            historyMetadata.forEach(metadata -> {
-                String displayDate =
-                      metadata.get("displayDate") != null ? metadata.get("displayDate").toString() : null;
-                String itemName = metadata.get("itemName") != null ? metadata.get("itemName").toString() : null;
-                String itemBalance =
-                      metadata.get("lineItemBalance") != null ? metadata.get("lineItemBalance").toString() : null;
-                String sourceAccountId =
-                      metadata.get("sourceAccountId") != null ? metadata.get("sourceAccountId").toString() : null;
-                historyMessages.add(String
-                      .format("Item added to invoice.  [Date: %s, Description: %s, Total: %s, Origin Account: %s]",
-                            displayDate, itemName, itemBalance, sourceAccountId));
-            });
-            return historyMessages;
         }
+
+        List<String> historyMessages = new LinkedList<>();
+        historyMetadata.forEach(metadata -> {
+            String displayDate = metadata.get("displayDate") != null ? metadata.get("displayDate").toString() : null;
+            String itemName = metadata.get("itemName") != null ? metadata.get("itemName").toString() : null;
+            String itemBalance =
+                  metadata.get("lineItemBalance") != null ? metadata.get("lineItemBalance").toString() : null;
+            String sourceAccountId =
+                  metadata.get("sourceAccountId") != null ? metadata.get("sourceAccountId").toString() : null;
+            historyMessages.add(String
+                  .format("Item added to invoice.  [Date: %s, Description: %s, Total: %s, Origin Account: %s]",
+                        displayDate, itemName, itemBalance, sourceAccountId));
+        });
+
+        return historyMessages;
     }
 }

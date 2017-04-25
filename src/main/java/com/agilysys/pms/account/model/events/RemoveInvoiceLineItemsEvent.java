@@ -10,15 +10,14 @@ import java.util.Map;
 
 import org.springframework.data.annotation.Transient;
 
-public class RemoveInvoiceLineItemsEvent extends InvoiceEvent {
-
+public class RemoveInvoiceLineItemsEvent extends InvoiceModificationEvent {
     private List<String> folioLineItemIds;
 
-    public RemoveInvoiceLineItemsEvent(List<String> folioLineItemIds, List<Map<String, Object>> historyMetadata) {
-        super();
+    public RemoveInvoiceLineItemsEvent(List<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
+          boolean closed) {
+        super(null, historyMetadata, closed);
 
         this.folioLineItemIds = folioLineItemIds;
-        this.historyMetadata = historyMetadata;
     }
 
     public List<String> getFolioLineItemIds() {

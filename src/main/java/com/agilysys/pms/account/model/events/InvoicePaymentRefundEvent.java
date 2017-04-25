@@ -12,7 +12,7 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-public class InvoicePaymentRefundEvent extends InvoiceEvent {
+public class InvoicePaymentRefundEvent extends InvoiceModificationEvent {
     private BigDecimal amount;
     private String invoicePaymentId;
     private String folioLineItemId;
@@ -24,8 +24,8 @@ public class InvoicePaymentRefundEvent extends InvoiceEvent {
 
     public InvoicePaymentRefundEvent(BigDecimal amount, String invoicePaymentId, String folioLineItemId, String reason,
           LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
-          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata) {
-        super();
+          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata, boolean closed) {
+        super(closed);
 
         this.amount = amount;
         this.invoicePaymentId = invoicePaymentId;

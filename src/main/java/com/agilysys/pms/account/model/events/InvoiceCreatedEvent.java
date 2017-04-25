@@ -10,32 +10,25 @@ import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
 
 import com.agilysys.platform.persistence.eventsourcing.PropertyLevelIdentifier;
-import com.agilysys.pms.account.model.InvoiceRequest;
 
-public class InvoiceCreatedEvent extends InvoiceEvent {
+public class InvoiceCreatedEvent extends InvoiceModificationEvent {
     private PropertyLevelIdentifier id;
     private String accountId;
     private LocalDate invoiceDate;
     private List<String> folioLineItemIds;
     private int terms;
     private String invoiceNumber;
-    private boolean closed;
 
-    public InvoiceCreatedEvent() {
-        super();
-    }
-
-    public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, InvoiceRequest invoiceRequest,
-          String invoiceNumber, boolean closed) {
-        super();
+    public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
+          List<String> folioLineItemIds, int terms, String invoiceNumber, boolean closed) {
+        super(closed);
 
         this.id = id;
         this.accountId = accountId;
-        this.invoiceDate = invoiceRequest.getInvoiceDate();
-        this.folioLineItemIds = invoiceRequest.getFolioLineItemIds();
-        this.terms = invoiceRequest.getTerms();
+        this.invoiceDate = invoiceDate;
+        this.folioLineItemIds = folioLineItemIds;
+        this.terms = terms;
         this.invoiceNumber = invoiceNumber;
-        this.closed = closed;
     }
 
     public PropertyLevelIdentifier getId() {
@@ -72,8 +65,6 @@ public class InvoiceCreatedEvent extends InvoiceEvent {
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
-
-    public boolean isClosed() { return closed; }
 
     @Override
     public List<String> getHistoryMessages() {
