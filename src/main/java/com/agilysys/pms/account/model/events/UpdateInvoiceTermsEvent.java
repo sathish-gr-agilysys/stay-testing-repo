@@ -9,11 +9,11 @@ import java.util.Map;
 
 import org.springframework.data.annotation.Transient;
 
-public class UpdateInvoiceTermsEvent extends InvoiceModificationEvent {
+public class UpdateInvoiceTermsEvent extends InvoiceEvent {
     private int terms;
 
-    public UpdateInvoiceTermsEvent(int terms, List<Map<String, Object>> historyMetadata, boolean closed) {
-        super(null, historyMetadata, closed);
+    public UpdateInvoiceTermsEvent(int terms, List<Map<String, Object>> historyMetadata) {
+        super(null, historyMetadata);
 
         this.terms = terms;
     }

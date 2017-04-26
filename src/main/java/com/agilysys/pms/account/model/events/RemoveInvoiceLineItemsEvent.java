@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.springframework.data.annotation.Transient;
 
-public class RemoveInvoiceLineItemsEvent extends InvoiceModificationEvent {
+public class RemoveInvoiceLineItemsEvent extends InvoiceFolioLineItemEvent {
     private List<String> folioLineItemIds;
 
     public RemoveInvoiceLineItemsEvent(List<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,

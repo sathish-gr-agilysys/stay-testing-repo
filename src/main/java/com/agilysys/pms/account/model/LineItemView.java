@@ -399,7 +399,7 @@ public class LineItemView implements Comparable<LineItemView> {
      * @return the taxLineItems
      */
     public List<LineItemView> getTaxLineItems() {
-        return taxLineItems != null ? taxLineItems : new ArrayList<LineItemView>();
+        return taxLineItems != null ? taxLineItems : new ArrayList<>();
     }
 
     /**
@@ -418,7 +418,7 @@ public class LineItemView implements Comparable<LineItemView> {
     }
 
     public List<LineItemView> getAdjustmentLineItems() {
-        return adjustmentLineItems != null ? adjustmentLineItems : new ArrayList<LineItemView>();
+        return adjustmentLineItems != null ? adjustmentLineItems : new ArrayList<>();
     }
 
     public void setAdjustmentLineItems(List<LineItemView> adjustmentLineItems) {
@@ -426,7 +426,7 @@ public class LineItemView implements Comparable<LineItemView> {
     }
 
     public List<LineItemView> getRefundLineItems() {
-        return refundLineItems != null ? refundLineItems : new ArrayList<LineItemView>();
+        return refundLineItems != null ? refundLineItems : new ArrayList<>();
     }
 
     public void setRefundLineItems(List<LineItemView> refundLineItems) {
@@ -656,5 +656,4 @@ public class LineItemView implements Comparable<LineItemView> {
 
         return 0;
     }
-
 }

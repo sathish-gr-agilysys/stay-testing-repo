@@ -12,7 +12,7 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-public class InvoicePaymentRefundEvent extends InvoiceModificationEvent {
+public class InvoicePaymentRefundEvent extends InvoiceFolioLineItemEvent {
     private BigDecimal amount;
     private String invoicePaymentId;
     private String folioLineItemId;
