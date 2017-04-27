@@ -17,8 +17,8 @@ public abstract class InvoiceFolioLineItemEvent extends InvoiceEvent {
         this.closed = closed;
     }
 
-    public InvoiceFolioLineItemEvent(DateTime eventDate, boolean closed) {
-        super(eventDate);
+    public InvoiceFolioLineItemEvent(List<Map<String, Object>> historyMetadata, boolean closed) {
+        super(historyMetadata);
 
         this.closed = closed;
     }

@@ -18,12 +18,22 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 public abstract class InvoiceEvent extends StayDomainEvent {
     protected List<Map<String, Object>> historyMetadata;
 
-    public InvoiceEvent() { this(null); }
+    public InvoiceEvent() {
+        super();
+
+        historyMetadata = new ArrayList<>();
+    }
 
     public InvoiceEvent(DateTime eventDate) {
         super(eventDate);
 
         historyMetadata = new ArrayList<>();
+    }
+
+    public InvoiceEvent(List<Map<String, Object>> historyMetadata) {
+        super();
+
+        this.historyMetadata = historyMetadata;
     }
 
     public InvoiceEvent(DateTime eventDate, List<Map<String, Object>> historyMetadata) {

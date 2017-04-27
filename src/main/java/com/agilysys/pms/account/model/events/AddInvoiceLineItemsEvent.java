@@ -15,7 +15,7 @@ public class AddInvoiceLineItemsEvent extends InvoiceFolioLineItemEvent {
 
     public AddInvoiceLineItemsEvent(List<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
           boolean closed) {
-        super(null, historyMetadata, closed);
+        super(historyMetadata, closed);
 
         this.folioLineItemIds = folioLineItemIds;
     }
