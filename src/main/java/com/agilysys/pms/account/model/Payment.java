@@ -22,6 +22,18 @@ public class Payment {
     private String terminalId;
     private String invoiceNumber;
 
+    public Payment() {}
+
+    public Payment(ApplyInvoicePaymentRequest applyInvoicePaymentRequest) {
+        paymentInstrumentId = applyInvoicePaymentRequest.getPaymentInstrumentId();
+        paymentMethodId = applyInvoicePaymentRequest.getPaymentMethodId();
+        terminalId = applyInvoicePaymentRequest.getTerminalId();
+        invoiceNumber = applyInvoicePaymentRequest.getInvoiceNumber();
+
+        transactions = applyInvoicePaymentRequest.getInvoicePayments() != null ?
+              new ArrayList<>(applyInvoicePaymentRequest.getInvoicePayments()) : null;
+    }
+
     public List<PaymentTransaction> getTransactions() {
         return transactions;
     }
