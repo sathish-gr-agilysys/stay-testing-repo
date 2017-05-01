@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Transient;
 
 import com.agilysys.platform.persistence.eventsourcing.PropertyLevelIdentifier;
 
-public class InvoiceCreatedEvent extends InvoiceFolioLineItemEvent {
+public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     private PropertyLevelIdentifier id;
     private String accountId;
     private LocalDate invoiceDate;

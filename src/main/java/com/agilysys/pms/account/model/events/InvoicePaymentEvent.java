@@ -11,7 +11,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-public class InvoicePaymentEvent extends InvoiceFolioLineItemEvent {
+public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private BigDecimal amount;
     private String folioLineItemId;
     private String paymentMethodId;

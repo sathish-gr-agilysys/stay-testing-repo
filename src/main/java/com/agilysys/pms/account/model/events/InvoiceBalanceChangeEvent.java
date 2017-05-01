@@ -8,22 +8,22 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 
-public abstract class InvoiceFolioLineItemEvent extends InvoiceEvent {
+public abstract class InvoiceBalanceChangeEvent extends InvoiceEvent {
     private boolean closed;
 
-    public InvoiceFolioLineItemEvent(boolean closed) {
+    public InvoiceBalanceChangeEvent(boolean closed) {
         super();
 
         this.closed = closed;
     }
 
-    public InvoiceFolioLineItemEvent(List<Map<String, Object>> historyMetadata, boolean closed) {
+    public InvoiceBalanceChangeEvent(List<Map<String, Object>> historyMetadata, boolean closed) {
         super(historyMetadata);
 
         this.closed = closed;
     }
 
-    public InvoiceFolioLineItemEvent(DateTime eventDate, List<Map<String, Object>> historyMetadata, boolean closed) {
+    public InvoiceBalanceChangeEvent(DateTime eventDate, List<Map<String, Object>> historyMetadata, boolean closed) {
         super(eventDate, historyMetadata);
 
         this.closed = closed;
