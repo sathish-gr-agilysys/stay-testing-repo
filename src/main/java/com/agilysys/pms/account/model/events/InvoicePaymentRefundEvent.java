@@ -22,6 +22,8 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private LocalDate appliedOnPropertyDate;
     private DateTime appliedOnSystemDateTime;
 
+    public InvoicePaymentRefundEvent() { super(); }
+
     public InvoicePaymentRefundEvent(BigDecimal amount, String invoicePaymentId, String folioLineItemId, String reason,
           LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
           DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata, boolean closed) {

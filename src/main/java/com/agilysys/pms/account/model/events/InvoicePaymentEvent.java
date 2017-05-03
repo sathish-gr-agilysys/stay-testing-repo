@@ -23,6 +23,8 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private DateTime appliedOnSystemDateTime;
     private boolean isFullAmountApplied;
 
+    public InvoicePaymentEvent() { super(); }
+
     public InvoicePaymentEvent(BigDecimal amount, String folioLineItemId, String paymentMethodId,
           String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,

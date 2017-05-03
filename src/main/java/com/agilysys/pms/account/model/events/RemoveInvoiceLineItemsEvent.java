@@ -13,6 +13,8 @@ import org.springframework.data.annotation.Transient;
 public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     private List<String> folioLineItemIds;
 
+    public RemoveInvoiceLineItemsEvent() { super(); }
+
     public RemoveInvoiceLineItemsEvent(List<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
           boolean closed) {
         super(historyMetadata, closed);

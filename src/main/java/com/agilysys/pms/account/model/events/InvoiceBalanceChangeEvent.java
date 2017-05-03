@@ -11,6 +11,8 @@ import org.joda.time.DateTime;
 public abstract class InvoiceBalanceChangeEvent extends InvoiceEvent {
     private boolean closed;
 
+    public InvoiceBalanceChangeEvent() { super(); }
+
     public InvoiceBalanceChangeEvent(boolean closed) {
         super();
 

@@ -19,6 +19,8 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     private int terms;
     private String invoiceNumber;
 
+    public InvoiceCreatedEvent() { super(); }
+
     public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
           List<String> folioLineItemIds, int terms, String invoiceNumber, boolean closed) {
         super(closed);
