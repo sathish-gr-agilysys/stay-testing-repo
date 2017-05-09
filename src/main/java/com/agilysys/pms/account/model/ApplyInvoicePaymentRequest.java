@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ApplyInvoicePaymentRequest {
     @JsonProperty(required = true)
-    private List<InvoicePaymentRequest> invoicePayments = new ArrayList();
+    private List<InvoicePaymentRequest> invoicePayments = new ArrayList<>();
     @JsonProperty(required = true)
     private String paymentMethodId;
     // fields that need to be provided when the payment method is of type Credit Card
