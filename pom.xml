@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>42.7.0</version>
+        <version>42.18-VCTRS-023-SNAPSHOT</version>
     </parent>
     <properties>
     </properties>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>42.17.0</version>
+            <version>42.17-VCTRS-023-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
