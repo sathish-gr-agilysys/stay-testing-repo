@@ -6,7 +6,7 @@ import java.util.Map;
 public class AccountBalanceDetail extends AccountSummary {
     private BigDecimal accountBalance;
     private BigDecimal accountTaxBalance;
-    private String foo;
+    private String bar;
 
     private Map<String, FolioBalance> folioBalances;
 
