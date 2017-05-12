@@ -13,10 +13,9 @@ public class UpdateInvoiceTermsEvent extends InvoiceEvent {
     private int terms;
 
     public UpdateInvoiceTermsEvent(int terms, List<Map<String, Object>> historyMetadata) {
-        super();
+        super(historyMetadata);
 
         this.terms = terms;
-        this.historyMetadata = historyMetadata;
     }
 
     public int getTerms() {
