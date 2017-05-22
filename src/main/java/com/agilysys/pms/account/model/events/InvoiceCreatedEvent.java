@@ -5,6 +5,7 @@ package com.agilysys.pms.account.model.events;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
@@ -15,14 +16,14 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     private PropertyLevelIdentifier id;
     private String accountId;
     private LocalDate invoiceDate;
-    private List<String> folioLineItemIds;
+    private Set<String> folioLineItemIds;
     private int terms;
     private String invoiceNumber;
 
     public InvoiceCreatedEvent() { super(); }
 
     public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
-          List<String> folioLineItemIds, int terms, String invoiceNumber, boolean closed) {
+          Set<String> folioLineItemIds, int terms, String invoiceNumber, boolean closed) {
         super(closed);
 
         this.id = id;
@@ -45,7 +46,7 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
         return invoiceDate;
     }
 
-    public List<String> getFolioLineItemIds() {
+    public Set<String> getFolioLineItemIds() {
         return folioLineItemIds;
     }
 
