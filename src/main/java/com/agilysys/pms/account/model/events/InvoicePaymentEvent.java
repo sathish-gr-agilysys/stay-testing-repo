@@ -11,7 +11,8 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-public class InvoicePaymentEvent extends InvoiceEvent {
+public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
+    private String invoicePaymentId;
     private BigDecimal amount;
     private String folioLineItemId;
     private String paymentMethodId;
@@ -23,12 +24,15 @@ public class InvoicePaymentEvent extends InvoiceEvent {
     private DateTime appliedOnSystemDateTime;
     private boolean isFullAmountApplied;
 
-    public InvoicePaymentEvent(BigDecimal amount, String folioLineItemId, String paymentMethodId,
-          String paymentMethodName, String reason, LocalDate lineItemPostingDate,
-          DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          boolean isFullAmountApplied) {
-        super();
+    public InvoicePaymentEvent() { super(); }
 
+    public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
+          String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
+          DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
+          boolean isFullAmountApplied, boolean closed) {
+        super(closed);
+
+        this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;
         this.folioLineItemId = folioLineItemId;
         this.paymentMethodId = paymentMethodId;
@@ -40,6 +44,10 @@ public class InvoicePaymentEvent extends InvoiceEvent {
         this.appliedOnSystemDateTime = appliedOnSystemDateTime;
         this.isFullAmountApplied = isFullAmountApplied;
     }
+
+    public String getInvoicePaymentId() { return invoicePaymentId; }
+
+    public void setInvoicePaymentId(String invoicePaymentId) { this.invoicePaymentId = invoicePaymentId; }
 
     public BigDecimal getAmount() {
         return amount;

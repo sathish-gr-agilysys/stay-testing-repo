@@ -7,21 +7,23 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.data.annotation.Transient;
 
-public class RemoveInvoiceLineItemsEvent extends InvoiceEvent {
+public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
+    private Set<String> folioLineItemIds;
 
-    private List<String> folioLineItemIds;
+    public RemoveInvoiceLineItemsEvent() { super(); }
 
-    public RemoveInvoiceLineItemsEvent(List<String> folioLineItemIds, List<Map<String, Object>> historyMetadata) {
-        super();
+    public RemoveInvoiceLineItemsEvent(Set<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
+          boolean closed) {
+        super(historyMetadata, closed);
 
         this.folioLineItemIds = folioLineItemIds;
-        this.historyMetadata = historyMetadata;
     }
 
-    public List<String> getFolioLineItemIds() {
+    public Set<String> getFolioLineItemIds() {
         return folioLineItemIds;
     }
 
