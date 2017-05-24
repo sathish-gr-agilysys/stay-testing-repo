@@ -12,9 +12,9 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-public class InvoicePaymentRefundEvent extends InvoiceEvent {
-    private BigDecimal amount;
+public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private String invoicePaymentId;
+    private BigDecimal amount;
     private String folioLineItemId;
     private String reason;
     private LocalDate lineItemPostingDate;
@@ -22,13 +22,15 @@ public class InvoicePaymentRefundEvent extends InvoiceEvent {
     private LocalDate appliedOnPropertyDate;
     private DateTime appliedOnSystemDateTime;
 
-    public InvoicePaymentRefundEvent(BigDecimal amount, String invoicePaymentId, String folioLineItemId, String reason,
-          LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
-          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata) {
-        super();
+    public InvoicePaymentRefundEvent() { super(); }
 
-        this.amount = amount;
+    public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String reason,
+          LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
+          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata, boolean closed) {
+        super(closed);
+
         this.invoicePaymentId = invoicePaymentId;
+        this.amount = amount;
         this.folioLineItemId = folioLineItemId;
         this.reason = reason;
         this.lineItemPostingDate = lineItemPostingDate;
@@ -38,20 +40,20 @@ public class InvoicePaymentRefundEvent extends InvoiceEvent {
         this.historyMetadata = historyMetadata;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
     public String getInvoicePaymentId() {
         return invoicePaymentId;
     }
 
     public void setInvoicePaymentId(String invoicePaymentId) {
         this.invoicePaymentId = invoicePaymentId;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public String getFolioLineItemId() {
