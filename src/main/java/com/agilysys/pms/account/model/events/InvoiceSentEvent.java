@@ -10,13 +10,13 @@ import org.joda.time.DateTime;
 import org.springframework.data.annotation.Transient;
 
 public class InvoiceSentEvent extends InvoiceEvent {
-
     private boolean isEmail;
     private String userId;
     private DateTime deliveryDateTime;
 
     public InvoiceSentEvent(boolean isEmail, String userId, DateTime deliveryDateTime) {
         super();
+
         this.isEmail = isEmail;
         this.userId = userId;
         this.deliveryDateTime = deliveryDateTime;
