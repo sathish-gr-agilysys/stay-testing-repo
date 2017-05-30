@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>42.19.0</version>
+        <version>42.32-TST-223-SNAPSHOT</version>
     </parent>
     <properties>
     </properties>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>72.0.0.2</version>
+            <version>42.46-TST-223-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
