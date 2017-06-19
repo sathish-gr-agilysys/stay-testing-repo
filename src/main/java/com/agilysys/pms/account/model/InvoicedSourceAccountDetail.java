@@ -8,6 +8,7 @@ import java.util.List;
 
 public class InvoicedSourceAccountDetail {
     private String sourceAccountId;
+    private String sourceAccountName;
     private String sourceAccountType;
     private String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
     private List<LineItemView> invoicedCharges;
@@ -18,6 +19,14 @@ public class InvoicedSourceAccountDetail {
 
     public void setSourceAccountId(String sourceAccountId) {
         this.sourceAccountId = sourceAccountId;
+    }
+
+    public String getSourceAccountName() {
+        return sourceAccountName;
+    }
+
+    public void setSourceAccountName(String sourceAccountName) {
+        this.sourceAccountName = sourceAccountName;
     }
 
     public String getSourceAccountType() {
