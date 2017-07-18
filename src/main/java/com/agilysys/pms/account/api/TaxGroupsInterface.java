@@ -56,7 +56,7 @@ public interface TaxGroupsInterface {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     // TODO check this
     TaxGroupView createTaxGroup(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          TaxGroupView create) throws ServiceException;
+          TaxGroupView create) throws RGuestException, ServiceException;
 
     /**
      * Insert a set of tax groups into the list for the given tenant and property.
@@ -74,7 +74,7 @@ public interface TaxGroupsInterface {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     // TODO check this
     List<TaxGroupView> insertTaxGroups(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          List<TaxGroupView> create) throws ServiceException;
+          List<TaxGroupView> create) throws RGuestException, ServiceException;
 
     /**
      * Get the tax group specified by the given tax group name.
@@ -92,7 +92,7 @@ public interface TaxGroupsInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     // TODO check this
     TaxGroupView getTaxGroup(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(TAX_GROUP_ID) String taxGroupId) throws ServiceException;
+          @PathParam(TAX_GROUP_ID) String taxGroupId) throws RGuestException, ServiceException;
 
     /**
      * Update TaxGroup the tax group specified by the given tax group name.
@@ -111,7 +111,7 @@ public interface TaxGroupsInterface {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     // TODO check this
     TaxGroupView updateTaxGroup(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(TAX_GROUP_ID) String taxGroupId, TaxGroupView update) throws ServiceException;
+          @PathParam(TAX_GROUP_ID) String taxGroupId, TaxGroupView update) throws RGuestException, ServiceException;
 
     /**
      * Update a set of tax groups.
@@ -129,7 +129,7 @@ public interface TaxGroupsInterface {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     // TODO check this
     List<TaxGroupView> updateTaxGroups(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          List<TaxGroupView> updates) throws ServiceException;
+          List<TaxGroupView> updates) throws RGuestException, ServiceException;
 
     /**
      * Delete the tax group with the specified tax group name.
@@ -147,5 +147,5 @@ public interface TaxGroupsInterface {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     // TODO check this
     TaxGroupView deleteTaxGroup(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(TAX_GROUP_ID) String taxGroupId) throws ServiceException;
+          @PathParam(TAX_GROUP_ID) String taxGroupId) throws RGuestException, ServiceException;
 }
