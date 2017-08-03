@@ -3,7 +3,6 @@
  */
 package com.agilysys.pms.account.api;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -238,5 +237,5 @@ public interface RecurringChargesServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AuthDetailResponse getAuthDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId);
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
 }
