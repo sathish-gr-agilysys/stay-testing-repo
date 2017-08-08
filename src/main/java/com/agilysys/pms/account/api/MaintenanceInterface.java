@@ -14,14 +14,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.joda.time.LocalDate;
-import com.agilysys.pms.maintenance.domain.BulkReindexJobDetail;
-import com.agilysys.pms.maintenance.domain.BulkReindexJobResult;
-import com.agilysys.pms.maintenance.domain.BulkReindexRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AccountBalanceRepairResult;
+import com.agilysys.pms.maintenance.domain.BulkReindexJobDetail;
+import com.agilysys.pms.maintenance.domain.BulkReindexJobResult;
+import com.agilysys.pms.maintenance.domain.BulkReindexRequest;
 import com.agilysys.pms.maintenance.model.Job;
 
 @Path("/maintenance")
@@ -60,10 +60,11 @@ public interface MaintenanceInterface {
 
     @POST
     @PreAuthorize("hasPermission('Required', 'WriteTenants')")
-    @Path(ES_INDEX_ACCOUNTS +"/bulk")
-    BulkReindexJobResult bulkReIndex(BulkReindexRequest request);
+    @Path(ES_INDEX_ACCOUNTS + "/bulk")
+    BulkReindexJobResult bulkReIndex(BulkReindexRequest request) throws RGuestException, ServiceException;
 
     @GET
-    @Path(ES_INDEX_ACCOUNTS+ "/bulk/requests/{requestId}")
-    List<BulkReindexJobDetail> retrieveBulkJobs(@PathParam("requestId") String requestId);
+    @Path(ES_INDEX_ACCOUNTS + "/bulk/requests/{requestId}")
+    List<BulkReindexJobDetail> retrieveBulkJobs(@PathParam("requestId") String requestId)
+          throws RGuestException, ServiceException;
 }
