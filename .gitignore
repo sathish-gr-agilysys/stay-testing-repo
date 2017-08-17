@@ -6,6 +6,8 @@ target/
 .idea/
 activemq-data/
 **/activemq-data/
+.DS_Store
+**/.DS_Store
 
 #Binary dependencies
 /External
