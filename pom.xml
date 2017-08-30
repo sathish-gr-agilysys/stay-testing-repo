@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>74.0.0</version>
+        <version>74.92.0</version>
     </parent>
     <properties>
     </properties>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.22.0</version>
+            <version>74.92.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
