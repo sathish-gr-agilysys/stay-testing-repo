@@ -52,6 +52,8 @@ public class AccountSearchResult {
     // group account values
     private String groupCode;
 
+    private String bookingStatus;
+
     public String getTenantId() {
         return tenantId;
     }
@@ -187,4 +189,13 @@ public class AccountSearchResult {
     public void setNumber(String number) {
         this.number = number;
     }
+
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
 }
