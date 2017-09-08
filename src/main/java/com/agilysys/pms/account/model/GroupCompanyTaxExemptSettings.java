@@ -19,6 +19,7 @@ public class GroupCompanyTaxExemptSettings extends TaxExemptSettings {
     private List<String> exemptions;
     @JsonIgnore
     private Map<LocalDate, List<String>> history;
+    private Map<LocalDate, List<String>> exemptionsByDate;
 
     public LocalDate getCreatedPropertyDate() {
         return createdPropertyDate;
@@ -42,6 +43,15 @@ public class GroupCompanyTaxExemptSettings extends TaxExemptSettings {
 
     public void setHistory(Map<LocalDate, List<String>> history) {
         this.history = history;
+    }
+
+
+    public Map<LocalDate, List<String>> getExemptionsByDate() {
+        return exemptionsByDate;
+    }
+
+    public void setExemptionsByDate(Map<LocalDate, List<String>> exemptionsByDate) {
+        this.exemptionsByDate = exemptionsByDate;
     }
 
 }

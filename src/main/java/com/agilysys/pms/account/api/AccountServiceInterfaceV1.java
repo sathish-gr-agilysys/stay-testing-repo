@@ -799,8 +799,8 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     GroupCompanyTaxExemptSettings getGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("isPreset") boolean isPreset) throws RGuestException, ServiceException;
 
     /**
      * Save tax exempt settings for an account by a range of dates.
@@ -817,7 +817,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GroupCompanyTaxExemptSettings saveGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings) throws RGuestException, ServiceException;
+          GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings, @QueryParam("isPreset") boolean isPreset)
+          throws RGuestException, ServiceException;
     /* Search */
 
     /**
