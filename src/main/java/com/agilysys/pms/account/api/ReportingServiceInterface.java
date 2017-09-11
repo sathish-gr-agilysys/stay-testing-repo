@@ -50,7 +50,6 @@ public interface ReportingServiceInterface {
     String ROOM_REVENUE = "roomRevenue";
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
-    String GLCODE = "GLcode";
 
     /**
      * get the ledger report
@@ -64,7 +63,7 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'DateRoll')")
     List<NightAuditReport> ledgerReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate, @QueryParam(GLCODE) String GLCode)
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
           throws RGuestException, ServiceException;
 
     /**
