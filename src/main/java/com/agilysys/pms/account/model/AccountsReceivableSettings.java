@@ -2,9 +2,13 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
+import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import com.agilysys.platform.common.json.schema.MinLengthRestriction;
+import com.agilysys.platform.common.json.schema.PatternRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AccountsReceivableSettings {
+    private static final String ACCOUNT_NUMBER_VALIDATION_REGEX = "^[a-zA-Z0-9-]+$";
     public enum DefaultRoutingRule {
         ALL_CHARGES,
         NO_CHARGES,
@@ -18,6 +22,9 @@ public class AccountsReceivableSettings {
     private boolean emailPreferred;
     private DefaultRoutingRule defaultRoutingRule;
     @Deprecated
+    @MinLengthRestriction(4)
+    @MaxLengthRestriction(12)
+    @PatternRestriction(ACCOUNT_NUMBER_VALIDATION_REGEX)
     private String accountNumber;
 
     public BigDecimal getCreditLimit() {
