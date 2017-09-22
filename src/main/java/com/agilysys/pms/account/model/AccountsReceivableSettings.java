@@ -6,9 +6,9 @@ import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.common.json.schema.PatternRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import static com.agilysys.common.utils.Utils.ACCOUNT_NUMBER_VALIDATION_REGEX;
 
 public class AccountsReceivableSettings {
-    private static final String ACCOUNT_NUMBER_VALIDATION_REGEX = "^[a-zA-Z0-9-]+$";
     public enum DefaultRoutingRule {
         ALL_CHARGES,
         NO_CHARGES,
