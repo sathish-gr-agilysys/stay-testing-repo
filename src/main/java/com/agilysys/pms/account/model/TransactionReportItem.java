@@ -33,6 +33,7 @@ public class TransactionReportItem {
     private String taxReferenceId;
     private String accountName;
     private TransferSummary transferSummary;
+    private boolean isRoomRevenue;
 
     public String getId() {
         return id;
@@ -192,5 +193,13 @@ public class TransactionReportItem {
 
     public void setTaxReferenceId(String taxReferenceId) {
         this.taxReferenceId = taxReferenceId;
+    }
+
+    public boolean isRoomRevenue() {
+        return isRoomRevenue;
+    }
+
+    public void setRoomRevenue(boolean isRoomRevenue) {
+        this.isRoomRevenue = isRoomRevenue;
     }
 }
