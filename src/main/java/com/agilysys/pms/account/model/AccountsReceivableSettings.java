@@ -6,7 +6,7 @@ import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.common.json.schema.PatternRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import static com.agilysys.common.utils.Utils.ACCOUNT_NUMBER_VALIDATION_REGEX;
+import static com.agilysys.common.utils.Utils.ALPHANUMERIC_HYPHEN_VALIDATION_REGEX;
 
 public class AccountsReceivableSettings {
     public enum DefaultRoutingRule {
@@ -24,7 +24,7 @@ public class AccountsReceivableSettings {
     @Deprecated
     @MinLengthRestriction(4)
     @MaxLengthRestriction(12)
-    @PatternRestriction(ACCOUNT_NUMBER_VALIDATION_REGEX)
+    @PatternRestriction(ALPHANUMERIC_HYPHEN_VALIDATION_REGEX)
     private String accountNumber;
 
     public BigDecimal getCreditLimit() {
