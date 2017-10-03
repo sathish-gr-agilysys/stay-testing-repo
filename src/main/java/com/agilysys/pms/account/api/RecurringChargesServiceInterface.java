@@ -244,8 +244,19 @@ public interface RecurringChargesServiceInterface {
     /*
       these are used internally and not exposed via the REST interface
     */
-    RecurringChargeView getRoomCharge(String tenantId, String propertyId, String accountId);
 
-    RecurringChargeView createRoomCharge(String tenantId, String propertyId, String accountId,
+    /**
+     * get list of recurring charge views. List is for every night of the stay, sorted by date.
+     * @param tenantId
+     * @param propertyId
+     * @param accountId
+     * @return List of recurring charge views. List is for every night of the stay, sorted by date.
+     */
+    List<RecurringChargeView> getRoomCharge(String tenantId, String propertyId, String accountId);
+
+    List<RecurringChargeView> createRoomCharge(String tenantId, String propertyId, String accountId,
+          Map<LocalDate, AccountRateSnapshot> accountRateSnapshots);
+
+    List<RecurringChargeView> updateRoomCharge(String tenantId, String propertyId, String accountId,
           Map<LocalDate, AccountRateSnapshot> accountRateSnapshots);
 }
