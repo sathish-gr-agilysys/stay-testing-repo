@@ -17,6 +17,8 @@ public class ComponentChargeView {
 
     private String transactionItemName;
 
+    private FrequencyType frequencyType;
+
     private BigDecimal amount;
 
     private int quantity;
@@ -71,11 +73,16 @@ public class ComponentChargeView {
         this.transactionItemName = transactionItemName;
     }
 
+    public FrequencyType getFrequencyType() { return frequencyType; }
+
+    public void setFrequencyType(FrequencyType frequencyType) { this.frequencyType = frequencyType; }
+
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
         componentChargeView.setComponentBundleId(componentRateSnapshot.getComponentBundleId());
+        componentChargeView.setFrequencyType(FrequencyType.valueOf(componentRateSnapshot.getFrequencyType()));
         componentChargeView.setAmount(componentRateSnapshot.getAmount());
 
         return componentChargeView;
