@@ -82,8 +82,11 @@ public class ComponentChargeView {
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
         componentChargeView.setComponentBundleId(componentRateSnapshot.getComponentBundleId());
-        componentChargeView.setFrequencyType(FrequencyType.valueOf(componentRateSnapshot.getFrequencyType()));
         componentChargeView.setAmount(componentRateSnapshot.getAmount());
+
+        if (componentRateSnapshot.getFrequencyType() != null) {
+            componentChargeView.setFrequencyType(FrequencyType.valueOf(componentRateSnapshot.getFrequencyType()));
+        }
 
         return componentChargeView;
     }
