@@ -30,6 +30,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String id;
     private String transactionId;
     private String transactionType;
+    private String folioLineType;
     private String transactionSourceAccountId;
     private String transactionDestinationAccountId;
     private Map<String, String> transactionMessageAttributes;
@@ -104,6 +105,14 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
+    }
+
+    public String getFolioLineType() {
+        return folioLineType;
+    }
+
+    public void setFolioLineType(String folioLineType) {
+        this.folioLineType = folioLineType;
     }
 
     public String getTransactionSourceAccountId() {
