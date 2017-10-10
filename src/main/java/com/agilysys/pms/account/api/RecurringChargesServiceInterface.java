@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,7 +18,6 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.common.model.rate.AccountRateSnapshot;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
@@ -240,23 +238,4 @@ public interface RecurringChargesServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AuthDetailResponse getAuthDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
-
-    /*
-      these are used internally and not exposed via the REST interface
-    */
-
-    /**
-     * get list of recurring charge views. List is for every night of the stay, sorted by date.
-     * @param tenantId
-     * @param propertyId
-     * @param accountId
-     * @return List of recurring charge views. List is for every night of the stay, sorted by date.
-     */
-    List<RecurringChargeView> getRoomCharge(String tenantId, String propertyId, String accountId);
-
-    List<RecurringChargeView> createRoomCharge(String tenantId, String propertyId, String accountId,
-          Map<LocalDate, AccountRateSnapshot> accountRateSnapshots);
-
-    List<RecurringChargeView> updateRoomCharge(String tenantId, String propertyId, String accountId,
-          Map<LocalDate, AccountRateSnapshot> accountRateSnapshots);
 }
