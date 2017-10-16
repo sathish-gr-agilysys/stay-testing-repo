@@ -58,6 +58,8 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
+import com.agilysys.pms.account.model.LedgerTransactionHistory;
+import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -116,6 +118,9 @@ public interface AccountServiceInterfaceV1 {
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
     String REFUND_PATH = "/refund"; //Used for a refund of a specific line item
     String TRANSFER_CHARGES_PATH = "/transferCharges";
+    String TRANSFER_HISTORY_ID = "transferHistoryId";
+    String TRANSFER_HISTORY = "/transferHistory";
+    String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String ADJUSTMENT_PATH = "/adjustment";
     String CORRECTION_PATH = "/correction";
@@ -425,6 +430,21 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void deleteFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Get Details based on the LedgerTransactionHistoryId
+     *
+     * @param tenantId                   id of tenant where account exists
+     * @param propertyId                 id of the property where the account exists
+     * @param ledgerTransactionHistoryId ledgerTransactionHistoryId of the transfer
+     * @return folioHistoryTransaction
+     */
+    @GET
+    @Path(ACCOUNT_ID_PATH + TRANSFER_HISTORY + TRANSFER_HISTORY_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<LedgerTransactionHistoryView> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,@PathParam(ACCOUNT_ID) String propertyId,
+          @PathParam(TRANSFER_HISTORY_ID) String ledgerTransactionHistoryId)
           throws RGuestException, ServiceException;
 
     /* Posting Rules */
