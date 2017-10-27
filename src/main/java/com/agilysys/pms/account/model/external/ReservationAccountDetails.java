@@ -1,10 +1,10 @@
+/*
+ * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model.external;
 
 import org.joda.time.LocalDate;
 
-/**
- * Created by PritamP on 27-10-2017.
- */
 public class ReservationAccountDetails {
     private String reservationId;
     private String accountId;
