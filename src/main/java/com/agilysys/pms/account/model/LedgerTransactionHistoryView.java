@@ -3,7 +3,7 @@ package com.agilysys.pms.account.model;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import com.agilysys.pms.account.LedgerTransactionhistoryAccountData;
+import com.agilysys.pms.account.model.LedgerTransactionhistoryAccountData;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
