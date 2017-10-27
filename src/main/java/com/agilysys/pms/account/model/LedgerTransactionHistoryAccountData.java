@@ -9,7 +9,7 @@ import com.agilysys.pms.property.model.AllocatedRoomDetail;
 /**
  * Created by MuthalurajG on 10/26/2017.
  */
-public class LedgerTransactionhistoryAccountData {
+public class LedgerTransactionHistoryAccountData {
     private String id;
 
     private String accountType;
