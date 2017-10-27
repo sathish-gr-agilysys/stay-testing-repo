@@ -3,7 +3,7 @@ package com.agilysys.pms.account.model;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import com.agilysys.pms.account.model.LedgerTransactionhistoryAccountData;
+import com.agilysys.pms.account.model.LedgerTransactionHistoryAccountData;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -20,9 +20,9 @@ public class LedgerTransactionHistoryView {
 
     String propertyId;
 
-    private LedgerTransactionhistoryAccountData sourceInfo;
+    private LedgerTransactionHistoryAccountData sourceInfo;
 
-    private LedgerTransactionhistoryAccountData destinationInfo;
+    private LedgerTransactionHistoryAccountData destinationInfo;
 
     private String reason;
 
@@ -68,24 +68,24 @@ public class LedgerTransactionHistoryView {
         this.propertyId = propertyId;
     }
 
-    public LedgerTransactionhistoryAccountData getSourceInfo() {
+    public LedgerTransactionHistoryAccountData getSourceInfo() {
         return sourceInfo;
     }
 
-    public void setSourceInfo(LedgerTransactionhistoryAccountData sourceInfo) {
+    public void setSourceInfo(LedgerTransactionHistoryAccountData sourceInfo) {
         this.sourceInfo = sourceInfo;
     }
 
-    public LedgerTransactionhistoryAccountData getDestinationInfo() {
+    public LedgerTransactionHistoryAccountData getDestinationInfo() {
         return destinationInfo;
     }
 
-    public void setDestinationInfo(LedgerTransactionhistoryAccountData destinationInfo) {
+    public void setDestinationInfo(LedgerTransactionHistoryAccountData destinationInfo) {
         this.destinationInfo = destinationInfo;
     }
 
-    public void toHistoryView(String id, String reason, LedgerTransactionhistoryAccountData sourceInfo,
-          LedgerTransactionhistoryAccountData destinationInfo, DateTime dateTime,String tenantId,String propertyId) {
+    public void toHistoryView(String id, String reason, LedgerTransactionHistoryAccountData sourceInfo,
+          LedgerTransactionHistoryAccountData destinationInfo, DateTime dateTime,String tenantId,String propertyId) {
         this.id = id;
         this.reason = reason;
         this.dateTime = dateTime;

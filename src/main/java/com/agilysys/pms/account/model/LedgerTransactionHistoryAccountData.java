@@ -1,4 +1,4 @@
-package com.agilysys.pms.account;
+package com.agilysys.pms.account.model;
 
 import java.util.List;
 
