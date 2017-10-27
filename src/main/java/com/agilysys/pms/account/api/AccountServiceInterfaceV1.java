@@ -443,7 +443,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + TRANSFER_HISTORY + TRANSFER_HISTORY_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<LedgerTransactionHistoryView> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,@PathParam(ACCOUNT_ID) String propertyId,
+    List<LedgerTransactionHistoryView> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,@PathParam(PROPERTY_ID) String propertyId,
           @PathParam(TRANSFER_HISTORY_ID) String ledgerTransactionHistoryId)
           throws RGuestException, ServiceException;
 
