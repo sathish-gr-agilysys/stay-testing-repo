@@ -6,9 +6,9 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.pms.property.model.AllocatedRoomDetail;
 
-
-  Created by MuthalurajG on 10262017.
- 
+/**
+ * Created by MuthalurajG on 10/26/2017.
+ */
 public class LedgerTransactionhistoryAccountData {
     private String id;
 
@@ -28,7 +28,7 @@ public class LedgerTransactionhistoryAccountData {
 
     private String code;
 
-    private ListAllocatedRoomDetail allocatedRoomDetail;
+    private List<AllocatedRoomDetail> allocatedRoomDetail;
 
     public String getId() {
         return id;
@@ -102,11 +102,11 @@ public class LedgerTransactionhistoryAccountData {
         this.code = code;
     }
 
-    public ListAllocatedRoomDetail getAllocatedRoomDetail() {
+    public List<AllocatedRoomDetail> getAllocatedRoomDetail() {
         return allocatedRoomDetail;
     }
 
-    public void setAllocatedRoomDetail(ListAllocatedRoomDetail allocatedRoomDetail) {
+    public void setAllocatedRoomDetail(List<AllocatedRoomDetail> allocatedRoomDetail) {
         this.allocatedRoomDetail = allocatedRoomDetail;
     }
 }
