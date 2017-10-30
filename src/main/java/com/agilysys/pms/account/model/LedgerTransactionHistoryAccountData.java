@@ -7,7 +7,7 @@ import org.joda.time.LocalDate;
 import com.agilysys.pms.property.model.AllocatedRoomDetail;
 
 /**
- * Created by MuthalurajG on 10/26/2017.
+ * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 public class LedgerTransactionHistoryAccountData {
     private String id;
@@ -17,6 +17,8 @@ public class LedgerTransactionHistoryAccountData {
     private String accountId;
 
     private String reservationConfirmationId;
+
+    private String reservationId;
 
     private String referenceId;
 
@@ -60,6 +62,14 @@ public class LedgerTransactionHistoryAccountData {
 
     public void setReservationConfirmationId(String reservationConfirmationId) {
         this.reservationConfirmationId = reservationConfirmationId;
+    }
+
+    public String getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(String reservationId) {
+        this.reservationId = reservationId;
     }
 
     public String getReferenceId() {

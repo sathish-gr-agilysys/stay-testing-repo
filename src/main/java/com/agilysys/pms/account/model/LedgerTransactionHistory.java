@@ -6,7 +6,7 @@ import org.joda.time.LocalDate;
 import java.util.UUID;
 
 /**
- * Created by MuthalurajG on 10/9/2017.
+ * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 public class LedgerTransactionHistory {
 
