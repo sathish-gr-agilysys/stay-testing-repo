@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import javax.security.auth.login.AccountException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -445,7 +446,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<LedgerTransactionHistoryView> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,@PathParam(PROPERTY_ID) String propertyId,
           @PathParam(TRANSFER_HISTORY_ID) String ledgerTransactionHistoryId)
-          throws RGuestException, ServiceException;
+          throws RGuestException, ServiceException,AccountException;
 
     /* Posting Rules */
 
