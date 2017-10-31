@@ -1,3 +1,6 @@
+/**
+ * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import org.joda.time.DateTime;
@@ -6,10 +9,6 @@ import org.joda.time.LocalDate;
 import com.agilysys.pms.account.model.LedgerTransactionHistoryAccountData;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
-/**
- * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
- */
 
 @JsonInclude
 public class LedgerTransactionHistoryView {

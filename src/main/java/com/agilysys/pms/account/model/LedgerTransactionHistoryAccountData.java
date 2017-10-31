@@ -1,3 +1,6 @@
+/**
+ * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.util.List;
@@ -6,9 +9,6 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.pms.property.model.AllocatedRoomDetail;
 
-/**
- * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
- */
 public class LedgerTransactionHistoryAccountData {
     private String id;
 

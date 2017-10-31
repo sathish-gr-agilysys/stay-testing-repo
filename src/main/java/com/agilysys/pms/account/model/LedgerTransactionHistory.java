@@ -1,3 +1,6 @@
+/**
+ * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import org.joda.time.DateTime;
@@ -5,9 +8,6 @@ import org.joda.time.LocalDate;
 
 import java.util.UUID;
 
-/**
- * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
- */
 public class LedgerTransactionHistory {
 
     public LedgerTransactionHistory(){
