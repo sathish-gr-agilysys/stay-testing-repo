@@ -32,6 +32,11 @@
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
+            <artifactId>pms-common</artifactId>
+            <version>74.151-STAY-790-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
             <version>74.135-STAY-790-SNAPSHOT</version>
         </dependency>
