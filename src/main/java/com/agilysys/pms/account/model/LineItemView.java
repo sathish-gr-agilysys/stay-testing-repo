@@ -111,6 +111,10 @@ public class LineItemView implements Comparable<LineItemView> {
         return folioLineType;
     }
 
+    public String getFolioLineOrTransactionType() {
+        return this.folioLineType == null ? this.transactionType : this.folioLineType;
+    }
+
     public void setFolioLineType(String folioLineType) {
         this.folioLineType = folioLineType;
     }
