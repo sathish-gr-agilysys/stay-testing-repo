@@ -11,6 +11,7 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.Lists;
 
@@ -111,6 +112,7 @@ public class LineItemView implements Comparable<LineItemView> {
         return folioLineType;
     }
 
+    @JsonIgnore
     public String getFolioLineOrTransactionType() {
         return this.folioLineType == null ? this.transactionType : this.folioLineType;
     }
