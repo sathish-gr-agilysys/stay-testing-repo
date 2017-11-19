@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.tax.model.TaxClass;
@@ -41,6 +42,7 @@ public class TransactionItem extends AccountingItem {
 
     private String glCode;
 
+    private String status =  CanonicalId.ACTIVE.name();
     /**
      * An optional id to associate this transaction item with an item from an external system.
      * i.e. a tax service item
@@ -124,6 +126,14 @@ public class TransactionItem extends AccountingItem {
 
     public void setGlCode(String glCode) {
         this.glCode = glCode;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /** {@inheritDoc} */

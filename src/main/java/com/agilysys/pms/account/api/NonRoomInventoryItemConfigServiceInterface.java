@@ -13,17 +13,15 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
-import com.agilysys.platform.tax.model.TaxRuleData;
 import com.agilysys.pms.account.model.NonRoomInventoryItem;
-import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/nonRoomInventoryItems")
@@ -32,6 +30,8 @@ public interface NonRoomInventoryItemConfigServiceInterface {
     String PROPERTY_ID = "propertyId";
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{id}";
+    String INCLUDE_INTERNAL = "includeInternal";
+    String CONVERT_PATH = "/convertToInventory";
 
     /**
      * Retrieve all NonRoomInventoryItems
@@ -43,7 +43,8 @@ public interface NonRoomInventoryItemConfigServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<NonRoomInventoryItem> getNonRoomInventoryItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieve a specific NonRoomInventoryItems
@@ -56,8 +57,9 @@ public interface NonRoomInventoryItemConfigServiceInterface {
     @Path(ITEM_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    NonRoomInventoryItem getNonRoomInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
+    NonRoomInventoryItem getNonRoomInventoryItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId)
+          throws RGuestException, ServiceException;
 
     /**
      * Create a new NonRoomInventoryItems
@@ -73,7 +75,8 @@ public interface NonRoomInventoryItemConfigServiceInterface {
     @Validated(NonRoomInventoryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     NonRoomInventoryItem createNonRoomInventoryItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, NonRoomInventoryItem item) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, NonRoomInventoryItem item)
+          throws RGuestException, ServiceException;
 
     /**
      * Modify an existing NonRoomInventoryItem
@@ -105,6 +108,20 @@ public interface NonRoomInventoryItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteNonRoomInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
+
+    /**
+     * convert transaction item to InventoryItem
+     *
+     * @param tenantId the tenantId to delete the NonRoomInventoryItem for
+     * @param items   items which are converting to NonRoomInventoryItem
+     */
+    @POST
+    @Path(CONVERT_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    List<NonRoomInventoryItem> convertToNonRoomInventory(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, List<NonRoomInventoryItem> items)
+          throws RGuestException, ServiceException;
 
 }
 

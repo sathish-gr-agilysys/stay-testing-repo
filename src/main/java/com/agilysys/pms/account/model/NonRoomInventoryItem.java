@@ -5,6 +5,7 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -13,7 +14,11 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.tax.model.TaxClass;
+import com.agilysys.pms.common.model.annotation.DataPortMapReference;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
+import com.agilysys.pms.property.model.Building;
+import com.agilysys.pms.property.model.MealPeriod;
+import com.agilysys.pms.property.model.Outlet;
 import com.agilysys.pms.property.model.RoomType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -27,17 +32,16 @@ public class NonRoomInventoryItem extends AccountingItem{
     @DataPortReference(name = "taxClassNames", type = TaxClass.class, multiple = true)
     private List<String> taxClasses;
 
+    @DataPortMapReference(name = "sourceCodeToMealPeriodCodes", keyType = {
+          Building.class, Outlet.class }, valueType = MealPeriod.class, multipleValues = true)
+    private Map<String, List<String>> sourceMealPeriods;
+
     private String glCode;
 
     private String status =  CanonicalId.ACTIVE.name();
 
     @JsonProperty(required = true)
     private int availableCount;
-
-    private int allowedLimitPerReservation = Integer.MIN_VALUE;
-
-    @DataPortReference(name = "blockForRoomTypeCodes", type = { RoomType.class}, multiple = true)
-    private List<String> blockForRoomTypes;
 
     private String altSystemId;
 
@@ -81,14 +85,6 @@ public class NonRoomInventoryItem extends AccountingItem{
         this.glCode = glCode;
     }
 
-    public List<String> getBlockForRoomTypes() {
-        return blockForRoomTypes;
-    }
-
-    public void setBlockForRoomTypes(List<String> blockForRoomTypes) {
-        this.blockForRoomTypes = blockForRoomTypes;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -105,12 +101,12 @@ public class NonRoomInventoryItem extends AccountingItem{
         this.availableCount = availableCount;
     }
 
-    public int getAllowedLimitPerReservation() {
-        return allowedLimitPerReservation;
+    public Map<String, List<String>> getSourceMealPeriods() {
+        return sourceMealPeriods;
     }
 
-    public void setAllowedLimitPerReservation(int allowedLimitPerReservation) {
-        this.allowedLimitPerReservation = allowedLimitPerReservation;
+    public void setSourceMealPeriods(Map<String, List<String>> sourceMealPeriods) {
+        this.sourceMealPeriods = sourceMealPeriods;
     }
 
     @Override
