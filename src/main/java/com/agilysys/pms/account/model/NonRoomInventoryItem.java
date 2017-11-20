@@ -11,7 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
+import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.tax.model.TaxClass;
 import com.agilysys.pms.common.model.annotation.DataPortMapReference;
@@ -19,7 +21,6 @@ import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.MealPeriod;
 import com.agilysys.pms.property.model.Outlet;
-import com.agilysys.pms.property.model.RoomType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class NonRoomInventoryItem extends AccountingItem{
@@ -29,21 +30,31 @@ public class NonRoomInventoryItem extends AccountingItem{
     @JsonProperty(required = true)
     private BigDecimal defaultPrice;
 
-    @DataPortReference(name = "taxClassNames", type = TaxClass.class, multiple = true)
-    private List<String> taxClasses;
-
     @DataPortMapReference(name = "sourceCodeToMealPeriodCodes", keyType = {
           Building.class, Outlet.class }, valueType = MealPeriod.class, multipleValues = true)
     private Map<String, List<String>> sourceMealPeriods;
 
+    @DataPortReference(name = "taxClassNames", type = TaxClass.class, multiple = true)
+    private List<String> taxClasses;
+
     private String glCode;
 
-    private String status =  CanonicalId.ACTIVE.name();
+    private PropertyConfigItemStatus.CanonicalId status =  CanonicalId.ACTIVE;
 
     @JsonProperty(required = true)
     private int availableCount;
 
     private String altSystemId;
+
+    private List<FolioPostingCodes> folioPostingCodes;
+
+    public List<FolioPostingCodes> getFolioPostingCodes() {
+        return folioPostingCodes;
+    }
+
+    public void setFolioPostingCodes(List<FolioPostingCodes> folioPostingCodes) {
+        this.folioPostingCodes = folioPostingCodes;
+    }
 
     public String getPlu() {
         return (StringUtils.isNotEmpty(plu) ? plu : null);
@@ -85,11 +96,11 @@ public class NonRoomInventoryItem extends AccountingItem{
         this.glCode = glCode;
     }
 
-    public String getStatus() {
+    public PropertyConfigItemStatus.CanonicalId getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PropertyConfigItemStatus.CanonicalId status) {
         this.status = status;
     }
 
