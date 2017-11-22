@@ -117,11 +117,12 @@ public interface AccountServiceInterfaceV1 {
     String CREDIT_PATH = "/credit";
     String PAYMENTS_PATH = "/payments";
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
-    String REFUND_PATH = "/refund"; //Used for a refund of a specific line item
+    String REFUND_PATH = "/refund"; //Used for a refund of a specific line ite
     String TRANSFER_CHARGES_PATH = "/transferCharges";
     String TRANSFER_HISTORY_ID = "transferHistoryId";
     String TRANSFER_HISTORY = "/transferHistory";
     String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
+    String TRANSFER_FOLIO_LINES = "/transferFolioLines";
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String ADJUSTMENT_PATH = "/adjustment";
     String CORRECTION_PATH = "/correction";
@@ -129,6 +130,8 @@ public interface AccountServiceInterfaceV1 {
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String TAXEXEMPT_SETTINGS_BYDATE_PATH = "/taxExemptSettingsByDate";
     String GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
+    String PRESET =  "preset";
+    String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String SEARCH_PATH = "/search";
     String SEARCH_TERM = "searchTerm";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
@@ -664,7 +667,7 @@ public interface AccountServiceInterfaceV1 {
      * @return a List<LineItemView> containing all of the folio lines from the TRANSFER LedgerTransaction
      */
     @POST
-    @Path(ACCOUNT_ID_PATH + TRANSFER_CHARGES_PATH)
+    @Path(ACCOUNT_ID_PATH + TRANSFER_FOLIO_LINES)
     @Validated(LineItemTransfer.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
@@ -820,8 +823,24 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     GroupCompanyTaxExemptSettings getGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId
+    ) throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve tax exempt settings for an account by a range of dates.
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountId  id of account where settings exist
+     * @return Existing taxExemptSettings
+     */
+    @GET
+    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH + PRESET_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    GroupCompanyTaxExemptSettings getV1GroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(PRESET) boolean preset) throws RGuestException, ServiceException;
+
 
     /**
      * Save tax exempt settings for an account by a range of dates.
@@ -838,7 +857,20 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GroupCompanyTaxExemptSettings saveGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings) throws RGuestException, ServiceException;
+          GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH + PRESET_PATH)
+    @Validated(GroupCompanyTaxExemptSettings.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    GroupCompanyTaxExemptSettings saveV1GroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings, @PathParam(PRESET) boolean isPreset)
+          throws RGuestException, ServiceException;
+
+
+
     /* Search */
 
     /**
