@@ -22,7 +22,6 @@ import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.InventoryItem;
-import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/inventoryItems")
@@ -32,7 +31,6 @@ public interface InventoryItemConfigServiceInterface {
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{id}";
     String INCLUDE_INTERNAL = "includeInternal";
-    String INCLUDE_TRANSACTION = "/includeTransaction";
     String CONVERT_PATH = "/convertToInventory";
 
     /**
@@ -47,22 +45,6 @@ public interface InventoryItemConfigServiceInterface {
     List<InventoryItem> getInventoryItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
           throws RGuestException, ServiceException;
-
-
-    /**
-     * Retrieve all InventoryItems
-     *
-     * @param tenantId the tenantId to retrieve InventoryItems for
-     * @return List of InventoryItems
-     */
-    @GET
-    @Path(INCLUDE_TRANSACTION)
-    @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    List<TransactionItem> getInventoryAndTransactionItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
-          throws RGuestException, ServiceException;
-
 
     /**
      * Retrieve a specific InventoryItems

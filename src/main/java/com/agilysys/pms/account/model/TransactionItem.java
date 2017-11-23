@@ -137,6 +137,10 @@ public class TransactionItem extends AccountingItem {
         this.status = status;
     }
 
+    public boolean isActive(){
+        return (this.status == CanonicalId.ACTIVE);
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object obj)
