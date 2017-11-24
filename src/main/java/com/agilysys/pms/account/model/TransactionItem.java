@@ -21,6 +21,7 @@ import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.MealPeriod;
 import com.agilysys.pms.property.model.Outlet;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -137,6 +138,7 @@ public class TransactionItem extends AccountingItem {
         this.status = status;
     }
 
+    @JsonIgnore
     public boolean isActive(){
         return (this.status == CanonicalId.ACTIVE);
     }
