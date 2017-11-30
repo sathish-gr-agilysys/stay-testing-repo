@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -31,7 +30,6 @@ import com.agilysys.pms.account.model.ProgressStatusView;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
-import com.agilysys.pms.account.model.external.ReservationAccountDetails;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 /**
