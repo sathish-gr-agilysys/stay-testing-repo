@@ -215,23 +215,6 @@ public interface RecurringChargesServiceInterface {
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
           throws RGuestException, ServiceException;
 
-    /* Estimated Charges for a Guest */
-
-    /**
-     * @param tenantId
-     * @param propertyId
-     * @param accountReservationMap
-     * @return The estimated charges for guest. Returns an map of accountId ,estimated charges views
-     * for each payment setting on the account.
-     */
-    @POST
-    @Path(ESTIMATED_CHARGES_BY_PAYMENTSETTING_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, List<EstimatedChargesView>> getEstimatedChargesByPaymentSettingforGuest(
-          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          Map<String, ReservationAccountDetails> accountReservationMap) throws RGuestException, ServiceException;
-
     /**
      * @param tenantId
      * @param propertyId
