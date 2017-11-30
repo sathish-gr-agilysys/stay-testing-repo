@@ -11,6 +11,7 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.Lists;
 
@@ -30,6 +31,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String id;
     private String transactionId;
     private String transactionType;
+    private String folioLineType;
     private String transactionSourceAccountId;
     private String transactionDestinationAccountId;
     private Map<String, String> transactionMessageAttributes;
@@ -104,6 +106,19 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
+    }
+
+    public String getFolioLineType() {
+        return folioLineType;
+    }
+
+    @JsonIgnore
+    public String getFolioLineOrTransactionType() {
+        return this.folioLineType == null ? this.transactionType : this.folioLineType;
+    }
+
+    public void setFolioLineType(String folioLineType) {
+        this.folioLineType = folioLineType;
     }
 
     public String getTransactionSourceAccountId() {
