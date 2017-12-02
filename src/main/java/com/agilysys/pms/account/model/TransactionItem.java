@@ -44,7 +44,7 @@ public class TransactionItem extends AccountingItem {
 
     private String glCode;
 
-    private PropertyConfigItemStatus.CanonicalId status =  CanonicalId.ACTIVE;
+    private PropertyConfigItemStatus.CanonicalId status = CanonicalId.ACTIVE;
     /**
      * An optional id to associate this transaction item with an item from an external system.
      * i.e. a tax service item
@@ -139,8 +139,8 @@ public class TransactionItem extends AccountingItem {
     }
 
     @JsonIgnore
-    public boolean isActive(){
-        return (this.status == CanonicalId.ACTIVE);
+    public boolean isActive() {
+        return this.status == CanonicalId.ACTIVE;
     }
 
     /** {@inheritDoc} */
