@@ -444,11 +444,11 @@ public interface AccountServiceInterfaceV1 {
      * @param ledgerTransactionHistoryId ledgerTransactionHistoryId of the transfer
      * @return folioHistoryTransaction
      */
-    @GET
+    @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_HISTORY + TRANSFER_HISTORY_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<LedgerTransactionHistoryView> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,@PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(TRANSFER_HISTORY_ID) String ledgerTransactionHistoryId)
+    Map<String,List<LedgerTransactionHistoryView>> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,@PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(TRANSFER_HISTORY_ID) List<String> ledgerTransactionHistoryId)
           throws RGuestException, ServiceException,AccountException;
 
     /* Posting Rules */
