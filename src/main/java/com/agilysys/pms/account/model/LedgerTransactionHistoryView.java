@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -22,7 +23,7 @@ public class LedgerTransactionHistoryView {
 
     private String reason;
 
-    private DateTime dateTime;
+    private LocalDate postingDate;
 
     private String folioLineType;
 
@@ -32,14 +33,6 @@ public class LedgerTransactionHistoryView {
 
     public void setReason(String reason) {
         this.reason = reason;
-    }
-
-    public DateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(DateTime dateTime) {
-        this.dateTime = dateTime;
     }
 
     public String getFolioLineType() {
@@ -91,10 +84,10 @@ public class LedgerTransactionHistoryView {
     }
 
     public void toHistoryView(String id, String reason, LedgerTransactionHistoryAccountData sourceInfo,
-          LedgerTransactionHistoryAccountData destinationInfo, DateTime dateTime,String tenantId,String propertyId, String folioLineType) {
+          LedgerTransactionHistoryAccountData destinationInfo, LocalDate postingDate,String tenantId,String propertyId, String folioLineType) {
         this.id = id;
         this.reason = reason;
-        this.dateTime = dateTime;
+        this.postingDate = postingDate;
         this.sourceInfo = sourceInfo;
         this.destinationInfo = destinationInfo;
         this.tenantId=tenantId;
