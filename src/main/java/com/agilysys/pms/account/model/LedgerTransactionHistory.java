@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import java.util.UUID;
 
@@ -28,6 +29,8 @@ public class LedgerTransactionHistory {
     private DateTime dateTime;
 
     private String folioLineType;
+
+    private LocalDate postingPropertyDate;
 
     public String getSourceId() {
         return sourceId;
@@ -91,5 +94,13 @@ public class LedgerTransactionHistory {
 
     public void setFolioLineType(String folioLineType) {
         this.folioLineType = folioLineType;
+    }
+
+    public LocalDate getPostingPropertyDate() {
+        return postingPropertyDate;
+    }
+
+    public void setPostingPropertyDate(LocalDate postingPropertyDate) {
+        this.postingPropertyDate = postingPropertyDate;
     }
 }
