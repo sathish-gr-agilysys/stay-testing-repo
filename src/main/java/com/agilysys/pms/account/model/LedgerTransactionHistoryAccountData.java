@@ -32,6 +32,8 @@ public class LedgerTransactionHistoryAccountData {
 
     private List<AllocatedRoomDetail> allocatedRoomDetail;
 
+    private String arAccountNumber;
+
     public String getId() {
         return id;
     }
@@ -118,5 +120,13 @@ public class LedgerTransactionHistoryAccountData {
 
     public void setAllocatedRoomDetail(List<AllocatedRoomDetail> allocatedRoomDetail) {
         this.allocatedRoomDetail = allocatedRoomDetail;
+    }
+
+    public String getArAccountNumber() {
+        return arAccountNumber;
+    }
+
+    public void setArAccountNumber(String arAccountNumber) {
+        this.arAccountNumber = arAccountNumber;
     }
 }
