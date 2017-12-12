@@ -83,6 +83,14 @@ public class LedgerTransactionHistoryView {
         this.destinationInfo = destinationInfo;
     }
 
+    public LocalDate getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(LocalDate postingDate) {
+        this.postingDate = postingDate;
+    }
+
     public void toHistoryView(String id, String reason, LedgerTransactionHistoryAccountData sourceInfo,
           LedgerTransactionHistoryAccountData destinationInfo, LocalDate postingDate,String tenantId,String propertyId, String folioLineType) {
         this.id = id;
