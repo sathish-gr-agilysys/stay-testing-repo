@@ -11,7 +11,7 @@ import java.util.UUID;
 public class LedgerTransactionHistory {
 
     public LedgerTransactionHistory(){
-        this.id= UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
     }
 
     private String id;
