@@ -61,6 +61,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String reference;
     private String recurringChargeId;
     private boolean routed;
+    private boolean autoRouted;
     private boolean roomRevenue;
     private String parentId;
     private boolean distributed;
@@ -605,6 +606,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setRouted(boolean routed) {
         this.routed = routed;
+    }
+
+    public boolean isAutoRouted() {
+        return autoRouted;
+    }
+
+    public void setAutoRouted(boolean autoRouted) {
+        this.autoRouted = autoRouted;
     }
 
     public boolean isRoomRevenue() {
