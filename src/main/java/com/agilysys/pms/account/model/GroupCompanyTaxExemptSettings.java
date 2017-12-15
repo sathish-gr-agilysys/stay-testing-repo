@@ -21,7 +21,7 @@ public class GroupCompanyTaxExemptSettings extends TaxExemptSettings {
     private Map<LocalDate, List<String>> history;
     private Map<LocalDate, List<String>> exemptionsByDate;
     private String groupId;
-    private Boolean applyToExistingReservation;
+    private boolean applyToExistingReservations;
 
     public LocalDate getCreatedPropertyDate() {
         return createdPropertyDate;
@@ -63,11 +63,12 @@ public class GroupCompanyTaxExemptSettings extends TaxExemptSettings {
         this.groupId = groupId;
     }
 
-    public Boolean getApplyToExistingReservation() {
-        return applyToExistingReservation;
+    public boolean isApplyToExistingReservations() {
+        return applyToExistingReservations;
+
     }
 
-    public void setApplyToExistingReservation(Boolean applyToExistingReservation) {
-        this.applyToExistingReservation = applyToExistingReservation;
+    public void setApplyToExistingReservations(boolean applyToExistingReservations) {
+        this.applyToExistingReservations = applyToExistingReservations;
     }
 }
