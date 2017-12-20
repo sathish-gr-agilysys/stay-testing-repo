@@ -45,6 +45,7 @@ import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
+import com.agilysys.pms.account.model.CheckInventoryAllocation;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
@@ -53,6 +54,7 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
+import com.agilysys.pms.account.model.InventoryAllocationResponse;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
 import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
@@ -115,7 +117,7 @@ public interface AccountServiceInterfaceV1 {
     String PAYMENTS_PATH = "/payments";
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
     String REFUND_PATH = "/refund"; //Used for a refund of a specific line item
-    String TRANSFER_CHARGES_PATH = "/transferCharges";
+    String TRANSFER_CHARGES_PATH = "/transferFolioLines";
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String ADJUSTMENT_PATH = "/adjustment";
     String CORRECTION_PATH = "/correction";
@@ -151,6 +153,7 @@ public interface AccountServiceInterfaceV1 {
     String START_DATE = "startDate";
     String END_DATE = "endDate";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
+    String INVENTORY_ALLOCATION = "/inventory/allocation";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1177,4 +1180,11 @@ public interface AccountServiceInterfaceV1 {
     List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
+
+    @POST
+    @Path(INVENTORY_ALLOCATION)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    public Map<LocalDate, InventoryAllocationResponse> getInventoryItemAllocatedDetails(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          CheckInventoryAllocation checkInventoryAllocation) throws RGuestException, ServiceException;
 }

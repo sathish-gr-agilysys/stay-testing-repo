@@ -27,6 +27,7 @@ import com.agilysys.pms.account.model.CreateRecurringChargeOverride;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.ProgressStatusView;
+import com.agilysys.pms.account.model.RecurringChargeRequest;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
@@ -106,6 +107,7 @@ public interface RecurringChargesServiceInterface {
      *                              be returned
      * @return Created recurring charge
      */
+    @Deprecated
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH)
@@ -116,6 +118,16 @@ public interface RecurringChargesServiceInterface {
     List<RecurringChargeView> createRecurringCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           CreateRecurringCharge createRecurringCharge, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + "/v1")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<RecurringChargeView> createOrUpdateRecurringCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     /**
