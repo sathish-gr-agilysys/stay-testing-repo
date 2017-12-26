@@ -5,12 +5,20 @@ package com.agilysys.pms.account.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.data.annotation.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InventoryItem extends TransactionItem {
     @JsonProperty(required = true)
     private int availableCount;
+
+    @Transient
+    private TransactionItemType type = TransactionItemType.Inventory;
+
+    public TransactionItemType getType() {
+        return type;
+    }
 
     public int getAvailableCount() {
         return availableCount;

@@ -17,6 +17,8 @@ import org.joda.time.LocalDate;
 public class RecurringChargeView {
     String recurringChargeId;
     LocalDate chargeDate;
+    LocalDate startDate;
+    LocalDate endDate;
 
     // For a package, this will be just the room charge.
     BigDecimal amount;
@@ -198,5 +200,21 @@ public class RecurringChargeView {
 
     public void setRatePlanId(String ratePlanId) {
         this.ratePlanId = ratePlanId;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }
