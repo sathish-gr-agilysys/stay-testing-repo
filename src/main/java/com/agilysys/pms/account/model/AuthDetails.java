@@ -15,6 +15,8 @@ public class AuthDetails {
 
     List<FolioDetail> associatedFolios;
 
+    private String paymentInstrumentId;
+
     public EstimatedChargesSummaryView getEstimatedCharges() {
         return estimatedCharges;
     }
@@ -63,4 +65,11 @@ public class AuthDetails {
         this.paymentSettingId = paymentSettingId;
     }
 
+    public String getPaymentInstrumentId() {
+        return paymentInstrumentId;
+    }
+
+    public void setPaymentInstrumentId(String paymentInstrumentId) {
+        this.paymentInstrumentId = paymentInstrumentId;
+    }
 }
