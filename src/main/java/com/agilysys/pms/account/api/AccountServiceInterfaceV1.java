@@ -552,7 +552,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + CHARGES_PATH)
     @Validated(Charge.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInvQty')")
     List<LineItemView> postCharge(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge)
           throws RGuestException, ServiceException;
