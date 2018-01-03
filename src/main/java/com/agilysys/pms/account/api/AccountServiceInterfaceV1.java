@@ -115,7 +115,7 @@ public interface AccountServiceInterfaceV1 {
     String PAYMENTS_PATH = "/payments";
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
     String REFUND_PATH = "/refund"; //Used for a refund of a specific line item
-    String TRANSFER_CHARGES_PATH = "/transferCharges";
+    String TRANSFER_FOLIO_LINES = "/transferFolioLines";
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String ADJUSTMENT_PATH = "/adjustment";
     String CORRECTION_PATH = "/correction";
@@ -645,7 +645,7 @@ public interface AccountServiceInterfaceV1 {
      * @return a List<LineItemView> containing all of the folio lines from the TRANSFER LedgerTransaction
      */
     @POST
-    @Path(ACCOUNT_ID_PATH + TRANSFER_CHARGES_PATH)
+    @Path(ACCOUNT_ID_PATH + TRANSFER_FOLIO_LINES)
     @Validated(LineItemTransfer.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
