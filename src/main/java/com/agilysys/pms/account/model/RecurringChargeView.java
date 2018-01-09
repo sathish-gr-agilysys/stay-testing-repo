@@ -21,22 +21,22 @@ public class RecurringChargeView {
     LocalDate endDate;
 
     // For a package, this will be just the room charge.
-    BigDecimal amount;
-    String sourceId;
-    String accountId;
-    String folioId;
-    String itemId;
-    String reason;
-    Boolean posted;
-    Boolean roomCharge;
-    String overrideReason;
-    String ratePlanName;
+    private BigDecimal amount;
+    private String sourceId;
+    private String accountId;
+    private String folioId;
+    private String itemId;
+    private String reason;
+    private Boolean posted;
+    private Boolean roomCharge;
+    private String overrideReason;
+    private String ratePlanName;
     private String ratePlanId;
 
     // For a package, this will be the estimated tax for the room charge
-    ChargeTaxAmountInfo estimatedTaxInfo;
-    String routedFolioId;
-    List<ComponentChargeView> componentCharges = new ArrayList<>();
+    private ChargeTaxAmountInfo estimatedTaxInfo;
+    private String routedFolioId;
+    private List<ComponentChargeView> componentCharges = new ArrayList<>();
 
     /**
      * EVERY = Every Night
