@@ -61,10 +61,13 @@ public class LineItemView implements Comparable<LineItemView> {
     private String reference;
     private String recurringChargeId;
     private boolean routed;
+    private boolean autoRouted;
     private boolean roomRevenue;
     private String parentId;
     private boolean distributed;
     private String name;
+    private String ledgerTransactionHistoryId;
+    private List<LedgerTransactionHistory> ledgerTransactionHistory;
 
     /**
      * @return the ID of the LineItem
@@ -112,13 +115,13 @@ public class LineItemView implements Comparable<LineItemView> {
         return folioLineType;
     }
 
+    public void setFolioLineType(String folioLineType) {
+        this.folioLineType = folioLineType;
+    }
+
     @JsonIgnore
     public String getFolioLineOrTransactionType() {
         return this.folioLineType == null ? this.transactionType : this.folioLineType;
-    }
-
-    public void setFolioLineType(String folioLineType) {
-        this.folioLineType = folioLineType;
     }
 
     public String getTransactionSourceAccountId() {
@@ -606,6 +609,14 @@ public class LineItemView implements Comparable<LineItemView> {
         this.routed = routed;
     }
 
+    public boolean isAutoRouted() {
+        return autoRouted;
+    }
+
+    public void setAutoRouted(boolean autoRouted) {
+        this.autoRouted = autoRouted;
+    }
+
     public boolean isRoomRevenue() {
         return roomRevenue;
     }
@@ -636,6 +647,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLedgerTransactionHistoryId() {
+        return ledgerTransactionHistoryId;
+    }
+
+    public void setLedgerTransactionHistoryId(String ledgerTransactionHistoryId) {
+        this.ledgerTransactionHistoryId = ledgerTransactionHistoryId;
+    }
+
+    public List<LedgerTransactionHistory> getLedgerTransactionHistory() {
+        return ledgerTransactionHistory;
+    }
+
+    public void setLedgerTransactionHistory(List<LedgerTransactionHistory> ledgerTransactionHistory) {
+        this.ledgerTransactionHistory = ledgerTransactionHistory;
     }
 
     @Override
@@ -671,5 +698,4 @@ public class LineItemView implements Comparable<LineItemView> {
 
         return 0;
     }
-
 }
