@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.security.auth.login.AccountException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -59,6 +60,8 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
+import com.agilysys.pms.account.model.LedgerTransactionHistory;
+import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -115,7 +118,11 @@ public interface AccountServiceInterfaceV1 {
     String CREDIT_PATH = "/credit";
     String PAYMENTS_PATH = "/payments";
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
-    String REFUND_PATH = "/refund"; //Used for a refund of a specific line item
+    String REFUND_PATH = "/refund"; //Used for a refund of a specific line ite
+    String TRANSFER_CHARGES_PATH = "/transferCharges";
+    String TRANSFER_HISTORY_ID = "transferHistoryId";
+    String TRANSFER_HISTORY = "/transferHistory";
+    String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TRANSFER_FOLIO_LINES = "/transferFolioLines";
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String ADJUSTMENT_PATH = "/adjustment";
@@ -444,6 +451,21 @@ public interface AccountServiceInterfaceV1 {
     void deleteFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId)
           throws RGuestException, ServiceException;
+
+    /**
+     * Get Details based on the LedgerTransactionHistoryId
+     *
+     * @param tenantId                   id of tenant where account exists
+     * @param propertyId                 id of the property where the account exists
+     * @param ledgerTransactionHistoryId ledgerTransactionHistoryId of the transfer
+     * @return folioHistoryTransaction
+     */
+    @POST
+    @Path(ACCOUNT_ID_PATH + TRANSFER_HISTORY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String,List<LedgerTransactionHistoryView>> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,@PathParam(PROPERTY_ID) String propertyId,
+          List<String> ledgerTransactionHistoryId)
+          throws RGuestException, ServiceException,AccountException;
 
     /* Posting Rules */
 
