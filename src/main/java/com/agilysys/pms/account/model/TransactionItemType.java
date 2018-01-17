@@ -5,7 +5,7 @@ package com.agilysys.pms.account.model;
 
 public enum TransactionItemType {
     Transaction("setup/accounts/transactionItems", TransactionItem.class),
-    Inventory("setup/accounts/InventoryItems", InventoryItem.class);
+    Inventory("setup/accounts/inventoryItems", InventoryItem.class);
 
     private final Class clazz;
     private final String path;
