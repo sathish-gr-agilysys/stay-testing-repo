@@ -5,8 +5,11 @@ package com.agilysys.pms.account.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.joda.time.DateTime;
 import org.springframework.data.annotation.Transient;
 
+import com.agilysys.pms.common.model.annotation.DataPortIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InventoryItem extends TransactionItem {
@@ -15,6 +18,17 @@ public class InventoryItem extends TransactionItem {
 
     @Transient
     private TransactionItemType type = TransactionItemType.Inventory;
+
+    @DataPortIgnore
+    private DateTime convertedTime;
+
+    public DateTime getConvertedTime() {
+        return convertedTime;
+    }
+
+    public void setConvertedTime(DateTime convertedTime) {
+        this.convertedTime = convertedTime;
+    }
 
     public TransactionItemType getType() {
         return type;
