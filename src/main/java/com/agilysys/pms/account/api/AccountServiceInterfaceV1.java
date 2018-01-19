@@ -89,6 +89,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 public interface AccountServiceInterfaceV1 {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
+    String PROPERTY_DATE = "propertyDate";
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
     String TYPES_PATH = "types";
     String STATUSES_PATH = "statuses";
@@ -1186,5 +1187,6 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     public Map<LocalDate, InventoryAllocationResponse> getInventoryItemAllocatedDetails(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          CheckInventoryAllocation checkInventoryAllocation) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_DATE) LocalDate propertyDate, CheckInventoryAllocation checkInventoryAllocation)
+          throws RGuestException, ServiceException;
 }
