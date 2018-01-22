@@ -202,10 +202,7 @@ public abstract class Transaction {
     }
 
     public LocalDate getDisplayDate() {
-        if (displayDate != null) {
-            return displayDate;
-        }
-        return postingDate;
+        return displayDate;
     }
 
     public void setDisplayDate(LocalDate displayDate) {
