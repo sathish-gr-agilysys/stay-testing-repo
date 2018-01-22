@@ -41,6 +41,7 @@ public abstract class Transaction {
     private Boolean ignoreRules = true;
     private String terminalId;
     private LocalDate postingDate;
+    private LocalDate displayDate;
     private String parentId;
 
     @MinValueRestriction(1)
@@ -198,6 +199,17 @@ public abstract class Transaction {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public LocalDate getDisplayDate() {
+        if (displayDate != null) {
+            return displayDate;
+        }
+        return postingDate;
+    }
+
+    public void setDisplayDate(LocalDate displayDate) {
+        this.displayDate = displayDate;
     }
 
     @Override
