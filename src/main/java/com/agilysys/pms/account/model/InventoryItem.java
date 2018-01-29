@@ -17,7 +17,7 @@ public class InventoryItem extends TransactionItem {
     private int availableCount;
 
     @Transient
-    private TransactionItemType type = TransactionItemType.Inventory;
+    private TransactionItemType type = TransactionItemType.INVENTORY;
 
     @DataPortIgnore
     private DateTime convertedTime;

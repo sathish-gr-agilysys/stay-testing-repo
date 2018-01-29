@@ -15,10 +15,10 @@ import org.joda.time.LocalDate;
  * Recurring Charges view object
  */
 public class RecurringChargeView {
-    String recurringChargeId;
-    LocalDate chargeDate;
-    LocalDate startDate;
-    LocalDate endDate;
+    private String recurringChargeId;
+    private LocalDate chargeDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     // For a package, this will be just the room charge.
     private BigDecimal amount;

@@ -21,18 +21,18 @@ public class InventoryAllocationResponse {
     }
 
     public Map<String, Integer> getMaxAllocatedCountForItems() {
-        Map<String, Integer> minAvailableCountForItemsMap = new HashMap<>();
+        Map<String, Integer> maxAllocatedCountForItemsMap = new HashMap<>();
         for (Entry<LocalDate, Map<String, Integer>> dateEntry : allocatedCount.entrySet()) {
             for (Entry<String, Integer> itemEntry : dateEntry.getValue().entrySet()) {
-                Integer count = minAvailableCountForItemsMap.get(itemEntry.getKey());
+                Integer count = maxAllocatedCountForItemsMap.get(itemEntry.getKey());
                 if (count == null) {
                     count = itemEntry.getValue();
                 } else {
                     count = Math.max(count, itemEntry.getValue());
                 }
-                minAvailableCountForItemsMap.put(itemEntry.getKey(), count);
+                maxAllocatedCountForItemsMap.put(itemEntry.getKey(), count);
             }
         }
-        return minAvailableCountForItemsMap;
+        return maxAllocatedCountForItemsMap;
     }
 }

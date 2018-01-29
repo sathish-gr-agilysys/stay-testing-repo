@@ -1185,7 +1185,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(INVENTORY_ALLOCATION)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    public Map<LocalDate, InventoryAllocationResponse> getInventoryItemAllocatedDetails(
+    public Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(PROPERTY_DATE) LocalDate propertyDate, CheckInventoryAllocation checkInventoryAllocation)
           throws RGuestException, ServiceException;
