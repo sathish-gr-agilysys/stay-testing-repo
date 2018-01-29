@@ -154,7 +154,7 @@ public interface AccountServiceInterfaceV1 {
     String START_DATE = "startDate";
     String END_DATE = "endDate";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
-    String INVENTORY_ALLOCATION = "/inventory/allocation";
+    String INVENTORY_ALLOCATION = "/inventory/allocation/{"+PROPERTY_DATE+"}";
 
     /**
      * Retrieve all accounts from a tenant
