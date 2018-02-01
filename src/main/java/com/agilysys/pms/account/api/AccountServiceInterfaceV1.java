@@ -118,6 +118,8 @@ public interface AccountServiceInterfaceV1 {
     String BATCH_CHARGES_PATH = "/batchCharges";
     String CREDIT_PATH = "/credit";
     String PAYMENTS_PATH = "/payments";
+    String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
+    String PAYMENTS_RESULT_PATH = "/paymentsResult";
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
     String REFUND_PATH = "/refund"; //Used for a refund of a specific line ite
     String TRANSFER_CHARGES_PATH = "/transferCharges";
@@ -663,13 +665,14 @@ public interface AccountServiceInterfaceV1 {
      * Posts a payment to an account async
      *
      * @param accountId  the Account to post to
+     * @param tenantId  the Tenant to post to
      * @param propertyId id of the property where the account exists
      * @param payment    Payment object containing payment information
      * @return a TaskId to track the async process
      */
     @POST
     @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH)
+    @Path(ACCOUNT_ID_PATH + PAYMENTS_ASYNC_PATH)
     @Validated(Payment.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     String postPaymentAsync(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
@@ -684,7 +687,7 @@ public interface AccountServiceInterfaceV1 {
      * @return a LineItemView for Display purposes
      */
     @GET
-    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH)
+    @Path(ACCOUNT_ID_PATH + PAYMENTS_RESULT_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> getPaymentResult(@PathParam(TASK_ID) String taskId, @PathParam(PROPERTY_ID)  String propertyId) throws Exception;
 
