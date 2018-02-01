@@ -664,8 +664,8 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Posts a payment to an account async
      *
-     * @param accountId  the Account to post to
-     * @param tenantId  the Tenant to post to
+     * @param accountId  the Account Id to post to
+     * @param tenantId  the Tenant Id to post to
      * @param propertyId id of the property where the account exists
      * @param payment    Payment object containing payment information
      * @return a TaskId to track the async process
@@ -682,7 +682,7 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Get a payment result
      *
-     * @param taskId  the Account to post to
+     * @param taskId  the task Id to post to
      * @param propertyId id of the property where the account exists
      * @return a LineItemView for Display purposes
      */
