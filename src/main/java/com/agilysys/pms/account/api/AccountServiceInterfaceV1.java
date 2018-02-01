@@ -89,6 +89,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface AccountServiceInterfaceV1 {
+    String TASK_ID = "taskId";
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
@@ -657,6 +658,35 @@ public interface AccountServiceInterfaceV1 {
     List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
+
+    /**
+     * Posts a payment to an account async
+     *
+     * @param accountId  the Account to post to
+     * @param propertyId id of the property where the account exists
+     * @param payment    Payment object containing payment information
+     * @return a TaskId to track the async process
+     */
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH)
+    @Validated(Payment.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    String postPaymentAsync(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Payment payment,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
+
+    /**
+     * Get a payment result
+     *
+     * @param taskId  the Account to post to
+     * @param propertyId id of the property where the account exists
+     * @return a LineItemView for Display purposes
+     */
+    @GET
+    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> getPaymentResult(@PathParam(TASK_ID) String taskId, @PathParam(PROPERTY_ID)  String propertyId) throws Exception;
 
     /**
      * Refunds a payment to an account
