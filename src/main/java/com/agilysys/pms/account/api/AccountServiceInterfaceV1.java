@@ -689,7 +689,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + PAYMENTS_RESULT_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> getPaymentResult(@PathParam(TASK_ID) String taskId, @PathParam(PROPERTY_ID)  String propertyId) throws Exception;
+    List<LineItemView> getPaymentResult(@PathParam(TASK_ID) String taskId, @PathParam(PROPERTY_ID)  String propertyId) throws Throwable;
 
     /**
      * Refunds a payment to an account
