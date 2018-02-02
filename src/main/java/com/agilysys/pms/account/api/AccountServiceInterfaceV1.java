@@ -98,6 +98,7 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_ID = "accountId";
     String GROUPED = "grouped";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
+    String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
     String ACCOUNT_STATUS = "accountStatus";
@@ -119,7 +120,6 @@ public interface AccountServiceInterfaceV1 {
     String CREDIT_PATH = "/credit";
     String PAYMENTS_PATH = "/payments";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
-    String PAYMENTS_RESULT_PATH = "/paymentsResult";
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
     String REFUND_PATH = "/refund"; //Used for a refund of a specific line ite
     String TRANSFER_CHARGES_PATH = "/transferCharges";
@@ -687,9 +687,10 @@ public interface AccountServiceInterfaceV1 {
      * @return a LineItemView for Display purposes
      */
     @GET
-    @Path(ACCOUNT_ID_PATH + PAYMENTS_RESULT_PATH)
+    @Path(TASK_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> getPaymentResult(@PathParam(TASK_ID) String taskId, @PathParam(PROPERTY_ID)  String propertyId) throws Throwable;
+    List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+           @PathParam(TASK_ID) String taskId) throws Throwable;
 
     /**
      * Refunds a payment to an account
