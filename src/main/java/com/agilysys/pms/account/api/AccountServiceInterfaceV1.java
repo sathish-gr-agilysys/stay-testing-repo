@@ -690,7 +690,7 @@ public interface AccountServiceInterfaceV1 {
      * @return a LineItemView for Display purposes
      */
     @GET
-    @Path(TASK_ID_PATH)
+    @Path(ACCOUNT_ID_PATH + TASK_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
            @PathParam(TASK_ID) String taskId) throws Throwable;
