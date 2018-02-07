@@ -107,7 +107,6 @@ public interface RecurringChargesServiceInterface {
      *                              be returned
      * @return Created recurring charge
      */
-    @Deprecated
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH)
@@ -121,7 +120,7 @@ public interface RecurringChargesServiceInterface {
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     @POST
-    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + "/v1")
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + "/batch")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInvQty')")
