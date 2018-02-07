@@ -50,4 +50,16 @@ public class CheckInventoryAllocation {
         }
         return itemIds;
     }
+
+    @JsonIgnore
+    public boolean hasPropertyDate(LocalDate propertyDate) {
+        for (Map.Entry<LocalDate, Map<LocalDate, List<InventoryAllocationRequest>>> startDateEntry :
+              getInventoryAllocationRequests()
+              .entrySet()) {
+            if (startDateEntry.getKey().isEqual(propertyDate)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
