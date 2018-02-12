@@ -14,7 +14,7 @@ public class CreateRecurringChargeOverride {
     private String reason;
     private Integer quantity;
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
