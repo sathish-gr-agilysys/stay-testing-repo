@@ -60,8 +60,7 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
-import com.agilysys.pms.account.model.LedgerTransactionHistory;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
+import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -463,9 +462,9 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_HISTORY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String,List<LedgerTransactionHistoryView>> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,@PathParam(PROPERTY_ID) String propertyId,
-          List<String> ledgerTransactionHistoryId)
-          throws RGuestException, ServiceException,AccountException;
+    Map<String, LedgerTransactionTransferDetail> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, List<String> ledgerTransactionHistoryId)
+          throws RGuestException, ServiceException, AccountException;
 
     /* Posting Rules */
 

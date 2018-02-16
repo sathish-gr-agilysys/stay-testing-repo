@@ -7,27 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LedgerTransactionTransferDetail {
-    List<LedgerTransactionHistoryView> ledgerTransactionHistoryViews;
-    List<LedgerTransactionAccountData> ledgerTransactionAccountData;
+    List<LedgerTransactionHistoryView> transferHistory;
+    List<LedgerTransactionAccountDetail> linkInfo;
 
     public LedgerTransactionTransferDetail(){
-        ledgerTransactionAccountData = new ArrayList<>();
-        ledgerTransactionHistoryViews = new ArrayList<>();
+        linkInfo = new ArrayList<>();
+        transferHistory = new ArrayList<>();
     }
 
-    public List<LedgerTransactionAccountData> getLedgerTransactionAccountData() {
-        return ledgerTransactionAccountData;
+    public List<LedgerTransactionAccountDetail> getLinkInfo() {
+        return linkInfo;
     }
 
-    public void setLedgerTransactionAccountData(List<LedgerTransactionAccountData> ledgerTransactionAccountData) {
-        this.ledgerTransactionAccountData = ledgerTransactionAccountData;
+    public void setLinkInfo(List<LedgerTransactionAccountDetail> linkInfo) {
+        this.linkInfo = linkInfo;
     }
 
-    public List<LedgerTransactionHistoryView> getLedgerTransactionHistoryViews() {
-        return ledgerTransactionHistoryViews;
+    public List<LedgerTransactionHistoryView> getTransferHistory() {
+        return transferHistory;
     }
 
-    public void setLedgerTransactionHistoryViews(List<LedgerTransactionHistoryView> ledgerTransactionHistoryViews) {
-        this.ledgerTransactionHistoryViews = ledgerTransactionHistoryViews;
+    public void setTransferHistory(List<LedgerTransactionHistoryView> transferHistory) {
+        this.transferHistory = transferHistory;
     }
 }
