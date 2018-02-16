@@ -1,5 +1,5 @@
 /**
- * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
@@ -30,4 +30,5 @@ public class LedgerTransactionTransferDetail {
     public void setTransferHistory(List<LedgerTransactionHistoryView> transferHistory) {
         this.transferHistory = transferHistory;
     }
+
 }
