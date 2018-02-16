@@ -8,6 +8,8 @@ import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountExcepti
 import java.util.HashSet;
 import java.util.Set;
 
+import org.joda.time.DateTimeConstants;
+
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -57,7 +59,7 @@ public class InventoryAllocationRequest {
     public void setOccurrenceDays(Set<Integer> occurrenceDays) {
         if (occurrenceDays != null) {
             for (Integer day : occurrenceDays) {
-                if (day < 1 || day > 7) {
+                if (day < DateTimeConstants.MONDAY || day > DateTimeConstants.SUNDAY) {
                     throw accountException(AccountErrorCode.OCCURRENCE_DAYS_INVALID).buildCompatible();
                 }
             }

@@ -17,8 +17,6 @@ import org.joda.time.LocalDate;
 public class RecurringChargeView {
     private String recurringChargeId;
     private LocalDate chargeDate;
-    private LocalDate startDate;
-    private LocalDate endDate;
 
     // For a package, this will be just the room charge.
     private BigDecimal amount;
@@ -50,7 +48,7 @@ public class RecurringChargeView {
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
 
-    private int quantity;
+    private int quantity = 1;
 
     public int getQuantity() {
         return quantity;
@@ -210,21 +208,5 @@ public class RecurringChargeView {
 
     public void setRatePlanId(String ratePlanId) {
         this.ratePlanId = ratePlanId;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
     }
 }

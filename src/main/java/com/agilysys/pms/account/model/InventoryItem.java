@@ -19,6 +19,10 @@ public class InventoryItem extends TransactionItem {
     @Transient
     private TransactionItemType type = TransactionItemType.INVENTORY;
 
+    /*
+    If the inventory item is converted from transaction item
+    then this field has the converted time
+     */
     @DataPortIgnore
     private DateTime convertedTime;
 

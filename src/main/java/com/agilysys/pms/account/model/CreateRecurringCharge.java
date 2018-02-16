@@ -17,8 +17,6 @@ import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateRecurringCharge {
-    private String id;
-
     private String agentId;
 
     @JsonProperty(required = true)
@@ -68,13 +66,6 @@ public class CreateRecurringCharge {
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
     public String getAgentId() {
         return agentId;
     }
