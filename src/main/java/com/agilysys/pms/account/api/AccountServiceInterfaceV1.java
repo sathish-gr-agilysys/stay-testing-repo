@@ -457,7 +457,8 @@ public interface AccountServiceInterfaceV1 {
      * @param tenantId                   id of tenant where account exists
      * @param propertyId                 id of the property where the account exists
      * @param ledgerTransactionHistoryId ledgerTransactionHistoryId of the transfer
-     * @return folioHistoryTransaction
+     * @return 1edgerTransactionTransferDetail for each ledgerTransactionHistoryId, this contains the transfer history
+     * info and the info to display the links
      */
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_HISTORY)
