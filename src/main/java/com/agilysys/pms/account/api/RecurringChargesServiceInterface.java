@@ -67,6 +67,8 @@ public interface RecurringChargesServiceInterface {
     String CHECKIN_AUTH_AMOUNT = "/checkinAuthAmount";
     String AUTH_DETAILS = "/authDetails";
     String BATCH = "/batch";
+    String OVERRIDE_INVENTORY = "overrideInventory";
+    String VALIDATE_INVENTORY = "validateInventory";
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
      *
@@ -124,7 +126,8 @@ public interface RecurringChargesServiceInterface {
     List<RecurringChargeView> createRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(VALIDATE_INVENTORY) boolean validateInventory,
+          @QueryParam(OVERRIDE_INVENTORY) boolean overrideInventory) throws RGuestException, ServiceException;
 
     /**
      * Retrieve recurring charge for an account
