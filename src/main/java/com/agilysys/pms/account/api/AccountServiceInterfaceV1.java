@@ -89,6 +89,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface AccountServiceInterfaceV1 {
+    String TASK_ID = "taskId";
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
@@ -97,6 +98,7 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_ID = "accountId";
     String GROUPED = "grouped";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
+    String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
     String ACCOUNT_STATUS = "accountStatus";
@@ -117,6 +119,7 @@ public interface AccountServiceInterfaceV1 {
     String BATCH_CHARGES_PATH = "/batchCharges";
     String CREDIT_PATH = "/credit";
     String PAYMENTS_PATH = "/payments";
+    String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
     String REFUND_PATH = "/refund"; //Used for a refund of a specific line ite
     String TRANSFER_CHARGES_PATH = "/transferCharges";
@@ -644,8 +647,9 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Posts a payment to an account
      *
-     * @param accountId  the Account to post to
+     * @param tenantId  the Tenant Id to post to
      * @param propertyId id of the property where the account exists
+     * @param accountId  the Account to post to
      * @param payment    Payment object containing payment information
      * @return a LineItemView for Display purposes
      */
@@ -657,6 +661,39 @@ public interface AccountServiceInterfaceV1 {
     List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
+
+    /**
+     * Posts a payment to an account async
+     *
+     * @param tenantId  the Tenant Id to post to
+     * @param propertyId id of the property where the account exists
+     * @param accountId  the Account Id to post to
+     * @param payment    Payment object containing payment information
+     * @return a TaskId to track the async process
+     */
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + PAYMENTS_ASYNC_PATH)
+    @Validated(Payment.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Produces(MediaType.TEXT_PLAIN)
+    String postPaymentAsync(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Payment payment,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
+
+    /**
+     * Get a payment result
+     *
+     * @param tenantId  the Tenant Id to post to
+     * @param propertyId id of the property where the account exists
+     * @param taskId  the task Id to post to
+     * @return a LineItemView for Display purposes
+     */
+    @GET
+    @Path(ACCOUNT_ID_PATH + TASK_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+           @PathParam(TASK_ID) String taskId) throws Throwable;
 
     /**
      * Refunds a payment to an account
