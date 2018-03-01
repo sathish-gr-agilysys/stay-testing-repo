@@ -47,6 +47,16 @@ public class CreateRecurringCharge {
     @JsonProperty(required = true)
     private LocalDate endDate;
 
+    private boolean overrideInventory;
+
+    public boolean isOverrideInventory() {
+        return overrideInventory;
+    }
+
+    public void setOverrideInventory(boolean overrideInventory) {
+        this.overrideInventory = overrideInventory;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
