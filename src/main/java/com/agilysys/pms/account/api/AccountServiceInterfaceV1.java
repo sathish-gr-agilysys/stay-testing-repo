@@ -162,6 +162,8 @@ public interface AccountServiceInterfaceV1 {
     String END_DATE = "endDate";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String INVENTORY_ALLOCATION = "/inventory/allocation/{" + PROPERTY_DATE + "}";
+    String V1 = "/v1";
+    String VALIDATE_INVENTORY = "validateInventory";
 
     /**
      * Retrieve all accounts from a tenant
@@ -615,6 +617,14 @@ public interface AccountServiceInterfaceV1 {
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
           @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + BATCH_CHARGES_PATH + V1)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInvQty')")
+    PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
+          @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges,
+          @QueryParam(VALIDATE_INVENTORY) boolean validateInventory) throws RGuestException, ServiceException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are

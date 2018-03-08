@@ -20,6 +20,16 @@ public class Charge extends Transaction {
 
     private String recurringChargeId;
 
+    private boolean overrideInventory;
+
+    public boolean isOverrideInventory() {
+        return overrideInventory;
+    }
+
+    public void setOverrideInventory(boolean overrideInventory) {
+        this.overrideInventory = overrideInventory;
+    }
+
     /**
      * @return the mealPeriodId
      */
