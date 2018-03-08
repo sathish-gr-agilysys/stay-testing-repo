@@ -7,11 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * View for the property to get all recurring charges for the current day
+ * View for the property to get all recurring charges for the current day.
  */
 public class RecurringChargesPropertyView {
-    private List<RecurringChargeView> recurringCharges = new ArrayList<>();
-    private List<RecurringChargeView> roomCharges = new ArrayList<>();
+    private List<RecurringChargeView> recurringCharges;
+    private List<RecurringChargeView> roomCharges;
+
+    public RecurringChargesPropertyView() {
+        recurringCharges = new ArrayList<>();
+        roomCharges = new ArrayList<>();
+    }
+
+    public RecurringChargesPropertyView(List<RecurringChargeView> recurringCharges,
+          List<RecurringChargeView> roomCharges) {
+        this.recurringCharges = recurringCharges;
+        this.roomCharges = roomCharges;
+    }
 
     public List<RecurringChargeView> getRecurringCharges() {
         return recurringCharges;
