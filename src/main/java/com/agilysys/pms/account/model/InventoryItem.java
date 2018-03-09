@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InventoryItem extends TransactionItem {
+    private static final String DISPLAY_NAME = "Inventory item";
+
     @JsonProperty(required = true)
     private int availableCount;
 
@@ -54,5 +56,10 @@ public class InventoryItem extends TransactionItem {
     @Override
     public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }

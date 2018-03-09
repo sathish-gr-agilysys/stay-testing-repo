@@ -28,6 +28,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionItem in the application.
  */
 public class TransactionItem extends AccountingItem {
+    private static final String DISPLAY_NAME = "Transaction item";
+
     @MinLengthRestriction(4)
     private String plu;
 
@@ -155,5 +157,10 @@ public class TransactionItem extends AccountingItem {
     public int hashCode()
     {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }
