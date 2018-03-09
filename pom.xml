@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.280-VCTRS-59689-SNAPSHOT</version>
+            <version>74.280.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.280-VCTRS-59689-SNAPSHOT</version>
+            <version>74.280.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
