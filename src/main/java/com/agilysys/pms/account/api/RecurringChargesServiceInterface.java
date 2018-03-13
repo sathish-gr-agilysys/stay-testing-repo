@@ -63,6 +63,9 @@ public interface RecurringChargesServiceInterface {
     String CHECKIN_AUTH_AMOUNT = "/checkinAuthAmount";
     String AUTH_DETAILS = "/authDetails";
 
+    String RECURRING_CHARGE_UPDATE = "/update";
+    String RECURRING_CHARGE_DELETE = "/delete";
+
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
      *
@@ -133,7 +136,7 @@ public interface RecurringChargesServiceInterface {
      */
     @PUT
     @CreatedOnSuccess
-    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH )
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_UPDATE)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(CreateRecurringCharge.class)
@@ -159,7 +162,7 @@ public interface RecurringChargesServiceInterface {
      */
     @PUT
     @CreatedOnSuccess
-    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH )
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_DELETE)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(CreateRecurringCharge.class)
