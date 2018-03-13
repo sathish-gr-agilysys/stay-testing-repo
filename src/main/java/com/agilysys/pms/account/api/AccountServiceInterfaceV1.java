@@ -60,7 +60,6 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
-import com.agilysys.pms.account.model.LedgerTransactionHistory;
 import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
@@ -91,81 +90,85 @@ import com.wordnik.swagger.annotations.ApiParam;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface AccountServiceInterfaceV1 {
-    String TASK_ID = "taskId";
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
+
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
-    String TYPES_PATH = "types";
-    String STATUSES_PATH = "statuses";
+
+    String ACCOUNT_BALANCES_PATH = "/balances";
     String ACCOUNT_ID = "accountId";
-    String GROUPED = "grouped";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
-    String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
-    String REFERENCE_ID = "referenceId";
-    String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
+    String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
-    String ACCOUNT_BALANCES_PATH = "/balances";
-    String CLOSABLE_INFO = "/closableInfo";
-    String PAYOFF_BALANCE_PATH = "/payOffBalance";
-    String FOLIO_PATH = "/folios";
-    String BATCH_FOLIO_PATH = "/batchFolios";
-    String FOLIO_ID = "folioId";
-    String FOLIO_BALANCES_PATH = "/folioBalances";
-    String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
-    String POSTING_RULES_PATH = "/postingRules";
-    String POSTING_RULE_ID = "postingRulesId";
-    String POSTING_RULE_ID_PATH = "/{" + POSTING_RULE_ID + "}";
-    String CHARGES_PATH = "/charges";
-    String POS_CHARGE_PATH = "/posCharge";
-    String BATCH_CHARGES_PATH = "/batchCharges";
-    String CREDIT_PATH = "/credit";
-    String POS_CREDIT_PATH = "/posCredit";
-    String PAYMENTS_PATH = "/payments";
-    String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
-    String REFUNDS_PATH = "/refunds"; //Used for generic refunds
-    String REFUND_PATH = "/refund"; //Used for a refund of a specific line ite
-    String TRANSFER_CHARGES_PATH = "/transferCharges";
-    String TRANSFER_HISTORY_ID = "transferHistoryId";
-    String TRANSFER_HISTORY = "/transferHistory";
-    String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
-    String TRANSFER_FOLIO_LINES = "/transferFolioLines";
-    String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String ADJUSTMENT_PATH = "/adjustment";
-    String CORRECTION_PATH = "/correction";
+    String APPLY_PAYMENTS = "/applyPayments";
+    String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
+    String BATCH_CHARGES_PATH = "/batchCharges";
+    String BATCH_FOLIO_PATH = "/batchFolios";
     String CHARGE_TAX_AMOUNT_PATH = "/calculateChargeTaxAmount";
-    String PAYMENT_SETTINGS_PATH = "/paymentSettings";
-    String TAXEXEMPT_SETTINGS_BYDATE_PATH = "/taxExemptSettingsByDate";
-    String GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
-    String PRESET =  "preset";
-    String PRESET_PATH = "/presetValue/{" + PRESET + "}";
-    String SEARCH_PATH = "/search";
-    String SEARCH_TERM = "searchTerm";
-    String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
-    String PATH = "path";
-    String REMAINING_PATH = "/{" + PATH + ":.*}";
-    String LEDGER_BALANCES_PATH = "/ledgerBalances";
-    String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
+    String CHARGES_PATH = "/charges";
+    String CHECK_ACCOUNT_NUMBER_AVAILABILITY_PATH = "/checkAccountNumberAvailability/{" + ACCOUNT_NUMBER + "}";
+    String CLOSABLE_INFO = "/closableInfo";
+    String CORRECTION_PATH = "/correction";
+    String CREDIT_PATH = "/credit";
+    String END_DATE = "endDate";
+    String FILTERED = "/filtered";
+    String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
+    String FOLIO_PATH = "/folios";
+    String FOLIO_BALANCES_PATH = "/folioBalances";
+    String FOLIO_ID = "folioId";
+    String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
+    String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
+    String GROUPED = "grouped";
+    String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
     String INVOICE_REPORT_START = "/invoice-report-start";
-    String INVOICE_REPORT_POLL = "/invoice-report-poll";
-    String INVOICE_ADD_ITEMS_PATH = "/addItems";
-    String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
+    String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
-    String APPLY_PAYMENTS = "/applyPayments";
-    String NON_INVOICED_PATH = "/nonInvoicedDetails";
+    String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
+    String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
-    String ACCOUNT_NUMBER = "accountNumber";
-    String CHECK_ACCOUNT_NUMBER_AVAILABILITY_PATH = "/checkAccountNumberAvailability/{" + ACCOUNT_NUMBER + "}";
-    String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
-    String FILTERED = "/filtered";
+    String NON_INVOICED_PATH = "/nonInvoicedDetails";
+    String PATH = "path";
+    String PAYMENT_SETTINGS_PATH = "/paymentSettings";
+    String PAYMENTS_PATH = "/payments";
+    String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
+    String PAYOFF_BALANCE_PATH = "/payOffBalance";
+    String POS_CHARGE_PATH = "/posCharge";
+    String POS_CREDIT_PATH = "/posCredit";
+    String POSTING_RULE_ID = "postingRulesId";
+    String POSTING_RULE_ID_PATH = "/{" + POSTING_RULE_ID + "}";
+    String POSTING_RULES_PATH = "/postingRules";
+    String PRESET =  "preset";
+    String PRESET_PATH = "/presetValue/{" + PRESET + "}";
+    String REFERENCE_ID = "referenceId";
+    String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
+    // used for a refund of a specific line item
+    String REFUND_PATH = "/refund";
+    // used for generic refunds
+    String REFUNDS_PATH = "/refunds";
+    String REMAINING_PATH = "/{" + PATH + ":.*}";
+    String SEARCH_PATH = "/search";
+    String SEARCH_TERM = "searchTerm";
+    String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
     String START_DATE = "startDate";
-    String END_DATE = "endDate";
-    String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
+    String STATUSES_PATH = "statuses";
+    String TASK_ID = "taskId";
+    String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
+    String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
+    String TRANSFER_AMOUNT_PATH = "/transferAmount";
+    String TRANSFER_CHARGES_PATH = "/transferCharges";
+    String TRANSFER_FOLIO_LINES = "/transferFolioLines";
+    String TRANSFER_HISTORY = "/transferHistory";
+    String TRANSFER_HISTORY_ID = "transferHistoryId";
+    String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
+    String TYPES_PATH = "types";
+    String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
 
     /**
      * Retrieve all accounts from a tenant
@@ -858,7 +861,7 @@ public interface AccountServiceInterfaceV1 {
      * @return Existing taxExemptSettings
      */
     @GET
-    @Path(ACCOUNT_ID_PATH + TAXEXEMPT_SETTINGS_BYDATE_PATH)
+    @Path(ACCOUNT_ID_PATH + TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     TaxExemptSettingsByDate getTaxExemptSettingsByDate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
@@ -875,7 +878,7 @@ public interface AccountServiceInterfaceV1 {
      */
     @POST
     @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + TAXEXEMPT_SETTINGS_BYDATE_PATH)
+    @Path(ACCOUNT_ID_PATH + TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
     @Validated(TaxExemptSettingsByDate.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     TaxExemptSettingsByDate saveTaxExemptSettingsByDate(@PathParam(TENANT_ID) String tenantId,
@@ -891,7 +894,7 @@ public interface AccountServiceInterfaceV1 {
      * @return Existing taxExemptSettings
      */
     @GET
-    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH)
+    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     GroupCompanyTaxExemptSettings getGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId
@@ -906,7 +909,7 @@ public interface AccountServiceInterfaceV1 {
      * @return Existing taxExemptSettings
      */
     @GET
-    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH + PRESET_PATH)
+    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH + PRESET_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     GroupCompanyTaxExemptSettings getV1GroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
@@ -923,7 +926,7 @@ public interface AccountServiceInterfaceV1 {
      * @return Created settings
      */
     @POST
-    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH)
+    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH)
     @Validated(GroupCompanyTaxExemptSettings.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GroupCompanyTaxExemptSettings saveGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
@@ -932,7 +935,7 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @POST
-    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAXEXEMPT_SETTINGS_PATH + PRESET_PATH)
+    @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH + PRESET_PATH)
     @Validated(GroupCompanyTaxExemptSettings.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GroupCompanyTaxExemptSettings saveV1GroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
