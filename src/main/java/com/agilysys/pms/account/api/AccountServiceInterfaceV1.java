@@ -71,6 +71,8 @@ import com.agilysys.pms.account.model.Payment;
 import com.agilysys.pms.account.model.PaymentInstrumentAuthStatus;
 import com.agilysys.pms.account.model.PaymentRefund;
 import com.agilysys.pms.account.model.PayoffBalanceRequest;
+import com.agilysys.pms.account.model.PosCharge;
+import com.agilysys.pms.account.model.PosCredit;
 import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
@@ -116,8 +118,10 @@ public interface AccountServiceInterfaceV1 {
     String POSTING_RULE_ID = "postingRulesId";
     String POSTING_RULE_ID_PATH = "/{" + POSTING_RULE_ID + "}";
     String CHARGES_PATH = "/charges";
+    String POS_CHARGE_PATH = "/posCharge";
     String BATCH_CHARGES_PATH = "/batchCharges";
     String CREDIT_PATH = "/credit";
+    String POS_CREDIT_PATH = "/posCredit";
     String PAYMENTS_PATH = "/payments";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
     String REFUNDS_PATH = "/refunds"; //Used for generic refunds
@@ -595,6 +599,14 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge)
           throws RGuestException, ServiceException;
 
+    @POST
+    @Path(ACCOUNT_ID_PATH + POS_CHARGE_PATH)
+    @Validated(Charge.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> postPosCharge(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, PosCharge posCharge)
+          throws RGuestException, ServiceException;
+
     /**
      * Posts charges to an account
      *
@@ -626,8 +638,6 @@ public interface AccountServiceInterfaceV1 {
     List<LineItemView> postCharges(String tenantId, String propertyId, String accountId, boolean ignoreAuth,
           List<Charge> charges, Boolean isRecurring) throws RGuestException, ServiceException;
 
-    ;
-
     /**
      * Posts a credit to an account
      *
@@ -643,6 +653,14 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'AllowCredits')")
     LineItemView postCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Credit credit) throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + POS_CREDIT_PATH)
+    @Validated(Credit.class)
+    @PreAuthorize("hasPermission('Required', 'AllowCredits')")
+    LineItemView postPosCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, PosCredit posCredit) throws RGuestException, ServiceException;
 
     /**
      * Posts a payment to an account
