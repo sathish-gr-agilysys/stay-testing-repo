@@ -3,23 +3,14 @@
  */
 package com.agilysys.pms.account.model;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import com.agilysys.platform.common.json.schema.MinValueRestriction;
+import com.google.common.base.Objects;
 
 /**
- * A Charge posted to an account
- *
- * @see <a
- * href="http://confluence.bellevue.ad.local/display/VICTRIAL/Charge+Object">Confluence:
- * Charge Object</a>
+ * A Charge posted to an account.
  */
 public class Charge extends Transaction {
     private String mealPeriodId;
-
     private String recurringChargeId;
-
     private boolean overrideInventory;
 
     public boolean isOverrideInventory() {
@@ -30,16 +21,10 @@ public class Charge extends Transaction {
         this.overrideInventory = overrideInventory;
     }
 
-    /**
-     * @return the mealPeriodId
-     */
     public String getMealPeriodId() {
         return mealPeriodId;
     }
 
-    /**
-     * @param mealPeriodId Optional ID of mealPeriod
-     */
     public void setMealPeriodId(String mealPeriodId) {
         this.mealPeriodId = mealPeriodId;
     }
@@ -53,25 +38,26 @@ public class Charge extends Transaction {
     }
 
     @Override
-    public int hashCode() {
-        return new HashCodeBuilder().appendSuper(7).append(mealPeriodId).append(recurringChargeId).append(getQuantity())
-              .toHashCode();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Charge that = (Charge) o;
+
+        return Objects.equal(mealPeriodId, that.mealPeriodId) &&
+              Objects.equal(quantity, that.quantity) &&
+              Objects.equal(recurringChargeId, that.recurringChargeId) &&
+              Objects.equal(overrideInventory, that.overrideInventory);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-        Charge rhs = (Charge) obj;
-        return new EqualsBuilder().appendSuper(super.equals(obj)).append(mealPeriodId, rhs.mealPeriodId)
-              .append(recurringChargeId, rhs.recurringChargeId).append(getQuantity(), rhs.getQuantity()).isEquals();
+    public int hashCode() {
+        return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId, overrideInventory);
     }
-
 }
