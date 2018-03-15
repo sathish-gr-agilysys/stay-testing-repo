@@ -31,7 +31,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String id;
 
     private String accountId;
-    private List<LineItemView> adjustmentLineItems = Lists.newArrayList();
+    private List<LineItemView> adjustmentLineItems;
     private boolean autoRouted;
     private String categoryId;
     private LineItemView correctionLineItem;
@@ -40,7 +40,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean distributed;
     private String folioId;
     private String folioLineType;
-    private List<LineItemView> groupedTaxLineItems = Lists.newArrayList();
+    private List<LineItemView> groupedTaxLineItems;
     private String itemId;
     private String ledgerId;
     private List<LedgerTransactionHistory> ledgerTransactionHistory;
@@ -51,7 +51,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private DateTime postingCalendarDateTime;
     private LocalDate postingPropertyDate;
     private int quantity;
-    private List<LineItemView> refundLineItems = Lists.newArrayList();
+    private List<LineItemView> refundLineItems;
     private String reason;
     private String recurringChargeId;
     private String reference;
@@ -60,7 +60,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean routed;
     private String sourceId;
     private String subcategoryId;
-    private List<LineItemView> taxLineItems = Lists.newArrayList();
+    private List<LineItemView> taxLineItems;
     private String transactionDestinationAccountId;
     private LineItemView transferLineItem;
     private String transactionId;
@@ -69,6 +69,13 @@ public class LineItemView implements Comparable<LineItemView> {
     private String transactionType;
     private BigDecimal unitAmount;
     private String userId;
+
+    public LineItemView() {
+        adjustmentLineItems = new ArrayList<>();
+        groupedTaxLineItems = new ArrayList<>();
+        refundLineItems = new ArrayList<>();
+        taxLineItems = new ArrayList<>();
+    }
 
     /**
      * @return the ID of the LineItem
