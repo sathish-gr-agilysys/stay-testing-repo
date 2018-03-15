@@ -289,9 +289,9 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Update the AR settings on an existing company account
      *
-     * @param tenantId
-     * @param propertyId
-     * @param accountId
+     * @param tenantId      tenant id
+     * @param propertyId    property id
+     * @param accountId     account id
      * @param accountsReceivableSettings update AR settings for the company
      * @return summary view of the updated company account
      * @throws ServiceException
