@@ -52,6 +52,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private int quantity;
     private List<LineItemView> refundLineItems;
     private String reason;
+    private String receiptTextImage;
     private String recurringChargeId;
     private String reference;
     private String reservationId;
@@ -318,6 +319,14 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getReceiptTextImage() {
+        return receiptTextImage;
+    }
+
+    public void setReceiptTextImage(String receiptTextImage) {
+        this.receiptTextImage = receiptTextImage;
     }
 
     public String getRecurringChargeId() {
@@ -673,7 +682,7 @@ public class LineItemView implements Comparable<LineItemView> {
 
     @JsonIgnore
     public String getFolioLineOrTransactionType() {
-        return this.folioLineType == null ? this.transactionType : this.folioLineType;
+        return folioLineType != null ? folioLineType : transactionType;
     }
 
     @Override
@@ -697,10 +706,10 @@ public class LineItemView implements Comparable<LineItemView> {
 
         // line items that are routed will have the same displayDate and postingCalendarDateTime
         // we want to show the positive charge first, and then the negative one
-        if (this.isRouted() || other.isRouted()) {
+        if (routed || other.isRouted()) {
             if (!other.isRouted()) {
                 return -1;
-            } else if (!this.isRouted()) {
+            } else if (!routed) {
                 return 1;
             } else {
                 return other.getGrandTotalAmount().compareTo(this.getGrandTotalAmount());
