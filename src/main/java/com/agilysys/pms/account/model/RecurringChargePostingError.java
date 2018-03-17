@@ -4,11 +4,11 @@
 package com.agilysys.pms.account.model;
 
 /**
- * Class that describes any errors there were in posting recurring charges
+ * Class that describes any errors there were in posting recurring charges.
  */
 public class RecurringChargePostingError {
-    String accountId;
-    String errorMessage;
+    private String accountId;
+    private String errorMessage;
 
     public String getErrorMessage() {
         return errorMessage;
