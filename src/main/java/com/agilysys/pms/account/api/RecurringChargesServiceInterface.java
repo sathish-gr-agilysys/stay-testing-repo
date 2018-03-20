@@ -30,6 +30,7 @@ import com.agilysys.pms.account.model.ProgressStatusView;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
+import com.agilysys.pms.account.model.UpdateRecurringCharge;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 /**
@@ -125,13 +126,14 @@ public interface RecurringChargesServiceInterface {
     /**
      * Update a recurring charge for an account
      *
-     * @param tenantId              id of tenant where account exists
-     * @param propertyId            id of the property where the account exists
-     * @param accountId             id of account to update settings to
-     * @param createRecurringChargeList recurring charge to update
+     * @param tenantId                  id of tenant where account exists
+     * @param propertyId                id of the property where the account exists
+     * @param accountId                 id of account to update settings to
+     * @param updateRecurringChargeList recurring charge to update
      * @param startDate
-     * @param endDate               Start date and end date creates the range for what RecurringChargeView dates should
-     *                              be returned
+     * @param endDate                   Start date and end date creates the range for what RecurringChargeView dates
+     *                                  should
+     *                                  be returned
      * @return Updated recurring charge
      */
     @PUT
@@ -139,25 +141,24 @@ public interface RecurringChargesServiceInterface {
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_UPDATE)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(CreateRecurringCharge.class)
+    @Validated(UpdateRecurringCharge.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<List<RecurringChargeView>> updateRecurringCharge(@PathParam(TENANT_ID) String tenantId,
-                                                          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-                                                          List<CreateRecurringCharge> createRecurringChargeList, @QueryParam(START_DATE) LocalDate startDate,
-                                                          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
-
-
+    List<RecurringChargeView> updateRecurringCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          List<UpdateRecurringCharge> updateRecurringChargeList, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     /**
      * Delete a recurring charge for an account
      *
-     * @param tenantId              id of tenant where account exists
-     * @param propertyId            id of the property where the account exists
-     * @param accountId             id of account to delete settings to
-     * @param createRecurringChargeList    recurring charge to delete
+     * @param tenantId                  id of tenant where account exists
+     * @param propertyId                id of the property where the account exists
+     * @param accountId                 id of account to delete settings to
+     * @param deleteRecurringChargeList recurring charge to delete
      * @param startDate
-     * @param endDate               Start date and end date creates the range for what RecurringChargeView dates should
-     *                              be returned
+     * @param endDate                   Start date and end date creates the range for what RecurringChargeView dates
+     *                                  should
+     *                                  be returned
      * @return Deleted recurring charge
      */
     @PUT
@@ -165,12 +166,12 @@ public interface RecurringChargesServiceInterface {
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_DELETE)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(CreateRecurringCharge.class)
+    @Validated(UpdateRecurringCharge.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<List<RecurringChargeView>> deleteRecurringCharge(@PathParam(TENANT_ID) String tenantId,
-                                                          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-                                                          List<CreateRecurringCharge> createRecurringChargeList, @QueryParam(START_DATE) LocalDate startDate,
-                                                          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
+    List<RecurringChargeView> deleteRecurringCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          List<UpdateRecurringCharge> deleteRecurringChargeList, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     /**
      * Retrieve recurring charge for an account
