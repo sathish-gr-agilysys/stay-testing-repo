@@ -164,11 +164,10 @@ public interface RecurringChargesServiceInterface {
     @PUT
     @CreatedOnSuccess
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_DELETE)
-    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(UpdateRecurringCharge.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<RecurringChargeView> deleteRecurringCharge(@PathParam(TENANT_ID) String tenantId,
+    void deleteRecurringCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<UpdateRecurringCharge> deleteRecurringChargeList, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
