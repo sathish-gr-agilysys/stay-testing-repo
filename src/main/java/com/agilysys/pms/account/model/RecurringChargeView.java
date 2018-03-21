@@ -11,6 +11,8 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.rate.CompInfo;
+
 /**
  * Recurring Charges view object
  */
@@ -22,6 +24,7 @@ public class RecurringChargeView {
     private BigDecimal amount;
     private String sourceId;
     private String accountId;
+    private CompInfo compInfo;
     private String folioId;
     private String itemId;
     private String reason;
@@ -198,5 +201,13 @@ public class RecurringChargeView {
 
     public void setRatePlanId(String ratePlanId) {
         this.ratePlanId = ratePlanId;
+    }
+
+    public CompInfo getCompInfo() {
+        return compInfo;
+    }
+
+    public void setCompInfo(CompInfo compInfo) {
+        this.compInfo = compInfo;
     }
 }
