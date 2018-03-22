@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2017. Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
@@ -7,12 +10,22 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Created by PakkirisamyS on 20-03-2018.
+ * Update Recurring Charge
  */
 public class UpdateRecurringCharge extends CreateRecurringCharge {
 
     @JsonProperty(required = true)
     private String id;
+
+    public UpdateRecurringCharge() {
+
+    }
+
+    public UpdateRecurringCharge(String id, String agentId, String itemId, BigDecimal amount, String reason,
+          FrequencyType frequencyType, int nNights, Set<Integer> occurrenceDays) {
+        super(agentId, itemId, amount, reason, frequencyType, nNights, occurrenceDays);
+        this.id = id;
+    }
 
     public String getId() {
         return id;
@@ -29,13 +42,4 @@ public class UpdateRecurringCharge extends CreateRecurringCharge {
               Arrays.toString(getOccurrenceDays().toArray()) + "]";
     }
 
-    public UpdateRecurringCharge(String id, String agentId, String itemId, BigDecimal amount, String reason,
-          FrequencyType frequencyType, int nNights, Set<Integer> occurrenceDays) {
-        super(agentId, itemId, amount, reason, frequencyType, nNights, occurrenceDays);
-        this.id = id;
-    }
-
-    public UpdateRecurringCharge() {
-
-    }
 }
