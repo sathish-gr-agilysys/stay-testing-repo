@@ -39,6 +39,7 @@ public class CreateRecurringCharge {
     @MinValueRestriction(1)
     private int nNights;
 
+    @MinValueRestriction(0)
     private int quantity;
 
     @JsonProperty(required = true)

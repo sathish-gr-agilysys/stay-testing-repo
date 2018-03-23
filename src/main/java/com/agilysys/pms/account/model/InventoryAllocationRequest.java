@@ -58,10 +58,9 @@ public class InventoryAllocationRequest {
 
     public void setOccurrenceDays(Set<Integer> occurrenceDays) {
         if (occurrenceDays != null) {
-            for (Integer day : occurrenceDays) {
-                if (day < DateTimeConstants.MONDAY || day > DateTimeConstants.SUNDAY) {
-                    throw accountException(AccountErrorCode.OCCURRENCE_DAYS_INVALID).buildCompatible();
-                }
+            if (occurrenceDays.stream()
+                  .anyMatch(day -> day < DateTimeConstants.MONDAY || day > DateTimeConstants.SUNDAY)) {
+                throw accountException(AccountErrorCode.OCCURRENCE_DAYS_INVALID).buildCompatible();
             }
         }
         this.occurrenceDays = occurrenceDays;

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.joda.time.LocalDate;
 
@@ -25,7 +26,11 @@ public class CheckInventoryAllocation {
     and its value is list of InventoryAllocationRequest*/
     @JsonProperty(required = true)
     private Map<LocalDate, Map<LocalDate, List<InventoryAllocationRequest>>> inventoryAllocationRequests;
-    private Set<String> excludeAccounts = Sets.newHashSet();
+    private Set<String> excludeAccounts;
+
+    public CheckInventoryAllocation() {
+        excludeAccounts = Sets.newHashSet();
+    }
 
     public Set<String> getExcludeAccounts() {
         return excludeAccounts;
@@ -48,11 +53,12 @@ public class CheckInventoryAllocation {
     public Set<String> getInventoryItemIds() {
         Set<String> itemIds = new HashSet<>();
         for (Map.Entry<LocalDate, Map<LocalDate, List<InventoryAllocationRequest>>> startDateEntry :
-              inventoryAllocationRequests.entrySet()) {
+              inventoryAllocationRequests
+              .entrySet()) {
             for (Map.Entry<LocalDate, List<InventoryAllocationRequest>> endDateEntry : startDateEntry.getValue()
                   .entrySet()) {
-                for (InventoryAllocationRequest inventoryAllocationRequest : endDateEntry.getValue())
-                    itemIds.add(inventoryAllocationRequest.getInventoryItemId());
+                itemIds.addAll(endDateEntry.getValue().stream().map(InventoryAllocationRequest::getInventoryItemId)
+                      .collect(Collectors.toSet()));
             }
         }
         return itemIds;
