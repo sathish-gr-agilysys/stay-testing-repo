@@ -59,8 +59,7 @@ public class CheckInventoryAllocation {
 
     @JsonIgnore
     public boolean hasPropertyDate(LocalDate propertyDate) {
-        getInventoryAllocationRequests().entrySet().stream()
+        return getInventoryAllocationRequests().entrySet().stream()
               .anyMatch(startDateEntry -> startDateEntry.getKey().isEqual(propertyDate));
-        return false;
     }
 }
