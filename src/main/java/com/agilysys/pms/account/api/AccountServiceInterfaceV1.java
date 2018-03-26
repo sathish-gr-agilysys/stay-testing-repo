@@ -614,7 +614,6 @@ public interface AccountServiceInterfaceV1 {
      *                   Setting this value to true requires the ForceChargeAcceptance permission.
      * @return LineItemViews
      */
-    @Deprecated
     @POST
     @Path(ACCOUNT_ID_PATH + BATCH_CHARGES_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
@@ -1282,9 +1281,18 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
+    /**
+     * Get allocation count of inventory items in any dates and frequency
+     *
+     * @param tenantId                 tenantId
+     * @param propertyId               propertyId
+     * @param propertyDate             property date
+     * @param checkInventoryAllocation has request dates and inventory item id's
+     * @return allocation response for request dates
+     */
     @POST
     @Path(INVENTORY_ALLOCATION)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     public Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(PROPERTY_DATE) LocalDate propertyDate, CheckInventoryAllocation checkInventoryAllocation)

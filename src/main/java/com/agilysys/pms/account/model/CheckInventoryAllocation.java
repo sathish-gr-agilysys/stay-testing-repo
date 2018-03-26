@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -51,27 +52,15 @@ public class CheckInventoryAllocation {
 
     @JsonIgnore
     public Set<String> getInventoryItemIds() {
-        Set<String> itemIds = new HashSet<>();
-        for (Map.Entry<LocalDate, Map<LocalDate, List<InventoryAllocationRequest>>> startDateEntry :
-              inventoryAllocationRequests
-              .entrySet()) {
-            for (Map.Entry<LocalDate, List<InventoryAllocationRequest>> endDateEntry : startDateEntry.getValue()
-                  .entrySet()) {
-                itemIds.addAll(endDateEntry.getValue().stream().map(InventoryAllocationRequest::getInventoryItemId)
-                      .collect(Collectors.toSet()));
-            }
-        }
-        return itemIds;
+        return inventoryAllocationRequests.values().stream().map(Map::values).flatMap(Collection::stream)
+              .flatMap(Collection::stream).map(InventoryAllocationRequest::getInventoryItemId)
+              .collect(Collectors.toSet());
     }
 
     @JsonIgnore
     public boolean hasPropertyDate(LocalDate propertyDate) {
-        for (Map.Entry<LocalDate, Map<LocalDate, List<InventoryAllocationRequest>>> startDateEntry :
-              getInventoryAllocationRequests().entrySet()) {
-            if (startDateEntry.getKey().isEqual(propertyDate)) {
-                return true;
-            }
-        }
+        getInventoryAllocationRequests().entrySet().stream()
+              .anyMatch(startDateEntry -> startDateEntry.getKey().isEqual(propertyDate));
         return false;
     }
 }
