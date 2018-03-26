@@ -141,7 +141,6 @@ public interface RecurringChargesServiceInterface {
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_UPDATE)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(UpdateRecurringCharge.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<RecurringChargeView> updateRecurringCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
