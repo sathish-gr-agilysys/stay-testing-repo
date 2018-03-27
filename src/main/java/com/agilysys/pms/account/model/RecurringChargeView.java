@@ -30,6 +30,7 @@ public class RecurringChargeView {
     private String overrideReason;
     private String ratePlanName;
     private String ratePlanId;
+    private char isDeleted;
 
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
@@ -198,5 +199,13 @@ public class RecurringChargeView {
 
     public void setRatePlanId(String ratePlanId) {
         this.ratePlanId = ratePlanId;
+    }
+
+    public char getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(char isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
