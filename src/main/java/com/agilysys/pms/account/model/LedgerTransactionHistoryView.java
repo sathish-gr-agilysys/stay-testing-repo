@@ -3,7 +3,6 @@
  */
 package com.agilysys.pms.account.model;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -17,9 +16,9 @@ public class LedgerTransactionHistoryView {
 
     String propertyId;
 
-    private LedgerTransactionHistoryAccountData sourceInfo;
+    private LedgerTransactionAccountDetail sourceInfo;
 
-    private LedgerTransactionHistoryAccountData destinationInfo;
+    private LedgerTransactionAccountDetail destinationInfo;
 
     private String reason;
 
@@ -67,19 +66,19 @@ public class LedgerTransactionHistoryView {
         this.propertyId = propertyId;
     }
 
-    public LedgerTransactionHistoryAccountData getSourceInfo() {
+    public LedgerTransactionAccountDetail getSourceInfo() {
         return sourceInfo;
     }
 
-    public void setSourceInfo(LedgerTransactionHistoryAccountData sourceInfo) {
+    public void setSourceInfo(LedgerTransactionAccountDetail sourceInfo) {
         this.sourceInfo = sourceInfo;
     }
 
-    public LedgerTransactionHistoryAccountData getDestinationInfo() {
+    public LedgerTransactionAccountDetail getDestinationInfo() {
         return destinationInfo;
     }
 
-    public void setDestinationInfo(LedgerTransactionHistoryAccountData destinationInfo) {
+    public void setDestinationInfo(LedgerTransactionAccountDetail destinationInfo) {
         this.destinationInfo = destinationInfo;
     }
 
@@ -91,8 +90,8 @@ public class LedgerTransactionHistoryView {
         this.postingDate = postingDate;
     }
 
-    public void toHistoryView(String id, String reason, LedgerTransactionHistoryAccountData sourceInfo,
-          LedgerTransactionHistoryAccountData destinationInfo, LocalDate postingDate,String tenantId,String propertyId, String folioLineType) {
+    public void toHistoryView(String id, String reason, LedgerTransactionAccountDetail sourceInfo,
+          LedgerTransactionAccountDetail destinationInfo, LocalDate postingDate,String tenantId,String propertyId, String folioLineType) {
         this.id = id;
         this.reason = reason;
         this.postingDate = postingDate;
