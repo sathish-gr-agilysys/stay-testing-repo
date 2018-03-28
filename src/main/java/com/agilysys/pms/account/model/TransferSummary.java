@@ -9,6 +9,10 @@ public class TransferSummary {
     private String sourceAccountType;
     private String destinationAccountType;
 
+    private String paymentInstrumentId;
+    private String paymentMethodId;
+    private String paymentSettingId;
+
     private TransferDirection direction;
 
     public String getSourceAccountId() {
@@ -41,6 +45,18 @@ public class TransferSummary {
 
     public void setDestinationAccountType(String destinationAccountType) {
         this.destinationAccountType = destinationAccountType;
+    }
+
+    public void setPaymentInstrumentId(String paymentInstrumentId) {
+        this.paymentInstrumentId = paymentInstrumentId;
+    }
+
+    public void setPaymentMethodId(String paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
+
+    public void setPaymentSettingId(String paymentSettingId) {
+        this.paymentSettingId = paymentSettingId;
     }
 
     public TransferDirection getDirection() {
