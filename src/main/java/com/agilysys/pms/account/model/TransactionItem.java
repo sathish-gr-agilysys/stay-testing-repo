@@ -31,7 +31,6 @@ public class TransactionItem extends AccountingItem {
     @JsonProperty(required = true)
     private BigDecimal defaultPrice;
 
-    @JsonProperty(required = true)
     @DataPortMapReference(name = "sourceCodeToMealPeriodCodes", keyType = {
           Building.class, Outlet.class }, valueType = MealPeriod.class, multipleValues = true)
     private Map<String, List<String>> sourceMealPeriods;
