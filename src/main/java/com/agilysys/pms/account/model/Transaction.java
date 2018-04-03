@@ -35,6 +35,7 @@ public abstract class Transaction {
     protected LocalDate postingDate;
     @MinValueRestriction(1)
     protected int quantity = 1;
+    protected String rateChangeComment;
     @MaxLengthRestriction(250)
     protected String reason;
     protected String reference;
@@ -150,6 +151,14 @@ public abstract class Transaction {
 
     public void setCompInfo(CompInfo compInfo) {
         this.compInfo = compInfo;
+    }
+
+    public String getRateChangeComment() {
+        return rateChangeComment;
+    }
+
+    public void setRateChangeComment(String rateChangeComment) {
+        this.rateChangeComment = rateChangeComment;
     }
 
     @Override

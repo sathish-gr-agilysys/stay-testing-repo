@@ -70,6 +70,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String ledgerTransactionHistoryId;
     private List<LedgerTransactionHistory> ledgerTransactionHistory;
     private CompInfo compInfo;
+    private String rateChangeComment;
 
     /**
      * @return the ID of the LineItem
@@ -272,6 +273,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCompInfo(CompInfo compInfo) {
         this.compInfo = compInfo;
+    }
+
+    public String getRateChangeComment() {
+        return rateChangeComment;
+    }
+
+    public void setRateChangeComment(String rateChangeComment) {
+        this.rateChangeComment = rateChangeComment;
     }
 
     /**
