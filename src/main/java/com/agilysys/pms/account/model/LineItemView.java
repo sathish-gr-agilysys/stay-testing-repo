@@ -11,6 +11,7 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.rate.CompInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.Lists;
@@ -68,6 +69,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private String name;
     private String ledgerTransactionHistoryId;
     private List<LedgerTransactionHistory> ledgerTransactionHistory;
+    private CompInfo compInfo;
+    private String rateChangeComment;
 
     /**
      * @return the ID of the LineItem
@@ -262,6 +265,22 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getTotalAmount() {
         return unitAmount.multiply(new BigDecimal(quantity));
+    }
+
+    public CompInfo getCompInfo() {
+        return compInfo;
+    }
+
+    public void setCompInfo(CompInfo compInfo) {
+        this.compInfo = compInfo;
+    }
+
+    public String getRateChangeComment() {
+        return rateChangeComment;
+    }
+
+    public void setRateChangeComment(String rateChangeComment) {
+        this.rateChangeComment = rateChangeComment;
     }
 
     /**

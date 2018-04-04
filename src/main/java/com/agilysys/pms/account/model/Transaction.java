@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,6 +26,7 @@ public abstract class Transaction {
     protected String accountId;
     @JsonProperty(required = true)
     protected BigDecimal amount;
+    protected CompInfo compInfo;
     protected String folioId;
     protected Boolean ignoreRules = true;
     @JsonProperty(required = true)
@@ -34,6 +36,7 @@ public abstract class Transaction {
     @MinValueRestriction(1)
     protected int quantity = 1;
     @MaxLengthRestriction(250)
+    protected String rateChangeComment;
     protected String reason;
     protected String reference;
     protected String sourceId;
@@ -140,6 +143,22 @@ public abstract class Transaction {
 
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
+    }
+
+    public CompInfo getCompInfo() {
+        return compInfo;
+    }
+
+    public void setCompInfo(CompInfo compInfo) {
+        this.compInfo = compInfo;
+    }
+
+    public String getRateChangeComment() {
+        return rateChangeComment;
+    }
+
+    public void setRateChangeComment(String rateChangeComment) {
+        this.rateChangeComment = rateChangeComment;
     }
 
     @Override
