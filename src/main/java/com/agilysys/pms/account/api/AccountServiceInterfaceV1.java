@@ -24,6 +24,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -162,6 +163,7 @@ public interface AccountServiceInterfaceV1 {
     String START_DATE = "startDate";
     String END_DATE = "endDate";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
+    String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1251,5 +1253,16 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + FREE_ALLOWANCE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    BigDecimal getFreeAllowanceCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId,
+          String callType,
+          DateTime startDateTime,
+          DateTime endDateTime)
           throws RGuestException, ServiceException;
 }

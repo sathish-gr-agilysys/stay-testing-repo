@@ -38,6 +38,9 @@ public abstract class Transaction {
     protected String reference;
     protected String sourceId;
     protected String terminalId;
+    protected String callType;
+    protected BigDecimal originalAmount;
+    protected BigDecimal freeAllowanceAmount;
 
     public String getAccountId() {
         return accountId;
@@ -141,6 +144,18 @@ public abstract class Transaction {
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
+
+    public String getCallType() { return callType; }
+
+    public void setCallType(String callType) { this.callType = callType; }
+
+    public BigDecimal getOriginalAmount() { return originalAmount; }
+
+    public void setOriginalAmount(BigDecimal originalAmount) { this.originalAmount = originalAmount; }
+
+    public BigDecimal getFreeAllowanceAmount() { return freeAllowanceAmount; }
+
+    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
 
     @Override
     public int hashCode() {
