@@ -61,9 +61,7 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
-import com.agilysys.pms.account.model.LedgerTransactionHistory;
 import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
-import com.agilysys.pms.account.model.LedgerTransactionRequest;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -163,6 +161,9 @@ public interface AccountServiceInterfaceV1 {
     String FILTERED = "/filtered";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
+    String START_DATE_TIME = "startDateTime";
+    String END_DATE_TIME = "endDateTime";
+    String CALL_TYPE = "callType";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
 
@@ -1262,6 +1263,8 @@ public interface AccountServiceInterfaceV1 {
     BigDecimal getFreeAllowanceCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId,
-          LedgerTransactionRequest request)
+          @QueryParam(CALL_TYPE) String callType,
+          @QueryParam(START_DATE_TIME) DateTime startDateTime,
+          @QueryParam(END_DATE_TIME) DateTime endDateTime)
           throws RGuestException, ServiceException;
 }
