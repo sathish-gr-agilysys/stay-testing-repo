@@ -63,6 +63,7 @@ import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
 import com.agilysys.pms.account.model.LedgerTransactionHistory;
 import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
+import com.agilysys.pms.account.model.LedgerTransactionRequest;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -1261,8 +1262,6 @@ public interface AccountServiceInterfaceV1 {
     BigDecimal getFreeAllowanceCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId,
-          String callType,
-          DateTime startDateTime,
-          DateTime endDateTime)
+          LedgerTransactionRequest request)
           throws RGuestException, ServiceException;
 }
