@@ -1264,7 +1264,7 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(CALL_TYPE) String callType,
-          @QueryParam(START_DATE_TIME) DateTime startDateTime,
-          @QueryParam(END_DATE_TIME) DateTime endDateTime)
+          @QueryParam(START_DATE_TIME) String startDateTime,
+          @QueryParam(END_DATE_TIME) String endDateTime)
           throws RGuestException, ServiceException;
 }
