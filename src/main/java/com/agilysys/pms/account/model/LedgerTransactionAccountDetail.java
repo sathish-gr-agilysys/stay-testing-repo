@@ -9,7 +9,7 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.pms.property.model.AllocatedRoomDetail;
 
-public class LedgerTransactionHistoryAccountData {
+public class LedgerTransactionAccountDetail {
     private String id;
 
     private String accountType;
