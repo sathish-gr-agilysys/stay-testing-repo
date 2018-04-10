@@ -13,14 +13,14 @@ import javafx.util.Pair;
 
 public class InventoryAvailabilityRequest {
     @JsonProperty(required = true)
-    Map<Pair<LocalDate, String>, Integer> itemRequestPerDate;
+    Map<LocalDate, Map<String, Integer>> itemRequestPerDate;
     boolean validateOverridePermission;
 
-    public Map<Pair<LocalDate, String>, Integer> getItemRequestPerDate() {
+    public Map<LocalDate, Map<String, Integer>> getItemRequestPerDate() {
         return itemRequestPerDate;
     }
 
-    public void setItemRequestPerDate(Map<Pair<LocalDate, String>, Integer> itemRequestPerDate) {
+    public void setItemRequestPerDate(Map<LocalDate, Map<String, Integer>> itemRequestPerDate) {
         this.itemRequestPerDate = itemRequestPerDate;
     }
 
