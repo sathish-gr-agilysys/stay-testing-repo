@@ -56,7 +56,10 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
+import com.agilysys.pms.account.model.InventoryAllocationRequest;
 import com.agilysys.pms.account.model.InventoryAllocationResponse;
+import com.agilysys.pms.account.model.InventoryAvailabilityRequest;
+import com.agilysys.pms.account.model.InventoryAvailabilityResponse;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
 import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
@@ -166,6 +169,7 @@ public interface AccountServiceInterfaceV1 {
     String END_DATE = "endDate";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String INVENTORY_ALLOCATION = "/inventory/allocation/{" + PROPERTY_DATE + "}";
+    String INVENTORY_AVAILABILITY = "/inventory/availability";
     String V1 = "/v1";
     String VALIDATE_INVENTORY = "validateInventory";
     String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
@@ -1300,5 +1304,20 @@ public interface AccountServiceInterfaceV1 {
     public Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(PROPERTY_DATE) LocalDate propertyDate, CheckInventoryAllocation checkInventoryAllocation)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Check if inventory item quantity is available
+     *
+     * @param tenantId                   tenantId
+     * @param propertyId                 propertyId
+     * @param inventoryAllocationRequest has request dates and inventory item id's
+     * @return availability response for request dates
+     */
+    @POST
+    @Path(INVENTORY_AVAILABILITY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public InventoryAvailabilityResponse checkInventoryAvailability(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, InventoryAvailabilityRequest inventoryAvailabilityRequest)
           throws RGuestException, ServiceException;
 }
