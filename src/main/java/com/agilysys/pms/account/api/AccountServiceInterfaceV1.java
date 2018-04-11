@@ -126,6 +126,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
+    String INVOICES_PATH_AR_NUMBER = "/invoices/arNumber";
     String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
@@ -1029,6 +1030,17 @@ public interface AccountServiceInterfaceV1 {
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam("accountId") String accountId,
           @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICES_PATH_AR_NUMBER)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoiceView> findInvoicesForARReport(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam("accountId") String accountId,
+          @QueryParam("startDate") LocalDate startDate,
+          @QueryParam("endDate") LocalDate endDate,
+          @QueryParam("arNumber") String arNumber)
           throws RGuestException, ServiceException;
 
     @GET
