@@ -122,55 +122,6 @@ public interface RecurringChargesServiceInterface {
           CreateRecurringCharge createRecurringCharge, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
-
-    /**
-     * Update a recurring charge for an account
-     *
-     * @param tenantId                  id of tenant where account exists
-     * @param propertyId                id of the property where the account exists
-     * @param accountId                 id of account to update settings to
-     * @param updateRecurringChargeList recurring charge to update
-     * @param startDate
-     * @param endDate                   Start date and end date creates the range for what RecurringChargeView dates
-     *                                  should
-     *                                  be returned
-     * @return Updated recurring charge
-     */
-    @PUT
-    @CreatedOnSuccess
-    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_UPDATE)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<RecurringChargeView> updateRecurringCharge(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          List<UpdateRecurringCharge> updateRecurringChargeList, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
-
-    /**
-     * Delete a recurring charge for an account
-     *
-     * @param tenantId                  id of tenant where account exists
-     * @param propertyId                id of the property where the account exists
-     * @param accountId                 id of account to delete settings to
-     * @param deleteRecurringChargeList recurring charge to delete
-     * @param startDate
-     * @param endDate                   Start date and end date creates the range for what RecurringChargeView dates
-     *                                  should
-     *                                  be returned
-     * @return Deleted recurring charge
-     */
-    @PUT
-    @CreatedOnSuccess
-    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_DELETE)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(UpdateRecurringCharge.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    void deleteRecurringCharge(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          List<UpdateRecurringCharge> deleteRecurringChargeList, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
-
     /**
      * Retrieve recurring charge for an account
      *
