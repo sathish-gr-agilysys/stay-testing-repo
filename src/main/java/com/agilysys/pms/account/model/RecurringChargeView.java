@@ -30,7 +30,8 @@ public class RecurringChargeView {
     private String overrideReason;
     private String ratePlanName;
     private String ratePlanId;
-    private boolean isDeleted;
+    private boolean deleted;
+    private String referenceId;
 
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
@@ -201,11 +202,19 @@ public class RecurringChargeView {
         this.ratePlanId = ratePlanId;
     }
 
-    public boolean getIsDeleted() {
-        return isDeleted;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setIsDeleted(boolean isDeleted) {
-        this.isDeleted = isDeleted;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public String getReferenceId() {
+        return referenceId;
+    }
+
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
     }
 }
