@@ -12,6 +12,7 @@ public class Charge extends Transaction {
     private String mealPeriodId;
     private String recurringChargeId;
     private boolean overrideInventory;
+    private TransactionItemType transactionItemType;
 
     public boolean isOverrideInventory() {
         return overrideInventory;
@@ -35,6 +36,14 @@ public class Charge extends Transaction {
 
     public void setRecurringChargeId(String recurringChargeId) {
         this.recurringChargeId = recurringChargeId;
+    }
+
+    public TransactionItemType getTransactionItemType() {
+        return transactionItemType;
+    }
+
+    public void setTransactionItemType(TransactionItemType transactionItemType) {
+        this.transactionItemType = transactionItemType;
     }
 
     @Override

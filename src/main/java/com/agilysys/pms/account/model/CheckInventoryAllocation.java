@@ -56,10 +56,4 @@ public class CheckInventoryAllocation {
               .flatMap(Collection::stream).map(InventoryAllocationRequest::getInventoryItemId)
               .collect(Collectors.toSet());
     }
-
-    @JsonIgnore
-    public boolean hasPropertyDate(LocalDate propertyDate) {
-        return getInventoryAllocationRequests().entrySet().stream()
-              .anyMatch(startDateEntry -> startDateEntry.getKey().isEqual(propertyDate));
-    }
 }

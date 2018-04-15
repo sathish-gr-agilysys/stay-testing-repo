@@ -18,9 +18,6 @@ public class InventoryItem extends TransactionItem {
     @JsonProperty(required = true)
     private int availableCount;
 
-    @Transient
-    private TransactionItemType type = TransactionItemType.INVENTORY;
-
     /*
     If the inventory item is converted from transaction item
     then this field has the converted time
@@ -37,7 +34,7 @@ public class InventoryItem extends TransactionItem {
     }
 
     public TransactionItemType getType() {
-        return type;
+        return TransactionItemType.INVENTORY;
     }
 
     public int getAvailableCount() {

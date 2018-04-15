@@ -50,6 +50,15 @@ public class RecurringChargeView {
 
     //Set 1 for recurring charges which does not have quantity
     private int quantity = 1;
+    private TransactionItemType transactionItemType;
+
+    public TransactionItemType getTransactionItemType() {
+        return transactionItemType;
+    }
+
+    public void setTransactionItemType(TransactionItemType transactionItemType) {
+        this.transactionItemType = transactionItemType;
+    }
 
     public int getQuantity() {
         return quantity;

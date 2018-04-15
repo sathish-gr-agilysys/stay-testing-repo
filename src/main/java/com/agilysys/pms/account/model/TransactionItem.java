@@ -140,6 +140,10 @@ public class TransactionItem extends AccountingItem {
         this.status = status;
     }
 
+    public TransactionItemType getType() {
+        return TransactionItemType.TRANSACTION;
+    }
+
     @JsonIgnore
     public boolean isActive() {
         return this.status == CanonicalId.ACTIVE;
