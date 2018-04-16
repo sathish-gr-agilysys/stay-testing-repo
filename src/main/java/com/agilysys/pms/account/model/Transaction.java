@@ -39,8 +39,7 @@ public abstract class Transaction {
     protected String sourceId;
     protected String terminalId;
     protected String callType;
-    protected BigDecimal originalAmount;
-    protected BigDecimal freeAllowanceAmount;
+    protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
 
     public String getAccountId() {
         return accountId;
@@ -148,10 +147,6 @@ public abstract class Transaction {
     public String getCallType() { return callType; }
 
     public void setCallType(String callType) { this.callType = callType; }
-
-    public BigDecimal getOriginalAmount() { return originalAmount; }
-
-    public void setOriginalAmount(BigDecimal originalAmount) { this.originalAmount = originalAmount; }
 
     public BigDecimal getFreeAllowanceAmount() { return freeAllowanceAmount; }
 

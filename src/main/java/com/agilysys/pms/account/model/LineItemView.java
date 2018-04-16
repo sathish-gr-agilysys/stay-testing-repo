@@ -68,8 +68,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String name;
     private String ledgerTransactionHistoryId;
     private List<LedgerTransactionHistory> ledgerTransactionHistory;
-    private BigDecimal originalAmount;
-    private BigDecimal freeAllowanceAmount;
+    private BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     private String callType;
 
     /**
@@ -666,14 +665,6 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setLedgerTransactionHistory(List<LedgerTransactionHistory> ledgerTransactionHistory) {
         this.ledgerTransactionHistory = ledgerTransactionHistory;
-    }
-
-    public BigDecimal getOriginalAmount() {
-        return originalAmount;
-    }
-
-    public void setOriginalAmount(BigDecimal originalAmount) {
-        this.originalAmount = originalAmount;
     }
 
     public BigDecimal getFreeAllowanceAmount() {
