@@ -341,6 +341,14 @@ public interface AccountServiceInterfaceV1 {
           Set<String> accountIds)
           throws RGuestException, ServiceException;
 
+    /**
+     * Retrieve totalSpent for all Accounts
+     *
+     * @param tenantId   id of tenant where the account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of accounts to retrieve folios from
+     * @return Map of accountid - totalSpent
+     */
     @POST
     @Path(TOTAL_SPENT_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
