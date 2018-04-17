@@ -31,28 +31,8 @@ public interface MaintenanceInterface {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
     String REQUEST_ID = "requestId";
-    String DATE = "date";
 
-    String ACCOUNT_BALANCES_COLLECTION = "/accountBalances";
     String ES_INDEX_ACCOUNTS = "/elasticsearch/indices";
-
-    @POST
-    @Path(ACCOUNT_BALANCES_COLLECTION + "/rebuild")
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
-    Job rebuildAccountBalances(Boolean forReal) throws RGuestException, ServiceException;
-
-    @POST
-    @Path(ACCOUNT_BALANCES_COLLECTION + "/refresh")
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
-    Job refreshAccountBalances() throws RGuestException, ServiceException;
-
-    @POST
-    @Path("/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}" + ACCOUNT_BALANCES_COLLECTION + "/{" + DATE +
-          "}/repair")
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    AccountBalanceRepairResult repairAccountBalances(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(DATE) LocalDate date)
-          throws RGuestException, ServiceException;
 
     @GET
     @Path("/requests/{" + REQUEST_ID + "}")
