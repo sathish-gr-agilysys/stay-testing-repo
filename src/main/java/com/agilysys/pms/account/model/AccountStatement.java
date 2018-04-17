@@ -3,8 +3,10 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class AccountStatement {
 
@@ -28,4 +30,7 @@ public class AccountStatement {
         this.folioBalances = folioBalances;
     }
 
+    public BigDecimal getFolioTotal(String folioId) {
+        return Optional.ofNullable(folioBalances.get(folioId)).map(Balance::getTotal).orElse(BigDecimal.ZERO);
+    }
 }
