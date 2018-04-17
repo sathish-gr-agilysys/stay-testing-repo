@@ -109,6 +109,7 @@ public interface AccountServiceInterfaceV1 {
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
     String BATCH_FOLIO_PATH = "/batchFolios";
+    String CALL_TYPE = "callType";
     String CHARGE_TAX_AMOUNT_PATH = "/calculateChargeTaxAmount";
     String CHARGES_PATH = "/charges";
     String CHECK_ACCOUNT_NUMBER_AVAILABILITY_PATH = "/checkAccountNumberAvailability/{" + ACCOUNT_NUMBER + "}";
@@ -116,12 +117,14 @@ public interface AccountServiceInterfaceV1 {
     String CORRECTION_PATH = "/correction";
     String CREDIT_PATH = "/credit";
     String END_DATE = "endDate";
+    String END_DATE_TIME = "endDateTime";
     String FILTERED = "/filtered";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String FOLIO_PATH = "/folios";
     String FOLIO_BALANCES_PATH = "/folioBalances";
     String FOLIO_ID = "folioId";
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
+    String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
@@ -159,6 +162,7 @@ public interface AccountServiceInterfaceV1 {
     String SEARCH_TERM = "searchTerm";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
     String START_DATE = "startDate";
+    String START_DATE_TIME = "startDateTime";
     String STATUSES_PATH = "statuses";
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
@@ -171,12 +175,6 @@ public interface AccountServiceInterfaceV1 {
     String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
-    String END_DATE = "endDate";
-    String START_DATE_TIME = "startDateTime";
-    String END_DATE_TIME = "endDateTime";
-    String CALL_TYPE = "callType";
-    String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
-    String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
 
     /**
      * Retrieve all accounts from a tenant
