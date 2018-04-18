@@ -22,6 +22,7 @@ public class RecurringChargeView {
 
     // For a package, this will be just the room charge.
     private BigDecimal amount;
+    private CompInfo compInfo;
     private String sourceId;
     private String accountId;
     private CompInfo compInfo;

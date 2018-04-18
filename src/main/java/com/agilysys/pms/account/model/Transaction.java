@@ -37,6 +37,7 @@ public abstract class Transaction {
     protected int quantity = 1;
     protected String rateChangeComment;
     @MaxLengthRestriction(250)
+    protected String rateChangeComment;
     protected String reason;
     protected String reference;
     protected String sourceId;
