@@ -58,6 +58,14 @@ public abstract class Transaction {
         this.amount = amount.setScale(2, RoundingMode.HALF_UP);
     }
 
+    public CompInfo getCompInfo() {
+        return compInfo;
+    }
+
+    public void setCompInfo(CompInfo compInfo) {
+        this.compInfo = compInfo;
+    }
+
     public String getFolioId() {
         return folioId;
     }
@@ -113,6 +121,14 @@ public abstract class Transaction {
         this.quantity = quantity;
     }
 
+    public String getRateChangeComment() {
+        return rateChangeComment;
+    }
+
+    public void setRateChangeComment(String rateChangeComment) {
+        this.rateChangeComment = rateChangeComment;
+    }
+
     public String getReason() {
         return reason;
     }
@@ -143,22 +159,6 @@ public abstract class Transaction {
 
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
-    }
-
-    public CompInfo getCompInfo() {
-        return compInfo;
-    }
-
-    public void setCompInfo(CompInfo compInfo) {
-        this.compInfo = compInfo;
-    }
-
-    public String getRateChangeComment() {
-        return rateChangeComment;
-    }
-
-    public void setRateChangeComment(String rateChangeComment) {
-        this.rateChangeComment = rateChangeComment;
     }
 
     @Override
