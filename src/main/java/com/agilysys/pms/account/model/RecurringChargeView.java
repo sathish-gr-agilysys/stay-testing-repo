@@ -25,8 +25,8 @@ public class RecurringChargeView {
     private CompInfo compInfo;
     private String sourceId;
     private String accountId;
-    private CompInfo compInfo;
     private String folioId;
+    private boolean invalid;
     private String itemId;
     private String reason;
     private Boolean posted;
@@ -210,5 +210,13 @@ public class RecurringChargeView {
 
     public void setCompInfo(CompInfo compInfo) {
         this.compInfo = compInfo;
+    }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
     }
 }

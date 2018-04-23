@@ -30,6 +30,7 @@ public abstract class Transaction {
     protected String folioId;
     protected Boolean ignoreRules = true;
     @JsonProperty(required = true)
+    protected boolean invalid;
     protected String itemId;
     protected String parentId;
     protected LocalDate postingDate;
@@ -37,7 +38,6 @@ public abstract class Transaction {
     protected int quantity = 1;
     protected String rateChangeComment;
     @MaxLengthRestriction(250)
-    protected String rateChangeComment;
     protected String reason;
     protected String reference;
     protected String sourceId;
@@ -73,6 +73,14 @@ public abstract class Transaction {
 
     public void setIgnoreRules(Boolean ignoreRules) {
         this.ignoreRules = ignoreRules;
+    }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
     }
 
     public String getItemId() {
