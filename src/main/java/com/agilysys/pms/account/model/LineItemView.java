@@ -41,6 +41,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean distributed;
     private String folioId;
     private String folioLineType;
+    private boolean invalid;
     private List<LineItemView> groupedTaxLineItems;
     private String itemId;
     private String ledgerId;
@@ -204,6 +205,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setFolioLineType(String folioLineType) {
         this.folioLineType = folioLineType;
+    }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
     }
 
     public List<LineItemView> getGroupedTaxLineItems() {
