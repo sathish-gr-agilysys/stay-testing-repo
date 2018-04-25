@@ -9,8 +9,6 @@ import org.joda.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javafx.util.Pair;
-
 public class InventoryAvailabilityRequest {
     @JsonProperty(required = true)
     Map<LocalDate, Map<String, Integer>> itemRequestPerDate;
