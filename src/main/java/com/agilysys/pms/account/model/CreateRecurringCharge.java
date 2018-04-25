@@ -8,6 +8,7 @@ import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountExcepti
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.joda.time.LocalDate;
@@ -49,6 +50,16 @@ public class CreateRecurringCharge {
     private LocalDate endDate;
 
     private boolean overrideInventory;
+
+    private Map<LocalDate, CreateRecurringChargeOverride> recurringChargeOverrides;
+
+    public Map<LocalDate, CreateRecurringChargeOverride> getRecurringChargeOverrides() {
+        return recurringChargeOverrides;
+    }
+
+    public void setRecurringChargeOverrides(Map<LocalDate, CreateRecurringChargeOverride> recurringChargeOverrides) {
+        this.recurringChargeOverrides = recurringChargeOverrides;
+    }
 
     public boolean isOverrideInventory() {
         return overrideInventory;

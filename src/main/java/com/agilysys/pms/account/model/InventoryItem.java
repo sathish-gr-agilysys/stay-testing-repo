@@ -6,10 +6,8 @@ package com.agilysys.pms.account.model;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.DateTime;
-import org.springframework.data.annotation.Transient;
 
 import com.agilysys.pms.common.model.annotation.DataPortIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InventoryItem extends TransactionItem {
