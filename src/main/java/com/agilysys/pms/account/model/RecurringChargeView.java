@@ -26,6 +26,7 @@ public class RecurringChargeView {
     private String sourceId;
     private String accountId;
     private String folioId;
+    private boolean invalid;
     private String itemId;
     private String reason;
     private Boolean posted;
@@ -129,6 +130,14 @@ public class RecurringChargeView {
 
     public void setFolioId(String folioId) {
         this.folioId = folioId;
+    }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
     }
 
     public String getOverrideReason() {
