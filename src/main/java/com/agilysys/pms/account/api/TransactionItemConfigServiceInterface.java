@@ -36,6 +36,8 @@ public interface TransactionItemConfigServiceInterface {
     String INCLUDE_INTERNAL = "includeInternal";
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
+    String UPDATE_AUTO_RECURRING_DEFAULT_PRICE = "updateAutoRecurringDefaultPrice";
+    String UPDATE_AUTO_RECURRING_STATUS = "updateAutoRecurringStatus";
 
     /**
      * Retrieve all TransactionItems
@@ -105,6 +107,7 @@ public interface TransactionItemConfigServiceInterface {
      * @param item     the modified TransactionItem to persist
      * @return the modified TransactionItem
      */
+    @Deprecated
     @PUT
     @Path(ITEM_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
@@ -113,6 +116,30 @@ public interface TransactionItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId, TransactionItem item)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Modify an existing TransactionItem
+     *
+     * @param tenantId           the tenantId to modify the TransactionItem for
+     * @param itemId             the ID of the TransactionItems to modify
+     * @param updateDefaultPrice decides whether to update the default price of Auto recurring items
+     *                           created from the transaction item
+     * @param updateStatus       decides whether to update the status of Auto recurring items
+     *                           created from the transaction item
+     * @param item               the modified TransactionItem to persist
+     * @return the modified TransactionItem
+     */
+    @PUT
+    @Path(ITEM_ID_PATH + "/v1")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Validated(TransactionItem.class)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
+          @QueryParam(UPDATE_AUTO_RECURRING_DEFAULT_PRICE) boolean updateDefaultPrice,
+          @QueryParam(UPDATE_AUTO_RECURRING_STATUS) boolean updateStatus, TransactionItem item)
           throws RGuestException, ServiceException;
 
     /**

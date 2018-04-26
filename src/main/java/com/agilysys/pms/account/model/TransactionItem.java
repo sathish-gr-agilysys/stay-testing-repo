@@ -41,6 +41,8 @@ public class TransactionItem extends AccountingItem {
 
     private String glCode;
 
+    private boolean active;
+
     /**
      * An optional id to associate this transaction item with an item from an external system.
      * i.e. a tax service item
@@ -124,6 +126,14 @@ public class TransactionItem extends AccountingItem {
 
     public void setGlCode(String glCode) {
         this.glCode = glCode;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     /** {@inheritDoc} */
