@@ -77,6 +77,7 @@ import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
+import com.agilysys.pms.account.model.TenantDefaultSummary;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
@@ -169,6 +170,9 @@ public interface AccountServiceInterfaceV1 {
     String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
+    String COMPANY_PROFILE_ID = "companyProfileId";
+    String COMPANY_PROFILE_PATH = "/companyProfileId/{" + COMPANY_PROFILE_ID + "}";
+    String TENANT_DEFAULT_PATH = "/tenantDefault";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1274,4 +1278,11 @@ public interface AccountServiceInterfaceV1 {
     List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    TenantDefaultSummary getTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
+          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId) throws RGuestException,
+          ServiceException;
 }
