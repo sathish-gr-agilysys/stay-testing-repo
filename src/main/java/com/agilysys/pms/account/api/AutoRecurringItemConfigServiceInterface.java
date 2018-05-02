@@ -59,7 +59,6 @@ public interface AutoRecurringItemConfigServiceInterface {
 
     @PUT
     @Path(ITEM_ID_PATH)
-    @Validated(AutoRecurringItem.class)
     @PreAuthorize("hasPermission('Required', 'WriteAutoRecurringCharge')")
     AutoRecurringItem updateAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId, AutoRecurringItem item)
