@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Set;
 
+import com.agilysys.common.model.FrequencyType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**

@@ -1,5 +1,5 @@
 /*
- * (C) 2014 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ * (C) 2014-2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.agilysys.common.model.FrequencyType;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -147,6 +148,19 @@ public class CreateRecurringCharge {
         this.frequencyType = frequencyType;
         this.nNights = nNights;
         this.occurrenceDays = occurrenceDays;
+    }
+
+    public CreateRecurringCharge(String agentId, String itemId, BigDecimal amount, String reason, String folioId,
+          FrequencyType frequencyType, int nNights, Set<Integer> occurrenceDays, String sourceId) {
+        this.agentId = agentId;
+        this.itemId = itemId;
+        this.amount = amount;
+        this.reason = reason;
+        this.folioId = folioId;
+        this.frequencyType = frequencyType;
+        this.nNights = nNights;
+        this.occurrenceDays = occurrenceDays;
+        this.sourceId = sourceId;
     }
 
     public CreateRecurringCharge() {

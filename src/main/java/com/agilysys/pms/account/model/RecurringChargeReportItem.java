@@ -8,6 +8,8 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.FrequencyType;
+
 public class RecurringChargeReportItem {
     private LocalDate chargeDate;
     private BigDecimal chargeAmount;

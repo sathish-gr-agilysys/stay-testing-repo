@@ -11,6 +11,8 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.FrequencyType;
+
 /**
  * Recurring Charges view object
  */
