@@ -5,6 +5,8 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -44,6 +46,15 @@ public interface EventingInterface {
     HistoryEventsResult getInvoiceHistoryEvents(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
           @PathParam("id") @LogParam("id") String invoiceId) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(INVOICE_BASE + HISTORY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @LogRequest("getInvoiceHistoryEvents")
+    Map<String, HistoryEventsResult> getHistoryEventsForInvoices(
+          @PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId, Set<String> invoiceId)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path(INVOICE_BASE + ID + RAW_EVENTS)

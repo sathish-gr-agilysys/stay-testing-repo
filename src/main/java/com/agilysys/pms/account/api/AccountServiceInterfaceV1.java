@@ -1041,6 +1041,14 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @GET
+    @Path(INVOICES_PATH+"/"+ACCOUNT_NUMBER)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoiceView> findInvoicesForARNumber(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_NUMBER) String arNumber)
+          throws RGuestException, ServiceException;
+
+    @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
@@ -1227,6 +1235,21 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Boolean checkAccountNumberAvailability(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_NUMBER) String accountNumber)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Checks account number code availability
+     *
+     * @param tenantId
+     * @param propertyId
+     * @return true if available
+     * @throws ServiceException
+     */
+    @POST
+    @Path(ACCOUNT_NUMBER)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountFromAccountNumber(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountNumber)
           throws RGuestException, ServiceException;
 
     /**
