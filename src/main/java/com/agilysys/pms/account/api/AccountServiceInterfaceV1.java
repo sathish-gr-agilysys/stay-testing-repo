@@ -1041,7 +1041,7 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @GET
-    @Path(INVOICES_PATH+"/"+ACCOUNT_NUMBER)
+    @Path(INVOICES_PATH + "/" + ACCOUNT_NUMBER + "/{" + ACCOUNT_NUMBER + "}")
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoicesForARNumber(@PathParam(TENANT_ID) String tenantId,
