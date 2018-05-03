@@ -30,7 +30,6 @@ import com.agilysys.pms.account.model.ProgressStatusView;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
-import com.agilysys.pms.account.model.UpdateRecurringCharge;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 /**
@@ -63,9 +62,6 @@ public interface RecurringChargesServiceInterface {
     String PROPERTY_DATE_PATH = "/{propertyDate}";
     String CHECKIN_AUTH_AMOUNT = "/checkinAuthAmount";
     String AUTH_DETAILS = "/authDetails";
-
-    String RECURRING_CHARGE_UPDATE = "/update";
-    String RECURRING_CHARGE_DELETE = "/delete";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate

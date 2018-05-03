@@ -24,6 +24,7 @@ public class RecurringChargeView {
     private BigDecimal amount;
     private String sourceId;
     private String accountId;
+    private boolean deleted;
     private String folioId;
     private String itemId;
     private String reason;
@@ -32,7 +33,6 @@ public class RecurringChargeView {
     private String overrideReason;
     private String ratePlanName;
     private String ratePlanId;
-    private boolean deleted;
     private String referenceId;
 
     // For a package, this will be the estimated tax for the room charge
