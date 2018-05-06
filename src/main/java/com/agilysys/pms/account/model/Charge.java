@@ -11,6 +11,7 @@ import com.google.common.base.Objects;
 public class Charge extends Transaction {
     private String mealPeriodId;
     private String recurringChargeId;
+    private String autoRecurringItemId;
 
     public String getMealPeriodId() {
         return mealPeriodId;
@@ -26,6 +27,14 @@ public class Charge extends Transaction {
 
     public void setRecurringChargeId(String recurringChargeId) {
         this.recurringChargeId = recurringChargeId;
+    }
+
+    public String getAutoRecurringItemId() {
+        return autoRecurringItemId;
+    }
+
+    public void setAutoRecurringItemId(String autoRecurringItemId) {
+        this.autoRecurringItemId = autoRecurringItemId;
     }
 
     @Override
