@@ -69,6 +69,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String transactionType;
     private BigDecimal unitAmount;
     private String userId;
+    private String autoRecurringItemId;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -518,6 +519,14 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getAutoRecurringItemId() {
+        return autoRecurringItemId;
+    }
+
+    public void setAutoRecurringItemId(String autoRecurringItemId) {
+        this.autoRecurringItemId = autoRecurringItemId;
     }
 
     /**
