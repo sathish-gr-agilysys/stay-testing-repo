@@ -1281,8 +1281,22 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
     TenantDefaultSummary getTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
           String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId) throws RGuestException,
           ServiceException;
+
+    @POST
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    TenantDefaultSummary createTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
+          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId, TenantDefaultSummary
+          tenantDefaultSummary) throws RGuestException, ServiceException;
+
+    @PUT
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    TenantDefaultSummary updateTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
+          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId, TenantDefaultSummary
+          tenantDefaultSummary) throws RGuestException, ServiceException;
 }
