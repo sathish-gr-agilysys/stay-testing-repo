@@ -1238,21 +1238,6 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     /**
-     * Checks account number code availability
-     *
-     * @param tenantId
-     * @param propertyId
-     * @return true if available
-     * @throws ServiceException
-     */
-    @POST
-    @Path(ACCOUNT_NUMBER)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountSummary> getAccountFromAccountNumber(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountNumber)
-          throws RGuestException, ServiceException;
-
-    /**
      * authorizes any additional credit cards associated with an
      * account based on estimated charges and existing auth amounts
      *
