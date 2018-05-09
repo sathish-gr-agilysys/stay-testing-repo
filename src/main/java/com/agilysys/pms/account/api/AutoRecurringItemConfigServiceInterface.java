@@ -40,40 +40,40 @@ public interface AutoRecurringItemConfigServiceInterface {
 
     @GET
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAutoRecurringCharge')")
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     AutoRecurringItem getAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId)
           throws RGuestException, ServiceException;
 
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadAutoRecurringCharge')")
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<AutoRecurringItem> getAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     @POST
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WriteAutoRecurringCharge')")
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     List<AutoRecurringItem> createAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<AutoRecurringItem> items)
           throws RGuestException, ServiceException;
 
     @PUT
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAutoRecurringCharge')")
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     AutoRecurringItem updateAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId, AutoRecurringItem item)
           throws RGuestException, ServiceException;
 
     @GET
     @Path(ACTIVE_ITEM)
-    @PreAuthorize("hasPermission('Required', 'ReadAutoRecurringCharge')")
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     TreeMap<LocalDate, List<AutoRecurringItem>> getValidAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     @DELETE
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAutoRecurringCharge')")
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteAutoRecurringItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
 }

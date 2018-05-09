@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.tax.model.TaxClass;
@@ -19,6 +20,7 @@ import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.MealPeriod;
 import com.agilysys.pms.property.model.Outlet;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -41,7 +43,7 @@ public class TransactionItem extends AccountingItem {
 
     private String glCode;
 
-    private boolean active;
+    private CanonicalId status = CanonicalId.ACTIVE;
 
     /**
      * An optional id to associate this transaction item with an item from an external system.
@@ -128,12 +130,17 @@ public class TransactionItem extends AccountingItem {
         this.glCode = glCode;
     }
 
-    public boolean isActive() {
-        return active;
+    public CanonicalId getStatus() {
+        return status;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setStatus(CanonicalId status) {
+        this.status = status;
+    }
+
+    @JsonIgnore
+    public boolean isActive() {
+        return this.status == CanonicalId.ACTIVE;
     }
 
     /** {@inheritDoc} */

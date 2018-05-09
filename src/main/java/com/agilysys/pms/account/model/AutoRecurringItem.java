@@ -9,6 +9,8 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
 
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AutoRecurringItem extends AccountingObjectBase {
@@ -18,7 +20,7 @@ public class AutoRecurringItem extends AccountingObjectBase {
     private String parentTransactionItemId;
     @JsonProperty(required = true)
     private BigDecimal defaultPrice;
-    private boolean active;
+    private CanonicalId status;
     @JsonProperty(required = true)
     private FrequencyType frequency;
     private int nNights;
@@ -53,12 +55,17 @@ public class AutoRecurringItem extends AccountingObjectBase {
         this.nNights = nNights;
     }
 
-    public boolean isActive() {
-        return active;
+    public CanonicalId getStatus() {
+        return status;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setStatus(CanonicalId status) {
+        this.status = status;
+    }
+
+    @JsonIgnore
+    public boolean isActive() {
+        return this.status == CanonicalId.ACTIVE;
     }
 
     public BigDecimal getDefaultPrice() {
