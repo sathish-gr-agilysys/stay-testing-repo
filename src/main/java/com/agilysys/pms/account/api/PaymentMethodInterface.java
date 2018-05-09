@@ -21,6 +21,7 @@ import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.PaymentMethod;
+import com.agilysys.pms.account.model.PaymentPermissions;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 /**
@@ -32,6 +33,8 @@ public interface PaymentMethodInterface {
     String PROPERTY_ID = "propertyId";
     String PAYMENT_METHOD_ID = "id";
     String PAYMENT_METHOD_ID_PATH = "{id}";
+    String PERMISSIONS = "permissions";
+    String PERMISSIONS_PATH = "/" + PERMISSIONS;
 
     /**
      * Retrieve all PaymentMethods
@@ -110,4 +113,11 @@ public interface PaymentMethodInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deletePaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(PERMISSIONS_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    List<PaymentPermissions> getPaymentPermissions(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
+          throws RGuestException, ServiceException;
 }

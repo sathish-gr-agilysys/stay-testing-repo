@@ -45,6 +45,8 @@ public class PaymentMethod extends AccountingItem {
 
     private String glCode;
 
+    private String restrictivePermission;
+
     public Set<String> getSourceIds() {
         return sourceIds;
     }
@@ -105,5 +107,13 @@ public class PaymentMethod extends AccountingItem {
     public int hashCode()
     {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    public String getRestrictivePermission() {
+        return restrictivePermission;
+    }
+
+    public void setRestrictivePermission(String restrictivePermission) {
+        this.restrictivePermission = restrictivePermission;
     }
 }
