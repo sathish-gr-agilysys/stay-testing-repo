@@ -25,7 +25,9 @@ public abstract class Transaction {
     protected String accountId;
     @JsonProperty(required = true)
     protected BigDecimal amount;
+    protected String callType;
     protected String folioId;
+    protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
     @JsonProperty(required = true)
     protected String itemId;
@@ -38,8 +40,6 @@ public abstract class Transaction {
     protected String reference;
     protected String sourceId;
     protected String terminalId;
-    protected String callType;
-    protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
 
     public String getAccountId() {
         return accountId;
