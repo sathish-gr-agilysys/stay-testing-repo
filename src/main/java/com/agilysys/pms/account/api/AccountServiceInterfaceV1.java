@@ -138,6 +138,10 @@ public interface AccountServiceInterfaceV1 {
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
+    String PAGE_PATH = "/page/{" + PAGE + "}";
+    String SIZE_PATH = "/size/{" + SIZE + "}";
+    String SORT_PATH = "/sort/{" + SORT + "}";
+    String INVOICE_REPORT_BY_PAGE_PATH = PAGE_PATH + SIZE_PATH + SORT_PATH + INVOICE_REPORT_BY_PAGE;
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
@@ -1045,7 +1049,7 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @POST
-    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE)
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE_PATH)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     DeserializablePage<InvoiceView> createInvoiceReportPageWise(@PathParam(TENANT_ID) String tenantId,
