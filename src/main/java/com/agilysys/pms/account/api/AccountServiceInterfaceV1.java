@@ -80,11 +80,11 @@ import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
-import com.agilysys.pms.account.model.ViewInvoiceRequest;
 import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
+import com.agilysys.pms.common.model.DeserializablePage;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -93,7 +93,9 @@ import com.wordnik.swagger.annotations.ApiParam;
 public interface AccountServiceInterfaceV1 {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
-
+    String PAGE = "page";
+    String SIZE = "size";
+    String SORT = "sort";
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
 
     String ACCOUNT_BALANCES_PATH = "/balances";
@@ -1046,10 +1048,12 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    Page<InvoiceView> createInvoiceReportPageWise(@PathParam(TENANT_ID) String tenantId,
+    DeserializablePage<InvoiceView> createInvoiceReportPageWise(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed,
-          ViewInvoiceRequest viewInvoiceRequest) throws RGuestException, ServiceException;
+          @QueryParam(PAGE) int page,
+          @QueryParam(SIZE) int size,
+          @QueryParam(SORT) String[] sorts) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
