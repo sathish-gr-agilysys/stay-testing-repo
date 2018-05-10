@@ -80,6 +80,7 @@ import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
+import com.agilysys.pms.account.model.ViewInvoiceRequest;
 import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
@@ -127,6 +128,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
     String INVOICE_REPORT_START = "/invoice-report-start";
+    String INVOICE_REPORT_BY_PAGE = "/invoiceReportByPage";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
@@ -1039,6 +1041,15 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed)
           throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    Page<InvoiceView> createInvoiceReportPageWise(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed,
+          ViewInvoiceRequest viewInvoiceRequest) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
