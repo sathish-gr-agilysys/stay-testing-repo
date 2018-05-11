@@ -33,7 +33,7 @@ public interface PaymentMethodInterface {
     String PROPERTY_ID = "propertyId";
     String PAYMENT_METHOD_ID = "id";
     String PAYMENT_METHOD_ID_PATH = "{id}";
-    String PERMISSIONS = "permissions";
+    String PERMISSIONS = "restrictivePermissions";
     String PERMISSIONS_PATH = "/" + PERMISSIONS;
 
     /**
@@ -118,6 +118,7 @@ public interface PaymentMethodInterface {
     @Path(PERMISSIONS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    List<RestrictivePermission> getPaymentPermissions(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
+    List<RestrictivePermission> getRestrictivePermissions(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException, ServiceException;
 }
