@@ -138,10 +138,6 @@ public interface AccountServiceInterfaceV1 {
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
-    String PAGE_PATH = "/page/{" + PAGE + "}";
-    String SIZE_PATH = "/size/{" + SIZE + "}";
-    String SORT_PATH = "/sort/{" + SORT + "}";
-    String INVOICE_REPORT_BY_PAGE_PATH = PAGE_PATH + SIZE_PATH + SORT_PATH + INVOICE_REPORT_BY_PAGE;
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
@@ -1049,15 +1045,15 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @POST
-    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE_PATH)
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     DeserializablePage<InvoiceView> createInvoiceReportPageWise(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed,
-          @PathParam(PAGE) int page,
-          @PathParam(SIZE) int size,
-          @PathParam(SORT) String sort) throws RGuestException, ServiceException;
+          @QueryParam(PAGE) int page,
+          @QueryParam(SIZE) int size,
+          @QueryParam(SORT) String sort) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
