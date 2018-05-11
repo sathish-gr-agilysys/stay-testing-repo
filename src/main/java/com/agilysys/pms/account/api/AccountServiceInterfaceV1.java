@@ -1039,8 +1039,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("tag") String tag,  @QueryParam("size") int size, @QueryParam("includeClosed") String includeClosed)
-          throws RGuestException, ServiceException;
+          @QueryParam("tag") String tag, @DefaultValue("10")  @QueryParam("size") int size,
+          @QueryParam("includeClosed") String includeClosed) throws RGuestException, ServiceException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE)
@@ -1049,9 +1049,9 @@ public interface AccountServiceInterfaceV1 {
     DeserializablePage<InvoiceView> createInvoiceReportPageWise(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed,
-          @QueryParam("page") int page,
-          @QueryParam("size") int size,
-          @QueryParam("sort") String sort) throws RGuestException, ServiceException;
+          @DefaultValue("0") @QueryParam("page") int page,
+          @DefaultValue("10") @QueryParam("size") int size,
+          @DefaultValue("ASC") @QueryParam("sort") String sort) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
