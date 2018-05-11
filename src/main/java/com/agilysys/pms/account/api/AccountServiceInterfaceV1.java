@@ -128,8 +128,8 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
-    String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_REPORT_BY_PAGE = "/invoiceReportByPage";
+    String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
