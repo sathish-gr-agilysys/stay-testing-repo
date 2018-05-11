@@ -93,6 +93,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 public interface AccountServiceInterfaceV1 {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
+    
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
 
     String ACCOUNT_BALANCES_PATH = "/balances";
