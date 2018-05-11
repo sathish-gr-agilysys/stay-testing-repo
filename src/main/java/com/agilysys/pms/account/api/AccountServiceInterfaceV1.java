@@ -1045,7 +1045,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed)
+          @QueryParam("tag") String tag,  @QueryParam("size") int size, @QueryParam("includeClosed") String includeClosed)
           throws RGuestException, ServiceException;
 
     @POST
