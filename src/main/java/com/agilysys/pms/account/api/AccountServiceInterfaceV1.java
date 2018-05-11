@@ -1049,9 +1049,9 @@ public interface AccountServiceInterfaceV1 {
     DeserializablePage<InvoiceView> createInvoiceReportPageWise(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed,
-          @QueryParam(PAGE) int page,
-          @QueryParam(SIZE) int size,
-          @QueryParam(SORT) String sort) throws RGuestException, ServiceException;
+          @QueryParam("page") int page,
+          @QueryParam("size") int size,
+          @QueryParam("sort") String sort) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
