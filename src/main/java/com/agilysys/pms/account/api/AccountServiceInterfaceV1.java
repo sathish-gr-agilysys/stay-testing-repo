@@ -1044,8 +1044,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam(TAG) String tag, @DefaultValue("10") @QueryParam(SIZE) int size,
-          @QueryParam(INCLUDED_CLOSED) String includeClosed) throws RGuestException, ServiceException;
+          @QueryParam(TAG) String tag, @QueryParam(INCLUDED_CLOSED) String includeClosed)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE)
