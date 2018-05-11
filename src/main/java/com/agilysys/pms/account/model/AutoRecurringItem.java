@@ -20,7 +20,7 @@ public class AutoRecurringItem extends AccountingObjectBase {
     private String parentTransactionItemId;
     @JsonProperty(required = true)
     private BigDecimal defaultPrice;
-    private CanonicalId status;
+    private CanonicalId status = CanonicalId.INACTIVE;
     @JsonProperty(required = true)
     private FrequencyType frequency;
     private int nNights;
