@@ -84,6 +84,7 @@ import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
+import com.agilysys.pms.common.model.DeserializablePage;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -122,10 +123,12 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
+    String INCLUDED_CLOSED = "includeClosed";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
+    String INVOICE_REPORT_BY_PAGE = "/invoiceReportByPage";
     String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
@@ -134,6 +137,7 @@ public interface AccountServiceInterfaceV1 {
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
+    String PAGE = "page";
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
@@ -155,9 +159,12 @@ public interface AccountServiceInterfaceV1 {
     String REMAINING_PATH = "/{" + PATH + ":.*}";
     String SEARCH_PATH = "/search";
     String SEARCH_TERM = "searchTerm";
+    String SIZE = "size";
+    String SORT = "sort";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
     String START_DATE = "startDate";
     String STATUSES_PATH = "statuses";
+    String TAG = "tag";
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
@@ -1037,8 +1044,19 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed)
+          @QueryParam(TAG) String tag, @QueryParam(INCLUDED_CLOSED) String includeClosed)
           throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    DeserializablePage<InvoiceView> createInvoiceReportPageWise(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam(TAG) String tag, @QueryParam(INCLUDED_CLOSED) String includeClosed,
+          @DefaultValue("0") @QueryParam(PAGE) int page,
+          @DefaultValue("10") @QueryParam(SIZE) int size,
+          @QueryParam(SORT) String[] sorts) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
