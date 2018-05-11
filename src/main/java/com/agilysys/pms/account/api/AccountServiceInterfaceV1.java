@@ -1047,7 +1047,7 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam(TAG) String tag, @DefaultValue("10") @QueryParam(SIZE) int size,
           @QueryParam(INCLUDED_CLOSED) String includeClosed) throws RGuestException, ServiceException;
 
-    @POST
+    @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_BY_PAGE)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
