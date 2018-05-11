@@ -1056,7 +1056,7 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam(TAG) String tag, @QueryParam(INCLUDED_CLOSED) String includeClosed,
           @DefaultValue("0") @QueryParam(PAGE) int page,
           @DefaultValue("10") @QueryParam(SIZE) int size,
-          @DefaultValue("ASC") @QueryParam(SORT) String sort) throws RGuestException, ServiceException;
+          @QueryParam(SORT) String[] sorts) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
