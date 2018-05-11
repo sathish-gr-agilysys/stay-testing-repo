@@ -126,7 +126,6 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
-    String INVOICES_PATH_AR = "/arInvoices";
     String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";

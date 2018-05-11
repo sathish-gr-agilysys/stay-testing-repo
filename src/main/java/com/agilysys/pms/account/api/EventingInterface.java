@@ -5,8 +5,6 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -57,8 +55,7 @@ public interface EventingInterface {
     List<InvoiceEventsResults> getInvoiceHistoryEventsForARNumber(
           @PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
-          @PathParam(AR_NUMBER) @LogParam(AR_NUMBER) String arNumber)
-          throws RGuestException, ServiceException;
+          @PathParam(AR_NUMBER) @LogParam(AR_NUMBER) String arNumber) throws RGuestException, ServiceException;
 
     @GET
     @Path(INVOICE_BASE + ID + RAW_EVENTS)
