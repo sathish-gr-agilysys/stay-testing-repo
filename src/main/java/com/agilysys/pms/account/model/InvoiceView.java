@@ -24,6 +24,7 @@ public class InvoiceView {
     private int daysOverdue;
     private List<TaxAmountInfo> taxTotalsBreakdown;
     private DateTime sentOnDate;
+    private ReservationInfo reservationInfo;
 
     public String getId() {
         return id;
@@ -187,5 +188,13 @@ public class InvoiceView {
 
     public void setSentOnDate(DateTime sentOnDate) {
         this.sentOnDate = sentOnDate;
+    }
+
+    public ReservationInfo getReservationInfo() {
+        return reservationInfo;
+    }
+
+    public void setReservationInfo(ReservationInfo reservationInfo) {
+        this.reservationInfo = reservationInfo;
     }
 }
