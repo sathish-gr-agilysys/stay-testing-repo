@@ -8,7 +8,8 @@ import org.joda.time.LocalDate;
 public class AccountReferenceInfo {
 
     private LocalDate arrivalDate;
-    private LocalDate departureDate;private String name;
+    private LocalDate departureDate;
+    private String name;
 
     private String reservationId;
 
