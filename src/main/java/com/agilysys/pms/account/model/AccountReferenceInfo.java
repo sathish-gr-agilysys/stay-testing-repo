@@ -7,14 +7,21 @@ import org.joda.time.LocalDate;
 
 public class AccountReferenceInfo {
 
-    private String name;
     private LocalDate arrivalDate;
-    private LocalDate departureDate;
+    private LocalDate departureDate;private String name;
 
-    public AccountReferenceInfo(String sourceName, LocalDate arrivalDate, LocalDate departureDate) {
-        this.name = sourceName;
+    private String reservationId;
+
+    public AccountReferenceInfo() {
+
+    }
+
+    public AccountReferenceInfo(String sourceName, LocalDate arrivalDate, LocalDate departureDate,
+          String reservationId) {
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
+        this.name = sourceName;
+        this.reservationId = reservationId;
     }
 
     public LocalDate getArrivalDate() {
@@ -37,5 +44,13 @@ public class AccountReferenceInfo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(String reservationId) {
+        this.reservationId = reservationId;
     }
 }
