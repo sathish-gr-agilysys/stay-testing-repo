@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AutoRecurringItem extends AccountingObjectBase {
+    private static final String DISPLAY_NAME = "Auto-Recurring item";
+
     @JsonProperty(required = true)
     private String defaultSource;
     @JsonProperty(required = true)
@@ -116,4 +118,8 @@ public class AutoRecurringItem extends AccountingObjectBase {
         this.description = description;
     }
 
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
+    }
 }

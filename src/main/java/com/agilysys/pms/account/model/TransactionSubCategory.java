@@ -16,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionSubCategory in the application.
  */
 public class TransactionSubCategory extends AccountingObjectBase {
+    private static final String DISPLAY_NAME = "Transaction subcategory";
+
     public static final String TAX_SUBCATEGORY_ID = "4de2420a-80cb-440f-999b-f6908325ffde";
 
     @JsonProperty(required = true)
@@ -49,5 +51,10 @@ public class TransactionSubCategory extends AccountingObjectBase {
     public int hashCode()
     {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }

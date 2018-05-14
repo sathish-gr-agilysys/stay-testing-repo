@@ -12,6 +12,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus;
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.tax.model.TaxClass;
@@ -27,6 +29,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionItem in the application.
  */
 public class TransactionItem extends AccountingItem {
+    private static final String DISPLAY_NAME = "Transaction item";
+
     @MinLengthRestriction(4)
     private String plu;
 
@@ -43,8 +47,7 @@ public class TransactionItem extends AccountingItem {
 
     private String glCode;
 
-    private CanonicalId status = CanonicalId.ACTIVE;
-
+    private PropertyConfigItemStatus.CanonicalId status = CanonicalId.ACTIVE;
     /**
      * An optional id to associate this transaction item with an item from an external system.
      * i.e. a tax service item
@@ -130,12 +133,16 @@ public class TransactionItem extends AccountingItem {
         this.glCode = glCode;
     }
 
-    public CanonicalId getStatus() {
+    public PropertyConfigItemStatus.CanonicalId getStatus() {
         return status;
     }
 
-    public void setStatus(CanonicalId status) {
+    public void setStatus(PropertyConfigItemStatus.CanonicalId status) {
         this.status = status;
+    }
+
+    public TransactionItemType getType() {
+        return TransactionItemType.TRANSACTION;
     }
 
     @JsonIgnore
@@ -155,5 +162,10 @@ public class TransactionItem extends AccountingItem {
     public int hashCode()
     {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }

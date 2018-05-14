@@ -34,8 +34,11 @@ public interface TransactionItemConfigServiceInterface {
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{id}";
     String INCLUDE_INTERNAL = "includeInternal";
+    String INCLUDE_SUB_TRANSACTION_ITEMS = "includeSubTransactionItems";
+    String INCLUDE_INACTIVE = "includeInactive";
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
+    String ACTIVE = "/active";
     String UPDATE_AUTO_RECURRING_DEFAULT_PRICE = "updateAutoRecurringDefaultPrice";
     String UPDATE_AUTO_RECURRING_STATUS = "updateAutoRecurringStatus";
 
@@ -161,4 +164,20 @@ public interface TransactionItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<TaxRuleData> getAssociatedTaxRules(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve all Active Transaction item
+     *
+     * @param tenantId the tenantId to retrieve InventoryItems for
+     * @return List of InventoryItems
+     */
+    @GET
+    @Path(ACTIVE)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    List<TransactionItem> getActiveTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
+          @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
+          @QueryParam(INCLUDE_INACTIVE) boolean includeInactive) throws RGuestException, ServiceException;
+
 }
