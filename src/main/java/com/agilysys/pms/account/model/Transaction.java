@@ -36,6 +36,7 @@ public abstract class Transaction {
     protected LocalDate postingDate;
     @MinValueRestriction(1)
     protected int quantity = 1;
+    @MaxLengthRestriction(250)
     protected String rateChangeComment;
     @MaxLengthRestriction(250)
     protected String reason;
