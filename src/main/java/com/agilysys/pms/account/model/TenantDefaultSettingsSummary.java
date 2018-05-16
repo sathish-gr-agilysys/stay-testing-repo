@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-public class TenantDefaultSummary {
+public class TenantDefaultSettingsSummary {
 
     protected String id;
 
@@ -13,9 +13,9 @@ public class TenantDefaultSummary {
 
     protected String companyProfileId;
 
-    protected TenantDefaultSettings defaultSettings;
+    protected CompanyProfileSettings defaultSettings;
 
-    public TenantDefaultSummary() {
+    public TenantDefaultSettingsSummary() {
     }
 
     public String getId() {
@@ -50,12 +50,11 @@ public class TenantDefaultSummary {
         this.companyProfileId = companyProfileId;
     }
 
-    public TenantDefaultSettings getDefaultSettings() {
+    public CompanyProfileSettings getDefaultSettings() {
         return defaultSettings;
     }
 
-    public void setDefaultSettings(TenantDefaultSettings defaultSettings) {
+    public void setDefaultSettings(CompanyProfileSettings defaultSettings) {
         this.defaultSettings = defaultSettings;
     }
-
 }

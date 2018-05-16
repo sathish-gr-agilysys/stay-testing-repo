@@ -3,15 +3,15 @@
  */
 package com.agilysys.pms.account.model;
 
-public class TenantDefaultSettings {
+public class CompanyProfileSettings {
     private AccountSettings account;
     private String userId;
     private RatePlan ratePlan;
 
-    public TenantDefaultSettings() {
+    public CompanyProfileSettings() {
     }
 
-    public TenantDefaultSettings(AccountSettings account, String userId, RatePlan ratePlan) {
+    public CompanyProfileSettings(AccountSettings account, String userId, RatePlan ratePlan) {
         this.account = account;
         this.userId = userId;
         this.ratePlan = ratePlan;

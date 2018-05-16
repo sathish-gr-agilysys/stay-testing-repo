@@ -77,7 +77,7 @@ import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
-import com.agilysys.pms.account.model.TenantDefaultSummary;
+import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
@@ -172,7 +172,7 @@ public interface AccountServiceInterfaceV1 {
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfileId/{" + COMPANY_PROFILE_ID + "}";
-    String TENANT_DEFAULT_PATH = "/tenantDefault";
+    String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1280,23 +1280,23 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @GET
-    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_PATH)
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    TenantDefaultSummary getTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
+    TenantDefaultSettingsSummary getTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
           String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId) throws RGuestException,
           ServiceException;
 
     @POST
-    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_PATH)
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    TenantDefaultSummary createTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
-          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId, TenantDefaultSummary
-          tenantDefaultSummary) throws RGuestException, ServiceException;
+    TenantDefaultSettingsSummary createTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
+          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId, TenantDefaultSettingsSummary
+          tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
 
     @PUT
-    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_PATH)
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    TenantDefaultSummary updateTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
-          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId, TenantDefaultSummary
-          tenantDefaultSummary) throws RGuestException, ServiceException;
+    TenantDefaultSettingsSummary updateTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
+          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId, TenantDefaultSettingsSummary
+          tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
 }
