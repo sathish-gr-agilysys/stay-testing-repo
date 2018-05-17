@@ -47,7 +47,6 @@ public class LineItemView implements Comparable<LineItemView> {
     private String mealPeriodId;
     private String name;
     private String parentId;
-    private String paymentMethodId;
     private DateTime postingCalendarDateTime;
     private LocalDate postingPropertyDate;
     private int quantity;
@@ -276,14 +275,6 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
-    }
-
-    public String getPaymentMethodId() {
-        return paymentMethodId;
-    }
-
-    public void setPaymentMethodId(String paymentMethodId) {
-        this.paymentMethodId = paymentMethodId;
     }
 
     public DateTime getPostingCalendarDateTime() {
