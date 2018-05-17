@@ -30,6 +30,7 @@ public abstract class Transaction {
     @JsonProperty(required = true)
     protected String itemId;
     protected String parentId;
+    protected String petValue;
     protected LocalDate postingDate;
     @MinValueRestriction(1)
     protected int quantity = 1;
@@ -85,6 +86,14 @@ public abstract class Transaction {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public String getPetValue() {
+        return petValue;
+    }
+
+    public void setPetValue(String petValue) {
+        this.petValue = petValue;
     }
 
     /**

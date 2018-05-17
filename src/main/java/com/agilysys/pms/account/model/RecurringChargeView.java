@@ -33,7 +33,7 @@ public class RecurringChargeView {
     private String overrideReason;
     private String ratePlanName;
     private String ratePlanId;
-    private String referenceId;
+    private String petReferenceId;
 
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
@@ -212,11 +212,11 @@ public class RecurringChargeView {
         this.deleted = deleted;
     }
 
-    public String getReferenceId() {
-        return referenceId;
+    public String getPetReferenceId() {
+        return petReferenceId;
     }
 
-    public void setReferenceId(String referenceId) {
-        this.referenceId = referenceId;
+    public void setPetReferenceId(String petReferenceId) {
+        this.petReferenceId = petReferenceId;
     }
 }
