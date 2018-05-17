@@ -24,6 +24,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -61,6 +62,7 @@ import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
+import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -108,6 +110,7 @@ public interface AccountServiceInterfaceV1 {
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
     String BATCH_FOLIO_PATH = "/batchFolios";
+    String CALL_TYPE = "callType";
     String CHARGE_TAX_AMOUNT_PATH = "/calculateChargeTaxAmount";
     String CHARGES_PATH = "/charges";
     String CHECK_ACCOUNT_NUMBER_AVAILABILITY_PATH = "/checkAccountNumberAvailability/{" + ACCOUNT_NUMBER + "}";
@@ -115,12 +118,14 @@ public interface AccountServiceInterfaceV1 {
     String CORRECTION_PATH = "/correction";
     String CREDIT_PATH = "/credit";
     String END_DATE = "endDate";
+    String END_DATE_TIME = "endDateTime";
     String FILTERED = "/filtered";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String FOLIO_PATH = "/folios";
     String FOLIO_BALANCES_PATH = "/folioBalances";
     String FOLIO_ID = "folioId";
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
+    String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
@@ -158,6 +163,7 @@ public interface AccountServiceInterfaceV1 {
     String SEARCH_TERM = "searchTerm";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
     String START_DATE = "startDate";
+    String START_DATE_TIME = "startDateTime";
     String STATUSES_PATH = "statuses";
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
@@ -1277,6 +1283,17 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + FREE_ALLOWANCE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    BigDecimal getFreeAllowanceCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam(CALL_TYPE) String callType,
+          @QueryParam(START_DATE_TIME) String startDateTime,
+          @QueryParam(END_DATE_TIME) String endDateTime)
           throws RGuestException, ServiceException;
 
     @GET
