@@ -6,12 +6,17 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+
 public class InvoicedSourceAccountDetail {
     private String sourceAccountId;
     private String sourceAccountName;
     private String sourceAccountType;
     private String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
     private List<LineItemView> invoicedCharges;
+    private String name;
+    private LocalDate arrivalDate;
+    private LocalDate departureDate;
 
     public String getSourceAccountId() {
         return sourceAccountId;
@@ -52,6 +57,18 @@ public class InvoicedSourceAccountDetail {
     public void setInvoicedCharges(List<LineItemView> invoicedCharges) {
         this.invoicedCharges = invoicedCharges;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public LocalDate getArrivalDate() { return arrivalDate; }
+
+    public void setArrivalDate(LocalDate arrivalDate) { this.arrivalDate = arrivalDate; }
+
+    public LocalDate getDepartureDate() { return departureDate; }
+
+    public void setDepartureDate(LocalDate departureDate) { this.departureDate = departureDate; }
 
     public BigDecimal getChargesBalance() {
         BigDecimal balance = BigDecimal.ZERO;
