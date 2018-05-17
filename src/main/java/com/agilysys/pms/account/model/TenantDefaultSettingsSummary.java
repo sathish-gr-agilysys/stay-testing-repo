@@ -13,7 +13,7 @@ public class TenantDefaultSettingsSummary {
 
     protected String companyProfileId;
 
-    protected CompanyProfileSettings defaultSettings;
+    protected CompanyProfileSettings companyProfileSettings;
 
     public TenantDefaultSettingsSummary() {
     }
@@ -50,11 +50,11 @@ public class TenantDefaultSettingsSummary {
         this.companyProfileId = companyProfileId;
     }
 
-    public CompanyProfileSettings getDefaultSettings() {
-        return defaultSettings;
+    public CompanyProfileSettings getCompanyProfileSettings() {
+        return companyProfileSettings;
     }
 
-    public void setDefaultSettings(CompanyProfileSettings defaultSettings) {
-        this.defaultSettings = defaultSettings;
+    public void setCompanyProfileSettings(CompanyProfileSettings companyProfileSettings) {
+        this.companyProfileSettings = companyProfileSettings;
     }
 }

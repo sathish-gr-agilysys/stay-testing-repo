@@ -171,7 +171,7 @@ public interface AccountServiceInterfaceV1 {
     String TYPES_PATH = "types";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
-    String COMPANY_PROFILE_PATH = "/companyProfileId/{" + COMPANY_PROFILE_ID + "}";
+    String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
 
     /**
