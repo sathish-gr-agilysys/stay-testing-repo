@@ -26,8 +26,10 @@ public abstract class Transaction {
     protected String accountId;
     @JsonProperty(required = true)
     protected BigDecimal amount;
+    protected String callType;
     protected CompInfo compInfo;
     protected String folioId;
+    protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
     protected boolean invalid;
     @JsonProperty(required = true)
@@ -170,6 +172,14 @@ public abstract class Transaction {
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
+
+    public String getCallType() { return callType; }
+
+    public void setCallType(String callType) { this.callType = callType; }
+
+    public BigDecimal getFreeAllowanceAmount() { return freeAllowanceAmount; }
+
+    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
 
     @Override
     public int hashCode() {
