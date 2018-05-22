@@ -1299,21 +1299,21 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    TenantDefaultSettingsSummary getTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
-          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId) throws RGuestException,
-          ServiceException;
+    TenantDefaultSettingsSummary getTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
+          throws RGuestException, ServiceException;
 
     @POST
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    TenantDefaultSettingsSummary createTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
-          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId, TenantDefaultSettingsSummary
-          tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
+    TenantDefaultSettingsSummary createTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId,
+          TenantDefaultSettingsSummary tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
 
     @PUT
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    TenantDefaultSettingsSummary updateTenantDefault(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID)
-          String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId, TenantDefaultSettingsSummary
-          tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
+    TenantDefaultSettingsSummary updateTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId,
+          TenantDefaultSettingsSummary tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
 }
