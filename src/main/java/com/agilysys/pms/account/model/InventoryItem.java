@@ -16,21 +16,6 @@ public class InventoryItem extends TransactionItem {
     @JsonProperty(required = true)
     private int availableCount;
 
-    /*
-    If the inventory item is converted from transaction item
-    then this field has the converted time
-     */
-    @DataPortIgnore
-    private DateTime convertedTime;
-
-    public DateTime getConvertedTime() {
-        return convertedTime;
-    }
-
-    public void setConvertedTime(DateTime convertedTime) {
-        this.convertedTime = convertedTime;
-    }
-
     public TransactionItemType getType() {
         return TransactionItemType.INVENTORY;
     }
