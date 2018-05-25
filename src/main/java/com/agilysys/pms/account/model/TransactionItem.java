@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionItem in the application.
  */
 public class TransactionItem extends AccountingItem {
-    @MinLengthRestriction(4)
+
     private String plu;
 
     @JsonProperty(required = true)
