@@ -52,7 +52,7 @@ public interface EventingInterface {
     @Path(INVOICE_BASE + HISTORY + AR_NUMBER_BASE)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     @LogRequest("getInvoiceHistoryEvents")
-    List<InvoiceEventsResults> getInvoiceHistoryEventsForARNumber(
+    List<List<InvoiceEventsResults>> getInvoiceHistoryEventsForARNumber(
           @PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
           @PathParam(AR_NUMBER) @LogParam(AR_NUMBER) String arNumber) throws RGuestException, ServiceException;
