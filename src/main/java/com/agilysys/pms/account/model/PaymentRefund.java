@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Request model sent in in order to refund a particular payment
  */
-public class PaymentRefund {
+public class PaymentRefund{
     @JsonProperty(required = true)
     private String folioLineItemId;
 

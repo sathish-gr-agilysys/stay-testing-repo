@@ -21,6 +21,7 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private DateTime lineItemPostingSystemDateTime;
     private LocalDate appliedOnPropertyDate;
     private DateTime appliedOnSystemDateTime;
+    private String paymentMethodName;
 
     public InvoicePaymentRefundEvent() { super(); }
 
@@ -38,6 +39,23 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
         this.appliedOnPropertyDate = appliedOnPropertyDate;
         this.appliedOnSystemDateTime = appliedOnSystemDateTime;
         this.historyMetadata = historyMetadata;
+    }
+
+    public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
+          DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
+          List<Map<String, Object>> historyMetadata, boolean closed) {
+        super(closed);
+
+        this.invoicePaymentId = invoicePaymentId;
+        this.amount = amount;
+        this.folioLineItemId = folioLineItemId;
+        this.reason = reason;
+        this.lineItemPostingDate = lineItemPostingDate;
+        this.lineItemPostingSystemDateTime = lineItemPostingSystemDateTime;
+        this.appliedOnPropertyDate = appliedOnPropertyDate;
+        this.appliedOnSystemDateTime = appliedOnSystemDateTime;
+        this.historyMetadata = historyMetadata;
+        this.paymentMethodName = paymentMethodName;
     }
 
     public String getInvoicePaymentId() {
@@ -107,7 +125,10 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     @Override
     public List<String> getHistoryMessages() {
         // TODO create a better message for the event history
-        return Arrays.asList("Refund applied to payment on invoice.");
+        //return Arrays.asList("Refund applied to payment on invoice.");
+        return Arrays.asList(String.format(
+              "Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s, Posting date: %s]",
+              paymentMethodName, amount, appliedOnPropertyDate, lineItemPostingDate));
     }
 
     @Override

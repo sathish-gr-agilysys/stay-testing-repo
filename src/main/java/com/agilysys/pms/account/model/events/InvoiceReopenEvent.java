@@ -1,9 +1,13 @@
+package com.agilysys.pms.account.model.events;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDate;
+import org.springframework.data.annotation.Transient;
 
 import com.agilysys.platform.persistence.eventsourcing.PropertyLevelIdentifier;
-import com.agilysys.pms.account.model.events.InvoiceBalanceChangeEvent;
 
 public class InvoiceReopenEvent extends InvoiceBalanceChangeEvent {
 
@@ -11,19 +15,17 @@ public class InvoiceReopenEvent extends InvoiceBalanceChangeEvent {
     private String accountId;
     private LocalDate invoiceDate;
     private String invoiceNumber;
+    private Set<String> folioLineItemIds;
+
     public InvoiceReopenEvent(){}
 
-    @Override
-    public List<String> getHistoryMessages() {
-        return null;
-    }
-
-    public InvoiceReopenEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate, String invoiceNumber, boolean closed) {
+    public InvoiceReopenEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate, String invoiceNumber, Set<String> folioLineItemIds, boolean closed) {
         super(closed);
         this.id = id;
         this.accountId = accountId;
         this.invoiceDate = invoiceDate;
         this.invoiceNumber = invoiceNumber;
+        this.folioLineItemIds = folioLineItemIds;
     }
 
     public PropertyLevelIdentifier getId() {
@@ -46,9 +48,24 @@ public class InvoiceReopenEvent extends InvoiceBalanceChangeEvent {
         return accountId;
     }
 
+    public Set<String> getFolioLineItemIds() {
+        return folioLineItemIds;
+    }
+
     @Override
     public long getEventVersion() {
         return 0;
+    }
+
+    @Transient
+    @Override
+    public String getDisplayName() {
+        return "Invoice ReOpened";
+    }
+
+    @Override
+    public List<String> getHistoryMessages() {
+        return Arrays.asList(String.format("Invoice %s reopened.", invoiceNumber));
     }
 
 }

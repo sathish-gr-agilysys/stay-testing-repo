@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 import org.springframework.data.annotation.Transient;
 
 public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
@@ -45,8 +47,8 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
         } else {
             List<String> historyMessages = new LinkedList<>();
             historyMetadata.forEach(metadata -> {
-                String displayDate =
-                      metadata.get("displayDate") != null ? metadata.get("displayDate").toString() : null;
+                String tempDisplayDate = metadata.get("displayDate") != null ? metadata.get("displayDate").toString() : null;
+                LocalDate displayDate = LocalDate.parse(tempDisplayDate, DateTimeFormat.forPattern("dd MMM yyyy"));
                 String itemName = metadata.get("itemName") != null ? metadata.get("itemName").toString() : null;
                 String itemBalance =
                       metadata.get("lineItemBalance") != null ? metadata.get("lineItemBalance").toString() : null;
