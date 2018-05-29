@@ -9,6 +9,7 @@ public class AccountAttributes {
     private String accountContactId;
     private PreferredCommunication preferredCommunication;
     private AccountStatus status;
+    private String comment;
     private BigDecimal creditLimit;
     private int terms;
     private DefaultRoutingRule routingRule;
@@ -18,11 +19,12 @@ public class AccountAttributes {
     }
 
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
-          AccountStatus status, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
+          AccountStatus status, String comment, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
           TenantARTaxExemptSettings taxExemptSettings) {
         this.accountContactId = accountContactId;
         this.preferredCommunication = preferredCommunication;
         this.status = status;
+        this.comment = comment;
         this.creditLimit = creditLimit;
         this.terms = terms;
         this.routingRule = routingRule;
@@ -68,6 +70,14 @@ public class AccountAttributes {
 
     public AccountStatus getStatus() {
         return status;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public BigDecimal getCreditLimit() {
