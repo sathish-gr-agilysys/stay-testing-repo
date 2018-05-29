@@ -29,7 +29,7 @@ public class InvoiceClosedEvent extends InvoiceBalanceChangeEvent{
         this.accountId = accountId;
         this.invoiceDate = invoiceDate;
         this.invoiceNumber = invoiceNumber;
-        this.folioLineItemIds = folioLineItemIds;
+        //this.folioLineItemIds = folioLineItemIds;
     }
 
     public PropertyLevelIdentifier getId() {
