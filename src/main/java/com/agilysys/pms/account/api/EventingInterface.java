@@ -22,8 +22,8 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.RawEventsResult;
 import com.agilysys.pms.account.model.events.AccountPostEvent;
 import com.agilysys.pms.account.payagent.model.events.PayAgentTransactionEvent;
+import com.agilysys.pms.common.model.ARInvoiceEvents;
 import com.agilysys.pms.common.model.HistoryEventsResult;
-import com.agilysys.pms.common.model.InvoiceEventsResults;
 
 @Path(EventingInterface.BASE)
 @Produces(MediaType.APPLICATION_JSON)
@@ -52,8 +52,7 @@ public interface EventingInterface {
     @Path(INVOICE_BASE + HISTORY + AR_NUMBER_BASE)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     @LogRequest("getInvoiceHistoryEvents")
-    List<List<InvoiceEventsResults>> getInvoiceHistoryEventsForARNumber(
-          @PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
+    List<ARInvoiceEvents> getInvoiceHistoryEventsForARNumber(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
           @PathParam(AR_NUMBER) @LogParam(AR_NUMBER) String arNumber) throws RGuestException, ServiceException;
 
