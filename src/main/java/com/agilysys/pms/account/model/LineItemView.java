@@ -49,7 +49,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String mealPeriodId;
     private String name;
     private String parentId;
-    private String petDisplayValue;
+    private String petDisplayName;
     private DateTime postingCalendarDateTime;
     private LocalDate postingPropertyDate;
     private int quantity;
@@ -281,12 +281,12 @@ public class LineItemView implements Comparable<LineItemView> {
         this.parentId = parentId;
     }
 
-    public String getPetDisplayValue() {
-        return petDisplayValue;
+    public String getPetDisplayName() {
+        return petDisplayName;
     }
 
-    public void setPetDisplayValue(String petDisplayValue) {
-        this.petDisplayValue = petDisplayValue;
+    public void setPetDisplayName(String petDisplayName) {
+        this.petDisplayName = petDisplayName;
     }
 
     public DateTime getPostingCalendarDateTime() {
