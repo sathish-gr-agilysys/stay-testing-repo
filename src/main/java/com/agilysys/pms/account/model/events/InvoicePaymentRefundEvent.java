@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 
 public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private String invoicePaymentId;
@@ -124,11 +125,11 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
 
     @Override
     public List<String> getHistoryMessages() {
-        // TODO create a better message for the event history
-        //return Arrays.asList("Refund applied to payment on invoice.");
         return Arrays.asList(String.format(
-              "Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s, Posting date: %s]",
-              paymentMethodName, amount, appliedOnPropertyDate, lineItemPostingDate));
+              "Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s, Posting date:" +
+                    " %s]", paymentMethodName, amount,
+              appliedOnPropertyDate.toString(DateTimeFormat.forPattern("MMM dd, yyyy")),
+              lineItemPostingDate.toString(DateTimeFormat.forPattern("MMM dd, yyyy"))));
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 
 public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private String invoicePaymentId;
@@ -133,7 +134,8 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     public List<String> getHistoryMessages() {
         return Arrays.asList(String.format(
               "Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s, Posting date: %s]",
-              paymentMethodName, amount, appliedOnPropertyDate, lineItemPostingDate));
+              paymentMethodName, amount, appliedOnPropertyDate.toString(DateTimeFormat.forPattern("MMM dd, yyyy")),
+              lineItemPostingDate.toString(DateTimeFormat.forPattern("MMM dd, yyyy"))));
     }
 
     @Override

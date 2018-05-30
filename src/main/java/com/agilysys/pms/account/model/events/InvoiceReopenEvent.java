@@ -1,8 +1,10 @@
+/**
+ * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model.events;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
@@ -15,17 +17,16 @@ public class InvoiceReopenEvent extends InvoiceBalanceChangeEvent {
     private String accountId;
     private LocalDate invoiceDate;
     private String invoiceNumber;
-    private Set<String> folioLineItemIds;
 
-    public InvoiceReopenEvent(){}
+    public InvoiceReopenEvent() {}
 
-    public InvoiceReopenEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate, String invoiceNumber, Set<String> folioLineItemIds, boolean closed) {
+    public InvoiceReopenEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate, String invoiceNumber,
+          boolean closed) {
         super(closed);
         this.id = id;
         this.accountId = accountId;
         this.invoiceDate = invoiceDate;
         this.invoiceNumber = invoiceNumber;
-        this.folioLineItemIds = folioLineItemIds;
     }
 
     public PropertyLevelIdentifier getId() {
@@ -46,10 +47,6 @@ public class InvoiceReopenEvent extends InvoiceBalanceChangeEvent {
 
     public String getAccountId() {
         return accountId;
-    }
-
-    public Set<String> getFolioLineItemIds() {
-        return folioLineItemIds;
     }
 
     @Override
