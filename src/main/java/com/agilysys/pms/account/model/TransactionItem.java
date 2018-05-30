@@ -28,7 +28,6 @@ public class TransactionItem extends AccountingItem {
 
     private static final String DISPLAY_NAME = "Transaction item";
 
-    @MinLengthRestriction(4)
     private String plu;
 
     @JsonProperty(required = true)
