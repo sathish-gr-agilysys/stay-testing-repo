@@ -86,6 +86,7 @@ import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
+import com.agilysys.pms.maintenance.domain.JobDetail;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -136,6 +137,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
+    String JOB_STATUS_PATH = "/companyProfile/{companyProfileId}/tenantDefaultSettings/jobStatus";
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
@@ -158,6 +160,7 @@ public interface AccountServiceInterfaceV1 {
     // used for generic refunds
     String REFUNDS_PATH = "/refunds";
     String REMAINING_PATH = "/{" + PATH + ":.*}";
+    String REQUEST_TYPE = "requestType";
     String SEARCH_PATH = "/search";
     String SEARCH_TERM = "searchTerm";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
@@ -1291,4 +1294,14 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam(START_DATE_TIME) String startDateTime,
           @QueryParam(END_DATE_TIME) String endDateTime)
           throws RGuestException, ServiceException;
+
+    @GET
+    @Path(BASE_PATH + JOB_STATUS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    JobDetail getLatestJob(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String companyProfileId,
+          @QueryParam(REQUEST_TYPE) String requestType)
+          throws RGuestException, ServiceException;
+
 }
