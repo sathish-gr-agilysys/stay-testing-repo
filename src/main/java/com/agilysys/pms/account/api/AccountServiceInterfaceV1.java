@@ -78,6 +78,7 @@ import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
+import com.agilysys.pms.account.model.PropertySettings;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
@@ -154,6 +155,7 @@ public interface AccountServiceInterfaceV1 {
     String POSTING_RULES_PATH = "/postingRules";
     String PRESET =  "preset";
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
+    String PROPERTY_SETTINGS_PATH =  "/propertySettings";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
     // used for a refund of a specific line item
@@ -1327,4 +1329,11 @@ public interface AccountServiceInterfaceV1 {
     TenantDefaultSettingsSummary updateTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId,
           TenantDefaultSettingsSummary tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COMPANY_PROFILE_PATH + PROPERTY_SETTINGS_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    List<PropertySettings> getPropertySettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
+          throws RGuestException, ServiceException;
 }
