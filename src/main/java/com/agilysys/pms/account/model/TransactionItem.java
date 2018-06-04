@@ -26,6 +26,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class TransactionItem extends AccountingItem {
 
+    private static final String DISPLAY_NAME = "Transaction item";
+
     private String plu;
 
     @JsonProperty(required = true)
@@ -138,5 +140,10 @@ public class TransactionItem extends AccountingItem {
     public int hashCode()
     {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }
