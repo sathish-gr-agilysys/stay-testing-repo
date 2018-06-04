@@ -24,7 +24,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -62,7 +61,6 @@ import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -78,8 +76,8 @@ import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
-import com.agilysys.pms.account.model.PropertySettings;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
+import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
@@ -155,7 +153,7 @@ public interface AccountServiceInterfaceV1 {
     String POSTING_RULES_PATH = "/postingRules";
     String PRESET =  "preset";
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
-    String PROPERTY_SETTINGS_PATH =  "/propertySettings";
+    String PROPERTY_SETTINGS_PATH =  "/tenantDefaultSettings/propertyStatus";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
     // used for a refund of a specific line item
@@ -1333,7 +1331,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(COMPANY_PROFILE_PATH + PROPERTY_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    List<PropertySettings> getPropertySettings(@PathParam(TENANT_ID) String tenantId,
+    List<TenantARPropertySettingStatus> getAccountReceivableStatus(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException, ServiceException;
 }

@@ -13,7 +13,7 @@ import com.agilysys.pms.maintenance.domain.JobDetail.Status;
  * @see <a
  * href="">http://confluence.bellevue.ad.local:8090/display/VICTRIAL/Account+Document</a>
  */
-public class TenantARPropertyDefaultSetting {
+public class TenantARPropertySettingStatus {
 
     private String propertyId;
     private String propertyName;
@@ -23,20 +23,20 @@ public class TenantARPropertyDefaultSetting {
     private Status accountUpdateStatus;
     private Status ratePlanUpdateStatus;
 
-    public TenantARPropertyDefaultSetting() {
+    public TenantARPropertySettingStatus() {
     }
 
-    public TenantARPropertyDefaultSetting(String propertyId, String propertyName) {
+    public TenantARPropertySettingStatus(String propertyId, String propertyName) {
         this.propertyId = propertyId;
         this.propertyName = propertyName;
     }
 
-    public TenantARPropertyDefaultSetting(String propertyId, String propertyName, String accountId) {
+    public TenantARPropertySettingStatus(String propertyId, String propertyName, String accountId) {
         this(propertyId, propertyName);
         this.accountId = accountId;
     }
 
-    public TenantARPropertyDefaultSetting(String propertyId, String propertyName, String accountId, String ratePlanId) {
+    public TenantARPropertySettingStatus(String propertyId, String propertyName, String accountId, String ratePlanId) {
         this(propertyId, propertyName, accountId);
         this.ratePlanId = ratePlanId;
     }
