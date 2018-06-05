@@ -19,6 +19,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.pms.account.model.ARRequest;
 import com.agilysys.pms.account.model.RawEventsResult;
 import com.agilysys.pms.account.model.events.AccountPostEvent;
 import com.agilysys.pms.account.payagent.model.events.PayAgentTransactionEvent;
@@ -37,7 +38,7 @@ public interface EventingInterface {
     String RAW_EVENTS = "/events";
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
-    String AR_NUMBER_BASE = "/arNumber/{arNumber}";
+    String AR_NUMBER_BASE = "/arNumber";
     String AR_NUMBER = "arNumber";
 
     @GET
@@ -48,13 +49,13 @@ public interface EventingInterface {
           @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
           @PathParam("id") @LogParam("id") String invoiceId) throws RGuestException, ServiceException;
 
-    @GET
+    @POST
     @Path(INVOICE_BASE + HISTORY + AR_NUMBER_BASE)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    @LogRequest("getInvoiceHistoryEvents")
+    @LogRequest("getInvoiceHistoryEventsForARNumber")
     List<ARInvoiceEvents> getInvoiceHistoryEventsForARNumber(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
-          @PathParam(AR_NUMBER) @LogParam(AR_NUMBER) String arNumber) throws RGuestException, ServiceException;
+          ARRequest arRequest) throws RGuestException, ServiceException;
 
     @GET
     @Path(INVOICE_BASE + ID + RAW_EVENTS)
