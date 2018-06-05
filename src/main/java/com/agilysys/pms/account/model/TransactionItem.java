@@ -30,6 +30,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class TransactionItem extends AccountingItem {
     private static final String DISPLAY_NAME = "Transaction item";
 
+    private static final String DISPLAY_NAME = "Transaction item";
+
     private String plu;
 
     @JsonProperty(required = true)

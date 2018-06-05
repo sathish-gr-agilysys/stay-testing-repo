@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class to represent a PaymentMethod
  */
 public class PaymentMethod extends AccountingItem {
+
     private static final String DISPLAY_NAME = "Payment method";
 
     //CC is the code for Credit Card in bootstrap data

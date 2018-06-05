@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionCategory in the application.
  */
 public class TransactionCategory extends AccountingObjectBase {
+
     private static final String DISPLAY_NAME = "Transaction category";
 
     public static final String TAX_CATEGORY_ID = "5dd994cf-6aa4-4040-9adb-38a59297ccab";
