@@ -5,6 +5,8 @@ package com.agilysys.pms.account.model;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.agilysys.pms.maintenance.domain.JobDetail.Status;
 
 /**
@@ -15,8 +17,11 @@ import com.agilysys.pms.maintenance.domain.JobDetail.Status;
  */
 public class TenantARPropertySettingStatus {
 
+    public static final String YES = "Yes";
+    public static final String NO = "No";
     private String propertyId;
     private String propertyName;
+    private String propertyCode;
     private String accountId;
     private String ratePlanId;
     private String propertyOverridden;
@@ -26,19 +31,10 @@ public class TenantARPropertySettingStatus {
     public TenantARPropertySettingStatus() {
     }
 
-    public TenantARPropertySettingStatus(String propertyId, String propertyName) {
+    public TenantARPropertySettingStatus(String propertyId, String propertyName, String propertyCode) {
         this.propertyId = propertyId;
         this.propertyName = propertyName;
-    }
-
-    public TenantARPropertySettingStatus(String propertyId, String propertyName, String accountId) {
-        this(propertyId, propertyName);
-        this.accountId = accountId;
-    }
-
-    public TenantARPropertySettingStatus(String propertyId, String propertyName, String accountId, String ratePlanId) {
-        this(propertyId, propertyName, accountId);
-        this.ratePlanId = ratePlanId;
+        this.propertyCode = propertyCode;
     }
 
     public String getPropertyId() {
@@ -55,6 +51,14 @@ public class TenantARPropertySettingStatus {
 
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
+    }
+
+    public String getPropertyCode() {
+        return propertyCode;
+    }
+
+    public void setPropertyCode(String propertyCode) {
+        this.propertyCode = propertyCode;
     }
 
     public String getAccountId() {
@@ -74,7 +78,7 @@ public class TenantARPropertySettingStatus {
     }
 
     public String getPropertyOverridden() {
-        return propertyOverridden;
+        return trimToEmpty(propertyOverridden);
     }
 
     public void setPropertyOverridden(String propertyOverridden) {
