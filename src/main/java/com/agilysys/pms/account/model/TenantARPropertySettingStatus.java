@@ -24,7 +24,7 @@ public class TenantARPropertySettingStatus {
     private String propertyCode;
     private String accountId;
     private String ratePlanId;
-    private String propertyOverridden;
+    private String propertyOverridden = NO;
     private Status accountUpdateStatus;
     private Status ratePlanUpdateStatus;
 
