@@ -4,7 +4,7 @@
 
 package com.agilysys.pms.account.model;
 
-import java.util.Set;
+import java.util.Collection;
 
 public class AccountUpdateRequest {
     public static final String TYPE_AR_APPLY = "AR Apply";
@@ -12,10 +12,21 @@ public class AccountUpdateRequest {
     private final String type;
     private String companyProfileId;
     private String requestId;
-    private Set<String> propertyIds;
+    private Collection<String> propertyIds;
 
     public AccountUpdateRequest(String type) {
         this.type = type;
+    }
+
+    public AccountUpdateRequest(String type, String companyProfileId, String requestId) {
+        this.type = type;
+        this.companyProfileId = companyProfileId;
+        this.requestId = requestId;
+    }
+
+    public AccountUpdateRequest(String type, String companyProfileId, String requestId, Collection<String> propertyIds) {
+        this(type, companyProfileId, requestId);
+        this.propertyIds = propertyIds;
     }
 
     public String getType() {
@@ -38,11 +49,11 @@ public class AccountUpdateRequest {
         this.companyProfileId = companyProfileId;
     }
 
-    public Set<String> getPropertyIds() {
+    public Collection<String> getPropertyIds() {
         return propertyIds;
     }
 
-    public void setPropertyIds(Set<String> propertyIds) {
+    public void setPropertyIds(Collection<String> propertyIds) {
         this.propertyIds = propertyIds;
     }
 }

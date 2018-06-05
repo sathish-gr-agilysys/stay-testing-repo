@@ -32,6 +32,7 @@ import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
+import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -182,6 +183,7 @@ public interface AccountServiceInterfaceV1 {
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
+    String TENANT_DEFAULT_SETTINGS_APPLY_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/apply";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1332,6 +1334,13 @@ public interface AccountServiceInterfaceV1 {
     @Path(COMPANY_PROFILE_PATH + PROPERTY_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
     List<TenantARPropertySettingStatus> getAccountReceivableStatus(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_APPLY_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    AccountUpdateResponse applyTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException, ServiceException;
 }
