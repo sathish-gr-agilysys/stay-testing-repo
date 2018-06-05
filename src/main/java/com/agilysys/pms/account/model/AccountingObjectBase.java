@@ -63,4 +63,6 @@ public abstract class AccountingObjectBase {
     public void setInternal(boolean internal) {
         this.internal = internal;
     }
+
+    public abstract String getDisplayName();
 }
