@@ -183,7 +183,7 @@ public interface AccountServiceInterfaceV1 {
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
-    String TENANT_DEFAULT_SETTINGS_APPLY_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/apply";
+    String TENANT_DEFAULT_SETTINGS_APPLY_PATH = "/apply" + TENANT_DEFAULT_SETTINGS_PATH;
 
     /**
      * Retrieve all accounts from a tenant
@@ -1304,7 +1304,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(BASE_PATH + JOB_STATUS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    JobDetail getLatestJob(@PathParam(TENANT_ID) String tenantId,
+    AccountUpdateResponse findARJobStatus(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String companyProfileId,
           @QueryParam(REQUEST_TYPE) String requestType)
