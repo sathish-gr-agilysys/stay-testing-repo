@@ -87,7 +87,6 @@ import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
-import com.agilysys.pms.maintenance.domain.JobDetail;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -138,7 +137,6 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
-    String JOB_STATUS_PATH = "/companyProfile/{companyProfileId}/tenantDefaultSettings/jobStatus";
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
@@ -154,7 +152,6 @@ public interface AccountServiceInterfaceV1 {
     String POSTING_RULES_PATH = "/postingRules";
     String PRESET =  "preset";
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
-    String PROPERTY_SETTINGS_PATH =  "/tenantDefaultSettings/propertyStatus";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
     // used for a refund of a specific line item
@@ -183,7 +180,9 @@ public interface AccountServiceInterfaceV1 {
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
-    String TENANT_DEFAULT_SETTINGS_APPLY_PATH = "/apply" + TENANT_DEFAULT_SETTINGS_PATH;
+    String TENANT_DEFAULT_SETTINGS_APPLY_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/apply";
+    String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
+    String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1302,14 +1301,6 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @GET
-    @Path(BASE_PATH + JOB_STATUS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    AccountUpdateResponse findARJobStatus(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String companyProfileId,
-          @QueryParam(REQUEST_TYPE) String requestType)
-          throws RGuestException, ServiceException;
-
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
     TenantDefaultSettingsSummary getTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
@@ -1331,9 +1322,18 @@ public interface AccountServiceInterfaceV1 {
           TenantDefaultSettingsSummary tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
 
     @GET
-    @Path(COMPANY_PROFILE_PATH + PROPERTY_SETTINGS_PATH)
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    AccountUpdateResponse findAccountReceivableJobStatus(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String companyProfileId,
+          @QueryParam(REQUEST_TYPE) String requestType)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    List<TenantARPropertySettingStatus> getAccountReceivableStatus(@PathParam(TENANT_ID) String tenantId,
+    List<TenantARPropertySettingStatus> getAccountReceivablePropertySettingStatus(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException, ServiceException;
 
