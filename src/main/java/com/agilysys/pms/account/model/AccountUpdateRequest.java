@@ -7,7 +7,7 @@ package com.agilysys.pms.account.model;
 import java.util.Collection;
 
 public class AccountUpdateRequest {
-    public static final String TYPE_AR_APPLY = "AR Apply";
+    public static final String TYPE_AR_APPLY = "ARApply";
 
     private final String type;
     private String companyProfileId;
