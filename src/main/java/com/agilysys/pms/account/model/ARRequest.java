@@ -2,19 +2,19 @@ package com.agilysys.pms.account.model;
 
 public class ARRequest {
 
-    private String arNumber;
+    private String arNumbers;
 
     public ARRequest(){}
 
-    public ARRequest(String arNumber){
-        this.arNumber = arNumber;
+    public ARRequest(String arNumbers){
+        this.arNumbers = arNumbers;
     }
 
-    public String getArNumber() {
-        return arNumber;
+    public String getArNumbers() {
+        return arNumbers;
     }
 
-    public void setArNumber(String arNumber) {
-        this.arNumber = arNumber;
+    public void setArNumbers(String arNumbers) {
+        this.arNumbers = arNumbers;
     }
 }
