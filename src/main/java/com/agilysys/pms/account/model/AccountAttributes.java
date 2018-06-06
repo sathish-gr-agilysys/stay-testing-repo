@@ -5,7 +5,8 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
-public class AccountAttributes {
+public class AccountAttributes implements Comparable<AccountAttributes> {
+
     private String accountContactId;
     private PreferredCommunication preferredCommunication;
     private AccountStatus status;
@@ -16,6 +17,18 @@ public class AccountAttributes {
     private TenantARTaxExemptSettings taxExemptSettings;
 
     public AccountAttributes() {
+    }
+
+    public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
+          AccountStatus status, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
+          TenantARTaxExemptSettings taxExemptSettings) {
+        this.accountContactId = accountContactId;
+        this.preferredCommunication = preferredCommunication;
+        this.status = status;
+        this.creditLimit = creditLimit;
+        this.terms = terms;
+        this.routingRule = routingRule;
+        this.taxExemptSettings = taxExemptSettings;
     }
 
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
@@ -110,5 +123,20 @@ public class AccountAttributes {
 
     public void setTaxExemptSettings(TenantARTaxExemptSettings taxExemptSettings) {
         this.taxExemptSettings = taxExemptSettings;
+    }
+
+    @Override
+    public int compareTo(AccountAttributes that) {
+        boolean isEqual = this.getAccountContactId().equals(that.getAccountContactId()) &&
+              this.getStatus().name().equals(that.getStatus().name()) &&
+              this.getPreferredCommunication().name().equals(that.getPreferredCommunication().name()) &&
+              this.getCreditLimit().compareTo(that.getCreditLimit()) == 0 &&
+              this.getTerms() == that.getTerms() &&
+              this.getRoutingRule().name().equals(that.getRoutingRule().name()) &&
+              this.getTaxExemptSettings().getTaxId().equals(that.getTaxExemptSettings().getTaxId());
+        if (isEqual)
+            return 0;
+        else
+            return 1;
     }
 }
