@@ -12,6 +12,8 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 
+import com.agilysys.common.constants.Constants;
+
 public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private String invoicePaymentId;
     private BigDecimal amount;
@@ -134,8 +136,8 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     public List<String> getHistoryMessages() {
         return Arrays.asList(String.format(
               "Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s, Posting date: %s]",
-              paymentMethodName, amount, appliedOnPropertyDate.toString(DateTimeFormat.forPattern("MMM dd, yyyy")),
-              lineItemPostingDate.toString(DateTimeFormat.forPattern("MMM dd, yyyy"))));
+              paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FOTRMAT),
+              lineItemPostingDate.toString(Constants.INVOICE_EVENTS_DATE_FOTRMAT)));
     }
 
     @Override
