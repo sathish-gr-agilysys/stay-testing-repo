@@ -39,7 +39,6 @@ public interface EventingInterface {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
     String AR_NUMBER_BASE = "/arNumber";
-    String AR_NUMBER = "arNumber";
 
     @GET
     @Path(INVOICE_BASE + ID + HISTORY)
@@ -54,8 +53,8 @@ public interface EventingInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     @LogRequest("getInvoiceHistoryEventsForARNumber")
     List<ARInvoiceEvents> getInvoiceHistoryEventsForARNumber(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
-          ARRequest arRequest) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId, ARRequest arRequest)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path(INVOICE_BASE + ID + RAW_EVENTS)

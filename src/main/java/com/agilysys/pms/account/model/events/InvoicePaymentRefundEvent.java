@@ -11,7 +11,6 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
 
 import com.agilysys.common.constants.Constants;
 
@@ -44,7 +43,8 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
         this.historyMetadata = historyMetadata;
     }
 
-    public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
+    public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
+          String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
           List<Map<String, Object>> historyMetadata, boolean closed) {
         super(closed);

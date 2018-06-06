@@ -4,9 +4,9 @@ public class ARRequest {
 
     private String arNumbers;
 
-    public ARRequest(){}
+    public ARRequest() {}
 
-    public ARRequest(String arNumbers){
+    public ARRequest(String arNumbers) {
         this.arNumbers = arNumbers;
     }
 

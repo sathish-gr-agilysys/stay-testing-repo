@@ -11,14 +11,14 @@ import org.springframework.data.annotation.Transient;
 
 import com.agilysys.platform.persistence.eventsourcing.PropertyLevelIdentifier;
 
-public class InvoiceClosedEvent extends InvoiceBalanceChangeEvent{
+public class InvoiceClosedEvent extends InvoiceBalanceChangeEvent {
 
     private PropertyLevelIdentifier id;
     private String accountId;
     private LocalDate invoiceDate;
     private String invoiceNumber;
 
-    public InvoiceClosedEvent(){}
+    public InvoiceClosedEvent() {}
 
     public InvoiceClosedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate, String invoiceNumber,
           boolean closed) {
