@@ -47,17 +47,8 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
           String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
           List<Map<String, Object>> historyMetadata, boolean closed) {
-        super(closed);
-
-        this.invoicePaymentId = invoicePaymentId;
-        this.amount = amount;
-        this.folioLineItemId = folioLineItemId;
-        this.reason = reason;
-        this.lineItemPostingDate = lineItemPostingDate;
-        this.lineItemPostingSystemDateTime = lineItemPostingSystemDateTime;
-        this.appliedOnPropertyDate = appliedOnPropertyDate;
-        this.appliedOnSystemDateTime = appliedOnSystemDateTime;
-        this.historyMetadata = historyMetadata;
+        this(invoicePaymentId, amount, folioLineItemId, reason, lineItemPostingDate, lineItemPostingSystemDateTime,
+              appliedOnPropertyDate, appliedOnSystemDateTime, historyMetadata, closed);
         this.paymentMethodName = paymentMethodName;
     }
 
