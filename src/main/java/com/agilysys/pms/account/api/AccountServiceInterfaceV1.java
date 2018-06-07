@@ -24,7 +24,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -62,7 +61,6 @@ import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -102,6 +100,7 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
+    String ACCOUNT_TYPE = "accountType";
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
     String ADJUSTMENT_PATH = "/adjustment";
@@ -153,6 +152,7 @@ public interface AccountServiceInterfaceV1 {
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
+    String REFERENCE_IDS_PATH = "/references/{" + REFERENCE_ID + "}";
     // used for a refund of a specific line item
     String REFUND_PATH = "/refund";
     // used for generic refunds
@@ -206,6 +206,22 @@ public interface AccountServiceInterfaceV1 {
     AccountSummary getAccountByReferenceId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(REFERENCE_ID) String referenceId)
           throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve accounts by reference id
+     *
+     * @param tenantId    id of tenant where the account exists
+     * @param propertyId  id of the property where the account exists
+     * @param referenceId reference id of the account to retrieve
+     * @param accountType types of account to filter
+     * @return an account for the tenant and referenceId
+     */
+    @GET
+    @Path(REFERENCE_IDS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountsByReferenceId(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(REFERENCE_ID) String referenceId,
+          @QueryParam(ACCOUNT_TYPE) String accountType) throws RGuestException, ServiceException;
 
     /**
      * Retrieve an account
