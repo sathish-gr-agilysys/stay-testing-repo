@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.agilysys.common.model.FrequencyType;
+import com.agilysys.common.model.rate.PetRateSnapshot;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -150,15 +151,15 @@ public class CreateRecurringCharge {
         this.occurrenceDays = occurrenceDays;
     }
 
-    public CreateRecurringCharge(String agentId, String itemId, BigDecimal amount, String reason, String folioId,
-          FrequencyType frequencyType, int nNights, Set<Integer> occurrenceDays, String sourceId) {
+    public CreateRecurringCharge(String agentId, String itemId, PetRateSnapshot petRateSnapshot, String reason,
+          String folioId, Set<Integer> occurrenceDays, String sourceId) {
         this.agentId = agentId;
         this.itemId = itemId;
-        this.amount = amount;
+        this.amount = petRateSnapshot.getAmount();
         this.reason = reason;
         this.folioId = folioId;
-        this.frequencyType = frequencyType;
-        this.nNights = nNights;
+        this.frequencyType = petRateSnapshot.getFrequencyType();
+        this.nNights = petRateSnapshot.getnNights();
         this.occurrenceDays = occurrenceDays;
         this.sourceId = sourceId;
     }
