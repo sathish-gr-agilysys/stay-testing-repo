@@ -7,6 +7,7 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.agilysys.pms.maintenance.domain.JobDetail;
 import com.agilysys.pms.maintenance.domain.JobDetail.Status;
 
 /**
@@ -25,8 +26,8 @@ public class TenantARPropertySettingStatus {
     private String accountId;
     private String ratePlanId;
     private String propertyOverridden = NO;
-    private Status accountUpdateStatus;
-    private Status ratePlanUpdateStatus;
+    private Status accountUpdateStatus = JobDetail.Status.SUCCEEDED;
+    private Status ratePlanUpdateStatus = JobDetail.Status.SUCCEEDED;
 
     public TenantARPropertySettingStatus() {
     }
