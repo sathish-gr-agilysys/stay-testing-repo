@@ -5,8 +5,6 @@ package com.agilysys.pms.account.model;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.agilysys.pms.maintenance.domain.JobDetail;
 import com.agilysys.pms.maintenance.domain.JobDetail.Status;
 
@@ -23,8 +21,8 @@ public class TenantARPropertySettingStatus {
     private String propertyId;
     private String propertyName;
     private String propertyCode;
-    private String accountId;
-    private String ratePlanId;
+    private String accountNumber;
+    private String ratePlanName;
     private String propertyOverridden = NO;
     private Status accountUpdateStatus = JobDetail.Status.SUCCEEDED;
     private Status ratePlanUpdateStatus = JobDetail.Status.SUCCEEDED;
@@ -62,20 +60,20 @@ public class TenantARPropertySettingStatus {
         this.propertyCode = propertyCode;
     }
 
-    public String getAccountId() {
-        return trimToEmpty(accountId);
+    public String getAccountNumber() {
+        return trimToEmpty(accountNumber);
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
-    public String getRatePlanId() {
-        return trimToEmpty(ratePlanId);
+    public String getRatePlanName() {
+        return trimToEmpty(ratePlanName);
     }
 
-    public void setRatePlanId(String ratePlanId) {
-        this.ratePlanId = ratePlanId;
+    public void setRatePlanName(String ratePlanName) {
+        this.ratePlanName = ratePlanName;
     }
 
     public String getPropertyOverridden() {
