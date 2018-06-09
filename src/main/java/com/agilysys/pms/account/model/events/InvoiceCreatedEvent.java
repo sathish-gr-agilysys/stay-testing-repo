@@ -23,8 +23,7 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     public InvoiceCreatedEvent() { super(); }
 
     public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
-          Set<String> folioLineItemIds, int terms, String invoiceNumber, boolean closed) {
-        super(closed);
+          Set<String> folioLineItemIds, int terms, String invoiceNumber) {
 
         this.id = id;
         this.accountId = accountId;

@@ -20,9 +20,7 @@ public class InvoiceReopenEvent extends InvoiceBalanceChangeEvent {
 
     public InvoiceReopenEvent() { super(); }
 
-    public InvoiceReopenEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate, String invoiceNumber,
-          boolean closed) {
-        super(closed);
+    public InvoiceReopenEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate, String invoiceNumber) {
         this.id = id;
         this.accountId = accountId;
         this.invoiceDate = invoiceDate;

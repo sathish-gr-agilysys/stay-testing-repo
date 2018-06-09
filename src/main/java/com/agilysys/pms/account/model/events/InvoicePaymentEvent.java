@@ -31,8 +31,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          boolean isFullAmountApplied, boolean closed) {
-        super(closed);
+          boolean isFullAmountApplied) {
 
         this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;

@@ -16,9 +16,8 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
 
     public RemoveInvoiceLineItemsEvent() { super(); }
 
-    public RemoveInvoiceLineItemsEvent(Set<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
-          boolean closed) {
-        super(historyMetadata, closed);
+    public RemoveInvoiceLineItemsEvent(Set<String> folioLineItemIds, List<Map<String, Object>> historyMetadata) {
+        super(historyMetadata);
 
         this.folioLineItemIds = folioLineItemIds;
     }
@@ -51,7 +50,7 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
                 String itemBalance =
                       metadata.get("lineItemBalance") != null ? metadata.get("lineItemBalance").toString() : null;
                 historyMessages.add(String
-                      .format("Item removed from invoice.  [Date: %s, Description: %s, Total: %s] ", displayDate,
+                      .format("Item removed from invoice.  [Date: %s, Description: %s, Total: %s]", displayDate,
                             itemName, itemBalance));
             });
             return historyMessages;

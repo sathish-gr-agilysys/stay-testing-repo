@@ -9,27 +9,15 @@ import java.util.Map;
 import org.joda.time.DateTime;
 
 public abstract class InvoiceBalanceChangeEvent extends InvoiceEvent {
-    private boolean closed;
 
     public InvoiceBalanceChangeEvent() { super(); }
 
-    public InvoiceBalanceChangeEvent(boolean closed) {
-        super();
-
-        this.closed = closed;
-    }
-
-    public InvoiceBalanceChangeEvent(List<Map<String, Object>> historyMetadata, boolean closed) {
+    public InvoiceBalanceChangeEvent(List<Map<String, Object>> historyMetadata) {
         super(historyMetadata);
-
-        this.closed = closed;
     }
 
-    public InvoiceBalanceChangeEvent(DateTime eventDate, List<Map<String, Object>> historyMetadata, boolean closed) {
+    public InvoiceBalanceChangeEvent(DateTime eventDate, List<Map<String, Object>> historyMetadata) {
         super(eventDate, historyMetadata);
-
-        this.closed = closed;
     }
 
-    public boolean isClosed() { return closed; }
 }

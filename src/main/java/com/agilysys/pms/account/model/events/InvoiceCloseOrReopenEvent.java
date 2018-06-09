@@ -23,12 +23,12 @@ public class InvoiceCloseOrReopenEvent extends InvoiceBalanceChangeEvent {
 
     public InvoiceCloseOrReopenEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
           String invoiceNumber, boolean isClosed){
-        super(isClosed);
 
         this.id = id;
         this.accountId = accountId;
         this.invoiceDate = invoiceDate;
         this.invoiceNumber = invoiceNumber;
+        this.isClosed = isClosed;
     }
 
     @Override
@@ -53,5 +53,13 @@ public class InvoiceCloseOrReopenEvent extends InvoiceBalanceChangeEvent {
         }else{
             return "Invoice reopened";
         }
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setIsClosed(boolean isClosed) {
+        this.isClosed = isClosed;
     }
 }
