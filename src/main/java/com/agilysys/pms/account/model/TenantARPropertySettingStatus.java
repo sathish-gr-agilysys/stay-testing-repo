@@ -21,10 +21,10 @@ public class TenantARPropertySettingStatus {
     public static final String YES = "Yes";
     public static final String NO = "No";
 
+    private String accountContactId;
     private String accountId;
     private String accountNumber;
     private Status accountUpdateStatus = JobDetail.Status.SUCCEEDED;
-    private String accountContactId;
     private String propertyCode;
     private String propertyId;
     private String propertyName;
@@ -40,6 +40,14 @@ public class TenantARPropertySettingStatus {
         this.propertyId = propertyId;
         this.propertyName = propertyName;
         this.propertyCode = propertyCode;
+    }
+
+    public String getAccountContactId() {
+        return trimToEmpty(accountContactId);
+    }
+
+    public void setAccountContactId(String accountContactId) {
+        this.accountContactId = accountContactId;
     }
 
     public String getAccountId() {
@@ -66,14 +74,6 @@ public class TenantARPropertySettingStatus {
         this.accountUpdateStatus = accountUpdateStatus;
     }
 
-    public String getAccountContactId() {
-        return accountContactId;
-    }
-
-    public void setAccountContactId(String accountContactId) {
-        this.accountContactId = accountContactId;
-    }
-
     public String getPropertyCode() {
         return propertyCode;
     }
@@ -91,7 +91,7 @@ public class TenantARPropertySettingStatus {
     }
 
     public String getPropertyName() {
-        return propertyName;
+        return trimToEmpty(propertyName);
     }
 
     public void setPropertyName(String propertyName) {
