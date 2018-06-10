@@ -7,7 +7,7 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import com.agilysys.pms.maintenance.domain.JobDetail;
 import com.agilysys.pms.maintenance.domain.JobDetail.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Detailed Property Settings model for representing the Tenant AR View
@@ -15,20 +15,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @see <a
  * href="">http://confluence.bellevue.ad.local:8090/display/VICTRIAL/Account+Document</a>
  */
+@JsonIgnoreProperties({"accountId", "accountContactId", "propertyId", "ratePlanId"})
 public class TenantARPropertySettingStatus {
 
     public static final String YES = "Yes";
     public static final String NO = "No";
 
-    @JsonIgnore
     private String accountId;
     private String accountNumber;
     private Status accountUpdateStatus = JobDetail.Status.SUCCEEDED;
+    private String accountContactId;
     private String propertyCode;
     private String propertyId;
     private String propertyName;
     private String propertyOverridden = TenantARPropertySettingStatus.NO;
-    @JsonIgnore
     private String ratePlanId;
     private String ratePlanName;
     private Status ratePlanUpdateStatus = JobDetail.Status.SUCCEEDED;
@@ -64,6 +64,14 @@ public class TenantARPropertySettingStatus {
 
     public void setAccountUpdateStatus(Status accountUpdateStatus) {
         this.accountUpdateStatus = accountUpdateStatus;
+    }
+
+    public String getAccountContactId() {
+        return accountContactId;
+    }
+
+    public void setAccountContactId(String accountContactId) {
+        this.accountContactId = accountContactId;
     }
 
     public String getPropertyCode() {

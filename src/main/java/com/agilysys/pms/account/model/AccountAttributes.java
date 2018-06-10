@@ -5,6 +5,8 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class AccountAttributes implements Comparable<AccountAttributes> {
 
     private String accountContactId;
@@ -127,13 +129,13 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
 
     @Override
     public int compareTo(AccountAttributes that) {
-        boolean isEqual = this.getAccountContactId().equals(that.getAccountContactId()) &&
-              this.getStatus().name().equals(that.getStatus().name()) &&
-              this.getPreferredCommunication().name().equals(that.getPreferredCommunication().name()) &&
+        boolean isEqual = StringUtils.equals(this.getAccountContactId(), that.getAccountContactId()) &&
+              StringUtils.equals(this.getStatus().name(), that.getStatus().name()) &&
+              StringUtils.equals(this.getPreferredCommunication().name(), that.getPreferredCommunication().name()) &&
               this.getCreditLimit().compareTo(that.getCreditLimit()) == 0 &&
               this.getTerms() == that.getTerms() &&
-              this.getRoutingRule().name().equals(that.getRoutingRule().name()) &&
-              this.getTaxExemptSettings().getTaxId().equals(that.getTaxExemptSettings().getTaxId());
+              StringUtils.equals(this.getRoutingRule().name(), that.getRoutingRule().name()) &&
+              StringUtils.equals(this.getTaxExemptSettings().getTaxId(), that.getTaxExemptSettings().getTaxId());
         if (isEqual)
             return 0;
         else
