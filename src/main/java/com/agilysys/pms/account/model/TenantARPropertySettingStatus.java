@@ -7,6 +7,7 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import com.agilysys.pms.maintenance.domain.JobDetail;
 import com.agilysys.pms.maintenance.domain.JobDetail.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Detailed Property Settings model for representing the Tenant AR View
@@ -18,13 +19,18 @@ public class TenantARPropertySettingStatus {
 
     public static final String YES = "Yes";
     public static final String NO = "No";
+
+    @JsonIgnore
+    private String accountId;
+    private String accountNumber;
+    private Status accountUpdateStatus = JobDetail.Status.SUCCEEDED;
+    private String propertyCode;
     private String propertyId;
     private String propertyName;
-    private String propertyCode;
-    private String accountNumber;
+    private String propertyOverridden = TenantARPropertySettingStatus.NO;
+    @JsonIgnore
+    private String ratePlanId;
     private String ratePlanName;
-    private String propertyOverridden = NO;
-    private Status accountUpdateStatus = JobDetail.Status.SUCCEEDED;
     private Status ratePlanUpdateStatus = JobDetail.Status.SUCCEEDED;
 
     public TenantARPropertySettingStatus() {
@@ -33,6 +39,38 @@ public class TenantARPropertySettingStatus {
     public TenantARPropertySettingStatus(String propertyId, String propertyName, String propertyCode) {
         this.propertyId = propertyId;
         this.propertyName = propertyName;
+        this.propertyCode = propertyCode;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getAccountNumber() {
+        return trimToEmpty(accountNumber);
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public Status getAccountUpdateStatus() {
+        return accountUpdateStatus;
+    }
+
+    public void setAccountUpdateStatus(Status accountUpdateStatus) {
+        this.accountUpdateStatus = accountUpdateStatus;
+    }
+
+    public String getPropertyCode() {
+        return propertyCode;
+    }
+
+    public void setPropertyCode(String propertyCode) {
         this.propertyCode = propertyCode;
     }
 
@@ -52,30 +90,6 @@ public class TenantARPropertySettingStatus {
         this.propertyName = propertyName;
     }
 
-    public String getPropertyCode() {
-        return propertyCode;
-    }
-
-    public void setPropertyCode(String propertyCode) {
-        this.propertyCode = propertyCode;
-    }
-
-    public String getAccountNumber() {
-        return trimToEmpty(accountNumber);
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public String getRatePlanName() {
-        return trimToEmpty(ratePlanName);
-    }
-
-    public void setRatePlanName(String ratePlanName) {
-        this.ratePlanName = ratePlanName;
-    }
-
     public String getPropertyOverridden() {
         return trimToEmpty(propertyOverridden);
     }
@@ -84,12 +98,20 @@ public class TenantARPropertySettingStatus {
         this.propertyOverridden = propertyOverridden;
     }
 
-    public Status getAccountUpdateStatus() {
-        return accountUpdateStatus;
+    public String getRatePlanId() {
+        return ratePlanId;
     }
 
-    public void setAccountUpdateStatus(Status accountUpdateStatus) {
-        this.accountUpdateStatus = accountUpdateStatus;
+    public void setRatePlanId(String ratePlanId) {
+        this.ratePlanId = ratePlanId;
+    }
+
+    public String getRatePlanName() {
+        return trimToEmpty(ratePlanName);
+    }
+
+    public void setRatePlanName(String ratePlanName) {
+        this.ratePlanName = ratePlanName;
     }
 
     public Status getRatePlanUpdateStatus() {
