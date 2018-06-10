@@ -224,8 +224,8 @@ public interface AccountServiceInterfaceV1 {
     @Path(REFERENCE_IDS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccountsByReferenceId(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(REFERENCE_ID) String referenceId,
-          @QueryParam(ACCOUNT_TYPE) String accountType) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(ACCOUNT_TYPE) String accountType,
+          @PathParam(REFERENCE_ID) String referenceId) throws RGuestException, ServiceException;
 
     /**
      * Retrieve an account
