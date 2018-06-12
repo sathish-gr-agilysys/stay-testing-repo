@@ -20,6 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class to represent a PaymentMethod
  */
 public class PaymentMethod extends AccountingItem {
+
+    private static final String DISPLAY_NAME = "Payment method";
+
     //CC is the code for Credit Card in bootstrap data
     public static String CREDIT_CARD_CODE = "CC";
     //DB is the code for direct bill in bootstrap data, it is the default for company accounts
@@ -105,5 +108,10 @@ public class PaymentMethod extends AccountingItem {
     public int hashCode()
     {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }

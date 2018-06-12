@@ -52,6 +52,26 @@ public class RecurringChargeView {
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
 
+    //Set 1 for recurring charges which does not have quantity
+    private int quantity = 1;
+    private TransactionItemType transactionItemType;
+
+    public TransactionItemType getTransactionItemType() {
+        return transactionItemType;
+    }
+
+    public void setTransactionItemType(TransactionItemType transactionItemType) {
+        this.transactionItemType = transactionItemType;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public String getRecurringChargeId() {
         return recurringChargeId;
     }

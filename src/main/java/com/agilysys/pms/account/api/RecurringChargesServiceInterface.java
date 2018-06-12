@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -36,6 +37,8 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
  * Recurring charges service interface Describes each of the endpoints
  */
 @Path("/tenants/{tenantId}/properties/{propertyId}")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface RecurringChargesServiceInterface {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
@@ -47,6 +50,7 @@ public interface RecurringChargesServiceInterface {
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String RECURRING_CHARGE_ID = "recurringChargeId";
     String RECURRING_CHARGE_ID_PATH = "/{recurringChargeId}";
+    String RECURRING_CHARGE_OVERRIDE = "/override";
     String RECURRING_CHARGE_OVERRIDE_ID = "overrideDate";
     String RECURRING_CHARGE_OVERRIDE_ID_PATH = "/{overrideDate}";
     String RECURRING_CHARGES_PROCESS_STATUS_PATH = "/recurringChargeProgress";
@@ -62,6 +66,9 @@ public interface RecurringChargesServiceInterface {
     String PROPERTY_DATE_PATH = "/{propertyDate}";
     String CHECKIN_AUTH_AMOUNT = "/checkinAuthAmount";
     String AUTH_DETAILS = "/authDetails";
+    String BATCH = "/batch";
+    String VALIDATE_INVENTORY = "validateInventory";
+    String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -72,7 +79,6 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(RECURRING_CHARGES_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     RecurringChargesPropertyView getPropertyRecurringChargesSummary(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
@@ -87,7 +93,6 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<RecurringChargeView> getRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
@@ -109,14 +114,35 @@ public interface RecurringChargesServiceInterface {
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Validated(CreateRecurringCharge.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<RecurringChargeView> createRecurringCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           CreateRecurringCharge createRecurringCharge, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
+
+    /**
+     * Create List of recurring charge for an account
+     *
+     * @param tenantId              id of tenant where account exists
+     * @param propertyId            id of the property where the account exists
+     * @param accountId             id of account to save settings to
+     * @param createRecurringCharges </List<CreateRecurringCharge> recurring charges to save
+     * @param startDate
+     * @param endDate               Start date and end date creates the range for what RecurringChargeView dates should
+     *                              be returned
+     * @param validateInventory     when true, validate inventory item quantity in the request
+     * @return Created recurring charge
+     */
+    @POST
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + BATCH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
+    List<RecurringChargeView> createRecurringCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(VALIDATE_INVENTORY) boolean validateInventory,
+          @QueryParam(ADD_AVAILABLE_INVENTORY) boolean addAvailable)
+          throws RGuestException,ServiceException;
 
     /**
      * Retrieve recurring charge for an account
@@ -129,7 +155,6 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_ID_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<RecurringChargeView> getRecurringCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
@@ -144,7 +169,6 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(RECURRING_CHARGES_PROCESS_STATUS_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     ProgressStatusView getRecurringChargeProgress(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
@@ -160,7 +184,6 @@ public interface RecurringChargesServiceInterface {
      */
     @POST
     @Path(RECURRING_CHARGES_PATH + PROPERTY_DATE_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     RecurringChargesPostingResult postRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(PROPERTY_DATE) LocalDate propertyDate,
@@ -182,8 +205,6 @@ public interface RecurringChargesServiceInterface {
     @PUT
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_ID_PATH +
           RECURRING_CHARGE_OVERRIDE_ID_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Validated(CreateRecurringChargeOverride.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     RecurringChargeView updateRecurringChargeOverride(@PathParam(TENANT_ID) String tenantId,
@@ -206,7 +227,6 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + ESTIMATED_CHARGES_BY_PAYMENTSETTING_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<EstimatedChargesView> getEstimatedChargesByPaymentSetting(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
@@ -223,7 +243,6 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + ESTIMATED_CHARGES_BY_FOLIO_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     EstimatedChargesByFolioResult getEstimatedChargesByFolio(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
@@ -234,8 +253,15 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + AUTH_DETAILS)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AuthDetailResponse getAuthDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
+
+    @PUT
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_OVERRIDE + BATCH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<RecurringChargeView> updateRecurringChargesOverride(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          Map<String, Map<LocalDate, CreateRecurringChargeOverride>> recurringChargeOverrideMap)
+          throws RGuestException, ServiceException;
 }

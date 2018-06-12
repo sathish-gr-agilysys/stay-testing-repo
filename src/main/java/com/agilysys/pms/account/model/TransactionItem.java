@@ -11,20 +11,24 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus;
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.intapp.model.FolioPostingCodes;
-import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.tax.model.TaxClass;
 import com.agilysys.pms.common.model.annotation.DataPortMapReference;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.MealPeriod;
 import com.agilysys.pms.property.model.Outlet;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Class that represents a TransactionItem in the application.
  */
 public class TransactionItem extends AccountingItem {
+    
+    private static final String DISPLAY_NAME = "Transaction item";
 
     private String plu;
 
@@ -41,6 +45,7 @@ public class TransactionItem extends AccountingItem {
 
     private String glCode;
 
+    private PropertyConfigItemStatus.CanonicalId status = CanonicalId.ACTIVE;
     /**
      * An optional id to associate this transaction item with an item from an external system.
      * i.e. a tax service item
@@ -126,6 +131,23 @@ public class TransactionItem extends AccountingItem {
         this.glCode = glCode;
     }
 
+    public PropertyConfigItemStatus.CanonicalId getStatus() {
+        return status;
+    }
+
+    public void setStatus(PropertyConfigItemStatus.CanonicalId status) {
+        this.status = status;
+    }
+
+    public TransactionItemType getType() {
+        return TransactionItemType.TRANSACTION;
+    }
+
+    @JsonIgnore
+    public boolean isActive() {
+        return this.status == CanonicalId.ACTIVE;
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object obj)
@@ -138,5 +160,10 @@ public class TransactionItem extends AccountingItem {
     public int hashCode()
     {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }

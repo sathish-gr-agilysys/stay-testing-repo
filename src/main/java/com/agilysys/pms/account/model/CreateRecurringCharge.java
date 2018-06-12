@@ -8,10 +8,13 @@ import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountExcepti
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.agilysys.common.model.FrequencyType;
 import com.agilysys.common.model.rate.PetRateSnapshot;
+import org.joda.time.LocalDate;
+
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,11 +42,53 @@ public class CreateRecurringCharge {
     @MinValueRestriction(1)
     private int nNights;
 
+    @MinValueRestriction(0)
+    private int quantity;
+
+    @JsonProperty(required = true)
+    private LocalDate startDate;
+
+    @JsonProperty(required = true)
+    private LocalDate endDate;
+
+    private boolean overrideInventory;
+
+    private Map<LocalDate, CreateRecurringChargeOverride> recurringChargeOverrides;
+
+    public Map<LocalDate, CreateRecurringChargeOverride> getRecurringChargeOverrides() {
+        return recurringChargeOverrides;
+    }
+
+    public void setRecurringChargeOverrides(Map<LocalDate, CreateRecurringChargeOverride> recurringChargeOverrides) {
+        this.recurringChargeOverrides = recurringChargeOverrides;
+    }
+
+    public boolean isOverrideInventory() {
+        return overrideInventory;
+    }
+
+    public void setOverrideInventory(boolean overrideInventory) {
+        this.overrideInventory = overrideInventory;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
-
-    //This is here only because the UI needs to send it in
-    private int quantity;
 
     public String getAgentId() {
         return agentId;
