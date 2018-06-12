@@ -32,6 +32,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String accountId;
     private List<LineItemView> adjustmentLineItems;
     private boolean autoRouted;
+    private String callType;
     private String categoryId;
     private LineItemView correctionLineItem;
     private String description;
@@ -39,6 +40,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean distributed;
     private String folioId;
     private String folioLineType;
+    private BigDecimal freeAllowanceAmount;
     private List<LineItemView> groupedTaxLineItems;
     private String itemId;
     private String ledgerId;
@@ -72,6 +74,7 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
+        freeAllowanceAmount = BigDecimal.ZERO;
         groupedTaxLineItems = new ArrayList<>();
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
@@ -683,6 +686,22 @@ public class LineItemView implements Comparable<LineItemView> {
     @JsonIgnore
     public String getFolioLineOrTransactionType() {
         return folioLineType != null ? folioLineType : transactionType;
+    }
+
+    public BigDecimal getFreeAllowanceAmount() {
+        return freeAllowanceAmount;
+    }
+
+    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) {
+        this.freeAllowanceAmount = freeAllowanceAmount;
+    }
+
+    public String getCallType() {
+        return callType;
+    }
+
+    public void setCallType(String callType) {
+        this.callType = callType;
     }
 
     @Override

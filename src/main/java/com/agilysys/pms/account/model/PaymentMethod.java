@@ -20,6 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class to represent a PaymentMethod
  */
 public class PaymentMethod extends AccountingItem {
+
+    private static final String DISPLAY_NAME = "Payment method";
+
     //CC is the code for Credit Card in bootstrap data
     public static String CREDIT_CARD_CODE = "CC";
     //DB is the code for direct bill in bootstrap data, it is the default for company accounts
@@ -95,6 +98,14 @@ public class PaymentMethod extends AccountingItem {
         this.glCode = glCode;
     }
 
+    public String getRestrictivePermission() {
+        return restrictivePermission;
+    }
+
+    public void setRestrictivePermission(String restrictivePermission) {
+        this.restrictivePermission = restrictivePermission;
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object obj)
@@ -109,11 +120,8 @@ public class PaymentMethod extends AccountingItem {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
     }
 
-    public String getRestrictivePermission() {
-        return restrictivePermission;
-    }
-
-    public void setRestrictivePermission(String restrictivePermission) {
-        this.restrictivePermission = restrictivePermission;
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }

@@ -11,5 +11,13 @@ package com.agilysys.pms.account.model;
  * Credit Object</a>
  */
 public class Credit extends Transaction {
+    private TransactionItemType transactionItemType;
 
+    public TransactionItemType getTransactionItemType() {
+        return transactionItemType;
+    }
+
+    public void setTransactionItemType(TransactionItemType transactionItemType) {
+        this.transactionItemType = transactionItemType;
+    }
 }
