@@ -21,6 +21,8 @@ public class ComponentChargeView {
 
     private int quantity;
 
+    private TransactionItemType transactionItemType;
+
     ChargeTaxAmountInfo estimatedTaxInfo;
 
     public String getComponentBundleId() {
@@ -69,6 +71,14 @@ public class ComponentChargeView {
 
     public void setTransactionItemName(String transactionItemName) {
         this.transactionItemName = transactionItemName;
+    }
+
+    public TransactionItemType getTransactionItemType() {
+        return transactionItemType;
+    }
+
+    public void setTransactionItemType(TransactionItemType transactionItemType) {
+        this.transactionItemType = transactionItemType;
     }
 
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
