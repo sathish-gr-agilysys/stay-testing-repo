@@ -6,6 +6,8 @@ package com.agilysys.pms.account.model;
 
 public class RestrictivePermission extends AccountingObjectBase {
 
+    private static final String DISPLAY_NAME = "Payment method";
+
     String restrictivePermission;
 
     public String getRestrictivePermission() {
@@ -14,6 +16,11 @@ public class RestrictivePermission extends AccountingObjectBase {
 
     public void setRestrictivePermission(String restrictivePermission) {
         this.restrictivePermission = restrictivePermission;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 
 }
