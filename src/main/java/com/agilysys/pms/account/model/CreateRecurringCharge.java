@@ -197,7 +197,7 @@ public class CreateRecurringCharge {
     }
 
     public CreateRecurringCharge(String agentId, String itemId, PetRateSnapshot petRateSnapshot, String reason,
-          String folioId, Set<Integer> occurrenceDays, String sourceId) {
+          String folioId, Set<Integer> occurrenceDays, String sourceId, LocalDate startDate, LocalDate endDate) {
         this.agentId = agentId;
         this.itemId = itemId;
         this.amount = petRateSnapshot.getAmount();
@@ -207,6 +207,8 @@ public class CreateRecurringCharge {
         this.nNights = petRateSnapshot.getnNights();
         this.occurrenceDays = occurrenceDays;
         this.sourceId = sourceId;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public CreateRecurringCharge() {
