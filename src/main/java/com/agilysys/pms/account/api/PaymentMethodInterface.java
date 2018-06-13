@@ -117,7 +117,7 @@ public interface PaymentMethodInterface {
     @GET
     @Path(PERMISSIONS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<RestrictivePermission> getRestrictivePermissions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException, ServiceException;
