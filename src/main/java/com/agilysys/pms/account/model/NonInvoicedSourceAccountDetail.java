@@ -4,15 +4,21 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NonInvoicedSourceAccountDetail {
-    private String sourceAccountId;
-    private String sourceAccountType;
-    private String sourceAccountName;
-    private String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
-    private List<LineItemView> nonInvoicedCharges;
-    private List<LineItemView> nonInvoicePayments;
+    protected String sourceAccountId;
+    protected String sourceAccountType;
+    protected String sourceAccountName;
+    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
+    protected List<LineItemView> nonInvoicedCharges;
+    protected List<LineItemView> nonInvoicePayments;
+
+    public NonInvoicedSourceAccountDetail(){
+        nonInvoicedCharges = new ArrayList<>();
+        nonInvoicePayments = new ArrayList<>();
+    }
 
     public String getSourceAccountId() {
         return sourceAccountId;

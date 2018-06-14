@@ -5,10 +5,15 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 public class NonInvoicedARDetail {
     private String accountId;
     private List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails;
+    private List<GroupNonInvoicedDetail> groupNonInvoicedDetails;
+    private Set<String> reservationIds;
+    private Set<String> groupIds;
+    private Set<String> companyIds;
 
     public String getAccountId() {
         return accountId;
@@ -22,9 +27,41 @@ public class NonInvoicedARDetail {
         return nonInvoicedSourceAccountDetails;
     }
 
-    public void setNonInvoicedSourceAccountDetails(
-          List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails) {
+    public void setNonInvoicedSourceAccountDetails(List<NonInvoicedSourceAccountDetail>
+          nonInvoicedSourceAccountDetails) {
         this.nonInvoicedSourceAccountDetails = nonInvoicedSourceAccountDetails;
+    }
+
+    public List<GroupNonInvoicedDetail> getGroupNonInvoicedDetails() {
+        return groupNonInvoicedDetails;
+    }
+
+    public void setGroupNonInvoicedDetails(List<GroupNonInvoicedDetail> groupNonInvoicedDetails) {
+        this.groupNonInvoicedDetails = groupNonInvoicedDetails;
+    }
+
+    public Set<String> getCompanyIds() {
+        return companyIds;
+    }
+
+    public void setCompanyIds(Set<String> companyIds) {
+        this.companyIds = companyIds;
+    }
+
+    public Set<String> getGroupIds() {
+        return groupIds;
+    }
+
+    public void setGroupIds(Set<String> groupIds) {
+        this.groupIds = groupIds;
+    }
+
+    public Set<String> getReservationIds() {
+        return reservationIds;
+    }
+
+    public void setReservationIds(Set<String> reservationIds) {
+        this.reservationIds = reservationIds;
     }
 
     public BigDecimal getNonInvoicedChargesBalance() {
