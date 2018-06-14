@@ -14,29 +14,6 @@ public class InventoryItem extends TransactionItem {
     @JsonProperty(required = true)
     private int availableCount;
 
-    public InventoryItem() {
-
-    }
-
-    public InventoryItem(TransactionItem transactionItem, int availableCount) {
-        setAvailableCount(availableCount);
-        setAltSystemId(transactionItem.getAltSystemId());
-        setCategoryId(transactionItem.getCategoryId());
-        setCode(transactionItem.getCode());
-        setDefaultPrice(transactionItem.getDefaultPrice());
-        setFolioPostingCodes(transactionItem.getFolioPostingCodes());
-        setGlCode(transactionItem.getGlCode());
-        setId(transactionItem.getId());
-        setInternal(transactionItem.isInternal());
-        setName(transactionItem.getName());
-        setPlu(transactionItem.getPlu());
-        setSourceMealPeriods(transactionItem.getSourceMealPeriods());
-        setStatus(transactionItem.getStatus());
-        setSubcategoryId(transactionItem.getSubcategoryId());
-        setRoomRevenue(transactionItem.isRoomRevenue());
-        setTaxClasses(transactionItem.getTaxClasses());
-    }
-
     public TransactionItemType getType() {
         return TransactionItemType.INVENTORY;
     }
@@ -47,6 +24,22 @@ public class InventoryItem extends TransactionItem {
 
     public void setAvailableCount(int availableCount) {
         this.availableCount = availableCount;
+    }
+
+    public void convert(TransactionItem transactionItem) {
+        setAltSystemId(transactionItem.getAltSystemId());
+        setCategoryId(transactionItem.getCategoryId());
+        setCode(transactionItem.getCode());
+        setDefaultPrice(transactionItem.getDefaultPrice());
+        setFolioPostingCodes(transactionItem.getFolioPostingCodes());
+        setGlCode(transactionItem.getGlCode());
+        setInternal(transactionItem.isInternal());
+        setName(transactionItem.getName());
+        setPlu(transactionItem.getPlu());
+        setSourceMealPeriods(transactionItem.getSourceMealPeriods());
+        setSubcategoryId(transactionItem.getSubcategoryId());
+        setRoomRevenue(transactionItem.isRoomRevenue());
+        setTaxClasses(transactionItem.getTaxClasses());
     }
 
     @Override
