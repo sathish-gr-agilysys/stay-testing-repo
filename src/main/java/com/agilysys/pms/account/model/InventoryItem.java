@@ -5,9 +5,7 @@ package com.agilysys.pms.account.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.joda.time.DateTime;
 
-import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InventoryItem extends TransactionItem {
@@ -15,6 +13,29 @@ public class InventoryItem extends TransactionItem {
 
     @JsonProperty(required = true)
     private int availableCount;
+
+    public InventoryItem() {
+
+    }
+
+    public InventoryItem(TransactionItem transactionItem, int availableCount) {
+        setAvailableCount(availableCount);
+        setAltSystemId(transactionItem.getAltSystemId());
+        setCategoryId(transactionItem.getCategoryId());
+        setCode(transactionItem.getCode());
+        setDefaultPrice(transactionItem.getDefaultPrice());
+        setFolioPostingCodes(transactionItem.getFolioPostingCodes());
+        setGlCode(transactionItem.getGlCode());
+        setId(transactionItem.getId());
+        setInternal(transactionItem.isInternal());
+        setName(transactionItem.getName());
+        setPlu(transactionItem.getPlu());
+        setSourceMealPeriods(transactionItem.getSourceMealPeriods());
+        setStatus(transactionItem.getStatus());
+        setSubcategoryId(transactionItem.getSubcategoryId());
+        setRoomRevenue(transactionItem.isRoomRevenue());
+        setTaxClasses(transactionItem.getTaxClasses());
+    }
 
     public TransactionItemType getType() {
         return TransactionItemType.INVENTORY;
