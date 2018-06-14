@@ -195,6 +195,7 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_APPLY_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/apply";
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
+    String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
 
     /**
      * Retrieve all accounts from a tenant
@@ -764,8 +765,8 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + TASK_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-           @PathParam(TASK_ID) String taskId) throws Throwable;
+    List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId) throws Throwable;
 
     /**
      * Refunds a payment to an account
@@ -1290,7 +1291,7 @@ public interface AccountServiceInterfaceV1 {
           @ApiParam(value = "tenant id", required = true) @PathParam(TENANT_ID) @LogParam("tenantId") String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @ApiParam(value = "collection request", required = false) @LogParam("params")
-          AccountsCollectionRequest collectionRequest) throws RGuestException, ServiceException;
+                AccountsCollectionRequest collectionRequest) throws RGuestException, ServiceException;
 
     /* ----------------------------------------------------------- */
 
@@ -1411,4 +1412,12 @@ public interface AccountServiceInterfaceV1 {
     AccountUpdateResponse applyTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException, ServiceException;
+
+    @POST
+    @Path(NEW_PROPERTY_AR_ACCOUNT)
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+
 }
+
