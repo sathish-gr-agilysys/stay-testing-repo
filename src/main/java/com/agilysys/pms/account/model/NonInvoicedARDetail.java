@@ -72,7 +72,7 @@ public class NonInvoicedARDetail {
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (groupNonInvoicedDetails != null) {
-            balance.add(groupNonInvoicedDetails.stream()
+            return balance.add(groupNonInvoicedDetails.stream()
                   .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getNonInvoicedChargesBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
@@ -88,7 +88,7 @@ public class NonInvoicedARDetail {
                         .getNonInvoicedChargesTaxBalance()).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (groupNonInvoicedDetails != null) {
-            balance.add(groupNonInvoicedDetails.stream()
+            return balance.add(groupNonInvoicedDetails.stream()
                   .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getNonInvoicedChargesTaxBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
@@ -104,7 +104,7 @@ public class NonInvoicedARDetail {
                         .getNonInvoicedPaymentsTotalBalance()).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (groupNonInvoicedDetails != null) {
-            balance.add(groupNonInvoicedDetails.stream()
+            return balance.add(groupNonInvoicedDetails.stream()
                   .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getNonInvoicedPaymentsTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }

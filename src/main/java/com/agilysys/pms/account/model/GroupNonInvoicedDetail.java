@@ -26,7 +26,7 @@ public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
                         .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (nonInvoicedSourceAccountDetails != null) {
-            balance.add(nonInvoicedSourceAccountDetails.values().stream()
+            return balance.add(nonInvoicedSourceAccountDetails.values().stream()
                   .map(nonInvoicedAccount -> nonInvoicedAccount.getNonInvoicedChargesBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
@@ -41,7 +41,7 @@ public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (nonInvoicedSourceAccountDetails != null) {
-            balance.add(nonInvoicedSourceAccountDetails.values().stream()
+            return balance.add(nonInvoicedSourceAccountDetails.values().stream()
                   .map(nonInvoicedAccount -> nonInvoicedAccount.getNonInvoicedChargesTaxBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
@@ -56,7 +56,7 @@ public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (nonInvoicedSourceAccountDetails != null) {
-            balance.add(nonInvoicedSourceAccountDetails.values().stream()
+            return balance.add(nonInvoicedSourceAccountDetails.values().stream()
                   .map(nonInvoicedAccount -> nonInvoicedAccount.getNonInvoicedChargesTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
@@ -71,7 +71,7 @@ public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (nonInvoicedSourceAccountDetails != null) {
-            balance.add(nonInvoicedSourceAccountDetails.values().stream()
+            return balance.add(nonInvoicedSourceAccountDetails.values().stream()
                   .map(nonInvoicedAccount -> nonInvoicedAccount.getNonInvoicedPaymentsTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
