@@ -5,24 +5,43 @@ package com.agilysys.pms.account.model;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.profile.model.AddressDetails;
+
 public class AccountReferenceInfo {
 
     private LocalDate arrivalDate;
     private LocalDate departureDate;
     private String name;
+    private AddressDetails addressDetails;
+    private String groupCode;
 
-    private String reservationId;
+    private String id;
 
     public AccountReferenceInfo() {
 
     }
 
     public AccountReferenceInfo(String sourceName, LocalDate arrivalDate, LocalDate departureDate,
-          String reservationId) {
+          String id) {
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
         this.name = sourceName;
-        this.reservationId = reservationId;
+        this.id = id;
+    }
+
+    public AccountReferenceInfo(String sourceName, String code, LocalDate arrivalDate, LocalDate departureDate,
+          String id) {
+        this.arrivalDate = arrivalDate;
+        this.departureDate = departureDate;
+        this.name = sourceName;
+        this.id = id;
+        this.groupCode = code;
+    }
+
+    public AccountReferenceInfo(String sourceName, AddressDetails addressDetails, String id) {
+        this.name = sourceName;
+        this.addressDetails = addressDetails;
+        this.id = id;
     }
 
     public LocalDate getArrivalDate() {
@@ -47,11 +66,27 @@ public class AccountReferenceInfo {
         this.name = name;
     }
 
-    public String getReservationId() {
-        return reservationId;
+    public String getId() {
+        return id;
     }
 
-    public void setReservationId(String reservationId) {
-        this.reservationId = reservationId;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public AddressDetails getAddressDetails() {
+        return addressDetails;
+    }
+
+    public void setAddressDetails(AddressDetails addressDetails) {
+        this.addressDetails = addressDetails;
+    }
+
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
     }
 }

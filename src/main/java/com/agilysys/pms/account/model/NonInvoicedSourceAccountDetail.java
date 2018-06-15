@@ -12,6 +12,7 @@ public class NonInvoicedSourceAccountDetail {
     protected String sourceAccountType;
     protected String sourceAccountName;
     protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
+    protected AccountReferenceInfo accountReferenceInfo;
     protected List<LineItemView> nonInvoicedCharges;
     protected List<LineItemView> nonInvoicePayments;
 
@@ -50,6 +51,14 @@ public class NonInvoicedSourceAccountDetail {
 
     public void setReferenceId(String referenceId) {
         this.referenceId = referenceId;
+    }
+
+    public AccountReferenceInfo getAccountReferenceInfo() {
+        return accountReferenceInfo;
+    }
+
+    public void setAccountReferenceInfo(AccountReferenceInfo accountReferenceInfo) {
+        this.accountReferenceInfo = accountReferenceInfo;
     }
 
     public List<LineItemView> getNonInvoicedCharges() {
