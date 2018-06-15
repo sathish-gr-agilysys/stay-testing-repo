@@ -5,6 +5,17 @@ package com.agilysys.pms.account.model;
 
 public class PosCharge extends Charge implements PosTransaction {
     private String receiptTextImage;
+    private String checkNumber;
+
+    @Override
+    public String getCheckNumber() {
+        return checkNumber;
+    }
+
+    @Override
+    public void setCheckNumber(String checkNumber) {
+        this.checkNumber = checkNumber;
+    }
 
     @Override
     public String getReceiptTextImage() {

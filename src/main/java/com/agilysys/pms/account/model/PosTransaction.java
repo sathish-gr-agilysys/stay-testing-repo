@@ -46,4 +46,7 @@ public interface PosTransaction {
 
     String getTerminalId();
     void setTerminalId(String terminalId);
+
+    String getCheckNumber();
+    void setCheckNumber(String checkNumber);
 }
