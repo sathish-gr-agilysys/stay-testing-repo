@@ -18,6 +18,7 @@ public class InvoiceView {
     private String invoiceNumber;
     private LocalDate invoiceDate;
     private List<InvoicedSourceAccountDetail> invoicedSourceAccounts;
+    private List<GroupInvoiceDetail> groupInvoiceDetails;
     private List<InvoicePaymentView> payments;
     private InvoiceStatus invoiceStatus;
     private int terms;
@@ -113,6 +114,14 @@ public class InvoiceView {
         this.invoicedSourceAccounts = invoicedSourceAccounts;
     }
 
+    public List<GroupInvoiceDetail> getGroupInvoiceDetails() {
+        return groupInvoiceDetails;
+    }
+
+    public void setGroupInvoiceDetails(List<GroupInvoiceDetail> groupInvoiceDetails) {
+        this.groupInvoiceDetails = groupInvoiceDetails;
+    }
+
     public List<InvoicePaymentView> getPayments() {
         return payments;
     }
@@ -125,43 +134,62 @@ public class InvoiceView {
      * @return amount of invoice
      */
     public BigDecimal getInvoiceChargesAmount() {
+        BigDecimal balance = BigDecimal.ZERO;
         if (invoicedSourceAccounts != null) {
-            return invoicedSourceAccounts.stream()
+            balance = invoicedSourceAccounts.stream()
                   .map(invoicedSourceAccount -> invoicedSourceAccount.getChargesBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
+        if(groupInvoiceDetails != null){
+            balance = balance.add(groupInvoiceDetails.stream()
+                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getChargesBalance())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
 
-        return BigDecimal.ZERO;
+        return balance;
     }
 
     /**
      * @return amount of invoice
      */
     public BigDecimal getInvoiceTaxAmount() {
+        BigDecimal balance = BigDecimal.ZERO;
         if (invoicedSourceAccounts != null) {
             return invoicedSourceAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTaxBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
+        if(groupInvoiceDetails != null){
+            balance = balance.add(groupInvoiceDetails.stream()
+                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getTaxBalance())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
 
-        return BigDecimal.ZERO;
+        return balance;
     }
 
     /**
      * @return amount of invoice
      */
     public BigDecimal getInvoiceTotalAmount() {
+        BigDecimal balance = BigDecimal.ZERO;
         if (invoicedSourceAccounts != null) {
             return invoicedSourceAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
+        if(groupInvoiceDetails != null){
+            balance = balance.add(groupInvoiceDetails.stream()
+                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getTaxBalance())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
 
-        return BigDecimal.ZERO;
+        return balance;
     }
 
     /**
      * @return amount of payments and refunds made on invoice
      */
     public BigDecimal getPaymentAmount() {
+        BigDecimal balance = BigDecimal.ZERO;
         if (payments != null) {
             return payments.stream().map(paymentView -> paymentView.getPaymentBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
