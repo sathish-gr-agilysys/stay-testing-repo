@@ -21,6 +21,7 @@ import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.platform.tax.model.TaxRuleData;
+import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -36,8 +37,6 @@ public interface TransactionItemConfigServiceInterface {
     String INCLUDE_INTERNAL = "includeInternal";
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
-    String UPDATE_AUTO_RECURRING_DEFAULT_PRICE = "updateAutoRecurringDefaultPrice";
-    String UPDATE_AUTO_RECURRING_STATUS = "updateAutoRecurringStatus";
 
     /**
      * Retrieve all TransactionItems
@@ -123,9 +122,7 @@ public interface TransactionItemConfigServiceInterface {
      *
      * @param tenantId           the tenantId to modify the TransactionItem for
      * @param itemId             the ID of the TransactionItems to modify
-     * @param updateDefaultPrice decides whether to update the default price of Auto recurring items
-     *                           created from the transaction item
-     * @param updateStatus       decides whether to update the status of Auto recurring items
+     * @param autoRecurringChargeOptionalParameters decides whether to update the values of Auto recurring items
      *                           created from the transaction item
      * @param item               the modified TransactionItem to persist
      * @return the modified TransactionItem
@@ -138,9 +135,8 @@ public interface TransactionItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
-          @QueryParam(UPDATE_AUTO_RECURRING_DEFAULT_PRICE) boolean updateDefaultPrice,
-          @QueryParam(UPDATE_AUTO_RECURRING_STATUS) boolean updateStatus, TransactionItem item)
-          throws RGuestException, ServiceException;
+          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
+          TransactionItem item) throws RGuestException, ServiceException;
 
     /**
      * Delete an existing TransactionItem

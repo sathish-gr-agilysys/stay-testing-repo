@@ -15,21 +15,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AutoRecurringItem extends AccountingObjectBase {
     @JsonProperty(required = true)
-    private String defaultSource;
+    private BigDecimal defaultPrice;
+    @JsonProperty(required = true)
+    private String defaultSourceId;
+    @JsonProperty(required = true)
+    private FrequencyType frequencyType;
     @JsonProperty(required = true)
     private String parentTransactionItemId;
-    @JsonProperty(required = true)
-    private BigDecimal defaultPrice;
-    private CanonicalId status = CanonicalId.INACTIVE;
-    @JsonProperty(required = true)
-    private FrequencyType frequency;
+    private CanonicalId status;
     private int nNights;
     @JsonProperty(required = true)
     private LocalDate startDate;
     private LocalDate endDate;
     private String description;
+
     @Transient
     private Set<String> parentTransactionItemSources;
+
+    public AutoRecurringItem(){
+        this.status = CanonicalId.INACTIVE;
+    }
+
+    public BigDecimal getDefaultPrice() {
+        return defaultPrice;
+    }
+
+    public void setDefaultPrice(BigDecimal defaultPrice) {
+        this.defaultPrice = defaultPrice;
+    }
+
+    public String getDefaultSourceId() {
+        return defaultSourceId;
+    }
+
+    public void setDefaultSourceId(String defaultSourceId) {
+        this.defaultSourceId = defaultSourceId;
+    }
 
     public Set<String> getParentTransactionItemSources() {
         return parentTransactionItemSources;
@@ -39,12 +60,12 @@ public class AutoRecurringItem extends AccountingObjectBase {
         this.parentTransactionItemSources = parentTransactionItemSources;
     }
 
-    public FrequencyType getFrequency() {
-        return frequency;
+    public FrequencyType getFrequencyType() {
+        return frequencyType;
     }
 
-    public void setFrequency(FrequencyType frequency) {
-        this.frequency = frequency;
+    public void setFrequencyType(FrequencyType frequencyType) {
+        this.frequencyType = frequencyType;
     }
 
     public int getnNights() {
@@ -68,28 +89,12 @@ public class AutoRecurringItem extends AccountingObjectBase {
         return this.status == CanonicalId.ACTIVE;
     }
 
-    public BigDecimal getDefaultPrice() {
-        return defaultPrice;
-    }
-
-    public void setDefaultPrice(BigDecimal defaultPrice) {
-        this.defaultPrice = defaultPrice;
-    }
-
     public String getParentTransactionItemId() {
         return parentTransactionItemId;
     }
 
     public void setParentTransactionItemId(String parentTransactionItemId) {
         this.parentTransactionItemId = parentTransactionItemId;
-    }
-
-    public String getDefaultSource() {
-        return defaultSource;
-    }
-
-    public void setDefaultSource(String defaultSource) {
-        this.defaultSource = defaultSource;
     }
 
     public LocalDate getStartDate() {
@@ -115,5 +120,4 @@ public class AutoRecurringItem extends AccountingObjectBase {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
