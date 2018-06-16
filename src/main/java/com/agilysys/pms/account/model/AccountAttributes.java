@@ -135,6 +135,7 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
               this.getCreditLimit().compareTo(that.getCreditLimit()) == 0 &&
               this.getTerms() == that.getTerms() &&
               StringUtils.equals(this.getRoutingRule().name(), that.getRoutingRule().name()) &&
+              this.getTaxExemptSettings() != null && that.getTaxExemptSettings() != null &&
               StringUtils.equals(this.getTaxExemptSettings().getTaxId(), that.getTaxExemptSettings().getTaxId());
         if (isEqual)
             return 0;
