@@ -56,7 +56,6 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
-import com.agilysys.pms.account.model.InventoryAllocationRequest;
 import com.agilysys.pms.account.model.InventoryAllocationResponse;
 import com.agilysys.pms.account.model.InventoryAvailabilityRequest;
 import com.agilysys.pms.account.model.InventoryAvailabilityResponse;
@@ -65,7 +64,6 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
@@ -160,7 +158,7 @@ public interface AccountServiceInterfaceV1 {
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
-    String REFERENCE_IDS_PATH = "/references/{" + REFERENCE_ID + "}";
+    String REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
     // used for a refund of a specific line item
     String REFUND_PATH = "/refund";
     // used for generic refunds
@@ -233,7 +231,7 @@ public interface AccountServiceInterfaceV1 {
      * @return an account for the tenant and referenceId
      */
     @GET
-    @Path(REFERENCE_IDS_PATH)
+    @Path(REFERENCES_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccountsByReferenceId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(ACCOUNT_TYPE) String accountType,
