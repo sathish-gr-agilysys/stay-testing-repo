@@ -5,6 +5,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -25,6 +26,11 @@ public class InvoiceView {
     private int daysOverdue;
     private List<TaxAmountInfo> taxTotalsBreakdown;
     private DateTime sentOnDate;
+
+    public InvoiceView(){
+        invoicedSourceAccounts = new ArrayList<>();
+        groupInvoiceDetails = new ArrayList<>();
+    }
 
     public String getId() {
         return id;
