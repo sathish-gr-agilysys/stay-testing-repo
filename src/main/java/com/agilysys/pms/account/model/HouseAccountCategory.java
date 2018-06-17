@@ -12,6 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Validated
 public class HouseAccountCategory extends AccountingObjectBase {
+
+    private static final String DISPLAY_NAME = "House account category";
+
     @MaxLengthRestriction(3)
     private String prefix;
 
@@ -57,5 +60,10 @@ public class HouseAccountCategory extends AccountingObjectBase {
     public int hashCode()
     {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 }

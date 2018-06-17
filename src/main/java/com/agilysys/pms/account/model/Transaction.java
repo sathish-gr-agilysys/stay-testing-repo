@@ -25,12 +25,15 @@ public abstract class Transaction {
     protected String accountId;
     @JsonProperty(required = true)
     protected BigDecimal amount;
+    protected String callType;
     protected String folioId;
+    protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
     @JsonProperty(required = true)
     protected String itemId;
     protected String parentId;
     protected LocalDate postingDate;
+    protected LocalDate displayDate;
     @MinValueRestriction(1)
     protected int quantity = 1;
     @MaxLengthRestriction(250)
@@ -102,6 +105,14 @@ public abstract class Transaction {
         this.postingDate = postingDate;
     }
 
+    public LocalDate getDisplayDate() {
+        return displayDate;
+    }
+
+    public void setDisplayDate(LocalDate displayDate) {
+        this.displayDate = displayDate;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -142,10 +153,19 @@ public abstract class Transaction {
         this.terminalId = terminalId;
     }
 
+    public String getCallType() { return callType; }
+
+    public void setCallType(String callType) { this.callType = callType; }
+
+    public BigDecimal getFreeAllowanceAmount() { return freeAllowanceAmount; }
+
+    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
-              .append(postingDate).append(reason).append(reference).append(sourceId).append(terminalId).toHashCode();
+              .append(postingDate).append(displayDate).append(reason).append(reference).append(sourceId)
+              .append(terminalId).toHashCode();
     }
 
     @Override
@@ -164,6 +184,7 @@ public abstract class Transaction {
         return new EqualsBuilder().append(accountId, other.accountId).append(amount, other.amount)
               .append(folioId, other.folioId).append(ignoreRules, other.ignoreRules).append(itemId, other.itemId)
               .append(postingDate, other.postingDate).append(reason, other.reason).append(reference, other.reference)
-              .append(sourceId, other.sourceId).append(terminalId, other.terminalId).isEquals();
+              .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
+              .append(displayDate, other.displayDate).isEquals();
     }
 }

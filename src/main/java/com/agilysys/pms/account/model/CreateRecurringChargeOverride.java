@@ -12,6 +12,15 @@ public class CreateRecurringChargeOverride {
     private BigDecimal amount;
     private Boolean cancelled;
     private String reason;
+    private Integer quantity;
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public BigDecimal getAmount() {
         return amount;
