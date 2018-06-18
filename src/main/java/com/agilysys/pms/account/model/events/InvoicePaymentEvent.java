@@ -132,10 +132,9 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
 
     @Override
     public List<String> getHistoryMessages() {
-        return Arrays.asList(String.format(
-              "Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s, Posting date: %s]",
-              paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FOTRMAT),
-              lineItemPostingDate.toString(Constants.INVOICE_EVENTS_DATE_FOTRMAT)));
+        return Arrays.asList(
+              String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
+                    paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FOTRMAT)));
     }
 
     @Override
