@@ -26,7 +26,7 @@ public class InventoryItem extends TransactionItem {
         this.availableCount = availableCount;
     }
 
-    public void convert(TransactionItem transactionItem) {
+    public void fromTransactionItem(TransactionItem transactionItem) {
         setAltSystemId(transactionItem.getAltSystemId());
         setCategoryId(transactionItem.getCategoryId());
         setCode(transactionItem.getCode());

@@ -73,7 +73,6 @@ public interface RecurringChargesServiceInterface {
     String VALIDATE_INVENTORY = "validateInventory";
     String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
     String VALIDITY = "/validity";
-    String SAME_DAY_RESERVATION = "sameDayReservation";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -281,13 +280,12 @@ public interface RecurringChargesServiceInterface {
      *
      * @param arrivalDate        reservation new arrival date
      * @param departureDate      reservation new departure date
-     * @param sameDayReservation true if its a partial reservation
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     RecurringChargeValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate,
-          @QueryParam(SAME_DAY_RESERVATION) boolean sameDayReservation) throws RGuestException, ServiceException;
+          @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate)
+          throws RGuestException, ServiceException;
 }
