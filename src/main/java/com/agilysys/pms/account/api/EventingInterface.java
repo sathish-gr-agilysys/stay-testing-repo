@@ -19,7 +19,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.ARRequest;
+import com.agilysys.pms.account.model.ARReportRequest;
 import com.agilysys.pms.account.model.RawEventsResult;
 import com.agilysys.pms.account.model.events.AccountPostEvent;
 import com.agilysys.pms.account.payagent.model.events.PayAgentTransactionEvent;
@@ -53,7 +53,7 @@ public interface EventingInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     @LogRequest("getInvoiceHistoryEventsForARNumber")
     List<ARInvoiceEvents> getInvoiceHistoryEventsForARNumber(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId, ARRequest arRequest)
+          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId, ARReportRequest arReportRequest)
           throws RGuestException, ServiceException;
 
     @GET

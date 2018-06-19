@@ -9,13 +9,13 @@ import java.util.TreeSet;
 
 import com.agilysys.common.constants.Constants;
 
-public class ARRequest {
+public class ARReportRequest {
 
     private String arNumbers;
 
-    public ARRequest() {}
+    public ARReportRequest() {}
 
-    public ARRequest(String arNumbers) {
+    public ARReportRequest(String arNumbers) {
         this.arNumbers = arNumbers;
     }
 

@@ -19,11 +19,10 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     private String invoiceNumber;
     boolean isClosed;
 
-    public InvoiceStatusChangeEvent(){}
+    public InvoiceStatusChangeEvent() {}
 
     public InvoiceStatusChangeEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
-          String invoiceNumber, boolean isClosed){
-
+          String invoiceNumber, boolean isClosed) {
         this.id = id;
         this.accountId = accountId;
         this.invoiceDate = invoiceDate;
@@ -33,9 +32,9 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
 
     @Override
     public List<String> getHistoryMessages() {
-        if(isClosed()){
+        if (isClosed()) {
             return Arrays.asList(String.format("Invoice %s closed.", invoiceNumber));
-        }else{
+        } else {
             return Arrays.asList(String.format("Invoice %s reopened.", invoiceNumber));
         }
     }
@@ -48,9 +47,9 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     @Transient
     @Override
     public String getDisplayName() {
-        if(isClosed()){
-            return"Invoice closed";
-        }else{
+        if (isClosed()) {
+            return "Invoice closed";
+        } else {
             return "Invoice reopened";
         }
     }
