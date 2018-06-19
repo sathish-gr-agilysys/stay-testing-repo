@@ -28,6 +28,7 @@ import com.agilysys.pms.account.model.CreateRecurringChargeOverride;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.ProgressStatusView;
+import com.agilysys.pms.account.model.RecurringChargeValidityResponse;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
@@ -69,6 +70,7 @@ public interface RecurringChargesServiceInterface {
     String BATCH = "/batch";
     String VALIDATE_INVENTORY = "validateInventory";
     String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
+    String VALIDITY = "/validity";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -257,11 +259,31 @@ public interface RecurringChargesServiceInterface {
     AuthDetailResponse getAuthDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
 
+    /**
+     * Batch update API to override(charge, quantity, cancel) the recurring charges for specific
+     * dates
+     */
     @PUT
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_OVERRIDE + BATCH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<RecurringChargeView> updateRecurringChargesOverride(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           Map<String, Map<LocalDate, CreateRecurringChargeOverride>> recurringChargeOverrideMap)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Retrieves the count of invalid recurring charges which does not dependent on reservation
+     * dates and inventory recurring charges which does not have required inventory item quantity for the given
+     * reservation start and end date
+     *
+     * @param startDate reservation new start date
+     * @param endDate   reservation new end date
+     */
+    @GET
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    RecurringChargeValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
           throws RGuestException, ServiceException;
 }
