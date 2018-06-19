@@ -7,12 +7,20 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+
+import com.agilysys.pms.profile.model.AddressDetails;
+
 public class NonInvoicedSourceAccountDetail {
     protected String sourceAccountId;
     protected String sourceAccountType;
     protected String sourceAccountName;
-    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
-    protected AccountReferenceInfo accountReferenceInfo;
+    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANYprivate LocalDate arrivalDate;
+    protected LocalDate arrivalDate;
+    protected LocalDate departureDate;
+    protected String name;
+    protected String groupCode;
+    protected AddressDetails addressDetails;
     protected List<LineItemView> nonInvoicedCharges;
     protected List<LineItemView> nonInvoicePayments;
 
@@ -53,12 +61,44 @@ public class NonInvoicedSourceAccountDetail {
         this.referenceId = referenceId;
     }
 
-    public AccountReferenceInfo getAccountReferenceInfo() {
-        return accountReferenceInfo;
+    public LocalDate getArrivalDate() {
+        return arrivalDate;
     }
 
-    public void setAccountReferenceInfo(AccountReferenceInfo accountReferenceInfo) {
-        this.accountReferenceInfo = accountReferenceInfo;
+    public void setArrivalDate(LocalDate arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
+    public AddressDetails getAddressDetails() {
+        return addressDetails;
+    }
+
+    public void setAddressDetails(AddressDetails addressDetails) {
+        this.addressDetails = addressDetails;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<LineItemView> getNonInvoicedCharges() {
