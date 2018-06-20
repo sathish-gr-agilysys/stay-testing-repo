@@ -45,7 +45,7 @@ public class TransactionItem extends AccountingItem {
 
     private String glCode;
 
-    private PropertyConfigItemStatus.CanonicalId status = CanonicalId.ACTIVE;
+    private CanonicalId status = CanonicalId.ACTIVE;
     /**
      * An optional id to associate this transaction item with an item from an external system.
      * i.e. a tax service item
@@ -57,6 +57,22 @@ public class TransactionItem extends AccountingItem {
      */
     private List<FolioPostingCodes> folioPostingCodes;
 
+    public TransactionItem() {
+
+    }
+
+    public TransactionItem(TransactionItem transactionItem) {
+        super(transactionItem);
+
+        plu = transactionItem.getPlu();
+        defaultPrice = transactionItem.getDefaultPrice();
+        sourceMealPeriods = transactionItem.getSourceMealPeriods();
+        taxClasses = transactionItem.getTaxClasses();
+        glCode = transactionItem.getGlCode();
+        status = transactionItem.getStatus();
+        altSystemId = transactionItem.getAltSystemId();
+        folioPostingCodes = transactionItem.getFolioPostingCodes();
+    }
     /**
      * @return the plu
      */
