@@ -129,6 +129,7 @@ public interface AccountServiceInterfaceV1 {
     String FILTERED = "/filtered";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String FOLIO_PATH = "/folios";
+    String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
     String FOLIO_ID = "folioId";
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
@@ -356,6 +357,21 @@ public interface AccountServiceInterfaceV1 {
     @Path(FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve totalSpent for all Accounts
+     *
+     * @param tenantId   id of tenant where the account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of accounts to retrieve folios from
+     * @return Map of accountid - totalSpent
+     */
+    @POST
+    @Path(TOTAL_SPENT_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           Set<String> accountIds)
           throws RGuestException, ServiceException;
 
