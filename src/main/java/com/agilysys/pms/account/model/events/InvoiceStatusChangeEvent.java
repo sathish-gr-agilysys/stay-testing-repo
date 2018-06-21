@@ -17,7 +17,7 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     private String accountId;
     private LocalDate invoiceDate;
     private String invoiceNumber;
-    boolean isClosed;
+    private boolean isClosed;
 
     public InvoiceStatusChangeEvent() {}
 
