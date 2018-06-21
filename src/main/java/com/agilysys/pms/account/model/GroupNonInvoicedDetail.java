@@ -4,17 +4,17 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
-import java.util.Map;
+import java.util.List;
 
 public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
-    private Map<String, NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails;
+    private List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails;
 
-    public Map<String, NonInvoicedSourceAccountDetail> getNonInvoicedSourceAccountDetails() {
+    public List<NonInvoicedSourceAccountDetail> getNonInvoicedSourceAccountDetails() {
         return nonInvoicedSourceAccountDetails;
     }
 
     public void setNonInvoicedSourceAccountDetails(
-          Map<String, NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails) {
+          List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails) {
         this.nonInvoicedSourceAccountDetails = nonInvoicedSourceAccountDetails;
     }
 
@@ -26,7 +26,7 @@ public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
                         .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (nonInvoicedSourceAccountDetails != null) {
-            return balance.add(nonInvoicedSourceAccountDetails.values().stream()
+            return balance.add(nonInvoicedSourceAccountDetails.stream()
                   .map(nonInvoicedAccount -> nonInvoicedAccount.getNonInvoicedChargesBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
@@ -41,7 +41,7 @@ public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (nonInvoicedSourceAccountDetails != null) {
-            return balance.add(nonInvoicedSourceAccountDetails.values().stream()
+            return balance.add(nonInvoicedSourceAccountDetails.stream()
                   .map(nonInvoicedAccount -> nonInvoicedAccount.getNonInvoicedChargesTaxBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
@@ -56,7 +56,7 @@ public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (nonInvoicedSourceAccountDetails != null) {
-            return balance.add(nonInvoicedSourceAccountDetails.values().stream()
+            return balance.add(nonInvoicedSourceAccountDetails.stream()
                   .map(nonInvoicedAccount -> nonInvoicedAccount.getNonInvoicedChargesTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
@@ -71,7 +71,7 @@ public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if (nonInvoicedSourceAccountDetails != null) {
-            return balance.add(nonInvoicedSourceAccountDetails.values().stream()
+            return balance.add(nonInvoicedSourceAccountDetails.stream()
                   .map(nonInvoicedAccount -> nonInvoicedAccount.getNonInvoicedPaymentsTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
