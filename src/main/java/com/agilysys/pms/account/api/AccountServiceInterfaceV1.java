@@ -187,9 +187,6 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
     String INVENTORY_ALLOCATION = "/inventory/allocation/{" + PROPERTY_DATE + "}";
     String INVENTORY_AVAILABILITY = "/inventory/availability";
-    String V1 = "/v1";
-    String VALIDATE_INVENTORY = "validateInventory";
-    String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
 
     /**
      * Retrieve all accounts from a tenant
@@ -650,7 +647,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + CHARGES_PATH)
     @Validated(Charge.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> postCharge(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge)
           throws RGuestException, ServiceException;
@@ -679,34 +676,10 @@ public interface AccountServiceInterfaceV1 {
      */
     @POST
     @Path(ACCOUNT_ID_PATH + BATCH_CHARGES_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
           @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges) throws RGuestException, ServiceException;
-
-    /**
-     * Posts charges to an account
-     *
-     * @param accountId  the Account to post to
-     * @param propertyId id of the property where the account exists
-     * @param charges    the Charges to post
-     * @param ignoreAuth When false, the credit card auth will be adjusted higher when the additional charges
-     *                   exceeds the existing auth, which may result in an exception (400 error) if the auth
-     *                   adjustment fails. When a cash payment method is used, an exception will be thrown
-     *                   for charges that exceed the credit limit.
-     *                   The auth will not be adjusted or the credit limit ignored when this flag is true.
-     *                   Setting this value to true requires the ForceChargeAcceptance permission.
-     * @param validateInventory when true, validate inventory item quantity in the request
-     * @return LineItemViews
-     */
-    @POST
-    @Path(ACCOUNT_ID_PATH + BATCH_CHARGES_PATH + V1)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
-    PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
-          @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges,
-          @QueryParam(VALIDATE_INVENTORY) boolean validateInventory, @QueryParam(ADD_AVAILABLE_INVENTORY) boolean addAvailable)
-          throws RGuestException, ServiceException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are
