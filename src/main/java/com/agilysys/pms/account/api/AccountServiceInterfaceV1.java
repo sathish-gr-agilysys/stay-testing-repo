@@ -57,7 +57,6 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
-import com.agilysys.pms.account.model.InventoryAllocationRequest;
 import com.agilysys.pms.account.model.InventoryAllocationResponse;
 import com.agilysys.pms.account.model.InventoryAvailabilityRequest;
 import com.agilysys.pms.account.model.InventoryAvailabilityResponse;
@@ -66,7 +65,6 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
@@ -129,6 +127,7 @@ public interface AccountServiceInterfaceV1 {
     String FILTERED = "/filtered";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String FOLIO_PATH = "/folios";
+    String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
     String FOLIO_ID = "folioId";
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
@@ -364,6 +363,21 @@ public interface AccountServiceInterfaceV1 {
     @Path(FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve totalSpent for all Accounts
+     *
+     * @param tenantId   id of tenant where the account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of accounts to retrieve folios from
+     * @return Map of accountid - totalSpent
+     */
+    @POST
+    @Path(TOTAL_SPENT_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           Set<String> accountIds)
           throws RGuestException, ServiceException;
 
@@ -625,7 +639,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + CHARGES_PATH)
     @Validated(Charge.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> postCharge(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge)
           throws RGuestException, ServiceException;
@@ -654,34 +668,10 @@ public interface AccountServiceInterfaceV1 {
      */
     @POST
     @Path(ACCOUNT_ID_PATH + BATCH_CHARGES_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
           @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges) throws RGuestException, ServiceException;
-
-    /**
-     * Posts charges to an account
-     *
-     * @param accountId  the Account to post to
-     * @param propertyId id of the property where the account exists
-     * @param charges    the Charges to post
-     * @param ignoreAuth When false, the credit card auth will be adjusted higher when the additional charges
-     *                   exceeds the existing auth, which may result in an exception (400 error) if the auth
-     *                   adjustment fails. When a cash payment method is used, an exception will be thrown
-     *                   for charges that exceed the credit limit.
-     *                   The auth will not be adjusted or the credit limit ignored when this flag is true.
-     *                   Setting this value to true requires the ForceChargeAcceptance permission.
-     * @param validateInventory when true, validate inventory item quantity in the request
-     * @return LineItemViews
-     */
-    @POST
-    @Path(ACCOUNT_ID_PATH + BATCH_CHARGES_PATH + V1)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
-    PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
-          @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges,
-          @QueryParam(VALIDATE_INVENTORY) boolean validateInventory, @QueryParam(ADD_AVAILABLE_INVENTORY) boolean addAvailable)
-          throws RGuestException, ServiceException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are

@@ -27,6 +27,17 @@ public abstract class AccountingObjectBase {
 
     protected boolean internal = false;
 
+    public AccountingObjectBase() {
+
+    }
+
+    public AccountingObjectBase(AccountingObjectBase accountingObjectBase) {
+        id = accountingObjectBase.getId();
+        name = accountingObjectBase.getName();
+        code = accountingObjectBase.getCode();
+        internal = accountingObjectBase.isInternal();
+    }
+
     public String getId()
     {
         return id;
