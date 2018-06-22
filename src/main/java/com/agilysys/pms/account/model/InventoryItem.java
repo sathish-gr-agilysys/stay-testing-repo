@@ -5,9 +5,8 @@ package com.agilysys.pms.account.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.joda.time.DateTime;
 
-import com.agilysys.pms.common.model.annotation.DataPortIgnore;
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InventoryItem extends TransactionItem {
@@ -15,6 +14,17 @@ public class InventoryItem extends TransactionItem {
 
     @JsonProperty(required = true)
     private int availableCount;
+
+    public InventoryItem() {
+
+    }
+
+    public InventoryItem(TransactionItem transactionItem, int availableCount, CanonicalId status) {
+        super(transactionItem);
+
+        setAvailableCount(availableCount);
+        setStatus(status);
+    }
 
     public TransactionItemType getType() {
         return TransactionItemType.INVENTORY;
