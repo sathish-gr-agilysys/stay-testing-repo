@@ -17,17 +17,17 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     private String accountId;
     private LocalDate invoiceDate;
     private String invoiceNumber;
-    private boolean isClosed;
+    private boolean closed;
 
     public InvoiceStatusChangeEvent() {}
 
     public InvoiceStatusChangeEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
-          String invoiceNumber, boolean isClosed) {
+          String invoiceNumber, boolean closed) {
         this.id = id;
         this.accountId = accountId;
         this.invoiceDate = invoiceDate;
         this.invoiceNumber = invoiceNumber;
-        this.isClosed = isClosed;
+        this.closed = closed;
     }
 
     @Override
@@ -55,10 +55,10 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     }
 
     public boolean isClosed() {
-        return isClosed;
+        return closed;
     }
 
-    public void setIsClosed(boolean isClosed) {
-        this.isClosed = isClosed;
+    public void setClosed(boolean closed) {
+        this.closed = closed;
     }
 }
