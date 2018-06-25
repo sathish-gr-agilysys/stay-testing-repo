@@ -4,7 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
-import java.util.TreeMap;
+import java.util.SortedMap;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -22,7 +22,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -70,7 +69,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @GET
     @Path(ACTIVE_ITEM)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    TreeMap<LocalDate, List<AutoRecurringItem>> getValidAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
+    SortedMap<LocalDate, List<AutoRecurringItem>> getValidAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
