@@ -23,6 +23,18 @@ public abstract class AccountingItem extends AccountingObjectBase {
      */
     private boolean roomRevenue;
 
+    public AccountingItem(){
+
+    }
+
+    public AccountingItem(AccountingItem accountingItem) {
+        super(accountingItem);
+
+        categoryId = accountingItem.getCategoryId();
+        subcategoryId = accountingItem.getSubcategoryId();
+        roomRevenue = accountingItem.isRoomRevenue();
+    }
+
     public String getCategoryId() {
         return categoryId;
     }

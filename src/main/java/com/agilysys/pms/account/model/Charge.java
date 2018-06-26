@@ -11,16 +11,7 @@ import com.google.common.base.Objects;
 public class Charge extends Transaction {
     private String mealPeriodId;
     private String recurringChargeId;
-    private boolean overrideInventory;
     private TransactionItemType transactionItemType;
-
-    public boolean isOverrideInventory() {
-        return overrideInventory;
-    }
-
-    public void setOverrideInventory(boolean overrideInventory) {
-        this.overrideInventory = overrideInventory;
-    }
 
     public String getMealPeriodId() {
         return mealPeriodId;
@@ -62,13 +53,11 @@ public class Charge extends Transaction {
         return Objects.equal(mealPeriodId, that.mealPeriodId) &&
               Objects.equal(quantity, that.quantity) &&
               Objects.equal(recurringChargeId, that.recurringChargeId) &&
-              Objects.equal(overrideInventory, that.overrideInventory) &&
               Objects.equal(transactionItemType, that.transactionItemType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId, overrideInventory,
-              transactionItemType);
+        return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId, transactionItemType);
     }
 }
