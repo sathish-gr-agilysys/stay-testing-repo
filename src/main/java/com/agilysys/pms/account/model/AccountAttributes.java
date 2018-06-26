@@ -134,12 +134,25 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
               StringUtils.equals(this.getPreferredCommunication().name(), that.getPreferredCommunication().name()) &&
               this.getCreditLimit().compareTo(that.getCreditLimit()) == 0 &&
               this.getTerms() == that.getTerms() &&
-              StringUtils.equals(this.getRoutingRule().name(), that.getRoutingRule().name()) &&
-              this.getTaxExemptSettings() != null && that.getTaxExemptSettings() != null &&
-              StringUtils.equals(this.getTaxExemptSettings().getTaxId(), that.getTaxExemptSettings().getTaxId());
+              compareRoutingRule(this.getRoutingRule(), that.getRoutingRule()) &&
+              compareTaxExemptSettings(this.getTaxExemptSettings(), that.getTaxExemptSettings());
         if (isEqual)
             return 0;
         else
             return 1;
+    }
+
+    private boolean compareRoutingRule(DefaultRoutingRule existing, DefaultRoutingRule other) {
+        if (existing == null && other == null) {
+            return true;
+        }
+        return StringUtils.equals(existing.name(), other.name());
+    }
+
+    private boolean compareTaxExemptSettings(TenantARTaxExemptSettings existing, TenantARTaxExemptSettings other) {
+        if (existing == null && other == null) {
+            return true;
+        }
+        return StringUtils.equals(existing.getTaxId(), other.getTaxId());
     }
 }
