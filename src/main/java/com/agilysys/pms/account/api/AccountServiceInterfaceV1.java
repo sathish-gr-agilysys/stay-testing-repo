@@ -24,7 +24,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -57,7 +56,6 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
-import com.agilysys.pms.account.model.InventoryAllocationRequest;
 import com.agilysys.pms.account.model.InventoryAllocationResponse;
 import com.agilysys.pms.account.model.InventoryAvailabilityRequest;
 import com.agilysys.pms.account.model.InventoryAvailabilityResponse;
@@ -66,9 +64,7 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -166,6 +162,7 @@ public interface AccountServiceInterfaceV1 {
     // used for generic refunds
     String REFUNDS_PATH = "/refunds";
     String REMAINING_PATH = "/{" + PATH + ":.*}";
+    String PAYMENT_METHOD = "paymentMethod";
     String SEARCH_PATH = "/search";
     String SEARCH_TERM = "searchTerm";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
@@ -1234,8 +1231,9 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance)
-          throws RGuestException, ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance,
+          @QueryParam(PAYMENT_METHOD) String paymentMethodId) throws RGuestException, ServiceException;
+
 
     /**
      * Fetches the next unused AR account number from the database
