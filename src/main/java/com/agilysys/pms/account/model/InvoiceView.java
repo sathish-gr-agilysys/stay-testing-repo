@@ -161,7 +161,7 @@ public class InvoiceView {
     public BigDecimal getInvoiceTaxAmount() {
         BigDecimal balance = BigDecimal.ZERO;
         if (invoicedSourceAccounts != null) {
-            return invoicedSourceAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTaxBalance())
+            balance = invoicedSourceAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTaxBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if(groupInvoiceDetails != null){
@@ -179,12 +179,12 @@ public class InvoiceView {
     public BigDecimal getInvoiceTotalAmount() {
         BigDecimal balance = BigDecimal.ZERO;
         if (invoicedSourceAccounts != null) {
-            return invoicedSourceAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTotalBalance())
+            balance = invoicedSourceAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if(groupInvoiceDetails != null){
             balance = balance.add(groupInvoiceDetails.stream()
-                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getTaxBalance())
+                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
 
