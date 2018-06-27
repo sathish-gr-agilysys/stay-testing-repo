@@ -3,6 +3,9 @@
  */
 package com.agilysys.pms.account.model;
 
+import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+
 import java.math.BigDecimal;
 
 import org.apache.commons.lang3.StringUtils;
@@ -142,17 +145,18 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
             return 1;
     }
 
-    private boolean compareRoutingRule(DefaultRoutingRule existing, DefaultRoutingRule other) {
-        if (existing == null && other == null) {
+    private boolean compareRoutingRule(DefaultRoutingRule defaultSettings, DefaultRoutingRule existingSettings) {
+        if (defaultSettings == null && existingSettings == null) {
             return true;
         }
-        return StringUtils.equals(existing.name(), other.name());
+        return equalsIgnoreCase(defaultSettings.name(), existingSettings.name());
     }
 
-    private boolean compareTaxExemptSettings(TenantARTaxExemptSettings existing, TenantARTaxExemptSettings other) {
-        if (existing == null && other == null) {
+    private boolean compareTaxExemptSettings(TenantARTaxExemptSettings defaultSettings,
+          TenantARTaxExemptSettings existingSettings) {
+        if (defaultSettings == null && existingSettings == null) {
             return true;
         }
-        return StringUtils.equals(existing.getTaxId(), other.getTaxId());
+        return equalsIgnoreCase(defaultSettings.getTaxId(), trimToEmpty(existingSettings.getTaxId()));
     }
 }
