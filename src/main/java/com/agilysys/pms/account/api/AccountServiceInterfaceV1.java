@@ -1404,7 +1404,6 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(NEW_PROPERTY_AR_ACCOUNT)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
