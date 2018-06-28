@@ -5,9 +5,8 @@ package com.agilysys.pms.account.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.joda.time.DateTime;
 
-import com.agilysys.pms.common.model.annotation.DataPortIgnore;
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -49,6 +48,15 @@ public class InventoryItem extends TransactionItem {
 
     public void setConvertedTime(DateTime convertedTime) {
         this.convertedTime = convertedTime;
+    public InventoryItem() {
+
+    }
+
+    public InventoryItem(TransactionItem transactionItem, int availableCount, CanonicalId status) {
+        super(transactionItem);
+
+        setAvailableCount(availableCount);
+        setStatus(status);
     }
 
     public TransactionItemType getType() {
