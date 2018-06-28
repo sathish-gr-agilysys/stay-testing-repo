@@ -101,19 +101,21 @@ public interface TransactionItemConfigServiceInterface {
     /**
      * Modify an existing TransactionItem
      *
-     * @param tenantId the tenantId to modify the TransactionItem for
-     * @param itemId   the ID of the TransactionItems to modify
-     * @param item     the modified TransactionItem to persist
+     * @param tenantId                              the tenantId to modify the TransactionItem for
+     * @param itemId                                the ID of the TransactionItems to modify
+     * @param autoRecurringChargeOptionalParameters decides whether to update the values of Auto recurring items
+     *                                              created from the transaction item
+     * @param item                                  the modified TransactionItem to persist
      * @return the modified TransactionItem
      */
-    @Deprecated
     @PUT
     @Path(ITEM_ID_PATH)
     @Validated(TransactionItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId, TransactionItem item)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
+          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
+          TransactionItem item) throws RGuestException, ServiceException;
 
     /**
      * Delete an existing TransactionItem
@@ -147,23 +149,4 @@ public interface TransactionItemConfigServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
           @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
           @QueryParam(INCLUDE_INACTIVE) boolean includeInactive) throws RGuestException, ServiceException;
-
-    /**
-     * Modify an existing TransactionItem
-     *
-     * @param tenantId                              the tenantId to modify the TransactionItem for
-     * @param itemId                                the ID of the TransactionItems to modify
-     * @param autoRecurringChargeOptionalParameters decides whether to update the values of Auto recurring items
-     *                                              created from the transaction item
-     * @param item                                  the modified TransactionItem to persist
-     * @return the modified TransactionItem
-     */
-    @PUT
-    @Path(ITEM_ID_PATH + "/v1")
-    @Validated(TransactionItem.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
-          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
-          TransactionItem item) throws RGuestException, ServiceException;
 }

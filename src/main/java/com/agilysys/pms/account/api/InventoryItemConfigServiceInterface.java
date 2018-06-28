@@ -77,11 +77,13 @@ public interface InventoryItemConfigServiceInterface {
           InventoryItem item) throws RGuestException, ServiceException;
 
     /**
-     * Modify an existing InventoryItem
+     * Modify an existing TransactionItem
      *
-     * @param tenantId the tenantId to modify the InventoryItem for
-     * @param itemId   the ID of the InventoryItem to modify
-     * @param item     the modified InventoryItem to persist
+     * @param tenantId                              the tenantId to modify the TransactionItem for
+     * @param itemId                                the ID of the TransactionItems to modify
+     * @param autoRecurringChargeOptionalParameters decides whether to update the values of Auto recurring items
+     *                                              created from the inventory item
+     * @param item                                  the modified InventoryItem to persist
      * @return the modified InventoryItem
      */
     @PUT
@@ -89,7 +91,9 @@ public interface InventoryItemConfigServiceInterface {
     @Validated(InventoryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     InventoryItem updateInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId, InventoryItem item) throws RGuestException, ServiceException;
+          @PathParam(ITEM_ID) String itemId,
+          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
+          InventoryItem item) throws RGuestException, ServiceException;
 
     /**
      * Delete an existing InventoryItem
@@ -115,23 +119,4 @@ public interface InventoryItemConfigServiceInterface {
     List<InventoryItem> convertToInventoryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<InventoryItem> items)
           throws RGuestException, ServiceException;
-
-    /**
-     * Modify an existing TransactionItem
-     *
-     * @param tenantId                              the tenantId to modify the TransactionItem for
-     * @param itemId                                the ID of the TransactionItems to modify
-     * @param autoRecurringChargeOptionalParameters decides whether to update the values of Auto recurring items
-     *                                              created from the inventory item
-     * @param item                                  the modified InventoryItem to persist
-     * @return the modified InventoryItem
-     */
-    @PUT
-    @Path(ITEM_ID_PATH + "/v1")
-    @Validated(InventoryItem.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    InventoryItem updateInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId,
-          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
-          InventoryItem item) throws RGuestException, ServiceException;
 }
