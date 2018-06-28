@@ -3,11 +3,13 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -48,6 +50,8 @@ public class InventoryItem extends TransactionItem {
 
     public void setConvertedTime(DateTime convertedTime) {
         this.convertedTime = convertedTime;
+    }
+
     public InventoryItem() {
 
     }
