@@ -10,11 +10,46 @@ import org.joda.time.DateTime;
 import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class InventoryItem extends TransactionItem {
     private static final String DISPLAY_NAME = "Inventory item";
 
     @JsonProperty(required = true)
     private int availableCount;
+
+    /*
+    If the inventory item is converted from transaction item
+    then this field has the converted time
+     */
+    @DataPortIgnore
+    private DateTime convertedTime;
+
+    @DataPortIgnore
+    private int maxPerReservation;
+
+    @DataPortIgnore
+    private List<String> nonAllowedRooms;
+
+    public List<String> getNonAllowedRooms() {
+        return nonAllowedRooms;
+    }
+
+    public void setNonAllowedRooms(List<String> nonAllowedRooms) {
+        this.nonAllowedRooms = nonAllowedRooms;
+    }
+
+    public int getMaxPerReservation() { return maxPerReservation; }
+
+    public void setMaxPerReservation(int maxPerReservation) { this.maxPerReservation = maxPerReservation; }
+
+    public DateTime getConvertedTime() {
+        return convertedTime;
+    }
+
+    public void setConvertedTime(DateTime convertedTime) {
+        this.convertedTime = convertedTime;
+    }
 
     public TransactionItemType getType() {
         return TransactionItemType.INVENTORY;
