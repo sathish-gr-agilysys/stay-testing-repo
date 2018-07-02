@@ -18,12 +18,13 @@ public class AccountUpdateRequest {
     }
 
     public AccountUpdateRequest(String type, String companyProfileId, String requestId) {
-        this.type = type;
+        this(type);
         this.companyProfileId = companyProfileId;
         this.requestId = requestId;
     }
 
-    public AccountUpdateRequest(String type, String companyProfileId, String requestId, Collection<String> propertyIds) {
+    public AccountUpdateRequest(String type, String companyProfileId, String requestId, Collection<String> propertyIds)
+    {
         this(type, companyProfileId, requestId);
         this.propertyIds = propertyIds;
     }
