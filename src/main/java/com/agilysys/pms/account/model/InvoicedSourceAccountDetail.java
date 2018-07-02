@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -21,6 +22,16 @@ public class InvoicedSourceAccountDetail {
     protected String groupCode;
     protected AddressDetails addressDetails;
     protected List<LineItemView> invoicedCharges;
+    protected BigDecimal chargesBalance;
+    protected BigDecimal taxBalance;
+    protected BigDecimal totalBalance;
+
+    public InvoicedSourceAccountDetail(){
+        invoicedCharges = new ArrayList<>();
+        chargesBalance = BigDecimal.ZERO;
+        taxBalance = BigDecimal.ZERO;
+        totalBalance = BigDecimal.ZERO;
+    }
 
     public String getSourceAccountId() {
         return sourceAccountId;
@@ -101,37 +112,28 @@ public class InvoicedSourceAccountDetail {
     public void setInvoicedCharges(List<LineItemView> invoicedCharges) {
         this.invoicedCharges = invoicedCharges;
     }
-    
-    public BigDecimal getChargesBalance() {
-        BigDecimal balance = BigDecimal.ZERO;
 
-        if (invoicedCharges != null) {
-            for (LineItemView invoicedChargeItem : invoicedCharges) {
-                balance = balance.add(invoicedChargeItem.getLineItemChargesBalance());
-            }
-        }
-        return balance;
+    public BigDecimal getChargesBalance() {
+        return chargesBalance;
+    }
+
+    public void setChargesBalance(BigDecimal chargesBalance) {
+        this.chargesBalance = chargesBalance;
     }
 
     public BigDecimal getTaxBalance() {
-        BigDecimal balance = BigDecimal.ZERO;
+        return taxBalance;
+    }
 
-        if (invoicedCharges != null) {
-            for (LineItemView invoicedChargeItem : invoicedCharges) {
-                balance = balance.add(invoicedChargeItem.getLineItemTaxBalance());
-            }
-        }
-        return balance;
+    public void setTaxBalance(BigDecimal taxBalance) {
+        this.taxBalance = taxBalance;
     }
 
     public BigDecimal getTotalBalance() {
-        BigDecimal balance = BigDecimal.ZERO;
+        return totalBalance;
+    }
 
-        if (invoicedCharges != null) {
-            for (LineItemView invoicedChargeItem : invoicedCharges) {
-                balance = balance.add(invoicedChargeItem.getLineItemBalance());
-            }
-        }
-        return balance;
+    public void setTotalBalance(BigDecimal totalBalance) {
+        this.totalBalance = totalBalance;
     }
 }

@@ -23,10 +23,18 @@ public class NonInvoicedSourceAccountDetail {
     protected AddressDetails addressDetails;
     protected List<LineItemView> nonInvoicedCharges;
     protected List<LineItemView> nonInvoicePayments;
+    protected BigDecimal nonInvoicedChargesBalance;
+    protected BigDecimal nonInvoicedChargesTaxBalance;
+    protected BigDecimal nonInvoicedChargesTotalBalance;
+    protected BigDecimal nonInvoicedPaymentsTotalBalance;
 
-    public NonInvoicedSourceAccountDetail(){
+    public NonInvoicedSourceAccountDetail() {
         nonInvoicedCharges = new ArrayList<>();
         nonInvoicePayments = new ArrayList<>();
+        nonInvoicedChargesBalance = BigDecimal.ZERO;
+        nonInvoicedChargesTaxBalance = BigDecimal.ZERO;
+        nonInvoicedChargesTotalBalance = BigDecimal.ZERO;
+        nonInvoicedPaymentsTotalBalance = BigDecimal.ZERO;
     }
 
     public String getSourceAccountId() {
@@ -118,38 +126,34 @@ public class NonInvoicedSourceAccountDetail {
     }
 
     public BigDecimal getNonInvoicedChargesBalance() {
-        if (nonInvoicedCharges != null) {
-            return nonInvoicedCharges.stream().map(nonInvoicedCharge -> nonInvoicedCharge.getLineItemChargesBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return nonInvoicedChargesBalance;
+    }
 
-        return BigDecimal.ZERO;
+    public void setNonInvoicedChargesBalance(BigDecimal nonInvoicedChargesBalance) {
+        this.nonInvoicedChargesBalance = nonInvoicedChargesBalance;
     }
 
     public BigDecimal getNonInvoicedChargesTaxBalance() {
-        if (nonInvoicedCharges != null) {
-            return nonInvoicedCharges.stream().map(nonInvoicedCharge -> nonInvoicedCharge.getLineItemTaxBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return nonInvoicedChargesTaxBalance;
+    }
 
-        return BigDecimal.ZERO;
+    public void setNonInvoicedChargesTaxBalance(BigDecimal nonInvoicedChargesTaxBalance) {
+        this.nonInvoicedChargesTaxBalance = nonInvoicedChargesTaxBalance;
     }
 
     public BigDecimal getNonInvoicedChargesTotalBalance() {
-        if (nonInvoicedCharges != null) {
-            return nonInvoicedCharges.stream().map(nonInvoicedCharge -> nonInvoicedCharge.getLineItemBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return nonInvoicedChargesTotalBalance;
+    }
 
-        return BigDecimal.ZERO;
+    public void setNonInvoicedChargesTotalBalance(BigDecimal nonInvoicedChargesTotalBalance) {
+        this.nonInvoicedChargesTotalBalance = nonInvoicedChargesTotalBalance;
     }
 
     public BigDecimal getNonInvoicedPaymentsTotalBalance() {
-        if (nonInvoicePayments != null) {
-            return nonInvoicePayments.stream().map(nonInvoicePayment -> nonInvoicePayment.getLineItemBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return nonInvoicedPaymentsTotalBalance;
+    }
 
-        return BigDecimal.ZERO;
+    public void setNonInvoicedPaymentsTotalBalance(BigDecimal nonInvoicedPaymentsTotalBalance) {
+        this.nonInvoicedPaymentsTotalBalance = nonInvoicedPaymentsTotalBalance;
     }
 }
