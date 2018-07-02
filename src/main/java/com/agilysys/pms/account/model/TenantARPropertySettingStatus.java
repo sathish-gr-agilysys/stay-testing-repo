@@ -5,9 +5,11 @@ package com.agilysys.pms.account.model;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
+import org.springframework.data.annotation.Transient;
+
 import com.agilysys.pms.maintenance.domain.JobDetail;
 import com.agilysys.pms.maintenance.domain.JobDetail.Status;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Detailed Property Settings model for representing the Tenant AR View
@@ -15,20 +17,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @see <a
  * href="">http://confluence.bellevue.ad.local:8090/display/VICTRIAL/Account+Document</a>
  */
-@JsonIgnoreProperties({"accountId", "accountContactId", "propertyId", "ratePlanId"})
 public class TenantARPropertySettingStatus {
 
-    public static final String YES = "Yes";
-    public static final String NO = "No";
+    public static final String PROPERTY_OVERRIDDEN_YES = "Yes";
+    public static final String PROPERTY_OVERRIDDEN_NO = "No";
 
+    @Transient
+    @JsonIgnore
     private String accountContactId;
+    @Transient
+    @JsonIgnore
     private String accountId;
     private String accountNumber;
     private Status accountUpdateStatus = JobDetail.Status.SUCCEEDED;
     private String propertyCode;
+    @Transient
+    @JsonIgnore
     private String propertyId;
     private String propertyName;
-    private String propertyOverridden = TenantARPropertySettingStatus.NO;
+    private String propertyOverridden = TenantARPropertySettingStatus.PROPERTY_OVERRIDDEN_NO;
+    @Transient
+    @JsonIgnore
     private String ratePlanId;
     private String ratePlanName;
     private Status ratePlanUpdateStatus = JobDetail.Status.SUCCEEDED;
