@@ -6,13 +6,13 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 
 public class GroupInvoiceDetail extends InvoicedSourceAccountDetail {
-    private List<InvoicedSourceAccountDetail> invoicedSourceAccountDetails;
+    private List<InvoicedSourceAccountDetail> nonGroupInvoicedAccountDetails;
 
-    public List<InvoicedSourceAccountDetail> getInvoicedSourceAccountDetails() {
-        return invoicedSourceAccountDetails;
+    public List<InvoicedSourceAccountDetail> getNonGroupInvoicedAccountDetails() {
+        return nonGroupInvoicedAccountDetails;
     }
 
-    public void setInvoicedSourceAccountDetails(List<InvoicedSourceAccountDetail> invoicedSourceAccountDetails) {
-        this.invoicedSourceAccountDetails = invoicedSourceAccountDetails;
+    public void setNonGroupInvoicedAccountDetails(List<InvoicedSourceAccountDetail> nonGroupInvoicedAccountDetails) {
+        this.nonGroupInvoicedAccountDetails = nonGroupInvoicedAccountDetails;
     }
 }

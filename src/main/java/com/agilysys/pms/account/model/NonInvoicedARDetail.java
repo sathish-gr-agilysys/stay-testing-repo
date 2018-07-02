@@ -8,7 +8,7 @@ import java.util.List;
 
 public class NonInvoicedARDetail {
     private String accountId;
-    private List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails;
+    private List<NonInvoicedSourceAccountDetail> nonGroupNonInvoicedDetails;
     private List<GroupNonInvoicedDetail> groupNonInvoicedDetails;
 
     public String getAccountId() {
@@ -19,13 +19,12 @@ public class NonInvoicedARDetail {
         this.accountId = accountId;
     }
 
-    public List<NonInvoicedSourceAccountDetail> getNonInvoicedSourceAccountDetails() {
-        return nonInvoicedSourceAccountDetails;
+    public List<NonInvoicedSourceAccountDetail> getNonGroupNonInvoicedDetails() {
+        return nonGroupNonInvoicedDetails;
     }
 
-    public void setNonInvoicedSourceAccountDetails(List<NonInvoicedSourceAccountDetail>
-          nonInvoicedSourceAccountDetails) {
-        this.nonInvoicedSourceAccountDetails = nonInvoicedSourceAccountDetails;
+    public void setNonGroupNonInvoicedDetails(List<NonInvoicedSourceAccountDetail> nonGroupNonInvoicedDetails) {
+        this.nonGroupNonInvoicedDetails = nonGroupNonInvoicedDetails;
     }
 
     public List<GroupNonInvoicedDetail> getGroupNonInvoicedDetails() {
@@ -38,8 +37,8 @@ public class NonInvoicedARDetail {
 
     public BigDecimal getNonInvoicedChargesBalance() {
         BigDecimal balance = BigDecimal.ZERO;
-        if (nonInvoicedSourceAccountDetails != null) {
-            balance = nonInvoicedSourceAccountDetails.stream()
+        if (nonGroupNonInvoicedDetails != null) {
+            balance = nonGroupNonInvoicedDetails.stream()
                   .map(nonInvoicedSourceAccountDetail -> nonInvoicedSourceAccountDetail.getNonInvoicedChargesBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
@@ -54,8 +53,8 @@ public class NonInvoicedARDetail {
 
     public BigDecimal getNonInvoicedChargesTaxBalance() {
         BigDecimal balance = BigDecimal.ZERO;
-        if (nonInvoicedSourceAccountDetails != null) {
-            return nonInvoicedSourceAccountDetails.stream()
+        if (nonGroupNonInvoicedDetails != null) {
+            return nonGroupNonInvoicedDetails.stream()
                   .map(nonInvoicedSourceAccountDetail -> nonInvoicedSourceAccountDetail
                         .getNonInvoicedChargesTaxBalance()).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
@@ -70,8 +69,8 @@ public class NonInvoicedARDetail {
 
     public BigDecimal getNonInvoicedPaymentsTotalBalance() {
         BigDecimal balance = BigDecimal.ZERO;
-        if (nonInvoicedSourceAccountDetails != null) {
-            balance = nonInvoicedSourceAccountDetails.stream()
+        if (nonGroupNonInvoicedDetails != null) {
+            balance = nonGroupNonInvoicedDetails.stream()
                   .map(nonInvoicedSourceAccountDetail -> nonInvoicedSourceAccountDetail
                         .getNonInvoicedPaymentsTotalBalance()).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
