@@ -132,13 +132,14 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
 
     @Override
     public int compareTo(AccountAttributes that) {
-        boolean isEqual = StringUtils.equals(this.getAccountContactId(), that.getAccountContactId()) &&
-              StringUtils.equals(this.getStatus().name(), that.getStatus().name()) &&
-              StringUtils.equals(this.getPreferredCommunication().name(), that.getPreferredCommunication().name()) &&
-              this.getCreditLimit().compareTo(that.getCreditLimit()) == 0 &&
-              this.getTerms() == that.getTerms() &&
-              compareRoutingRule(this.getRoutingRule(), that.getRoutingRule()) &&
-              compareTaxExemptSettings(this.getTaxExemptSettings(), that.getTaxExemptSettings());
+        boolean isEqual =
+              StringUtils.equals(this.getAccountContactId(), that.getAccountContactId()) && this.getStatus() != null &&
+                    that.getStatus() != null && StringUtils.equals(this.getStatus().name(), that.getStatus().name()) &&
+                    this.getPreferredCommunication() != null && that.getPreferredCommunication() != null && StringUtils
+                    .equals(this.getPreferredCommunication().name(), that.getPreferredCommunication().name()) &&
+                    this.getCreditLimit().compareTo(that.getCreditLimit()) == 0 && this.getTerms() == that.getTerms() &&
+                    compareRoutingRule(this.getRoutingRule(), that.getRoutingRule()) &&
+                    compareTaxExemptSettings(this.getTaxExemptSettings(), that.getTaxExemptSettings());
         if (isEqual)
             return 0;
         else
