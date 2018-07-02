@@ -27,13 +27,8 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
           AccountStatus status, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
           TenantARTaxExemptSettings taxExemptSettings) {
-        this.accountContactId = accountContactId;
-        this.preferredCommunication = preferredCommunication;
-        this.status = status;
-        this.creditLimit = creditLimit;
-        this.terms = terms;
-        this.routingRule = routingRule;
-        this.taxExemptSettings = taxExemptSettings;
+        this(accountContactId, preferredCommunication, status, null, creditLimit, terms, routingRule,
+              taxExemptSettings);
     }
 
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
