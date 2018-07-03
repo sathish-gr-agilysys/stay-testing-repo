@@ -188,9 +188,6 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
     String INVENTORY_ALLOCATION = "/inventory/allocation/{" + PROPERTY_DATE + "}";
     String INVENTORY_AVAILABILITY = "/inventory/availability";
-    String V1 = "/v1";
-    String VALIDATE_INVENTORY = "validateInventory";
-    String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
     String TENANT_DEFAULT_SETTINGS_APPLY_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/apply";
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
