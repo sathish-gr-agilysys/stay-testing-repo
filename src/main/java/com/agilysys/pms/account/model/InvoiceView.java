@@ -18,7 +18,7 @@ public class InvoiceView {
     private String accountId;
     private String invoiceNumber;
     private LocalDate invoiceDate;
-    private List<InvoicedSourceAccountDetail> invoicedSourceAccounts;
+    private List<InvoicedSourceAccountDetail> nonGroupInvoicedAccounts;
     private List<GroupInvoiceDetail> groupInvoiceDetails;
     private List<InvoicePaymentView> payments;
     private InvoiceStatus invoiceStatus;
@@ -28,7 +28,7 @@ public class InvoiceView {
     private DateTime sentOnDate;
 
     public InvoiceView(){
-        invoicedSourceAccounts = new ArrayList<>();
+        nonGroupInvoicedAccounts = new ArrayList<>();
         groupInvoiceDetails = new ArrayList<>();
     }
 
@@ -112,12 +112,12 @@ public class InvoiceView {
         this.taxTotalsBreakdown = taxTotalsBreakdown;
     }
 
-    public List<InvoicedSourceAccountDetail> getInvoicedSourceAccounts() {
-        return invoicedSourceAccounts;
+    public List<InvoicedSourceAccountDetail> getNonGroupInvoicedAccounts() {
+        return nonGroupInvoicedAccounts;
     }
 
-    public void setInvoicedSourceAccounts(List<InvoicedSourceAccountDetail> invoicedSourceAccounts) {
-        this.invoicedSourceAccounts = invoicedSourceAccounts;
+    public void setNonGroupInvoicedAccounts(List<InvoicedSourceAccountDetail> nonGroupInvoicedAccounts) {
+        this.nonGroupInvoicedAccounts = nonGroupInvoicedAccounts;
     }
 
     public List<GroupInvoiceDetail> getGroupInvoiceDetails() {
@@ -141,8 +141,8 @@ public class InvoiceView {
      */
     public BigDecimal getInvoiceChargesAmount() {
         BigDecimal balance = BigDecimal.ZERO;
-        if (invoicedSourceAccounts != null) {
-            balance = invoicedSourceAccounts.stream()
+        if (nonGroupInvoicedAccounts != null) {
+            balance = nonGroupInvoicedAccounts.stream()
                   .map(invoicedSourceAccount -> invoicedSourceAccount.getChargesBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
@@ -160,8 +160,8 @@ public class InvoiceView {
      */
     public BigDecimal getInvoiceTaxAmount() {
         BigDecimal balance = BigDecimal.ZERO;
-        if (invoicedSourceAccounts != null) {
-            balance = invoicedSourceAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTaxBalance())
+        if (nonGroupInvoicedAccounts != null) {
+            balance = nonGroupInvoicedAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTaxBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if(groupInvoiceDetails != null){
@@ -178,8 +178,8 @@ public class InvoiceView {
      */
     public BigDecimal getInvoiceTotalAmount() {
         BigDecimal balance = BigDecimal.ZERO;
-        if (invoicedSourceAccounts != null) {
-            balance = invoicedSourceAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTotalBalance())
+        if (nonGroupInvoicedAccounts != null) {
+            balance = nonGroupInvoicedAccounts.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         if(groupInvoiceDetails != null){
