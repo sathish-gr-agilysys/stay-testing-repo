@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionItem in the application.
  */
 public class TransactionItem extends AccountingItem {
-    
+
     private static final String DISPLAY_NAME = "Transaction item";
 
     private String plu;

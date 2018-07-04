@@ -3,15 +3,14 @@
  */
 package com.agilysys.pms.account.model;
 
-import com.agilysys.pms.common.model.annotation.DataPortIgnore;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.joda.time.DateTime;
-
-import java.util.List;
 
 public class InventoryItem extends TransactionItem {
     private static final String DISPLAY_NAME = "Inventory item";
@@ -19,38 +18,9 @@ public class InventoryItem extends TransactionItem {
     @JsonProperty(required = true)
     private int availableCount;
 
-    /*
-    If the inventory item is converted from transaction item
-    then this field has the converted time
-     */
-    @DataPortIgnore
-    private DateTime convertedTime;
+    private Integer maxQuantityPerReservation;
 
-    @DataPortIgnore
-    private int maxPerReservation;
-
-    @DataPortIgnore
-    private List<String> nonAllowedRooms;
-
-    public List<String> getNonAllowedRooms() {
-        return nonAllowedRooms;
-    }
-
-    public void setNonAllowedRooms(List<String> nonAllowedRooms) {
-        this.nonAllowedRooms = nonAllowedRooms;
-    }
-
-    public int getMaxPerReservation() { return maxPerReservation; }
-
-    public void setMaxPerReservation(int maxPerReservation) { this.maxPerReservation = maxPerReservation; }
-
-    public DateTime getConvertedTime() {
-        return convertedTime;
-    }
-
-    public void setConvertedTime(DateTime convertedTime) {
-        this.convertedTime = convertedTime;
-    }
+    private Set<String> restrictedRoomTypes = new HashSet<>();
 
     public InventoryItem() {
 
@@ -73,6 +43,22 @@ public class InventoryItem extends TransactionItem {
 
     public void setAvailableCount(int availableCount) {
         this.availableCount = availableCount;
+    }
+
+    public Integer getMaxQuantityPerReservation() {
+        return maxQuantityPerReservation;
+    }
+
+    public void setMaxQuantityPerReservation(Integer maxQuantityPerReservation) {
+        this.maxQuantityPerReservation = maxQuantityPerReservation;
+    }
+
+    public Set<String> getRestrictedRoomTypes() {
+        return restrictedRoomTypes;
+    }
+
+    public void setRestrictedRoomTypes(Set<String> restrictedRoomTypes) {
+        this.restrictedRoomTypes = restrictedRoomTypes;
     }
 
     @Override
