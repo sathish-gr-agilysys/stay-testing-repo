@@ -48,6 +48,7 @@ import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
+import com.agilysys.pms.account.model.CheckInventoryAllocation;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
@@ -56,11 +57,16 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
+import com.agilysys.pms.account.model.InventoryAllocationRequest;
+import com.agilysys.pms.account.model.InventoryAllocationResponse;
+import com.agilysys.pms.account.model.InventoryAvailabilityRequest;
+import com.agilysys.pms.account.model.InventoryAvailabilityResponse;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
 import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
+import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
@@ -96,6 +102,7 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
 
+    String PROPERTY_DATE = "propertyDate";
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
 
     String ACCOUNT_BALANCES_PATH = "/balances";
@@ -122,6 +129,7 @@ public interface AccountServiceInterfaceV1 {
     String FILTERED = "/filtered";
     String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String FOLIO_PATH = "/folios";
+    String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
     String FOLIO_ID = "folioId";
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
@@ -179,6 +187,8 @@ public interface AccountServiceInterfaceV1 {
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
+    String INVENTORY_ALLOCATION = "/inventory/allocation/{" + PROPERTY_DATE + "}";
+    String INVENTORY_AVAILABILITY = "/inventory/availability";
 
     /**
      * Retrieve all accounts from a tenant
@@ -347,6 +357,21 @@ public interface AccountServiceInterfaceV1 {
     @Path(FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve totalSpent for all Accounts
+     *
+     * @param tenantId   id of tenant where the account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of accounts to retrieve folios from
+     * @return Map of accountid - totalSpent
+     */
+    @POST
+    @Path(TOTAL_SPENT_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           Set<String> accountIds)
           throws RGuestException, ServiceException;
 
@@ -1283,6 +1308,38 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Get allocation count of inventory items in any dates and frequency
+     *
+     * @param tenantId                 tenantId
+     * @param propertyId               propertyId
+     * @param propertyDate             property date
+     * @param checkInventoryAllocation has request dates and inventory item id's
+     * @return allocation response for request dates
+     */
+    @POST
+    @Path(INVENTORY_ALLOCATION)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(PROPERTY_DATE) LocalDate propertyDate, CheckInventoryAllocation checkInventoryAllocation)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Check if inventory item quantity is available
+     *
+     * @param tenantId                   tenantId
+     * @param propertyId                 propertyId
+     * @param inventoryAvailabilityRequest has request dates and inventory item id's
+     * @return availability response for request dates
+     */
+    @POST
+    @Path(INVENTORY_AVAILABILITY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public InventoryAvailabilityResponse checkInventoryAvailability(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, InventoryAvailabilityRequest inventoryAvailabilityRequest)
           throws RGuestException, ServiceException;
 
     @GET

@@ -11,6 +11,7 @@ import com.google.common.base.Objects;
 public class Charge extends Transaction {
     private String mealPeriodId;
     private String recurringChargeId;
+    private TransactionItemType transactionItemType;
 
     public String getMealPeriodId() {
         return mealPeriodId;
@@ -28,6 +29,14 @@ public class Charge extends Transaction {
         this.recurringChargeId = recurringChargeId;
     }
 
+    public TransactionItemType getTransactionItemType() {
+        return transactionItemType;
+    }
+
+    public void setTransactionItemType(TransactionItemType transactionItemType) {
+        this.transactionItemType = transactionItemType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -43,11 +52,12 @@ public class Charge extends Transaction {
 
         return Objects.equal(mealPeriodId, that.mealPeriodId) &&
               Objects.equal(quantity, that.quantity) &&
-              Objects.equal(recurringChargeId, that.recurringChargeId);
+              Objects.equal(recurringChargeId, that.recurringChargeId) &&
+              Objects.equal(transactionItemType, that.transactionItemType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId);
+        return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId, transactionItemType);
     }
 }
