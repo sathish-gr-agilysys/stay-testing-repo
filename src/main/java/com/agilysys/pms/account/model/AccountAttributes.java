@@ -3,9 +3,15 @@
  */
 package com.agilysys.pms.account.model;
 
+import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+
 import java.math.BigDecimal;
 
-public class AccountAttributes {
+import org.apache.commons.lang3.StringUtils;
+
+public class AccountAttributes implements Comparable<AccountAttributes> {
+
     private String accountContactId;
     private PreferredCommunication preferredCommunication;
     private AccountStatus status;
@@ -16,6 +22,13 @@ public class AccountAttributes {
     private TenantARTaxExemptSettings taxExemptSettings;
 
     public AccountAttributes() {
+    }
+
+    public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
+          AccountStatus status, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
+          TenantARTaxExemptSettings taxExemptSettings) {
+        this(accountContactId, preferredCommunication, status, null, creditLimit, terms, routingRule,
+              taxExemptSettings);
     }
 
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
@@ -110,5 +123,36 @@ public class AccountAttributes {
 
     public void setTaxExemptSettings(TenantARTaxExemptSettings taxExemptSettings) {
         this.taxExemptSettings = taxExemptSettings;
+    }
+
+    @Override
+    public int compareTo(AccountAttributes that) {
+        boolean isEqual =
+              StringUtils.equals(this.getAccountContactId(), that.getAccountContactId()) && this.getStatus() != null &&
+                    that.getStatus() != null && StringUtils.equals(this.getStatus().name(), that.getStatus().name()) &&
+                    this.getPreferredCommunication() != null && that.getPreferredCommunication() != null && StringUtils
+                    .equals(this.getPreferredCommunication().name(), that.getPreferredCommunication().name()) &&
+                    this.getCreditLimit().compareTo(that.getCreditLimit()) == 0 && this.getTerms() == that.getTerms() &&
+                    compareRoutingRule(this.getRoutingRule(), that.getRoutingRule()) &&
+                    compareTaxExemptSettings(this.getTaxExemptSettings(), that.getTaxExemptSettings());
+        if (isEqual)
+            return 0;
+        else
+            return 1;
+    }
+
+    private boolean compareRoutingRule(DefaultRoutingRule defaultSettings, DefaultRoutingRule existingSettings) {
+        if (defaultSettings == null && existingSettings == null) {
+            return true;
+        }
+        return equalsIgnoreCase(defaultSettings.name(), existingSettings.name());
+    }
+
+    private boolean compareTaxExemptSettings(TenantARTaxExemptSettings defaultSettings,
+          TenantARTaxExemptSettings existingSettings) {
+        if (defaultSettings == null && existingSettings == null) {
+            return true;
+        }
+        return equalsIgnoreCase(defaultSettings.getTaxId(), trimToEmpty(existingSettings.getTaxId()));
     }
 }
