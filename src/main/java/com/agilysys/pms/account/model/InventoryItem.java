@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -20,7 +20,7 @@ public class InventoryItem extends TransactionItem {
 
     private Integer maxQuantityPerReservation;
 
-    private Set<String> restrictedRoomTypes = new HashSet<>();
+    private Set<String> restrictedRoomTypes = new LinkedHashSet<>();
 
     public InventoryItem() {
 

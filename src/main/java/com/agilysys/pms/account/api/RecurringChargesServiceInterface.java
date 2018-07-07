@@ -70,8 +70,6 @@ public interface RecurringChargesServiceInterface {
     String CHECKIN_AUTH_AMOUNT = "/checkinAuthAmount";
     String AUTH_DETAILS = "/authDetails";
     String BATCH = "/batch";
-    String VALIDATE_INVENTORY = "validateInventory";
-    String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
     String VALIDITY = "/validity";
 
     /**
@@ -135,7 +133,6 @@ public interface RecurringChargesServiceInterface {
      * @param startDate
      * @param endDate               Start date and end date creates the range for what RecurringChargeView dates should
      *                              be returned
-     * @param validateInventory     when true, validate inventory item quantity in the request
      * @return Created recurring charge
      */
     @POST
@@ -144,9 +141,7 @@ public interface RecurringChargesServiceInterface {
     List<RecurringChargeView> createRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(VALIDATE_INVENTORY) boolean validateInventory,
-          @QueryParam(ADD_AVAILABLE_INVENTORY) boolean addAvailable)
-          throws RGuestException,ServiceException;
+          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     /**
      * Retrieve recurring charge for an account
