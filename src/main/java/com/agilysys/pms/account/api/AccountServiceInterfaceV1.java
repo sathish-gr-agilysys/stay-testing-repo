@@ -186,7 +186,7 @@ public interface AccountServiceInterfaceV1 {
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
-    String AVAILABILITY = "/availability";
+    String AVAILABILITY = "availability";
     String INVENTORY_ALLOCATION = "/inventory/allocation";
     String INVENTORY_AVAILABILITY = "/inventory/" + AVAILABILITY;
 
