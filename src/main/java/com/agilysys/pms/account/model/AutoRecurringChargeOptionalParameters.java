@@ -4,17 +4,25 @@
 package com.agilysys.pms.account.model;
 
 public class AutoRecurringChargeOptionalParameters {
-    //This field is used when transaction item is updated, user wants to update the ARC's as well
-    private boolean applyToAutoRecurringItems;
+    private boolean applyAmountToAutoRecurringItems;
+    private boolean applyStatusToAutoRecurringItems;
     private boolean applyToFutureReservations;
     private boolean applyToInHouseReservations;
 
-    public boolean isApplyToAutoRecurringItems() {
-        return applyToAutoRecurringItems;
+    public boolean isApplyStatusToAutoRecurringItems() {
+        return applyStatusToAutoRecurringItems;
     }
 
-    public void setApplyToAutoRecurringItems(boolean applyToAutoRecurringItems) {
-        this.applyToAutoRecurringItems = applyToAutoRecurringItems;
+    public void setApplyStatusToAutoRecurringItems(boolean applyStatusToAutoRecurringItems) {
+        this.applyStatusToAutoRecurringItems = applyStatusToAutoRecurringItems;
+    }
+
+    public boolean isApplyAmountToAutoRecurringItems() {
+        return applyAmountToAutoRecurringItems;
+    }
+
+    public void setApplyAmountToAutoRecurringItems(boolean applyAmountToAutoRecurringItems) {
+        this.applyAmountToAutoRecurringItems = applyAmountToAutoRecurringItems;
     }
 
     public boolean isApplyToFutureReservations() {
