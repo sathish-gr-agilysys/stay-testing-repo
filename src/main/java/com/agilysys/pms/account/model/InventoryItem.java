@@ -88,9 +88,9 @@ public class InventoryItem extends TransactionItem {
     }
 
     @JsonIgnore
-    public boolean isMaxPerReservationRestricted(int quantity) {
+    public boolean isMaxPerReservationRestricted(Integer quantity) {
         if (maxQuantityPerReservation != null) {
-            return maxQuantityPerReservation < quantity;
+            return quantity == null || maxQuantityPerReservation < quantity;
         }
 
         return false;
