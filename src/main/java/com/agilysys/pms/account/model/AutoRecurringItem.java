@@ -31,9 +31,6 @@ public class AutoRecurringItem extends AccountingObjectBase {
     private LocalDate endDate;
     private String description;
 
-    @Transient
-    private Set<String> parentTransactionItemSources;
-
     public AutoRecurringItem(){
         this.status = CanonicalId.INACTIVE;
     }
@@ -52,14 +49,6 @@ public class AutoRecurringItem extends AccountingObjectBase {
 
     public void setDefaultSourceId(String defaultSourceId) {
         this.defaultSourceId = defaultSourceId;
-    }
-
-    public Set<String> getParentTransactionItemSources() {
-        return parentTransactionItemSources;
-    }
-
-    public void setParentTransactionItemSources(Set<String> parentTransactionItemSources) {
-        this.parentTransactionItemSources = parentTransactionItemSources;
     }
 
     public FrequencyType getFrequencyType() {
