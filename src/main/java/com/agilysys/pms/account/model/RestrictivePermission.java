@@ -3,18 +3,19 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.common.permission.PermissionType;
 
 public class RestrictivePermission extends AccountingObjectBase {
 
     private static final String DISPLAY_NAME = "Restrictive Permission";
 
-    String restrictivePermission;
+    PermissionType restrictivePermission;
 
-    public String getRestrictivePermission() {
+    public PermissionType getRestrictivePermission() {
         return restrictivePermission;
     }
 
-    public void setRestrictivePermission(String restrictivePermission) {
+    public void setRestrictivePermission(PermissionType restrictivePermission) {
         this.restrictivePermission = restrictivePermission;
     }
 
