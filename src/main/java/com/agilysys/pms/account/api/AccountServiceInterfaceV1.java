@@ -186,9 +186,8 @@ public interface AccountServiceInterfaceV1 {
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
-    String AVAILABILITY = "availability";
     String INVENTORY_ALLOCATION = "/inventory/allocation";
-    String INVENTORY_AVAILABILITY = "/inventory/" + AVAILABILITY;
+    String INVENTORY_AVAILABILITY = "/inventory/availability";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1315,7 +1314,6 @@ public interface AccountServiceInterfaceV1 {
      *
      * @param tenantId                 tenantId
      * @param propertyId               propertyId
-     * @param getAvailability          if true then response contains available count instead of allocated count
      * @param checkInventoryAllocation has request dates and inventory item id's
      * @return allocation response for request dates
      */
@@ -1323,8 +1321,8 @@ public interface AccountServiceInterfaceV1 {
     @Path(INVENTORY_ALLOCATION)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(AVAILABILITY) boolean getAvailability,
-          CheckInventoryAllocation checkInventoryAllocation) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, CheckInventoryAllocation checkInventoryAllocation)
+          throws RGuestException, ServiceException;
 
     /**
      * Check if inventory item quantity is available
