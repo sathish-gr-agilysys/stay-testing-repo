@@ -11,6 +11,10 @@ public class TenantARTaxExemptSettings {
     public TenantARTaxExemptSettings() {
     }
 
+    public TenantARTaxExemptSettings(String taxId) {
+        this.taxId = taxId;
+    }
+
     public TenantARTaxExemptSettings(boolean applyToExistingReservations, String taxId, boolean protectTaxSettings) {
         this.applyToExistingReservations = applyToExistingReservations;
         this.taxId = taxId;
