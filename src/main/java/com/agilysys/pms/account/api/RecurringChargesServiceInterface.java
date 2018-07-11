@@ -28,7 +28,7 @@ import com.agilysys.pms.account.model.CreateRecurringChargeOverride;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.ProgressStatusView;
-import com.agilysys.pms.account.model.RecurringChargeValidityResponse;
+import com.agilysys.pms.account.model.RecurringChargesValidity;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
@@ -279,7 +279,7 @@ public interface RecurringChargesServiceInterface {
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    RecurringChargeValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
+    RecurringChargesValidity getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate)
           throws RGuestException, ServiceException;
