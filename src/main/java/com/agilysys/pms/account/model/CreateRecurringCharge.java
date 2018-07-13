@@ -7,12 +7,14 @@ import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountExcepti
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.permission.OverrideType;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,7 +51,7 @@ public class CreateRecurringCharge {
     @JsonProperty(required = true)
     private LocalDate endDate;
 
-    private boolean overrideInventory;
+    private Set<OverrideType> overrideTypes;
 
     private Map<LocalDate, CreateRecurringChargeOverride> recurringChargeOverrides;
 
@@ -61,12 +63,12 @@ public class CreateRecurringCharge {
         this.recurringChargeOverrides = recurringChargeOverrides;
     }
 
-    public boolean isOverrideInventory() {
-        return overrideInventory;
+    public Set<OverrideType> getOverrideTypes() {
+        return overrideTypes != null ? overrideTypes : Collections.emptySet();
     }
 
-    public void setOverrideInventory(boolean overrideInventory) {
-        this.overrideInventory = overrideInventory;
+    public void setOverrideTypes(Set<OverrideType> overrideTypes) {
+        this.overrideTypes = overrideTypes;
     }
 
     public LocalDate getStartDate() {

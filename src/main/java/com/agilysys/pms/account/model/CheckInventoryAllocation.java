@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.model;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,7 +13,6 @@ import org.joda.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Sets;
 
 /*
 This request class can be used to get the allocation count of inventory item on a specific date
@@ -27,19 +25,6 @@ public class CheckInventoryAllocation {
     and its value is list of InventoryAllocationRequest*/
     @JsonProperty(required = true)
     private Map<LocalDate, Map<LocalDate, List<InventoryAllocationRequest>>> inventoryAllocationRequests;
-    private Set<String> excludeAccounts;
-
-    public CheckInventoryAllocation() {
-        excludeAccounts = Sets.newHashSet();
-    }
-
-    public Set<String> getExcludeAccounts() {
-        return excludeAccounts;
-    }
-
-    public void setExcludeAccounts(Set<String> excludeAccounts) {
-        this.excludeAccounts = excludeAccounts;
-    }
 
     public Map<LocalDate, Map<LocalDate, List<InventoryAllocationRequest>>> getInventoryAllocationRequests() {
         return inventoryAllocationRequests;

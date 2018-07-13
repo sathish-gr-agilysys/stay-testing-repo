@@ -28,7 +28,7 @@ import com.agilysys.pms.account.model.CreateRecurringChargeOverride;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.ProgressStatusView;
-import com.agilysys.pms.account.model.RecurringChargeValidityResponse;
+import com.agilysys.pms.account.model.RecurringChargesValidity;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
@@ -70,8 +70,6 @@ public interface RecurringChargesServiceInterface {
     String CHECKIN_AUTH_AMOUNT = "/checkinAuthAmount";
     String AUTH_DETAILS = "/authDetails";
     String BATCH = "/batch";
-    String VALIDATE_INVENTORY = "validateInventory";
-    String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
     String VALIDITY = "/validity";
 
     /**
@@ -135,18 +133,15 @@ public interface RecurringChargesServiceInterface {
      * @param startDate
      * @param endDate               Start date and end date creates the range for what RecurringChargeView dates should
      *                              be returned
-     * @param validateInventory     when true, validate inventory item quantity in the request
      * @return Created recurring charge
      */
     @POST
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + BATCH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<RecurringChargeView> createRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(VALIDATE_INVENTORY) boolean validateInventory,
-          @QueryParam(ADD_AVAILABLE_INVENTORY) boolean addAvailable)
-          throws RGuestException,ServiceException;
+          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     /**
      * Retrieve recurring charge for an account
@@ -284,7 +279,7 @@ public interface RecurringChargesServiceInterface {
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    RecurringChargeValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
+    RecurringChargesValidity getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate)
           throws RGuestException, ServiceException;

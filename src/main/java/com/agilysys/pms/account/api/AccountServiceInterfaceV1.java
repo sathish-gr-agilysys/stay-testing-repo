@@ -102,7 +102,6 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
 
-    String PROPERTY_DATE = "propertyDate";
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
 
     String ACCOUNT_BALANCES_PATH = "/balances";
@@ -187,7 +186,7 @@ public interface AccountServiceInterfaceV1 {
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
-    String INVENTORY_ALLOCATION = "/inventory/allocation/{" + PROPERTY_DATE + "}";
+    String INVENTORY_ALLOCATION = "/inventory/allocation";
     String INVENTORY_AVAILABILITY = "/inventory/availability";
 
     /**
@@ -1315,16 +1314,14 @@ public interface AccountServiceInterfaceV1 {
      *
      * @param tenantId                 tenantId
      * @param propertyId               propertyId
-     * @param propertyDate             property date
      * @param checkInventoryAllocation has request dates and inventory item id's
      * @return allocation response for request dates
      */
     @POST
     @Path(INVENTORY_ALLOCATION)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(
-          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(PROPERTY_DATE) LocalDate propertyDate, CheckInventoryAllocation checkInventoryAllocation)
+    Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, CheckInventoryAllocation checkInventoryAllocation)
           throws RGuestException, ServiceException;
 
     /**
@@ -1338,7 +1335,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(INVENTORY_AVAILABILITY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public InventoryAvailabilityResponse checkInventoryAvailability(@PathParam(TENANT_ID) String tenantId,
+    InventoryAvailabilityResponse checkInventoryAvailability(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, InventoryAvailabilityRequest inventoryAvailabilityRequest)
           throws RGuestException, ServiceException;
 

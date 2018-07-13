@@ -3,13 +3,15 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InventoryItem extends TransactionItem {
@@ -20,7 +22,7 @@ public class InventoryItem extends TransactionItem {
 
     private Integer maxQuantityPerReservation;
 
-    private Set<String> restrictedRoomTypes = new HashSet<>();
+    private Set<String> restrictedRoomTypes = new LinkedHashSet<>();
 
     public InventoryItem() {
 
@@ -54,7 +56,7 @@ public class InventoryItem extends TransactionItem {
     }
 
     public Set<String> getRestrictedRoomTypes() {
-        return restrictedRoomTypes;
+        return restrictedRoomTypes != null ? restrictedRoomTypes : Collections.emptySet();
     }
 
     public void setRestrictedRoomTypes(Set<String> restrictedRoomTypes) {
@@ -74,5 +76,19 @@ public class InventoryItem extends TransactionItem {
     @Override
     public String getDisplayName() {
         return DISPLAY_NAME;
+    }
+    
+    @JsonIgnore
+    public boolean isRoomTypeRestricted(String roomTypeId) {
+        if (restrictedRoomTypes != null) {
+            return restrictedRoomTypes.contains(roomTypeId);
+        }
+
+        return false;
+    }
+
+    @JsonIgnore
+    public boolean isMaxPerReservationRestricted(int quantity) {
+        return maxQuantityPerReservation != null ? maxQuantityPerReservation < quantity : false;
     }
 }
