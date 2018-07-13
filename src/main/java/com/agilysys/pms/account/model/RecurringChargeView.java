@@ -52,6 +52,9 @@ public class RecurringChargeView {
     private int quantity = 1;
     private TransactionItemType transactionItemType;
 
+    private LocalDate startDate;
+    private LocalDate endDate;
+
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
     }
@@ -219,4 +222,21 @@ public class RecurringChargeView {
     public void setRatePlanId(String ratePlanId) {
         this.ratePlanId = ratePlanId;
     }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
 }
