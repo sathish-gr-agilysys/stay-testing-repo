@@ -161,7 +161,7 @@ public interface AccountServiceInterfaceV1 {
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
-    String REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
+    String MULTIPLE_REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
     // used for a refund of a specific line item
     String REFUND_PATH = "/refund";
     // used for generic refunds
@@ -214,11 +214,14 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Retrieve an account by reference id
      *
+     * This API is deprecated, use getAccountsByReferenceId() instead
+     *
      * @param tenantId    id of tenant where the account exists
      * @param propertyId  id of the property where the account exists
      * @param referenceId reference id of the account to retrieve
      * @return an account for the tenant and referenceId
      */
+    @Deprecated
     @GET
     @Path(REFERENCE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -236,7 +239,7 @@ public interface AccountServiceInterfaceV1 {
      * @return an account for the tenant and referenceId
      */
     @GET
-    @Path(REFERENCES_ID_PATH)
+    @Path(MULTIPLE_REFERENCES_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccountsByReferenceId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(ACCOUNT_TYPE) String accountType,
