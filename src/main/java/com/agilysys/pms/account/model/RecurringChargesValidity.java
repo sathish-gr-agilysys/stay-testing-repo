@@ -5,9 +5,9 @@ package com.agilysys.pms.account.model;
 
 public class RecurringChargesValidity {
     private int chargesIndependentOfReservationDates;
-
-    //Inventory recurring charges which does not have required quantity for given start and end date
     private int chargesWithInsufficientQuantity;
+    private int chargesWithMaxPerReservationRestriction;
+    private int chargesWithRoomTypeRestriction;
 
     public int getChargesIndependentOfReservationDates() {
         return chargesIndependentOfReservationDates;
@@ -23,5 +23,21 @@ public class RecurringChargesValidity {
 
     public void setChargesWithInsufficientQuantity(int chargesWithInsufficientQuantity) {
         this.chargesWithInsufficientQuantity = chargesWithInsufficientQuantity;
+    }
+
+    public int getChargesWithMaxPerReservationRestriction() {
+        return chargesWithMaxPerReservationRestriction;
+    }
+
+    public void setChargesWithMaxPerReservationRestriction(int chargesWithMaxPerReservationRestriction) {
+        this.chargesWithMaxPerReservationRestriction = chargesWithMaxPerReservationRestriction;
+    }
+
+    public int getChargesWithRoomTypeRestriction() {
+        return chargesWithRoomTypeRestriction;
+    }
+
+    public void setChargesWithRoomTypeRestriction(int chargesWithRoomTypeRestriction) {
+        this.chargesWithRoomTypeRestriction = chargesWithRoomTypeRestriction;
     }
 }
