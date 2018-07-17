@@ -18,21 +18,14 @@ public class InvoiceView {
     private String accountId;
     private String invoiceNumber;
     private LocalDate invoiceDate;
-    private List<InvoicedSourceAccountDetail> nonGroupInvoiceDetails;
-    private List<GroupInvoicedDetail> groupInvoiceDetails;
-    private List<InvoicePaymentView> payments;
+    private List<InvoicedSourceAccountDetail> nonGroupInvoiceDetails = new ArrayList<>();
+    private List<GroupInvoiceDetail> groupInvoiceDetails = new ArrayList<>();
+    private List<InvoicePaymentView> payments = new ArrayList<>();
     private InvoiceStatus invoiceStatus;
     private int terms;
     private int daysOverdue;
-    private List<TaxAmountInfo> taxTotalsBreakdown;
+    private List<TaxAmountInfo> taxTotalsBreakdown = new ArrayList<>();
     private DateTime sentOnDate;
-
-    public InvoiceView(){
-        nonGroupInvoiceDetails = new ArrayList<>();
-        groupInvoiceDetails = new ArrayList<>();
-        payments = new ArrayList<>();
-        taxTotalsBreakdown = new ArrayList<>();
-    }
 
     public String getId() {
         return id;
@@ -122,11 +115,11 @@ public class InvoiceView {
         this.nonGroupInvoiceDetails = nonGroupInvoiceDetails;
     }
 
-    public List<GroupInvoicedDetail> getGroupInvoiceDetails() {
+    public List<GroupInvoiceDetail> getGroupInvoiceDetails() {
         return groupInvoiceDetails;
     }
 
-    public void setGroupInvoiceDetails(List<GroupInvoicedDetail> groupInvoiceDetails) {
+    public void setGroupInvoiceDetails(List<GroupInvoiceDetail> groupInvoiceDetails) {
         this.groupInvoiceDetails = groupInvoiceDetails;
     }
 
