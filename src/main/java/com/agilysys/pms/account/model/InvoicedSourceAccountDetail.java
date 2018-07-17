@@ -15,7 +15,7 @@ public class InvoicedSourceAccountDetail {
     protected String sourceAccountId;
     protected String sourceAccountName;
     protected String sourceAccountType;
-    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY private LocalDate arrivalDate;
+    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
     protected LocalDate arrivalDate;
     protected LocalDate departureDate;
     protected String name;

@@ -15,7 +15,7 @@ public class NonInvoicedSourceAccountDetail {
     protected String sourceAccountId;
     protected String sourceAccountType;
     protected String sourceAccountName;
-    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANYprivate LocalDate arrivalDate;
+    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
     protected LocalDate arrivalDate;
     protected LocalDate departureDate;
     protected String name;
