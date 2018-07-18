@@ -4,12 +4,13 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NonInvoicedARDetail {
     private String accountId;
-    private List<NonInvoicedSourceAccountDetail> nonGroupNonInvoicedDetails;
-    private List<GroupNonInvoicedDetail> groupNonInvoicedDetails;
+    private List<NonInvoicedSourceAccountDetail> nonGroupNonInvoicedDetails = new ArrayList<>();
+    private List<GroupNonInvoicedDetail> groupNonInvoicedDetails = new ArrayList<>();
 
     public String getAccountId() {
         return accountId;

@@ -3,10 +3,11 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroupNonInvoicedDetail extends NonInvoicedSourceAccountDetail {
-    private List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails;
+    private List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails = new ArrayList<>();
 
     public List<NonInvoicedSourceAccountDetail> getNonInvoicedSourceAccountDetails() {
         return nonInvoicedSourceAccountDetails;

@@ -21,17 +21,10 @@ public class InvoicedSourceAccountDetail {
     protected String name;
     protected String groupCode;
     protected AddressDetails addressDetails;
-    protected List<LineItemView> invoicedCharges;
-    protected BigDecimal chargesBalance;
-    protected BigDecimal taxBalance;
-    protected BigDecimal totalBalance;
-
-    public InvoicedSourceAccountDetail(){
-        invoicedCharges = new ArrayList<>();
-        chargesBalance = BigDecimal.ZERO;
-        taxBalance = BigDecimal.ZERO;
-        totalBalance = BigDecimal.ZERO;
-    }
+    protected List<LineItemView> invoicedCharges = new ArrayList<>();
+    protected BigDecimal chargesBalance = BigDecimal.ZERO;
+    protected BigDecimal taxBalance = BigDecimal.ZERO;
+    protected BigDecimal totalBalance = BigDecimal.ZERO;
 
     public String getSourceAccountId() {
         return sourceAccountId;

@@ -21,21 +21,12 @@ public class NonInvoicedSourceAccountDetail {
     protected String name;
     protected String groupCode;
     protected AddressDetails addressDetails;
-    protected List<LineItemView> nonInvoicedCharges;
-    protected List<LineItemView> nonInvoicePayments;
-    protected BigDecimal nonInvoicedChargesBalance;
-    protected BigDecimal nonInvoicedChargesTaxBalance;
-    protected BigDecimal nonInvoicedChargesTotalBalance;
-    protected BigDecimal nonInvoicedPaymentsTotalBalance;
-
-    public NonInvoicedSourceAccountDetail() {
-        nonInvoicedCharges = new ArrayList<>();
-        nonInvoicePayments = new ArrayList<>();
-        nonInvoicedChargesBalance = BigDecimal.ZERO;
-        nonInvoicedChargesTaxBalance = BigDecimal.ZERO;
-        nonInvoicedChargesTotalBalance = BigDecimal.ZERO;
-        nonInvoicedPaymentsTotalBalance = BigDecimal.ZERO;
-    }
+    protected List<LineItemView> nonInvoicedCharges = new ArrayList<>();
+    protected List<LineItemView> nonInvoicePayments = new ArrayList<>();
+    protected BigDecimal nonInvoicedChargesBalance = BigDecimal.ZERO;
+    protected BigDecimal nonInvoicedChargesTaxBalance = BigDecimal.ZERO;
+    protected BigDecimal nonInvoicedChargesTotalBalance = BigDecimal.ZERO;
+    protected BigDecimal nonInvoicedPaymentsTotalBalance = BigDecimal.ZERO;
 
     public String getSourceAccountId() {
         return sourceAccountId;
