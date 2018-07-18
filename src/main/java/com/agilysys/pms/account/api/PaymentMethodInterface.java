@@ -33,8 +33,7 @@ public interface PaymentMethodInterface {
     String PROPERTY_ID = "propertyId";
     String PAYMENT_METHOD_ID = "id";
     String PAYMENT_METHOD_ID_PATH = "{id}";
-    String PERMISSIONS = "restrictivePermissions";
-    String PERMISSIONS_PATH = "/" + PERMISSIONS;
+    String PERMISSIONS_PATH = "/restrictivePermissions";
 
     /**
      * Retrieve all PaymentMethods
