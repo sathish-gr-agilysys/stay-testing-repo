@@ -19,7 +19,7 @@ public class InvoiceView {
     private String invoiceNumber;
     private LocalDate invoiceDate;
     private List<InvoicedSourceAccountDetail> nonGroupInvoiceDetails = new ArrayList<>();
-    private List<GroupInvoiceDetail> groupInvoiceDetails = new ArrayList<>();
+    private List<GroupInvoicedDetail> groupInvoiceDetails = new ArrayList<>();
     private List<InvoicePaymentView> payments = new ArrayList<>();
     private InvoiceStatus invoiceStatus;
     private int terms;
@@ -115,11 +115,11 @@ public class InvoiceView {
         this.nonGroupInvoiceDetails = nonGroupInvoiceDetails;
     }
 
-    public List<GroupInvoiceDetail> getGroupInvoiceDetails() {
+    public List<GroupInvoicedDetail> getGroupInvoiceDetails() {
         return groupInvoiceDetails;
     }
 
-    public void setGroupInvoiceDetails(List<GroupInvoiceDetail> groupInvoiceDetails) {
+    public void setGroupInvoiceDetails(List<GroupInvoicedDetail> groupInvoiceDetails) {
         this.groupInvoiceDetails = groupInvoiceDetails;
     }
 

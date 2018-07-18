@@ -6,7 +6,7 @@ package com.agilysys.pms.account.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupInvoiceDetail extends InvoicedSourceAccountDetail {
+public class GroupInvoicedDetail extends InvoicedSourceAccountDetail {
     private List<InvoicedSourceAccountDetail> invoicedSourceAccountDetails = new ArrayList<>();
 
     public List<InvoicedSourceAccountDetail> getInvoicedSourceAccountDetails() {
