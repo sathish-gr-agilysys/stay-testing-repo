@@ -9,7 +9,7 @@ public class RestrictivePermission extends AccountingObjectBase {
 
     private static final String DISPLAY_NAME = "Restrictive Permission";
 
-    PermissionType restrictivePermission;
+    private PermissionType restrictivePermission;
 
     public PermissionType getRestrictivePermission() {
         return restrictivePermission;

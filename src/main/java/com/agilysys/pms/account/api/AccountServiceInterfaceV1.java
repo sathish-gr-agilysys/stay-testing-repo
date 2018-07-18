@@ -165,7 +165,7 @@ public interface AccountServiceInterfaceV1 {
     // used for generic refunds
     String REFUNDS_PATH = "/refunds";
     String REMAINING_PATH = "/{" + PATH + ":.*}";
-    String PAYMENT_METHOD = "paymentMethod";
+    String PAYMENT_METHOD_ID = "paymentMethodId";
     String REQUEST_TYPE = "requestType";
     String SEARCH_PATH = "/search";
     String SEARCH_TERM = "searchTerm";
@@ -1228,7 +1228,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance,
-          @QueryParam(PAYMENT_METHOD) String paymentMethodId) throws RGuestException, ServiceException;
+          @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException, ServiceException;
 
 
     /**
