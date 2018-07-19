@@ -77,10 +77,10 @@ public interface InventoryItemConfigServiceInterface {
           InventoryItem item) throws RGuestException, ServiceException;
 
     /**
-     * Modify an existing TransactionItem
+     * Modify an existing InventoryItem
      *
-     * @param tenantId                              the tenantId to modify the TransactionItem for
-     * @param itemId                                the ID of the TransactionItems to modify
+     * @param tenantId                              the tenantId to modify the Inventory Item for
+     * @param itemId                                the ID of the Inventory to modify
      * @param autoRecurringChargeOptionalParameters decides whether to update the values of Auto recurring items
      *                                              created from the inventory item
      * @param item                                  the modified InventoryItem to persist
