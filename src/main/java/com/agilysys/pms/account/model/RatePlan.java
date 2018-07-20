@@ -5,14 +5,14 @@ package com.agilysys.pms.account.model;
 
 public class RatePlan {
     private String ratePlanId;
-    private boolean updateExistingProperty;
+    private boolean updateAllProperties;
 
     public RatePlan() {
     }
 
-    public RatePlan(String ratePlanId, boolean updateExistingProperty) {
+    public RatePlan(String ratePlanId, boolean updateAllProperties) {
         this.ratePlanId = ratePlanId;
-        this.updateExistingProperty = updateExistingProperty;
+        this.updateAllProperties = updateAllProperties;
     }
 
     public String getRatePlanId() {
@@ -23,11 +23,11 @@ public class RatePlan {
         this.ratePlanId = ratePlanId;
     }
 
-    public boolean isUpdateExistingProperty() {
-        return updateExistingProperty;
+    public boolean isUpdateAllProperties() {
+        return updateAllProperties;
     }
 
-    public void setUpdateExistingProperty(boolean updateExistingProperty) {
-        this.updateExistingProperty = updateExistingProperty;
+    public void setUpdateAllProperties(boolean updateAllProperties) {
+        this.updateAllProperties = updateAllProperties;
     }
 }
