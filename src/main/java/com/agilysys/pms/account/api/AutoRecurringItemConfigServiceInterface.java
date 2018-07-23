@@ -26,12 +26,13 @@ import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
-@Path("/tenants/{tenantId}/properties/{propertyId}/config/autoRecurringItems")
+@Path(AutoRecurringItemConfigServiceInterface.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface AutoRecurringItemConfigServiceInterface {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
+    String BASE_PATH = "/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/config/autoRecurringItems";
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{" + ITEM_ID + "}";
     String START_DATE = "startDate";

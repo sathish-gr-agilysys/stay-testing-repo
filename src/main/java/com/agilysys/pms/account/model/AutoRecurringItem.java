@@ -75,7 +75,7 @@ public class AutoRecurringItem extends AccountingObjectBase {
         this.status = status;
     }
 
-    @JsonIgnore
+    @Transient
     public boolean isActive() {
         return this.status == CanonicalId.ACTIVE;
     }
