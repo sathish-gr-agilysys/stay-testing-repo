@@ -24,7 +24,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -48,7 +47,6 @@ import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
-import com.agilysys.pms.account.model.CheckInventoryAllocation;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
@@ -57,18 +55,13 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
-import com.agilysys.pms.account.model.InventoryAllocationRequest;
-import com.agilysys.pms.account.model.InventoryAllocationResponse;
-import com.agilysys.pms.account.model.InventoryAvailabilityRequest;
-import com.agilysys.pms.account.model.InventoryAvailabilityResponse;
+import com.agilysys.pms.account.model.InventoryAllocationDetails;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
 import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -1314,29 +1307,17 @@ public interface AccountServiceInterfaceV1 {
      *
      * @param tenantId                 tenantId
      * @param propertyId               propertyId
-     * @param checkInventoryAllocation has request dates and inventory item id's
+     * @param startDate                startDate
+     * @param endDate                  endDate
+     * @param itemIds                  InventoryItem Ids
      * @return allocation response for request dates
      */
     @POST
     @Path(INVENTORY_ALLOCATION)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, CheckInventoryAllocation checkInventoryAllocation)
-          throws RGuestException, ServiceException;
-
-    /**
-     * Check if inventory item quantity is available
-     *
-     * @param tenantId                   tenantId
-     * @param propertyId                 propertyId
-     * @param inventoryAvailabilityRequest has request dates and inventory item id's
-     * @return availability response for request dates
-     */
-    @POST
-    @Path(INVENTORY_AVAILABILITY)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    InventoryAvailabilityResponse checkInventoryAvailability(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, InventoryAvailabilityRequest inventoryAvailabilityRequest)
+    Map<LocalDate, Map<String, InventoryAllocationDetails>> findInventoryItemAllocatedDetails(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate, Set<String> itemIds)
           throws RGuestException, ServiceException;
 
     @GET

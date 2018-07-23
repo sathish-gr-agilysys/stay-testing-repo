@@ -8,13 +8,13 @@ import java.util.Map;
 import org.joda.time.LocalDate;
 
 public class InventoryAllocationResponse {
-    private Map<LocalDate, Map<String, Integer>> allocatedCount;
+    private Map<LocalDate, Map<String, InventoryAllocationDetails>> allocatedCount;
 
-    public Map<LocalDate, Map<String, Integer>> getAllocatedCount() {
+    public Map<LocalDate, Map<String, InventoryAllocationDetails>> getAllocatedCount() {
         return allocatedCount;
     }
 
-    public void setAllocatedCount(Map<LocalDate, Map<String, Integer>> allocatedCount) {
+    public void setAllocatedCount(Map<LocalDate, Map<String, InventoryAllocationDetails>> allocatedCount) {
         this.allocatedCount = allocatedCount;
     }
 }
