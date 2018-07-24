@@ -19,8 +19,6 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/creditTerms")
 @Produces(MediaType.APPLICATION_JSON)
 public interface CreditTermsInterface {
-    String CREDIT_TERMS_PATH = "setup/accounts/creditTerms";
-
     /**
      * Retrieve all credit terms
      *
