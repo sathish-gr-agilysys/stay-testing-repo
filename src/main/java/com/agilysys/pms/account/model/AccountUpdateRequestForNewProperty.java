@@ -10,10 +10,9 @@ public class AccountUpdateRequestForNewProperty {
     public boolean accountUpdateFailed;
     public boolean ratePlanUpdateFailed;
 
-    public AccountUpdateRequestForNewProperty(String tenantId, String propertyId, String companyProfileId) {
+    public AccountUpdateRequestForNewProperty(String tenantId, String propertyId) {
         this.tenantId = tenantId;
         this.propertyId = propertyId;
-        this.companyProfileId = companyProfileId;
     }
 
     public String getTenantId() {
