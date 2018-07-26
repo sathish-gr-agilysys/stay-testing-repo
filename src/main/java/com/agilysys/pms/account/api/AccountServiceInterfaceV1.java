@@ -81,6 +81,8 @@ import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
+import com.agilysys.pms.account.model.Receipt;
+import com.agilysys.pms.account.model.ReceiptRequest;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -618,6 +620,14 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     /* Charges, Credits, Refunds */
+
+    @PUT
+    @Path(ACCOUNT_ID_PATH + CHARGES_PATH + "/checks/{checkNumber}/receipts")
+    @Validated(ReceiptRequest.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateReceipt(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam("checkNumber") String checkNumber,
+          @QueryParam("overwrite") boolean overwrite, ReceiptRequest receipt);
 
     /**
      * Posts a charge to an account
