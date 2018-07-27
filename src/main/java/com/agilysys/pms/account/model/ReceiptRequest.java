@@ -7,12 +7,12 @@ public class ReceiptRequest implements Receipt {
     private String receiptTextImage;
 
     @Override
-    public String getReceiptTextImage() {
+    public String getReceiptText() {
         return receiptTextImage;
     }
 
     @Override
-    public void setReceiptTextImage(String receiptTextImage) {
-        this.receiptTextImage = receiptTextImage;
+    public void setReceiptText(String receiptText) {
+        this.receiptTextImage = receiptText;
     }
 }

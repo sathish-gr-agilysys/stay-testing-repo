@@ -35,8 +35,8 @@ public interface PosTransaction {
     String getReason();
     void setReason(String reason);
 
-    String getReceiptTextImage();
-    void setReceiptTextImage(String receiptTextImage);
+    String getReceiptText();
+    void setReceiptText(String receiptText);
 
     String getReference();
     void setReference(String reference);
