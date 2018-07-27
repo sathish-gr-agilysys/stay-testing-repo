@@ -626,8 +626,7 @@ public interface AccountServiceInterfaceV1 {
     @Validated(ReceiptRequest.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void updateReceipt(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam("checkNumber") String checkNumber,
-          @QueryParam("overwrite") boolean overwrite, ReceiptRequest receipt);
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam("checkNumber") String checkNumber, ReceiptRequest receipt);
 
     /**
      * Posts a charge to an account
