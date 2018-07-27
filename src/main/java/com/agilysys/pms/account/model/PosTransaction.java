@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 import org.joda.time.LocalDate;
 
-public interface PosTransaction {
+public interface PosTransaction extends Receipt {
     String getAccountId();
     void setAccountId(String accountId);
 
@@ -34,9 +34,6 @@ public interface PosTransaction {
 
     String getReason();
     void setReason(String reason);
-
-    String getReceiptText();
-    void setReceiptText(String receiptText);
 
     String getReference();
     void setReference(String reference);

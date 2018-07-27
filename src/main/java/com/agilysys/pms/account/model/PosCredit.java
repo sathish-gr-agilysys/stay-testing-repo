@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-public class PosCredit extends Credit implements PosTransaction, Receipt {
+public class PosCredit extends Credit implements PosTransaction {
     private String receiptText;
     private String checkNumber;
 
