@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ReceiptRequest implements Receipt {
     @JsonProperty(required = true)
-    private String receiptTextImage;
+    private String receiptText;
 
     @Override
     public String getReceiptText() {
-        return receiptTextImage;
+        return receiptText;
     }
 
     @Override
     public void setReceiptText(String receiptText) {
-        this.receiptTextImage = receiptText;
+        this.receiptText = receiptText;
     }
 }

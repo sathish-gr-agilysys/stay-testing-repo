@@ -54,7 +54,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private int quantity;
     private List<LineItemView> refundLineItems;
     private String reason;
-    private String receiptTextImage;
+    private String receiptText;
     private String recurringChargeId;
     private String reference;
     private String reservationId;
@@ -324,12 +324,12 @@ public class LineItemView implements Comparable<LineItemView> {
         this.reason = reason;
     }
 
-    public String getReceiptTextImage() {
-        return receiptTextImage;
+    public String getReceiptText() {
+        return receiptText;
     }
 
-    public void setReceiptTextImage(String receiptTextImage) {
-        this.receiptTextImage = receiptTextImage;
+    public void setReceiptText(String receiptText) {
+        this.receiptText = receiptText;
     }
 
     public String getRecurringChargeId() {
