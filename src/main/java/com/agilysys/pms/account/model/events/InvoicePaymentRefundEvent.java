@@ -12,6 +12,8 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.account.model.Balance;
+
 public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private String invoicePaymentId;
     private BigDecimal amount;
@@ -26,8 +28,9 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
 
     public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String reason,
           LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
-          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata, boolean closed) {
-        super(closed);
+          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata, boolean closed,
+          Balance balance) {
+        super(closed, balance);
 
         this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;
