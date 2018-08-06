@@ -4,15 +4,29 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+
+import com.agilysys.pms.profile.model.AddressDetails;
+
 public class NonInvoicedSourceAccountDetail {
-    private String sourceAccountId;
-    private String sourceAccountType;
-    private String sourceAccountName;
-    private String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
-    private List<LineItemView> nonInvoicedCharges;
-    private List<LineItemView> nonInvoicePayments;
+    protected String sourceAccountId;
+    protected String sourceAccountType;
+    protected String sourceAccountName;
+    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
+    protected LocalDate arrivalDate;
+    protected LocalDate departureDate;
+    protected String name;
+    protected String groupCode;
+    protected AddressDetails addressDetails;
+    protected List<LineItemView> nonInvoicedCharges = new ArrayList<>();
+    protected List<LineItemView> nonInvoicePayments = new ArrayList<>();
+    protected BigDecimal nonInvoicedChargesBalance = BigDecimal.ZERO;
+    protected BigDecimal nonInvoicedChargesTaxBalance = BigDecimal.ZERO;
+    protected BigDecimal nonInvoicedChargesTotalBalance = BigDecimal.ZERO;
+    protected BigDecimal nonInvoicedPaymentsTotalBalance = BigDecimal.ZERO;
 
     public String getSourceAccountId() {
         return sourceAccountId;
@@ -46,6 +60,46 @@ public class NonInvoicedSourceAccountDetail {
         this.referenceId = referenceId;
     }
 
+    public LocalDate getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(LocalDate arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
+    public AddressDetails getAddressDetails() {
+        return addressDetails;
+    }
+
+    public void setAddressDetails(AddressDetails addressDetails) {
+        this.addressDetails = addressDetails;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<LineItemView> getNonInvoicedCharges() {
         return nonInvoicedCharges;
     }
@@ -63,38 +117,34 @@ public class NonInvoicedSourceAccountDetail {
     }
 
     public BigDecimal getNonInvoicedChargesBalance() {
-        if (nonInvoicedCharges != null) {
-            return nonInvoicedCharges.stream().map(nonInvoicedCharge -> nonInvoicedCharge.getLineItemChargesBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return nonInvoicedChargesBalance;
+    }
 
-        return BigDecimal.ZERO;
+    public void setNonInvoicedChargesBalance(BigDecimal nonInvoicedChargesBalance) {
+        this.nonInvoicedChargesBalance = nonInvoicedChargesBalance;
     }
 
     public BigDecimal getNonInvoicedChargesTaxBalance() {
-        if (nonInvoicedCharges != null) {
-            return nonInvoicedCharges.stream().map(nonInvoicedCharge -> nonInvoicedCharge.getLineItemTaxBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return nonInvoicedChargesTaxBalance;
+    }
 
-        return BigDecimal.ZERO;
+    public void setNonInvoicedChargesTaxBalance(BigDecimal nonInvoicedChargesTaxBalance) {
+        this.nonInvoicedChargesTaxBalance = nonInvoicedChargesTaxBalance;
     }
 
     public BigDecimal getNonInvoicedChargesTotalBalance() {
-        if (nonInvoicedCharges != null) {
-            return nonInvoicedCharges.stream().map(nonInvoicedCharge -> nonInvoicedCharge.getLineItemBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return nonInvoicedChargesTotalBalance;
+    }
 
-        return BigDecimal.ZERO;
+    public void setNonInvoicedChargesTotalBalance(BigDecimal nonInvoicedChargesTotalBalance) {
+        this.nonInvoicedChargesTotalBalance = nonInvoicedChargesTotalBalance;
     }
 
     public BigDecimal getNonInvoicedPaymentsTotalBalance() {
-        if (nonInvoicePayments != null) {
-            return nonInvoicePayments.stream().map(nonInvoicePayment -> nonInvoicePayment.getLineItemBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return nonInvoicedPaymentsTotalBalance;
+    }
 
-        return BigDecimal.ZERO;
+    public void setNonInvoicedPaymentsTotalBalance(BigDecimal nonInvoicedPaymentsTotalBalance) {
+        this.nonInvoicedPaymentsTotalBalance = nonInvoicedPaymentsTotalBalance;
     }
 }
