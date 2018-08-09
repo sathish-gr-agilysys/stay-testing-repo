@@ -34,6 +34,7 @@ public class TransactionReportItem {
     private String accountName;
     private TransferSummary transferSummary;
     private boolean isRoomRevenue;
+    private String autoRecurringItemId;
 
     public String getId() {
         return id;
@@ -201,5 +202,13 @@ public class TransactionReportItem {
 
     public void setRoomRevenue(boolean isRoomRevenue) {
         this.isRoomRevenue = isRoomRevenue;
+    }
+
+    public String getAutoRecurringItemId() {
+        return autoRecurringItemId;
+    }
+
+    public void setAutoRecurringItemId(String autoRecurringItemId) {
+        this.autoRecurringItemId = autoRecurringItemId;
     }
 }
