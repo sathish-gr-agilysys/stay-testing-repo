@@ -3,31 +3,36 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.agilysys.common.constants.Constants;
 
 public class ARReportRequest {
 
-    private String arNumbers;
+    private List<String> arNumbers;
 
     public ARReportRequest() {}
 
-    public ARReportRequest(String arNumbers) {
+    public ARReportRequest(List<String> arNumbers) {
         this.arNumbers = arNumbers;
     }
 
-    public String getArNumbers() {
+    public List<String> getArNumbers() {
         return arNumbers;
     }
 
-    public void setArNumbers(String arNumbers) {
+    public void setArNumbers(List<String> arNumbers) {
         this.arNumbers = arNumbers;
     }
 
     public Set<String> getArNumbersSet(){
-        return new TreeSet<>(Arrays.asList(this.arNumbers.split(Constants.SPACE_COMMA_DELIMITER)));
+
+        Set<String> arNumbersSet = new TreeSet<>();
+
+        arNumbers.forEach( arNumber -> arNumbersSet.add(arNumber.trim()));
+
+        return arNumbersSet;
+
     }
 }
