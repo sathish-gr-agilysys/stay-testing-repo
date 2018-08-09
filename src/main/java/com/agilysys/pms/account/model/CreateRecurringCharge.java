@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
