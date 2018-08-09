@@ -4,19 +4,27 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.profile.model.AddressDetails;
+
 public class InvoicedSourceAccountDetail {
-    private String sourceAccountId;
-    private String sourceAccountName;
-    private String sourceAccountType;
-    private String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
-    private List<LineItemView> invoicedCharges;
-    private String name;
-    private LocalDate arrivalDate;
-    private LocalDate departureDate;
+    protected String sourceAccountId;
+    protected String sourceAccountName;
+    protected String sourceAccountType;
+    protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
+    protected LocalDate arrivalDate;
+    protected LocalDate departureDate;
+    protected String name;
+    protected String groupCode;
+    protected AddressDetails addressDetails;
+    protected List<LineItemView> invoicedCharges = new ArrayList<>();
+    protected BigDecimal chargesBalance = BigDecimal.ZERO;
+    protected BigDecimal taxBalance = BigDecimal.ZERO;
+    protected BigDecimal totalBalance = BigDecimal.ZERO;
 
     public String getSourceAccountId() {
         return sourceAccountId;
@@ -50,6 +58,46 @@ public class InvoicedSourceAccountDetail {
         this.referenceId = referenceId;
     }
 
+    public LocalDate getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(LocalDate arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
+    public AddressDetails getAddressDetails() {
+        return addressDetails;
+    }
+
+    public void setAddressDetails(AddressDetails addressDetails) {
+        this.addressDetails = addressDetails;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<LineItemView> getInvoicedCharges() {
         return invoicedCharges;
     }
@@ -58,48 +106,27 @@ public class InvoicedSourceAccountDetail {
         this.invoicedCharges = invoicedCharges;
     }
 
-    public String getName() { return name; }
-
-    public void setName(String name) { this.name = name; }
-
-    public LocalDate getArrivalDate() { return arrivalDate; }
-
-    public void setArrivalDate(LocalDate arrivalDate) { this.arrivalDate = arrivalDate; }
-
-    public LocalDate getDepartureDate() { return departureDate; }
-
-    public void setDepartureDate(LocalDate departureDate) { this.departureDate = departureDate; }
-
     public BigDecimal getChargesBalance() {
-        BigDecimal balance = BigDecimal.ZERO;
+        return chargesBalance;
+    }
 
-        if (invoicedCharges != null) {
-            for (LineItemView invoicedChargeItem : invoicedCharges) {
-                balance = balance.add(invoicedChargeItem.getLineItemChargesBalance());
-            }
-        }
-        return balance;
+    public void setChargesBalance(BigDecimal chargesBalance) {
+        this.chargesBalance = chargesBalance;
     }
 
     public BigDecimal getTaxBalance() {
-        BigDecimal balance = BigDecimal.ZERO;
+        return taxBalance;
+    }
 
-        if (invoicedCharges != null) {
-            for (LineItemView invoicedChargeItem : invoicedCharges) {
-                balance = balance.add(invoicedChargeItem.getLineItemTaxBalance());
-            }
-        }
-        return balance;
+    public void setTaxBalance(BigDecimal taxBalance) {
+        this.taxBalance = taxBalance;
     }
 
     public BigDecimal getTotalBalance() {
-        BigDecimal balance = BigDecimal.ZERO;
+        return totalBalance;
+    }
 
-        if (invoicedCharges != null) {
-            for (LineItemView invoicedChargeItem : invoicedCharges) {
-                balance = balance.add(invoicedChargeItem.getLineItemBalance());
-            }
-        }
-        return balance;
+    public void setTotalBalance(BigDecimal totalBalance) {
+        this.totalBalance = totalBalance;
     }
 }
