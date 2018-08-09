@@ -21,10 +21,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
+import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.InventoryItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/inventoryItems")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface InventoryItemConfigServiceInterface {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
@@ -55,7 +58,6 @@ public interface InventoryItemConfigServiceInterface {
      */
     @GET
     @Path(ITEM_ID_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     InventoryItem getInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
@@ -69,8 +71,6 @@ public interface InventoryItemConfigServiceInterface {
      */
     @POST
     @CreatedOnSuccess
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Validated(InventoryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     InventoryItem createInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
@@ -79,19 +79,21 @@ public interface InventoryItemConfigServiceInterface {
     /**
      * Modify an existing InventoryItem
      *
-     * @param tenantId the tenantId to modify the InventoryItem for
-     * @param itemId   the ID of the InventoryItem to modify
-     * @param item     the modified InventoryItem to persist
+     * @param tenantId                              the tenantId to modify the Inventory Item for
+     * @param itemId                                the ID of the Inventory to modify
+     * @param autoRecurringChargeOptionalParameters decides whether to update the values of Auto recurring items
+     *                                              created from the inventory item
+     * @param item                                  the modified InventoryItem to persist
      * @return the modified InventoryItem
      */
     @PUT
     @Path(ITEM_ID_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Validated(InventoryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     InventoryItem updateInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId, InventoryItem item) throws RGuestException, ServiceException;
+          @PathParam(ITEM_ID) String itemId,
+          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
+          InventoryItem item) throws RGuestException, ServiceException;
 
     /**
      * Delete an existing InventoryItem
@@ -101,7 +103,6 @@ public interface InventoryItemConfigServiceInterface {
      */
     @DELETE
     @Path(ITEM_ID_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
@@ -114,11 +115,8 @@ public interface InventoryItemConfigServiceInterface {
      */
     @POST
     @Path(CONVERT_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     List<InventoryItem> convertToInventoryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<InventoryItem> items)
           throws RGuestException, ServiceException;
-
 }
-
