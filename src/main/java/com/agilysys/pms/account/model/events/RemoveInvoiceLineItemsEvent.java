@@ -11,14 +11,16 @@ import java.util.Set;
 
 import org.springframework.data.annotation.Transient;
 
+import com.agilysys.pms.account.model.Balance;
+
 public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     private Set<String> folioLineItemIds;
 
     public RemoveInvoiceLineItemsEvent() { super(); }
 
-    public RemoveInvoiceLineItemsEvent(Set<String> folioLineItemIds, List<Map<String, Object>> historyMetadata) {
-        super(historyMetadata);
-
+    public RemoveInvoiceLineItemsEvent(Set<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
+          Balance balance) {
+        super(historyMetadata, balance);
         this.folioLineItemIds = folioLineItemIds;
     }
 

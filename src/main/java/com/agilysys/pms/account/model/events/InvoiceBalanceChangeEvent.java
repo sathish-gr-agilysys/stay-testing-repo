@@ -8,7 +8,11 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 
+import com.agilysys.pms.account.model.Balance;
+
 public abstract class InvoiceBalanceChangeEvent extends InvoiceEvent {
+
+    private Balance balance;
 
     public InvoiceBalanceChangeEvent() { super(); }
 
@@ -20,4 +24,15 @@ public abstract class InvoiceBalanceChangeEvent extends InvoiceEvent {
         super(eventDate, historyMetadata);
     }
 
+    public InvoiceBalanceChangeEvent(Balance balance) {
+        super();
+        this.balance = balance;
+    }
+
+    public InvoiceBalanceChangeEvent(List<Map<String, Object>> historyMetadata, Balance balance) {
+        this(historyMetadata);
+        this.balance = balance;
+    }
+
+    public Balance getBalance() { return balance; }
 }

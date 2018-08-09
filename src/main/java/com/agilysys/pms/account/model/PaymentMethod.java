@@ -9,6 +9,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.PaymentMethodSetting;
+import com.agilysys.common.permission.PermissionType;
 import com.agilysys.pms.common.model.annotation.DataPortInline;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.payment.model.Issuer;
@@ -47,6 +48,8 @@ public class PaymentMethod extends AccountingItem {
     private Set<String> sourceIds;
 
     private String glCode;
+
+    private PermissionType restrictivePermission;
 
     public Set<String> getSourceIds() {
         return sourceIds;
@@ -94,6 +97,14 @@ public class PaymentMethod extends AccountingItem {
 
     public void setGlCode(String glCode) {
         this.glCode = glCode;
+    }
+
+    public PermissionType getRestrictivePermission() {
+        return restrictivePermission;
+    }
+
+    public void setRestrictivePermission(PermissionType restrictivePermission) {
+        this.restrictivePermission = restrictivePermission;
     }
 
     /** {@inheritDoc} */

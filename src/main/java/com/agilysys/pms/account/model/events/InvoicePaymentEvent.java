@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.constants.Constants;
+import com.agilysys.pms.account.model.Balance;
 
 public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private String invoicePaymentId;
@@ -31,8 +32,8 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          boolean isFullAmountApplied) {
-
+          boolean isFullAmountApplied, Balance balance) {
+        super(balance);
         this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;
         this.folioLineItemId = folioLineItemId;

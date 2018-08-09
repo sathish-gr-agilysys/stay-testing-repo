@@ -11,8 +11,8 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-
 import com.agilysys.common.constants.Constants;
+import com.agilysys.pms.account.model.Balance;
 
 public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private String invoicePaymentId;
@@ -30,7 +30,21 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String reason,
           LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
           DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata) {
+        this.invoicePaymentId = invoicePaymentId;
+        this.amount = amount;
+        this.folioLineItemId = folioLineItemId;
+        this.reason = reason;
+        this.lineItemPostingDate = lineItemPostingDate;
+        this.lineItemPostingSystemDateTime = lineItemPostingSystemDateTime;
+        this.appliedOnPropertyDate = appliedOnPropertyDate;
+        this.appliedOnSystemDateTime = appliedOnSystemDateTime;
+        this.historyMetadata = historyMetadata;
+    }
 
+    public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String reason,
+          LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
+          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata, Balance balance) {
+        super(balance);
         this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;
         this.folioLineItemId = folioLineItemId;
@@ -45,9 +59,9 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          List<Map<String, Object>> historyMetadata) {
+          List<Map<String, Object>> historyMetadata, Balance balance) {
         this(invoicePaymentId, amount, folioLineItemId, reason, lineItemPostingDate, lineItemPostingSystemDateTime,
-              appliedOnPropertyDate, appliedOnSystemDateTime, historyMetadata);
+              appliedOnPropertyDate, appliedOnSystemDateTime, historyMetadata, balance);
         this.paymentMethodName = paymentMethodName;
     }
 
