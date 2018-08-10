@@ -24,7 +24,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.a3badran.platform.logging.LogParam;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,6 +32,7 @@ import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
+import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -57,7 +57,6 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
-import com.agilysys.pms.account.model.InventoryAllocationRequest;
 import com.agilysys.pms.account.model.InventoryAllocationResponse;
 import com.agilysys.pms.account.model.InventoryAvailabilityRequest;
 import com.agilysys.pms.account.model.InventoryAvailabilityResponse;
@@ -66,9 +65,7 @@ import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.InvoiceView;
 import com.agilysys.pms.account.model.LedgerBalancesInfo;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
-import com.agilysys.pms.account.model.LedgerTransactionHistoryView;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
@@ -85,6 +82,7 @@ import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
+import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
@@ -110,6 +108,7 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
+    String ACCOUNT_TYPE = "accountType";
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
     String ADJUSTMENT_PATH = "/adjustment";
@@ -162,11 +161,14 @@ public interface AccountServiceInterfaceV1 {
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
+    String MULTIPLE_REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
     // used for a refund of a specific line item
     String REFUND_PATH = "/refund";
     // used for generic refunds
     String REFUNDS_PATH = "/refunds";
     String REMAINING_PATH = "/{" + PATH + ":.*}";
+    String PAYMENT_METHOD_ID = "paymentMethodId";
+    String REQUEST_TYPE = "requestType";
     String SEARCH_PATH = "/search";
     String SEARCH_TERM = "searchTerm";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
@@ -189,6 +191,10 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
     String INVENTORY_ALLOCATION = "/inventory/allocation/{" + PROPERTY_DATE + "}";
     String INVENTORY_AVAILABILITY = "/inventory/availability";
+    String TENANT_DEFAULT_SETTINGS_APPLY_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/apply";
+    String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
+    String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
+    String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
 
     /**
      * Retrieve all accounts from a tenant
@@ -209,17 +215,36 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Retrieve an account by reference id
      *
+     * This API is deprecated, use getAccountsByReferenceId() instead
+     *
      * @param tenantId    id of tenant where the account exists
      * @param propertyId  id of the property where the account exists
      * @param referenceId reference id of the account to retrieve
      * @return an account for the tenant and referenceId
      */
+    @Deprecated
     @GET
     @Path(REFERENCE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountSummary getAccountByReferenceId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(REFERENCE_ID) String referenceId)
           throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve accounts by reference id
+     *
+     * @param tenantId    id of tenant where the account exists
+     * @param propertyId  id of the property where the account exists
+     * @param referenceId reference id of the account to retrieve
+     * @param accountType types of account to filter
+     * @return an account for the tenant and referenceId
+     */
+    @GET
+    @Path(MULTIPLE_REFERENCES_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountsByReferenceId(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(ACCOUNT_TYPE) String accountType,
+          @PathParam(REFERENCE_ID) String referenceId) throws RGuestException, ServiceException;
 
     /**
      * Retrieve an account
@@ -749,8 +774,8 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + TASK_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-           @PathParam(TASK_ID) String taskId) throws Throwable;
+    List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId) throws Throwable;
 
     /**
      * Refunds a payment to an account
@@ -1034,7 +1059,8 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     @Validated(InvoiceRequest.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     InvoiceView createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, InvoiceRequest invoice) throws RGuestException, ServiceException;
 
@@ -1097,7 +1123,8 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_ADD_ITEMS_PATH)
     @Validated(UpdateInvoiceLineItemsRequest.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     InvoiceView addInvoiceLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceLineItemsRequest lineItems) throws RGuestException, ServiceException;
@@ -1116,7 +1143,8 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_REMOVE_ITEMS_PATH)
     @Validated(UpdateInvoiceLineItemsRequest.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     InvoiceView removeInvoiceLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceLineItemsRequest lineItems) throws RGuestException, ServiceException;
@@ -1135,7 +1163,8 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_UPDATE_TERMS_PATH)
     @Validated(UpdateInvoiceTermsRequest.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     InvoiceView updateInvoiceTerms(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceTermsRequest terms) throws RGuestException, ServiceException;
@@ -1153,7 +1182,8 @@ public interface AccountServiceInterfaceV1 {
      */
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_SET_INVOICE_SENT)
-    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     InvoiceView setInvoiceSent(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("isEmail") boolean isEmail) throws RGuestException, ServiceException;
@@ -1170,7 +1200,8 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_PAYMENTS)
     @Validated(ApplyInvoicePaymentRequest.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')")
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     List<InvoiceView> applyInvoicePayments(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           ApplyInvoicePaymentRequest applyInvoicePaymentRequest) throws RGuestException, ServiceException;
@@ -1223,8 +1254,9 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance)
-          throws RGuestException, ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance,
+          @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException, ServiceException;
+
 
     /**
      * Fetches the next unused AR account number from the database
@@ -1275,7 +1307,7 @@ public interface AccountServiceInterfaceV1 {
           @ApiParam(value = "tenant id", required = true) @PathParam(TENANT_ID) @LogParam("tenantId") String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @ApiParam(value = "collection request", required = false) @LogParam("params")
-          AccountsCollectionRequest collectionRequest) throws RGuestException, ServiceException;
+                AccountsCollectionRequest collectionRequest) throws RGuestException, ServiceException;
 
     /* ----------------------------------------------------------- */
 
@@ -1373,4 +1405,34 @@ public interface AccountServiceInterfaceV1 {
     TenantDefaultSettingsSummary updateTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId,
           TenantDefaultSettingsSummary tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    AccountUpdateResponse findAccountReceivableJobStatus(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    List<TenantARPropertySettingStatus> getAccountReceivablePropertySettingStatus(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_APPLY_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    AccountUpdateResponse applyTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(NEW_PROPERTY_AR_ACCOUNT)
+    void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+
 }
+

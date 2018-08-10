@@ -11,6 +11,7 @@ import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
 
 import com.agilysys.platform.persistence.eventsourcing.PropertyLevelIdentifier;
+import com.agilysys.pms.account.model.Balance;
 
 public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     private PropertyLevelIdentifier id;
@@ -23,8 +24,8 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     public InvoiceCreatedEvent() { super(); }
 
     public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
-          Set<String> folioLineItemIds, int terms, String invoiceNumber, boolean closed) {
-        super(closed);
+          Set<String> folioLineItemIds, int terms, String invoiceNumber, boolean closed, Balance balance) {
+        super(closed, balance);
 
         this.id = id;
         this.accountId = accountId;

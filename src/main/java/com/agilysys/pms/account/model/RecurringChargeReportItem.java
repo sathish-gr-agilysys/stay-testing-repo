@@ -21,6 +21,7 @@ public class RecurringChargeReportItem {
     private String itemName;
     private List<ComponentChargeView> componentCharges = new ArrayList<>();
     private boolean isPackage;
+    private String autoRecurringItemId;
 
     /**
      * EVERY = Every Night
@@ -137,4 +138,13 @@ public class RecurringChargeReportItem {
     public void setPackage(boolean aPackage) {
         isPackage = aPackage;
     }
+
+    public String getAutoRecurringItemId() {
+        return autoRecurringItemId;
+    }
+
+    public void setAutoRecurringItemId(String autoRecurringItemId) {
+        this.autoRecurringItemId = autoRecurringItemId;
+    }
+
 }
