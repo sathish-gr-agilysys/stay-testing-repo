@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-
 public class ARReportRequest {
 
     private List<String> arNumbers;
@@ -26,13 +25,9 @@ public class ARReportRequest {
         this.arNumbers = arNumbers;
     }
 
-    public Set<String> getArNumbersSet(){
-
+    public Set<String> getArNumbersSet() {
         Set<String> arNumbersSet = new TreeSet<>();
-
-        arNumbers.forEach( arNumber -> arNumbersSet.add(arNumber.trim()));
-
+        arNumbers.forEach(arNumber -> arNumbersSet.add(arNumber.trim()));
         return arNumbersSet;
-
     }
 }

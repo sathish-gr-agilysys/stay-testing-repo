@@ -30,7 +30,7 @@ public abstract class InvoiceBalanceChangeEvent extends InvoiceEvent {
     }
 
     public InvoiceBalanceChangeEvent(List<Map<String, Object>> historyMetadata, Balance balance) {
-        this(historyMetadata);
+        super(historyMetadata);
         this.balance = balance;
     }
 
