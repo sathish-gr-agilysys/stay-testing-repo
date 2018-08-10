@@ -5,5 +5,6 @@ package com.agilysys.pms.account.model;
 
 public enum AccountSearchField {
     NAME,
-    NUMBER
+    NUMBER,
+    PROPERTY_ID
 }
