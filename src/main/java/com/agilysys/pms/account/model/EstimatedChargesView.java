@@ -26,7 +26,6 @@ public class EstimatedChargesView {
         this.rateCode = rateCode;
     }
 
-
     public List<RecurringChargeView> getRecurringCharges() {
         return recurringCharges;
     }
