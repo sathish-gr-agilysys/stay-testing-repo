@@ -5,7 +5,7 @@
 package com.agilysys.pms.account.model.events;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +25,8 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private DateTime appliedOnSystemDateTime;
     private String paymentMethodName;
 
-    public InvoicePaymentRefundEvent() { super(); }
+    public InvoicePaymentRefundEvent() {
+    }
 
     public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String reason,
           LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
@@ -131,9 +132,9 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
 
     @Override
     public List<String> getHistoryMessages() {
-        return Arrays.asList(
-              String.format("Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
-                    paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
+        return Collections.singletonList(
+                String.format("Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
+                        paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
     }
 
     @Override

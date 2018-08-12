@@ -14,7 +14,8 @@ public abstract class InvoiceBalanceChangeEvent extends InvoiceEvent {
 
     private Balance balance;
 
-    public InvoiceBalanceChangeEvent() { super(); }
+    public InvoiceBalanceChangeEvent() {
+    }
 
     public InvoiceBalanceChangeEvent(List<Map<String, Object>> historyMetadata) {
         super(historyMetadata);

@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model.events;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -19,7 +19,8 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     private String invoiceNumber;
     private boolean closed;
 
-    public InvoiceStatusChangeEvent() {}
+    public InvoiceStatusChangeEvent() {
+    }
 
     public InvoiceStatusChangeEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
           String invoiceNumber, boolean closed) {
@@ -33,9 +34,9 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     @Override
     public List<String> getHistoryMessages() {
         if (isClosed()) {
-            return Arrays.asList(String.format("Invoice %s closed.", invoiceNumber));
+            return Collections.singletonList(String.format("Invoice %s closed.", invoiceNumber));
         } else {
-            return Arrays.asList(String.format("Invoice %s reopened.", invoiceNumber));
+            return Collections.singletonList(String.format("Invoice %s reopened.", invoiceNumber));
         }
     }
 

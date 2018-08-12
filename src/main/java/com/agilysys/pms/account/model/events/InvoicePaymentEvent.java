@@ -5,7 +5,7 @@
 package com.agilysys.pms.account.model.events;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -27,7 +27,8 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private DateTime appliedOnSystemDateTime;
     private boolean isFullAmountApplied;
 
-    public InvoicePaymentEvent() { super(); }
+    public InvoicePaymentEvent() {
+    }
 
     public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
@@ -133,9 +134,9 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
 
     @Override
     public List<String> getHistoryMessages() {
-        return Arrays.asList(
-              String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
-                    paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
+        return Collections.singletonList(
+                String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
+                        paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
     }
 
     @Override

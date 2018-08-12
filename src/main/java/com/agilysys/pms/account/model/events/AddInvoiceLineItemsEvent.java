@@ -3,11 +3,7 @@
  */
 package com.agilysys.pms.account.model.events;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.springframework.data.annotation.Transient;
 
@@ -16,7 +12,8 @@ import com.agilysys.pms.account.model.Balance;
 public class AddInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     private Set<String> folioLineItemIds;
 
-    public AddInvoiceLineItemsEvent() { super(); }
+    public AddInvoiceLineItemsEvent() {
+    }
 
     public AddInvoiceLineItemsEvent(Set<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
           Balance balance) {
@@ -42,7 +39,7 @@ public class AddInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     @Override
     public List<String> getHistoryMessages() {
         if (historyMetadata.isEmpty()) {
-            return Arrays.asList(getDisplayName());
+            return Collections.singletonList(getDisplayName());
         }
 
         List<String> historyMessages = new LinkedList<>();
