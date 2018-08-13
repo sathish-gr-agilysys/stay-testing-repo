@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import com.agilysys.common.model.statuses.PropertyConfigItemStatus;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.tax.model.TaxClass;
@@ -147,11 +146,11 @@ public class TransactionItem extends AccountingItem {
         this.glCode = glCode;
     }
 
-    public PropertyConfigItemStatus.CanonicalId getStatus() {
+    public CanonicalId getStatus() {
         return status;
     }
 
-    public void setStatus(PropertyConfigItemStatus.CanonicalId status) {
+    public void setStatus(CanonicalId status) {
         this.status = status;
     }
 
