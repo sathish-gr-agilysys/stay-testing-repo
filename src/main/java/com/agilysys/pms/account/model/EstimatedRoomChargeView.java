@@ -12,15 +12,18 @@ public class EstimatedRoomChargeView {
     private LocalDate chargeDate;
     private String rateCode;
 
-    public EstimatedRoomChargeView(BigDecimal amount, LocalDate chargeDate, String rateCode) {
+    public EstimatedRoomChargeView(BigDecimal amount, LocalDate chargeDate) {
         this.amount = amount;
         this.chargeDate = chargeDate;
+    }
+
+    public EstimatedRoomChargeView(BigDecimal amount, LocalDate chargeDate, String rateCode) {
+        this(amount, chargeDate);
         this.rateCode = rateCode;
     }
 
     public BigDecimal getAmount() {
         return amount;
-
     }
 
     public void setAmount(BigDecimal amount) {
