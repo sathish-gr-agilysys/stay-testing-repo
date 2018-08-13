@@ -108,6 +108,7 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
+    String ACCOUNT_TYPE = "accountType";
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
     String ADJUSTMENT_PATH = "/adjustment";
@@ -160,6 +161,7 @@ public interface AccountServiceInterfaceV1 {
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
+    String MULTIPLE_REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
     // used for a refund of a specific line item
     String REFUND_PATH = "/refund";
     // used for generic refunds
@@ -213,17 +215,36 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Retrieve an account by reference id
      *
+     * This API is deprecated, use getAccountsByReferenceId() instead
+     *
      * @param tenantId    id of tenant where the account exists
      * @param propertyId  id of the property where the account exists
      * @param referenceId reference id of the account to retrieve
      * @return an account for the tenant and referenceId
      */
+    @Deprecated
     @GET
     @Path(REFERENCE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountSummary getAccountByReferenceId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(REFERENCE_ID) String referenceId)
           throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve accounts by reference id
+     *
+     * @param tenantId    id of tenant where the account exists
+     * @param propertyId  id of the property where the account exists
+     * @param referenceId reference id of the account to retrieve
+     * @param accountType types of account to filter
+     * @return an account for the tenant and referenceId
+     */
+    @GET
+    @Path(MULTIPLE_REFERENCES_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountsByReferenceId(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(ACCOUNT_TYPE) String accountType,
+          @PathParam(REFERENCE_ID) String referenceId) throws RGuestException, ServiceException;
 
     /**
      * Retrieve an account
