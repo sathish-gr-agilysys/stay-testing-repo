@@ -4,11 +4,13 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NonInvoicedARDetail {
     private String accountId;
-    private List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails;
+    private List<NonInvoicedSourceAccountDetail> nonGroupNonInvoicedDetails = new ArrayList<>();
+    private List<GroupNonInvoicedDetail> groupNonInvoicedDetails = new ArrayList<>();
 
     public String getAccountId() {
         return accountId;
@@ -18,43 +20,68 @@ public class NonInvoicedARDetail {
         this.accountId = accountId;
     }
 
-    public List<NonInvoicedSourceAccountDetail> getNonInvoicedSourceAccountDetails() {
-        return nonInvoicedSourceAccountDetails;
+    public List<NonInvoicedSourceAccountDetail> getNonGroupNonInvoicedDetails() {
+        return nonGroupNonInvoicedDetails;
     }
 
-    public void setNonInvoicedSourceAccountDetails(
-          List<NonInvoicedSourceAccountDetail> nonInvoicedSourceAccountDetails) {
-        this.nonInvoicedSourceAccountDetails = nonInvoicedSourceAccountDetails;
+    public void setNonGroupNonInvoicedDetails(List<NonInvoicedSourceAccountDetail> nonGroupNonInvoicedDetails) {
+        this.nonGroupNonInvoicedDetails = nonGroupNonInvoicedDetails;
+    }
+
+    public List<GroupNonInvoicedDetail> getGroupNonInvoicedDetails() {
+        return groupNonInvoicedDetails;
+    }
+
+    public void setGroupNonInvoicedDetails(List<GroupNonInvoicedDetail> groupNonInvoicedDetails) {
+        this.groupNonInvoicedDetails = groupNonInvoicedDetails;
     }
 
     public BigDecimal getNonInvoicedChargesBalance() {
-        if (nonInvoicedSourceAccountDetails != null) {
-            return nonInvoicedSourceAccountDetails.stream()
+        BigDecimal balance = BigDecimal.ZERO;
+        if (nonGroupNonInvoicedDetails != null) {
+            balance = nonGroupNonInvoicedDetails.stream()
                   .map(nonInvoicedSourceAccountDetail -> nonInvoicedSourceAccountDetail.getNonInvoicedChargesBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
+        if (groupNonInvoicedDetails != null) {
+            return balance.add(groupNonInvoicedDetails.stream()
+                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getNonInvoicedChargesBalance())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
 
-        return BigDecimal.ZERO;
+        return balance;
     }
 
     public BigDecimal getNonInvoicedChargesTaxBalance() {
-        if (nonInvoicedSourceAccountDetails != null) {
-            return nonInvoicedSourceAccountDetails.stream()
+        BigDecimal balance = BigDecimal.ZERO;
+        if (nonGroupNonInvoicedDetails != null) {
+            return nonGroupNonInvoicedDetails.stream()
                   .map(nonInvoicedSourceAccountDetail -> nonInvoicedSourceAccountDetail
                         .getNonInvoicedChargesTaxBalance()).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
+        if (groupNonInvoicedDetails != null) {
+            return balance.add(groupNonInvoicedDetails.stream()
+                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getNonInvoicedChargesTaxBalance())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
 
-        return BigDecimal.ZERO;
+        return balance;
     }
 
     public BigDecimal getNonInvoicedPaymentsTotalBalance() {
-        if (nonInvoicedSourceAccountDetails != null) {
-            return nonInvoicedSourceAccountDetails.stream()
+        BigDecimal balance = BigDecimal.ZERO;
+        if (nonGroupNonInvoicedDetails != null) {
+            balance = nonGroupNonInvoicedDetails.stream()
                   .map(nonInvoicedSourceAccountDetail -> nonInvoicedSourceAccountDetail
                         .getNonInvoicedPaymentsTotalBalance()).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
+        if (groupNonInvoicedDetails != null) {
+            return balance.add(groupNonInvoicedDetails.stream()
+                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getNonInvoicedPaymentsTotalBalance())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
 
-        return BigDecimal.ZERO;
+        return balance;
     }
 
     public BigDecimal getNonInvoicedChargesTotalBalance() {
