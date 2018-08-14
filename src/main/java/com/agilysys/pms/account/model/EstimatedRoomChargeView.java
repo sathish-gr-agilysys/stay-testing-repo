@@ -12,6 +12,9 @@ public class EstimatedRoomChargeView {
     private LocalDate chargeDate;
     private String rateCode;
 
+    public EstimatedRoomChargeView() {
+    }
+
     public EstimatedRoomChargeView(BigDecimal amount, LocalDate chargeDate) {
         this.amount = amount;
         this.chargeDate = chargeDate;

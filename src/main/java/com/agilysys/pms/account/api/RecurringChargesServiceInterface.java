@@ -292,11 +292,6 @@ public interface RecurringChargesServiceInterface {
           throws RGuestException, ServiceException;
 
     /**
-     * @param tenantId
-     * @param propertyId
-     * @param accountId
-     * @param startDate
-     * @param endDate
      * @return The estimated room charges for the given date range, or the current
      * date if date range not given. Returns a list of estimated room charge view.
      */
