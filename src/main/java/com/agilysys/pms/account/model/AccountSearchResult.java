@@ -8,9 +8,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-/**
- * Composition of account related information to contain account search results.
- */
 public class AccountSearchResult {
     // values shared by different account types
     private String tenantId;
@@ -53,6 +50,16 @@ public class AccountSearchResult {
     private String groupCode;
 
     private String bookingStatus;
+
+    public AccountSearchResult() {}
+
+    public AccountSearchResult(String accountId, String accountType, String name, String propertyId, String tenantId) {
+        this.accountId = accountId;
+        this.accountType = accountType;
+        this.name = name;
+        this.propertyId = propertyId;
+        this.tenantId = tenantId;
+    }
 
     public String getTenantId() {
         return tenantId;
@@ -197,5 +204,4 @@ public class AccountSearchResult {
     public void setBookingStatus(String bookingStatus) {
         this.bookingStatus = bookingStatus;
     }
-
 }
