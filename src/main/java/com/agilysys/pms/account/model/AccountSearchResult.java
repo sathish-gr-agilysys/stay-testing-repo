@@ -4,41 +4,39 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 public class AccountSearchResult {
-    // values shared by different account types
     private String tenantId;
 
-    private String propertyId;
+    private BigDecimal accountBalance;
 
     private String accountId;
 
+    private String accountStatus;
+
     private String accountType;
 
-    private String accountStatus;
+    private DateTime arrivalDate;
+
+    private String bookingStatus;
+
+    private DateTime departureDate;
+
+    private List<FolioBalance> folios;
+
+    private String groupCode;
 
     private String name;
 
     private String number;
 
-    private BigDecimal accountBalance;
+    private String propertyId;
 
-    private List<FolioBalance> folios;
-
-    private DateTime arrivalDate;
-
-    private DateTime departureDate;
-
-    // TODO the requirements for this are currently pretty vague, we need to
-    // figure out if there are multiple types of statuses such as VIP that an
-    // Account can have and how to return them in the search results
-    private String vipStatus;
-
-    // specific guest account values
     private String reservationConfirmationId;
 
     private String reservationStatus;
@@ -47,10 +45,10 @@ public class AccountSearchResult {
 
     private String roomNumber;
 
-    // group account values
-    private String groupCode;
-
-    private String bookingStatus;
+    // TODO the requirements for this are currently pretty vague, we need to
+    // figure out if there are multiple types of statuses such as VIP that an
+    // Account can have and how to return them in the search results
+    private String vipStatus;
 
     public AccountSearchResult() {}
 
@@ -66,10 +64,27 @@ public class AccountSearchResult {
           LocalDate departureDate, String groupCode, String name, String propertyId, String tenantId) {
         this(accountId, accountType, name, propertyId, tenantId);
 
-        this.arrivalDate = new DateTime(arrivalDate.toDate());
+        this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate.toDate()) : null;
         this.bookingStatus = bookingStatus;
-        this.departureDate = new DateTime(departureDate.toDate());
+        this.departureDate = departureDate != null ? new DateTime(departureDate.toDate()) : null;
         this.groupCode = groupCode;
+    }
+
+    public AccountSearchResult(String accountId, String accountType, Date arrivalDate, Date departureDate, String name,
+          String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
+          String roomType, String tenantId, String vipStatus) {
+        this.accountId = accountId;
+        this.accountType = accountType;
+        this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate) : null;
+        this.departureDate = departureDate != null ? new DateTime(departureDate) : null;
+        this.name = name;
+        this.propertyId = propertyId;
+        this.reservationConfirmationId = reservationConfirmationId;
+        this.reservationStatus = reservationStatus;
+        this.roomNumber = roomNumber;
+        this.roomType = roomType;
+        this.tenantId = tenantId;
+        this.vipStatus = vipStatus;
     }
 
     public String getTenantId() {
