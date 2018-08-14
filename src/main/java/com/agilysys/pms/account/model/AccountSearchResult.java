@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 public class AccountSearchResult {
     // values shared by different account types
@@ -61,13 +62,13 @@ public class AccountSearchResult {
         this.tenantId = tenantId;
     }
 
-    public AccountSearchResult(String accountId, String accountType, DateTime arrivalDate, String bookingStatus,
-          DateTime departureDate, String groupCode, String name, String propertyId, String tenantId) {
+    public AccountSearchResult(String accountId, String accountType, LocalDate arrivalDate, String bookingStatus,
+          LocalDate departureDate, String groupCode, String name, String propertyId, String tenantId) {
         this(accountId, accountType, name, propertyId, tenantId);
 
-        this.arrivalDate = arrivalDate;
+        this.arrivalDate = new DateTime(arrivalDate.toDate());
         this.bookingStatus = bookingStatus;
-        this.departureDate = departureDate;
+        this.departureDate = new DateTime(departureDate.toDate());
         this.groupCode = groupCode;
     }
 
