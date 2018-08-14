@@ -11,39 +11,23 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 public class AccountSearchResult {
-    private String tenantId;
-
     private BigDecimal accountBalance;
-
     private String accountId;
-
     private String accountStatus;
-
     private String accountType;
-
     private DateTime arrivalDate;
-
     private String bookingStatus;
-
     private DateTime departureDate;
-
     private List<FolioBalance> folios;
-
     private String groupCode;
-
     private String name;
-
     private String number;
-
     private String propertyId;
-
     private String reservationConfirmationId;
-
     private String reservationStatus;
-
     private String roomType;
-
     private String roomNumber;
+    private String tenantId;
 
     // TODO the requirements for this are currently pretty vague, we need to
     // figure out if there are multiple types of statuses such as VIP that an
@@ -87,20 +71,12 @@ public class AccountSearchResult {
         this.vipStatus = vipStatus;
     }
 
-    public String getTenantId() {
-        return tenantId;
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public String getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(String propertyId) {
-        this.propertyId = propertyId;
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
     }
 
     public String getAccountId() {
@@ -123,32 +99,8 @@ public class AccountSearchResult {
         return accountStatus;
     }
 
-    public void setAccountStatus(String accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
-    public BigDecimal getAccountBalance() {
-        return accountBalance;
-    }
-
     public void setAccountBalance(BigDecimal accountBalance) {
         this.accountBalance = accountBalance;
-    }
-
-    public List<FolioBalance> getFolios() {
-        return folios;
-    }
-
-    public void setFolios(List<FolioBalance> folios) {
-        this.folios = folios;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public DateTime getArrivalDate() {
@@ -159,6 +111,14 @@ public class AccountSearchResult {
         this.arrivalDate = arrivalDate;
     }
 
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
     public DateTime getDepartureDate() {
         return departureDate;
     }
@@ -167,12 +127,36 @@ public class AccountSearchResult {
         this.departureDate = departureDate;
     }
 
-    public String getVipStatus() {
-        return vipStatus;
+    public List<FolioBalance> getFolios() {
+        return folios;
     }
 
-    public void setVipStatus(String vipStatus) {
-        this.vipStatus = vipStatus;
+    public void setFolios(List<FolioBalance> folios) {
+        this.folios = folios;
+    }
+
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(String propertyId) {
+        this.propertyId = propertyId;
     }
 
     public String getReservationConfirmationId() {
@@ -207,14 +191,6 @@ public class AccountSearchResult {
         this.roomNumber = roomNumber;
     }
 
-    public String getGroupCode() {
-        return groupCode;
-    }
-
-    public void setGroupCode(String groupCode) {
-        this.groupCode = groupCode;
-    }
-
     public String getNumber() {
         return number;
     }
@@ -223,11 +199,19 @@ public class AccountSearchResult {
         this.number = number;
     }
 
-    public String getBookingStatus() {
-        return bookingStatus;
+    public String getTenantId() {
+        return tenantId;
     }
 
-    public void setBookingStatus(String bookingStatus) {
-        this.bookingStatus = bookingStatus;
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public String getVipStatus() {
+        return vipStatus;
+    }
+
+    public void setVipStatus(String vipStatus) {
+        this.vipStatus = vipStatus;
     }
 }
