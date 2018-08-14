@@ -61,6 +61,16 @@ public class AccountSearchResult {
         this.tenantId = tenantId;
     }
 
+    public AccountSearchResult(String accountId, String accountType, DateTime arrivalDate, String bookingStatus,
+          DateTime departureDate, String groupCode, String name, String propertyId, String tenantId) {
+        this(accountId, accountType, name, propertyId, tenantId);
+
+        this.arrivalDate = arrivalDate;
+        this.bookingStatus = bookingStatus;
+        this.departureDate = departureDate;
+        this.groupCode = groupCode;
+    }
+
     public String getTenantId() {
         return tenantId;
     }
