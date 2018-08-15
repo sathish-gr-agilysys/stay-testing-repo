@@ -27,11 +27,12 @@ import com.agilysys.pms.account.model.CreateRecurringCharge;
 import com.agilysys.pms.account.model.CreateRecurringChargeOverride;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
+import com.agilysys.pms.account.model.ModifyStayComponentRequest;
 import com.agilysys.pms.account.model.ProgressStatusView;
-import com.agilysys.pms.account.model.RecurringChargesValidity;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
+import com.agilysys.pms.account.model.RecurringChargesValidity;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 /**
@@ -71,6 +72,8 @@ public interface RecurringChargesServiceInterface {
     String AUTH_DETAILS = "/authDetails";
     String BATCH = "/batch";
     String VALIDITY = "/validity";
+    String INVENTORY = "/inventory";
+    String OVERRIDE_FLAG = "overrideflag";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -283,4 +286,14 @@ public interface RecurringChargesServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate)
           throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY + INVENTORY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    RecurringChargesValidity getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate,
+          @QueryParam(OVERRIDE_FLAG) boolean overrideFlag,
+          List<ModifyStayComponentRequest> modifyStayComponentRequestList) throws RGuestException, ServiceException;
+
 }
