@@ -19,12 +19,12 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AuthDetailResponse;
 import com.agilysys.pms.account.model.CreateRecurringCharge;
-import com.agilysys.pms.account.model.CreateRecurringChargeOverride;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.ModifyStayComponentRequest;

@@ -47,6 +47,8 @@ public class RecurringChargeView {
     private int nNights;
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
+    private String autoRecurringItemId;
+    private boolean addQuantityToAllocation;
 
     //Set 1 for recurring charges which does not have quantity
     private int quantity = 1;
@@ -239,4 +241,19 @@ public class RecurringChargeView {
         this.endDate = endDate;
     }
 
+    public String getAutoRecurringItemId() {
+        return autoRecurringItemId;
+    }
+
+    public void setAutoRecurringItemId(String autoRecurringItemId) {
+        this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public boolean isAddQuantityToAllocation() {
+        return addQuantityToAllocation;
+    }
+
+    public void setAddQuantityToAllocation(boolean addQuantityToAllocation) {
+        this.addQuantityToAllocation = addQuantityToAllocation;
+    }
 }
