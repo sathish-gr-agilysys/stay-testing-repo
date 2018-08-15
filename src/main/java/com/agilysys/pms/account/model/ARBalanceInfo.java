@@ -5,11 +5,16 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+
+import org.joda.time.LocalDate;
 
 public class ARBalanceInfo {
     private String tenantId;
     private List<String> ageGroupLabels;
     private List<CompanyBalanceInfo> companyProfiles;
+
+    private Map<String, LocalDate> propertyDateMap;
 
     public String getTenantId() {
         return tenantId;
@@ -33,6 +38,14 @@ public class ARBalanceInfo {
 
     public void setCompanyProfiles(List<CompanyBalanceInfo> companyProfiles) {
         this.companyProfiles = companyProfiles;
+    }
+
+    public Map<String, LocalDate> getPropertyDateMap() {
+        return propertyDateMap;
+    }
+
+    public void setPropertyDateMap(Map<String, LocalDate> propertyDateMap) {
+        this.propertyDateMap = propertyDateMap;
     }
 
     public static class CompanyBalanceInfo {
