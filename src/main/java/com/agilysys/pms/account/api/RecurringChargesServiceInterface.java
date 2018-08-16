@@ -294,6 +294,8 @@ public interface RecurringChargesServiceInterface {
     /**
      * @return The estimated room charges for the given date range, or the current
      * date if date range not given. Returns a list of estimated room charge view.
+     *
+     * Future plan: May add additional query parameters to specify whether to include tax and non-room charge.
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + ESTIMATED_ROOM_CHARGES_PATH)
