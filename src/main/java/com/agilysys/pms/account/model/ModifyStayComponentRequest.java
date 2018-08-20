@@ -8,7 +8,6 @@ import org.joda.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ModifyStayComponentRequest {
-
     @JsonProperty(required = true)
     private String componentBundleId;
     @JsonProperty(required = true)
