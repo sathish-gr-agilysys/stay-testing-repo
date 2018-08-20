@@ -15,6 +15,7 @@ public class InvoicedSourceAccountDetail {
     protected String sourceAccountId;
     protected String sourceAccountName;
     protected String sourceAccountType;
+    protected String confirmationCode;
     protected String referenceId; // reservationId for GUEST, groupId for GROUP, companyProfileId for COMPANY
     protected LocalDate arrivalDate;
     protected LocalDate departureDate;
@@ -25,6 +26,14 @@ public class InvoicedSourceAccountDetail {
     protected BigDecimal chargesBalance = BigDecimal.ZERO;
     protected BigDecimal taxBalance = BigDecimal.ZERO;
     protected BigDecimal totalBalance = BigDecimal.ZERO;
+
+    public String getConfirmationCode() {
+        return confirmationCode;
+    }
+
+    public void setConfirmationCode(String confirmationCode) {
+        this.confirmationCode = confirmationCode;
+    }
 
     public String getSourceAccountId() {
         return sourceAccountId;
