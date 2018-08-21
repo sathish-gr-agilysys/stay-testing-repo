@@ -30,7 +30,9 @@ public interface AccountServiceTenantInterface {
 
     @GET
     @Path(AR_BALANCES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')" +
+          " or hasPermission('Required', 'UseAccountsReceivable') " +
+          "or hasPermission('Required', 'ReadAccountsReceivable')")
     ARBalanceInfo getARAccountBalance(@PathParam(TENANT_ID) String tenantId,
           @QueryParam("type") String type) throws RGuestException, ServiceException;
 }
