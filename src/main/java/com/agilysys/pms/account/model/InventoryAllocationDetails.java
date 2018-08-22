@@ -3,17 +3,19 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigInteger;
+
 import org.joda.time.LocalDate;
 
 public class InventoryAllocationDetails {
     private LocalDate itemStatusDate;
+    private BigInteger allocatedQuantity;
     private int availableQuantity;
-    private int allocatedQuantity;
     private int inventoryQuantity;
 
     public InventoryAllocationDetails() {}
 
-    public InventoryAllocationDetails(LocalDate itemStatusDate, int availableQuantity, int allocatedQuantity,
+    public InventoryAllocationDetails(LocalDate itemStatusDate, int availableQuantity, BigInteger allocatedQuantity,
           int inventoryQuantity) {
         this.itemStatusDate = itemStatusDate;
         this.availableQuantity = availableQuantity;
@@ -37,11 +39,11 @@ public class InventoryAllocationDetails {
         this.availableQuantity = availableQuantity;
     }
 
-    public int getAllocatedQuantity() {
+    public BigInteger getAllocatedQuantity() {
         return allocatedQuantity;
     }
 
-    public void setAllocatedQuantity(int allocatedQuantity) {
+    public void setAllocatedQuantity(BigInteger allocatedQuantity) {
         this.allocatedQuantity = allocatedQuantity;
     }
 

@@ -74,7 +74,6 @@ public interface RecurringChargesServiceInterface {
     String BATCH = "/batch";
     String VALIDITY = "/validity";
     String INVENTORY = "/inventory";
-    String OVERRIDE_FLAG = "overrideflag";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
