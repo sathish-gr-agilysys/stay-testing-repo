@@ -52,6 +52,7 @@ public class ARBalanceInfo {
         private String id;
         private String name;
         private String deliveryPreference;
+        private String email;
 
         private List<BigDecimal> invoiceTotalsByAging; //invoiceTotalByAgeGroup
         private BigDecimal unInvoicedTotal; // sum(unInvoicedCharges)
@@ -86,6 +87,10 @@ public class ARBalanceInfo {
         public void setDeliveryPreference(String deliveryPreference) {
             this.deliveryPreference = deliveryPreference;
         }
+
+        public String getEmail() { return email; }
+
+        public void setEmail(String email) { this.email = email; }
 
         public List<BigDecimal> getInvoiceTotalsByAging() { return invoiceTotalsByAging; }
 
@@ -123,6 +128,9 @@ public class ARBalanceInfo {
             private String name;
             private String deliveryPreference;
 
+            private String accountId;
+            private String email;
+
             private boolean readOnly;
             private boolean closed;
 
@@ -157,6 +165,14 @@ public class ARBalanceInfo {
             public void setDeliveryPreference(String deliveryPreference) {
                 this.deliveryPreference = deliveryPreference;
             }
+
+            public String getAccountId() { return accountId; }
+
+            public void setAccountId(String accountId) { this.accountId = accountId; }
+
+            public String getEmail() { return email; }
+
+            public void setEmail(String email) { this.email = email; }
 
             public boolean isReadOnly() {
                 return readOnly;
