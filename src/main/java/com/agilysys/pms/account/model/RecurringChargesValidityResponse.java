@@ -11,7 +11,6 @@ public class RecurringChargesValidityResponse {
     private Set<RecurringChargeDetail> chargesWithMaxPerReservationRestriction;
     private Set<RecurringChargeDetail> chargesWithRoomTypeRestriction;
     private int componentChargesWithInsufficientQuantity;
-    private int redundantChargesWithComponentItem;
 
     public int getChargesIndependentOfReservationDates() {
         return chargesIndependentOfReservationDates;
@@ -52,13 +51,5 @@ public class RecurringChargesValidityResponse {
 
     public void setComponentChargesWithInsufficientQuantity(int componentChargesWithInsufficientQuantity) {
         this.componentChargesWithInsufficientQuantity = componentChargesWithInsufficientQuantity;
-    }
-
-    public int getRedundantChargesWithComponentItem() {
-        return redundantChargesWithComponentItem;
-    }
-
-    public void setRedundantChargesWithComponentItem(int redundantChargesWithComponentItem) {
-        this.redundantChargesWithComponentItem = redundantChargesWithComponentItem;
     }
 }
