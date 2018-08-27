@@ -27,7 +27,7 @@ import com.agilysys.pms.account.model.AuthDetailResponse;
 import com.agilysys.pms.account.model.CreateRecurringCharge;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
-import com.agilysys.pms.account.model.ModifyStayComponentRequest;
+import com.agilysys.pms.account.model.EstimatedRoomChargeView;
 import com.agilysys.pms.account.model.ProgressStatusView;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
@@ -58,6 +58,7 @@ public interface RecurringChargesServiceInterface {
     String RECURRING_CHARGE_OVERRIDE_ID_PATH = "/{overrideDate}";
     String RECURRING_CHARGES_PROCESS_STATUS_PATH = "/recurringChargeProgress";
 
+    String ESTIMATED_ROOM_CHARGES_PATH = "/estimatedRoomCharges";
     String ESTIMATED_CHARGES_PATH = "/estimatedCharges";
     String ESTIMATED_CHARGES_BY_PAYMENTSETTING_PATH = "/estimatedChargesByPaymentSetting";
     String ESTIMATED_CHARGES_BY_FOLIO_PATH = "/estimatedChargesByFolio";
@@ -284,4 +285,18 @@ public interface RecurringChargesServiceInterface {
     RecurringChargesValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           RecurringChargesValidityRequest recurringChargesValidityRequest) throws RGuestException, ServiceException;
+
+    /**
+     * @return The estimated room charges for the given date range, or the current
+     * date if date range not given. Returns a list of estimated room charge view.
+     *
+     * Future plan: May add additional query parameters for loyalty to work beyong Drury, see VCTRS-63195.
+     */
+    @GET
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + ESTIMATED_ROOM_CHARGES_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<EstimatedRoomChargeView> getEstimatedRoomCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
+          throws RGuestException, ServiceException;
 }
