@@ -229,8 +229,9 @@ public interface ReportingServiceInterface {
     List<Cashier> getCashiersList(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
           throws RGuestException, ServiceException;
+
     /**
-     * retrieve inventory recurring charge detail information for a given date
+     * retrieve inventory recurring charge detail information for the given date range
      *
      * @param tenantId
      * @param propertyId

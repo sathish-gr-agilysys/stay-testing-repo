@@ -272,12 +272,11 @@ public interface RecurringChargesServiceInterface {
           throws RGuestException, ServiceException;
 
     /**
-     * Retrieves the count of recurring charges which
+     * Retrieves the details of recurring charges which
      * 1. Does not dependent on reservation dates
      * 2. Violates inventory max per reservation restriction
      * 3. Violates inventory room type restriction
      * 4. Required quantity not available
-     * 5. Has same item in the component package of the reservation
      */
     @POST
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)

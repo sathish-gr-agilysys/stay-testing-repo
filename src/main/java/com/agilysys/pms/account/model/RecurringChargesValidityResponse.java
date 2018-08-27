@@ -8,9 +8,9 @@ import java.util.Set;
 public class RecurringChargesValidityResponse {
     private int chargesIndependentOfReservationDates;
     private int chargesWithInsufficientQuantity;
+    private int componentChargesWithInsufficientQuantity;
     private Set<RecurringChargeDetail> chargesWithMaxPerReservationRestriction;
     private Set<RecurringChargeDetail> chargesWithRoomTypeRestriction;
-    private int componentChargesWithInsufficientQuantity;
 
     public int getChargesIndependentOfReservationDates() {
         return chargesIndependentOfReservationDates;
@@ -28,6 +28,14 @@ public class RecurringChargesValidityResponse {
         this.chargesWithInsufficientQuantity = chargesWithInsufficientQuantity;
     }
 
+    public int getComponentChargesWithInsufficientQuantity() {
+        return componentChargesWithInsufficientQuantity;
+    }
+
+    public void setComponentChargesWithInsufficientQuantity(int componentChargesWithInsufficientQuantity) {
+        this.componentChargesWithInsufficientQuantity = componentChargesWithInsufficientQuantity;
+    }
+
     public Set<RecurringChargeDetail> getChargesWithMaxPerReservationRestriction() {
         return chargesWithMaxPerReservationRestriction;
     }
@@ -43,13 +51,5 @@ public class RecurringChargesValidityResponse {
 
     public void setChargesWithRoomTypeRestriction(Set<RecurringChargeDetail> chargesWithRoomTypeRestriction) {
         this.chargesWithRoomTypeRestriction = chargesWithRoomTypeRestriction;
-    }
-
-    public int getComponentChargesWithInsufficientQuantity() {
-        return componentChargesWithInsufficientQuantity;
-    }
-
-    public void setComponentChargesWithInsufficientQuantity(int componentChargesWithInsufficientQuantity) {
-        this.componentChargesWithInsufficientQuantity = componentChargesWithInsufficientQuantity;
     }
 }
