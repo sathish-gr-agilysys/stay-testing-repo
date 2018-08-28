@@ -20,6 +20,7 @@ public class RecurringChargeReportItem {
     private List<ComponentChargeView> componentCharges = new ArrayList<>();
     private boolean isPackage;
     private String autoRecurringItemId;
+    private TransactionItemType transactionItemType;
 
     /**
      * EVERY = Every Night
@@ -173,4 +174,11 @@ public class RecurringChargeReportItem {
         this.autoRecurringItemId = autoRecurringItemId;
     }
 
+    public TransactionItemType getTransactionItemType() {
+        return transactionItemType;
+    }
+
+    public void setTransactionItemType(TransactionItemType transactionItemType) {
+        this.transactionItemType = transactionItemType;
+    }
 }
