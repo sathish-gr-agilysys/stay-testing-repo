@@ -11,6 +11,8 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 public class AccountSearchResult {
+    private String tenantId;
+    private String propertyId;
     private BigDecimal accountBalance;
     private String accountId;
     private String accountStatus;
@@ -22,13 +24,10 @@ public class AccountSearchResult {
     private String groupCode;
     private String name;
     private String number;
-    private String propertyId;
     private String reservationConfirmationId;
     private String reservationStatus;
     private String roomType;
     private String roomNumber;
-    private String tenantId;
-
     // TODO the requirements for this are currently pretty vague, we need to
     // figure out if there are multiple types of statuses such as VIP that an
     // Account can have and how to return them in the search results
