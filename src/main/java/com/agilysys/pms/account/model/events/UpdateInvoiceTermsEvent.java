@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model.events;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -36,11 +36,11 @@ public class UpdateInvoiceTermsEvent extends InvoiceEvent {
     @Override
     public List<String> getHistoryMessages() {
         String termsUpdatedMessage =
-              (historyMetadata.isEmpty() || !historyMetadata.get(0).containsKey("previousTerms")) ?
-                    String.format("Terms changed to %d days.", terms) :
-                    String.format("Terms changed from %s days to %d days.",
-                          historyMetadata.get(0).get("previousTerms").toString(), terms);
+                (historyMetadata.isEmpty() || !historyMetadata.get(0).containsKey("previousTerms")) ?
+                        String.format("Terms changed to %d days.", terms) :
+                        String.format("Terms changed from %s days to %d days.",
+                                historyMetadata.get(0).get("previousTerms").toString(), terms);
 
-        return Arrays.asList(termsUpdatedMessage);
+        return Collections.singletonList(termsUpdatedMessage);
     }
 }

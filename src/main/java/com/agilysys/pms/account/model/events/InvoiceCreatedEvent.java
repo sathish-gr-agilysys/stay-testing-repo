@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model.events;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -21,12 +21,12 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     private int terms;
     private String invoiceNumber;
 
-    public InvoiceCreatedEvent() { super(); }
+    public InvoiceCreatedEvent() {
+    }
 
     public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
-          Set<String> folioLineItemIds, int terms, String invoiceNumber, boolean closed, Balance balance) {
-        super(closed, balance);
-
+          Set<String> folioLineItemIds, int terms, String invoiceNumber, Balance balance) {
+        super(balance);
         this.id = id;
         this.accountId = accountId;
         this.invoiceDate = invoiceDate;
@@ -72,6 +72,6 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
 
     @Override
     public List<String> getHistoryMessages() {
-        return Arrays.asList(String.format("Invoice %s created.", invoiceNumber));
+        return Collections.singletonList(String.format("Invoice %s created.", invoiceNumber));
     }
 }
