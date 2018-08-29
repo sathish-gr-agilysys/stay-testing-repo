@@ -5,12 +5,18 @@ package com.agilysys.pms.account.model;
 
 import java.util.Set;
 
+/**
+ * To get the various validity parameter of recurring charge during modify stay/undo cancel flow
+ */
 public class RecurringChargesValidityResponse {
+    //applicable for transaction and inventory recurring charges
     private int chargesIndependentOfReservationDates;
-    private int chargesWithInsufficientQuantity;
-    private int componentChargesWithInsufficientQuantity;
+
+    //applicable for only inventory recurring charges
     private Set<RecurringChargeDetail> chargesWithMaxPerReservationRestriction;
     private Set<RecurringChargeDetail> chargesWithRoomTypeRestriction;
+
+    private AvailabilityResponse availabilityResponse;
 
     public int getChargesIndependentOfReservationDates() {
         return chargesIndependentOfReservationDates;
@@ -18,22 +24,6 @@ public class RecurringChargesValidityResponse {
 
     public void setChargesIndependentOfReservationDates(int chargesIndependentOfReservationDates) {
         this.chargesIndependentOfReservationDates = chargesIndependentOfReservationDates;
-    }
-
-    public int getChargesWithInsufficientQuantity() {
-        return chargesWithInsufficientQuantity;
-    }
-
-    public void setChargesWithInsufficientQuantity(int chargesWithInsufficientQuantity) {
-        this.chargesWithInsufficientQuantity = chargesWithInsufficientQuantity;
-    }
-
-    public int getComponentChargesWithInsufficientQuantity() {
-        return componentChargesWithInsufficientQuantity;
-    }
-
-    public void setComponentChargesWithInsufficientQuantity(int componentChargesWithInsufficientQuantity) {
-        this.componentChargesWithInsufficientQuantity = componentChargesWithInsufficientQuantity;
     }
 
     public Set<RecurringChargeDetail> getChargesWithMaxPerReservationRestriction() {
@@ -51,5 +41,37 @@ public class RecurringChargesValidityResponse {
 
     public void setChargesWithRoomTypeRestriction(Set<RecurringChargeDetail> chargesWithRoomTypeRestriction) {
         this.chargesWithRoomTypeRestriction = chargesWithRoomTypeRestriction;
+    }
+
+    public AvailabilityResponse getAvailabilityResponse() {
+        return availabilityResponse;
+    }
+
+    public void setAvailabilityResponse(AvailabilityResponse availabilityResponse) {
+        this.availabilityResponse = availabilityResponse;
+    }
+
+    public static class AvailabilityResponse {
+        //applicable for only inventory recurring charges
+        private int chargesWithInsufficientQuantity;
+
+        //availability of components in new package rate plan user try to add when modify stay
+        private int componentChargesWithInsufficientQuantity;
+
+        public int getChargesWithInsufficientQuantity() {
+            return chargesWithInsufficientQuantity;
+        }
+
+        public void setChargesWithInsufficientQuantity(int chargesWithInsufficientQuantity) {
+            this.chargesWithInsufficientQuantity = chargesWithInsufficientQuantity;
+        }
+
+        public int getComponentChargesWithInsufficientQuantity() {
+            return componentChargesWithInsufficientQuantity;
+        }
+
+        public void setComponentChargesWithInsufficientQuantity(int componentChargesWithInsufficientQuantity) {
+            this.componentChargesWithInsufficientQuantity = componentChargesWithInsufficientQuantity;
+        }
     }
 }
