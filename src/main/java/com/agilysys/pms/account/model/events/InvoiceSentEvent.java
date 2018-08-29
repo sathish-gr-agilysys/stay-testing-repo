@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model.events;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -15,8 +15,6 @@ public class InvoiceSentEvent extends InvoiceEvent {
     private DateTime deliveryDateTime;
 
     public InvoiceSentEvent(boolean isEmail, String userId, DateTime deliveryDateTime) {
-        super();
-
         this.isEmail = isEmail;
         this.userId = userId;
         this.deliveryDateTime = deliveryDateTime;
@@ -52,9 +50,9 @@ public class InvoiceSentEvent extends InvoiceEvent {
     @Override
     public List<String> getHistoryMessages() {
         if (isEmail) {
-            return Arrays.asList("Sent by email.");
+            return Collections.singletonList("Sent by email.");
         } else {
-            return Arrays.asList("Printed and sent.");
+            return Collections.singletonList("Printed and sent.");
 
         }
     }
