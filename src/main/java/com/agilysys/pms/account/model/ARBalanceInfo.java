@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.account.model.AccountAttributes.PreferredCommunication;
+
 public class ARBalanceInfo {
     private String tenantId;
     private List<String> ageGroupLabels;
@@ -51,7 +53,7 @@ public class ARBalanceInfo {
     public static class CompanyBalanceInfo {
         private String id;
         private String name;
-        private String deliveryPreference;
+        private PreferredCommunication deliveryPreference;
         private String email;
 
         private List<BigDecimal> invoiceTotalsByAging; //invoiceTotalByAgeGroup
@@ -80,11 +82,11 @@ public class ARBalanceInfo {
             this.name = name;
         }
 
-        public String getDeliveryPreference() {
+        public PreferredCommunication getDeliveryPreference() {
             return deliveryPreference;
         }
 
-        public void setDeliveryPreference(String deliveryPreference) {
+        public void setDeliveryPreference(PreferredCommunication deliveryPreference) {
             this.deliveryPreference = deliveryPreference;
         }
 
@@ -126,7 +128,7 @@ public class ARBalanceInfo {
         public static class PropertyBalanceInfo {
             private String id;
             private String name;
-            private String deliveryPreference;
+            private PreferredCommunication deliveryPreference = PreferredCommunication.Print;
 
             private String accountId;
             private String email;
@@ -140,6 +142,11 @@ public class ARBalanceInfo {
             public PropertyBalanceInfo(String id, String name) {
                 this.id = id;
                 this.name = name;
+            }
+
+            public PropertyBalanceInfo(String id, String name, boolean readOnly) {
+                this(id, name);
+                this.readOnly = readOnly;
             }
 
             public String getId() {
@@ -158,11 +165,11 @@ public class ARBalanceInfo {
                 this.name = name;
             }
 
-            public String getDeliveryPreference() {
+            public PreferredCommunication getDeliveryPreference() {
                 return deliveryPreference;
             }
 
-            public void setDeliveryPreference(String deliveryPreference) {
+            public void setDeliveryPreference(PreferredCommunication deliveryPreference) {
                 this.deliveryPreference = deliveryPreference;
             }
 

@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -34,5 +35,5 @@ public interface AccountServiceTenantInterface {
           " or hasPermission('Required', 'UseAccountsReceivable') " +
           "or hasPermission('Required', 'ReadAccountsReceivable')")
     ARBalanceInfo getARAccountBalance(@PathParam(TENANT_ID) String tenantId,
-          @QueryParam("type") String type) throws RGuestException, ServiceException;
+          @DefaultValue("AGE_BY_PROPERTY_DATE") @QueryParam("type") String type) throws RGuestException, ServiceException;
 }
