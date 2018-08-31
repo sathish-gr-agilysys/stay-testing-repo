@@ -33,6 +33,7 @@ public class TransactionReportItem {
     private String taxReferenceId;
     private String accountName;
     private TransferSummary transferSummary;
+    private String reason;
     private boolean isRoomRevenue;
     private String autoRecurringItemId;
 
@@ -194,6 +195,14 @@ public class TransactionReportItem {
 
     public void setTaxReferenceId(String taxReferenceId) {
         this.taxReferenceId = taxReferenceId;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public boolean isRoomRevenue() {
