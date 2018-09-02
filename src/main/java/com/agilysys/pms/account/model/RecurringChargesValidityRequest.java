@@ -11,7 +11,7 @@ public class RecurringChargesValidityRequest {
     private LocalDate arrivalDate;
     private LocalDate departureDate;
     private String roomTypeId;
-    private List<ModifyStayComponentRequest> modifyStayComponentRequests;
+    private List<ModifyStayDetail> modifyStayDetails;
 
     public LocalDate getArrivalDate() {
         return arrivalDate;
@@ -37,11 +37,11 @@ public class RecurringChargesValidityRequest {
         this.roomTypeId = roomTypeId;
     }
 
-    public List<ModifyStayComponentRequest> getModifyStayComponentRequests() {
-        return modifyStayComponentRequests;
+    public List<ModifyStayDetail> getModifyStayDetails() {
+        return modifyStayDetails;
     }
 
-    public void setModifyStayComponentRequests(List<ModifyStayComponentRequest> modifyStayComponentRequests) {
-        this.modifyStayComponentRequests = modifyStayComponentRequests;
+    public void setModifyStayDetails(List<ModifyStayDetail> modifyStayDetails) {
+        this.modifyStayDetails = modifyStayDetails;
     }
 }
