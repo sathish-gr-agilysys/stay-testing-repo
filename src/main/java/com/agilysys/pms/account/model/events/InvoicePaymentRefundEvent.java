@@ -5,13 +5,13 @@
 package com.agilysys.pms.account.model.events;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-
+import com.agilysys.common.constants.Constants;
 import com.agilysys.pms.account.model.Balance;
 
 public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
@@ -23,15 +23,14 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private DateTime lineItemPostingSystemDateTime;
     private LocalDate appliedOnPropertyDate;
     private DateTime appliedOnSystemDateTime;
+    private String paymentMethodName;
 
-    public InvoicePaymentRefundEvent() { super(); }
+    public InvoicePaymentRefundEvent() {
+    }
 
     public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String reason,
           LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
-          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata, boolean closed,
-          Balance balance) {
-        super(closed, balance);
-
+          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata) {
         this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;
         this.folioLineItemId = folioLineItemId;
@@ -41,6 +40,30 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
         this.appliedOnPropertyDate = appliedOnPropertyDate;
         this.appliedOnSystemDateTime = appliedOnSystemDateTime;
         this.historyMetadata = historyMetadata;
+    }
+
+    public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String reason,
+          LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
+          DateTime appliedOnSystemDateTime, List<Map<String, Object>> historyMetadata, Balance balance) {
+        super(balance);
+        this.invoicePaymentId = invoicePaymentId;
+        this.amount = amount;
+        this.folioLineItemId = folioLineItemId;
+        this.reason = reason;
+        this.lineItemPostingDate = lineItemPostingDate;
+        this.lineItemPostingSystemDateTime = lineItemPostingSystemDateTime;
+        this.appliedOnPropertyDate = appliedOnPropertyDate;
+        this.appliedOnSystemDateTime = appliedOnSystemDateTime;
+        this.historyMetadata = historyMetadata;
+    }
+
+    public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
+          String paymentMethodName, String reason, LocalDate lineItemPostingDate,
+          DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
+          List<Map<String, Object>> historyMetadata, Balance balance) {
+        this(invoicePaymentId, amount, folioLineItemId, reason, lineItemPostingDate, lineItemPostingSystemDateTime,
+              appliedOnPropertyDate, appliedOnSystemDateTime, historyMetadata, balance);
+        this.paymentMethodName = paymentMethodName;
     }
 
     public String getInvoicePaymentId() {
@@ -109,8 +132,9 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
 
     @Override
     public List<String> getHistoryMessages() {
-        // TODO create a better message for the event history
-        return Arrays.asList("Refund applied to payment on invoice.");
+        return Collections.singletonList(
+                String.format("Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
+                        paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
     }
 
     @Override

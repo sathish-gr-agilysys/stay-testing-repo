@@ -19,8 +19,6 @@ public abstract class InvoiceEvent extends StayDomainEvent {
     protected List<Map<String, Object>> historyMetadata;
 
     public InvoiceEvent() {
-        super();
-
         historyMetadata = new ArrayList<>();
     }
 
