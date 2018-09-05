@@ -6,11 +6,11 @@ package com.agilysys.pms.account.payagent.model.events;
 import java.util.List;
 import java.util.Map;
 
-import org.elasticsearch.common.collect.Lists;
 import org.springframework.data.annotation.Transient;
 
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.pms.account.exception.ServiceError;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 /**
