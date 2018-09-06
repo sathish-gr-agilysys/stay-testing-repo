@@ -2,11 +2,11 @@ package com.agilysys.pms.account.payagent.model.events;
 
 import java.util.List;
 
-import org.elasticsearch.common.collect.Lists;
 import org.springframework.data.annotation.Transient;
 
 import com.agilysys.platform.persistence.eventsourcing.PropertyLevelIdentifier;
 import com.agilysys.pms.rguestpayshim.model.PayAgentBaseResponse;
+import com.google.common.collect.Lists;
 
 /**
  * Event to Complete an existing Pay Agent Transaction
