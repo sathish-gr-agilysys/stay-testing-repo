@@ -18,6 +18,18 @@ public class RecurringChargesValidityResponse {
 
     private AvailabilityResponse availabilityResponse;
 
+    public RecurringChargesValidityResponse(){
+
+    }
+
+    public RecurringChargesValidityResponse(AvailabilityResponse availabilityResponse,
+          Set<RecurringChargeDetail> chargesWithMaxPerReservationRestriction,
+          Set<RecurringChargeDetail> chargesWithRoomTypeRestriction) {
+        this.availabilityResponse = availabilityResponse;
+        this.chargesWithMaxPerReservationRestriction = chargesWithMaxPerReservationRestriction;
+        this.chargesWithRoomTypeRestriction = chargesWithRoomTypeRestriction;
+    }
+
     public int getChargesIndependentOfReservationDates() {
         return chargesIndependentOfReservationDates;
     }
