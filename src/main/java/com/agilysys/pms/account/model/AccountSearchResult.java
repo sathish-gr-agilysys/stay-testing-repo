@@ -4,70 +4,78 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
-/**
- * Composition of account related information to contain account search results.
- */
 public class AccountSearchResult {
-    // values shared by different account types
     private String tenantId;
-
     private String propertyId;
-
-    private String accountId;
-
-    private String accountType;
-
-    private String accountStatus;
-
-    private String name;
-
-    private String number;
-
     private BigDecimal accountBalance;
-
-    private List<FolioBalance> folios;
-
+    private String accountId;
+    private String accountStatus;
+    private String accountType;
     private DateTime arrivalDate;
-
+    private String bookingStatus;
     private DateTime departureDate;
-
+    private List<FolioBalance> folios;
+    private String groupCode;
+    private String name;
+    private String number;
+    private String reservationConfirmationId;
+    private String reservationStatus;
+    private String roomType;
+    private String roomNumber;
     // TODO the requirements for this are currently pretty vague, we need to
     // figure out if there are multiple types of statuses such as VIP that an
     // Account can have and how to return them in the search results
     private String vipStatus;
 
-    // specific guest account values
-    private String reservationConfirmationId;
+    public AccountSearchResult() {}
 
-    private String reservationStatus;
-
-    private String roomType;
-
-    private String roomNumber;
-
-    // group account values
-    private String groupCode;
-
-    private String bookingStatus;
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
+    public AccountSearchResult(String accountId, String accountType, String name, String propertyId, String tenantId) {
+        this.accountId = accountId;
+        this.accountType = accountType;
+        this.name = name;
+        this.propertyId = propertyId;
         this.tenantId = tenantId;
     }
 
-    public String getPropertyId() {
-        return propertyId;
+    public AccountSearchResult(String accountId, String accountType, LocalDate arrivalDate, String bookingStatus,
+          LocalDate departureDate, String groupCode, String name, String propertyId, String tenantId) {
+        this(accountId, accountType, name, propertyId, tenantId);
+
+        this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate.toDate()) : null;
+        this.bookingStatus = bookingStatus;
+        this.departureDate = departureDate != null ? new DateTime(departureDate.toDate()) : null;
+        this.groupCode = groupCode;
     }
 
-    public void setPropertyId(String propertyId) {
+    public AccountSearchResult(String accountId, String accountType, Date arrivalDate, Date departureDate, String name,
+          String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
+          String roomType, String tenantId, String vipStatus) {
+        this.accountId = accountId;
+        this.accountType = accountType;
+        this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate) : null;
+        this.departureDate = departureDate != null ? new DateTime(departureDate) : null;
+        this.name = name;
         this.propertyId = propertyId;
+        this.reservationConfirmationId = reservationConfirmationId;
+        this.reservationStatus = reservationStatus;
+        this.roomNumber = roomNumber;
+        this.roomType = roomType;
+        this.tenantId = tenantId;
+        this.vipStatus = vipStatus;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
     }
 
     public String getAccountId() {
@@ -90,32 +98,8 @@ public class AccountSearchResult {
         return accountStatus;
     }
 
-    public void setAccountStatus(String accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
-    public BigDecimal getAccountBalance() {
-        return accountBalance;
-    }
-
     public void setAccountBalance(BigDecimal accountBalance) {
         this.accountBalance = accountBalance;
-    }
-
-    public List<FolioBalance> getFolios() {
-        return folios;
-    }
-
-    public void setFolios(List<FolioBalance> folios) {
-        this.folios = folios;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public DateTime getArrivalDate() {
@@ -126,6 +110,14 @@ public class AccountSearchResult {
         this.arrivalDate = arrivalDate;
     }
 
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
     public DateTime getDepartureDate() {
         return departureDate;
     }
@@ -134,12 +126,36 @@ public class AccountSearchResult {
         this.departureDate = departureDate;
     }
 
-    public String getVipStatus() {
-        return vipStatus;
+    public List<FolioBalance> getFolios() {
+        return folios;
     }
 
-    public void setVipStatus(String vipStatus) {
-        this.vipStatus = vipStatus;
+    public void setFolios(List<FolioBalance> folios) {
+        this.folios = folios;
+    }
+
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(String propertyId) {
+        this.propertyId = propertyId;
     }
 
     public String getReservationConfirmationId() {
@@ -174,14 +190,6 @@ public class AccountSearchResult {
         this.roomNumber = roomNumber;
     }
 
-    public String getGroupCode() {
-        return groupCode;
-    }
-
-    public void setGroupCode(String groupCode) {
-        this.groupCode = groupCode;
-    }
-
     public String getNumber() {
         return number;
     }
@@ -190,12 +198,19 @@ public class AccountSearchResult {
         this.number = number;
     }
 
-    public String getBookingStatus() {
-        return bookingStatus;
+    public String getTenantId() {
+        return tenantId;
     }
 
-    public void setBookingStatus(String bookingStatus) {
-        this.bookingStatus = bookingStatus;
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
+    public String getVipStatus() {
+        return vipStatus;
+    }
+
+    public void setVipStatus(String vipStatus) {
+        this.vipStatus = vipStatus;
+    }
 }
