@@ -8,7 +8,7 @@ import java.util.List;
 public class Company {
     private String companyId;
 
-    private List<AccountId> accountIds;
+    private List<String> accountIds;
 
     public String getCompanyId() {
         return companyId;
@@ -18,11 +18,11 @@ public class Company {
         this.companyId = companyId;
     }
 
-    public List<AccountId> getAccountIds() {
+    public List<String> getAccountIds() {
         return accountIds;
     }
 
-    public void setAccountIds(List<AccountId> accountIds) {
+    public void setAccountIds(List<String> accountIds) {
         this.accountIds = accountIds;
     }
 }
