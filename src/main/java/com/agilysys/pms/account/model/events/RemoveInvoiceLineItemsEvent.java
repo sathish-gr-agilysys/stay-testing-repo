@@ -3,11 +3,7 @@
  */
 package com.agilysys.pms.account.model.events;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.springframework.data.annotation.Transient;
 
@@ -16,12 +12,12 @@ import com.agilysys.pms.account.model.Balance;
 public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     private Set<String> folioLineItemIds;
 
-    public RemoveInvoiceLineItemsEvent() { super(); }
+    public RemoveInvoiceLineItemsEvent() {
+    }
 
     public RemoveInvoiceLineItemsEvent(Set<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
-          boolean closed, Balance balance) {
-        super(historyMetadata, closed, balance);
-
+          Balance balance) {
+        super(historyMetadata, balance);
         this.folioLineItemIds = folioLineItemIds;
     }
 
@@ -43,7 +39,7 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     @Override
     public List<String> getHistoryMessages() {
         if (historyMetadata.isEmpty()) {
-            return Arrays.asList(getDisplayName());
+            return Collections.singletonList(getDisplayName());
         } else {
             List<String> historyMessages = new LinkedList<>();
             historyMetadata.forEach(metadata -> {
@@ -52,11 +48,9 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
                 String itemName = metadata.get("itemName") != null ? metadata.get("itemName").toString() : null;
                 String itemBalance =
                       metadata.get("lineItemBalance") != null ? metadata.get("lineItemBalance").toString() : null;
-                String sourceAccountId =
-                      metadata.get("sourceAccountId") != null ? metadata.get("sourceAccountId").toString() : null;
                 historyMessages.add(String
-                      .format("Item removed from invoice.  [Date: %s, Description: %s, Total: %s, Origin Account: %s] ",
-                            displayDate, itemName, itemBalance, sourceAccountId));
+                      .format("Item removed from invoice.  [Date: %s, Description: %s, Total: %s]", displayDate,
+                            itemName, itemBalance));
             });
             return historyMessages;
         }
