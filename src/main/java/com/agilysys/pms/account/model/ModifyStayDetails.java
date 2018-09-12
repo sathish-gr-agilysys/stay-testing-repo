@@ -7,16 +7,19 @@ import org.joda.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ModifyStayDetail {
+public class ModifyStayDetails {
     @JsonProperty(required = true)
     private String ratePlanId;
+
     private String componentBundleId;
+
     @JsonProperty(required = true)
     private LocalDate startDate;
+
     @JsonProperty(required = true)
     private LocalDate endDate;
 
-    public ModifyStayDetail() {}
+    public ModifyStayDetails() {}
 
     public String getRatePlanId() {
         return ratePlanId;
