@@ -3,18 +3,20 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.pms.account.model.AccountAttributes.PreferredCommunication;
+
 public class CentralARInvoiceView {
-    private String preferredCommunicationType;
+    private PreferredCommunication preferredCommunicationType;
     private String accountId;
     private String propertyId;
     private String invoiceNumber;
     private String emailAddress;
 
-    public String getPreferredCommunicationType() {
+    public PreferredCommunication getPreferredCommunicationType() {
         return preferredCommunicationType;
     }
 
-    public void setPreferredCommunicationType(String preferredCommunicationType) {
+    public void setPreferredCommunicationType(PreferredCommunication preferredCommunicationType) {
         this.preferredCommunicationType = preferredCommunicationType;
     }
 
