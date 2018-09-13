@@ -10,11 +10,14 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-public class AccountSearchResult {
+import com.agilysys.pms.common.model.IndexedDocument;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class AccountSearchResult extends IndexedDocument {
     private String tenantId;
     private String propertyId;
+
     private BigDecimal accountBalance;
-    private String accountId;
     private String accountStatus;
     private String accountType;
     private DateTime arrivalDate;
@@ -36,7 +39,8 @@ public class AccountSearchResult {
     public AccountSearchResult() {}
 
     public AccountSearchResult(String accountId, String accountType, String name, String propertyId, String tenantId) {
-        this.accountId = accountId;
+        super(accountId);
+
         this.accountType = accountType;
         this.name = name;
         this.propertyId = propertyId;
@@ -56,17 +60,14 @@ public class AccountSearchResult {
     public AccountSearchResult(String accountId, String accountType, Date arrivalDate, Date departureDate, String name,
           String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
           String roomType, String tenantId, String vipStatus) {
-        this.accountId = accountId;
-        this.accountType = accountType;
+        this(accountId, accountType, name, propertyId, tenantId);
+
         this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate) : null;
         this.departureDate = departureDate != null ? new DateTime(departureDate) : null;
-        this.name = name;
-        this.propertyId = propertyId;
         this.reservationConfirmationId = reservationConfirmationId;
         this.reservationStatus = reservationStatus;
         this.roomNumber = roomNumber;
         this.roomType = roomType;
-        this.tenantId = tenantId;
         this.vipStatus = vipStatus;
     }
 
@@ -78,12 +79,10 @@ public class AccountSearchResult {
         return accountBalance;
     }
 
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    @JsonProperty("accountId")
+    @Override
+    public String getId() {
+        return id;
     }
 
     public String getAccountType() {
