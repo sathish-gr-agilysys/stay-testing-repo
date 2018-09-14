@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.agilysys.common.model.FrequencyType;
+import com.agilysys.common.model.rate.PetRateSnapshot;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
@@ -193,6 +195,21 @@ public class CreateRecurringCharge {
         this.frequencyType = frequencyType;
         this.nNights = nNights;
         this.occurrenceDays = occurrenceDays;
+    }
+
+    public CreateRecurringCharge(String agentId, String itemId, PetRateSnapshot petRateSnapshot, String reason,
+          String folioId, Set<Integer> occurrenceDays, String sourceId, LocalDate startDate, LocalDate endDate) {
+        this.agentId = agentId;
+        this.itemId = itemId;
+        this.amount = petRateSnapshot.getAmount();
+        this.reason = reason;
+        this.folioId = folioId;
+        this.frequencyType = petRateSnapshot.getFrequencyType();
+        this.nNights = petRateSnapshot.getnNights();
+        this.occurrenceDays = occurrenceDays;
+        this.sourceId = sourceId;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public CreateRecurringCharge() {
