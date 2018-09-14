@@ -38,16 +38,25 @@ public class AccountSearchResult extends IndexedDocument {
 
     public AccountSearchResult() {}
 
-    public AccountSearchResult(String accountId, String accountType, String name, String propertyId, String tenantId) {
+    public AccountSearchResult(String accountId, AccountType accountType, String name, String propertyId,
+          String tenantId) {
         super(accountId);
 
-        this.accountType = accountType;
+        this.accountType = accountType != null ? accountType.name() : null;
         this.name = name;
         this.propertyId = propertyId;
         this.tenantId = tenantId;
     }
 
-    public AccountSearchResult(String accountId, String accountType, LocalDate arrivalDate, String bookingStatus,
+    public AccountSearchResult(String accountId, AccountStatus accountStatus, AccountType accountType, String name,
+          String number, String propertyId, String tenantId) {
+        this(accountId, accountType, name, propertyId, tenantId);
+
+        this.accountStatus = accountStatus != null ? accountStatus.name() : null;
+        this.number = number;
+    }
+
+    public AccountSearchResult(String accountId, AccountType accountType, LocalDate arrivalDate, String bookingStatus,
           LocalDate departureDate, String groupCode, String name, String propertyId, String tenantId) {
         this(accountId, accountType, name, propertyId, tenantId);
 
@@ -57,8 +66,8 @@ public class AccountSearchResult extends IndexedDocument {
         this.groupCode = groupCode;
     }
 
-    public AccountSearchResult(String accountId, String accountType, Date arrivalDate, Date departureDate, String name,
-          String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
+    public AccountSearchResult(String accountId, AccountType accountType, Date arrivalDate, Date departureDate,
+          String name, String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
           String roomType, String tenantId, String vipStatus) {
         this(accountId, accountType, name, propertyId, tenantId);
 
