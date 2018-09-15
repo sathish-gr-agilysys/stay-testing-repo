@@ -18,7 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.maintenance.model.ReindexRequest;
+import com.agilysys.pms.maintenance.model.IndexRequest;
 
 @Path("/maintenance/elasticsearch")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -54,5 +54,5 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path("/index/accounts")
-    Map<String, Long> indexAccounts(ReindexRequest request) throws RGuestException, ServiceException;
+    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
 }
