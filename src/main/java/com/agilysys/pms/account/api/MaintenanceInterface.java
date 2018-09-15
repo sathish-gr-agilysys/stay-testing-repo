@@ -3,48 +3,56 @@
  */
 package com.agilysys.pms.account.api;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.AccountBalanceRepairResult;
-import com.agilysys.pms.maintenance.domain.BulkReindexJobDetail;
-import com.agilysys.pms.maintenance.domain.BulkReindexJobResult;
-import com.agilysys.pms.maintenance.domain.BulkReindexRequest;
-import com.agilysys.pms.maintenance.model.Job;
+import com.agilysys.pms.maintenance.model.ReindexRequest;
 
-@Path("/maintenance")
+@Path("/maintenance/elasticsearch")
 @Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public interface MaintenanceInterface {
-    String TENANT_ID = "tenantId";
-    String PROPERTY_ID = "propertyId";
-    String REQUEST_ID = "requestId";
+    String CHUNK_SIZE = "chunkSize";
 
-    String ES_INDEX_ACCOUNTS = "/elasticsearch/indices";
+    String TENANT_ID = "tenantId";
+    String TENANT_ID_TEMPLATE = "{" + TENANT_ID + "}";
+
+    String UPDATED_SINCE = "updatedSince";
+    String UPDATED_UNTIL = "updatedUntil";
+
+    String PERMISSION_PREFIX = "hasPermission('Required', '";
+    String PERMISSION_POSTFIX = "')";
+
+    String WRITE_TENANTS_PERMISSION = PERMISSION_PREFIX + "WriteTenants" + PERMISSION_POSTFIX;
 
     @GET
-    @Path("/requests/{" + REQUEST_ID + "}")
-    List<Job> retrieveJobs(@PathParam(REQUEST_ID) String requestId) throws RGuestException, ServiceException;
+    @Path("/unindexed/accounts/" + TENANT_ID_TEMPLATE)
+    long getUnindexedAccountsCount(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path("/unindexed/accounts")
+    Map<String, Long> getUnindexedAccountsCount() throws RGuestException, ServiceException;
 
     @POST
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
-    @Path(ES_INDEX_ACCOUNTS + "/bulk")
-    BulkReindexJobResult bulkReIndex(BulkReindexRequest request) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ES_INDEX_ACCOUNTS + "/bulk/requests/{requestId}")
-    List<BulkReindexJobDetail> retrieveBulkJobs(@PathParam("requestId") String requestId)
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path("/reindex/accounts/" + TENANT_ID_TEMPLATE)
+    long reindexReservations(@PathParam(TENANT_ID) String tenantId, @QueryParam(CHUNK_SIZE) Integer chunkSize,
+          @QueryParam(UPDATED_SINCE) DateTime updatedSince, @QueryParam(UPDATED_UNTIL) DateTime updatedUntil)
           throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path("/reindex/accounts")
+    Map<String, Long> reindexAccounts(ReindexRequest request) throws RGuestException, ServiceException;
 }
