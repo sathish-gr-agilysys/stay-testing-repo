@@ -38,11 +38,11 @@ public interface MaintenanceInterface {
 
     @GET
     @Path("/unindexed/accounts/" + TENANT_ID_TEMPLATE)
-    long getUnindexedAccountsCount(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
+    long countUnindexedAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
 
     @GET
     @Path("/unindexed/accounts")
-    Map<String, Long> getUnindexedAccountsCount() throws RGuestException, ServiceException;
+    Map<String, Long> countUnindexedAccounts() throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
