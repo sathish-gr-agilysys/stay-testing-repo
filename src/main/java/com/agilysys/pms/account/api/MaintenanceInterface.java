@@ -46,13 +46,13 @@ public interface MaintenanceInterface {
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path("/reindex/accounts/" + TENANT_ID_TEMPLATE)
-    long reindexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(CHUNK_SIZE) Integer chunkSize,
+    @Path("/index/accounts/" + TENANT_ID_TEMPLATE)
+    long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(CHUNK_SIZE) Integer chunkSize,
           @QueryParam(UPDATED_SINCE) DateTime updatedSince, @QueryParam(UPDATED_UNTIL) DateTime updatedUntil)
           throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path("/reindex/accounts")
-    Map<String, Long> reindexAccounts(ReindexRequest request) throws RGuestException, ServiceException;
+    @Path("/index/accounts")
+    Map<String, Long> indexAccounts(ReindexRequest request) throws RGuestException, ServiceException;
 }
