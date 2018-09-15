@@ -47,7 +47,7 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path("/reindex/accounts/" + TENANT_ID_TEMPLATE)
-    long reindexReservations(@PathParam(TENANT_ID) String tenantId, @QueryParam(CHUNK_SIZE) Integer chunkSize,
+    long reindexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(CHUNK_SIZE) Integer chunkSize,
           @QueryParam(UPDATED_SINCE) DateTime updatedSince, @QueryParam(UPDATED_UNTIL) DateTime updatedUntil)
           throws RGuestException, ServiceException;
 
