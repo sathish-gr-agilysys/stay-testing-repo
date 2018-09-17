@@ -5,7 +5,7 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
-public class CentralARInvoiceRequest {
+public class CentralARRequest {
     private String type;
 
     private List<Company> companies;

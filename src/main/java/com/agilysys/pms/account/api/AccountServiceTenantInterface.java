@@ -16,8 +16,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.CentralARInvoiceRequest;
-import com.agilysys.pms.account.model.CentralARInvoiceView;
+import com.agilysys.pms.account.model.CentralARRequest;
+import com.agilysys.pms.account.model.CentralARView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path(AccountServiceTenantInterface.BASE_PATH)
@@ -30,11 +30,21 @@ public interface AccountServiceTenantInterface {
 
     String INVOICES_PATH = "/invoices";
 
+    String PREFERRED_COMMUNICATION = "/preferredCommunication";
+
     @POST
     @CreatedOnSuccess
     @Path(INVOICES_PATH)
     @PreAuthorize(
           "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
-    List<CentralARInvoiceView> createInvoices(@PathParam(TENANT_ID) String tenantId,
-          CentralARInvoiceRequest centralARInvoiceRequest) throws RGuestException, ServiceException;
+    List<CentralARView> createInvoices(@PathParam(TENANT_ID) String tenantId,
+          CentralARRequest centralARRequest) throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(PREFERRED_COMMUNICATION)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    List<CentralARView> getPreferredCommunication(@PathParam(TENANT_ID) String tenantId,
+          CentralARRequest centralARRequest) throws RGuestException, ServiceException;
 }

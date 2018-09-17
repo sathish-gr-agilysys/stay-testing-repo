@@ -5,12 +5,24 @@ package com.agilysys.pms.account.model;
 
 import com.agilysys.pms.account.model.AccountAttributes.PreferredCommunication;
 
-public class CentralARInvoiceView {
+public class CentralARView {
     private PreferredCommunication preferredCommunicationType;
     private String accountId;
     private String propertyId;
     private String invoiceNumber;
     private String emailAddress;
+
+    public CentralARView() {
+    }
+
+    public CentralARView(PreferredCommunication preferredCommunicationType, String accountId, String propertyId,
+          String invoiceNumber, String emailAddress) {
+        this.preferredCommunicationType = preferredCommunicationType;
+        this.accountId = accountId;
+        this.propertyId = propertyId;
+        this.invoiceNumber = invoiceNumber;
+        this.emailAddress = emailAddress;
+    }
 
     public PreferredCommunication getPreferredCommunicationType() {
         return preferredCommunicationType;
