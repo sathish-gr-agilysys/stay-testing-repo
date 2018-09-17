@@ -12,13 +12,16 @@ public class RecurringChargesValidityResponse {
     //applicable for transaction and inventory recurring charges
     private int chargesIndependentOfReservationDates;
 
+    //true,if item in component package is also added manually in estimated charges section
+    private boolean redundantInventoryCharges;
+
     //applicable for only inventory recurring charges
     private Set<RecurringChargeDetail> chargesWithMaxPerReservationRestriction;
     private Set<RecurringChargeDetail> chargesWithRoomTypeRestriction;
 
     private AvailabilityResponse availabilityResponse;
 
-    public RecurringChargesValidityResponse(){
+    public RecurringChargesValidityResponse() {
 
     }
 
@@ -32,6 +35,14 @@ public class RecurringChargesValidityResponse {
 
     public int getChargesIndependentOfReservationDates() {
         return chargesIndependentOfReservationDates;
+    }
+
+    public boolean isRedundantInventoryCharges() {
+        return redundantInventoryCharges;
+    }
+
+    public void setRedundantInventoryCharges(boolean redundantInventoryCharges) {
+        this.redundantInventoryCharges = redundantInventoryCharges;
     }
 
     public void setChargesIndependentOfReservationDates(int chargesIndependentOfReservationDates) {
