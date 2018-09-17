@@ -12,6 +12,7 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CompInfo;
+import com.agilysys.common.model.FrequencyType;
 
 /**
  * Recurring Charges view object
@@ -25,6 +26,7 @@ public class RecurringChargeView {
     private CompInfo compInfo;
     private String sourceId;
     private String accountId;
+    private boolean deleted;
     private String folioId;
     private boolean invalid;
     private String itemId;
@@ -34,6 +36,7 @@ public class RecurringChargeView {
     private String overrideReason;
     private String ratePlanName;
     private String ratePlanId;
+    private String petReferenceId;
 
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
@@ -247,5 +250,21 @@ public class RecurringChargeView {
 
     public void setCompInfo(CompInfo compInfo) {
         this.compInfo = compInfo;
+    }
+    
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public String getPetReferenceId() {
+        return petReferenceId;
+    }
+
+    public void setPetReferenceId(String petReferenceId) {
+        this.petReferenceId = petReferenceId;
     }
 }
