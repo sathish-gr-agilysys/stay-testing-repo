@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.Objects;
+
 public class RecurringChargeDetail {
     private String recurringChargeId;
     private String itemId;
@@ -30,5 +32,18 @@ public class RecurringChargeDetail {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RecurringChargeDetail)) return false;
+        RecurringChargeDetail that = (RecurringChargeDetail) o;
+        return Objects.equals(recurringChargeId, that.recurringChargeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(recurringChargeId);
     }
 }

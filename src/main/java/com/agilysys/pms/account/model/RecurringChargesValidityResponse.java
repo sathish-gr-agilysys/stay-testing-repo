@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * To get the various validity parameter of recurring charge during modify stay/undo cancel flow
  */
-public class RecurringChargesValidityResponse {
+public class RecurringChargesValidityResponse extends RecurringChargesDatesValidationResponse {
     //applicable for transaction and inventory recurring charges
     private int chargesIndependentOfReservationDates;
 
