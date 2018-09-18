@@ -1,3 +1,6 @@
+/**
+ * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
@@ -8,7 +11,7 @@ import com.agilysys.pms.account.model.AccountAttributes.PreferredCommunication;
 public class PropertyBalanceInfo {
     private String id;
     private String name;
-    private PreferredCommunication deliveryPreference = PreferredCommunication.Print;
+    private PreferredCommunication deliveryPreference;
 
     private String accountId;
     private String email;
@@ -24,6 +27,7 @@ public class PropertyBalanceInfo {
     public PropertyBalanceInfo(String id, String name) {
         this.id = id;
         this.name = name;
+        this.deliveryPreference = PreferredCommunication.Print;
     }
 
     public PropertyBalanceInfo(String id, String name, boolean readOnly) {
