@@ -16,8 +16,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.ARBalanceInfo;
@@ -38,16 +36,12 @@ public interface AccountServiceTenantInterface {
 
     @GET
     @Path(AR_BALANCES_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')" +
-          " or hasPermission('Required', 'UseAccountsReceivable') " +
-          "or hasPermission('Required', 'ReadAccountsReceivable')")
     ARBalanceInfo getARAccountBalance(@PathParam(TENANT_ID) String tenantId,
-          @DefaultValue("AGE_BY_PROPERTY_DATE") @QueryParam("type") String type) throws RGuestException, ServiceException;
+          @DefaultValue("AGE_BY_PROPERTY_DATE") @QueryParam("type") String type)
+          throws RGuestException, ServiceException;
 
     @PUT
     @Path(INVOICES_PATH + CALCULATE_INVOICE_BALANCE)
-    @PreAuthorize("hasPermission('Required', 'WriteAccountsReceivable')" +
-          " or hasPermission('Required', 'UseAccountsReceivable')")
     List<InvoiceBalanceResponse> updateInvoiceBalanceByInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
           Set<String> invoiceNumbers)
           throws RGuestException, ServiceException;
