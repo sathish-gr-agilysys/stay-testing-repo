@@ -3,12 +3,12 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.List;
+import java.util.Set;
 
 public class Company {
     private String companyId;
 
-    private List<String> accountIds;
+    private Set<String> accountIds;
 
     public String getCompanyId() {
         return companyId;
@@ -18,11 +18,11 @@ public class Company {
         this.companyId = companyId;
     }
 
-    public List<String> getAccountIds() {
+    public Set<String> getAccountIds() {
         return accountIds;
     }
 
-    public void setAccountIds(List<String> accountIds) {
+    public void setAccountIds(Set<String> accountIds) {
         this.accountIds = accountIds;
     }
 }
