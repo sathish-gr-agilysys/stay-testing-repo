@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.joda.time.DateTimeConstants;
 
+import com.agilysys.common.model.FrequencyType;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
