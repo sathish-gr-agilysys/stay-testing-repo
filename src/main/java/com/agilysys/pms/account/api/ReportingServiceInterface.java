@@ -51,6 +51,7 @@ public interface ReportingServiceInterface {
     String ROOM_REVENUE = "roomRevenue";
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
+    String SOURCE_ID = "sourceId";
 
     /**
      * get the ledger report
@@ -245,7 +246,7 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     RecurringChargesReportResult getInventoryRecurringChargesReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("startDate") LocalDate startDate,
-          @QueryParam("endDate") LocalDate endDate, @QueryParam("sourceId") String sourceId)
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(SOURCE_ID) String sourceId)
           throws RGuestException, ServiceException;
 }

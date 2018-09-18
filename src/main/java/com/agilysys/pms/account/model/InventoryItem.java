@@ -22,15 +22,16 @@ public class InventoryItem extends TransactionItem {
 
     private Integer maxQuantityPerReservation;
 
-    private Set<String> restrictedRoomTypes = new LinkedHashSet<>();
+    private Set<String> restrictedRoomTypes;
 
     public InventoryItem() {
-
+        restrictedRoomTypes = new LinkedHashSet<>();
     }
 
     public InventoryItem(TransactionItem transactionItem, int availableCount, CanonicalId status) {
         super(transactionItem);
 
+        restrictedRoomTypes = new LinkedHashSet<>();
         setAvailableCount(availableCount);
         setStatus(status);
     }
@@ -56,7 +57,7 @@ public class InventoryItem extends TransactionItem {
     }
 
     public Set<String> getRestrictedRoomTypes() {
-        return restrictedRoomTypes != null ? restrictedRoomTypes : Collections.emptySet();
+        return restrictedRoomTypes;
     }
 
     public void setRestrictedRoomTypes(Set<String> restrictedRoomTypes) {
@@ -89,6 +90,6 @@ public class InventoryItem extends TransactionItem {
 
     @JsonIgnore
     public boolean isMaxPerReservationRestricted(int quantity) {
-        return maxQuantityPerReservation != null ? maxQuantityPerReservation < quantity : false;
+        return maxQuantityPerReservation != null && maxQuantityPerReservation < quantity;
     }
 }

@@ -67,7 +67,7 @@ public class CreateRecurringCharge {
     }
 
     public Set<OverrideType> getOverrideTypes() {
-        return overrideTypes != null ? overrideTypes : Collections.emptySet();
+        return overrideTypes;
     }
 
     public void setOverrideTypes(Set<OverrideType> overrideTypes) {

@@ -273,6 +273,23 @@ public interface RecurringChargesServiceInterface {
           throws RGuestException, ServiceException;
 
     /**
+     * Retrieves the count of invalid recurring charges which does not dependent on reservation
+     * dates and inventory recurring charges which does not have required inventory item quantity for the given
+     * reservation start and end date
+     *
+     * @param arrivalDate        reservation new arrival date
+     * @param departureDate      reservation new departure date
+     */
+    @Deprecated
+    @GET
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    RecurringChargesValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate)
+          throws RGuestException, ServiceException;
+
+    /**
      * Retrieves the details of recurring charges which
      * 1. Does not dependent on reservation dates
      * 2. Violates inventory max per reservation restriction
