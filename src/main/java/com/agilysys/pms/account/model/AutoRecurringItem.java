@@ -9,6 +9,7 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
 
+import com.agilysys.common.model.FrequencyType;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntityType;
