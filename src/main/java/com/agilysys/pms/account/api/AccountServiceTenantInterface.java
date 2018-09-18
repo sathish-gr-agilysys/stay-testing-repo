@@ -35,16 +35,12 @@ public interface AccountServiceTenantInterface {
     @POST
     @CreatedOnSuccess
     @Path(INVOICES_PATH)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     List<CentralARView> createInvoices(@PathParam(TENANT_ID) String tenantId,
           CentralARRequest centralARRequest) throws RGuestException, ServiceException;
 
     @POST
     @CreatedOnSuccess
     @Path(PREFERRED_COMMUNICATION)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     List<CentralARView> getPreferredCommunication(@PathParam(TENANT_ID) String tenantId,
           CentralARRequest centralARRequest) throws RGuestException, ServiceException;
 }
