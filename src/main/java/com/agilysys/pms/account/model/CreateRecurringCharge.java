@@ -212,6 +212,7 @@ public class CreateRecurringCharge {
         this.sourceId = sourceId;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.quantity = petRateSnapshot.getQuantity();
     }
 
     public CreateRecurringCharge() {
