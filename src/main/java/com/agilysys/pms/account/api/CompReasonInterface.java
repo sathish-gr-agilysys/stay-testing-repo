@@ -28,11 +28,11 @@ import com.agilysys.platform.schema.Validated;
 @Path("/tenants/{tenantId}/properties/{propertyId}/config")
 @Produces(MediaType.APPLICATION_JSON)
 public interface CompReasonInterface {
+    String CODE = "code";
     String COMP_REASONS_PATH = "setup/accounts/compReasons";
     String COMP_REASONS_THRESHOLD_PATH = COMP_REASONS_PATH + "/threshold";
-    String PROPERTY_ID = "propertyId";
     String ID = "id";
-    String CODE = "code";
+    String PROPERTY_ID = "propertyId";
 
     /**
      * Retrieve all comp reasons
