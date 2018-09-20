@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.569-VCTRS-62037-SNAPSHOT</version>
+            <version>74.593.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
