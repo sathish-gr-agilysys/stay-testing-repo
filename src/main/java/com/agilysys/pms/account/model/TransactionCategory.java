@@ -9,6 +9,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
+import com.agilysys.pms.common.audit.EntityTypes;
+import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.Outlet;
@@ -17,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Class that represents a TransactionCategory in the application.
  */
+@AuditEntityType(EntityTypes.TRANSACTION_CATEGORY)
 public class TransactionCategory extends AccountingObjectBase {
 
     private static final String DISPLAY_NAME = "Transaction category";
@@ -26,10 +30,12 @@ public class TransactionCategory extends AccountingObjectBase {
     @JsonProperty(required = true)
     @MinLengthRestriction(1)
     @DataPortReference(name = "sourceCodes", type = { Building.class, Outlet.class }, multiple = true)
+    @AuditField(name = "sources", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
     private List<String> sourceIds;
 
     @JsonProperty(required = true)
     @DataPortReference(name = "defaultSourceCode", type = { Building.class, Outlet.class })
+    @AuditField(name = "defaultSource", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
     private String defaultSourceId;
 
     /**
