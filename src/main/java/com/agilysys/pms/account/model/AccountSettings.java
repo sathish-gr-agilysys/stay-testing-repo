@@ -4,6 +4,9 @@
 package com.agilysys.pms.account.model;
 
 public class AccountSettings {
+
+    public static final String ACCOUNT_ATTRIBUTES_FIELD = "attributes";
+
     private boolean createOnNewProperty;
     private boolean createOnMissingProperty;
     private boolean updateExistingProperty;

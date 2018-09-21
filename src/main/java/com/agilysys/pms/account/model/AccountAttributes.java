@@ -12,6 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public class AccountAttributes implements Comparable<AccountAttributes> {
 
+    public static final String PREFERRED_COMMUNICATION_FIELD = "preferredCommunication";
+
     private String accountContactId;
     private PreferredCommunication preferredCommunication;
     private AccountStatus status;
