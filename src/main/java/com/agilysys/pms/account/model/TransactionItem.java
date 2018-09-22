@@ -14,6 +14,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.tax.model.TaxClass;
+import com.agilysys.pms.common.audit.EntityTypes;
+import com.agilysys.pms.common.audit.annotation.AuditEntityType;
 import com.agilysys.pms.common.model.annotation.DataPortMapReference;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
@@ -25,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Class that represents a TransactionItem in the application.
  */
+@AuditEntityType(EntityTypes.TRANSACTION_ITEM)
 public class TransactionItem extends AccountingItem {
     private static final String DISPLAY_NAME = "Transaction item";
 
@@ -36,6 +39,7 @@ public class TransactionItem extends AccountingItem {
     @JsonProperty(required = true)
     @DataPortMapReference(name = "sourceCodeToMealPeriodCodes", keyType = {
           Building.class, Outlet.class }, valueType = MealPeriod.class, multipleValues = true)
+    // TODO: audit references need to support keys or values of maps
     private Map<String, List<String>> sourceMealPeriods;
 
     @DataPortReference(name = "taxClassNames", type = TaxClass.class, multiple = true)
@@ -55,9 +59,7 @@ public class TransactionItem extends AccountingItem {
      */
     private List<FolioPostingCodes> folioPostingCodes;
 
-    public TransactionItem() {
-
-    }
+    public TransactionItem() {}
 
     public TransactionItem(TransactionItem transactionItem) {
         super(transactionItem);

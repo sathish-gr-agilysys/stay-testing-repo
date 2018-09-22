@@ -3,7 +3,6 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -11,9 +10,12 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
+import com.agilysys.pms.common.audit.EntityTypes;
+import com.agilysys.pms.common.audit.annotation.AuditEntityType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@AuditEntityType(EntityTypes.INVENTORY_ITEM)
 public class InventoryItem extends TransactionItem {
     private static final String DISPLAY_NAME = "Inventory item";
 

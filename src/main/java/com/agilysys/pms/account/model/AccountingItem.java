@@ -3,6 +3,9 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.pms.common.audit.EntityTypes;
+import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,10 +15,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public abstract class AccountingItem extends AccountingObjectBase {
     @JsonProperty(required = true)
     @DataPortReference(name = "categoryCode", type = TransactionCategory.class)
+    @AuditField(name = "category", references = EntityTypes.TRANSACTION_CATEGORY)
     protected String categoryId;
 
     @JsonProperty(required = true)
     @DataPortReference(name = "subcategoryCode", type = TransactionSubCategory.class)
+    @AuditField(name = "subcategory", references = EntityTypes.TRANSACTION_SUBCATEGORY)
     protected String subcategoryId;
 
     /**
@@ -23,9 +28,7 @@ public abstract class AccountingItem extends AccountingObjectBase {
      */
     private boolean roomRevenue;
 
-    public AccountingItem(){
-
-    }
+    public AccountingItem(){}
 
     public AccountingItem(AccountingItem accountingItem) {
         super(accountingItem);

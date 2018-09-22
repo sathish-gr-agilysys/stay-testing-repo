@@ -11,24 +11,36 @@ import org.springframework.data.annotation.Transient;
 
 import com.agilysys.common.model.FrequencyType;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
+import com.agilysys.pms.common.audit.EntityTypes;
+import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@AuditEntityType(EntityTypes.AUTO_RECURRING_ITEM)
 public class AutoRecurringItem extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "Auto-Recurring item";
 
     @JsonProperty(required = true)
     private BigDecimal defaultPrice;
+
     @JsonProperty(required = true)
+    @AuditField(name = "defaultSource", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
     private String defaultSourceId;
+
     @JsonProperty(required = true)
     private FrequencyType frequencyType;
+
     @JsonProperty(required = true)
+    @AuditField(name = "parentTransactionItem", references = EntityTypes.TRANSACTION_ITEM)
     private String parentTransactionItemId;
+
     private CanonicalId status;
     private int nNights;
+
     @JsonProperty(required = true)
     private LocalDate startDate;
+
     private LocalDate endDate;
     private String description;
 
