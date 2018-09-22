@@ -9,12 +9,16 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
+import com.agilysys.pms.common.audit.EntityTypes;
+import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Class that represents a TransactionSubCategory in the application.
  */
+@AuditEntityType(EntityTypes.TRANSACTION_SUBCATEGORY)
 public class TransactionSubCategory extends AccountingObjectBase {
 
     private static final String DISPLAY_NAME = "Transaction subcategory";
@@ -24,6 +28,7 @@ public class TransactionSubCategory extends AccountingObjectBase {
     @JsonProperty(required = true)
     @MinLengthRestriction(1)
     @DataPortReference(name = "categoryCodes", type = TransactionCategory.class, multiple = true)
+    @AuditField(name = "categories", references = EntityTypes.TRANSACTION_CATEGORY)
     private List<String> categoryIds;
 
     /**
