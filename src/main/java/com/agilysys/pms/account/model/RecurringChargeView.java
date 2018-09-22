@@ -52,18 +52,14 @@ public class RecurringChargeView {
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
     private String autoRecurringItemId;
-
-    public String getAutoRecurringItemId() {
-        return autoRecurringItemId;
-    }
-
-    public void setAutoRecurringItemId(String autoRecurringItemId) {
-        this.autoRecurringItemId = autoRecurringItemId;
-    }
+    private boolean addQuantityToAllocation;
 
     //Set 1 for recurring charges which does not have quantity
     private int quantity = 1;
     private TransactionItemType transactionItemType;
+
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
@@ -247,5 +243,37 @@ public class RecurringChargeView {
 
     public void setPetReferenceId(String petReferenceId) {
         this.petReferenceId = petReferenceId;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getAutoRecurringItemId() {
+        return autoRecurringItemId;
+    }
+
+    public void setAutoRecurringItemId(String autoRecurringItemId) {
+        this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public boolean isAddQuantityToAllocation() {
+        return addQuantityToAllocation;
+    }
+
+    public void setAddQuantityToAllocation(boolean addQuantityToAllocation) {
+        this.addQuantityToAllocation = addQuantityToAllocation;
     }
 }
