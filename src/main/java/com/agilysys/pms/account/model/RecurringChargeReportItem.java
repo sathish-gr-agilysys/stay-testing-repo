@@ -22,6 +22,7 @@ public class RecurringChargeReportItem {
     private List<ComponentChargeView> componentCharges = new ArrayList<>();
     private boolean isPackage;
     private String autoRecurringItemId;
+    private TransactionItemType transactionItemType;
 
     /**
      * EVERY = Every Night
@@ -34,6 +35,10 @@ public class RecurringChargeReportItem {
     private int nNights;
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
+
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private int quantity;
 
     public LocalDate getChargeDate() {
         return chargeDate;
@@ -139,6 +144,30 @@ public class RecurringChargeReportItem {
         isPackage = aPackage;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public String getAutoRecurringItemId() {
         return autoRecurringItemId;
     }
@@ -147,4 +176,11 @@ public class RecurringChargeReportItem {
         this.autoRecurringItemId = autoRecurringItemId;
     }
 
+    public TransactionItemType getTransactionItemType() {
+        return transactionItemType;
+    }
+
+    public void setTransactionItemType(TransactionItemType transactionItemType) {
+        this.transactionItemType = transactionItemType;
+    }
 }

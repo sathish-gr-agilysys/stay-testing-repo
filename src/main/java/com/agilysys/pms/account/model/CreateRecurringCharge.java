@@ -7,6 +7,7 @@ import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountExcepti
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +16,7 @@ import com.agilysys.common.model.FrequencyType;
 import com.agilysys.common.model.rate.PetRateSnapshot;
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.permission.OverrideType;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
@@ -43,7 +45,7 @@ public class CreateRecurringCharge {
     @MinValueRestriction(1)
     private int nNights;
 
-    @MinValueRestriction(0)
+    @MinValueRestriction(1)
     private int quantity;
 
     @JsonProperty(required = true)
@@ -52,7 +54,7 @@ public class CreateRecurringCharge {
     @JsonProperty(required = true)
     private LocalDate endDate;
 
-    private boolean overrideInventory;
+    private Set<OverrideType> overrideTypes;
 
     private Map<LocalDate, CreateRecurringChargeOverride> recurringChargeOverrides;
 
@@ -64,12 +66,12 @@ public class CreateRecurringCharge {
         this.recurringChargeOverrides = recurringChargeOverrides;
     }
 
-    public boolean isOverrideInventory() {
-        return overrideInventory;
+    public Set<OverrideType> getOverrideTypes() {
+        return overrideTypes;
     }
 
-    public void setOverrideInventory(boolean overrideInventory) {
-        this.overrideInventory = overrideInventory;
+    public void setOverrideTypes(Set<OverrideType> overrideTypes) {
+        this.overrideTypes = overrideTypes;
     }
 
     public LocalDate getStartDate() {
@@ -210,6 +212,7 @@ public class CreateRecurringCharge {
         this.sourceId = sourceId;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.quantity = petRateSnapshot.getQuantity();
     }
 
     public CreateRecurringCharge() {
