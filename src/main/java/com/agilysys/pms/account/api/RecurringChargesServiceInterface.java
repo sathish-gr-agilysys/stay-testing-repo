@@ -29,10 +29,11 @@ import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.EstimatedRoomChargeView;
 import com.agilysys.pms.account.model.ProgressStatusView;
-import com.agilysys.pms.account.model.RecurringChargeValidityResponse;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
 import com.agilysys.pms.account.model.RecurringChargesPropertyView;
+import com.agilysys.pms.account.model.RecurringChargesValidityRequest;
+import com.agilysys.pms.account.model.RecurringChargesValidityResponse;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 /**
@@ -72,9 +73,8 @@ public interface RecurringChargesServiceInterface {
     String CHECKIN_AUTH_AMOUNT = "/checkinAuthAmount";
     String AUTH_DETAILS = "/authDetails";
     String BATCH = "/batch";
-    String VALIDATE_INVENTORY = "validateInventory";
-    String ADD_AVAILABLE_INVENTORY = "addAvailableInventory";
     String VALIDITY = "/validity";
+    String INVENTORY = "/inventory";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -137,18 +137,15 @@ public interface RecurringChargesServiceInterface {
      * @param startDate
      * @param endDate               Start date and end date creates the range for what RecurringChargeView dates should
      *                              be returned
-     * @param validateInventory     when true, validate inventory item quantity in the request
      * @return Created recurring charge
      */
     @POST
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + BATCH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') or hasPermission('Required', 'OverrideInventory')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<RecurringChargeView> createRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(VALIDATE_INVENTORY) boolean validateInventory,
-          @QueryParam(ADD_AVAILABLE_INVENTORY) boolean addAvailable)
-          throws RGuestException,ServiceException;
+          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
     /**
      * Retrieve recurring charge for an account
@@ -283,13 +280,28 @@ public interface RecurringChargesServiceInterface {
      * @param arrivalDate        reservation new arrival date
      * @param departureDate      reservation new departure date
      */
+    @Deprecated
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    RecurringChargeValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
+    RecurringChargesValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate)
           throws RGuestException, ServiceException;
+
+    /**
+     * Retrieves the details of recurring charges which
+     * 1. Does not dependent on reservation dates
+     * 2. Violates inventory max per reservation restriction
+     * 3. Violates inventory room type restriction
+     * 4. Required quantity not available
+     */
+    @POST
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    RecurringChargesValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          RecurringChargesValidityRequest recurringChargesValidityRequest) throws RGuestException, ServiceException;
 
     /**
      * @return The estimated room charges for the given date range, or the current
