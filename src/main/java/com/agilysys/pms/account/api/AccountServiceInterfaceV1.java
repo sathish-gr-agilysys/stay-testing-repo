@@ -48,7 +48,6 @@ import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
-import com.agilysys.pms.account.model.CheckInventoryAllocation;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
@@ -57,9 +56,7 @@ import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
-import com.agilysys.pms.account.model.InventoryAllocationResponse;
-import com.agilysys.pms.account.model.InventoryAvailabilityRequest;
-import com.agilysys.pms.account.model.InventoryAvailabilityResponse;
+import com.agilysys.pms.account.model.InventoryAllocationDetails;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
 import com.agilysys.pms.account.model.InvoiceReportProgressView;
 import com.agilysys.pms.account.model.InvoiceRequest;
@@ -100,7 +97,6 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
 
-    String PROPERTY_DATE = "propertyDate";
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
 
     String ACCOUNT_BALANCES_PATH = "/balances";
@@ -189,8 +185,7 @@ public interface AccountServiceInterfaceV1 {
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
     String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
-    String INVENTORY_ALLOCATION = "/inventory/allocation/{" + PROPERTY_DATE + "}";
-    String INVENTORY_AVAILABILITY = "/inventory/availability";
+    String INVENTORY_ALLOCATION = "/inventory/allocation";
     String TENANT_DEFAULT_SETTINGS_APPLY_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/apply";
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
@@ -1355,31 +1350,17 @@ public interface AccountServiceInterfaceV1 {
      *
      * @param tenantId                 tenantId
      * @param propertyId               propertyId
-     * @param propertyDate             property date
-     * @param checkInventoryAllocation has request dates and inventory item id's
+     * @param startDate                startDate
+     * @param endDate                  endDate
+     * @param itemIds                  InventoryItem Ids
      * @return allocation response for request dates
      */
     @POST
     @Path(INVENTORY_ALLOCATION)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public Map<LocalDate, InventoryAllocationResponse> findInventoryItemAllocatedDetails(
+    Map<LocalDate, Map<String, InventoryAllocationDetails>> findInventoryItemAllocatedDetails(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(PROPERTY_DATE) LocalDate propertyDate, CheckInventoryAllocation checkInventoryAllocation)
-          throws RGuestException, ServiceException;
-
-    /**
-     * Check if inventory item quantity is available
-     *
-     * @param tenantId                   tenantId
-     * @param propertyId                 propertyId
-     * @param inventoryAvailabilityRequest has request dates and inventory item id's
-     * @return availability response for request dates
-     */
-    @POST
-    @Path(INVENTORY_AVAILABILITY)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public InventoryAvailabilityResponse checkInventoryAvailability(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, InventoryAvailabilityRequest inventoryAvailabilityRequest)
+          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate, Set<String> itemIds)
           throws RGuestException, ServiceException;
 
     @GET
