@@ -42,6 +42,7 @@ public interface ReportingServiceInterface {
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
     String REVENUE_PATH = "/revenueDetails";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
+    String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
     String PROPERTY_DATE = "propertyDate";
@@ -50,6 +51,7 @@ public interface ReportingServiceInterface {
     String ROOM_REVENUE = "roomRevenue";
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
+    String SOURCE_ID = "sourceId";
 
     /**
      * get the ledger report
@@ -227,5 +229,24 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
     List<Cashier> getCashiersList(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
+          throws RGuestException, ServiceException;
+
+    /**
+     * retrieve inventory recurring charge detail information for the given date range
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param startDate
+     * @param endDate
+     * @param sourceId
+     * @return
+     */
+    @GET
+    @Path(INVENTORY_RECURRING_CHARGES_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    RecurringChargesReportResult getInventoryRecurringChargesReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(SOURCE_ID) String sourceId)
           throws RGuestException, ServiceException;
 }
