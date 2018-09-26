@@ -11,6 +11,7 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.rate.CompInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -34,6 +35,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean autoRouted;
     private String callType;
     private String categoryId;
+    private CompInfo compInfo;
     private LineItemView correctionLineItem;
     private String description;
     private LocalDate displayDate;
@@ -41,6 +43,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String folioId;
     private String folioLineType;
     private BigDecimal freeAllowanceAmount;
+    private boolean invalid;
     private List<LineItemView> groupedTaxLineItems;
     private String itemId;
     private String ledgerId;
@@ -53,6 +56,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private DateTime postingCalendarDateTime;
     private LocalDate postingPropertyDate;
     private int quantity;
+    private String rateChangeComment;
     private List<LineItemView> refundLineItems;
     private String reason;
     private String receiptTextImage;
@@ -140,6 +144,14 @@ public class LineItemView implements Comparable<LineItemView> {
         this.categoryId = categoryId;
     }
 
+    public CompInfo getCompInfo() {
+        return compInfo;
+    }
+
+    public void setCompInfo(CompInfo compInfo) {
+        this.compInfo = compInfo;
+    }
+
     public LineItemView getCorrectionLineItem() {
         return correctionLineItem;
     }
@@ -198,6 +210,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setFolioLineType(String folioLineType) {
         this.folioLineType = folioLineType;
+    }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
     }
 
     public List<LineItemView> getGroupedTaxLineItems() {
@@ -318,6 +338,14 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getRateChangeComment() {
+        return rateChangeComment;
+    }
+
+    public void setRateChangeComment(String rateChangeComment) {
+        this.rateChangeComment = rateChangeComment;
     }
 
     /**
