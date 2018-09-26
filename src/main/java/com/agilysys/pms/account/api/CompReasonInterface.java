@@ -28,10 +28,11 @@ import com.agilysys.platform.schema.Validated;
 @Path("/tenants/{tenantId}/properties/{propertyId}/config")
 @Produces(MediaType.APPLICATION_JSON)
 public interface CompReasonInterface {
+    String CODE = "code";
     String COMP_REASONS_PATH = "setup/accounts/compReasons";
     String COMP_REASONS_THRESHOLD_PATH = COMP_REASONS_PATH + "/threshold";
-    String PROPERTY_ID = "propertyId";
     String ID = "id";
+    String PROPERTY_ID = "propertyId";
 
     /**
      * Retrieve all comp reasons
@@ -59,6 +60,20 @@ public interface CompReasonInterface {
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
     CompInfo getCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id) throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve a comp reason by id
+     *
+     * @param tenantId   the tenantId to retrieve comp reasons for
+     * @param propertyId the propertyId to retrieve comp reasons for
+     * @param code         the id of the reason to retrieve
+     * @return List of CompReason
+     */
+    @GET
+    @Path("/compReasons/code/{code}")
+    @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
+    CompInfo getCompReasonByCode(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(CODE) String code) throws RGuestException, ServiceException;
 
     /**
      * Add a CompReason
