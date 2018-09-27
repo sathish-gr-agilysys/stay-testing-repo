@@ -53,6 +53,7 @@
         <dependency>
             <groupId>com.agilysys.platform</groupId>
             <artifactId>tax-service-interface</artifactId>
+            <version>5.0.16</version>
         </dependency>
         <!-- Servlet API -->
         <dependency>
