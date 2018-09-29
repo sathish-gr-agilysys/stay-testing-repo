@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,9 +27,11 @@ public abstract class Transaction {
     @JsonProperty(required = true)
     protected BigDecimal amount;
     protected String callType;
+    protected CompInfo compInfo;
     protected String folioId;
     protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
+    protected boolean invalid;
     @JsonProperty(required = true)
     protected String itemId;
     protected String parentId;
@@ -37,6 +40,8 @@ public abstract class Transaction {
     protected LocalDate displayDate;
     @MinValueRestriction(1)
     protected int quantity = 1;
+    @MaxLengthRestriction(250)
+    protected String rateChangeComment;
     @MaxLengthRestriction(250)
     protected String reason;
     protected String reference;
@@ -59,6 +64,14 @@ public abstract class Transaction {
         this.amount = amount.setScale(2, RoundingMode.HALF_UP);
     }
 
+    public CompInfo getCompInfo() {
+        return compInfo;
+    }
+
+    public void setCompInfo(CompInfo compInfo) {
+        this.compInfo = compInfo;
+    }
+
     public String getFolioId() {
         return folioId;
     }
@@ -73,6 +86,14 @@ public abstract class Transaction {
 
     public void setIgnoreRules(Boolean ignoreRules) {
         this.ignoreRules = ignoreRules;
+    }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
     }
 
     public String getItemId() {
@@ -128,6 +149,14 @@ public abstract class Transaction {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getRateChangeComment() {
+        return rateChangeComment;
+    }
+
+    public void setRateChangeComment(String rateChangeComment) {
+        this.rateChangeComment = rateChangeComment;
     }
 
     public String getReason() {
