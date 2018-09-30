@@ -19,8 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class InventoryItem extends TransactionItem {
     private static final String DISPLAY_NAME = "Inventory item";
 
-    @JsonProperty(required = true)
-    private int availableCount;
+    private Integer availableCount;
 
     private Integer maxQuantityPerReservation;
 
@@ -30,23 +29,25 @@ public class InventoryItem extends TransactionItem {
         restrictedRoomTypes = new LinkedHashSet<>();
     }
 
-    public InventoryItem(TransactionItem transactionItem, int availableCount, CanonicalId status) {
+    public InventoryItem(TransactionItem transactionItem, int availableCount, CanonicalId status,
+          Integer maxQuantityPerReservation, Set<String> restrictedRoomTypes) {
         super(transactionItem);
 
-        restrictedRoomTypes = new LinkedHashSet<>();
-        setAvailableCount(availableCount);
         setStatus(status);
+        this.availableCount = availableCount;
+        this.maxQuantityPerReservation = maxQuantityPerReservation;
+        this.restrictedRoomTypes = restrictedRoomTypes;
     }
 
     public TransactionItemType getType() {
         return TransactionItemType.INVENTORY;
     }
 
-    public int getAvailableCount() {
+    public Integer getAvailableCount() {
         return availableCount;
     }
 
-    public void setAvailableCount(int availableCount) {
+    public void setAvailableCount(Integer availableCount) {
         this.availableCount = availableCount;
     }
 
