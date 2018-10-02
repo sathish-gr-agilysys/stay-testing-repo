@@ -38,6 +38,7 @@ public interface AccountServiceTenantInterface {
     String CALCULATE_INVOICE_BALANCE = "/calculateBalance";
     String INVOICES_PATH = "/invoices";
     String PREFERRED_COMMUNICATION = "/preferredCommunication";
+    String AR_INVOICES_PATH = "/ar/invoices";
 
     @GET
     @Path(AR_BALANCES_PATH)
@@ -62,4 +63,10 @@ public interface AccountServiceTenantInterface {
     @Path(PREFERRED_COMMUNICATION)
     List<CentralARView> getPreferredCommunication(@PathParam(TENANT_ID) String tenantId,
           CentralARRequest centralARRequest) throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(AR_INVOICES_PATH)
+    List<CentralARView> getInvoices(@PathParam(TENANT_ID) String tenantId,
+          Set<String> companyProfileIds) throws RGuestException, ServiceException;
 }
