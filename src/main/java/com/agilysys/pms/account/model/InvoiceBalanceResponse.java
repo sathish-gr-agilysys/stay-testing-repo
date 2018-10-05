@@ -19,19 +19,23 @@ public class InvoiceBalanceResponse {
     private BigDecimal paid;
     private BigDecimal total;
     private InvoiceStatus invoiceStatus;
-    private int terms;
 
     public InvoiceBalanceResponse() {
     }
 
+    public InvoiceBalanceResponse(String invoiceNumber, LocalDate invoiceDate, BigDecimal total) {
+        this.invoiceNumber = invoiceNumber;
+        this.invoiceDate = invoiceDate;
+        this.total = total;
+    }
+
     public InvoiceBalanceResponse(String id, String tenantId, String propertyId, String accountId, String invoiceNumber,
-          int terms, LocalDate invoiceDate, BigDecimal subtotal, BigDecimal tax, BigDecimal paid, BigDecimal total) {
+          LocalDate invoiceDate, BigDecimal subtotal, BigDecimal tax, BigDecimal paid, BigDecimal total) {
         this.id = id;
         this.tenantId = tenantId;
         this.propertyId = propertyId;
         this.accountId = accountId;
         this.invoiceNumber = invoiceNumber;
-        this.terms = terms;
         this.invoiceDate = invoiceDate;
         this.subtotal = subtotal;
         this.tax = tax;
@@ -93,14 +97,6 @@ public class InvoiceBalanceResponse {
 
     public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
         this.invoiceStatus = invoiceStatus;
-    }
-
-    public int getTerms() {
-        return terms;
-    }
-
-    public void setTerms(int terms) {
-        this.terms = terms;
     }
 
     public BigDecimal getSubtotal() {
