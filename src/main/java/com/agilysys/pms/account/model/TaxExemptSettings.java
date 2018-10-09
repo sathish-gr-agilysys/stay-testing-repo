@@ -9,7 +9,6 @@ public class TaxExemptSettings {
     @JsonProperty(required = true)
     private String taxId;
 
-    @JsonProperty(required = true)
     private String taxReasonId;
 
     public String getTaxId() {
