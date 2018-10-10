@@ -4,18 +4,14 @@
 package com.agilysys.pms.account.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class TenantStatementResponse {
     private List<String> ageGroupLabels;
     private List<CompanyInvoiceBalance> companyInvoiceBalances;
-    private Set<String> accountIds;
 
     public TenantStatementResponse() {
         companyInvoiceBalances = new ArrayList<>();
-        accountIds = new HashSet<>();
     }
 
     public TenantStatementResponse(List<String> ageGroupLabels) {
@@ -29,9 +25,5 @@ public class TenantStatementResponse {
 
     public List<String> getAgeGroupLabels() {
         return ageGroupLabels;
-    }
-
-    public Set<String> getAccountIds() {
-        return accountIds;
     }
 }
