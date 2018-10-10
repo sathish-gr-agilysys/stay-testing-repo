@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.agilysys.common.model.rate.ComponentRateSnapshot;
+import com.agilysys.common.model.rate.ComponentType;
+import com.agilysys.common.model.rate.RoomChargePostingType;
 
 public class ComponentChargeView {
 
@@ -20,6 +22,14 @@ public class ComponentChargeView {
     private BigDecimal amount;
 
     private int quantity;
+
+    private int totalQuantity;
+
+    private BigDecimal totalAmount;
+
+    private ComponentType componentType;
+
+    private RoomChargePostingType roomChargePostingType;
 
     private TransactionItemType transactionItemType;
 
@@ -57,6 +67,38 @@ public class ComponentChargeView {
         this.quantity = quantity;
     }
 
+    public ComponentType getComponentType() {
+        return componentType;
+    }
+
+    public void setComponentType(ComponentType componentType) {
+        this.componentType = componentType;
+    }
+
+    public RoomChargePostingType getRoomChargePostingType() {
+        return roomChargePostingType;
+    }
+
+    public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
+        this.roomChargePostingType = roomChargePostingType;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
     public ChargeTaxAmountInfo getEstimatedTaxInfo() {
         return estimatedTaxInfo;
     }
@@ -87,6 +129,10 @@ public class ComponentChargeView {
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
         componentChargeView.setComponentBundleId(componentRateSnapshot.getComponentBundleId());
         componentChargeView.setAmount(componentRateSnapshot.getAmount());
+        componentChargeView.setTotalQuantity(componentRateSnapshot.getTotalQuantity());
+        componentChargeView.setTotalAmount(componentRateSnapshot.getTotalAmount());
+        componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
+        componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
 
         return componentChargeView;
     }
