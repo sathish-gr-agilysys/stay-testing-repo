@@ -10,12 +10,10 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import com.agilysys.pms.common.model.IndexedDocument;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class AccountSearchResult extends IndexedDocument {
+public class AccountSearchResult {
     private String tenantId;
     private String propertyId;
+    private String accountId;
 
     private BigDecimal accountBalance;
     private String accountStatus;
@@ -40,8 +38,7 @@ public class AccountSearchResult extends IndexedDocument {
 
     public AccountSearchResult(String accountId, AccountType accountType, String name, String propertyId,
           String tenantId) {
-        super(accountId);
-
+        this.accountId = accountId;
         this.accountType = accountType != null ? accountType.name() : null;
         this.name = name;
         this.propertyId = propertyId;
@@ -88,10 +85,12 @@ public class AccountSearchResult extends IndexedDocument {
         return accountBalance;
     }
 
-    @JsonProperty("accountId")
-    @Override
-    public String getId() {
-        return id;
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getAccountType() {
