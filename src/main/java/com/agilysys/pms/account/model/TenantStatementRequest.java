@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class TenantStatementRequest {
     private Set<String> companyProfileIds;
-    private String invoiceAgingType;
+    private String invoiceAgingType = "age_By_Property_Date";
 
     public TenantStatementRequest() {
     }
