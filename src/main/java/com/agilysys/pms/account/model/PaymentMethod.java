@@ -49,7 +49,7 @@ public class PaymentMethod extends AccountingItem {
 
     //If sourceIds == null, the all sources are allowed
     @DataPortReference(name = "sourceCodes", type = { Building.class, Outlet.class }, multiple = true)
-    @AuditField(name = "sources", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
+    @AuditField(name = "sources", references = { EntityTypes.BUILDING, EntityTypes.OUTLET }, inline = true)
     private Set<String> sourceIds;
 
     private String glCode;

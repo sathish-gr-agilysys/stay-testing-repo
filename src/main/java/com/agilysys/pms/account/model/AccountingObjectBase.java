@@ -5,9 +5,10 @@ package com.agilysys.pms.account.model;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
+import com.agilysys.pms.common.audit.Auditable;
+import com.agilysys.pms.common.audit.annotation.AuditIgnore;
 import com.agilysys.pms.common.model.annotation.DataPortId;
 import com.agilysys.pms.common.model.annotation.DataPortKey;
-import com.agilysys.pms.common.model.audit.Auditable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public abstract class AccountingObjectBase implements Auditable {
     @DataPortId
+    @AuditIgnore
     protected String id;
 
     @JsonProperty(required = true)
@@ -77,12 +79,12 @@ public abstract class AccountingObjectBase implements Auditable {
     public abstract String getDisplayName();
 
     @Override
-    public String entityId() {
+    public String getEntityId() {
         return id;
     }
 
     @Override
-    public String getDisplayText() {
+    public String getEntityLabel() {
         return code;
     }
 }

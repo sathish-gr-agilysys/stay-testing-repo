@@ -12,6 +12,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,6 +25,7 @@ public class InventoryItem extends TransactionItem {
 
     private Integer maxQuantityPerReservation;
 
+    @AuditField(references = EntityTypes.ROOM_TYPE, inline = true)
     private Set<String> restrictedRoomTypes;
 
     public InventoryItem() {

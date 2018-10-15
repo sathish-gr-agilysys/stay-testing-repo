@@ -28,7 +28,7 @@ public class TransactionSubCategory extends AccountingObjectBase {
     @JsonProperty(required = true)
     @MinLengthRestriction(1)
     @DataPortReference(name = "categoryCodes", type = TransactionCategory.class, multiple = true)
-    @AuditField(name = "categories", references = EntityTypes.TRANSACTION_CATEGORY)
+    @AuditField(name = "categories", references = EntityTypes.TRANSACTION_CATEGORY, inline = true)
     private List<String> categoryIds;
 
     /**

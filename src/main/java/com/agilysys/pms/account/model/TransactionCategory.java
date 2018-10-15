@@ -30,7 +30,7 @@ public class TransactionCategory extends AccountingObjectBase {
     @JsonProperty(required = true)
     @MinLengthRestriction(1)
     @DataPortReference(name = "sourceCodes", type = { Building.class, Outlet.class }, multiple = true)
-    @AuditField(name = "sources", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
+    @AuditField(name = "sources", references = { EntityTypes.BUILDING, EntityTypes.OUTLET }, inline = true)
     private List<String> sourceIds;
 
     @JsonProperty(required = true)
