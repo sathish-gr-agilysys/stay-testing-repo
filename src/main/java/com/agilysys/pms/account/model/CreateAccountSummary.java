@@ -39,6 +39,7 @@ public class CreateAccountSummary extends AccountSummary {
 
     private LocalDate startDate;
     private LocalDate endDate;
+    private String transactionItemId;
 
     //TODO add schema validation to this to make this required once it is required by the reservation service
     @JsonDeserialize(keyUsing = LocalDateJsonKeyDeserializer.class)
@@ -108,5 +109,13 @@ public class CreateAccountSummary extends AccountSummary {
 
     public void setReservationEndDate(LocalDate reservationEndDate) {
         this.reservationEndDate = reservationEndDate;
+    }
+
+    public String getTransactionItemId() {
+        return transactionItemId;
+    }
+
+    public void setTransactionItemId(String transactionItemId) {
+        this.transactionItemId = transactionItemId;
     }
 }
