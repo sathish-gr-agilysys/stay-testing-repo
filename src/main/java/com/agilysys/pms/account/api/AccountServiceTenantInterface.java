@@ -69,6 +69,6 @@ public interface AccountServiceTenantInterface {
     @POST
     @CreatedOnSuccess
     @Path(AR_INVOICES_PATH)
-    TenantStatementResponse getInvoices(@PathParam(TENANT_ID) String tenantId,
+    TenantStatementResponse createStatementByCompanyProfileIds(@PathParam(TENANT_ID) String tenantId,
           TenantStatementRequest tenantStatementRequest) throws RGuestException, ServiceException;
 }
