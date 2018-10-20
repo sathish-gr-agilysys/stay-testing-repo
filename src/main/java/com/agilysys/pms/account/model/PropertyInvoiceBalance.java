@@ -12,7 +12,7 @@ public class PropertyInvoiceBalance {
     private String propertyName;
     private BigDecimal total;
     private List<InvoiceBalanceResponse> invoiceBalanceResponses;
-    private BigDecimal[] accountInvoiceTotalsByAging;
+    private List<BigDecimal> accountInvoiceTotalsByAging;
 
     public PropertyInvoiceBalance() {
         this.invoiceBalanceResponses = new ArrayList<>();
@@ -48,11 +48,11 @@ public class PropertyInvoiceBalance {
         this.invoiceBalanceResponses = invoiceBalanceResponses;
     }
 
-    public BigDecimal[] getAccountInvoiceTotalsByAging() {
+    public List<BigDecimal> getAccountInvoiceTotalsByAging() {
         return accountInvoiceTotalsByAging;
     }
 
-    public void setAccountInvoiceTotalsByAging(BigDecimal[] accountInvoiceTotalsByAging) {
+    public void setAccountInvoiceTotalsByAging(List<BigDecimal> accountInvoiceTotalsByAging) {
         this.accountInvoiceTotalsByAging = accountInvoiceTotalsByAging;
     }
 }
