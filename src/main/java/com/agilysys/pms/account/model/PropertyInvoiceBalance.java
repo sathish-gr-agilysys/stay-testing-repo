@@ -10,12 +10,14 @@ import java.util.List;
 public class PropertyInvoiceBalance {
 
     private String propertyName;
+    private BigDecimal accountBalance;
     private BigDecimal total;
     private List<InvoiceBalanceResponse> invoiceBalanceResponses;
     private List<BigDecimal> accountInvoiceTotalsByAging;
 
     public PropertyInvoiceBalance() {
         this.invoiceBalanceResponses = new ArrayList<>();
+        this.accountBalance = BigDecimal.ZERO;
         this.total = BigDecimal.ZERO;
     }
 
@@ -38,6 +40,14 @@ public class PropertyInvoiceBalance {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
     }
 
     public List<InvoiceBalanceResponse> getInvoiceBalanceResponses() {

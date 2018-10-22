@@ -9,16 +9,26 @@ import java.util.List;
 
 public class CompanyInvoiceBalance {
     private String companyName;
+    private BigDecimal accountBalance;
     private List<PropertyInvoiceBalance> propertyInvoiceBalances;
     private BigDecimal[] companyInvoiceTotalsByAging;
 
     public CompanyInvoiceBalance() {
+        this.accountBalance = BigDecimal.ZERO;
         propertyInvoiceBalances = new ArrayList<>();
     }
 
     public CompanyInvoiceBalance(String companyName) {
         this();
         this.companyName = companyName;
+    }
+
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
     }
 
     public String getCompanyName() {
