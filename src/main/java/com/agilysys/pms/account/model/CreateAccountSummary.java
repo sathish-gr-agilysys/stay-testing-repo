@@ -109,5 +109,4 @@ public class CreateAccountSummary extends AccountSummary {
     public void setReservationEndDate(LocalDate reservationEndDate) {
         this.reservationEndDate = reservationEndDate;
     }
-
 }
