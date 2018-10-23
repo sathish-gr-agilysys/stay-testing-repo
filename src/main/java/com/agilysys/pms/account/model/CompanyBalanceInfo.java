@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 import com.agilysys.pms.account.model.AccountAttributes.PreferredCommunication;
@@ -15,7 +16,7 @@ public class CompanyBalanceInfo {
     private PreferredCommunication deliveryPreference;
     private String email;
 
-    private List<BigDecimal> invoiceTotalsByAging; //invoiceTotalByAgeGroup
+    private Collection<BigDecimal> invoiceTotalsByAging; //invoiceTotalByAgeGroup
     private BigDecimal invoicedTotal; //  sum(invoiceTotalsByAgeGroups)
     private BigDecimal unInvoicedTotal;
     private BigDecimal balance; // subTotal + unInvoicedTotal
@@ -55,9 +56,9 @@ public class CompanyBalanceInfo {
 
     public void setEmail(String email) { this.email = email; }
 
-    public List<BigDecimal> getInvoiceTotalsByAging() { return invoiceTotalsByAging; }
+    public Collection<BigDecimal> getInvoiceTotalsByAging() { return invoiceTotalsByAging; }
 
-    public void setInvoiceTotalsByAging(List<BigDecimal> invoiceTotalsByAging) {
+    public void setInvoiceTotalsByAging(Collection<BigDecimal> invoiceTotalsByAging) {
         this.invoiceTotalsByAging = invoiceTotalsByAging;
     }
 
