@@ -55,7 +55,7 @@ public class NonInvoicedARDetail {
     public BigDecimal getNonInvoicedChargesTaxBalance() {
         BigDecimal balance = BigDecimal.ZERO;
         if (nonGroupNonInvoicedDetails != null) {
-            return nonGroupNonInvoicedDetails.stream()
+            balance = nonGroupNonInvoicedDetails.stream()
                   .map(nonInvoicedSourceAccountDetail -> nonInvoicedSourceAccountDetail
                         .getNonInvoicedChargesTaxBalance()).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
