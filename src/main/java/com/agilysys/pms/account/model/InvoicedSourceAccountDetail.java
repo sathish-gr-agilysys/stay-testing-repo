@@ -26,6 +26,8 @@ public class InvoicedSourceAccountDetail {
     protected BigDecimal chargesBalance = BigDecimal.ZERO;
     protected BigDecimal taxBalance = BigDecimal.ZERO;
     protected BigDecimal totalBalance = BigDecimal.ZERO;
+    protected List<String> additionalGuestDetails;
+    protected RoomInfo roomInfo;
 
     public String getConfirmationCode() {
         return confirmationCode;
@@ -137,5 +139,21 @@ public class InvoicedSourceAccountDetail {
 
     public void setTotalBalance(BigDecimal totalBalance) {
         this.totalBalance = totalBalance;
+    }
+
+    public List<String> getAdditionalGuestDetails() {
+        return additionalGuestDetails;
+    }
+
+    public void setAdditionalGuestDetails(List<String> additionalGuestDetails) {
+        this.additionalGuestDetails = additionalGuestDetails;
+    }
+
+    public RoomInfo getRoomInfo() {
+        return roomInfo;
+    }
+
+    public void setRoomInfo(RoomInfo roomInfo) {
+        this.roomInfo = roomInfo;
     }
 }
