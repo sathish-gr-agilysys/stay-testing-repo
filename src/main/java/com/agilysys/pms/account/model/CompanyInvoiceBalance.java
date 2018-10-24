@@ -10,12 +10,14 @@ import java.util.List;
 public class CompanyInvoiceBalance {
     private String companyName;
     private BigDecimal accountBalance;
+    private BigDecimal total;
     private List<PropertyInvoiceBalance> propertyInvoiceBalances;
     private BigDecimal[] companyInvoiceTotalsByAging;
 
     public CompanyInvoiceBalance() {
         this.accountBalance = BigDecimal.ZERO;
         propertyInvoiceBalances = new ArrayList<>();
+        this.total = BigDecimal.ZERO;
     }
 
     public CompanyInvoiceBalance(String companyName) {
@@ -53,5 +55,13 @@ public class CompanyInvoiceBalance {
 
     public void setCompanyInvoiceTotalsByAging(BigDecimal[] companyInvoiceTotalsByAging) {
         this.companyInvoiceTotalsByAging = companyInvoiceTotalsByAging;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 }
