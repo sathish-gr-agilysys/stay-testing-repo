@@ -15,9 +15,9 @@ public class CompanyInvoiceBalance {
     private BigDecimal[] companyInvoiceTotalsByAging;
 
     public CompanyInvoiceBalance() {
-        this.accountBalance = BigDecimal.ZERO;
+        accountBalance = BigDecimal.ZERO;
         propertyInvoiceBalances = new ArrayList<>();
-        this.total = BigDecimal.ZERO;
+        total = BigDecimal.ZERO;
     }
 
     public CompanyInvoiceBalance(String companyName) {

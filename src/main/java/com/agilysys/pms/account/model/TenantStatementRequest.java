@@ -6,10 +6,12 @@ package com.agilysys.pms.account.model;
 import java.util.Set;
 
 public class TenantStatementRequest {
+    private static final String DEFAULT_INVOICE_AGING_TYPE = "AGE_BY_PROPERTY_DATE";
     private Set<String> companyProfileIds;
-    private String invoiceAgingType = "age_By_Property_Date";
+    private String invoiceAgingType;
 
     public TenantStatementRequest() {
+        invoiceAgingType = DEFAULT_INVOICE_AGING_TYPE;
     }
 
     public Set<String> getCompanyProfileIds() {
