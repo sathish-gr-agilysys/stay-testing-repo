@@ -14,7 +14,7 @@ public class AccountBalancesRequest {
     private Set<String> paymentMethodIds;
     private BigDecimal minBalance;
     private BigDecimal maxBalance;
-    private boolean ignoreZero;
+    private Boolean ignoreZero;
     private IgnoreZeroBalance ignoreZeroBalance;
 
     public Set<String> getAccountIds() {
@@ -65,11 +65,11 @@ public class AccountBalancesRequest {
         this.maxBalance = maxBalance;
     }
 
-    public boolean getIgnoreZero() {
+    public Boolean getIgnoreZero() {
         return ignoreZero;
     }
 
-    public void setIgnoreZero(boolean ignoreZero) {
+    public void setIgnoreZero(Boolean ignoreZero) {
         this.ignoreZero = ignoreZero;
     }
 
