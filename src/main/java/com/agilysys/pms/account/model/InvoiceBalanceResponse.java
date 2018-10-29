@@ -31,16 +31,14 @@ public class InvoiceBalanceResponse {
 
     public InvoiceBalanceResponse(String id, String tenantId, String propertyId, String accountId, String invoiceNumber,
           LocalDate invoiceDate, BigDecimal subtotal, BigDecimal tax, BigDecimal paid, BigDecimal total) {
+        this(invoiceNumber, invoiceDate, total);
         this.id = id;
         this.tenantId = tenantId;
         this.propertyId = propertyId;
         this.accountId = accountId;
-        this.invoiceNumber = invoiceNumber;
-        this.invoiceDate = invoiceDate;
         this.subtotal = subtotal;
         this.tax = tax;
         this.paid = paid;
-        this.total = total;
     }
 
     public String getId() {
