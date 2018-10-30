@@ -29,6 +29,13 @@ public class InventoryItem extends TransactionItem {
         restrictedRoomTypes = new LinkedHashSet<>();
     }
 
+    public InventoryItem(TransactionItem transactionItem, Integer availableCount, CanonicalId status) {
+        super(transactionItem);
+
+        setStatus(status);
+        this.availableCount = availableCount;
+    }
+
     public InventoryItem(TransactionItem transactionItem, Integer availableCount, CanonicalId status,
           Integer maxQuantityPerReservation, Set<String> restrictedRoomTypes) {
         super(transactionItem);
