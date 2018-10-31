@@ -92,7 +92,8 @@ public class ComponentChargeView {
     }
 
     public int getTotalQuantity() {
-        return totalQuantity;
+        //quantity is considered in case the recurring charges are created before this is introduced
+        return totalQuantity != 0 ? totalQuantity : quantity;
     }
 
     public void setTotalQuantity(int totalQuantity) {
@@ -137,10 +138,12 @@ public class ComponentChargeView {
         return componentChargeView;
     }
 
-    public static List<ComponentChargeView> fromComponentRateSnapshots(List<ComponentRateSnapshot> componentRateSnapshots) {
+    public static List<ComponentChargeView> fromComponentRateSnapshots(
+          List<ComponentRateSnapshot> componentRateSnapshots) {
 
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        componentRateSnapshots.stream().forEach(componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
+        componentRateSnapshots.stream().forEach(
+              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
