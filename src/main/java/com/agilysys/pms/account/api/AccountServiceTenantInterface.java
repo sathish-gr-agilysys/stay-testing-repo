@@ -23,6 +23,8 @@ import com.agilysys.pms.account.model.ARBalanceInfo;
 import com.agilysys.pms.account.model.CentralARRequest;
 import com.agilysys.pms.account.model.CentralARView;
 import com.agilysys.pms.account.model.InvoiceBalanceResponse;
+import com.agilysys.pms.account.model.TenantStatementRequest;
+import com.agilysys.pms.account.model.TenantStatementResponse;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path(AccountServiceTenantInterface.BASE_PATH)
@@ -35,6 +37,7 @@ public interface AccountServiceTenantInterface {
     String BASE_PATH = "/tenants/{" + TENANT_ID + "}/accounts";
 
     String AR_BALANCES_PATH = "/ar/balances";
+    String AR_STATEMENTS_PATH = "/ar/statements";
     String CALCULATE_INVOICE_BALANCE = "/calculateBalance";
     String INVOICES_PATH = "/invoices";
     String PREFERRED_COMMUNICATION = "/preferredCommunication";
@@ -56,6 +59,12 @@ public interface AccountServiceTenantInterface {
     @Path(INVOICES_PATH)
     List<CentralARView> createInvoices(@PathParam(TENANT_ID) String tenantId,
           CentralARRequest centralARRequest) throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(AR_STATEMENTS_PATH)
+    TenantStatementResponse createStatements(@PathParam(TENANT_ID) String tenantId,
+          TenantStatementRequest tenantStatementRequest) throws RGuestException, ServiceException;
 
     @POST
     @CreatedOnSuccess
