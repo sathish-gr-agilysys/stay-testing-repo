@@ -28,6 +28,7 @@ public class InvoicedSourceAccountDetail {
     protected BigDecimal totalBalance = BigDecimal.ZERO;
     protected List<String> additionalGuestDetails;
     protected RoomInfo roomInfo;
+    protected String reservationAlias;
 
     public String getConfirmationCode() {
         return confirmationCode;
@@ -155,5 +156,13 @@ public class InvoicedSourceAccountDetail {
 
     public void setRoomInfo(RoomInfo roomInfo) {
         this.roomInfo = roomInfo;
+    }
+
+    public String getReservationAlias() {
+        return reservationAlias;
+    }
+
+    public void setReservationAlias(String reservationAlias) {
+        this.reservationAlias = reservationAlias;
     }
 }
