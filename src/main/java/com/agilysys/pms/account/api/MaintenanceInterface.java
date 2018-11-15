@@ -23,8 +23,6 @@ import com.agilysys.pms.maintenance.model.IndexRequest;
 @Path("/maintenance/elasticsearch")
 @Consumes(MediaType.APPLICATION_JSON)
 public interface MaintenanceInterface {
-    String CHUNK_SIZE = "chunkSize";
-
     String TENANT_ID = "tenantId";
     String TENANT_ID_TEMPLATE = "{" + TENANT_ID + "}";
 
@@ -47,12 +45,11 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path("/index/accounts/" + TENANT_ID_TEMPLATE)
-    long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(CHUNK_SIZE) Integer chunkSize,
-          @QueryParam(UPDATED_SINCE) DateTime updatedSince, @QueryParam(UPDATED_UNTIL) DateTime updatedUntil)
-          throws RGuestException, ServiceException;
+    int indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) DateTime updatedSince,
+          @QueryParam(UPDATED_UNTIL) DateTime updatedUntil) throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path("/index/accounts")
-    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
+    Map<String, Integer> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
 }
