@@ -26,6 +26,8 @@ public interface MaintenanceInterface {
     String BASE_PATH = "/maintenance";
 
     String ACCOUNTS_PATH = "/accounts";
+
+    String COUNT_PATH = "/count";
     String INDEX_PATH = "/index";
     String RANGE_PATH = "/range";
     String UNINDEXED_PATH = "/unindexed";
@@ -42,16 +44,16 @@ public interface MaintenanceInterface {
     String WRITE_TENANTS_PERMISSION = PERMISSION_PREFIX + "WriteTenants" + PERMISSION_POSTFIX;
 
     @GET
-    @Path(RANGE_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
+    @Path(COUNT_PATH + RANGE_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long countRangeAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) DateTime updatedSince,
           @QueryParam(UPDATED_UNTIL) DateTime updatedUntil) throws RGuestException, ServiceException;
 
     @GET
-    @Path(UNINDEXED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
+    @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long countUnindexedAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
 
     @GET
-    @Path(UNINDEXED_PATH + ACCOUNTS_PATH)
+    @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH)
     Map<String, Long> countUnindexedAccounts() throws RGuestException, ServiceException;
 
     @POST
