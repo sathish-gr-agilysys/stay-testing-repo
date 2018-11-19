@@ -59,11 +59,11 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
-    int indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) DateTime updatedSince,
+    long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) DateTime updatedSince,
           @QueryParam(UPDATED_UNTIL) DateTime updatedUntil) throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
-    Map<String, Integer> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
+    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
 }
