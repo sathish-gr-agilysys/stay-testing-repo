@@ -24,6 +24,15 @@ public class Payment {
 
     public Payment() {}
 
+    public Payment(String paymentMethodId, String terminalId, String invoiceNumber, String paymentInstrumentId,
+                   List<PaymentTransaction> transactions) {
+        this.paymentMethodId = paymentMethodId;
+        this.terminalId = terminalId;
+        this.invoiceNumber = invoiceNumber;
+        this.paymentInstrumentId = paymentInstrumentId;
+        this.transactions = transactions;
+    }
+
     public Payment(ApplyInvoicePaymentRequest applyInvoicePaymentRequest) {
         paymentInstrumentId = applyInvoicePaymentRequest.getPaymentInstrumentId();
         paymentMethodId = applyInvoicePaymentRequest.getPaymentMethodId();
