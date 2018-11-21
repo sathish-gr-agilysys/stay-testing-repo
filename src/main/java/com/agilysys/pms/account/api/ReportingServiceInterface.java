@@ -41,6 +41,7 @@ public interface ReportingServiceInterface {
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
     String REVENUE_PATH = "/revenueDetails";
+    String REVENUE_PATH_REV_OCC = "/revenueDetails/revOcc";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
     String TENANT_ID = "tenantId";
@@ -48,6 +49,7 @@ public interface ReportingServiceInterface {
     String PROPERTY_DATE = "propertyDate";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
+    String OCC_REPORT = "occReport";
     String ROOM_REVENUE = "roomRevenue";
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
@@ -152,6 +154,26 @@ public interface ReportingServiceInterface {
     RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean isRoomRevenue)
+          throws RGuestException, ServiceException;
+
+    /**
+     * retrieve revenue detail information for given dates
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param startDate
+     * @param endDate
+     * @param isRoomRevenue
+     * @return
+     */
+    @GET
+    @Path(REVENUE_PATH_REV_OCC)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean isRoomRevenue, @QueryParam
+          (OCC_REPORT) Boolean occReport)
           throws RGuestException, ServiceException;
 
     /**
