@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -9,10 +9,19 @@ import com.google.common.base.Objects;
  * A Charge posted to an account.
  */
 public class Charge extends Transaction {
+    private boolean preCheckCredit;
     private String mealPeriodId;
     private String recurringChargeId;
     private TransactionItemType transactionItemType;
     private String autoRecurringItemId;
+
+    public boolean isPreCheckCredit() {
+        return preCheckCredit;
+    }
+
+    public void setPreCheckCredit(boolean preCheckCredit) {
+        this.preCheckCredit = preCheckCredit;
+    }
 
     public String getMealPeriodId() {
         return mealPeriodId;
@@ -59,7 +68,8 @@ public class Charge extends Transaction {
         }
         Charge that = (Charge) o;
 
-        return Objects.equal(mealPeriodId, that.mealPeriodId) &&
+        return Objects.equal(preCheckCredit, that.preCheckCredit) &&
+              Objects.equal(mealPeriodId, that.mealPeriodId) &&
               Objects.equal(quantity, that.quantity) &&
               Objects.equal(recurringChargeId, that.recurringChargeId) &&
               Objects.equal(transactionItemType, that.transactionItemType) &&
@@ -68,7 +78,7 @@ public class Charge extends Transaction {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId, transactionItemType,
-              autoRecurringItemId);
+        return Objects.hashCode(super.hashCode(), preCheckCredit, mealPeriodId, quantity, recurringChargeId,
+              transactionItemType, autoRecurringItemId);
     }
 }
