@@ -36,6 +36,8 @@ public class TransactionReportItem {
     private String reason;
     private boolean isRoomRevenue;
     private String autoRecurringItemId;
+    private String sourceId;
+    private String mealPeriodId;
 
     public String getId() {
         return id;
@@ -67,6 +69,22 @@ public class TransactionReportItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public String getMealPeriodId() {
+        return mealPeriodId;
+    }
+
+    public void setMealPeriodId(String mealPeriodId) {
+        this.mealPeriodId = mealPeriodId;
     }
 
     public String getCategoryId() {
