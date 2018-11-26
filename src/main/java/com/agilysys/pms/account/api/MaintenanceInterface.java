@@ -45,8 +45,8 @@ public interface MaintenanceInterface {
 
     @GET
     @Path(COUNT_PATH + RANGE_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long countRangeAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) DateTime updatedSince,
-          @QueryParam(UPDATED_UNTIL) DateTime updatedUntil) throws RGuestException, ServiceException;
+    long countRangeAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
 
     @GET
     @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
@@ -59,8 +59,8 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) DateTime updatedSince,
-          @QueryParam(UPDATED_UNTIL) DateTime updatedUntil) throws RGuestException, ServiceException;
+    long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
