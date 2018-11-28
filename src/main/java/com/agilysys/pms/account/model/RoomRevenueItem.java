@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class RoomRevenueItem {
     private String accountId;
@@ -33,7 +34,7 @@ public class RoomRevenueItem {
     }
 
     public BigDecimal getAmount() {
-        return amount;
+        return amount.setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setAmount(BigDecimal amount) {
