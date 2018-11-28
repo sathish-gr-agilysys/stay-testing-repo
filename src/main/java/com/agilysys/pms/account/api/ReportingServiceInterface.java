@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -26,6 +27,7 @@ import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.RevenueReportResult;
+import com.agilysys.pms.account.model.RoomRevenueResult;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
@@ -40,6 +42,7 @@ public interface ReportingServiceInterface {
     String TO_DATE_TOTALS_PATH = "/toDateTotals";
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
+    String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String REVENUE_PATH = "/revenueDetails";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
@@ -249,4 +252,19 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(SOURCE_ID) String sourceId)
           throws RGuestException, ServiceException;
+
+    /**
+     * retrieve room revenue detail for given reservationIds
+     *
+     * @param tenantId
+     * @param propertyId
+     * @return
+     */
+    @POST
+    @Path(RESERVATION_ROOM_REVENUE_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    RoomRevenueResult getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
 }
