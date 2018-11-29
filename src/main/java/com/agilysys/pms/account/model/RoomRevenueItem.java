@@ -9,7 +9,11 @@ import java.math.RoundingMode;
 public class RoomRevenueItem {
     private String accountId;
     private String referenceId;
-    private BigDecimal amount = BigDecimal.ZERO;
+    private BigDecimal amount;
+
+    public RoomRevenueItem() {
+        amount = BigDecimal.ZERO;
+    }
 
     public RoomRevenueItem(String accountId, String referenceId, BigDecimal amount) {
         this.accountId = accountId;

@@ -254,7 +254,7 @@ public interface ReportingServiceInterface {
           throws RGuestException, ServiceException;
 
     /**
-     * retrieve room revenue detail for given reservationIds
+     * Retrieve room revenue detail for the given reservation identifiers.
      *
      * @param tenantId
      * @param propertyId
