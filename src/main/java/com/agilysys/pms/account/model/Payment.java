@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Payment {
     @JsonProperty(required = true)
-    private List<PaymentTransaction> transactions = new ArrayList<>();
+    private List<PaymentTransaction> transactions;
     @JsonProperty(required = true)
     private String paymentMethodId;
     private String paymentInstrumentId;
@@ -22,7 +22,9 @@ public class Payment {
     private String terminalId;
     private String invoiceNumber;
 
-    public Payment() {}
+    public Payment() {
+        this.transactions = new ArrayList<>();
+    }
 
     public Payment(String paymentMethodId, String terminalId, String invoiceNumber, String paymentInstrumentId,
                    List<PaymentTransaction> transactions) {
