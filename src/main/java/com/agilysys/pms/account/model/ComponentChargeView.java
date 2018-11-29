@@ -93,7 +93,7 @@ public class ComponentChargeView {
 
     public int getTotalQuantity() {
         //quantity is considered in case the recurring charges are created before this is introduced
-        return totalQuantity > 0 ? totalQuantity : quantity;
+        return totalQuantity;
     }
 
     public void setTotalQuantity(int totalQuantity) {
