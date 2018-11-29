@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.Consumes;
@@ -27,7 +28,7 @@ import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.RevenueReportResult;
-import com.agilysys.pms.account.model.RoomRevenueResult;
+import com.agilysys.pms.account.model.RoomRevenueItem;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
@@ -264,7 +265,7 @@ public interface ReportingServiceInterface {
     @Path(RESERVATION_ROOM_REVENUE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    RoomRevenueResult getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
+    Map<String, RoomRevenueItem> getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
 }
