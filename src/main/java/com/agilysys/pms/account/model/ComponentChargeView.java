@@ -130,8 +130,8 @@ public class ComponentChargeView {
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
         componentChargeView.setComponentBundleId(componentRateSnapshot.getComponentBundleId());
         componentChargeView.setAmount(componentRateSnapshot.getAmount());
-        componentChargeView.setTotalQuantity(componentRateSnapshot.getTotalQuantity());
-        componentChargeView.setTotalAmount(componentRateSnapshot.getTotalAmount());
+        componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
+        componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
 
