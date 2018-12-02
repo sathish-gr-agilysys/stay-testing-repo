@@ -9,12 +9,12 @@ public class InventoryAllocationDetails {
     private LocalDate itemStatusDate;
     private long allocatedQuantity;
     private int availableQuantity;
-    private int inventoryQuantity;
+    private Integer inventoryQuantity;
 
     public InventoryAllocationDetails() {}
 
     public InventoryAllocationDetails(LocalDate itemStatusDate, int availableQuantity, long allocatedQuantity,
-          int inventoryQuantity) {
+          Integer inventoryQuantity) {
         this.itemStatusDate = itemStatusDate;
         this.availableQuantity = availableQuantity;
         this.allocatedQuantity = allocatedQuantity;
@@ -45,11 +45,15 @@ public class InventoryAllocationDetails {
         this.allocatedQuantity = allocatedQuantity;
     }
 
-    public int getInventoryQuantity() {
+    public Integer getInventoryQuantity() {
         return inventoryQuantity;
     }
 
-    public void setInventoryQuantity(int inventoryQuantity) {
+    public void setInventoryQuantity(Integer inventoryQuantity) {
         this.inventoryQuantity = inventoryQuantity;
+    }
+
+    public boolean isInventoryUnrestricted() {
+        return inventoryQuantity == null;
     }
 }
