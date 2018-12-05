@@ -12,6 +12,7 @@ public class ModifyStayDetails {
     @JsonProperty(required = true)
     private String ratePlanId;
 
+    @Deprecated
     private String componentBundleId;
 
     private ComponentBundle componentBundle;

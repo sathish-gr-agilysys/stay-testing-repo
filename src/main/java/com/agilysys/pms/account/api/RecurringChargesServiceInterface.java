@@ -305,7 +305,7 @@ public interface RecurringChargesServiceInterface {
 
     /**
      * Retrieves the details of recurring charges which
-     * 1. Does not dependent on reservation dates
+     * 1. Do not dependent on reservation dates
      * 2. Violates inventory max per reservation restriction
      * 3. Violates inventory room type restriction
      * 4. Required quantity not available
