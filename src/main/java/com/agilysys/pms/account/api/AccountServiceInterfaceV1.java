@@ -88,6 +88,7 @@ import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
+import com.agilysys.pms.payment.model.LodgingInformation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -141,6 +142,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
+    String LODGING_PATH = ACCOUNT_ID_PATH + "/lodging";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
     String PATH = "path";
@@ -254,6 +256,12 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountSummary getAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(LODGING_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    LodgingInformation getLodgingInformationForAccountById(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId);
 
     /**
      * Retrieve all account types
