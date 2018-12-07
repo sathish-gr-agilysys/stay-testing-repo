@@ -156,25 +156,6 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean isRoomRevenue)
-          throws RGuestException, ServiceException;
-
-    /**
-     * retrieve revenue detail information for given dates
-     *
-     * @param tenantId
-     * @param propertyId
-     * @param startDate
-     * @param endDate
-     * @param isRoomRevenue
-     * @return
-     */
-    @GET
-    @Path(REVENUE_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean isRoomRevenue,
           @QueryParam(REV_OCC) Boolean revOcc) throws RGuestException, ServiceException;
 
