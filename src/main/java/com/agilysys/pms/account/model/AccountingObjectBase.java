@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2014 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -11,7 +11,7 @@ import com.agilysys.pms.common.model.audit.Auditable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Abstract base class for Guest Accounting model objects.
+ * Abstract base class for guest accounting model objects.
  */
 public abstract class AccountingObjectBase implements Auditable {
     @DataPortId
@@ -26,15 +26,24 @@ public abstract class AccountingObjectBase implements Auditable {
     @DataPortKey
     protected String code;
 
-    protected boolean internal = false;
+    protected boolean internal;
 
-    public AccountingObjectBase() {}
+    protected AccountingObjectBase() {}
 
-    public AccountingObjectBase(AccountingObjectBase accountingObjectBase) {
-        id = accountingObjectBase.getId();
-        name = accountingObjectBase.getName();
+    protected AccountingObjectBase(AccountingObjectBase accountingObjectBase) {
         code = accountingObjectBase.getCode();
+        id = accountingObjectBase.getId();
         internal = accountingObjectBase.isInternal();
+        name = accountingObjectBase.getName();
+    }
+
+    public String getCode()
+    {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getId()
@@ -47,24 +56,6 @@ public abstract class AccountingObjectBase implements Auditable {
         this.id = id;
     }
 
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode()
-    {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public boolean isInternal()
     {
         return internal;
@@ -74,12 +65,21 @@ public abstract class AccountingObjectBase implements Auditable {
         this.internal = internal;
     }
 
-    public abstract String getDisplayName();
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     public String entityId() {
         return id;
     }
+
+    public abstract String getDisplayName();
 
     @Override
     public String getDisplayText() {

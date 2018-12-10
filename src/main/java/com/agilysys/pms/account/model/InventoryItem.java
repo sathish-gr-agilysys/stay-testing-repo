@@ -26,6 +26,8 @@ public class InventoryItem extends TransactionItem {
     private Set<String> restrictedRoomTypes;
 
     public InventoryItem() {
+        super();
+
         restrictedRoomTypes = new LinkedHashSet<>();
     }
 
