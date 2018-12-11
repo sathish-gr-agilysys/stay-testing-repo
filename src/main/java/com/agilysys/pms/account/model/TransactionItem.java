@@ -15,7 +15,7 @@ import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.tax.model.TaxClass;
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.audit.annotation.AuditMapField;
 import com.agilysys.pms.common.model.annotation.DataPortMapReference;
@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Class that represents a TransactionItem in the application.
  */
-@AuditEntityType(EntityTypes.TRANSACTION_ITEM)
+@AuditEntity(EntityTypes.TRANSACTION_ITEM)
 public class TransactionItem extends AccountingItem {
     private static final String DISPLAY_NAME = "Transaction item";
 

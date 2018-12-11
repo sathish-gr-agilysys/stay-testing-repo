@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Class that represents a TransactionCategory in the application.
  */
-@AuditEntityType(EntityTypes.TRANSACTION_CATEGORY)
+@AuditEntity(EntityTypes.TRANSACTION_CATEGORY)
 public class TransactionCategory extends AccountingObjectBase {
 
     private static final String DISPLAY_NAME = "Transaction category";

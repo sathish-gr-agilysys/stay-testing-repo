@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.agilysys.common.model.PaymentMethodSetting;
 import com.agilysys.common.permission.PermissionType;
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortInline;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Class to represent a PaymentMethod
  */
-@AuditEntityType(EntityTypes.PAYMENT_METHOD)
+@AuditEntity(EntityTypes.PAYMENT_METHOD)
 public class PaymentMethod extends AccountingItem {
 
     private static final String DISPLAY_NAME = "Payment method";
