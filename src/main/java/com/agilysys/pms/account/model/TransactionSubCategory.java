@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionSubCategory in the application.
  */
 @AuditEntityType(EntityTypes.TRANSACTION_SUBCATEGORY)
-public class TransactionSubCategory extends AccountingObjectBase {
+public class TransactionSubCategory extends AccountingObject {
 
     private static final String DISPLAY_NAME = "Transaction subcategory";
 

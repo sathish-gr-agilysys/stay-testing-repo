@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
@@ -14,11 +13,10 @@ import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntityType;
 import com.agilysys.pms.common.audit.annotation.AuditField;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @AuditEntityType(EntityTypes.AUTO_RECURRING_ITEM)
-public class AutoRecurringItem extends AccountingObjectBase {
+public class AutoRecurringItem extends AccountingObject {
     private static final String DISPLAY_NAME = "Auto-Recurring item";
 
     @JsonProperty(required = true)

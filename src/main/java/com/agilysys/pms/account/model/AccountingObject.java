@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Abstract base class for guest accounting model objects.
  */
-public abstract class AccountingObjectBase implements Auditable {
+public abstract class AccountingObject implements Auditable {
     @DataPortId
     protected String id;
 
@@ -28,9 +28,9 @@ public abstract class AccountingObjectBase implements Auditable {
 
     protected boolean internal;
 
-    protected AccountingObjectBase() {}
+    protected AccountingObject() {}
 
-    protected AccountingObjectBase(AccountingObjectBase accountingObjectBase) {
+    protected AccountingObject(AccountingObject accountingObjectBase) {
         code = accountingObjectBase.getCode();
         id = accountingObjectBase.getId();
         internal = accountingObjectBase.isInternal();

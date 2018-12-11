@@ -4,12 +4,11 @@
 package com.agilysys.pms.account.model;
 
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
 import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class AccountingItem extends AccountingObjectBase {
+public abstract class AccountingItem extends AccountingObject {
     @JsonProperty(required = true)
     @DataPortReference(name = "categoryCode", type = TransactionCategory.class)
     @AuditField(name = "category", references = EntityTypes.TRANSACTION_CATEGORY)
