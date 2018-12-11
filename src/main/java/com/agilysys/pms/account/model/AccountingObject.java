@@ -10,9 +10,6 @@ import com.agilysys.pms.common.model.annotation.DataPortKey;
 import com.agilysys.pms.common.model.audit.Auditable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Abstract base class for guest accounting model objects.
- */
 public abstract class AccountingObject implements Auditable {
     @DataPortId
     protected String id;
