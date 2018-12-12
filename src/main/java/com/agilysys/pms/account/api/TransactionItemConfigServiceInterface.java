@@ -22,6 +22,7 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.platform.tax.model.TaxRuleData;
 import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
+import com.agilysys.pms.account.model.MigrationResult;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -42,6 +43,8 @@ public interface TransactionItemConfigServiceInterface {
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
     String ACTIVE = "/active";
+    String MIGRATE_TO_V1_PATH = "migrateToV1";
+    String START_REFERENCE_UPDATE = "startReferenceUpdate";
 
     /**
      * Retrieve all TransactionItems
@@ -149,4 +152,15 @@ public interface TransactionItemConfigServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
           @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
           @QueryParam(INCLUDE_INACTIVE) boolean includeInactive) throws RGuestException, ServiceException;
+
+    /**
+     * Endpoint to update transaction and inventory item to new collection, this end point
+     * should be removed after successful migration
+     */
+    @POST
+    @Path(MIGRATE_TO_V1_PATH)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    List<MigrationResult> migrateTransactionItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_REFERENCE_UPDATE) boolean startReferenceUpdate)
+          throws RGuestException, ServiceException;
 }

@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.pms.common.model.annotation.DataPortId;
+import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 import com.agilysys.pms.common.model.annotation.DataPortKey;
 import com.agilysys.pms.common.model.audit.Auditable;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,6 +25,9 @@ public abstract class AccountingObject implements Auditable {
     protected String code;
 
     protected boolean internal;
+
+    @DataPortIgnore
+    private String migratedId;
 
     protected AccountingObject() {}
 
@@ -60,6 +64,14 @@ public abstract class AccountingObject implements Auditable {
 
     public void setInternal(boolean internal) {
         this.internal = internal;
+    }
+
+    public String getMigratedId() {
+        return migratedId;
+    }
+
+    public void setMigratedId(String migratedId) {
+        this.migratedId = migratedId;
     }
 
     public String getName()
