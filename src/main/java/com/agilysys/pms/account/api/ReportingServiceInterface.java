@@ -27,6 +27,7 @@ import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
+import com.agilysys.pms.account.model.RevenueDetailReportRequest;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
@@ -158,6 +159,22 @@ public interface ReportingServiceInterface {
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean isRoomRevenue)
           throws RGuestException, ServiceException;
 
+    /**
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param revenueDetailReportRequest RevenueDetailReportRequest object that holds request parameters
+     * @return Map<String, RevenueReportResult>
+     * @throws RGuestException
+     * @throws ServiceException
+     */
+    @POST
+    @Path(REVENUE_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    Map<String, RevenueReportResult> getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, RevenueDetailReportRequest revenueDetailReportRequest)
+          throws RGuestException, ServiceException;
     /**
      * retrieve recurring charge detail information for a given date
      *
