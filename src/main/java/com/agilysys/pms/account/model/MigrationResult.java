@@ -6,7 +6,7 @@ package com.agilysys.pms.account.model;
 public class MigrationResult {
     private String itemId;
     private String newItemId;
-    private MigrationStatus status;
+    private Status status;
     private boolean updateReference;
 
     public MigrationResult(String itemId) {
@@ -29,11 +29,11 @@ public class MigrationResult {
         this.newItemId = newItemId;
     }
 
-    public MigrationStatus getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(MigrationStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -45,7 +45,7 @@ public class MigrationResult {
         this.updateReference = updateReference;
     }
 
-    public enum MigrationStatus {
+    public enum Status {
         OK,
         ALREADY_MIGRATED
     }
