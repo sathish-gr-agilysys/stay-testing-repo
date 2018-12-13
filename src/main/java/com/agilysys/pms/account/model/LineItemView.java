@@ -77,6 +77,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private boolean reverseTax;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -748,6 +749,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCallType(String callType) {
         this.callType = callType;
+    }
+
+    public boolean isReverseTax() {
+        return reverseTax;
+    }
+
+    public void setReverseTax(boolean reverseTax) {
+        this.reverseTax = reverseTax;
     }
 
     @Override

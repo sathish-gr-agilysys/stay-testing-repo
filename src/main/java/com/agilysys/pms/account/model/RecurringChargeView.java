@@ -63,6 +63,7 @@ public class RecurringChargeView {
 
     private LocalDate startDate;
     private LocalDate endDate;
+    private boolean reverseTax;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
@@ -294,5 +295,13 @@ public class RecurringChargeView {
 
     public void setAddQuantityToAllocation(boolean addQuantityToAllocation) {
         this.addQuantityToAllocation = addQuantityToAllocation;
+    }
+
+    public boolean isReverseTax() {
+        return reverseTax;
+    }
+
+    public void setReverseTax(boolean reverseTax) {
+        this.reverseTax = reverseTax;
     }
 }
