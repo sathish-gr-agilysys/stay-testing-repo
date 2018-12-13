@@ -304,6 +304,20 @@ public interface RecurringChargesServiceInterface {
           RecurringChargesValidityRequest recurringChargesValidityRequest) throws RGuestException, ServiceException;
 
     /**
+     * Retrieves the details of recurring charges which
+     * 1. Do not dependent on reservation dates
+     * 2. Violates inventory max per reservation restriction
+     * 3. Violates inventory room type restriction
+     * 4. Required quantity not available
+     */
+    @POST
+    @Path(RECURRING_CHARGES_PATH + VALIDITY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    RecurringChargesValidityResponse getRecurringChargesValidityForCreate(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, RecurringChargesValidityRequest recurringChargesValidityRequest)
+          throws RGuestException, ServiceException;
+
+    /**
      * @return The estimated room charges for the given date range, or the current
      * date if date range not given. Returns a list of estimated room charge view.
      *
