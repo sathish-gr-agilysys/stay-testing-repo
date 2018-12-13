@@ -1,5 +1,6 @@
 package com.agilysys.pms.account.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,5 +19,9 @@ public class RevenueReportResult {
 
     public void setRevenueDetails(Map<LocalDate, List<RevenueReportItem>> revenueDetails) {
         this.revenueDetails = revenueDetails;
+    }
+
+    public RevenueReportResult() {
+        this.revenueDetails = new HashMap<>();
     }
 }
