@@ -44,6 +44,7 @@ public class InventoryItem extends TransactionItem {
         this.availableCount = availableCount;
         this.maxQuantityPerReservation = maxQuantityPerReservation;
         this.restrictedRoomTypes = restrictedRoomTypes;
+        this.status = status;
     }
 
     public TransactionItemType getType() {
