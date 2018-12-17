@@ -11,7 +11,7 @@ import com.agilysys.pms.common.model.annotation.DataPortKey;
 import com.agilysys.pms.common.model.audit.Auditable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class AccountingObject implements Auditable {
+public abstract class AccountingObjectBase implements Auditable {
     @DataPortId
     protected String id;
 
@@ -29,13 +29,13 @@ public abstract class AccountingObject implements Auditable {
     @DataPortIgnore
     private String migratedId;
 
-    protected AccountingObject() {}
+    protected AccountingObjectBase() {}
 
-    protected AccountingObject(AccountingObject accountingObjectBase) {
-        code = accountingObjectBase.getCode();
-        id = accountingObjectBase.getId();
-        internal = accountingObjectBase.isInternal();
-        name = accountingObjectBase.getName();
+    protected AccountingObjectBase(AccountingObjectBase accountingObjectBaseBase) {
+        code = accountingObjectBaseBase.getCode();
+        id = accountingObjectBaseBase.getId();
+        internal = accountingObjectBaseBase.isInternal();
+        name = accountingObjectBaseBase.getName();
     }
 
     public String getCode()
