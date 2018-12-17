@@ -4,29 +4,36 @@
 package com.agilysys.pms.account.model;
 
 public class MigrationResult {
-    private String itemId;
-    private String newItemId;
+    private String existingId;
+    private String newId;
     private Status status;
-    private boolean updateReference;
+    private boolean updateReferences;
 
-    public MigrationResult(String itemId) {
-        this.itemId = itemId;
+    public MigrationResult(String existingId) {
+        this.existingId = existingId;
     }
 
-    public String getItemId() {
-        return itemId;
+    public MigrationResult(String existingId, String newId, Status status, boolean updateReferences) {
+        this.existingId = existingId;
+        this.newId = newId;
+        this.status = status;
+        this.updateReferences = updateReferences;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public String getExistingId() {
+        return existingId;
     }
 
-    public String getNewItemId() {
-        return newItemId;
+    public void setExistingId(String existingId) {
+        this.existingId = existingId;
     }
 
-    public void setNewItemId(String newItemId) {
-        this.newItemId = newItemId;
+    public String getNewId() {
+        return newId;
+    }
+
+    public void setNewId(String newId) {
+        this.newId = newId;
     }
 
     public Status getStatus() {
@@ -37,12 +44,12 @@ public class MigrationResult {
         this.status = status;
     }
 
-    public boolean isUpdateReference() {
-        return updateReference;
+    public boolean isUpdateReferences() {
+        return updateReferences;
     }
 
-    public void setUpdateReference(boolean updateReference) {
-        this.updateReference = updateReference;
+    public void setUpdateReferences(boolean updateReferences) {
+        this.updateReferences = updateReferences;
     }
 
     public enum Status {
