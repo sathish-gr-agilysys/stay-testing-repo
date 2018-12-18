@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.api;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -23,6 +24,7 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.InventoryItem;
+import com.agilysys.pms.account.model.MigrationResult;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/inventoryItems")
@@ -35,6 +37,8 @@ public interface InventoryItemConfigServiceInterface {
     String ITEM_ID_PATH = "{id}";
     String INCLUDE_INTERNAL = "includeInternal";
     String CONVERT_PATH = "/convertToInventory";
+    String MIGRATE_TO_V1_PATH = "/migrateToV1";
+    String UPDATE_REFERENCES = "updateReferences";
 
     /**
      * Retrieve all InventoryItems
@@ -118,5 +122,16 @@ public interface InventoryItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     List<InventoryItem> convertToInventoryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<InventoryItem> items)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Endpoint to update inventory to new collection, this end point
+     * should be removed after successful migration
+     */
+    @POST
+    @Path(MIGRATE_TO_V1_PATH)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    Collection<MigrationResult> migrateInventoryItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(UPDATE_REFERENCES) boolean updateReferences)
           throws RGuestException, ServiceException;
 }

@@ -1,5 +1,6 @@
 package com.agilysys.pms.account.api;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -43,8 +44,8 @@ public interface TransactionItemConfigServiceInterface {
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
     String ACTIVE = "/active";
-    String MIGRATE_TO_V1_PATH = "migrateToV1";
-    String START_REFERENCE_UPDATE = "startReferenceUpdate";
+    String MIGRATE_TO_V1_PATH = "/migrateToV1";
+    String UPDATE_REFERENCES = "updateReferences";
 
     /**
      * Retrieve all TransactionItems
@@ -154,13 +155,13 @@ public interface TransactionItemConfigServiceInterface {
           @QueryParam(INCLUDE_INACTIVE) boolean includeInactive) throws RGuestException, ServiceException;
 
     /**
-     * Endpoint to update transaction and inventory item to new collection, this end point
+     * Endpoint to update transaction to new collection, this end point
      * should be removed after successful migration
      */
     @POST
     @Path(MIGRATE_TO_V1_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    List<MigrationResult> migrateTransactionItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_REFERENCE_UPDATE) boolean startReferenceUpdate)
+    Collection<MigrationResult> migrateTransactionItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(UPDATE_REFERENCES) boolean updateReferences)
           throws RGuestException, ServiceException;
 }

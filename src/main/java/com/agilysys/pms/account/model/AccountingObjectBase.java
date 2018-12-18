@@ -31,11 +31,11 @@ public abstract class AccountingObjectBase implements Auditable {
 
     protected AccountingObjectBase() {}
 
-    protected AccountingObjectBase(AccountingObjectBase accountingObjectBase) {
-        code = accountingObjectBase.getCode();
-        id = accountingObjectBase.getId();
-        internal = accountingObjectBase.isInternal();
-        name = accountingObjectBase.getName();
+    protected AccountingObjectBase(AccountingObjectBase accountingObjectBaseBase) {
+        code = accountingObjectBaseBase.getCode();
+        id = accountingObjectBaseBase.getId();
+        internal = accountingObjectBaseBase.isInternal();
+        name = accountingObjectBaseBase.getName();
     }
 
     public String getCode()
