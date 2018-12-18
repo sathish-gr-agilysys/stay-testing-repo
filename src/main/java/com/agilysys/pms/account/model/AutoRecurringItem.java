@@ -16,7 +16,7 @@ import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @AuditEntityType(EntityTypes.AUTO_RECURRING_ITEM)
-public class AutoRecurringItem extends AccountingObject {
+public class AutoRecurringItem extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "Auto-Recurring item";
 
     @JsonProperty(required = true)

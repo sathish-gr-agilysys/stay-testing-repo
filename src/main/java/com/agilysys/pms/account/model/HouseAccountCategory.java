@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Validated
 @AuditEntityType(EntityTypes.HOUSE_ACCOUNT_CATEGORY)
-public class HouseAccountCategory extends AccountingObject {
+public class HouseAccountCategory extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "House account category";
 
     @MaxLengthRestriction(3)
