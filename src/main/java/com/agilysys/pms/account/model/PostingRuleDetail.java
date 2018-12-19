@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -11,6 +13,7 @@ import javax.validation.constraints.Size;
 import org.joda.time.LocalDate;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -31,13 +34,10 @@ public class PostingRuleDetail {
     private String subcategoryId;
     private Set<String> itemIds;
 
-    @JsonProperty(required = true)
-    @NotNull
-    private String destinationFolioId;
+    private String splitBy;
 
     @JsonProperty(required = true)
-    @NotNull
-    private String destinationAccountId;
+    private List<DestinationDetail> destinations;
 
     @JsonProperty(required = true)
     @NotNull
@@ -60,12 +60,8 @@ public class PostingRuleDetail {
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
 
-    public String getDestinationAccountId() {
-        return destinationAccountId;
-    }
-
-    public void setDestinationAccountId(String destinationAccountId) {
-        this.destinationAccountId = destinationAccountId;
+    public PostingRuleDetail() {
+        this.destinations = new ArrayList<>();
     }
 
     public String getRuleName() {
@@ -108,13 +104,13 @@ public class PostingRuleDetail {
         this.itemIds = itemIds;
     }
 
-    public String getDestinationFolioId() {
-        return destinationFolioId;
-    }
+    public String getSplitBy() { return splitBy; }
 
-    public void setDestinationFolioId(String destinationFolioId) {
-        this.destinationFolioId = destinationFolioId;
-    }
+    public void setSplitBy(String splitBy) { this.splitBy = splitBy; }
+
+    public List<DestinationDetail> getDestinations() { return destinations; }
+
+    public void setDestinations(List<DestinationDetail> destinations) { this.destinations = destinations; }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -186,5 +182,35 @@ public class PostingRuleDetail {
 
     public void setIncludedAccountIds(Set<String> includedAccountIds) {
         this.includedAccountIds = includedAccountIds;
+    }
+
+    public static class DestinationDetail {
+        private String accountId;
+        private String folioId;
+        private String value;
+
+        @JsonCreator
+        public DestinationDetail(@JsonProperty(required = true, value = "accountId") String accountId
+              , @JsonProperty(required = true, value = "folioId") String folioId) {
+            this.accountId = accountId;
+            this.folioId = folioId;
+        }
+
+        public DestinationDetail(String accountId, String folioId, String value) {
+            this(accountId, folioId);
+            this.value = value;
+        }
+
+        public String getAccountId() { return accountId; }
+
+        public void setAccountId(String accountId) { this.accountId = accountId; }
+
+        public String getFolioId() { return folioId; }
+
+        public void setFolioId(String folioId) { this.folioId = folioId; }
+
+        public String getValue() { return value; }
+
+        public void setValue(String value) { this.value = value; }
     }
 }
