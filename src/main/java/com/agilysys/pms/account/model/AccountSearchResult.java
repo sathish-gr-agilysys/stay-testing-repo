@@ -13,8 +13,9 @@ import org.joda.time.LocalDate;
 public class AccountSearchResult {
     private String tenantId;
     private String propertyId;
-    private BigDecimal accountBalance;
     private String accountId;
+
+    private BigDecimal accountBalance;
     private String accountStatus;
     private String accountType;
     private DateTime arrivalDate;
@@ -35,15 +36,24 @@ public class AccountSearchResult {
 
     public AccountSearchResult() {}
 
-    public AccountSearchResult(String accountId, String accountType, String name, String propertyId, String tenantId) {
+    public AccountSearchResult(String accountId, AccountType accountType, String name, String propertyId,
+          String tenantId) {
         this.accountId = accountId;
-        this.accountType = accountType;
+        this.accountType = accountType != null ? accountType.name() : null;
         this.name = name;
         this.propertyId = propertyId;
         this.tenantId = tenantId;
     }
 
-    public AccountSearchResult(String accountId, String accountType, LocalDate arrivalDate, String bookingStatus,
+    public AccountSearchResult(String accountId, AccountStatus accountStatus, AccountType accountType, String name,
+          String number, String propertyId, String tenantId) {
+        this(accountId, accountType, name, propertyId, tenantId);
+
+        this.accountStatus = accountStatus != null ? accountStatus.name() : null;
+        this.number = number;
+    }
+
+    public AccountSearchResult(String accountId, AccountType accountType, LocalDate arrivalDate, String bookingStatus,
           LocalDate departureDate, String groupCode, String name, String propertyId, String tenantId) {
         this(accountId, accountType, name, propertyId, tenantId);
 
@@ -53,20 +63,17 @@ public class AccountSearchResult {
         this.groupCode = groupCode;
     }
 
-    public AccountSearchResult(String accountId, String accountType, Date arrivalDate, Date departureDate, String name,
-          String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
+    public AccountSearchResult(String accountId, AccountType accountType, Date arrivalDate, Date departureDate,
+          String name, String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
           String roomType, String tenantId, String vipStatus) {
-        this.accountId = accountId;
-        this.accountType = accountType;
+        this(accountId, accountType, name, propertyId, tenantId);
+
         this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate) : null;
         this.departureDate = departureDate != null ? new DateTime(departureDate) : null;
-        this.name = name;
-        this.propertyId = propertyId;
         this.reservationConfirmationId = reservationConfirmationId;
         this.reservationStatus = reservationStatus;
         this.roomNumber = roomNumber;
         this.roomType = roomType;
-        this.tenantId = tenantId;
         this.vipStatus = vipStatus;
     }
 
