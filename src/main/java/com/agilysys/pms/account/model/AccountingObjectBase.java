@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.pms.common.audit.annotation.AuditField;
+import com.agilysys.pms.common.audit.annotation.AuditIgnoreDefault;
 import com.agilysys.pms.common.audit.annotation.AuditLabel;
 import com.agilysys.pms.common.model.annotation.DataPortId;
 import com.agilysys.pms.common.model.annotation.DataPortKey;
@@ -29,6 +30,7 @@ public abstract class AccountingObjectBase {
     @AuditLabel
     protected String code;
 
+    @AuditIgnoreDefault
     protected boolean internal = false;
 
     public AccountingObjectBase() {}
