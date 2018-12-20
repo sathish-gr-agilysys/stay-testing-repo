@@ -30,6 +30,7 @@ import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.RevenueDetailReportRequest;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
+import com.agilysys.pms.account.model.StatsByBuildingRequest;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
@@ -286,4 +287,22 @@ public interface ReportingServiceInterface {
     Map<String, RoomRevenueItem> getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
+
+    /**
+     * Process Daily Stats by Building
+     *
+     * @param tenantId
+     * @param propertyId
+     * @return
+     * @throws RGuestException
+     * @throws ServiceException
+     */
+    @POST
+    @Path(RESERVATION_ROOM_REVENUE_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    Map<String, String> getStatsByBuilding(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
+          throws RGuestException, ServiceException;
+
 }

@@ -5,17 +5,24 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 public class RevenueDetailReportRequest {
-    private Set<String> buildingId;
+    private Set<String> buildingIds;
     private LocalDate startDate;
     private LocalDate endDate;
-    private boolean isRoomRevenue;
+    private boolean roomRevenue;
 
-    public Set<String> getBuildingId() {
-        return buildingId;
+    public RevenueDetailReportRequest(Set<String> buildingIds, LocalDate startDate, LocalDate endDate, boolean roomRevenue) {
+        this.buildingIds = buildingIds;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.roomRevenue = roomRevenue;
     }
 
-    public void setBuildingId(Set<String> buildingId) {
-        this.buildingId = buildingId;
+    public Set<String> getBuildingIds() {
+        return buildingIds;
+    }
+
+    public void setBuildingIds(Set<String> buildingIds) {
+        this.buildingIds = buildingIds;
     }
 
     public LocalDate getStartDate() {
@@ -35,10 +42,10 @@ public class RevenueDetailReportRequest {
     }
 
     public boolean isRoomRevenue() {
-        return isRoomRevenue;
+        return roomRevenue;
     }
 
-    public void setIsRoomRevenue(boolean isRoomRevenue) {
-        this.isRoomRevenue = isRoomRevenue;
+    public void setRoomRevenue(boolean roomRevenue) {
+        this.roomRevenue = roomRevenue;
     }
 }
