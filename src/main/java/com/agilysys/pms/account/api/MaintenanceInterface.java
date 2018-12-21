@@ -1,50 +1,69 @@
-/**
+/*
  * (C) 2016 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.api;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.AccountBalanceRepairResult;
-import com.agilysys.pms.maintenance.domain.BulkReindexJobDetail;
-import com.agilysys.pms.maintenance.domain.BulkReindexJobResult;
-import com.agilysys.pms.maintenance.domain.BulkReindexRequest;
-import com.agilysys.pms.maintenance.model.Job;
+import com.agilysys.pms.maintenance.model.IndexRequest;
 
-@Path("/maintenance")
+@Path(MaintenanceInterface.BASE_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public interface MaintenanceInterface {
-    String TENANT_ID = "tenantId";
-    String PROPERTY_ID = "propertyId";
-    String REQUEST_ID = "requestId";
+    String BASE_PATH = "/maintenance";
 
-    String ES_INDEX_ACCOUNTS = "/elasticsearch/indices";
+    String ACCOUNTS_PATH = "/accounts";
+
+    String COUNT_PATH = "/count";
+    String INDEX_PATH = "/index";
+    String RANGE_PATH = "/range";
+    String UNINDEXED_PATH = "/unindexed";
+
+    String TENANT_ID = "tenantId";
+    String TENANT_ID_TEMPLATE = "{" + TENANT_ID + "}";
+
+    String UPDATED_SINCE = "updatedSince";
+    String UPDATED_UNTIL = "updatedUntil";
+
+    String PERMISSION_PREFIX = "hasPermission('Required', '";
+    String PERMISSION_POSTFIX = "')";
+
+    String WRITE_TENANTS_PERMISSION = PERMISSION_PREFIX + "WriteTenants" + PERMISSION_POSTFIX;
 
     @GET
-    @Path("/requests/{" + REQUEST_ID + "}")
-    List<Job> retrieveJobs(@PathParam(REQUEST_ID) String requestId) throws RGuestException, ServiceException;
+    @Path(COUNT_PATH + RANGE_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
+    long countRangeAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
+    long countUnindexedAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH)
+    Map<String, Long> countUnindexedAccounts() throws RGuestException, ServiceException;
 
     @POST
-    @PreAuthorize("hasPermission('Required', 'WriteTenants')")
-    @Path(ES_INDEX_ACCOUNTS + "/bulk")
-    BulkReindexJobResult bulkReIndex(BulkReindexRequest request) throws RGuestException, ServiceException;
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
+    long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
 
-    @GET
-    @Path(ES_INDEX_ACCOUNTS + "/bulk/requests/{requestId}")
-    List<BulkReindexJobDetail> retrieveBulkJobs(@PathParam("requestId") String requestId)
-          throws RGuestException, ServiceException;
+    @POST
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(INDEX_PATH + ACCOUNTS_PATH)
+    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
 }
