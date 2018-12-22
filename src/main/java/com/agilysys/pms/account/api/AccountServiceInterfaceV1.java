@@ -136,6 +136,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
+    String INVOICES_PATH_ACCOUNTS = "/invoicesForReport";
     String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
@@ -145,6 +146,7 @@ public interface AccountServiceInterfaceV1 {
     String LODGING_PATH = ACCOUNT_ID_PATH + "/lodging";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
+    String NON_INVOICED_REPORT = "/nonInvoicedDetailsReport";
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
@@ -1057,6 +1059,22 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
+
+    /**
+     * Retrieves the non-invoiced details of a COMPANY account accounts
+     *
+     * @param tenantId   id of tenant where the COMPANY account exists
+     * @param propertyId id of the property
+     * @param accountId  ids of COMPANY accounts to retrieve non-invoiced details from
+     * @return Non-invoiced details for a COMPANY accounts
+     */
+    @GET
+    @Path(ACCOUNT_ID_PATH + NON_INVOICED_REPORT)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<NonInvoicedARDetail> getNonInvoicedARDetails(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
     /**
      * Create an invoice for an account
      *
@@ -1100,6 +1118,16 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam("accountId") String accountId,
+          @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH_ACCOUNTS)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    Map<String, List<InvoiceView>> findInvoicesForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam
+          (PROPERTY_ID) String propertyId,
+          @PathParam("accountIds") Set<String> accountIds,
           @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
           throws RGuestException, ServiceException;
 
