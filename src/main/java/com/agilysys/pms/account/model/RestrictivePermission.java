@@ -5,9 +5,9 @@ package com.agilysys.pms.account.model;
 
 import com.agilysys.common.permission.PermissionType;
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
 
-@AuditEntityType(EntityTypes.RESTRICTIVE_PERMISSION)
+@AuditEntity(EntityTypes.RESTRICTIVE_PERMISSION)
 public class RestrictivePermission extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "Restrictive Permission";
 
