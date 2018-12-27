@@ -47,6 +47,16 @@ public class EstimatedChargesSummaryView {
     private BigDecimal postedCharges = BigDecimal.ZERO;
 
     /**
+     * The posted room charges
+     */
+    private BigDecimal postedRoomCharges = BigDecimal.ZERO;
+
+    /**
+     * The posted room taxes
+     */
+    private BigDecimal postedRoomTaxes = BigDecimal.ZERO;
+
+    /**
      * The taxes for posted charges
      */
     private BigDecimal postedTaxes = BigDecimal.ZERO;
@@ -169,6 +179,22 @@ public class EstimatedChargesSummaryView {
      */
     public void setPostedCharges(BigDecimal postedCharges) {
         this.postedCharges = postedCharges;
+    }
+
+    public BigDecimal getPostedRoomCharges() {
+        return postedRoomCharges;
+    }
+
+    public void setPostedRoomCharges(BigDecimal postedRoomCharges) {
+        this.postedRoomCharges = postedRoomCharges;
+    }
+
+    public BigDecimal getPostedRoomTaxes() {
+        return postedRoomTaxes;
+    }
+
+    public void setPostedRoomTaxes(BigDecimal postedRoomTaxes) {
+        this.postedRoomTaxes = postedRoomTaxes;
     }
 
     /**
