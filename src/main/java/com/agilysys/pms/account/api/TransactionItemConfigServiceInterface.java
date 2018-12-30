@@ -23,7 +23,7 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.platform.tax.model.TaxRuleData;
 import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
-import com.agilysys.pms.account.model.MigrationResult;
+import com.agilysys.pms.common.migration.model.MigrationResult;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
