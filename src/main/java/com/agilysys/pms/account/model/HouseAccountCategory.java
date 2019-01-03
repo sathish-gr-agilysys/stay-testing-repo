@@ -9,11 +9,11 @@ import org.springframework.validation.annotation.Validated;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Validated
-@AuditEntityType(EntityTypes.HOUSE_ACCOUNT_CATEGORY)
+@AuditEntity(EntityTypes.HOUSE_ACCOUNT_CATEGORY)
 public class HouseAccountCategory extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "House account category";
 
