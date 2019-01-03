@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+
 import com.agilysys.common.model.rate.ComponentRateSnapshot;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
@@ -32,6 +34,8 @@ public class ComponentChargeView {
     private RoomChargePostingType roomChargePostingType;
 
     private TransactionItemType transactionItemType;
+
+    private boolean posted;
 
     ChargeTaxAmountInfo estimatedTaxInfo;
 
@@ -124,7 +128,16 @@ public class ComponentChargeView {
         this.transactionItemType = transactionItemType;
     }
 
-    public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
+    public boolean isPosted() {
+        return posted;
+    }
+
+    public void setPosted(boolean posted) {
+        this.posted = posted;
+    }
+
+    public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot,
+          LocalDate date) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
@@ -134,16 +147,19 @@ public class ComponentChargeView {
         componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
+        if (componentRateSnapshot.getDatesPosted().contains(date)) {
+            componentChargeView.setPosted(true);
+        }
 
         return componentChargeView;
     }
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
-          List<ComponentRateSnapshot> componentRateSnapshots) {
+          List<ComponentRateSnapshot> componentRateSnapshots, LocalDate date) {
 
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         componentRateSnapshots.stream().forEach(
-              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
+              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot, date)));
         return componentChargeViews;
     }
 }
