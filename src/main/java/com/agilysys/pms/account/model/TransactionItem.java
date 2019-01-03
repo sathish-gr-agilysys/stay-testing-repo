@@ -26,7 +26,7 @@ import com.agilysys.pms.property.model.Outlet;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@AuditEntityType(EntityTypes.TRANSACTION_ITEM)
+@AuditEntity(EntityTypes.TRANSACTION_ITEM)
 public class TransactionItem extends AccountingItem {
     private static final String DISPLAY_NAME = "Transaction item";
 
