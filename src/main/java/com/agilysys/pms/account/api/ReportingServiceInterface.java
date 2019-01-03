@@ -47,6 +47,7 @@ public interface ReportingServiceInterface {
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
+    String STATS_BY_BUILDING = "/statsByBuilding";
     String REVENUE_PATH = "/revenueDetails";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
@@ -299,7 +300,7 @@ public interface ReportingServiceInterface {
      * @throws ServiceException
      */
     @POST
-    @Path(RESERVATION_ROOM_REVENUE_PATH)
+    @Path(STATS_BY_BUILDING)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     Map<String, GeneralAvailabilityResult> getStatsByBuilding(@PathParam(TENANT_ID) String tenantId,
