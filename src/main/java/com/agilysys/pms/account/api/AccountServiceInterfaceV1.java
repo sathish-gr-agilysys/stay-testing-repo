@@ -900,6 +900,21 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     /**
+     * Retrieve payment settings for a set of accounts
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of account where settings exist
+     * @return Existing paymentSettings
+     */
+    @POST
+    @Path(ACCOUNT_ID_PATH + PAYMENT_SETTINGS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<PaymentSetting>> getPaymentSettingsByAccount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,  Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
+    /**
      * Save paymentSettings for an account
      *
      * @param tenantId        id of tenant where account exists
