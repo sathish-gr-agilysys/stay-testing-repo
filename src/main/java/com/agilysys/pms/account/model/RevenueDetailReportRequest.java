@@ -17,6 +17,9 @@ public class RevenueDetailReportRequest {
         this.roomRevenue = roomRevenue;
     }
 
+    public RevenueDetailReportRequest() {
+    }
+
     public Set<String> getBuildingIds() {
         return buildingIds;
     }
