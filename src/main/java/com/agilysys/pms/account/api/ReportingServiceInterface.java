@@ -54,7 +54,7 @@ public interface ReportingServiceInterface {
     String START_DATE = "startDate";
     String END_DATE = "endDate";
     String ROOM_REVENUE = "roomRevenue";
-    String REV_OCC = "revOcc";
+    String REVENUE_OCCUPANCY = "revenueOccupancy";
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
     String SOURCE_ID = "sourceId";
@@ -148,7 +148,7 @@ public interface ReportingServiceInterface {
      * @param propertyId
      * @param startDate
      * @param endDate
-     * @param isRoomRevenue
+     * @param roomRevenue
      * @return
      */
     @GET
@@ -157,8 +157,9 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean isRoomRevenue,
-          @DefaultValue("false") @QueryParam(REV_OCC) boolean revOcc) throws RGuestException, ServiceException;
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
+          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
+          throws RGuestException, ServiceException;
 
     /**
      * retrieve recurring charge detail information for a given date
