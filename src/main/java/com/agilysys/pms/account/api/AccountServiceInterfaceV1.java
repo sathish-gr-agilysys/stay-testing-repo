@@ -123,7 +123,6 @@ public interface AccountServiceInterfaceV1 {
     String END_DATE = "endDate";
     String END_DATE_TIME = "endDateTime";
     String FILTERED = "/filtered";
-    String FIX_LEDGER_BALANCES_PATH = "/fixLedgerBalances";
     String FOLIO_PATH = "/folios";
     String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
@@ -1302,6 +1301,9 @@ public interface AccountServiceInterfaceV1 {
      * authorizes any additional credit cards associated with an
      * account based on estimated charges and existing auth amounts
      *
+     * @param startDate No longer used because the date is now derived from the account and it's owning entity.
+     * @param endDate No longer used because the date is now derived from the account and it's owning entity.
+     *
      * @throws ServiceException
      */
     @POST
@@ -1309,7 +1311,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<PaymentInstrumentAuthStatus> authAllCardsOnAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
+          @QueryParam(START_DATE) @Deprecated LocalDate startDate, @QueryParam(END_DATE) @Deprecated LocalDate endDate)
           throws RGuestException, ServiceException;
 
     @POST
@@ -1344,13 +1346,6 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void payOffBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, PayoffBalanceRequest request)
-          throws RGuestException, ServiceException;
-
-    @POST
-    @Path(ACCOUNT_ID_PATH + FIX_LEDGER_BALANCES_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LedgerBalanceFixup> fixLedgerBalancesForAccount(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
     /**
