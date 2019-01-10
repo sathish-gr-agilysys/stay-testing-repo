@@ -35,6 +35,8 @@ public class ComponentChargeView {
 
     ChargeTaxAmountInfo estimatedTaxInfo;
 
+    private boolean reverseTax;
+
     public String getComponentBundleId() {
         return componentBundleId;
     }
@@ -122,6 +124,14 @@ public class ComponentChargeView {
 
     public void setTransactionItemType(TransactionItemType transactionItemType) {
         this.transactionItemType = transactionItemType;
+    }
+
+    public boolean isReverseTax() {
+        return reverseTax;
+    }
+
+    public void setReverseTax(boolean reverseTax) {
+        this.reverseTax = reverseTax;
     }
 
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
