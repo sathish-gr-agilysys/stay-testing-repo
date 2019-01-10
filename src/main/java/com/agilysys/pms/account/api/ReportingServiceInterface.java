@@ -47,7 +47,7 @@ public interface ReportingServiceInterface {
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
-    String STATS_BY_BUILDING = "/statsByBuilding";
+    String GENERAL_AVAILABILITY_STATS = "/generalAvailabilityStats";
     String REVENUE_PATH = "/revenueDetails";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
@@ -291,7 +291,7 @@ public interface ReportingServiceInterface {
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
 
     /**
-     * Process Daily Stats by Building
+     * Process Daily Stats by Building and by Property
      *
      * @param tenantId
      * @param propertyId
@@ -300,11 +300,10 @@ public interface ReportingServiceInterface {
      * @throws ServiceException
      */
     @POST
-    @Path(STATS_BY_BUILDING)
+    @Path(GENERAL_AVAILABILITY_STATS)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    Map<String, GeneralAvailabilityResult> getStatsByBuilding(@PathParam(TENANT_ID) String tenantId,
+    List<GeneralAvailabilityResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
           throws RGuestException, ServiceException;
-
 }
