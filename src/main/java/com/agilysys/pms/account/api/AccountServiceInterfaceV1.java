@@ -89,6 +89,8 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
+import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
+import com.agilysys.pms.payment.model.PaymentInstrumentView;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -908,9 +910,9 @@ public interface AccountServiceInterfaceV1 {
      * @return Existing paymentSettings
      */
     @POST
-    @Path(ACCOUNT_ID_PATH + PAYMENT_SETTINGS_PATH)
+    @Path(PAYMENT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, List<PaymentSetting>> getPaymentSettingsByAccount(@PathParam(TENANT_ID) String tenantId,
+    Map<String, List<Map<String, PaymentInstrumentSetting>>> getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,  Set<String> accountIds)
           throws RGuestException, ServiceException;
 
