@@ -912,7 +912,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(PAYMENT_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, List<Map<String, PaymentInstrumentSetting>>> getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
+    Map<String, List<PaymentInstrumentSetting>>  getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,  Set<String> accountIds)
           throws RGuestException, ServiceException;
 
