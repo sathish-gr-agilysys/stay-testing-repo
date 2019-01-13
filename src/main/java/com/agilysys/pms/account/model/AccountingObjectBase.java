@@ -32,7 +32,7 @@ public abstract class AccountingObjectBase {
     protected boolean internal;
 
     @DataPortIgnore
-    private String migratedId;
+    private Boolean migrated;
 
     public abstract String getDisplayName();
 
@@ -73,12 +73,12 @@ public abstract class AccountingObjectBase {
         this.internal = internal;
     }
 
-    public String getMigratedId() {
-        return migratedId;
+    public Boolean isMigrated() {
+        return migrated;
     }
 
-    public void setMigratedId(String migratedId) {
-        this.migratedId = migratedId;
+    public void setMigrated(Boolean migrated) {
+        this.migrated = migrated;
     }
 
     public String getName()

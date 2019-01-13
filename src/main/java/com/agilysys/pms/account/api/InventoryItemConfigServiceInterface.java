@@ -38,7 +38,6 @@ public interface InventoryItemConfigServiceInterface {
     String INCLUDE_INTERNAL = "includeInternal";
     String CONVERT_PATH = "/convertToInventory";
     String MIGRATE_TO_V1_PATH = "/migrateToV1";
-    String UPDATE_REFERENCES = "updateReferences";
 
     /**
      * Retrieve all InventoryItems
@@ -132,6 +131,5 @@ public interface InventoryItemConfigServiceInterface {
     @Path(MIGRATE_TO_V1_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     Collection<MigrationResult> migrateInventoryItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(UPDATE_REFERENCES) boolean updateReferences)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }

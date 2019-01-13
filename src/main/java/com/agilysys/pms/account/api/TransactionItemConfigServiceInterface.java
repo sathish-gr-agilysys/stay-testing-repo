@@ -45,7 +45,6 @@ public interface TransactionItemConfigServiceInterface {
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
     String ACTIVE = "/active";
     String MIGRATE_TO_V1_PATH = "/migrateToV1";
-    String UPDATE_REFERENCES = "updateReferences";
 
     /**
      * Retrieve all TransactionItems
@@ -162,6 +161,5 @@ public interface TransactionItemConfigServiceInterface {
     @Path(MIGRATE_TO_V1_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     Collection<MigrationResult> migrateTransactionItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(UPDATE_REFERENCES) boolean updateReferences)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }
