@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.706-VCTRS-65007-SNAPSHOT</version>
+            <version>74.706.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.686-VCTRS-65007-SNAPSHOT</version>
+            <version>74.686.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
