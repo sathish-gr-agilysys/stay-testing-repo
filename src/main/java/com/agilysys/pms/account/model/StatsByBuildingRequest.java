@@ -8,7 +8,7 @@ public class StatsByBuildingRequest {
     private LocalDate startDate;
     private LocalDate endDate;
     private Set<String> buildingIds;
-    private String byBuilding;
+    private boolean byBuilding;
     private boolean includeNonBeddedRoomType;
 
     public LocalDate getStartDate() {
@@ -35,11 +35,11 @@ public class StatsByBuildingRequest {
         this.buildingIds = buildingIds;
     }
 
-    public String getByBuilding() {
+    public boolean isByBuilding() {
         return byBuilding;
     }
 
-    public void setByBuilding(String byBuilding) {
+    public void setByBuilding(boolean byBuilding) {
         this.byBuilding = byBuilding;
     }
 
