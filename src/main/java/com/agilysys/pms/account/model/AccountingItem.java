@@ -4,8 +4,8 @@
 package com.agilysys.pms.account.model;
 
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
 import com.agilysys.pms.common.audit.annotation.AuditField;
+import com.agilysys.pms.common.audit.annotation.AuditIgnoreDefault;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,6 +26,7 @@ public abstract class AccountingItem extends AccountingObjectBase {
     /**
      * Flag that denotes whether or not the item should be classified as room revenue when posted as a transaction.
      */
+    @AuditIgnoreDefault
     private boolean roomRevenue;
 
     public AccountingItem(){}
