@@ -35,8 +35,6 @@ public class ComponentChargeView {
 
     private TransactionItemType transactionItemType;
 
-    private boolean posted;
-
     ChargeTaxAmountInfo estimatedTaxInfo;
 
     public String getComponentBundleId() {
@@ -128,16 +126,7 @@ public class ComponentChargeView {
         this.transactionItemType = transactionItemType;
     }
 
-    public boolean isPosted() {
-        return posted;
-    }
-
-    public void setPosted(boolean posted) {
-        this.posted = posted;
-    }
-
-    public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot,
-          LocalDate date) {
+    public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
@@ -147,19 +136,16 @@ public class ComponentChargeView {
         componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
-        if (componentRateSnapshot.getDatesPosted().contains(date)) {
-            componentChargeView.setPosted(true);
-        }
 
         return componentChargeView;
     }
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
-          List<ComponentRateSnapshot> componentRateSnapshots, LocalDate date) {
+          List<ComponentRateSnapshot> componentRateSnapshots) {
 
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         componentRateSnapshots.stream().forEach(
-              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot, date)));
+              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
