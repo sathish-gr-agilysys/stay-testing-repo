@@ -63,6 +63,7 @@ public class RecurringChargeView {
 
     private LocalDate startDate;
     private LocalDate endDate;
+    private Boolean afterDateRollPosted;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
@@ -294,5 +295,13 @@ public class RecurringChargeView {
 
     public void setAddQuantityToAllocation(boolean addQuantityToAllocation) {
         this.addQuantityToAllocation = addQuantityToAllocation;
+    }
+
+    public Boolean getAfterDateRollPosted() {
+        return afterDateRollPosted;
+    }
+
+    public void setAfterDateRollPosted(Boolean afterDateRollPosted) {
+        this.afterDateRollPosted = afterDateRollPosted;
     }
 }
