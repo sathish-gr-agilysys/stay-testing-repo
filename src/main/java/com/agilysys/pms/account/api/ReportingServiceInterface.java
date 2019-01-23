@@ -36,7 +36,7 @@ import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
 import com.agilysys.pms.account.model.TransactionReportResponse;
 import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
-import com.agilysys.pms.common.model.GeneralAvailabilityResult;
+import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/reports")
 public interface ReportingServiceInterface {
@@ -303,7 +303,7 @@ public interface ReportingServiceInterface {
     @Path(GENERAL_AVAILABILITY_STATS)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    List<GeneralAvailabilityResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
+    List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
           throws RGuestException, ServiceException;
 }
