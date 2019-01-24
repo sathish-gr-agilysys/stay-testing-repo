@@ -14,6 +14,7 @@ public class AccountSearchResult {
     private String tenantId;
     private String propertyId;
     private String accountId;
+    public static final String ACCOUNT_ID_FIELD = "accountId";
 
     private BigDecimal accountBalance;
     private String accountStatus;
