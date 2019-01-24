@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -43,14 +43,6 @@ public class AccountSearchResult {
         this.name = name;
         this.propertyId = propertyId;
         this.tenantId = tenantId;
-    }
-
-    public AccountSearchResult(String accountId, AccountStatus accountStatus, AccountType accountType, String name,
-          String number, String propertyId, String tenantId) {
-        this(accountId, accountType, name, propertyId, tenantId);
-
-        this.accountStatus = accountStatus != null ? accountStatus.name() : null;
-        this.number = number;
     }
 
     public AccountSearchResult(String accountId, AccountType accountType, LocalDate arrivalDate, String bookingStatus,
