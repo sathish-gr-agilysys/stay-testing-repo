@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>74.789.1-SNAPSHOT</version>
+    <version>74.794.0-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>74.773.0</version>
+        <version>74.794.0</version>
     </parent>
     <properties>
     </properties>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.773.0</version>
+            <version>74.794.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -33,12 +33,12 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.773.0</version>
+            <version>74.794.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.776.0</version>
+            <version>74.794.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.740.0</version>
+            <version>74.794.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
