@@ -247,7 +247,7 @@ public class PayTransactionRequest {
 
     private void isValidRequest() {
         if (deviceGuid == null || (accountId == null && profileId == null && payActionType != PayActionType.BOOK) ||
-              (GatewayType.getGatewayTypeFromValue(deviceHandlerId).isTerminalIdSupported() && terminalId == null) ||
+              (GatewayType.getGatewayTypeFromId(deviceHandlerId).isTerminalIdSupported() && terminalId == null) ||
               payActionType == null || payAgentCode == null || payAgentUrl == null) {
             throwException();
         }
