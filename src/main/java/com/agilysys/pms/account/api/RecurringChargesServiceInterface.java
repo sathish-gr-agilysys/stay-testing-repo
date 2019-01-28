@@ -239,6 +239,7 @@ public interface RecurringChargesServiceInterface {
           throws RGuestException, ServiceException;
 
         /* Estimated Charges By Reservation Ids */
+
     /**
      * @param tenantId
      * @param propertyId
