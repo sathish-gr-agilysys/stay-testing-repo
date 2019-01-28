@@ -290,15 +290,6 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
 
-    /**
-     * Process Daily Stats by Building and by Property
-     *
-     * @param tenantId
-     * @param propertyId
-     * @return
-     * @throws RGuestException
-     * @throws ServiceException
-     */
     @POST
     @Path(GENERAL_AVAILABILITY_STATS)
     @Produces(MediaType.APPLICATION_JSON)

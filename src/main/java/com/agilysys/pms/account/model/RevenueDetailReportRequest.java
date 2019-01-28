@@ -1,3 +1,6 @@
+/**
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.util.Set;
@@ -10,14 +13,14 @@ public class RevenueDetailReportRequest {
     private LocalDate endDate;
     private boolean roomRevenue;
 
+    public RevenueDetailReportRequest() {
+    }
+
     public RevenueDetailReportRequest(Set<String> buildingIds, LocalDate startDate, LocalDate endDate, boolean roomRevenue) {
         this.buildingIds = buildingIds;
         this.startDate = startDate;
         this.endDate = endDate;
         this.roomRevenue = roomRevenue;
-    }
-
-    public RevenueDetailReportRequest() {
     }
 
     public Set<String> getBuildingIds() {
