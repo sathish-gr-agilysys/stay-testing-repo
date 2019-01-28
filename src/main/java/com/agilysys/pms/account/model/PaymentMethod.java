@@ -34,8 +34,7 @@ public class PaymentMethod extends AccountingItem {
     public static String DIRECT_BILL_CODE = "DB";
     //CASH is the code for cash in bootstrap data, it is the default for groups
     public static String CASH_CODE = "CASH";
-
-
+    
     private boolean cashPayment;
 
     public boolean isCashPayment() {
