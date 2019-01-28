@@ -37,6 +37,8 @@ public class ComponentChargeView {
 
     private boolean reverseTax;
 
+    private BigDecimal reverseTaxTotalChargeAmount;
+
     public String getComponentBundleId() {
         return componentBundleId;
     }
@@ -132,6 +134,14 @@ public class ComponentChargeView {
 
     public void setReverseTax(boolean reverseTax) {
         this.reverseTax = reverseTax;
+    }
+
+    public BigDecimal getReverseTaxTotalChargeAmount() {
+        return reverseTaxTotalChargeAmount;
+    }
+
+    public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
+        this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
     }
 
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {

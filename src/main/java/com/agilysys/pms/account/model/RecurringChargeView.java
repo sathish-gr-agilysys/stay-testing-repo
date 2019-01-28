@@ -64,6 +64,7 @@ public class RecurringChargeView {
     private LocalDate startDate;
     private LocalDate endDate;
     private boolean reverseTax;
+    private BigDecimal reverseTaxTotalChargeAmount;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
@@ -303,5 +304,13 @@ public class RecurringChargeView {
 
     public void setReverseTax(boolean reverseTax) {
         this.reverseTax = reverseTax;
+    }
+
+    public BigDecimal getReverseTaxTotalChargeAmount() {
+        return reverseTaxTotalChargeAmount;
+    }
+
+    public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
+        this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
     }
 }
