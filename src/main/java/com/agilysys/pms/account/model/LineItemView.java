@@ -699,7 +699,7 @@ public class LineItemView implements Comparable<LineItemView> {
      * @return the totalAmount
      */
     public BigDecimal getTotalAmount() {
-        if (this.isReverseTax()) {
+        if (isReverseTax()) {
             return reverseTaxTotalChargeAmount != null ? reverseTaxTotalChargeAmount : BigDecimal.ZERO;
         }
         return unitAmount.multiply(new BigDecimal(quantity));
