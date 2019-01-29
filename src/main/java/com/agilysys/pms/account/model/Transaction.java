@@ -38,6 +38,7 @@ public abstract class Transaction {
     protected boolean invalid;
     @JsonProperty(required = true)
     protected String itemId;
+    public static final String ITEM_ID_FIELD = "itemId";
     protected String parentId;
     protected String petDisplayName;
     protected LocalDate postingDate;
