@@ -11,11 +11,11 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
+import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-@AuditEntityType(EntityTypes.INVENTORY_ITEM)
+@AuditEntity(EntityTypes.INVENTORY_ITEM)
 public class InventoryItem extends TransactionItem {
     private static final String DISPLAY_NAME = "Inventory item";
 
@@ -23,16 +23,18 @@ public class InventoryItem extends TransactionItem {
 
     private Integer maxQuantityPerReservation;
 
+    @AuditField(references = EntityTypes.ROOM_TYPE, inline = true)
     private Set<String> restrictedRoomTypes;
 
     public InventoryItem() {
+        super();
+
         restrictedRoomTypes = new LinkedHashSet<>();
     }
 
     public InventoryItem(TransactionItem transactionItem, Integer availableCount, CanonicalId status) {
         super(transactionItem);
 
-        setStatus(status);
         this.availableCount = availableCount;
     }
 
@@ -40,10 +42,10 @@ public class InventoryItem extends TransactionItem {
           Integer maxQuantityPerReservation, Set<String> restrictedRoomTypes) {
         super(transactionItem);
 
-        setStatus(status);
         this.availableCount = availableCount;
         this.maxQuantityPerReservation = maxQuantityPerReservation;
         this.restrictedRoomTypes = restrictedRoomTypes;
+        this.status = status;
     }
 
     public TransactionItemType getType() {

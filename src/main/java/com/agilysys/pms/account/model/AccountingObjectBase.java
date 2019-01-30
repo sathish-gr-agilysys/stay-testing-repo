@@ -1,20 +1,21 @@
-/**
+/*
  * (C) 2014 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
+import com.agilysys.pms.common.audit.annotation.AuditField;
+import com.agilysys.pms.common.audit.annotation.AuditIgnoreDefault;
+import com.agilysys.pms.common.audit.annotation.AuditLabel;
 import com.agilysys.pms.common.model.annotation.DataPortId;
+import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 import com.agilysys.pms.common.model.annotation.DataPortKey;
-import com.agilysys.pms.common.model.audit.Auditable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Abstract base class for Guest Accounting model objects.
- */
-public abstract class AccountingObjectBase implements Auditable {
+public abstract class AccountingObjectBase {
     @DataPortId
+    @AuditField(id = true, ignore = true)
     protected String id;
 
     @JsonProperty(required = true)
@@ -24,17 +25,33 @@ public abstract class AccountingObjectBase implements Auditable {
     @MaxLengthRestriction(25)
     @JsonProperty(required = true)
     @DataPortKey
+    @AuditLabel
     protected String code;
 
-    protected boolean internal = false;
+    @AuditIgnoreDefault
+    protected boolean internal;
 
-    public AccountingObjectBase() {}
+    @DataPortIgnore
+    private Boolean migrated;
 
-    public AccountingObjectBase(AccountingObjectBase accountingObjectBase) {
-        id = accountingObjectBase.getId();
-        name = accountingObjectBase.getName();
-        code = accountingObjectBase.getCode();
-        internal = accountingObjectBase.isInternal();
+    public abstract String getDisplayName();
+
+    protected AccountingObjectBase() {}
+
+    protected AccountingObjectBase(AccountingObjectBase accountingObjectBaseBase) {
+        code = accountingObjectBaseBase.getCode();
+        id = accountingObjectBaseBase.getId();
+        internal = accountingObjectBaseBase.isInternal();
+        name = accountingObjectBaseBase.getName();
+    }
+
+    public String getCode()
+    {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getId()
@@ -47,24 +64,6 @@ public abstract class AccountingObjectBase implements Auditable {
         this.id = id;
     }
 
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode()
-    {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public boolean isInternal()
     {
         return internal;
@@ -74,15 +73,20 @@ public abstract class AccountingObjectBase implements Auditable {
         this.internal = internal;
     }
 
-    public abstract String getDisplayName();
-
-    @Override
-    public String entityId() {
-        return id;
+    public Boolean isMigrated() {
+        return migrated;
     }
 
-    @Override
-    public String getDisplayText() {
-        return code;
+    public void setMigrated(Boolean migrated) {
+        this.migrated = migrated;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
