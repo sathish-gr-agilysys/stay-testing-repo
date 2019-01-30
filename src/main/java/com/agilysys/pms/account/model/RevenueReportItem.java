@@ -18,6 +18,22 @@ public class RevenueReportItem {
     private boolean roomRevenue;
     private boolean posted;
 
+    public RevenueReportItem(){
+
+    }
+
+    public RevenueReportItem(RevenueReportItem revenueReportItem){
+        transactionId = revenueReportItem.transactionId;
+        accountId = revenueReportItem.accountId;
+        accountType = revenueReportItem.accountType;
+        referenceId = revenueReportItem.referenceId;
+        itemId = revenueReportItem.itemId;
+        amount = revenueReportItem.amount;
+        postingPropertyDate = revenueReportItem.postingPropertyDate;
+        roomRevenue = revenueReportItem.roomRevenue;
+        posted = revenueReportItem.posted;
+    }
+
     public String getTransactionId() {
         return transactionId;
     }
