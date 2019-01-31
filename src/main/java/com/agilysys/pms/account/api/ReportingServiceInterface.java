@@ -167,7 +167,7 @@ public interface ReportingServiceInterface {
     @Path(REVENUE_PATH_BY_ROOM)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    Map<LocalDate, Map<String, List<ReservationRevenueReportItem>>> getRevenueDetailReportByRoom(@PathParam(TENANT_ID) String tenantId,
+    List<ReservationRevenueReportItem> getRevenueDetailReportByRoom(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
           @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
