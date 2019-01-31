@@ -35,14 +35,14 @@ public class PaymentMethod extends AccountingItem {
     //CASH is the code for cash in bootstrap data, it is the default for groups
     public static String CASH_CODE = "CASH";
     
-    private boolean cashPayment;
+    private boolean promptForChange;
 
-    public boolean isCashPayment() {
-        return cashPayment;
+    public boolean isPromptForChange() {
+        return promptForChange;
     }
 
-    public void setCashPayment(boolean cashPayment) {
-        this.cashPayment = cashPayment;
+    public void setPromptForChange(boolean promptForChange) {
+        this.promptForChange = promptForChange;
     }
 
     @JsonProperty(required = true)
