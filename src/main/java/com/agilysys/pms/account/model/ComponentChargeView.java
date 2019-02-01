@@ -147,11 +147,20 @@ public class ComponentChargeView {
             if (RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType()) {
                 componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
             } else {
-                if (isPropertyRCSummary && isAfterDateRollChargesPosted){
+                if (isPropertyRCSummary && isAfterDateRollChargesPosted) {
                     componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
                 }
             }
         }
+        return componentChargeViews;
+    }
+
+    public static List<ComponentChargeView> fromComponentRateSnapshots(
+          List<ComponentRateSnapshot> componentRateSnapshots) {
+
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
+        componentRateSnapshots.stream().forEach(
+              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
