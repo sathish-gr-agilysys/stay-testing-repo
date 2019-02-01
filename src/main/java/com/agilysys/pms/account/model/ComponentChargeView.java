@@ -140,14 +140,14 @@ public class ComponentChargeView {
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots, boolean isAfterDateRollChargesPosted,
-          boolean isPropertyRCSummary) {
+          boolean isChargesPosted) {
 
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         for (ComponentRateSnapshot componentRateSnapshot : componentRateSnapshots) {
             if (RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType()) {
-                componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
+                if (!isChargesPosted) componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
             } else {
-                if (isPropertyRCSummary && isAfterDateRollChargesPosted) {
+                if (isAfterDateRollChargesPosted) {
                     componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
                 }
             }
