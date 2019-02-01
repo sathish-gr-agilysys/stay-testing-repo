@@ -140,14 +140,15 @@ public class ComponentChargeView {
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots, boolean isAfterDateRollChargesPosted,
-          boolean isChargesPosted) {
+          boolean isChargesPosted, AccountStatus accountStatus) {
 
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         for (ComponentRateSnapshot componentRateSnapshot : componentRateSnapshots) {
             if (RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType()) {
-                if (!isChargesPosted) componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
+                if (!isChargesPosted && AccountStatus.OPEN == accountStatus)
+                    componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
             } else {
-                if (isAfterDateRollChargesPosted) {
+                if (isAfterDateRollChargesPosted || AccountStatus.CLOSED == accountStatus) {
                     componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
                 }
             }
