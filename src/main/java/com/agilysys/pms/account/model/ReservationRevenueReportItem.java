@@ -1,3 +1,6 @@
+/**
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import org.joda.time.LocalDate;
@@ -5,7 +8,7 @@ import org.joda.time.LocalDate;
 import com.agilysys.pms.account.model.external.Reservation;
 
 public class ReservationRevenueReportItem extends RevenueReportItem {
-    private String reservationConfId;
+    private String reservationConfirmationCode;
     private LocalDate arrivalDate;
     private LocalDate departureDate;
     private int nights;
@@ -22,12 +25,12 @@ public class ReservationRevenueReportItem extends RevenueReportItem {
         super(revenueReportItem);
     }
 
-    public String getReservationConfId() {
-        return reservationConfId;
+    public String getReservationConfirmationCode() {
+        return reservationConfirmationCode;
     }
 
-    public void setReservationConfId(String reservationConfId) {
-        this.reservationConfId = reservationConfId;
+    public void setReservationConfirmationCode(String reservationConfirmationCode) {
+        this.reservationConfirmationCode = reservationConfirmationCode;
     }
 
     public LocalDate getArrivalDate() {
