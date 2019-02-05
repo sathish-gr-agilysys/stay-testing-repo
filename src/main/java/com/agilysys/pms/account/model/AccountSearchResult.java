@@ -13,18 +13,25 @@ import org.joda.time.LocalDate;
 public class AccountSearchResult {
     private String tenantId;
     private String propertyId;
+
     private String accountId;
     public static final String ACCOUNT_ID_FIELD = "accountId";
 
     private BigDecimal accountBalance;
     private String accountStatus;
+
     private String accountType;
+    public static final String ACCOUNT_TYPE_FIELD = "accountType";
+
     private DateTime arrivalDate;
     private String bookingStatus;
     private DateTime departureDate;
     private List<FolioBalance> folios;
     private String groupCode;
+
     private String name;
+    public static final String NAME_FIELD = "name";
+
     private String number;
     private String reservationConfirmationId;
     private String reservationStatus;
