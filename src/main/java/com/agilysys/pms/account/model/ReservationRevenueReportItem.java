@@ -16,6 +16,7 @@ public class ReservationRevenueReportItem extends RevenueReportItem {
     private String ratePlanId;
     private String paymentMethodId;
     private String roomId;
+    private String reservationStatus;
 
     public ReservationRevenueReportItem() {
 
@@ -87,5 +88,13 @@ public class ReservationRevenueReportItem extends RevenueReportItem {
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
+    }
+
+    public String getReservationStatus() {
+        return reservationStatus;
+    }
+
+    public void setReservationStatus(String reservationStatus) {
+        this.reservationStatus = reservationStatus;
     }
 }
