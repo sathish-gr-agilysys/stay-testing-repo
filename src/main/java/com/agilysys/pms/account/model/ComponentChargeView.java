@@ -140,17 +140,15 @@ public class ComponentChargeView {
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots, boolean isAfterDateRollChargesPosted,
-          boolean isChargesPosted, AccountStatus accountStatus) {
+          boolean isChargesPosted, AccountStatus accountStatus, boolean beforePropertyDate) {
 
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         for (ComponentRateSnapshot componentRateSnapshot : componentRateSnapshots) {
-            if (RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType()) {
-                if (!isChargesPosted && AccountStatus.OPEN == accountStatus)
-                    componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
-            } else {
-                if (isAfterDateRollChargesPosted || AccountStatus.CLOSED == accountStatus) {
-                    componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
-                }
+            if ((RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType() &&
+                  (!isChargesPosted || !beforePropertyDate) && accountStatus == AccountStatus.OPEN) ||
+                  ((isAfterDateRollChargesPosted || accountStatus == AccountStatus.CLOSED) && isChargesPosted &&
+                        RoomChargePostingType.AFTER_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType())) {
+                componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
             }
         }
         return componentChargeViews;
@@ -159,7 +157,7 @@ public class ComponentChargeView {
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots) {
 
-        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>(componentRateSnapshots.size());
         componentRateSnapshots.stream().forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
