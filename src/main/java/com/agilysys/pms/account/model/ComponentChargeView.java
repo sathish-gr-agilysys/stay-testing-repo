@@ -35,6 +35,23 @@ public class ComponentChargeView {
 
     ChargeTaxAmountInfo estimatedTaxInfo;
 
+    public ComponentChargeView() {
+    }
+
+    public ComponentChargeView(ComponentChargeView componentChargeView) {
+        this.componentBundleId = componentChargeView.getComponentBundleId();
+        this.transactionItemId = componentChargeView.getTransactionItemId();
+        this.transactionItemName = componentChargeView.getTransactionItemName();
+        this.amount = componentChargeView.getAmount();
+        this.quantity = componentChargeView.getQuantity();
+        this.totalQuantity = componentChargeView.getTotalQuantity();
+        this.totalAmount = componentChargeView.getTotalAmount();
+        this.componentType = componentChargeView.getComponentType();
+        this.roomChargePostingType = componentChargeView.getRoomChargePostingType();
+        this.transactionItemType = componentChargeView.getTransactionItemType();
+        this.estimatedTaxInfo = componentChargeView.getEstimatedTaxInfo();
+    }
+
     public String getComponentBundleId() {
         return componentBundleId;
     }
