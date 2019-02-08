@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CompInfo;
+import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -77,6 +78,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private GatewayType gatewayType;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -748,6 +750,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCallType(String callType) {
         this.callType = callType;
+    }
+
+    public GatewayType getGatewayType() {
+        return gatewayType;
+    }
+
+    public void setGatewayType(GatewayType gatewayType) {
+        this.gatewayType = gatewayType;
     }
 
     @Override
