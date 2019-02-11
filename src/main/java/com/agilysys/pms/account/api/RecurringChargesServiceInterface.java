@@ -62,7 +62,7 @@ public interface RecurringChargesServiceInterface {
     String ESTIMATED_ROOM_CHARGES_PATH = "/estimatedRoomCharges";
     String ESTIMATED_CHARGES_PATH = "/estimatedCharges";
     String ESTIMATED_CHARGES_BY_PAYMENTSETTING_PATH = "/estimatedChargesByPaymentSetting";
-    String ESTIMATED_CHARGES_BY_PAYMENTSETTING_RESERVATION_PATH = "/estimatedChargesByPaymentSettingReservationIds";
+    String ESTIMATED_CHARGES_BY_PAYMENTSETTING_RESERVATION_PATH = "/estimatedChargesByReservationIds";
     String ESTIMATED_CHARGES_BY_FOLIO_PATH = "/estimatedChargesByFolio";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
