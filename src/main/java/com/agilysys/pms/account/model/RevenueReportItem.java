@@ -18,11 +18,10 @@ public class RevenueReportItem {
     private boolean roomRevenue;
     private boolean posted;
 
-    public RevenueReportItem(){
-
+    public RevenueReportItem() {
     }
 
-    public RevenueReportItem(RevenueReportItem revenueReportItem){
+    public RevenueReportItem(RevenueReportItem revenueReportItem) {
         transactionId = revenueReportItem.transactionId;
         accountId = revenueReportItem.accountId;
         accountType = revenueReportItem.accountType;

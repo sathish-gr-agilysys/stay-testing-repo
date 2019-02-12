@@ -24,7 +24,7 @@ public class ReservationRevenueReportItem extends RevenueReportItem {
 
     }
 
-    public ReservationRevenueReportItem(RevenueReportItem revenueReportItem){
+    public ReservationRevenueReportItem(RevenueReportItem revenueReportItem) {
         super(revenueReportItem);
     }
 
