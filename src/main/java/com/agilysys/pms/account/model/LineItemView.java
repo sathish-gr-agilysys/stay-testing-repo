@@ -685,15 +685,12 @@ public class LineItemView implements Comparable<LineItemView> {
     public BigDecimal getTaxAmount() {
         BigDecimal taxAmount = BigDecimal.ZERO;
         for (LineItemView tax : getTaxLineItems()) {
-            if (tax.isReverseTax()) {
-                taxAmount = taxAmount
-                      .add(tax.getReverseTaxTotalChargeAmount() != null ? tax.getReverseTaxTotalChargeAmount() :
-                            BigDecimal.ZERO);
-            } else {
+            if (tax.isReverseTax() && tax.getReverseTaxTotalChargeAmount() != null) {
+                taxAmount = taxAmount.add(tax.getReverseTaxTotalChargeAmount());
+            } else if (!tax.isReverseTax()) {
                 taxAmount = taxAmount.add(tax.getUnitAmount().multiply(new BigDecimal(tax.getQuantity())));
             }
         }
-
         return taxAmount;
     }
 
