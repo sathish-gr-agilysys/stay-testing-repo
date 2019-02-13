@@ -5,6 +5,8 @@ package com.agilysys.pms.account.model;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.statuses.ReservationStatus;
+import com.agilysys.common.model.statuses.ReservationStatus.CanonicalId;
 import com.agilysys.pms.account.model.external.Reservation;
 
 public class ReservationRevenueReportItem extends RevenueReportItem {
@@ -16,7 +18,7 @@ public class ReservationRevenueReportItem extends RevenueReportItem {
     private String ratePlanId;
     private String paymentMethodId;
     private String roomId;
-    private String reservationStatus;
+    private ReservationStatus.CanonicalId reservationStatus;
     private String reservationId;
     private String roomTypeCode;
 
@@ -92,11 +94,11 @@ public class ReservationRevenueReportItem extends RevenueReportItem {
         this.roomId = roomId;
     }
 
-    public String getReservationStatus() {
+    public CanonicalId getReservationStatus() {
         return reservationStatus;
     }
 
-    public void setReservationStatus(String reservationStatus) {
+    public void setReservationStatus(CanonicalId reservationStatus) {
         this.reservationStatus = reservationStatus;
     }
 
