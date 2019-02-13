@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>payment-interface</artifactId>
-            <version>74.729.0</version>
+            <version>74.818.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.795.0</version>
+            <version>74.818.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
