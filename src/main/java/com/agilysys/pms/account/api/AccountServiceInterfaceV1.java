@@ -1001,6 +1001,14 @@ public interface AccountServiceInterfaceV1 {
           GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings, @PathParam(PRESET) boolean isPreset)
           throws RGuestException, ServiceException;
 
+    @Deprecated
+    @GET
+    @Path(SEARCH_PATH + SEARCH_TERM_PATH + REMAINING_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(SEARCH_TERM) String searchTerm, @PathParam(PATH) String optionalSearchParamsPath)
+          throws RGuestException, ServiceException;
+
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
