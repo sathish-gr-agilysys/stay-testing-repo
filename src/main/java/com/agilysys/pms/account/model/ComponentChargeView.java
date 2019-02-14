@@ -160,10 +160,12 @@ public class ComponentChargeView {
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots) {
-
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        componentRateSnapshots.stream().forEach(
-              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
+        componentRateSnapshots.stream().forEach(componentRateSnapshot -> {
+            if (componentRateSnapshot.getTotalQuantity() > 0) {
+                componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
+            }
+        });
         return componentChargeViews;
     }
 }
