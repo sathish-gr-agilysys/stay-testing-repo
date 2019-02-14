@@ -162,7 +162,7 @@ public class ComponentChargeView {
           List<ComponentRateSnapshot> componentRateSnapshots) {
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         componentRateSnapshots.stream().forEach(componentRateSnapshot -> {
-            if (componentRateSnapshot.getTotalQuantity() > 0) {
+            if (componentRateSnapshot.getTotalQuantity() != null && componentRateSnapshot.getTotalQuantity() > 0) {
                 componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
             }
         });
