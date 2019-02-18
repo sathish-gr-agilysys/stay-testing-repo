@@ -122,14 +122,4 @@ public interface InventoryItemConfigServiceInterface {
     List<InventoryItem> convertToInventoryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<InventoryItem> items)
           throws RGuestException, ServiceException;
-
-    /**
-     * Endpoint to update inventory to new collection, this end point
-     * should be removed after successful migration
-     */
-    @POST
-    @Path(MIGRATE_TO_V1_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    Collection<MigrationResult> migrateInventoryItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }
