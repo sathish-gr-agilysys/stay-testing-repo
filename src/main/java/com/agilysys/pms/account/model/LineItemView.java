@@ -13,6 +13,8 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.pms.payment.model.GatewayType;
+import com.agilysys.common.model.rate.ComponentType;
+import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -37,6 +39,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private String callType;
     private String categoryId;
     private CompInfo compInfo;
+    private ComponentType componentType;
+    private RoomChargePostingType roomChargePostingType;
     private LineItemView correctionLineItem;
     private String description;
     private LocalDate displayDate;
@@ -152,6 +156,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCompInfo(CompInfo compInfo) {
         this.compInfo = compInfo;
+    }
+
+    public ComponentType getComponentType() {
+        return componentType;
+    }
+
+    public void setComponentType(ComponentType componentType) {
+        this.componentType = componentType;
+    }
+
+    public RoomChargePostingType getRoomChargePostingType() {
+        return roomChargePostingType;
+    }
+
+    public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
+        this.roomChargePostingType = roomChargePostingType;
     }
 
     public LineItemView getCorrectionLineItem() {
