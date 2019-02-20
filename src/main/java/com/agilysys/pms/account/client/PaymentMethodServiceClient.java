@@ -13,4 +13,9 @@ public class PaymentMethodServiceClient extends StayServiceClient<PaymentMethodI
     public PaymentMethodServiceClient(String uri) {
         super(PaymentMethodInterface.class, uri);
     }
+
+    public PaymentMethodServiceClient(String uri, int limit) {
+        super(PaymentMethodInterface.class, uri, limit);
+    }
+
 }

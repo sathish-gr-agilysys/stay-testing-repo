@@ -13,6 +13,10 @@ public class AccountServiceV1Client extends StayServiceClient<AccountServiceInte
         super(AccountServiceInterfaceV1.class, uri, clientProviderConfigurer());
     }
 
+    public AccountServiceV1Client(String uri, int limit) {
+        super(AccountServiceInterfaceV1.class, uri, clientProviderConfigurer(), limit);
+    }
+
     protected static ClientProviderConfigurer clientProviderConfigurer() {
         ClientProviderConfigurer configurer = StayServiceClient.clientProviderConfigurer();
         if (!NextGenExceptionToggle.isEnabled()) {
