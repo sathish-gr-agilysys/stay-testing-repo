@@ -47,6 +47,16 @@ public class EstimatedChargesSummaryView {
     private BigDecimal postedCharges = BigDecimal.ZERO;
 
     /**
+     * The posted room charges
+     */
+    private BigDecimal postedRoomCharges = BigDecimal.ZERO;
+
+    /**
+     * The posted room taxes
+     */
+    private BigDecimal postedRoomTaxes = BigDecimal.ZERO;
+
+    /**
      * The taxes for posted charges
      */
     private BigDecimal postedTaxes = BigDecimal.ZERO;
@@ -65,6 +75,16 @@ public class EstimatedChargesSummaryView {
      * The taxes for future charges
      */
     private BigDecimal futureTaxes = BigDecimal.ZERO;
+
+    /**
+     * The future room charges expected for the stay
+     */
+    private BigDecimal futureRoomCharges = BigDecimal.ZERO;
+
+    /**
+     * The taxes for future room charges
+     */
+    private BigDecimal futureRoomTaxes = BigDecimal.ZERO;
 
     /**
      * The total of future charges and taxes
@@ -171,6 +191,22 @@ public class EstimatedChargesSummaryView {
         this.postedCharges = postedCharges;
     }
 
+    public BigDecimal getPostedRoomCharges() {
+        return postedRoomCharges;
+    }
+
+    public void setPostedRoomCharges(BigDecimal postedRoomCharges) {
+        this.postedRoomCharges = postedRoomCharges;
+    }
+
+    public BigDecimal getPostedRoomTaxes() {
+        return postedRoomTaxes;
+    }
+
+    public void setPostedRoomTaxes(BigDecimal postedRoomTaxes) {
+        this.postedRoomTaxes = postedRoomTaxes;
+    }
+
     /**
      * Gets the taxes for posted charges
      */
@@ -239,5 +275,21 @@ public class EstimatedChargesSummaryView {
      */
     public void setFutureTotal(BigDecimal futureTotal) {
         this.futureTotal = futureTotal;
+    }
+
+    public BigDecimal getFutureRoomCharges() {
+        return futureRoomCharges;
+    }
+
+    public void setFutureRoomCharges(BigDecimal futureRoomCharges) {
+        this.futureRoomCharges = futureRoomCharges;
+    }
+
+    public BigDecimal getFutureRoomTaxes() {
+        return futureRoomTaxes;
+    }
+
+    public void setFutureRoomTaxes(BigDecimal futureRoomTaxes) {
+        this.futureRoomTaxes = futureRoomTaxes;
     }
 }
