@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>74.821-VCTRS-64203-SNAPSHOT</version>
+        <version>74.821.0</version>
     </parent>
     <properties>
     </properties>
