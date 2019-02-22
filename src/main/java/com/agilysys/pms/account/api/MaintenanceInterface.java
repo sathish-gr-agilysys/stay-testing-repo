@@ -35,6 +35,7 @@ public interface MaintenanceInterface {
     String TENANT_ID = "tenantId";
     String TENANT_ID_TEMPLATE = "{" + TENANT_ID + "}";
 
+    String LEGACY = "legacy";
     String UPDATED_SINCE = "updatedSince";
     String UPDATED_UNTIL = "updatedUntil";
 
@@ -60,7 +61,8 @@ public interface MaintenanceInterface {
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
+          @QueryParam(UPDATED_UNTIL) String updatedUntil, @QueryParam(LEGACY) boolean legacy)
+          throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
