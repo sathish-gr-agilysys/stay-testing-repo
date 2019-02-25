@@ -159,13 +159,26 @@ public class ComponentChargeView {
     }
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
-          List<ComponentRateSnapshot> componentRateSnapshots) {
+          List<ComponentRateSnapshot> componentRateSnapshots, boolean isAfterDateRollChargesPosted,
+          boolean isChargesPosted, AccountStatus accountStatus, boolean dateChanged) {
+
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        componentRateSnapshots.stream().forEach(componentRateSnapshot -> {
-            if (componentRateSnapshot.getTotalQuantity() != null && componentRateSnapshot.getTotalQuantity() > 0) {
+        for (ComponentRateSnapshot componentRateSnapshot : componentRateSnapshots) {
+            if ((RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType() &&
+                  (!isChargesPosted || !dateChanged) && accountStatus == AccountStatus.OPEN) ||
+                  ((isAfterDateRollChargesPosted || accountStatus == AccountStatus.CLOSED) && isChargesPosted &&
+                        RoomChargePostingType.AFTER_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType())) {
                 componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
             }
-        });
+        }
+        return componentChargeViews;
+    }
+
+    public static List<ComponentChargeView> fromComponentRateSnapshots(
+          List<ComponentRateSnapshot> componentRateSnapshots) {
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>(componentRateSnapshots.size());
+        componentRateSnapshots.stream().forEach(
+              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
