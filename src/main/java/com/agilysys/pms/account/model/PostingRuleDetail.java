@@ -34,9 +34,10 @@ public class PostingRuleDetail {
     private String subcategoryId;
     private Set<String> itemIds;
 
+    private String destinationFolioId;
     private String splitBy;
 
-    @JsonProperty(required = true)
+    private String destinationAccountId;
     private List<DestinationDetail> destinations;
 
     @JsonProperty(required = true)
@@ -59,6 +60,22 @@ public class PostingRuleDetail {
 
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
+
+    public String getDestinationAccountId() {
+        return destinationAccountId;
+    }
+
+    public void setDestinationAccountId(String destinationAccountId) {
+        this.destinationAccountId = destinationAccountId;
+    }
+
+    public String getDestinationFolioId() {
+        return destinationFolioId;
+    }
+
+    public void setDestinationFolioId(String destinationFolioId) {
+        this.destinationFolioId = destinationFolioId;
+    }
 
     public PostingRuleDetail() {
         this.destinations = new ArrayList<>();
