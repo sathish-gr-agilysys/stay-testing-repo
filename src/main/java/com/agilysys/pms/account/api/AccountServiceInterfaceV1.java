@@ -50,6 +50,8 @@ import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
+import com.agilysys.pms.account.model.FolioInvoice;
+import com.agilysys.pms.account.model.FolioInvoiceRequest;
 import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
@@ -1402,5 +1404,21 @@ public interface AccountServiceInterfaceV1 {
     @Path(NEW_PROPERTY_AR_ACCOUNT)
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID + ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH)
+    FolioInvoice getFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID + ACCOUNT_ID_PATH + INVOICES_PATH)
+    List<FolioInvoice> getFolioInvoiceFromAccount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,@PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(INVOICES_PATH)
+    FolioInvoice printFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          FolioInvoiceRequest folioInvoiceRequest);
 }
 
