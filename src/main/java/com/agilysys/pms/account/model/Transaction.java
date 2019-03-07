@@ -11,6 +11,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CompInfo;
+import com.agilysys.common.model.rate.ComponentType;
+import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,12 +30,15 @@ public abstract class Transaction {
     protected BigDecimal amount;
     protected String callType;
     protected CompInfo compInfo;
+    protected RoomChargePostingType roomChargePostingType;
+    protected ComponentType componentType;
     protected String folioId;
     protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
     protected boolean invalid;
     @JsonProperty(required = true)
     protected String itemId;
+    public static final String ITEM_ID_FIELD = "itemId";
     protected String parentId;
     protected String petDisplayName;
     protected LocalDate postingDate;
@@ -70,6 +75,22 @@ public abstract class Transaction {
 
     public void setCompInfo(CompInfo compInfo) {
         this.compInfo = compInfo;
+    }
+
+    public RoomChargePostingType getRoomChargePostingType() {
+        return roomChargePostingType;
+    }
+
+    public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
+        this.roomChargePostingType = roomChargePostingType;
+    }
+
+    public ComponentType getComponentType() {
+        return componentType;
+    }
+
+    public void setComponentType(ComponentType componentType) {
+        this.componentType = componentType;
     }
 
     public String getFolioId() {
