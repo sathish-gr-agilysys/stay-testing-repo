@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>74.821.0</version>
+        <version>74.831.0</version>
     </parent>
     <properties>
     </properties>
@@ -38,17 +38,17 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.823.0</version>
+            <version>74.832.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.729.0</version>
+            <version>74.831.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.818.0</version>
+            <version>74.831.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
