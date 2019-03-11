@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.client;
@@ -17,5 +17,4 @@ public class PaymentMethodServiceClient extends StayServiceClient<PaymentMethodI
     public PaymentMethodServiceClient(String uri, int limit) {
         super(PaymentMethodInterface.class, uri, limit);
     }
-
 }

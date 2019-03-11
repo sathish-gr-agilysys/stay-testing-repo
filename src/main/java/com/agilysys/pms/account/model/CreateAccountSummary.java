@@ -20,6 +20,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateAccountSummary extends AccountSummary {
+    // FYI:
+    // * inherited taxExemptSettings is ignored during account creation
+    // * inherited accountsReceivableSettings.defaultRoutingRule is ignored during account creation
+
     /**
      * the company profile id related to the reservation, if there is one
      */
