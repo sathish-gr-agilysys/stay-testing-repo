@@ -3,7 +3,6 @@
  */
 package com.agilysys.pms.account.api;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -24,7 +23,6 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.InventoryItem;
-import com.agilysys.pms.common.migration.model.MigrationResult;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/inventoryItems")
