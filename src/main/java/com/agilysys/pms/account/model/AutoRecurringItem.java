@@ -128,10 +128,6 @@ public class AutoRecurringItem extends AccountingObjectBase {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     @Override
     public String getDisplayName() {
         return DISPLAY_NAME;
