@@ -4,7 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Collection;
 
 import com.agilysys.pms.account.model.AccountAttributes.PreferredCommunication;
 
@@ -19,7 +19,7 @@ public class PropertyBalanceInfo {
     private boolean readOnly;
     private boolean closed;
 
-    private List<BigDecimal> invoiceTotalsByAging; //invoiceTotalByAgeGroup
+    private Collection<BigDecimal> invoiceTotalsByAging; //invoiceTotalByAgeGroup
     private BigDecimal invoicedTotal; // invoiceTotal = sum(invoiceTotalsByAgeGroups)
     private BigDecimal unInvoicedTotal; // sum(unInvoicedCharges)
     private BigDecimal balance; // balance = subTotal + unInvoicedTotal
@@ -83,9 +83,9 @@ public class PropertyBalanceInfo {
         this.closed = closed;
     }
 
-    public List<BigDecimal> getInvoiceTotalsByAging() { return invoiceTotalsByAging; }
+    public Collection<BigDecimal> getInvoiceTotalsByAging() { return invoiceTotalsByAging; }
 
-    public void setInvoiceTotalsByAging(List<BigDecimal> invoiceTotalsByAging) {
+    public void setInvoiceTotalsByAging(Collection<BigDecimal> invoiceTotalsByAging) {
         this.invoiceTotalsByAging = invoiceTotalsByAging;
     }
 
