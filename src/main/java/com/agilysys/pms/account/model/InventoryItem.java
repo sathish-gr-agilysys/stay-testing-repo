@@ -11,42 +11,52 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.pms.common.audit.EntityTypes;
-import com.agilysys.pms.common.audit.annotation.AuditEntityType;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
+import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-@AuditEntityType(EntityTypes.INVENTORY_ITEM)
+@AuditEntity(EntityTypes.INVENTORY_ITEM)
 public class InventoryItem extends TransactionItem {
     private static final String DISPLAY_NAME = "Inventory item";
 
-    @JsonProperty(required = true)
-    private int availableCount;
+    private Integer availableCount;
 
     private Integer maxQuantityPerReservation;
 
+    @AuditField(references = EntityTypes.ROOM_TYPE, inline = true)
     private Set<String> restrictedRoomTypes;
 
     public InventoryItem() {
+        super();
+
         restrictedRoomTypes = new LinkedHashSet<>();
     }
 
-    public InventoryItem(TransactionItem transactionItem, int availableCount, CanonicalId status) {
+    public InventoryItem(TransactionItem transactionItem, Integer availableCount, CanonicalId status) {
         super(transactionItem);
 
-        restrictedRoomTypes = new LinkedHashSet<>();
-        setAvailableCount(availableCount);
-        setStatus(status);
+        this.availableCount = availableCount;
+    }
+
+    public InventoryItem(TransactionItem transactionItem, Integer availableCount, CanonicalId status,
+          Integer maxQuantityPerReservation, Set<String> restrictedRoomTypes) {
+        super(transactionItem);
+
+        this.availableCount = availableCount;
+        this.maxQuantityPerReservation = maxQuantityPerReservation;
+        this.restrictedRoomTypes = restrictedRoomTypes;
+        this.status = status;
     }
 
     public TransactionItemType getType() {
         return TransactionItemType.INVENTORY;
     }
 
-    public int getAvailableCount() {
+    public Integer getAvailableCount() {
         return availableCount;
     }
 
-    public void setAvailableCount(int availableCount) {
+    public void setAvailableCount(Integer availableCount) {
         this.availableCount = availableCount;
     }
 

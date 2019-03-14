@@ -4,8 +4,11 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -26,6 +29,7 @@ import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.RevenueReportResult;
+import com.agilysys.pms.account.model.RoomRevenueItem;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
@@ -40,6 +44,7 @@ public interface ReportingServiceInterface {
     String TO_DATE_TOTALS_PATH = "/toDateTotals";
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
+    String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String REVENUE_PATH = "/revenueDetails";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
@@ -49,6 +54,7 @@ public interface ReportingServiceInterface {
     String START_DATE = "startDate";
     String END_DATE = "endDate";
     String ROOM_REVENUE = "roomRevenue";
+    String REVENUE_OCCUPANCY = "revenueOccupancy";
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
     String SOURCE_ID = "sourceId";
@@ -142,7 +148,7 @@ public interface ReportingServiceInterface {
      * @param propertyId
      * @param startDate
      * @param endDate
-     * @param isRoomRevenue
+     * @param roomRevenue
      * @return
      */
     @GET
@@ -151,7 +157,8 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean isRoomRevenue)
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
+          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
           throws RGuestException, ServiceException;
 
     /**
@@ -249,4 +256,19 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(SOURCE_ID) String sourceId)
           throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve room revenue detail for the given reservation identifiers.
+     *
+     * @param tenantId
+     * @param propertyId
+     * @return
+     */
+    @POST
+    @Path(RESERVATION_ROOM_REVENUE_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    Map<String, RoomRevenueItem> getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
 }
