@@ -34,9 +34,11 @@ public class PostingRuleDetail {
     private String subcategoryId;
     private Set<String> itemIds;
 
+    @Deprecated
     private String destinationFolioId;
     private String splitBy;
 
+    @Deprecated
     private String destinationAccountId;
     private List<DestinationDetail> destinations;
 
@@ -61,24 +63,28 @@ public class PostingRuleDetail {
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
 
+    public PostingRuleDetail() {
+        this.destinations = new ArrayList<>();
+    }
+
+    @Deprecated
     public String getDestinationAccountId() {
         return destinationAccountId;
     }
 
+    @Deprecated
     public void setDestinationAccountId(String destinationAccountId) {
         this.destinationAccountId = destinationAccountId;
     }
 
+    @Deprecated
     public String getDestinationFolioId() {
         return destinationFolioId;
     }
 
+    @Deprecated
     public void setDestinationFolioId(String destinationFolioId) {
         this.destinationFolioId = destinationFolioId;
-    }
-
-    public PostingRuleDetail() {
-        this.destinations = new ArrayList<>();
     }
 
     public String getRuleName() {
