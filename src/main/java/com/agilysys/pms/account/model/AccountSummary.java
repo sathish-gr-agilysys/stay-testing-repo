@@ -52,6 +52,8 @@ public class AccountSummary {
 
     protected String houseAccountCategoryId;
 
+    protected String creditCardAuthRuleSettingsId;
+
     public String getId() {
         return id;
     }
@@ -162,5 +164,13 @@ public class AccountSummary {
 
     public void setHouseAccountCategoryId(String houseAccountCategoryId) {
         this.houseAccountCategoryId = houseAccountCategoryId;
+    }
+
+    public String getCreditCardAuthRuleSettingsId() {
+        return creditCardAuthRuleSettingsId;
+    }
+
+    public void setCreditCardAuthRuleSettingsId(String creditCardAuthRuleSettingsId) {
+        this.creditCardAuthRuleSettingsId = creditCardAuthRuleSettingsId;
     }
 }

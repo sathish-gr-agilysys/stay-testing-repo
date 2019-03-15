@@ -102,8 +102,10 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
+    String ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID = "creditCardAuthRuleSettingsId";
     String ACCOUNT_TYPE = "accountType";
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
+    String ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID_PATH = "/creditCardAuthRuleSettingsId/{" + ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
     String ADJUSTMENT_PATH = "/adjustment";
     String APPLY_PAYMENTS = "/applyPayments";
@@ -328,6 +330,22 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void updateAccountStatus(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Update the credit card authorization rule of an existing account for a tenant
+     *
+     * @param tenantId      updated account's tenant
+     * @param propertyId    id of the property where the account exists
+     * @param accountId     account to update
+     * @param creditCardAuthRuleSettingsId  creditCardAuthRuleSettingsId  string.
+     */
+    @PUT
+    @Path(ACCOUNT_ID_PATH + ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID_PATH)
+    @OkOnEmpty
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateAccountCreditCardAuthRuleSettingsId(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID) String creditCardAuthRuleSettingsId)
           throws RGuestException, ServiceException;
 
     /**
