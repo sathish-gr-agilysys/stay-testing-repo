@@ -1,7 +1,5 @@
 /*
- *
- *  *  (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
- *
+ * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.api;
 
@@ -84,7 +82,6 @@ import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
-import com.agilysys.pms.account.model.tmp.fixup.LedgerBalanceFixup;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
@@ -383,9 +380,8 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          Set<String> accountIds)
-          throws RGuestException, ServiceException;
+    Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
 
     /**
      * Retrieve totalSpent for all Accounts
@@ -398,9 +394,8 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(TOTAL_SPENT_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          Set<String> accountIds)
-          throws RGuestException, ServiceException;
+    Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
@@ -1006,24 +1001,6 @@ public interface AccountServiceInterfaceV1 {
           GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings, @PathParam(PRESET) boolean isPreset)
           throws RGuestException, ServiceException;
 
-
-
-    /* Search */
-
-    /**
-     * Search for accounts within a given tenant and property
-     *
-     * @param tenantId                 id of tenant to search on
-     * @param propertyId               id of the property to search on
-     * @param searchTerm               string to match on
-     * @param optionalSearchParamsPath optional parameters sent to search accounts. They are passed in in the path as
-     *                                 key/value pairs; for
-     *                                 available parameters:
-     *                                 propertyIdFilter - property id to filter results on
-     *                                 includeClosedAccounts - by default closed accounts will be filtered from the
-     *                                 search results
-     * @return A list of {@link AccountSearchResult}
-     */
     @Deprecated
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + REMAINING_PATH)
