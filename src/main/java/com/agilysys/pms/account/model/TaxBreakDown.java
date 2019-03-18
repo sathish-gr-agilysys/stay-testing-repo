@@ -6,7 +6,7 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 
 public class TaxBreakDown {
-    private String taxClass;
+    private String taxRule;
     private BigDecimal net;
     private BigDecimal vat;
     private BigDecimal gross;
@@ -14,19 +14,19 @@ public class TaxBreakDown {
     public TaxBreakDown() {
     }
 
-    public TaxBreakDown(String taxClass, BigDecimal net, BigDecimal vat, BigDecimal gross) {
-        this.taxClass = taxClass;
+    public TaxBreakDown(String taxRule, BigDecimal net, BigDecimal vat, BigDecimal gross) {
+        this.taxRule = taxRule;
         this.net = net;
         this.vat = vat;
         this.gross = gross;
     }
 
-    public String getTaxClass() {
-        return taxClass;
+    public String getTaxRule() {
+        return taxRule;
     }
 
-    public void setTaxClass(String taxClass) {
-        this.taxClass = taxClass;
+    public void setTaxRule(String taxRule) {
+        this.taxRule = taxRule;
     }
 
     public BigDecimal getNet() {

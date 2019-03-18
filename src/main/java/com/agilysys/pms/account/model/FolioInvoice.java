@@ -29,6 +29,7 @@ public class FolioInvoice {
     private List<String> folioLineItemIds;
     private BigDecimal totalAmount;
     private BigDecimal totalPayments;
+    private BigDecimal totalBalances;
     private List<TaxBreakDown> taxBreakDowns;
 
     public String getId() {
@@ -181,6 +182,14 @@ public class FolioInvoice {
 
     public void setTotalPayments(BigDecimal totalPayments) {
         this.totalPayments = totalPayments;
+    }
+
+    public BigDecimal getTotalBalances() {
+        return totalBalances;
+    }
+
+    public void setTotalBalances(BigDecimal totalBalances) {
+        this.totalBalances = totalBalances;
     }
 
     public List<TaxBreakDown> getTaxBreakDowns() {
