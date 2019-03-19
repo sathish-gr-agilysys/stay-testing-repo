@@ -63,9 +63,7 @@ public class PostingRuleDetail {
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
 
-    public PostingRuleDetail() {
-
-    }
+    public PostingRuleDetail() { }
 
     @Deprecated
     public String getDestinationAccountId() {
