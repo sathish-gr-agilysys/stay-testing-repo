@@ -64,7 +64,7 @@ public class PostingRuleDetail {
     private Set<String> includedAccountIds;
 
     public PostingRuleDetail() {
-        this.destinations = new ArrayList<>();
+
     }
 
     @Deprecated
@@ -205,35 +205,5 @@ public class PostingRuleDetail {
 
     public void setIncludedAccountIds(Set<String> includedAccountIds) {
         this.includedAccountIds = includedAccountIds;
-    }
-
-    public static class DestinationDetail {
-        private String accountId;
-        private String folioId;
-        private String value;
-
-        @JsonCreator
-        public DestinationDetail(@JsonProperty(required = true, value = "accountId") String accountId
-              , @JsonProperty(required = true, value = "folioId") String folioId) {
-            this.accountId = accountId;
-            this.folioId = folioId;
-        }
-
-        public DestinationDetail(String accountId, String folioId, String value) {
-            this(accountId, folioId);
-            this.value = value;
-        }
-
-        public String getAccountId() { return accountId; }
-
-        public void setAccountId(String accountId) { this.accountId = accountId; }
-
-        public String getFolioId() { return folioId; }
-
-        public void setFolioId(String folioId) { this.folioId = folioId; }
-
-        public String getValue() { return value; }
-
-        public void setValue(String value) { this.value = value; }
     }
 }

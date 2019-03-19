@@ -4,6 +4,6 @@
 package com.agilysys.pms.account.model;
 
 public enum PostingRuleSplitBy {
-    PERCENT,
-    AMOUNT
+    AMOUNT,
+    PERCENT
 }
