@@ -18,9 +18,7 @@ public class DestinationDetail {
         this.value = value;
     }
 
-    public DestinationDetail() {
-
-    }
+    public DestinationDetail() {}
 
     public String getAccountId() { return accountId; }
 
