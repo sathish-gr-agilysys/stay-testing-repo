@@ -343,7 +343,7 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID_PATH)
     @OkOnEmpty
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+        @PreAuthorize("hasPermission('Required', 'OverrideCCAuthRule')")
     void updateAccountCreditCardAuthRuleSettingsId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID) String creditCardAuthRuleSettingsId)
