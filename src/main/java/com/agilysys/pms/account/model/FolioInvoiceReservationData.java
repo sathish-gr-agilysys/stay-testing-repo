@@ -3,17 +3,17 @@
  */
 package com.agilysys.pms.account.model;
 
-import org.joda.time.LocalDate;
-
 public class FolioInvoiceReservationData {
 
     private String reservationId;
     private String confirmationCode;
-    private LocalDate arrivalDate;
-    private LocalDate departureDate;
+    private String arrivalDate;
+    private String departureDate;
     private int totalAdults;
     private int totalChildren;
     private String allocationId;
+    private boolean reservationAliasEnabled;
+    private String reservationAlias;
 
     public String getReservationId() {
         return reservationId;
@@ -31,19 +31,19 @@ public class FolioInvoiceReservationData {
         this.confirmationCode = confirmationCode;
     }
 
-    public LocalDate getArrivalDate() {
+    public String getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(LocalDate arrivalDate) {
+    public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public LocalDate getDepartureDate() {
+    public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(LocalDate departureDate) {
+    public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
     }
 
@@ -69,5 +69,21 @@ public class FolioInvoiceReservationData {
 
     public void setAllocationId(String allocationId) {
         this.allocationId = allocationId;
+    }
+
+    public boolean isReservationAliasEnabled() {
+        return reservationAliasEnabled;
+    }
+
+    public void setReservationAliasEnabled(boolean reservationAliasEnabled) {
+        this.reservationAliasEnabled = reservationAliasEnabled;
+    }
+
+    public String getReservationAlias() {
+        return reservationAlias;
+    }
+
+    public void setReservationAlias(String reservationAlias) {
+        this.reservationAlias = reservationAlias;
     }
 }

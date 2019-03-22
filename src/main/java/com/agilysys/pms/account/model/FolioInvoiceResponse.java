@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.platform.user.model.Property;
+
 public class FolioInvoiceResponse {
 
     private FolioInvoiceReservationData folioInvoiceReservationData;
@@ -14,6 +16,7 @@ public class FolioInvoiceResponse {
     private FolioInvoiceAllocationData folioInvoiceAllocationData;
     private FolioInvoiceProfileData folioInvoiceProfileData;
     private FolioInvoicePropertyData folioInvoicePropertyData;
+    private FolioInvoiceLoyalityInfo folioInvoiceLoyalityInfo;
     private String groupName;
     private String companyName;
     private List<TaxBreakDown> taxBreakDownList;
@@ -26,6 +29,7 @@ public class FolioInvoiceResponse {
     private String accountType;
     private boolean showGuestInfo;
     private String folioFooterMessage;
+    private Property platformProperty;
 
     public FolioInvoiceReservationData getFolioInvoiceReservationData() {
         return folioInvoiceReservationData;
@@ -65,6 +69,14 @@ public class FolioInvoiceResponse {
 
     public void setFolioInvoicePropertyData(FolioInvoicePropertyData folioInvoicePropertyData) {
         this.folioInvoicePropertyData = folioInvoicePropertyData;
+    }
+
+    public FolioInvoiceLoyalityInfo getFolioInvoiceLoyalityInfo() {
+        return folioInvoiceLoyalityInfo;
+    }
+
+    public void setFolioInvoiceLoyalityInfo(FolioInvoiceLoyalityInfo folioInvoiceLoyalityInfo) {
+        this.folioInvoiceLoyalityInfo = folioInvoiceLoyalityInfo;
     }
 
     public String getGroupName() {
@@ -161,5 +173,13 @@ public class FolioInvoiceResponse {
 
     public void setFolioFooterMessage(String folioFooterMessage) {
         this.folioFooterMessage = folioFooterMessage;
+    }
+
+    public Property getPlatformProperty() {
+        return platformProperty;
+    }
+
+    public void setPlatformProperty(Property platformProperty) {
+        this.platformProperty = platformProperty;
     }
 }

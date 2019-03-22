@@ -27,6 +27,7 @@ public class FolioInvoice {
     private LocalDate taxDate;
     private String folioId;
     private List<String> folioLineItemIds;
+    private List<LineItemView> folioLineItemViews;
     private BigDecimal totalAmount;
     private BigDecimal totalPayments;
     private BigDecimal totalBalances;
@@ -166,6 +167,14 @@ public class FolioInvoice {
 
     public void setFolioLineItemIds(List<String> folioLineItemIds) {
         this.folioLineItemIds = folioLineItemIds;
+    }
+
+    public List<LineItemView> getFolioLineItemViews() {
+        return folioLineItemViews;
+    }
+
+    public void setFolioLineItemViews(List<LineItemView> folioLineItemViews) {
+        this.folioLineItemViews = folioLineItemViews;
     }
 
     public BigDecimal getTotalAmount() {

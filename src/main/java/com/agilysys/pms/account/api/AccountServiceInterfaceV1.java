@@ -1424,8 +1424,9 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, FolioInvoiceRequests folioInvoiceRequests);
 
     @GET
-    @Path(ACCOUNT_ID + ACCOUNT_ID_PATH + "/folioInvoiceSummary")
+    @Path(ACCOUNT_ID_PATH + "/folioInvoiceSummary")
     List<FolioInvoiceDetail> getFolioInvoiceSummary(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId);
+
 }
 
