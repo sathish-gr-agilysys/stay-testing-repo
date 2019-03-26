@@ -3,8 +3,10 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import com.agilysys.pms.payment.model.CardInformation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PantryCharge {
@@ -21,7 +23,14 @@ public class PantryCharge {
     private String reason;
     private String reference;
     private String terminalId;
+    private BigDecimal amount;
     private List<PantryItemDetails> pantryItemsList;
+
+    @JsonProperty(required = true)
+    private String paymentMethodId;
+    private String paymentInstrumentId;
+    private CardInformation cardInformation;
+    private String invoiceNumber;
 
     public PantryCharge() {
     }
@@ -30,6 +39,38 @@ public class PantryCharge {
         this.isPayment = isPayment;
         this.payment = payment;
         this.pantryItemsList = pantryItemsList;
+    }
+
+    public String getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    public void setPaymentMethodId(String paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
+
+    public String getPaymentInstrumentId() {
+        return paymentInstrumentId;
+    }
+
+    public void setPaymentInstrumentId(String paymentInstrumentId) {
+        this.paymentInstrumentId = paymentInstrumentId;
+    }
+
+    public CardInformation getCardInformation() {
+        return cardInformation;
+    }
+
+    public void setCardInformation(CardInformation cardInformation) {
+        this.cardInformation = cardInformation;
+    }
+
+    public String getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public void setInvoiceNumber(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
     }
 
     public boolean isPayment() {
@@ -102,5 +143,14 @@ public class PantryCharge {
 
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
+    }
+
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 }
