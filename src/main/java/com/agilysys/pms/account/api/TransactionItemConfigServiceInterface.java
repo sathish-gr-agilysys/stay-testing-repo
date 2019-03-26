@@ -22,10 +22,10 @@ import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.platform.tax.model.TaxRuleData;
-import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
-import com.agilysys.pms.common.migration.model.MigrationResult;
 import com.agilysys.pms.account.model.TransactionItem;
+import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.migration.model.MigrationResult;
 
 /**
  * CRUD methods for TransactionItem
@@ -104,11 +104,11 @@ public interface TransactionItemConfigServiceInterface {
     /**
      * Modify an existing TransactionItem
      *
-     * @param tenantId                              the tenantId to modify the TransactionItem for
-     * @param itemId                                the ID of the TransactionItems to modify
-     * @param autoRecurringChargeOptionalParameters decides whether to update the values of Auto recurring items
-     *                                              created from the transaction item
-     * @param item                                  the modified TransactionItem to persist
+     * @param tenantId                          the tenantId to modify the TransactionItem for
+     * @param itemId                            the ID of the TransactionItems to modify
+     * @param transactionItemOptionalParameters decides whether to update the values of Auto recurring and pantry items
+     *                                          created from the transaction item
+     * @param item                              the modified TransactionItem to persist
      * @return the modified TransactionItem
      */
     @PUT
@@ -117,8 +117,8 @@ public interface TransactionItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
-          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
-          TransactionItem item) throws RGuestException, ServiceException;
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, TransactionItem item)
+          throws RGuestException, ServiceException;
 
     /**
      * Delete an existing TransactionItem

@@ -5,18 +5,11 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
-import com.agilysys.pms.common.model.ObjectBase;
+import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PantryItem extends ObjectBase {
-
-    private String id;
-
-    @JsonProperty(required = true)
-    private String itemName;
-
-    @JsonProperty(required = true)
-    private String itemCode;
+public class PantryItem extends AccountingObjectBase {
+    private static final String DISPLAY_NAME = "Pantry Items";
 
     @JsonProperty(required = true)
     private BigDecimal price;
@@ -24,45 +17,21 @@ public class PantryItem extends ObjectBase {
     @JsonProperty(required = true)
     private String transactionItemId;
 
-    private boolean status;
+    private CanonicalId status;
     private String plu;
     private int order;
 
     public PantryItem() {
+        super();
     }
 
     public PantryItem(PantryItem pantryItem) {
-        itemName = pantryItem.getItemName();
-        itemCode = pantryItem.getItemCode();
+        super(pantryItem);
         price = pantryItem.getPrice();
         status = pantryItem.getStatus();
         plu = pantryItem.getPlu();
         order = pantryItem.getOrder();
         transactionItemId = pantryItem.getTransactionItemId();
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public String getItemCode() {
-        return itemCode;
-    }
-
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
     }
 
     public BigDecimal getPrice() {
@@ -71,14 +40,6 @@ public class PantryItem extends ObjectBase {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public String getPlu() {
@@ -103,6 +64,19 @@ public class PantryItem extends ObjectBase {
 
     public void setTransactionItemId(String transactionItemId) {
         this.transactionItemId = transactionItemId;
+    }
+
+    public CanonicalId getStatus() {
+        return status;
+    }
+
+    public void setStatus(CanonicalId status) {
+        this.status = status;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
     }
 
 }

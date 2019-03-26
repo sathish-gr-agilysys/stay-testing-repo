@@ -81,6 +81,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private List<PantryItemDetails> pantryItemDetails;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -770,6 +771,13 @@ public class LineItemView implements Comparable<LineItemView> {
         this.callType = callType;
     }
 
+    public List<PantryItemDetails> getPantryItemDetails() {
+        return pantryItemDetails;
+    }
+
+    public void setPantryItemDetails(List<PantryItemDetails> pantryItemDetails) {
+        this.pantryItemDetails = pantryItemDetails;
+    }
     @Override
     public int compareTo(LineItemView other) {
         if (this.getDisplayDate() != null && other.getDisplayDate() != null) {

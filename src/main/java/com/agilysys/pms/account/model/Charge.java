@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.List;
+
 import com.google.common.base.Objects;
 
 /**
@@ -13,6 +15,7 @@ public class Charge extends Transaction {
     private String recurringChargeId;
     private TransactionItemType transactionItemType;
     private String autoRecurringItemId;
+    private List<PantryItemDetails> pantryItemsList;
 
     public String getMealPeriodId() {
         return mealPeriodId;
@@ -46,6 +49,14 @@ public class Charge extends Transaction {
         this.transactionItemType = transactionItemType;
     }
 
+    public List<PantryItemDetails> getPantryItemsList() {
+        return pantryItemsList;
+    }
+
+    public void setPantryItemsList(List<PantryItemDetails> pantryItemsList) {
+        this.pantryItemsList = pantryItemsList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -59,8 +70,7 @@ public class Charge extends Transaction {
         }
         Charge that = (Charge) o;
 
-        return Objects.equal(mealPeriodId, that.mealPeriodId) &&
-              Objects.equal(quantity, that.quantity) &&
+        return Objects.equal(mealPeriodId, that.mealPeriodId) && Objects.equal(quantity, that.quantity) &&
               Objects.equal(recurringChargeId, that.recurringChargeId) &&
               Objects.equal(transactionItemType, that.transactionItemType) &&
               Objects.equal(autoRecurringItemId, that.autoRecurringItemId);

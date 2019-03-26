@@ -3,11 +3,12 @@
  */
 package com.agilysys.pms.account.model;
 
-public class AutoRecurringChargeOptionalParameters {
+public class TransactionItemOptionalParameters {
     private boolean applyAmountToAutoRecurringItems;
     private boolean applyStatusToAutoRecurringItems;
     private boolean applyToFutureReservations;
     private boolean applyToInHouseReservations;
+    private boolean applyToPantryItems;
 
     public boolean isApplyStatusToAutoRecurringItems() {
         return applyStatusToAutoRecurringItems;
@@ -39,5 +40,13 @@ public class AutoRecurringChargeOptionalParameters {
 
     public void setApplyToInHouseReservations(boolean applyToInHouseReservations) {
         this.applyToInHouseReservations = applyToInHouseReservations;
+    }
+
+    public boolean isApplyToPantryItems() {
+        return applyToPantryItems;
+    }
+
+    public void setApplyToPantryItems(boolean applyToPantryItems) {
+        this.applyToPantryItems = applyToPantryItems;
     }
 }
