@@ -17,8 +17,8 @@ public class PantryCharge {
     @JsonProperty(required = true)
     private String folioId;
 
-    protected Boolean ignoreRules = true;
-    private boolean isPayment;
+    private Boolean ignoreRules = true;
+    private Boolean isPayment;
     private Payment payment;
     private String reason;
     private String reference;
@@ -73,11 +73,11 @@ public class PantryCharge {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public boolean isPayment() {
+    public Boolean isPayment() {
         return isPayment;
     }
 
-    public void setPayment(boolean payment) {
+    public void setIsPayment(Boolean payment) {
         isPayment = payment;
     }
 
@@ -144,7 +144,6 @@ public class PantryCharge {
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
-
 
     public BigDecimal getAmount() {
         return amount;

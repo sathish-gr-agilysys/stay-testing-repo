@@ -53,6 +53,7 @@ public abstract class Transaction {
     protected String sourceId;
     protected String terminalId;
     protected List<PantryItemDetails> pantryItemsList;
+    protected Boolean isPantryItem;
 
     public String getAccountId() {
         return accountId;
@@ -227,6 +228,14 @@ public abstract class Transaction {
 
     public void setPantryItemsList(List<PantryItemDetails> pantryItemsList) {
         this.pantryItemsList = pantryItemsList;
+    }
+
+    public Boolean getPantryItem() {
+        return isPantryItem;
+    }
+
+    public void setPantryItem(Boolean pantryItem) {
+        isPantryItem = pantryItem;
     }
 
     @Override

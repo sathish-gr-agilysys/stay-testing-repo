@@ -1407,7 +1407,8 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
-    void postPantryCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, PantryCharge pantryCharge) throws RGuestException, ServiceException;
+    List<LineItemView> postPantryCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, PantryCharge pantryCharge)
+          throws RGuestException, ServiceException;
 }
 
