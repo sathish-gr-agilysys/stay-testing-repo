@@ -3,13 +3,27 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.List;
+
+import com.agilysys.pms.profile.model.Email;
+
 public class FolioInvoiceProfileData {
 
+    private String profileId;
     private String firstName;
     private String lastName;
     private String title;
     private String middleInitial;
+    private List<Email> emails;
     private FolioInvoiceAddressData folioInvoiceAddressData;
+
+    public String getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(String profileId) {
+        this.profileId = profileId;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -41,6 +55,14 @@ public class FolioInvoiceProfileData {
 
     public void setMiddleInitial(String middleInitial) {
         this.middleInitial = middleInitial;
+    }
+
+    public List<Email> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(List<Email> emails) {
+        this.emails = emails;
     }
 
     public FolioInvoiceAddressData getFolioInvoiceAddressData() {

@@ -16,6 +16,7 @@ public class FolioInvoice {
     private InvoiceStatus invoiceStatus;
     private String profileId;
     private String accountId;
+    private String reservationId;
     private String confirmationCode;
     private String companyId;
     private String groupId;
@@ -79,6 +80,14 @@ public class FolioInvoice {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+
+    public String getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(String reservationId) {
+        this.reservationId = reservationId;
     }
 
     public String getConfirmationCode() {

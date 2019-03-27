@@ -5,9 +5,18 @@ package com.agilysys.pms.account.model;
 
 public class FolioInvoiceAllocationData {
 
+    private String roomId;
     private String roomTypeDescription;
     private String roomNumber;
     private String roomTypeCode;
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
 
     public String getRoomTypeDescription() {
         return roomTypeDescription;
