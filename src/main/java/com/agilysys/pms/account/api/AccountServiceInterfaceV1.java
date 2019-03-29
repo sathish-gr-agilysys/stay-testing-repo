@@ -1430,7 +1430,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path("/folioInvoiceNumber/{folioInvoiceNumber}")
-    List<FolioInvoiceResponse> getFolioInvoiceDetailFromFolioInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
+    FolioInvoiceResponse getFolioInvoiceDetailFromFolioInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceNumber") String folioInvoiceNumber);
 
 }

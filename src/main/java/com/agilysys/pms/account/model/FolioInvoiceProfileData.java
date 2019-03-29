@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 
 import com.agilysys.pms.profile.model.Email;
+import com.agilysys.pms.profile.model.Phone;
 
 public class FolioInvoiceProfileData {
 
@@ -14,7 +15,9 @@ public class FolioInvoiceProfileData {
     private String lastName;
     private String title;
     private String middleInitial;
+    private String suffix;
     private List<Email> emails;
+    private List<Phone> phoneNos;
     private FolioInvoiceAddressData folioInvoiceAddressData;
 
     public String getProfileId() {
@@ -65,11 +68,27 @@ public class FolioInvoiceProfileData {
         this.emails = emails;
     }
 
+    public List<Phone> getPhoneNos() {
+        return phoneNos;
+    }
+
+    public void setPhoneNos(List<Phone> phoneNos) {
+        this.phoneNos = phoneNos;
+    }
+
     public FolioInvoiceAddressData getFolioInvoiceAddressData() {
         return folioInvoiceAddressData;
     }
 
     public void setFolioInvoiceAddressData(FolioInvoiceAddressData folioInvoiceAddressData) {
         this.folioInvoiceAddressData = folioInvoiceAddressData;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
     }
 }
