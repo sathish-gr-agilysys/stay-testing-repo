@@ -11,6 +11,16 @@ public class PantryItemDetails {
     private String description;
     private int quantity;
 
+    public PantryItemDetails() {
+    }
+
+    public PantryItemDetails(String itemId, String description, BigDecimal price, int quantity) {
+        this.itemId = itemId;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
