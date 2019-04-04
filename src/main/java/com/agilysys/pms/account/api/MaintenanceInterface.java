@@ -64,7 +64,7 @@ public interface MaintenanceInterface {
     @DELETE
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
-    void deleteIndex(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
+    void deleteAccountsIndex(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
