@@ -1016,6 +1016,7 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(SEARCH_TERM) String searchTerm, @PathParam(PATH) String optionalSearchParamsPath)
           throws RGuestException, ServiceException;
 
+    @Deprecated
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
