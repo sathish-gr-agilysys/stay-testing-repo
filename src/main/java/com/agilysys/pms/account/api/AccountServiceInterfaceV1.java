@@ -129,6 +129,7 @@ public interface AccountServiceInterfaceV1 {
     String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
+    String INCLUDE_CLOSED_ACCOUNTS = "includeClosedAccounts";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
@@ -142,6 +143,7 @@ public interface AccountServiceInterfaceV1 {
     String LODGING_PATH = ACCOUNT_ID_PATH + "/lodging";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
+    String PAGE_PATH = "/page";
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
@@ -165,7 +167,6 @@ public interface AccountServiceInterfaceV1 {
     String PAYMENT_METHOD_ID = "paymentMethodId";
     String REQUEST_TYPE = "requestType";
     String SEARCH_PATH = "/search";
-    String SEARCH_PAGE_PATH = SEARCH_PATH + "Page";
     String SEARCH_TERM = "searchTerm";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
     String START_DATE = "startDate";
@@ -1019,15 +1020,15 @@ public interface AccountServiceInterfaceV1 {
     @Path(SEARCH_PATH + SEARCH_TERM_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam("includeClosedAccounts") Boolean includeClosedAccounts)
+          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts)
           throws RGuestException, ServiceException;
 
     @GET
-    @Path(SEARCH_PAGE_PATH + SEARCH_TERM_PATH)
+    @Path(SEARCH_PATH + SEARCH_TERM_PATH + PAGE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
-          @QueryParam("includeClosedAccounts") Boolean includeClosedAccounts, @QueryParam(PAGE) int page,
+          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) int page,
           @QueryParam(SIZE) int size, @QueryParam(SORT) String[] sorts) throws RGuestException, ServiceException;
 
     /* Invoices */
