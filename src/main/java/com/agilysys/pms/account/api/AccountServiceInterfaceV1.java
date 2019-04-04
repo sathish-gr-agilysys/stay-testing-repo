@@ -29,6 +29,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.platform.rest.model.DeserializablePage;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
@@ -164,6 +165,7 @@ public interface AccountServiceInterfaceV1 {
     String PAYMENT_METHOD_ID = "paymentMethodId";
     String REQUEST_TYPE = "requestType";
     String SEARCH_PATH = "/search";
+    String SEARCH_PAGE_PATH = SEARCH_PATH + "Page";
     String SEARCH_TERM = "searchTerm";
     String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
     String START_DATE = "startDate";
@@ -188,6 +190,10 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
+
+    String PAGE = "page";
+    String SIZE = "size";
+    String SORT = "sort";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1015,6 +1021,14 @@ public interface AccountServiceInterfaceV1 {
     List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(SEARCH_TERM) String searchTerm, @QueryParam("includeClosedAccounts") Boolean includeClosedAccounts)
           throws RGuestException, ServiceException;
+
+    @GET
+    @Path(SEARCH_PAGE_PATH + SEARCH_TERM_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
+          @QueryParam("includeClosedAccounts") Boolean includeClosedAccounts, @QueryParam(PAGE) int page,
+          @QueryParam(SIZE) int size, @QueryParam(SORT) String[] sorts) throws RGuestException, ServiceException;
 
     /* Invoices */
 

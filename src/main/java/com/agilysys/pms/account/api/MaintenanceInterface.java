@@ -6,6 +6,7 @@ package com.agilysys.pms.account.api;
 import java.util.Map;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,8 +14,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.joda.time.DateTime;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
@@ -58,6 +60,11 @@ public interface MaintenanceInterface {
     @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH)
     Map<String, Long> countUnindexedAccounts(@QueryParam(NEXT_GEN) boolean nextGen)
           throws RGuestException, ServiceException;
+
+    @DELETE
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
+    void deleteIndex(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
