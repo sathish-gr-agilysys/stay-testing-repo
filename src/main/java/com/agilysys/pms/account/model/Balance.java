@@ -1,16 +1,24 @@
-/**
+/*
  * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
-
 public class Balance {
     private BigDecimal subtotal;
     private BigDecimal tax;
     private BigDecimal paid;
     private BigDecimal total;
+
+    public Balance() {}
+
+    public Balance(BigDecimal subtotal, BigDecimal tax, BigDecimal paid, BigDecimal total) {
+        this.subtotal = subtotal;
+        this.tax = tax;
+        this.paid = paid;
+        this.total = total;
+    }
 
     public BigDecimal getSubtotal() {
         return subtotal;
@@ -41,15 +49,6 @@ public class Balance {
     }
 
     public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public Balance() {}
-
-    public Balance(BigDecimal subtotal, BigDecimal tax, BigDecimal paid, BigDecimal total) {
-        this.subtotal = subtotal;
-        this.tax = tax;
-        this.paid = paid;
         this.total = total;
     }
 }
