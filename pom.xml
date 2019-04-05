@@ -75,6 +75,11 @@
             <artifactId>hamcrest-all</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms</groupId>
+            <artifactId>reservation-interface</artifactId>
+            <version>74.861-VCTRS-63365-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
