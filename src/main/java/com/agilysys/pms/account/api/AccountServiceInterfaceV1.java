@@ -176,11 +176,8 @@ public interface AccountServiceInterfaceV1 {
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
-    String TRANSFER_CHARGES_PATH = "/transferCharges";
     String TRANSFER_FOLIO_LINES = "/transferFolioLines";
     String TRANSFER_HISTORY = "/transferHistory";
-    String TRANSFER_HISTORY_ID = "transferHistoryId";
-    String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
@@ -194,7 +191,6 @@ public interface AccountServiceInterfaceV1 {
 
     String PAGE = "page";
     String SIZE = "size";
-    String SORT = "sort";
 
     /**
      * Retrieve all accounts from a tenant
@@ -1029,8 +1025,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
-          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) int page,
-          @QueryParam(SIZE) int size, @QueryParam(SORT) String[] sorts) throws RGuestException, ServiceException;
+          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) Integer page,
+          @QueryParam(SIZE) Integer size) throws RGuestException, ServiceException;
 
     /* Invoices */
 
