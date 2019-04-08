@@ -141,3 +141,4 @@ public class PaymentMethod extends AccountingItem {
         return DISPLAY_NAME;
     }
 }
+

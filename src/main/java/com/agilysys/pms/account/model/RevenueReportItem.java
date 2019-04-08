@@ -105,3 +105,4 @@ public class RevenueReportItem {
         this.posted = posted;
     }
 }
+
