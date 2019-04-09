@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -14,6 +14,15 @@ public class GeneralAvailabilityStatsResult extends GeneralAvailabilityResult {
 
     public GeneralAvailabilityStatsResult(GeneralAvailabilityResult generalAvailabilityResult) {
         super(generalAvailabilityResult);
+    }
+
+    public GeneralAvailabilityStatsResult(GeneralAvailabilityResult generalAvailabilityResult, boolean byBuilding,
+          String buildingId, boolean includeNonBeddedRoomType, RoomMetrics roomMetrics) {
+        super(generalAvailabilityResult);
+        this.buildingId = buildingId;
+        this.includeNonBeddedRoomType = includeNonBeddedRoomType;
+        this.byBuilding = byBuilding;
+        this.roomMetrics = roomMetrics;
     }
 
     public String getBuildingId() {
