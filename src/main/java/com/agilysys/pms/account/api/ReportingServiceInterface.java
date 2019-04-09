@@ -29,6 +29,7 @@ import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.RevenueDetailReportRequest;
+import com.agilysys.pms.account.model.ReservationRevenueReportItem;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
 import com.agilysys.pms.account.model.StatsByBuildingRequest;
@@ -50,6 +51,7 @@ public interface ReportingServiceInterface {
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String GENERAL_AVAILABILITY_STATS = "/generalAvailabilityStats";
     String REVENUE_PATH = "/revenueDetails";
+    String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
     String TENANT_ID = "tenantId";
@@ -160,6 +162,16 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
+          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(REVENUE_PATH_BY_ROOM)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    List<ReservationRevenueReportItem> getRevenueDetailReportByRoom(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
           @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
@@ -301,3 +313,4 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
           throws RGuestException, ServiceException;
 }
+
