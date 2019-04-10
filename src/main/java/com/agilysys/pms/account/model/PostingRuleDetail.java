@@ -3,7 +3,6 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +12,6 @@ import javax.validation.constraints.Size;
 import org.joda.time.LocalDate;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
