@@ -26,12 +26,13 @@ public class FolioInvoiceResponse {
     private String vatNumber;
     private LocalDate taxPoint;
     private LocalDate taxDate;
-    private FolioInvoiceSummaryData folioInvoiceSummaryData;
+    private List<FolioInvoiceSummaryData> folioInvoiceSummaryDatas;
     private String paymentSettingId;
     private String folioId;
     private String folioName;
     private String accountType;
     private boolean showGuestInfo;
+    private boolean showReason;
     private String folioFooterMessage;
     private Property platformProperty;
     private String contentServicePublicUrl;
@@ -44,6 +45,8 @@ public class FolioInvoiceResponse {
     private LocalDate arrivalDate;
     private LocalDate departureDate;
     private String accountId;
+    private List<LineItemView> printLineItemViews;
+    private boolean hasLineItems;
 
     public FolioInvoiceReservationData getFolioInvoiceReservationData() {
         return folioInvoiceReservationData;
@@ -141,12 +144,12 @@ public class FolioInvoiceResponse {
         this.taxDate = taxDate;
     }
 
-    public FolioInvoiceSummaryData getFolioInvoiceSummaryData() {
-        return folioInvoiceSummaryData;
+    public List<FolioInvoiceSummaryData> getFolioInvoiceSummaryDatas() {
+        return folioInvoiceSummaryDatas;
     }
 
-    public void setFolioInvoiceSummaryData(FolioInvoiceSummaryData folioInvoiceSummaryData) {
-        this.folioInvoiceSummaryData = folioInvoiceSummaryData;
+    public void setFolioInvoiceSummaryDatas(List<FolioInvoiceSummaryData> folioInvoiceSummaryDatas) {
+        this.folioInvoiceSummaryDatas = folioInvoiceSummaryDatas;
     }
 
     public String getPaymentSettingId() {
@@ -179,6 +182,14 @@ public class FolioInvoiceResponse {
 
     public void setShowGuestInfo(boolean showGuestInfo) {
         this.showGuestInfo = showGuestInfo;
+    }
+
+    public boolean isShowReason() {
+        return showReason;
+    }
+
+    public void setShowReason(boolean showReason) {
+        this.showReason = showReason;
     }
 
     public String getFolioFooterMessage() {
@@ -299,5 +310,21 @@ public class FolioInvoiceResponse {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+
+    public List<LineItemView> getPrintLineItemViews() {
+        return printLineItemViews;
+    }
+
+    public void setPrintLineItemViews(List<LineItemView> printLineItemViews) {
+        this.printLineItemViews = printLineItemViews;
+    }
+
+    public boolean isHasLineItems() {
+        return hasLineItems;
+    }
+
+    public void setHasLineItems(boolean hasLineItems) {
+        this.hasLineItems = hasLineItems;
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class FolioInvoiceRequests {
 
+    private List<String> accountIds;
     private List<FolioInvoiceRequest> folioInvoiceRequests;
 
     public List<FolioInvoiceRequest> getFolioInvoiceRequests() {
@@ -15,5 +16,13 @@ public class FolioInvoiceRequests {
 
     public void setFolioInvoiceRequests(List<FolioInvoiceRequest> folioInvoiceRequests) {
         this.folioInvoiceRequests = folioInvoiceRequests;
+    }
+
+    public List<String> getAccountIds() {
+        return accountIds;
+    }
+
+    public void setAccountIds(List<String> accountIds) {
+        this.accountIds = accountIds;
     }
 }

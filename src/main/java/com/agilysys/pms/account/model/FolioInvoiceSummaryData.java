@@ -12,18 +12,18 @@ public class FolioInvoiceSummaryData {
     private String folioName;
     private String folioId;
     private String paymentSettingId;
-    private List<FolioInvoiceFolioViewLineItem> lineItemViewList;
+    private List<LineItemView> lineItemViews;
     private boolean hasLineItems;
     private BigDecimal totalChargesCurrency;
     private BigDecimal totalTaxCurrency;
     private BigDecimal totalChargesAndTaxesCurrency;
     private BigDecimal totalPaymentsCurrency;
     private BigDecimal totalBalanceCurrency;
-    private String totalChargesCurrencys;
-    private String totalTaxCurrencys;
-    private String totalChargesAndTaxesCurrencys;
-    private String totalPaymentsCurrencys;
-    private String totalBalanceCurrencys;
+    private String formattedTotalChargesCurrency;
+    private String formattedTotalTaxCurrency;
+    private String formattedTotalChargesAndTaxesCurrency;
+    private String formattedTotalPaymentsCurrency;
+    private String formattedTotalBalanceCurrency;
     private String pageBreakAfter;
 
     public String getAccountId() {
@@ -58,12 +58,12 @@ public class FolioInvoiceSummaryData {
         this.paymentSettingId = paymentSettingId;
     }
 
-    public List<FolioInvoiceFolioViewLineItem> getLineItemViewList() {
-        return lineItemViewList;
+    public List<LineItemView> getLineItemViews() {
+        return lineItemViews;
     }
 
-    public void setLineItemViewList(List<FolioInvoiceFolioViewLineItem> lineItemViewList) {
-        this.lineItemViewList = lineItemViewList;
+    public void setLineItemViews(List<LineItemView> lineItemViews) {
+        this.lineItemViews = lineItemViews;
     }
 
     public boolean isHasLineItems() {
@@ -122,43 +122,43 @@ public class FolioInvoiceSummaryData {
         this.pageBreakAfter = pageBreakAfter;
     }
 
-    public String getTotalChargesCurrencys() {
-        return totalChargesCurrencys;
+    public String getFormattedTotalChargesCurrency() {
+        return formattedTotalChargesCurrency;
     }
 
-    public void setTotalChargesCurrencys(String totalChargesCurrencys) {
-        this.totalChargesCurrencys = totalChargesCurrencys;
+    public void setFormattedTotalChargesCurrency(String formattedTotalChargesCurrency) {
+        this.formattedTotalChargesCurrency = formattedTotalChargesCurrency;
     }
 
-    public String getTotalTaxCurrencys() {
-        return totalTaxCurrencys;
+    public String getFormattedTotalTaxCurrency() {
+        return formattedTotalTaxCurrency;
     }
 
-    public void setTotalTaxCurrencys(String totalTaxCurrencys) {
-        this.totalTaxCurrencys = totalTaxCurrencys;
+    public void setFormattedTotalTaxCurrency(String formattedTotalTaxCurrency) {
+        this.formattedTotalTaxCurrency = formattedTotalTaxCurrency;
     }
 
-    public String getTotalChargesAndTaxesCurrencys() {
-        return totalChargesAndTaxesCurrencys;
+    public String getFormattedTotalChargesAndTaxesCurrency() {
+        return formattedTotalChargesAndTaxesCurrency;
     }
 
-    public void setTotalChargesAndTaxesCurrencys(String totalChargesAndTaxesCurrencys) {
-        this.totalChargesAndTaxesCurrencys = totalChargesAndTaxesCurrencys;
+    public void setFormattedTotalChargesAndTaxesCurrency(String formattedTotalChargesAndTaxesCurrency) {
+        this.formattedTotalChargesAndTaxesCurrency = formattedTotalChargesAndTaxesCurrency;
     }
 
-    public String getTotalPaymentsCurrencys() {
-        return totalPaymentsCurrencys;
+    public String getFormattedTotalPaymentsCurrency() {
+        return formattedTotalPaymentsCurrency;
     }
 
-    public void setTotalPaymentsCurrencys(String totalPaymentsCurrencys) {
-        this.totalPaymentsCurrencys = totalPaymentsCurrencys;
+    public void setFormattedTotalPaymentsCurrency(String formattedTotalPaymentsCurrency) {
+        this.formattedTotalPaymentsCurrency = formattedTotalPaymentsCurrency;
     }
 
-    public String getTotalBalanceCurrencys() {
-        return totalBalanceCurrencys;
+    public String getFormattedTotalBalanceCurrency() {
+        return formattedTotalBalanceCurrency;
     }
 
-    public void setTotalBalanceCurrencys(String totalBalanceCurrencys) {
-        this.totalBalanceCurrencys = totalBalanceCurrencys;
+    public void setFormattedTotalBalanceCurrency(String formattedTotalBalanceCurrency) {
+        this.formattedTotalBalanceCurrency = formattedTotalBalanceCurrency;
     }
 }
