@@ -5,6 +5,7 @@ package com.agilysys.pms.account.api;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -61,6 +62,7 @@ public interface RecurringChargesServiceInterface {
     String ESTIMATED_ROOM_CHARGES_PATH = "/estimatedRoomCharges";
     String ESTIMATED_CHARGES_PATH = "/estimatedCharges";
     String ESTIMATED_CHARGES_BY_PAYMENTSETTING_PATH = "/estimatedChargesByPaymentSetting";
+    String ESTIMATED_CHARGES_BY_RESERVATION_PATH = "/estimatedChargesByReservationIds";
     String ESTIMATED_CHARGES_BY_FOLIO_PATH = "/estimatedChargesByFolio";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
@@ -235,6 +237,16 @@ public interface RecurringChargesServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
           throws RGuestException, ServiceException;
+
+        /* Estimated Charges By Reservation Ids */
+
+    @POST
+    @Path(ACCOUNT_PATH + ESTIMATED_CHARGES_BY_RESERVATION_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<EstimatedChargesView>> getEstimatedChargesByReservationIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
+
 
     /**
      * @param tenantId
