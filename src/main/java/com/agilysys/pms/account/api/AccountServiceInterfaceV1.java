@@ -262,7 +262,7 @@ public interface AccountServiceInterfaceV1 {
     AccountSummary updateAccountsReceivableSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AccountsReceivableSettings accountsReceivableSettings) throws RGuestException, ServiceException;
-=======
+
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + BATCH_FOLIO_PATH)
@@ -846,14 +846,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     FolioSummary createFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, FolioSummary folio) throws RGuestException, ServiceException;
-
-    @POST
-    @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + BATCH_FOLIO_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<FolioSummary> createFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, List<FolioSummary> folios) throws RGuestException, ServiceException;
-
+========
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
@@ -1168,30 +1161,4 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("") @LogParam("optionalParams") InvoiceOptionalParams optionalParams)
           throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
-    @OkOnEmpty
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
-    @OkOnEmpty
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
-    @OkOnEmpty
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    InvoiceReportProgressView getInvoiceReportProgress(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("includeClosed") String includeClosed) throws RGuestException, ServiceException;
 }
