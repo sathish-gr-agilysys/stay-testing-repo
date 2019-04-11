@@ -11,15 +11,6 @@ public class Balance {
     private BigDecimal paid;
     private BigDecimal total;
 
-    public Balance() {}
-
-    public Balance(BigDecimal subtotal, BigDecimal tax, BigDecimal paid, BigDecimal total) {
-        this.subtotal = subtotal;
-        this.tax = tax;
-        this.paid = paid;
-        this.total = total;
-    }
-
     public BigDecimal getSubtotal() {
         return subtotal;
     }
@@ -49,6 +40,15 @@ public class Balance {
     }
 
     public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public Balance() {}
+
+    public Balance(BigDecimal subtotal, BigDecimal tax, BigDecimal paid, BigDecimal total) {
+        this.subtotal = subtotal;
+        this.tax = tax;
+        this.paid = paid;
         this.total = total;
     }
 }
