@@ -1122,43 +1122,4 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           GroupCompanyTaxExemptSettings groupCompanyTaxExemptSettings, @PathParam(PRESET) boolean isPreset)
           throws RGuestException, ServiceException;
-
-    @Deprecated
-    @GET
-    @Path(SEARCH_PATH + SEARCH_TERM_PATH + REMAINING_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(SEARCH_TERM) String searchTerm, @PathParam(PATH) String optionalSearchParamsPath)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(SEARCH_PATH + SEARCH_TERM_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam("includeClosedAccounts") Boolean includeClosedAccounts)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + NON_INVOICED_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    NonInvoicedARDetail getNonInvoicedARDetail(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
-          throws RGuestException, ServiceException;
-
-    @POST
-    @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
-    @Validated(InvoiceRequest.class)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
-    InvoiceView createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, InvoiceRequest invoice) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    InvoiceView getInvoiceById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
-          @QueryParam("") @LogParam("optionalParams") InvoiceOptionalParams optionalParams)
-          throws RGuestException, ServiceException;
 }
