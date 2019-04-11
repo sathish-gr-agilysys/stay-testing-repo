@@ -264,12 +264,6 @@ public interface AccountServiceInterfaceV1 {
           AccountsReceivableSettings accountsReceivableSettings) throws RGuestException, ServiceException;
 =======
     @POST
-    @Path(TOTAL_SPENT_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
-
-    @POST
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     @Validated(ViewFolioRequest.class)
@@ -746,8 +740,6 @@ public interface AccountServiceInterfaceV1 {
           @ApiParam(value = "collection request", required = false) @LogParam("params")
                 AccountsCollectionRequest collectionRequest) throws RGuestException, ServiceException;
 
-    /* ----------------------------------------------------------- */
-
     @GET
     @Path(ACCOUNT_ID_PATH + CLOSABLE_INFO)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -755,15 +747,6 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
-    /**
-     * Attempts to pay off the balances of an account associated with the
-     * set of payment setting ids, or the default payment setting id if
-     * no set is specified
-     *
-     * @param tenantId  tenantId
-     * @param accountId if of account to pay off
-     * @param request   request parameters
-     */
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + PAYOFF_BALANCE_PATH)
@@ -772,16 +755,6 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, PayoffBalanceRequest request)
           throws RGuestException, ServiceException;
 
-    /**
-     * Get allocation count of inventory items in any dates and frequency
-     *
-     * @param tenantId                 tenantId
-     * @param propertyId               propertyId
-     * @param startDate                startDate
-     * @param endDate                  endDate
-     * @param itemIds                  InventoryItem Ids
-     * @return allocation response for request dates
-     */
     @POST
     @Path(INVENTORY_ALLOCATION)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
