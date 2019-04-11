@@ -872,51 +872,6 @@ public interface AccountServiceInterfaceV1 {
 }
 =======
 public interface AccountServiceInterfaceV1 {
-    @GET
-    @Path(ACCOUNT_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    AccountSummary getAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(LODGING_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    LodgingInformation getLodgingInformationForAccountById(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId);
-
-    @GET
-    @Path(TYPES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<String> getAccountTypes(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(STATUSES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<String> getAccountStatuses(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + "/details")
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    AccountDetail getAccountDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
-
-    @POST
-    @CreatedOnSuccess
-    @Validated(CreateAccountSummary.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    AccountDetail createAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          CreateAccountSummary account) throws RGuestException, ServiceException;
-
-    @PUT
-    @Path(ACCOUNT_ID_PATH + ACCOUNT_STATUS_PATH)
-    @OkOnEmpty
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    void updateAccountStatus(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus)
-          throws RGuestException, ServiceException;
-
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNTS_RECEIVABLE_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
@@ -1494,11 +1449,5 @@ public interface AccountServiceInterfaceV1 {
     AccountUpdateResponse applyTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException, ServiceException;
-
-    @POST
-    @CreatedOnSuccess
-    @Path(NEW_PROPERTY_AR_ACCOUNT)
-    void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }
 >>>>>>> 54b6432e3e3187b895886d46553c7a7126bc701d
