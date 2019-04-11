@@ -870,7 +870,6 @@ public interface AccountServiceInterfaceV1 {
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }
-<<<<<<< HEAD
 =======
 public interface AccountServiceInterfaceV1 {
     @GET
