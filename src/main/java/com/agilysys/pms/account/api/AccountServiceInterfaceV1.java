@@ -846,8 +846,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountUpdateResponse findAccountReceivableJobStatus(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException, ServiceException;
 
     @GET
@@ -1427,27 +1426,5 @@ public interface AccountServiceInterfaceV1 {
     TenantDefaultSettingsSummary updateTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId,
           TenantDefaultSettingsSummary tenantDefaultSettingsSummary) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    AccountUpdateResponse findAccountReceivableJobStatus(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    List<TenantARPropertySettingStatus> getAccountReceivablePropertySettingStatus(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
-          throws RGuestException, ServiceException;
-
-    @POST
-    @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_APPLY_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    AccountUpdateResponse applyTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
-          throws RGuestException, ServiceException;
 }
 >>>>>>> 54b6432e3e3187b895886d46553c7a7126bc701d
