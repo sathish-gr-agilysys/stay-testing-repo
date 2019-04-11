@@ -873,25 +873,6 @@ public interface AccountServiceInterfaceV1 {
 =======
 public interface AccountServiceInterfaceV1 {
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @QueryParam("accountType") String accountTypes, @QueryParam("accountStatus") String accountStatuses)
-          throws RGuestException, ServiceException;
-    @Deprecated
-    @GET
-    @Path(REFERENCE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    AccountSummary getAccountByReferenceId(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(REFERENCE_ID) String referenceId)
-          throws RGuestException, ServiceException;
-    @GET
-    @Path(MULTIPLE_REFERENCES_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountSummary> getAccountsByReferenceId(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(ACCOUNT_TYPE) String accountType,
-          @PathParam(REFERENCE_ID) String referenceId) throws RGuestException, ServiceException;
-
-    @GET
     @Path(ACCOUNT_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountSummary getAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
