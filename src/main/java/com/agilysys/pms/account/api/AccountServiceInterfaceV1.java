@@ -386,7 +386,7 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(POSTING_RULE_ID) String postingRuleId, PostingRuleDetail postingRuleDetail)
           throws RGuestException, ServiceException;
-    
+
     @PUT
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
@@ -648,7 +648,7 @@ public interface AccountServiceInterfaceV1 {
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam("accountId") String accountId,
+          @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
           throws RGuestException, ServiceException;
 
@@ -772,7 +772,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + CLOSABLE_INFO)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountClosableInfo getAccountClosableInfo(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("accountId") String accountId)
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
     /**
@@ -873,101 +873,6 @@ public interface AccountServiceInterfaceV1 {
 <<<<<<< HEAD
 =======
 public interface AccountServiceInterfaceV1 {
-    String TENANT_ID = "tenantId";
-    String PROPERTY_ID = "propertyId";
-
-    String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
-
-    String ACCOUNT_BALANCES_PATH = "/balances";
-    String ACCOUNT_ID = "accountId";
-    String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
-    String ACCOUNT_NUMBER = "accountNumber";
-    String ACCOUNT_STATUS = "accountStatus";
-    String ACCOUNT_TYPE = "accountType";
-    String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
-    String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
-    String ADJUSTMENT_PATH = "/adjustment";
-    String APPLY_PAYMENTS = "/applyPayments";
-    String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
-    String BATCH_CHARGES_PATH = "/batchCharges";
-    String BATCH_FOLIO_PATH = "/batchFolios";
-    String CALL_TYPE = "callType";
-    String CHARGE_TAX_AMOUNT_PATH = "/calculateChargeTaxAmount";
-    String CHARGES_PATH = "/charges";
-    String CHECK_ACCOUNT_NUMBER_AVAILABILITY_PATH = "/checkAccountNumberAvailability/{" + ACCOUNT_NUMBER + "}";
-    String CLOSABLE_INFO = "/closableInfo";
-    String CORRECTION_PATH = "/correction";
-    String CREDIT_PATH = "/credit";
-    String END_DATE = "endDate";
-    String END_DATE_TIME = "endDateTime";
-    String FILTERED = "/filtered";
-    String FOLIO_PATH = "/folios";
-    String TOTAL_SPENT_PATH = "/totalSpent";
-    String FOLIO_BALANCES_PATH = "/folioBalances";
-    String FOLIO_ID = "folioId";
-    String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
-    String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
-    String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
-    String GROUPED = "grouped";
-    String INVOICE_ADD_ITEMS_PATH = "/addItems";
-    String INVOICE_ID = "invoiceId";
-    String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
-    String INVOICES_PATH = "/invoices";
-    String INVOICE_REPORT_START = "/invoice-report-start";
-    String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
-    String INVOICE_REPORT_POLL = "/invoice-report-poll";
-    String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
-    String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
-    String LEDGER_BALANCES_PATH = "/ledgerBalances";
-    String LODGING_PATH = ACCOUNT_ID_PATH + "/lodging";
-    String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
-    String NON_INVOICED_PATH = "/nonInvoicedDetails";
-    String PATH = "path";
-    String PAYMENT_SETTINGS_PATH = "/paymentSettings";
-    String PAYMENTS_PATH = "/payments";
-    String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
-    String PAYOFF_BALANCE_PATH = "/payOffBalance";
-    String POS_CHARGE_PATH = "/posCharge";
-    String POS_CREDIT_PATH = "/posCredit";
-    String POSTING_RULE_ID = "postingRulesId";
-    String POSTING_RULE_ID_PATH = "/{" + POSTING_RULE_ID + "}";
-    String POSTING_RULES_PATH = "/postingRules";
-    String PRESET =  "preset";
-    String PRESET_PATH = "/presetValue/{" + PRESET + "}";
-    String REFERENCE_ID = "referenceId";
-    String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
-    String MULTIPLE_REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
-    String REFUND_PATH = "/refund";
-    String REFUNDS_PATH = "/refunds";
-    String REMAINING_PATH = "/{" + PATH + ":.*}";
-    String PAYMENT_METHOD_ID = "paymentMethodId";
-    String REQUEST_TYPE = "requestType";
-    String SEARCH_PATH = "/search";
-    String SEARCH_TERM = "searchTerm";
-    String SEARCH_TERM_PATH = "/{" + SEARCH_TERM + "}";
-    String START_DATE = "startDate";
-    String START_DATE_TIME = "startDateTime";
-    String STATUSES_PATH = "statuses";
-    String TASK_ID = "taskId";
-    String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
-    String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
-    String TRANSFER_AMOUNT_PATH = "/transferAmount";
-    String TRANSFER_CHARGES_PATH = "/transferCharges";
-    String TRANSFER_FOLIO_LINES = "/transferFolioLines";
-    String TRANSFER_HISTORY = "/transferHistory";
-    String TRANSFER_HISTORY_ID = "transferHistoryId";
-    String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
-    String TYPES_PATH = "types";
-    String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
-    String COMPANY_PROFILE_ID = "companyProfileId";
-    String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
-    String TENANT_DEFAULT_SETTINGS_PATH = "/tenantDefaultSettings";
-    String INVENTORY_ALLOCATION = "/inventory/allocation";
-    String TENANT_DEFAULT_SETTINGS_APPLY_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/apply";
-    String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
-    String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
-    String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
-
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
@@ -1415,7 +1320,7 @@ public interface AccountServiceInterfaceV1 {
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam("accountId") String accountId,
+          @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
           throws RGuestException, ServiceException;
 
@@ -1537,7 +1442,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + CLOSABLE_INFO)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountClosableInfo getAccountClosableInfo(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("accountId") String accountId)
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
     @POST
