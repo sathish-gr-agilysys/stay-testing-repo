@@ -17,7 +17,6 @@ public class PantryItem extends AccountingObjectBase {
 
     @JsonProperty(required = true)
     private String transactionItemId;
-
     private CanonicalId status;
 
     @MinLengthRestriction(4)
@@ -81,5 +80,4 @@ public class PantryItem extends AccountingObjectBase {
     public String getDisplayName() {
         return DISPLAY_NAME;
     }
-
 }

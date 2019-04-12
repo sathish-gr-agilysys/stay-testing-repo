@@ -319,17 +319,21 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Update the status of an existing account for a tenant
      *
-     * @param tenantId      updated account's tenant
-     * @param propertyId    id of the property where the account exists
-     * @param accountId     account to update
-     * @param accountStatus account status string. One of PENDING, OPEN, CLOSED (see domain AccountStatus)
+     * @param tenantId                     updated account's tenant
+     * @param propertyId                   id of the property where the account exists
+     * @param accountId                    account to update
+     * @param accountStatus                account status string. One of PENDING, OPEN, CLOSED (see domain
+     *                                     AccountStatus)
+     * @param dissociatePantryHouseAccount When true, the House account associated with the disabled Pantry setting will
+     *                                     be dissociated permitting to close the House Account
      */
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNT_STATUS_PATH)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void updateAccountStatus(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus)
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus,
+          @QueryParam("dissociatePantryHouseAccount") boolean dissociatePantryHouseAccount)
           throws RGuestException, ServiceException;
 
     /**
@@ -1408,8 +1412,8 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> postPantryCharges(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, PantryCharge pantryCharge)
-          throws RGuestException, ServiceException;
+    void postPantryCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
+          PantryCharge pantryCharge) throws RGuestException, ServiceException;
 }
 
