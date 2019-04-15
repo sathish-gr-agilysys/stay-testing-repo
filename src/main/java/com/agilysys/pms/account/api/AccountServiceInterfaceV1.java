@@ -67,6 +67,7 @@ import com.agilysys.pms.account.model.LineItemView;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
 import com.agilysys.pms.account.model.PantryCharge;
+import com.agilysys.pms.account.model.PantryTransactionResponse;
 import com.agilysys.pms.account.model.Payment;
 import com.agilysys.pms.account.model.PaymentInstrumentAuthStatus;
 import com.agilysys.pms.account.model.PaymentRefund;
@@ -1412,8 +1413,9 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    void postPantryCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
-          PantryCharge pantryCharge) throws RGuestException, ServiceException;
+    PantryTransactionResponse postPantryCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("ignoreAuth") boolean ignoreAuth, PantryCharge pantryCharge)
+          throws RGuestException, ServiceException;
 }
 
