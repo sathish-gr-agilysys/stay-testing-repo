@@ -36,9 +36,11 @@ public abstract class Transaction {
     protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
     protected boolean invalid;
+    protected Boolean isPantryItem;
     @JsonProperty(required = true)
     protected String itemId;
     public static final String ITEM_ID_FIELD = "itemId";
+    protected List<PantryItemDetails> pantryItemsList;
     protected String parentId;
     protected String petDisplayName;
     protected LocalDate postingDate;
@@ -52,8 +54,6 @@ public abstract class Transaction {
     protected String reference;
     protected String sourceId;
     protected String terminalId;
-    protected List<PantryItemDetails> pantryItemsList;
-    protected Boolean isPantryItem;
 
     public String getAccountId() {
         return accountId;

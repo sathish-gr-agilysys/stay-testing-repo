@@ -6,13 +6,12 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 
 public class PantryItemDetails {
-    private BigDecimal price;
-    private String itemId;
     private String description;
+    private String itemId;
+    private BigDecimal price;
     private int quantity;
 
-    public PantryItemDetails() {
-    }
+    public PantryItemDetails() {}
 
     public PantryItemDetails(String itemId, String description, BigDecimal price, int quantity) {
         this.itemId = itemId;

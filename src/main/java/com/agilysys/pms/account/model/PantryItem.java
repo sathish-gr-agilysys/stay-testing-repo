@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
+import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,20 +21,19 @@ public class PantryItem extends AccountingObjectBase {
     private CanonicalId status;
 
     @MinLengthRestriction(4)
+    @MaxLengthRestriction(5)
     private String plu;
     private int order;
 
-    public PantryItem() {
-        super();
-    }
+    public PantryItem() {}
 
     public PantryItem(PantryItem pantryItem) {
         super(pantryItem);
-        price = pantryItem.getPrice();
-        status = pantryItem.getStatus();
-        plu = pantryItem.getPlu();
-        order = pantryItem.getOrder();
-        transactionItemId = pantryItem.getTransactionItemId();
+        this.price = pantryItem.getPrice();
+        this.status = pantryItem.getStatus();
+        this.plu = pantryItem.getPlu();
+        this.order = pantryItem.getOrder();
+        this.transactionItemId = pantryItem.getTransactionItemId();
     }
 
     public BigDecimal getPrice() {
