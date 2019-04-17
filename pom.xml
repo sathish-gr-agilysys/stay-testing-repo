@@ -43,7 +43,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.878.0</version>
+            <version>74.900.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
