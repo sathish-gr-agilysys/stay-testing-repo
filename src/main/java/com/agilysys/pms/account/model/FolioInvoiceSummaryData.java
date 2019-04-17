@@ -25,6 +25,8 @@ public class FolioInvoiceSummaryData {
     private String formattedTotalPaymentsCurrency;
     private String formattedTotalBalanceCurrency;
     private String pageBreakAfter;
+    private List<TaxBreakDown> taxBreakDownList;
+    private boolean showReason;
 
     public String getAccountId() {
         return accountId;
@@ -160,5 +162,21 @@ public class FolioInvoiceSummaryData {
 
     public void setFormattedTotalBalanceCurrency(String formattedTotalBalanceCurrency) {
         this.formattedTotalBalanceCurrency = formattedTotalBalanceCurrency;
+    }
+
+    public List<TaxBreakDown> getTaxBreakDownList() {
+        return taxBreakDownList;
+    }
+
+    public void setTaxBreakDownList(List<TaxBreakDown> taxBreakDownList) {
+        this.taxBreakDownList = taxBreakDownList;
+    }
+
+    public boolean isShowReason() {
+        return showReason;
+    }
+
+    public void setShowReason(boolean showReason) {
+        this.showReason = showReason;
     }
 }

@@ -7,9 +7,7 @@ import java.util.List;
 
 public class FolioInvoiceRequest {
 
-    private String accountId;
-    private String reservationId;
-    private boolean includeDetails;
+    private List<String> accountIds;
     private List<String> folioIds;
     private List<String> transactionIds;
     private List<String> parentIds;
@@ -18,20 +16,12 @@ public class FolioInvoiceRequest {
     private List<String> summaryParentIds;
     private List<String> detailParentIds;
 
-    public FolioInvoiceRequest() {
+    public List<String> getAccountIds() {
+        return accountIds;
     }
 
-    public FolioInvoiceRequest(String accountId, List<String> folioIds) {
-        this.accountId = accountId;
-        this.folioIds = folioIds;
-    }
-
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setAccountIds(List<String> accountIds) {
+        this.accountIds = accountIds;
     }
 
     public List<String> getFolioIds() {
@@ -40,22 +30,6 @@ public class FolioInvoiceRequest {
 
     public void setFolioIds(List<String> folioIds) {
         this.folioIds = folioIds;
-    }
-
-    public String getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(String reservationId) {
-        this.reservationId = reservationId;
-    }
-
-    public boolean isIncludeDetails() {
-        return includeDetails;
-    }
-
-    public void setIncludeDetails(boolean includeDetails) {
-        this.includeDetails = includeDetails;
     }
 
     public List<String> getTransactionIds() {

@@ -52,7 +52,7 @@ import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioInvoice;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
-import com.agilysys.pms.account.model.FolioInvoiceRequests;
+import com.agilysys.pms.account.model.FolioInvoiceRequest;
 import com.agilysys.pms.account.model.FolioInvoiceResponse;
 import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
@@ -1432,7 +1432,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(INVOICES_PATH)
     List<FolioInvoiceResponse> printFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, FolioInvoiceRequests folioInvoiceRequests);
+          @PathParam(PROPERTY_ID) String propertyId, FolioInvoiceRequest folioInvoiceRequest);
 
     @GET
     @Path(ACCOUNT_ID_PATH + "/folioInvoiceSummary")

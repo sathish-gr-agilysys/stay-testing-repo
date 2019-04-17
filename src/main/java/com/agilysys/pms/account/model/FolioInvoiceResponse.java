@@ -10,7 +10,7 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.platform.user.model.Property;
 
-public class FolioInvoiceResponse {
+public class FolioInvoiceResponse implements Cloneable {
 
     private FolioInvoiceReservationData folioInvoiceReservationData;
     private FolioInvoiceAddressData folioInvoiceAddressData;
@@ -326,5 +326,13 @@ public class FolioInvoiceResponse {
 
     public void setHasLineItems(boolean hasLineItems) {
         this.hasLineItems = hasLineItems;
+    }
+
+    public Object clone() {
+        try {
+            return (FolioInvoiceResponse) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new FolioInvoiceResponse();
+        }
     }
 }
