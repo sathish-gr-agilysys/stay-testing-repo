@@ -16,7 +16,7 @@ public class Charge extends Transaction {
     private TransactionItemType transactionItemType;
     private String autoRecurringItemId;
     private List<PantryItemDetails> pantryItemsList;
-    private Boolean isPantryItem;
+    private Boolean pantryItem;
 
     public String getMealPeriodId() {
         return mealPeriodId;
@@ -59,11 +59,11 @@ public class Charge extends Transaction {
     }
 
     public Boolean getPantryItem() {
-        return isPantryItem;
+        return pantryItem;
     }
 
     public void setPantryItem(Boolean pantryItem) {
-        isPantryItem = pantryItem;
+        this.pantryItem = pantryItem;
     }
 
     @Override

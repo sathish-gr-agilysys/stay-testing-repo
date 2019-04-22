@@ -36,10 +36,10 @@ public abstract class Transaction {
     protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
     protected boolean invalid;
-    protected Boolean isPantryItem;
     @JsonProperty(required = true)
     protected String itemId;
     public static final String ITEM_ID_FIELD = "itemId";
+    protected Boolean pantryItem;
     protected List<PantryItemDetails> pantryItemsList;
     protected String parentId;
     protected String petDisplayName;
@@ -231,11 +231,11 @@ public abstract class Transaction {
     }
 
     public Boolean getPantryItem() {
-        return isPantryItem;
+        return pantryItem;
     }
 
     public void setPantryItem(Boolean pantryItem) {
-        isPantryItem = pantryItem;
+        this.pantryItem = pantryItem;
     }
 
     @Override
