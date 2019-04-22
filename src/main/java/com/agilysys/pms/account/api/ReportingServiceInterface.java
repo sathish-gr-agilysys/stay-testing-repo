@@ -177,15 +177,6 @@ public interface ReportingServiceInterface {
           @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
           throws RGuestException, ServiceException;
 
-    /**
-     *
-     * @param tenantId
-     * @param propertyId
-     * @param revenueDetailReportRequest RevenueDetailReportRequest object that holds request parameters
-     * @return Map<String, RevenueReportResult>
-     * @throws RGuestException
-     * @throws ServiceException
-     */
     @POST
     @Path(REVENUE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
@@ -194,6 +185,7 @@ public interface ReportingServiceInterface {
     Map<String, RevenueReportResult> getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, RevenueDetailReportRequest revenueDetailReportRequest)
           throws RGuestException, ServiceException;
+
     /**
      * retrieve recurring charge detail information for a given date
      *

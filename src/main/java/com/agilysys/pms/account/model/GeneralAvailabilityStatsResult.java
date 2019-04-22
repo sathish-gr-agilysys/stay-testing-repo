@@ -12,6 +12,8 @@ public class GeneralAvailabilityStatsResult extends GeneralAvailabilityResult {
     private boolean includeNonBeddedRoomType;
     private RoomMetrics roomMetrics;
 
+    public GeneralAvailabilityStatsResult() { }
+
     public GeneralAvailabilityStatsResult(GeneralAvailabilityResult generalAvailabilityResult) {
         super(generalAvailabilityResult);
     }

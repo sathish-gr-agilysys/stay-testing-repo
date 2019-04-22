@@ -13,8 +13,7 @@ public class RevenueDetailReportRequest {
     private LocalDate endDate;
     private boolean roomRevenue;
 
-    public RevenueDetailReportRequest() {
-    }
+    public RevenueDetailReportRequest() { }
 
     public RevenueDetailReportRequest(Set<String> buildingIds, LocalDate startDate, LocalDate endDate, boolean roomRevenue) {
         this.buildingIds = buildingIds;
