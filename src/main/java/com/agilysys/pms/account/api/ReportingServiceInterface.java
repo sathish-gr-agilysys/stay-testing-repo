@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -60,6 +59,8 @@ public interface ReportingServiceInterface {
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
     String SOURCE_ID = "sourceId";
+    String DEPARTMENT_REVENUE = "/departmentRevenue";
+    String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
 
     /**
      * get the ledger report
@@ -106,6 +107,27 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
+          throws RGuestException, ServiceException;
+
+    /**
+     * This endpoint is to fetch all the transaction of given date and include the MTD transactions, if
+     * INCLUDE_MTD_TRANSACTIONS is true
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param propertyDate
+     * @param includeMTDTransactions
+     * @return List<TransactionReportItem>
+     * @throws RGuestException
+     * @throws ServiceException
+     */
+    @GET
+    @Path(DEPARTMENT_REVENUE + TRANS_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate,
+          @QueryParam(INCLUDE_MTD_TRANSACTIONS) boolean includeMTDTransactions)
           throws RGuestException, ServiceException;
 
     /**
