@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -13,25 +13,32 @@ import org.joda.time.LocalDate;
 public class AccountSearchResult {
     private String tenantId;
     private String propertyId;
+
     private String accountId;
+    public static final String ACCOUNT_ID_FIELD = "accountId";
 
     private BigDecimal accountBalance;
     private String accountStatus;
+
     private String accountType;
+    public static final String ACCOUNT_TYPE_FIELD = "accountType";
+
     private DateTime arrivalDate;
     private String bookingStatus;
     private DateTime departureDate;
     private List<FolioBalance> folios;
     private String groupCode;
+
     private String name;
+    public static final String NAME_FIELD = "name";
+
     private String number;
     private String reservationConfirmationId;
     private String reservationStatus;
     private String roomType;
     private String roomNumber;
-    // TODO the requirements for this are currently pretty vague, we need to
-    // figure out if there are multiple types of statuses such as VIP that an
-    // Account can have and how to return them in the search results
+    // TODO: the requirements for this are currently pretty vague, we need to figure out if there are multiple types of
+    //  statuses such as VIP that an account can have and how to return them in the search results.
     private String vipStatus;
 
     public AccountSearchResult() {}
@@ -43,14 +50,6 @@ public class AccountSearchResult {
         this.name = name;
         this.propertyId = propertyId;
         this.tenantId = tenantId;
-    }
-
-    public AccountSearchResult(String accountId, AccountStatus accountStatus, AccountType accountType, String name,
-          String number, String propertyId, String tenantId) {
-        this(accountId, accountType, name, propertyId, tenantId);
-
-        this.accountStatus = accountStatus != null ? accountStatus.name() : null;
-        this.number = number;
     }
 
     public AccountSearchResult(String accountId, AccountType accountType, LocalDate arrivalDate, String bookingStatus,
