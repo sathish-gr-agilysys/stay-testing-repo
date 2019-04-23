@@ -37,7 +37,11 @@ public class AccountSearchResult {
     private String reservationStatus;
     private String roomType;
     private String roomNumber;
+<<<<<<< HEAD
     // TODO: The requirements for this are currently pretty vague; we need to figure out if there are multiple types of
+=======
+    // TODO: the requirements for this are currently pretty vague, we need to figure out if there are multiple types of
+>>>>>>> f3d5a6a05477bec988042ebabe483c24cd21aece
     //  statuses such as VIP that an account can have and how to return them in the search results.
     private String vipStatus;
 
