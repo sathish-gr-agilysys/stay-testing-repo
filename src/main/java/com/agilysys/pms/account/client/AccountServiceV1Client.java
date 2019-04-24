@@ -1,3 +1,6 @@
+/*
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.client;
 
 import javax.ws.rs.core.Response.Status;
