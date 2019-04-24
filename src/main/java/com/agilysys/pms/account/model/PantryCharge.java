@@ -17,8 +17,7 @@ public class PantryCharge {
     @JsonProperty(required = true)
     private String folioId;
 
-    private Boolean ignoreRules = true;
-    private Boolean isPayment;
+    private Boolean ignoreRules;
     private Payment payment;
 
     @MaxLengthRestriction(250)
@@ -28,23 +27,13 @@ public class PantryCharge {
     private BigDecimal amount;
 
     @JsonProperty(required = true)
-    private List<PantryItemDetails> pantryItemsList;
+    private List<PantryItemDetails> pantryItems;
 
-    public PantryCharge() {
-    }
+    public PantryCharge() {}
 
-    public PantryCharge(Boolean isPayment, Payment payment, List<PantryItemDetails> pantryItemsList) {
-        this.isPayment = isPayment;
+    public PantryCharge(Payment payment, List<PantryItemDetails> pantryItemsList) {
         this.payment = payment;
-        this.pantryItemsList = pantryItemsList;
-    }
-
-    public Boolean isPayment() {
-        return isPayment;
-    }
-
-    public void setIsPayment(Boolean payment) {
-        isPayment = payment;
+        this.pantryItems = pantryItemsList;
     }
 
     public Payment getPayment() {
@@ -56,11 +45,11 @@ public class PantryCharge {
     }
 
     public List<PantryItemDetails> getPantryItemsList() {
-        return pantryItemsList;
+        return pantryItems;
     }
 
-    public void setPantryItemsList(List<PantryItemDetails> pantryItemsList) {
-        this.pantryItemsList = pantryItemsList;
+    public void setPantryItemsList(List<PantryItemDetails> pantryItems) {
+        this.pantryItems = pantryItems;
     }
 
     public String getAccountId() {
