@@ -29,7 +29,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.rest.model.DeserializablePage;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
@@ -86,6 +85,7 @@ import com.agilysys.pms.account.model.ViewFolioRequest;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
+import com.agilysys.pms.common.model.DeserializablePage;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.wordnik.swagger.annotations.ApiParam;
 
