@@ -112,14 +112,6 @@ public interface ReportingServiceInterface {
     /**
      * This endpoint is to fetch all the transaction of given date and include the MTD transactions, if
      * INCLUDE_MTD_TRANSACTIONS is true
-     *
-     * @param tenantId
-     * @param propertyId
-     * @param propertyDate
-     * @param includeMTDTransactions
-     * @return List<TransactionReportItem>
-     * @throws RGuestException
-     * @throws ServiceException
      */
     @GET
     @Path(DEPARTMENT_REVENUE + TRANS_PATH)
