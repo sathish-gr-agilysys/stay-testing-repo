@@ -35,6 +35,23 @@ public class ComponentChargeView {
 
     ChargeTaxAmountInfo estimatedTaxInfo;
 
+    public ComponentChargeView() {
+    }
+
+    public ComponentChargeView(ComponentChargeView componentChargeView) {
+        componentBundleId = componentChargeView.getComponentBundleId();
+        transactionItemId = componentChargeView.getTransactionItemId();
+        transactionItemName = componentChargeView.getTransactionItemName();
+        amount = componentChargeView.getAmount();
+        quantity = componentChargeView.getQuantity();
+        totalQuantity = componentChargeView.getTotalQuantity();
+        totalAmount = componentChargeView.getTotalAmount();
+        componentType = componentChargeView.getComponentType();
+        roomChargePostingType = componentChargeView.getRoomChargePostingType();
+        transactionItemType = componentChargeView.getTransactionItemType();
+        estimatedTaxInfo = componentChargeView.getEstimatedTaxInfo();
+    }
+
     public String getComponentBundleId() {
         return componentBundleId;
     }
@@ -139,11 +156,28 @@ public class ComponentChargeView {
     }
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
-          List<ComponentRateSnapshot> componentRateSnapshots) {
+          List<ComponentRateSnapshot> componentRateSnapshots, boolean isAfterDateRollChargesPosted,
+          boolean isChargesPosted, AccountStatus accountStatus, boolean dateChanged) {
 
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
+        for (ComponentRateSnapshot componentRateSnapshot : componentRateSnapshots) {
+            if ((RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType() &&
+                  (!isChargesPosted || !dateChanged) && accountStatus == AccountStatus.OPEN) ||
+                  ((isAfterDateRollChargesPosted || accountStatus == AccountStatus.CLOSED) && isChargesPosted &&
+                        RoomChargePostingType.AFTER_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType())) {
+                componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
+            }
+        }
+        return componentChargeViews;
+    }
+
+    public static List<ComponentChargeView> fromComponentRateSnapshots(
+          List<ComponentRateSnapshot> componentRateSnapshots) {
+
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>(componentRateSnapshots.size());
         componentRateSnapshots.stream().forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
+
