@@ -27,6 +27,7 @@ public class FolioInvoiceSummaryData {
     private String pageBreakAfter;
     private List<TaxBreakDown> taxBreakDownList;
     private boolean showReason;
+    private String folioInvoiceNumber;
 
     public String getAccountId() {
         return accountId;
@@ -178,5 +179,13 @@ public class FolioInvoiceSummaryData {
 
     public void setShowReason(boolean showReason) {
         this.showReason = showReason;
+    }
+
+    public String getFolioInvoiceNumber() {
+        return folioInvoiceNumber;
+    }
+
+    public void setFolioInvoiceNumber(String folioInvoiceNumber) {
+        this.folioInvoiceNumber = folioInvoiceNumber;
     }
 }

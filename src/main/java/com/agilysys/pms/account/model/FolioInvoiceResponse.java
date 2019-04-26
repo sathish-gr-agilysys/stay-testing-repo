@@ -38,9 +38,9 @@ public class FolioInvoiceResponse implements Cloneable {
     private String contentServicePublicUrl;
     private String folioInvoiceNumber;
     private List<LineItemView> lineItemViews;
-    private BigDecimal totalAmount;
-    private BigDecimal totalBalance;
-    private BigDecimal totalPayment;
+    private String totalAmount;
+    private String totalBalance;
+    private String totalPayment;
     private InvoiceStatus invoiceStatus;
     private LocalDate arrivalDate;
     private LocalDate departureDate;
@@ -256,27 +256,27 @@ public class FolioInvoiceResponse implements Cloneable {
         this.lineItemViews = lineItemViews;
     }
 
-    public BigDecimal getTotalAmount() {
+    public String getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(BigDecimal totalAmount) {
+    public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public BigDecimal getTotalBalance() {
+    public String getTotalBalance() {
         return totalBalance;
     }
 
-    public void setTotalBalance(BigDecimal totalBalance) {
+    public void setTotalBalance(String totalBalance) {
         this.totalBalance = totalBalance;
     }
 
-    public BigDecimal getTotalPayment() {
+    public String getTotalPayment() {
         return totalPayment;
     }
 
-    public void setTotalPayment(BigDecimal totalPayment) {
+    public void setTotalPayment(String totalPayment) {
         this.totalPayment = totalPayment;
     }
 
