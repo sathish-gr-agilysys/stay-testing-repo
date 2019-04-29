@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.agilysys.common.model.rate.ComponentRateSnapshot;
-import com.agilysys.common.model.rate.ComponentType;
-import com.agilysys.common.model.rate.RoomChargePostingType;
 
 public class ComponentChargeView {
 
@@ -27,10 +25,6 @@ public class ComponentChargeView {
 
     private BigDecimal totalAmount;
 
-    private ComponentType componentType;
-
-    private RoomChargePostingType roomChargePostingType;
-
     private TransactionItemType transactionItemType;
 
     ChargeTaxAmountInfo estimatedTaxInfo;
@@ -46,8 +40,6 @@ public class ComponentChargeView {
         quantity = componentChargeView.getQuantity();
         totalQuantity = componentChargeView.getTotalQuantity();
         totalAmount = componentChargeView.getTotalAmount();
-        componentType = componentChargeView.getComponentType();
-        roomChargePostingType = componentChargeView.getRoomChargePostingType();
         transactionItemType = componentChargeView.getTransactionItemType();
         estimatedTaxInfo = componentChargeView.getEstimatedTaxInfo();
     }
@@ -82,22 +74,6 @@ public class ComponentChargeView {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public ComponentType getComponentType() {
-        return componentType;
-    }
-
-    public void setComponentType(ComponentType componentType) {
-        this.componentType = componentType;
-    }
-
-    public RoomChargePostingType getRoomChargePostingType() {
-        return roomChargePostingType;
-    }
-
-    public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
-        this.roomChargePostingType = roomChargePostingType;
     }
 
     public BigDecimal getTotalAmount() {
@@ -149,26 +125,8 @@ public class ComponentChargeView {
         componentChargeView.setAmount(componentRateSnapshot.getAmount());
         componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
         componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
-        componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
-        componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
 
         return componentChargeView;
-    }
-
-    public static List<ComponentChargeView> fromComponentRateSnapshots(
-          List<ComponentRateSnapshot> componentRateSnapshots, boolean isAfterDateRollChargesPosted,
-          boolean isChargesPosted, AccountStatus accountStatus, boolean dateChanged) {
-
-        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        for (ComponentRateSnapshot componentRateSnapshot : componentRateSnapshots) {
-            if ((RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType() &&
-                  (!isChargesPosted || !dateChanged) && accountStatus == AccountStatus.OPEN) ||
-                  ((isAfterDateRollChargesPosted || accountStatus == AccountStatus.CLOSED) && isChargesPosted &&
-                        RoomChargePostingType.AFTER_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType())) {
-                componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
-            }
-        }
-        return componentChargeViews;
     }
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
