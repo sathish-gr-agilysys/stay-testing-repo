@@ -6,12 +6,10 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.joda.time.LocalDate;
 
 import com.agilysys.pms.profile.model.AddressDetails;
-import com.agilysys.pms.reservation.model.ThirdPartyConfirmation;
 
 public class InvoicedSourceAccountDetail {
     protected String sourceAccountId;
@@ -31,7 +29,6 @@ public class InvoicedSourceAccountDetail {
     protected List<String> additionalGuestDetails;
     protected RoomInfo roomInfo;
     protected String reservationAlias;
-    protected Set<ThirdPartyConfirmation> thirdPartyConfirmation;
 
     public String getConfirmationCode() {
         return confirmationCode;
@@ -167,13 +164,5 @@ public class InvoicedSourceAccountDetail {
 
     public void setReservationAlias(String reservationAlias) {
         this.reservationAlias = reservationAlias;
-    }
-
-    public Set<ThirdPartyConfirmation> getThirdPartyConfirmation() {
-        return thirdPartyConfirmation;
-    }
-
-    public void setThirdPartyConfirmation(Set<ThirdPartyConfirmation> thirdPartyConfirmation) {
-        this.thirdPartyConfirmation = thirdPartyConfirmation;
     }
 }
