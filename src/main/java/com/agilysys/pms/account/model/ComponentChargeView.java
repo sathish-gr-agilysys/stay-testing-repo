@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.agilysys.common.model.rate.ComponentRateSnapshot;
+import com.agilysys.common.model.rate.ComponentType;
+import com.agilysys.common.model.rate.RoomChargePostingType;
 
 public class ComponentChargeView {
 
@@ -25,24 +27,13 @@ public class ComponentChargeView {
 
     private BigDecimal totalAmount;
 
+    private ComponentType componentType;
+
+    private RoomChargePostingType roomChargePostingType;
+
     private TransactionItemType transactionItemType;
 
     ChargeTaxAmountInfo estimatedTaxInfo;
-
-    public ComponentChargeView() {
-    }
-
-    public ComponentChargeView(ComponentChargeView componentChargeView) {
-        componentBundleId = componentChargeView.getComponentBundleId();
-        transactionItemId = componentChargeView.getTransactionItemId();
-        transactionItemName = componentChargeView.getTransactionItemName();
-        amount = componentChargeView.getAmount();
-        quantity = componentChargeView.getQuantity();
-        totalQuantity = componentChargeView.getTotalQuantity();
-        totalAmount = componentChargeView.getTotalAmount();
-        transactionItemType = componentChargeView.getTransactionItemType();
-        estimatedTaxInfo = componentChargeView.getEstimatedTaxInfo();
-    }
 
     public String getComponentBundleId() {
         return componentBundleId;
@@ -74,6 +65,22 @@ public class ComponentChargeView {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public ComponentType getComponentType() {
+        return componentType;
+    }
+
+    public void setComponentType(ComponentType componentType) {
+        this.componentType = componentType;
+    }
+
+    public RoomChargePostingType getRoomChargePostingType() {
+        return roomChargePostingType;
+    }
+
+    public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
+        this.roomChargePostingType = roomChargePostingType;
     }
 
     public BigDecimal getTotalAmount() {
@@ -125,6 +132,8 @@ public class ComponentChargeView {
         componentChargeView.setAmount(componentRateSnapshot.getAmount());
         componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
         componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
+        componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
+        componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
 
         return componentChargeView;
     }
@@ -132,10 +141,9 @@ public class ComponentChargeView {
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots) {
 
-        List<ComponentChargeView> componentChargeViews = new ArrayList<>(componentRateSnapshots.size());
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         componentRateSnapshots.stream().forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
-
