@@ -9,11 +9,13 @@ import java.math.RoundingMode;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.LocalDate;
+import org.springframework.data.annotation.Transient;
 
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -52,6 +54,10 @@ public abstract class Transaction {
     protected String reference;
     protected String sourceId;
     protected String terminalId;
+    protected GatewayType gatewayType;
+
+    @Transient
+    protected String giftCardNumber;
 
     public String getAccountId() {
         return accountId;
@@ -220,11 +226,27 @@ public abstract class Transaction {
 
     public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
 
+    public GatewayType getGatewayType() {
+        return gatewayType;
+    }
+
+    public void setGatewayType(GatewayType gatewayType) {
+        this.gatewayType = gatewayType;
+    }
+
+    public String getGiftCardNumber() {
+        return giftCardNumber;
+    }
+
+    public void setGiftCardNumber(String giftCardNumber) {
+        this.giftCardNumber = giftCardNumber;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
               .append(postingDate).append(displayDate).append(reason).append(reference).append(sourceId)
-              .append(terminalId).toHashCode();
+              .append(terminalId).append(gatewayType).append(giftCardNumber).toHashCode();
     }
 
     @Override
@@ -244,6 +266,7 @@ public abstract class Transaction {
               .append(folioId, other.folioId).append(ignoreRules, other.ignoreRules).append(itemId, other.itemId)
               .append(postingDate, other.postingDate).append(reason, other.reason).append(reference, other.reference)
               .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
-              .append(displayDate, other.displayDate).isEquals();
+              .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType)
+              .append(giftCardNumber, other.giftCardNumber).isEquals();
     }
 }

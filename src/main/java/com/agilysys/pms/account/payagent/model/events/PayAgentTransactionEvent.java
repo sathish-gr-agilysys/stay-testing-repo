@@ -10,7 +10,7 @@ import java.util.Map;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.joda.time.DateTime;
 
-import com.agilysys.pms.account.model.payagent.PayAgentResponseType;
+import com.agilysys.pms.rguestpayshim.model.PayAgentResponseType;
 import com.agilysys.pms.account.model.payagent.PayRequestType;
 import com.agilysys.pms.common.model.StayDomainEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -70,3 +70,4 @@ public abstract class PayAgentTransactionEvent extends StayDomainEvent {
 
     public abstract List<String> getHistoryMessages();
 }
+

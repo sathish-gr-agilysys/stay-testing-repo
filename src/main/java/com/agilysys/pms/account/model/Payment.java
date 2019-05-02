@@ -21,6 +21,7 @@ public class Payment {
     private CardInformation cardInformation;
     private String terminalId;
     private String invoiceNumber;
+    private String giftCardNumber;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -91,5 +92,13 @@ public class Payment {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
+    }
+
+    public String getGiftCardNumber() {
+        return giftCardNumber;
+    }
+
+    public void setGiftCardNumber(String giftCardNumber) {
+        this.giftCardNumber = giftCardNumber;
     }
 }
