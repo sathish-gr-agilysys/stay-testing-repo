@@ -11,6 +11,7 @@ public class PostChargesRequest {
     private boolean distributed;
     private boolean isRecurring;
     private String name;
+    private boolean postToFuture;
 
 
     public List<Charge> getCharges() {
@@ -42,6 +43,14 @@ public class PostChargesRequest {
 
     public void setIsRecurring(boolean isRecurring) {
         this.isRecurring = isRecurring;
+    }
+
+    public boolean isPostToFuture() {
+        return postToFuture;
+    }
+
+    public void setPostToFuture(boolean postToFuture) {
+        this.postToFuture = postToFuture;
     }
 }
 
