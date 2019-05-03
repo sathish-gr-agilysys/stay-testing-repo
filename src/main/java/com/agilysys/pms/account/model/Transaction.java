@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -40,7 +40,7 @@ public abstract class Transaction {
     protected String itemId;
     public static final String ITEM_ID_FIELD = "itemId";
     protected Boolean pantryItem;
-    protected List<PantryItemDetails> pantryItemsList;
+    protected List<PantryItemDetails> pantryItems;
     protected String parentId;
     protected String petDisplayName;
     protected LocalDate postingDate;
@@ -222,12 +222,12 @@ public abstract class Transaction {
 
     public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
 
-    public List<PantryItemDetails> getPantryItemsList() {
-        return pantryItemsList;
+    public List<PantryItemDetails> getPantryItems() {
+        return pantryItems;
     }
 
-    public void setPantryItemsList(List<PantryItemDetails> pantryItemsList) {
-        this.pantryItemsList = pantryItemsList;
+    public void setPantryItems(List<PantryItemDetails> pantryItems) {
+        this.pantryItems = pantryItems;
     }
 
     public Boolean getPantryItem() {

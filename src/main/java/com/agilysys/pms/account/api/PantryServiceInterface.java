@@ -29,10 +29,10 @@ public interface PantryServiceInterface {
     String PROPERTY_ID = "propertyId";
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{id}";
-    String PANTRYITEM_BULK_UPDATE = "/bulkUpdate";
+    String PANTRY_ITEM_BULK_UPDATE = "/bulkUpdate";
 
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt')")
+    @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
     List<PantryItem> getPantryItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException, ServiceException;
 
@@ -56,7 +56,7 @@ public interface PantryServiceInterface {
           @PathParam(ITEM_ID) String itemId, PantryItem item) throws RGuestException, ServiceException;
 
     @PUT
-    @Path(PANTRYITEM_BULK_UPDATE)
+    @Path(PANTRY_ITEM_BULK_UPDATE)
     @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
     List<PantryItem> bulkUpdatePantryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<PantryItem> pantryItemList)

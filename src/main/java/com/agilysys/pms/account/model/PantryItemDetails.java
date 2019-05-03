@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -50,5 +50,9 @@ public class PantryItemDetails {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public BigDecimal getAmount() {
+        return (this.getPrice().multiply(BigDecimal.valueOf(this.getQuantity())));
     }
 }

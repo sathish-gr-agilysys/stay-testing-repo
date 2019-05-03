@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -106,5 +106,20 @@ public class PantryCharge {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public Charge toCharge(String itemId, BigDecimal amount) {
+        Charge pantryCharge = new Charge();
+        pantryCharge.setAccountId(getAccountId());
+        pantryCharge.setFolioId(getFolioId());
+        pantryCharge.setIgnoreRules(getIgnoreRules());
+        pantryCharge.setReason(getReason());
+        pantryCharge.setReference(getReference());
+        pantryCharge.setTerminalId(getTerminalId());
+        pantryCharge.setPantryItem(true);
+        pantryCharge.setItemId(itemId);
+        pantryCharge.setAmount(amount);
+
+        return pantryCharge;
     }
 }

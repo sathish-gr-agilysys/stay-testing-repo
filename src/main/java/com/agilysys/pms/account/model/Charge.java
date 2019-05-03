@@ -15,7 +15,7 @@ public class Charge extends Transaction {
     private String recurringChargeId;
     private TransactionItemType transactionItemType;
     private String autoRecurringItemId;
-    private List<PantryItemDetails> pantryItemsList;
+    private List<PantryItemDetails> pantryItems;
     private Boolean pantryItem;
 
     public String getMealPeriodId() {
@@ -50,12 +50,12 @@ public class Charge extends Transaction {
         this.transactionItemType = transactionItemType;
     }
 
-    public List<PantryItemDetails> getPantryItemsList() {
-        return pantryItemsList;
+    public List<PantryItemDetails> getPantryItems() {
+        return pantryItems;
     }
 
-    public void setPantryItemsList(List<PantryItemDetails> pantryItemsList) {
-        this.pantryItemsList = pantryItemsList;
+    public void setPantryItems(List<PantryItemDetails> pantryItems) {
+        this.pantryItems = pantryItems;
     }
 
     public Boolean getPantryItem() {

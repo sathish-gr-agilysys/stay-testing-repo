@@ -1415,7 +1415,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'AddPantry')")
     PantryTransactionResponse postPantryCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @QueryParam("ignoreAuth") boolean ignoreAuth, PantryCharge pantryCharge)
+          @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth, PantryCharge pantryCharge)
           throws RGuestException, ServiceException;
 }
 
