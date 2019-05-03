@@ -55,6 +55,7 @@ public abstract class Transaction {
     protected String sourceId;
     protected String terminalId;
     protected GatewayType gatewayType;
+    protected boolean giftCard;
 
     @Transient
     protected String giftCardNumber;
@@ -242,11 +243,19 @@ public abstract class Transaction {
         this.giftCardNumber = giftCardNumber;
     }
 
+    public boolean isGiftCard() {
+        return giftCard;
+    }
+
+    public void setGiftCard(boolean giftCard) {
+        this.giftCard = giftCard;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
               .append(postingDate).append(displayDate).append(reason).append(reference).append(sourceId)
-              .append(terminalId).append(gatewayType).append(giftCardNumber).toHashCode();
+              .append(terminalId).append(gatewayType).append(giftCardNumber).append(giftCard).toHashCode();
     }
 
     @Override
@@ -267,6 +276,6 @@ public abstract class Transaction {
               .append(postingDate, other.postingDate).append(reason, other.reason).append(reference, other.reference)
               .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
               .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType)
-              .append(giftCardNumber, other.giftCardNumber).isEquals();
+              .append(giftCardNumber, other.giftCardNumber).append(giftCard, other.giftCard).isEquals();
     }
 }

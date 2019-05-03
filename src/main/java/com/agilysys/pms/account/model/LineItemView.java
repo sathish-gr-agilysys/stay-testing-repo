@@ -84,6 +84,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String userId;
     private String autoRecurringItemId;
     private GatewayType gatewayType;
+    private boolean giftCard;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -787,6 +788,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setGatewayType(GatewayType gatewayType) {
         this.gatewayType = gatewayType;
+    }
+
+    public boolean isGiftCard() {
+        return giftCard;
+    }
+
+    public void setGiftCard(boolean giftCard) {
+        this.giftCard = giftCard;
     }
 
     @Override

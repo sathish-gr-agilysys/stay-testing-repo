@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.agilysys.pms.payment.model.CardInformation;
+import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -21,7 +22,7 @@ public class Payment {
     private CardInformation cardInformation;
     private String terminalId;
     private String invoiceNumber;
-    private String giftCardNumber;
+    private GatewayType gatewayType;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -94,11 +95,11 @@ public class Payment {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public String getGiftCardNumber() {
-        return giftCardNumber;
+    public GatewayType getGatewayType() {
+        return gatewayType;
     }
 
-    public void setGiftCardNumber(String giftCardNumber) {
-        this.giftCardNumber = giftCardNumber;
+    public void setGatewayType(GatewayType gatewayType) {
+        this.gatewayType = gatewayType;
     }
 }
