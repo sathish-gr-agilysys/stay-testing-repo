@@ -46,6 +46,8 @@ public class TransactionItem extends AccountingItem {
 
     protected String glCode;
 
+    protected boolean permitComp;
+
     protected String plu;
 
     @JsonProperty(required = true)
@@ -78,6 +80,7 @@ public class TransactionItem extends AccountingItem {
         sourceMealPeriods = transactionItem.getSourceMealPeriods();
         status = transactionItem.getStatus();
         taxClasses = transactionItem.getTaxClasses();
+        permitComp = transactionItem.isPermitComp();
     }
 
     public String getAltSystemId() {
@@ -146,6 +149,14 @@ public class TransactionItem extends AccountingItem {
 
     public TransactionItemType getType() {
         return TransactionItemType.TRANSACTION;
+    }
+
+    public boolean isPermitComp() {
+        return permitComp;
+    }
+
+    public void setPermitComp(boolean permitComp) {
+        this.permitComp = permitComp;
     }
 
     @JsonIgnore
