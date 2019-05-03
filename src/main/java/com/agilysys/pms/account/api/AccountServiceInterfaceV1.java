@@ -333,23 +333,6 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     /**
-     * Update the credit card authorization rule of an existing account for a tenant
-     *
-     * @param tenantId      updated account's tenant
-     * @param propertyId    id of the property where the account exists
-     * @param accountId     account to update
-     * @param creditCardAuthRuleSettingsId  creditCardAuthRuleSettingsId  string.
-     */
-    @PUT
-    @Path(ACCOUNT_ID_PATH + ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID_PATH)
-    @OkOnEmpty
-        @PreAuthorize("hasPermission('Required', 'OverrideCCAuthRule')")
-    void updateAccountCreditCardAuthRuleSettingsId(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID) String creditCardAuthRuleSettingsId)
-          throws RGuestException, ServiceException;
-
-    /**
      * Update the AR settings on an existing company account
      *
      * @param tenantId      tenant id
