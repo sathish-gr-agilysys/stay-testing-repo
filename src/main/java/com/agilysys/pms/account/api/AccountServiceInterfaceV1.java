@@ -775,6 +775,20 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId) throws Throwable;
 
     /**
+     * Get a payment result
+     *
+     * @param tenantId  the Tenant Id to post to
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  the task Id to post to
+     * @return a payments for report purpose
+     */
+    @POST
+    @Path(PAYMENTS_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> findPaymentsForAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, List<String> accountIds) throws Throwable;
+
+    /**
      * Refunds a payment to an account
      *
      * @param accountId  the Account to post to
