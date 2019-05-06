@@ -12,7 +12,7 @@ public class FolioInvoiceSummaryData {
     private String folioName;
     private String folioId;
     private String paymentSettingId;
-    private List<LineItemView> lineItemViews;
+    private List<FolioInvoiceLineItemView> lineItemViews;
     private boolean hasLineItems;
     private BigDecimal totalChargesCurrency;
     private BigDecimal totalTaxCurrency;
@@ -61,11 +61,11 @@ public class FolioInvoiceSummaryData {
         this.paymentSettingId = paymentSettingId;
     }
 
-    public List<LineItemView> getLineItemViews() {
+    public List<FolioInvoiceLineItemView> getLineItemViews() {
         return lineItemViews;
     }
 
-    public void setLineItemViews(List<LineItemView> lineItemViews) {
+    public void setLineItemViews(List<FolioInvoiceLineItemView> lineItemViews) {
         this.lineItemViews = lineItemViews;
     }
 

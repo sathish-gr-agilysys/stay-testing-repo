@@ -16,6 +16,7 @@ public class FolioInvoiceRequest {
     private List<String> detailTransactionIds;
     private List<String> summaryParentIds;
     private List<String> detailParentIds;
+    private Map<String, List<String>> folioIdsByAccountId;
 
     public List<String> getAccountIds() {
         return accountIds;
@@ -79,5 +80,13 @@ public class FolioInvoiceRequest {
 
     public void setDetailParentIds(List<String> detailParentIds) {
         this.detailParentIds = detailParentIds;
+    }
+
+    public Map<String, List<String>> getFolioIdsByAccountId() {
+        return folioIdsByAccountId;
+    }
+
+    public void setFolioIdsByAccountId(Map<String, List<String>> folioIdsByAccountId) {
+        this.folioIdsByAccountId = folioIdsByAccountId;
     }
 }

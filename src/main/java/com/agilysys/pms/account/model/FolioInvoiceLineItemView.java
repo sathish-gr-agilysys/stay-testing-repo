@@ -3,838 +3,365 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
+public class FolioInvoiceLineItemView extends FolioViewLineItem {
 
-import com.agilysys.common.model.rate.CompInfo;
-import com.agilysys.common.model.rate.ComponentType;
-import com.agilysys.common.model.rate.RoomChargePostingType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-/**
- * The Folio/Ledger LineItem provided to the UI. This is a view on data managed
- * using:
- * <ul>
- * <li>LedgerTransaction</li>
- * <li>LineItem</li>
- * </ul>
- *
- * @see <a
- * href="http://confluence.bellevue.ad.local/display/VICTRIAL/View+Line+Item+Object">LineItemView</a>
- */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class FolioInvoiceLineItemView implements Comparable<FolioInvoiceLineItemView> {
-    private String id;
-
-    private String accountId;
-    private List<LineItemView> adjustmentLineItems;
-    private boolean autoRouted;
-    private String callType;
-    private String categoryId;
-    private CompInfo compInfo;
-    private ComponentType componentType;
-    private RoomChargePostingType roomChargePostingType;
-    private LineItemView correctionLineItem;
-    private String description;
-    private LocalDate displayDate;
-    private boolean distributed;
-    private String folioId;
-    private String folioLineType;
-    private BigDecimal freeAllowanceAmount;
-    private boolean invalid;
-    private List<LineItemView> groupedTaxLineItems;
-    private String itemId;
-    private String ledgerId;
-    private List<LedgerTransactionHistory> ledgerTransactionHistory;
-    private String ledgerTransactionHistoryId;
-    private String mealPeriodId;
-    private String name;
-    private String parentId;
-    private String petDisplayName;
-    private DateTime postingCalendarDateTime;
-    private LocalDate postingPropertyDate;
-    private int quantity;
-    private String rateChangeComment;
-    private List<LineItemView> refundLineItems;
-    private String reason;
-    private String receiptTextImage;
-    private String recurringChargeId;
-    private String reference;
-    private String reservationId;
-    private boolean roomRevenue;
-    private boolean routed;
-    private String sourceId;
-    private String subcategoryId;
-    private List<LineItemView> taxLineItems;
-    private String transactionDestinationAccountId;
-    private LineItemView transferLineItem;
-    private String transactionId;
-    private Map<String, String> transactionMessageAttributes;
-    private String transactionSourceAccountId;
-    private String transactionType;
-    private BigDecimal unitAmount;
-    private String userId;
-    private String autoRecurringItemId;
-    private boolean reverseTax;
-    private BigDecimal reverseTaxTotalChargeAmount;
+    private String formattedDisplayDate;
+    private String formattedTotalAmount;
     private String originalBalance;
     private String newBalance;
-    private String adjustedMessage;
+    private String adjustmentMessage;
     private String refundMessage;
     private String transferOutTransactionMessage;
     private String correctionMessage;
+    private String correctedMessage;
     private String creditMessage;
     private String balanceTransferMessage;
     private String transferInMessage;
+    private String formattedGrandTotalAmount;
+    private String formattedLineItemBalance;
+    private String formattedUnitAmount;
+    private String formattedAdjustmentsGrandTotalAmount;
+    private String formattedAdjustmentsTaxAmount;
+    private String formattedCorrectionGrandTotalAmount;
+    private String formattedRefundGrandTotalAmount;
+    private String formattedTaxAmount;
+    private String formattedCorrectionTaxAmount;
+    private List<FolioInvoiceLineItemView> adjustmentFolioLineItems;
+    private List<FolioInvoiceLineItemView> groupedFolioTaxLineItems;
+    private List<FolioInvoiceLineItemView> refundFolioLineItems;
+    private List<FolioInvoiceLineItemView> taxFolioLineItems;
+    private FolioInvoiceLineItemView correctionFolioLineItem;
+    private LineItemView transferFolioLineItem;
 
-
-    public FolioInvoiceLineItemView() {
-        adjustmentLineItems = new ArrayList<>();
-        freeAllowanceAmount = BigDecimal.ZERO;
-        groupedTaxLineItems = new ArrayList<>();
-        refundLineItems = new ArrayList<>();
-        taxLineItems = new ArrayList<>();
-    }
-
-    /**
-     * @return the ID of the LineItem
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id Set the ID of the LineItem
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the accountId. Must not be null
-     */
-    public String getAccountId() {
-        return accountId;
-    }
-
-    /**
-     * @param accountId Set the accountId
-     */
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
-
-    public List<LineItemView> getAdjustmentLineItems() {
-        return adjustmentLineItems != null ? adjustmentLineItems : new ArrayList<>();
-    }
-
-    public void setAdjustmentLineItems(List<LineItemView> adjustmentLineItems) {
-        this.adjustmentLineItems = adjustmentLineItems;
-    }
-
-    public boolean isAutoRouted() {
-        return autoRouted;
-    }
-
-    public void setAutoRouted(boolean autoRouted) {
-        this.autoRouted = autoRouted;
-    }
-
-    /**
-     * @return the categoryId
-     */
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    /**
-     * @param categoryId Set the transaction categoryId
-     */
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public CompInfo getCompInfo() {
-        return compInfo;
-    }
-
-    public void setCompInfo(CompInfo compInfo) {
-        this.compInfo = compInfo;
-    }
-
-    public ComponentType getComponentType() {
-        return componentType;
-    }
-
-    public void setComponentType(ComponentType componentType) {
-        this.componentType = componentType;
-    }
-
-    public RoomChargePostingType getRoomChargePostingType() {
-        return roomChargePostingType;
-    }
-
-    public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
-        this.roomChargePostingType = roomChargePostingType;
-    }
-
-    public LineItemView getCorrectionLineItem() {
-        return correctionLineItem;
-    }
-
-    public void setCorrectionLineItem(LineItemView correctionLineItem) {
-        this.correctionLineItem = correctionLineItem;
-    }
-
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * @param description Set the description
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDate getDisplayDate() {
-        return displayDate;
-    }
-
-    public void setDisplayDate(LocalDate displayDate) {
-        this.displayDate = displayDate;
-    }
-
-    public boolean isDistributed() {
-        return distributed;
-    }
-
-    public void setDistributed(boolean distributed) {
-        this.distributed = distributed;
-    }
-
-    /**
-     * @return the folioId
-     */
-    public String getFolioId() {
-        return folioId;
-    }
-
-    /**
-     * @param folioId Set the folioId
-     */
-    public void setFolioId(String folioId) {
-        this.folioId = folioId;
-    }
-
-    public String getFolioLineType() {
-        return folioLineType;
-    }
-
-    public void setFolioLineType(String folioLineType) {
-        this.folioLineType = folioLineType;
-    }
-
-    public boolean isInvalid() {
-        return invalid;
-    }
-
-    public void setInvalid(boolean invalid) {
-        this.invalid = invalid;
-    }
-
-    public List<LineItemView> getGroupedTaxLineItems() {
-        return groupedTaxLineItems;
-    }
-
-    public void setGroupedTaxLineItems(List<LineItemView> groupedTaxLineItems) {
-        this.groupedTaxLineItems = groupedTaxLineItems;
-    }
-
-    /**
-     * @return the itemId
-     */
-    public String getItemId() {
-        return itemId;
-    }
-
-    /**
-     * @param itemId Set the transaction itemId
-     */
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
-    /**
-     * @return the ledgerId. Will be null for folio's
-     */
-    public String getLedgerId() {
-        return ledgerId;
-    }
-
-    /**
-     * @param ledgerId Set the ledgerId
-     */
-    public void setLedgerId(String ledgerId) {
-        this.ledgerId = ledgerId;
-    }
-
-    public List<LedgerTransactionHistory> getLedgerTransactionHistory() {
-        return ledgerTransactionHistory;
+    public String getFormattedDisplayDate() {
+        return formattedDisplayDate;
     }
 
-    public void setLedgerTransactionHistory(List<LedgerTransactionHistory> ledgerTransactionHistory) {
-        this.ledgerTransactionHistory = ledgerTransactionHistory;
+    public void setFormattedDisplayDate(String formattedDisplayDate) {
+        this.formattedDisplayDate = formattedDisplayDate;
     }
 
-    public String getLedgerTransactionHistoryId() {
-        return ledgerTransactionHistoryId;
+    public String getFormattedTotalAmount() {
+        return formattedTotalAmount;
     }
 
-    public void setLedgerTransactionHistoryId(String ledgerTransactionHistoryId) {
-        this.ledgerTransactionHistoryId = ledgerTransactionHistoryId;
+    public void setFormattedTotalAmount(String formattedTotalAmount) {
+        this.formattedTotalAmount = formattedTotalAmount;
     }
 
-    /**
-     * @return the mealPeriodId
-     */
-    public String getMealPeriodId() {
-        return mealPeriodId;
+    public String getOriginalBalance() {
+        return originalBalance;
     }
 
-    /**
-     * @param mealPeriodId Set the mealPeriodId
-     */
-    public void setMealPeriodId(String mealPeriodId) {
-        this.mealPeriodId = mealPeriodId;
+    public void setOriginalBalance(String originalBalance) {
+        this.originalBalance = originalBalance;
     }
 
-    public String getName() {
-        return name;
+    public String getNewBalance() {
+        return newBalance;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNewBalance(String newBalance) {
+        this.newBalance = newBalance;
     }
 
-    public String getParentId() {
-        return parentId;
+    public String getAdjustmentMessage() {
+        return adjustmentMessage;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
+    public void setAdjustmentMessage(String adjustmentMessage) {
+        this.adjustmentMessage = adjustmentMessage;
     }
 
-    public String getPetDisplayName() {
-        return petDisplayName;
+    public String getRefundMessage() {
+        return refundMessage;
     }
 
-    public void setPetDisplayName(String petDisplayName) {
-        this.petDisplayName = petDisplayName;
+    public void setRefundMessage(String refundMessage) {
+        this.refundMessage = refundMessage;
     }
 
-    public DateTime getPostingCalendarDateTime() {
-        return postingCalendarDateTime;
+    public String getTransferOutTransactionMessage() {
+        return transferOutTransactionMessage;
     }
 
-    public void setPostingCalendarDateTime(DateTime postingCalendarDateTime) {
-        this.postingCalendarDateTime = postingCalendarDateTime;
+    public void setTransferOutTransactionMessage(String transferOutTransactionMessage) {
+        this.transferOutTransactionMessage = transferOutTransactionMessage;
     }
 
-    public LocalDate getPostingPropertyDate() {
-        return postingPropertyDate;
+    public String getCorrectionMessage() {
+        return correctionMessage;
     }
 
-    public void setPostingPropertyDate(LocalDate postingPropertyDate) {
-        this.postingPropertyDate = postingPropertyDate;
+    public void setCorrectionMessage(String correctionMessage) {
+        this.correctionMessage = correctionMessage;
     }
 
-    /**
-     * @return the quantity
-     */
-    public int getQuantity() {
-        return quantity;
+    public String getCorrectedMessage() {
+        return correctedMessage;
     }
 
-    /**
-     * @param quantity Set the quantity
-     */
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCorrectedMessage(String correctedMessage) {
+        this.correctedMessage = correctedMessage;
     }
 
-    public String getRateChangeComment() {
-        return rateChangeComment;
+    public String getCreditMessage() {
+        return creditMessage;
     }
 
-    public void setRateChangeComment(String rateChangeComment) {
-        this.rateChangeComment = rateChangeComment;
+    public void setCreditMessage(String creditMessage) {
+        this.creditMessage = creditMessage;
     }
 
-    /**
-     * @return the reason
-     */
-    public String getReason() {
-        return reason;
+    public String getBalanceTransferMessage() {
+        return balanceTransferMessage;
     }
 
-    /**
-     * @param reason Set the reason
-     */
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setBalanceTransferMessage(String balanceTransferMessage) {
+        this.balanceTransferMessage = balanceTransferMessage;
     }
 
-    public String getReceiptTextImage() {
-        return receiptTextImage;
+    public String getTransferInMessage() {
+        return transferInMessage;
     }
 
-    public void setReceiptTextImage(String receiptTextImage) {
-        this.receiptTextImage = receiptTextImage;
+    public void setTransferInMessage(String transferInMessage) {
+        this.transferInMessage = transferInMessage;
     }
 
-    public String getRecurringChargeId() {
-        return recurringChargeId;
+    public String getFormattedGrandTotalAmount() {
+        return formattedGrandTotalAmount;
     }
 
-    public void setRecurringChargeId(String recurringChargeId) {
-        this.recurringChargeId = recurringChargeId;
+    public void setFormattedGrandTotalAmount(String formattedGrandTotalAmount) {
+        this.formattedGrandTotalAmount = formattedGrandTotalAmount;
     }
 
-    /**
-     * @return the reference
-     */
-    public String getReference() {
-        return reference != null ? reference : "";
+    public String getFormattedLineItemBalance() {
+        return formattedLineItemBalance;
     }
 
-    /**
-     * @param reference Set the reference
-     */
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setFormattedLineItemBalance(String formattedLineItemBalance) {
+        this.formattedLineItemBalance = formattedLineItemBalance;
     }
 
-    /**
-     * @return the reservationId. Will be null if account is not linked to a
-     * reservation
-     */
-    public String getReservationId() {
-        return reservationId;
+    public String getFormattedUnitAmount() {
+        return formattedUnitAmount;
     }
 
-    /**
-     * @param reservationId Set the reservationId
-     */
-    public void setReservationId(String reservationId) {
-        this.reservationId = reservationId;
+    public void setFormattedUnitAmount(String formattedUnitAmount) {
+        this.formattedUnitAmount = formattedUnitAmount;
     }
 
-    public boolean isRoomRevenue() {
-        return roomRevenue;
+    public String getFormattedAdjustmentsGrandTotalAmount() {
+        return formattedAdjustmentsGrandTotalAmount;
     }
 
-    public void setRoomRevenue(boolean roomRevenue) {
-        this.roomRevenue = roomRevenue;
+    public void setFormattedAdjustmentsGrandTotalAmount(String formattedAdjustmentsGrandTotalAmount) {
+        this.formattedAdjustmentsGrandTotalAmount = formattedAdjustmentsGrandTotalAmount;
     }
 
-    public boolean isRouted() {
-        return routed;
+    public String getFormattedAdjustmentsTaxAmount() {
+        return formattedAdjustmentsTaxAmount;
     }
 
-    public void setRouted(boolean routed) {
-        this.routed = routed;
+    public void setFormattedAdjustmentsTaxAmount(String formattedAdjustmentsTaxAmount) {
+        this.formattedAdjustmentsTaxAmount = formattedAdjustmentsTaxAmount;
     }
 
-    public List<LineItemView> getRefundLineItems() {
-        return refundLineItems != null ? refundLineItems : new ArrayList<>();
+    public String getFormattedCorrectionGrandTotalAmount() {
+        return formattedCorrectionGrandTotalAmount;
     }
 
-    public void setRefundLineItems(List<LineItemView> refundLineItems) {
-        this.refundLineItems = refundLineItems;
+    public void setFormattedCorrectionGrandTotalAmount(String formattedCorrectionGrandTotalAmount) {
+        this.formattedCorrectionGrandTotalAmount = formattedCorrectionGrandTotalAmount;
     }
 
-    /**
-     * @return the sourceId
-     */
-    public String getSourceId() {
-        return sourceId;
+    public String getFormattedRefundGrandTotalAmount() {
+        return formattedRefundGrandTotalAmount;
     }
 
-    /**
-     * @param sourceId Set the sourceId
-     */
-    public void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
+    public void setFormattedRefundGrandTotalAmount(String formattedRefundGrandTotalAmount) {
+        this.formattedRefundGrandTotalAmount = formattedRefundGrandTotalAmount;
     }
 
-    /**
-     * @return the subcategoryId
-     */
-    public String getSubcategoryId() {
-        return subcategoryId;
+    public String getFormattedTaxAmount() {
+        return formattedTaxAmount;
     }
 
-    /**
-     * @param subcategoryId Set the transaction subcategoryId
-     */
-    public void setSubcategoryId(String subcategoryId) {
-        this.subcategoryId = subcategoryId;
+    public void setFormattedTaxAmount(String formattedTaxAmount) {
+        this.formattedTaxAmount = formattedTaxAmount;
     }
 
-    /**
-     * @return the taxLineItems
-     */
-    public List<LineItemView> getTaxLineItems() {
-        return taxLineItems != null ? taxLineItems : new ArrayList<>();
+    public String getFormattedCorrectionTaxAmount() {
+        return formattedCorrectionTaxAmount;
     }
 
-    /**
-     * @param taxLineItems Set the taxLineItems
-     */
-    public void setTaxLineItems(List<LineItemView> taxLineItems) {
-        this.taxLineItems = taxLineItems;
+    public void setFormattedCorrectionTaxAmount(String formattedCorrectionTaxAmount) {
+        this.formattedCorrectionTaxAmount = formattedCorrectionTaxAmount;
     }
 
-    public String getTransactionDestinationAccountId() {
-        return transactionDestinationAccountId;
+    public List<FolioInvoiceLineItemView> getAdjustmentFolioLineItems() {
+        return adjustmentFolioLineItems;
     }
 
-    public void setTransactionDestinationAccountId(String transactionDestinationAccountId) {
-        this.transactionDestinationAccountId = transactionDestinationAccountId;
+    public void setAdjustmentFolioLineItems(List<FolioInvoiceLineItemView> adjustmentFolioLineItems) {
+        this.adjustmentFolioLineItems = adjustmentFolioLineItems;
     }
 
-    public Map<String, String> getTransactionMessageAttributes() {
-        return transactionMessageAttributes;
+    public List<FolioInvoiceLineItemView> getGroupedFolioTaxLineItems() {
+        return groupedFolioTaxLineItems;
     }
 
-    /**
-     * @return the ID of the LedgerTransaction the LineItem is part of
-     */
-    public String getTransactionId() {
-        return transactionId;
+    public void setGroupedFolioTaxLineItems(List<FolioInvoiceLineItemView> groupedFolioTaxLineItems) {
+        this.groupedFolioTaxLineItems = groupedFolioTaxLineItems;
     }
 
-    /**
-     * @param transactionId Set the ID of the transaction
-     */
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
+    public List<FolioInvoiceLineItemView> getRefundFolioLineItems() {
+        return refundFolioLineItems;
     }
 
-    public void setTransactionMessageAttributes(Map<String, String> transactionMessageAttributes) {
-        this.transactionMessageAttributes = transactionMessageAttributes;
+    public void setRefundFolioLineItems(List<FolioInvoiceLineItemView> refundFolioLineItems) {
+        this.refundFolioLineItems = refundFolioLineItems;
     }
 
-    public String getTransactionSourceAccountId() {
-        return transactionSourceAccountId;
+    public List<FolioInvoiceLineItemView> getTaxFolioLineItems() {
+        return taxFolioLineItems;
     }
 
-    public void setTransactionSourceAccountId(String transactionSourceAccountId) {
-        this.transactionSourceAccountId = transactionSourceAccountId;
+    public void setTaxFolioLineItems(List<FolioInvoiceLineItemView> taxFolioLineItems) {
+        this.taxFolioLineItems = taxFolioLineItems;
     }
 
-    /**
-     * @return the type of the LedgerTransaction.
-     */
-    public String getTransactionType() {
-        return transactionType;
+    public FolioInvoiceLineItemView getCorrectionFolioLineItem() {
+        return correctionFolioLineItem;
     }
 
-    /**
-     * @param transactionType Set the TransactionType for the transaction
-     */
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
+    public void setCorrectionFolioLineItem(FolioInvoiceLineItemView correctionFolioLineItem) {
+        this.correctionFolioLineItem = correctionFolioLineItem;
     }
 
-    public LineItemView getTransferLineItem() {
-        return transferLineItem;
+    public LineItemView getTransferFolioLineItem() {
+        return transferFolioLineItem;
     }
 
-    public void setTransferLineItem(LineItemView transferLineItem) {
-        this.transferLineItem = transferLineItem;
+    public void setTransferFolioLineItem(LineItemView transferFolioLineItem) {
+        this.transferFolioLineItem = transferFolioLineItem;
     }
 
-    /**
-     * @return the unitAmount
-     */
-    public BigDecimal getUnitAmount() {
-        return unitAmount;
+    public FolioInvoiceLineItemView lineItemToFolioInvoiceViewLineItem(LineItemView lineItemView) {
+        //setTaxLineItems(lineItemView.getTaxLineItems());
+        setTaxAmount(lineItemView.getTaxAmount());
+        setTotalAmount(lineItemView.getTotalAmount());
+        setGrandTotalAmount(lineItemView.getGrandTotalAmount());
+        setLineItemChargesBalance(lineItemView.getLineItemChargesBalance());
+        setLineItemBalance(lineItemView.getLineItemBalance());
+        setLineItemTaxBalance(lineItemView.getLineItemTaxBalance());
+        setQuantity(lineItemView.getQuantity());
+        setAdjustmentsGrandTotalAmount(lineItemView.getAdjustmentsTotalAmount());
+        setAdjustmentsTaxAmount(lineItemView.getAdjustmentsTaxAmount());
+        setAdjustmentsTotalAmount(lineItemView.getAdjustmentsTotalAmount());
+        setCorrectionGrandTotalAmount(lineItemView.getCorrectionGrandTotalAmount());
+        setCorrectionTaxAmount(lineItemView.getCorrectionTaxAmount());
+        setCorrectionTotalAmount(lineItemView.getCorrectionTotalAmount());
+        setRefundGrantTotalAmount(lineItemView.getRefundGrantTotalAmount());
+        setTransferGrandTotalAmount(lineItemView.getTransferGrandTotalAmount());
+        setTransferTaxAmount(lineItemView.getTransferTaxAmount());
+        setTransferTotalAmount(lineItemView.getTransferTotalAmount());
+        setAccountId(lineItemView.getAccountId());
+        //setAdjustmentLineItems(lineItemView.getAdjustmentLineItems());
+        setAutoRecurringItemId(lineItemView.getAutoRecurringItemId());
+        setAutoRouted(lineItemView.isAutoRouted());
+        setCallType(lineItemView.getCallType());
+        setCategoryId(lineItemView.getCategoryId());
+        setCompInfo(lineItemView.getCompInfo());
+        setComponentType(lineItemView.getComponentType());
+        //setCorrectionLineItem(lineItemView.getCorrectionLineItem());
+        setDescription(lineItemView.getDescription());
+        setDisplayDate(lineItemView.getDisplayDate());
+        setDistributed(lineItemView.isDistributed());
+        setFolioId(lineItemView.getFolioId());
+        setFolioLineType(lineItemView.getFolioLineType());
+        setFreeAllowanceAmount(lineItemView.getFreeAllowanceAmount());
+        //setGroupedTaxLineItems(lineItemView.getGroupedTaxLineItems());
+        setId(lineItemView.getId());
+        setInvalid(lineItemView.isInvalid());
+        setItemId(lineItemView.getItemId());
+        setLedgerId(lineItemView.getLedgerId());
+        setLedgerTransactionHistory(lineItemView.getLedgerTransactionHistory());
+        setLedgerTransactionHistoryId(lineItemView.getLedgerTransactionHistoryId());
+        setMealPeriodId(lineItemView.getMealPeriodId());
+        setName(lineItemView.getName());
+        setParentId(lineItemView.getParentId());
+        setPetDisplayName(lineItemView.getPetDisplayName());
+        setPostingCalendarDateTime(lineItemView.getPostingCalendarDateTime());
+        setPostingPropertyDate(lineItemView.getPostingPropertyDate());
+        setRateChangeComment(lineItemView.getRateChangeComment());
+        setReason(lineItemView.getReason());
+        setReceiptTextImage(lineItemView.getReceiptTextImage());
+        setRecurringChargeId(lineItemView.getRecurringChargeId());
+        setReference(lineItemView.getReference());
+        //setRefundLineItems(lineItemView.getRefundLineItems());
+        setReservationId(lineItemView.getReservationId());
+        setReverseTax(lineItemView.isReverseTax());
+        setReverseTaxTotalChargeAmount(lineItemView.getReverseTaxTotalChargeAmount());
+        setRoomChargePostingType(lineItemView.getRoomChargePostingType());
+        setRoomRevenue(lineItemView.isRoomRevenue());
+        setRouted(lineItemView.isRouted());
+        setSourceId(lineItemView.getSourceId());
+        setSubcategoryId(lineItemView.getSubcategoryId());
+        setTransactionDestinationAccountId(lineItemView.getTransactionDestinationAccountId());
+        setTransactionId(lineItemView.getTransactionId());
+        setTransactionMessageAttributes(lineItemView.getTransactionMessageAttributes());
+        setTransactionSourceAccountId(lineItemView.getTransactionSourceAccountId());
+        setTransactionType(lineItemView.getTransactionType());
+        //setTransferLineItem(lineItemView.getTransferLineItem());
+        setUnitAmount(lineItemView.getUnitAmount());
+        setUserId(lineItemView.getUserId());
+        setReverseTaxTotalChargeAmount(lineItemView.getReverseTaxTotalChargeAmount());
+        setReverseTax(lineItemView.isReverseTax());
+        return this;
     }
 
-    /**
-     * @param unitAmount Set the unitAmount
-     */
-    public void setUnitAmount(BigDecimal unitAmount) {
-        this.unitAmount = unitAmount;
+    public void convertTransferLineItemViewToTransferFolioInvoiceViewLineItemView(LineItemView lineItemView) {
+        FolioInvoiceLineItemView transferFolioInvoiceViewLineItem = lineItemToFolioInvoiceViewLineItem(lineItemView);
     }
 
-    /**
-     * @return the userId
-     */
-    public String getUserId() {
-        return userId;
+    public void convertCorrectionLineItemViewToCorrectionFolioInvoiceViewLineItemView(LineItemView lineItemView) {
+        FolioInvoiceLineItemView correctionFolioInvoiceViewLineItem = lineItemToFolioInvoiceViewLineItem(lineItemView);
     }
 
-    /**
-     * @param userId Set the userId
-     */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void convertTaxLineItemViewsToTaxFolioInvoiceViewLineItemViews(List<LineItemView> taxLineItemViews) {
+        List<FolioInvoiceLineItemView> taxFolioInvoiceViewLineItem = new ArrayList<>(taxLineItemViews.size());
+        taxLineItemViews.forEach(lineItemView -> {
+            taxFolioInvoiceViewLineItem.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
+        });
     }
 
-    public String getAutoRecurringItemId() {
-        return autoRecurringItemId;
+    public void convertGroupTaxLineItemViewsToGroupTaxFolioInvoiceViewLineItemViews(List<LineItemView> groupTaxLineItemViews) {
+        List<FolioInvoiceLineItemView> groupTaxFolioInvoiceViewLineItem = new ArrayList<>(groupTaxLineItemViews.size());
+        groupTaxLineItemViews.forEach(lineItemView -> {
+            groupTaxFolioInvoiceViewLineItem.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
+        });
     }
 
-    public void setAutoRecurringItemId(String autoRecurringItemId) {
-        this.autoRecurringItemId = autoRecurringItemId;
+    public void convertAdjustmentLineItemViewsToAdjustmentFolioInvoiceViewLineItemViews(List<LineItemView> adjustmentLineItemViews) {
+        List<FolioInvoiceLineItemView> adjustmentFolioInvoiceViewLineItemViews = new ArrayList<>(adjustmentLineItemViews.size());
+        adjustmentLineItemViews.forEach(lineItemView -> {
+            adjustmentFolioInvoiceViewLineItemViews.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
+        });
     }
 
-    /**
-     * @return total + taxes of the adjustments on this line item
-     */
-    public BigDecimal getAdjustmentsGrandTotalAmount() {
-        return getAdjustmentsTotalAmount().add(getAdjustmentsTaxAmount());
-    }
-
-    /**
-     * @return amount of adjustment tax
-     */
-    public BigDecimal getAdjustmentsTaxAmount() {
-        BigDecimal adjustmentsTaxAmount = BigDecimal.ZERO;
-        for (LineItemView adjustment : getAdjustmentLineItems()) {
-            adjustmentsTaxAmount = adjustmentsTaxAmount.add(adjustment.getTaxAmount());
-        }
-
-        return adjustmentsTaxAmount;
-    }
-
-    /**
-     * @return amount of adjustments
-     */
-    public BigDecimal getAdjustmentsTotalAmount() {
-        BigDecimal adjustmentsTotalAmount = BigDecimal.ZERO;
-        for (LineItemView adjustment : getAdjustmentLineItems()) {
-            adjustmentsTotalAmount = adjustmentsTotalAmount.add(adjustment.getTotalAmount());
-        }
-
-        return adjustmentsTotalAmount;
-    }
-
-    /**
-     * @return total + taxes of an associated correction line item
-     */
-    public BigDecimal getCorrectionGrandTotalAmount() {
-        return getCorrectionTotalAmount().add(getCorrectionTaxAmount());
-    }
-
-    /**
-     * @return correction tax amount
-     */
-    public BigDecimal getCorrectionTaxAmount() {
-        BigDecimal correctionTaxAmount = BigDecimal.ZERO;
-        LineItemView correction = getCorrectionLineItem();
-        if (correction != null) {
-            correctionTaxAmount = correctionTaxAmount.add(correction.getTaxAmount());
-        }
-
-        return correctionTaxAmount;
-    }
-
-    /**
-     * @return correction amount
-     */
-    public BigDecimal getCorrectionTotalAmount() {
-        BigDecimal correctionTotalAmount = BigDecimal.ZERO;
-        LineItemView correction = getCorrectionLineItem();
-        if (correction != null) {
-            correctionTotalAmount = correctionTotalAmount.add(correction.getTotalAmount());
-        }
-
-        return correctionTotalAmount;
-    }
-
-    /**
-     * @return total + taxes of this line item
-     */
-    public BigDecimal getGrandTotalAmount() {
-        return getTotalAmount().add(getTaxAmount());
-    }
-
-    /**
-     * @return the balance of the {@link LineItemView} including all charges and
-     * tax
-     */
-    public BigDecimal getLineItemBalance() {
-        return getGrandTotalAmount().add(getAdjustmentsGrandTotalAmount()).add(getTransferGrandTotalAmount())
-              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount()));
-    }
-
-    /**
-     * @return the balance of the {@link LineItemView} minus tax
-     */
-    public BigDecimal getLineItemChargesBalance() {
-        return getTotalAmount().add(getAdjustmentsTotalAmount()).add(getTransferTotalAmount())
-              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount());
-    }
-
-    /**
-     * @return the balance of all tax items associated with the
-     * {@link LineItemView}
-     */
-    public BigDecimal getLineItemTaxBalance() {
-        return getTaxAmount().add(getAdjustmentsTaxAmount()).add(getTransferTaxAmount()).add(getCorrectionTaxAmount());
-    }
-
-    /**
-     * @return the total refund amount
-     */
-    public BigDecimal getRefundGrantTotalAmount() {
-        BigDecimal refundAmount = BigDecimal.ZERO;
-        for (LineItemView refund : getRefundLineItems()) {
-            refundAmount = refundAmount.add(refund.getGrandTotalAmount());
-        }
-
-        return refundAmount;
-    }
+    public void convertRefundLineItemViewsToRefundFolioInvoiceViewLineItemViews(List<LineItemView> refundLineItemViews) {
+        List<FolioInvoiceLineItemView> refundFolioInvoiceViewLineItemViews = new ArrayList<>(refundLineItemViews.size());
+        refundLineItemViews.forEach(lineItemView -> {
+            if(lineItemView.getTaxLineItems()!=null) {
 
-    /**
-     * @return the taxAmount. Will be zero until taxes are implemented
-     */
-    public BigDecimal getTaxAmount() {
-        BigDecimal taxAmount = BigDecimal.ZERO;
-        for (LineItemView tax : getTaxLineItems()) {
-            if (tax.isReverseTax() && tax.getReverseTaxTotalChargeAmount() != null) {
-                taxAmount = taxAmount.add(tax.getReverseTaxTotalChargeAmount());
-            } else if (!tax.isReverseTax()) {
-                taxAmount = taxAmount.add(tax.getUnitAmount().multiply(new BigDecimal(tax.getQuantity())));
             }
-        }
-        return taxAmount;
-    }
-
-    /**
-     * @return the totalAmount
-     */
-    public BigDecimal getTotalAmount() {
-        if (isReverseTax()) {
-            return reverseTaxTotalChargeAmount != null ? reverseTaxTotalChargeAmount : BigDecimal.ZERO;
-        }
-        return unitAmount.multiply(new BigDecimal(quantity));
-    }
-
-    /**
-     * @return total + taxes of an associated transferred line item
-     */
-    public BigDecimal getTransferGrandTotalAmount() {
-        return getTransferTotalAmount().add(getTransferTaxAmount());
-    }
-
-    /**
-     * @return transfer tax amount
-     */
-    public BigDecimal getTransferTaxAmount() {
-        BigDecimal transferTaxAmount = BigDecimal.ZERO;
-        LineItemView transfer = getTransferLineItem();
-        if (transfer != null) {
-            transferTaxAmount = transferTaxAmount.add(transfer.getTaxAmount());
-        }
-
-        return transferTaxAmount;
-    }
-
-    /**
-     * @return transfer amount
-     */
-    public BigDecimal getTransferTotalAmount() {
-        BigDecimal transferTotalAmount = BigDecimal.ZERO;
-        LineItemView transfer = getTransferLineItem();
-        if (transfer != null) {
-            transferTotalAmount = transferTotalAmount.add(transfer.getTotalAmount());
-        }
-
-        return transferTotalAmount;
-    }
-
-    @JsonIgnore
-    public String getFolioLineOrTransactionType() {
-        return folioLineType != null ? folioLineType : transactionType;
-    }
-
-    public BigDecimal getFreeAllowanceAmount() {
-        return freeAllowanceAmount;
-    }
-
-    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) {
-        this.freeAllowanceAmount = freeAllowanceAmount;
-    }
-
-    public String getCallType() {
-        return callType;
-    }
-
-    public void setCallType(String callType) {
-        this.callType = callType;
-    }
-
-    public boolean isReverseTax() {
-        return reverseTax;
-    }
-
-    public void setReverseTax(boolean reverseTax) {
-        this.reverseTax = reverseTax;
-    }
-
-    public BigDecimal getReverseTaxTotalChargeAmount() {
-        return reverseTaxTotalChargeAmount;
-    }
-
-    public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
-        this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
-    }
-
-    @Override
-    public int compareTo(FolioInvoiceLineItemView other) {
-        if (this.getDisplayDate() != null && other.getDisplayDate() != null) {
-            if (this.getDisplayDate().isBefore(other.getDisplayDate())) {
-                return -1;
-            } else if (this.getDisplayDate().isAfter(other.getDisplayDate())) {
-                return 1;
-            }
-        }
-
-        if (this.getPostingCalendarDateTime() != null && other.getPostingCalendarDateTime() != null) {
-
-            if (this.getPostingCalendarDateTime().isBefore(other.getPostingCalendarDateTime())) {
-                return -1;
-            } else if (this.getPostingCalendarDateTime().isAfter(other.getPostingCalendarDateTime())) {
-                return 1;
-            }
-        }
-
-        // line items that are routed will have the same displayDate and postingCalendarDateTime
-        // we want to show the positive charge first, and then the negative one
-        if (routed || other.isRouted()) {
-            if (!other.isRouted()) {
-                return -1;
-            } else if (!routed) {
-                return 1;
-            } else {
-                return other.getGrandTotalAmount().compareTo(this.getGrandTotalAmount());
-            }
-        }
-
-        return 0;
+            refundFolioInvoiceViewLineItemViews.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
+        });
     }
 }
