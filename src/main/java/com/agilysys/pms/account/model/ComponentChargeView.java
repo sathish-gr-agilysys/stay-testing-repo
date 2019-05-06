@@ -141,7 +141,7 @@ public class ComponentChargeView {
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots) {
 
-        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>(componentRateSnapshots.size());
         componentRateSnapshots.stream().forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
