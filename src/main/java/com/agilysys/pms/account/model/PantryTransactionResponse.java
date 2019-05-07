@@ -7,8 +7,10 @@ import java.util.List;
 
 public class PantryTransactionResponse {
 
-    PostChargesResponse postChargesResponse;
-    List<LineItemView> paymentView;
+    private PostChargesResponse postChargesResponse;
+    private List<LineItemView> paymentView;
+    private boolean paymentSuccess;
+    private String errorMessage;
 
     public PostChargesResponse getPostChargesResponse() {
         return postChargesResponse;
@@ -24,5 +26,21 @@ public class PantryTransactionResponse {
 
     public void setPaymentView(List<LineItemView> paymentView) {
         this.paymentView = paymentView;
+    }
+
+    public boolean isPaymentSuccess() {
+        return paymentSuccess;
+    }
+
+    public void setPaymentSuccess(boolean paymentSuccess) {
+        this.paymentSuccess = paymentSuccess;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }
