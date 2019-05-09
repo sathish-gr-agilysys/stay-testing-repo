@@ -63,6 +63,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String rateChangeComment;
     private List<LineItemView> refundLineItems;
     private String reason;
+    private String transferMessage;
     private String receiptTextImage;
     private String recurringChargeId;
     private String reference;
@@ -587,6 +588,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setAutoRecurringItemId(String autoRecurringItemId) {
         this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public String getTransferMessage() {
+        return transferMessage;
+    }
+
+    public void setTransferMessage(String transferMessage) {
+        this.transferMessage = transferMessage;
     }
 
     /**
