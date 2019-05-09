@@ -102,10 +102,8 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
-    String ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID = "creditCardAuthRuleSettingsId";
     String ACCOUNT_TYPE = "accountType";
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
-    String ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID_PATH = "/creditCardAuthRuleSettingsId/{" + ACCOUNT_CREDIT_CARD_AUTH_RULE_SETTINGS_ID + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
     String ADJUSTMENT_PATH = "/adjustment";
     String APPLY_PAYMENTS = "/applyPayments";
@@ -1405,4 +1403,3 @@ public interface AccountServiceInterfaceV1 {
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }
-
