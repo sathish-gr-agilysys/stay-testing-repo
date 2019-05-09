@@ -21,7 +21,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.a3badran.platform.logging.LogParam;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -1067,16 +1066,14 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     InvoiceView getInvoiceById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
-          @QueryParam("") @LogParam("optionalParams") InvoiceOptionalParams optionalParams)
-          throws RGuestException, ServiceException;
+          @QueryParam("") InvoiceOptionalParams optionalParams) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam("accountId") String accountId,
-          @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
+          @PathParam("accountId") String accountId, @QueryParam("") InvoiceFilteringOptionalParams params)
           throws RGuestException, ServiceException;
 
     @GET
@@ -1294,10 +1291,10 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(FILTERED)
     CollectionResponse<AccountSummary> findAccounts(
-          @ApiParam(value = "tenant id", required = true) @PathParam(TENANT_ID) @LogParam("tenantId") String tenantId,
+          @ApiParam(value = "tenant id", required = true) @PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
-          @ApiParam(value = "collection request", required = false) @LogParam("params")
-                AccountsCollectionRequest collectionRequest) throws RGuestException, ServiceException;
+          @ApiParam(value = "collection request", required = false) AccountsCollectionRequest collectionRequest)
+          throws RGuestException, ServiceException;
 
     /* ----------------------------------------------------------- */
 
