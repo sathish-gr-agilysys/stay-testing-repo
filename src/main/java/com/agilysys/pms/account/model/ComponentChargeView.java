@@ -39,6 +39,23 @@ public class ComponentChargeView {
 
     private BigDecimal reverseTaxTotalChargeAmount;
 
+    public ComponentChargeView() {
+    }
+
+    public ComponentChargeView(ComponentChargeView componentChargeView) {
+        componentBundleId = componentChargeView.getComponentBundleId();
+        transactionItemId = componentChargeView.getTransactionItemId();
+        transactionItemName = componentChargeView.getTransactionItemName();
+        amount = componentChargeView.getAmount();
+        quantity = componentChargeView.getQuantity();
+        totalQuantity = componentChargeView.getTotalQuantity();
+        totalAmount = componentChargeView.getTotalAmount();
+        componentType = componentChargeView.getComponentType();
+        roomChargePostingType = componentChargeView.getRoomChargePostingType();
+        transactionItemType = componentChargeView.getTransactionItemType();
+        estimatedTaxInfo = componentChargeView.getEstimatedTaxInfo();
+    }
+
     public String getComponentBundleId() {
         return componentBundleId;
     }
@@ -185,3 +202,4 @@ public class ComponentChargeView {
         return componentChargeViews;
     }
 }
+
