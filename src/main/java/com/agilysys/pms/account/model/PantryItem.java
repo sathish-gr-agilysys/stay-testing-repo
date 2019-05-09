@@ -8,8 +8,12 @@ import java.math.BigDecimal;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
+import com.agilysys.pms.common.audit.EntityTypes;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
+import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@AuditEntity(EntityTypes.PANTRY_ITEM)
 public class PantryItem extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "Pantry Items";
 
@@ -17,7 +21,9 @@ public class PantryItem extends AccountingObjectBase {
     private BigDecimal price;
 
     @JsonProperty(required = true)
+    @AuditField(name = "transactionItem", references = EntityTypes.TRANSACTION_ITEM)
     private String transactionItemId;
+
     private CanonicalId status;
 
     @MinLengthRestriction(4)
