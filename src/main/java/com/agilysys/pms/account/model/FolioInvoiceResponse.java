@@ -22,30 +22,30 @@ public class FolioInvoiceResponse implements Cloneable {
     private String groupName;
     private String companyId;
     private String companyName;
-    private List<TaxBreakDown> taxBreakDownList;
+    /*private List<TaxBreakDown> taxBreakDownList; */
     private String vatNumber;
     private LocalDate taxPoint;
     private LocalDate taxDate;
     private List<FolioInvoiceSummaryData> folioInvoiceSummaryDatas;
-    private String paymentSettingId;
+    /*private String paymentSettingId;
     private String folioId;
-    private String folioName;
+    private String folioName;*/
     private String accountType;
     private boolean showGuestInfo;
     private boolean showReason;
     private String folioFooterMessage;
     private Property platformProperty;
     private String contentServicePublicUrl;
-    private String folioInvoiceNumber;
-    private List<LineItemView> lineItemViews;
+    /*private String folioInvoiceNumber;
+    private List<LineItemView> lineItemViews;*/
     private String totalAmount;
     private String totalBalance;
     private String totalPayment;
     private InvoiceStatus invoiceStatus;
     private LocalDate arrivalDate;
     private LocalDate departureDate;
-    private String accountId;
-    private List<LineItemView> printLineItemViews;
+    //private String accountId;
+    //private List<LineItemView> printLineItemViews;
     private boolean hasLineItems;
 
     public FolioInvoiceReservationData getFolioInvoiceReservationData() {
@@ -112,13 +112,13 @@ public class FolioInvoiceResponse implements Cloneable {
         this.companyName = companyName;
     }
 
-    public List<TaxBreakDown> getTaxBreakDownList() {
+    /*public List<TaxBreakDown> getTaxBreakDownList() {
         return taxBreakDownList;
     }
 
     public void setTaxBreakDownList(List<TaxBreakDown> taxBreakDownList) {
         this.taxBreakDownList = taxBreakDownList;
-    }
+    }*/
 
     public String getVatNumber() {
         return vatNumber;
@@ -152,7 +152,7 @@ public class FolioInvoiceResponse implements Cloneable {
         this.folioInvoiceSummaryDatas = folioInvoiceSummaryDatas;
     }
 
-    public String getPaymentSettingId() {
+    /*public String getPaymentSettingId() {
         return paymentSettingId;
     }
 
@@ -166,7 +166,7 @@ public class FolioInvoiceResponse implements Cloneable {
 
     public void setFolioName(String folioName) {
         this.folioName = folioName;
-    }
+    }*/
 
     public String getAccountType() {
         return accountType;
@@ -232,7 +232,7 @@ public class FolioInvoiceResponse implements Cloneable {
         this.companyId = companyId;
     }
 
-    public String getFolioId() {
+    /*public String getFolioId() {
         return folioId;
     }
 
@@ -254,7 +254,7 @@ public class FolioInvoiceResponse implements Cloneable {
 
     public void setLineItemViews(List<LineItemView> lineItemViews) {
         this.lineItemViews = lineItemViews;
-    }
+    }*/
 
     public String getTotalAmount() {
         return totalAmount;
@@ -304,7 +304,7 @@ public class FolioInvoiceResponse implements Cloneable {
         this.departureDate = departureDate;
     }
 
-    public String getAccountId() {
+    /*public String getAccountId() {
         return accountId;
     }
 
@@ -318,7 +318,7 @@ public class FolioInvoiceResponse implements Cloneable {
 
     public void setPrintLineItemViews(List<LineItemView> printLineItemViews) {
         this.printLineItemViews = printLineItemViews;
-    }
+    }*/
 
     public boolean isHasLineItems() {
         return hasLineItems;

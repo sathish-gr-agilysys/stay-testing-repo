@@ -1432,7 +1432,8 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(INVOICES_PATH)
-    FolioInvoiceResponse printFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+    @Produces(MediaType.TEXT_HTML)
+    String printFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, FolioInvoiceRequest folioInvoiceRequest);
 
     @GET
@@ -1447,12 +1448,13 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(INVOICES_PATH + "/templateLoad")
+    @Produces(MediaType.TEXT_HTML)
     String printAndApplyFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           FolioInvoiceRequest folioInvoiceRequest);
 
     @POST
     @Path(INVOICES_PATH + "/batch")
-    List<FolioInvoiceResponse> printBatchFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+    List<String> printBatchFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest);
 
 }
