@@ -87,6 +87,7 @@ import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.DeserializablePage;
 import com.agilysys.pms.payment.model.LodgingInformation;
+import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -262,6 +263,55 @@ public interface AccountServiceInterfaceV1 {
     AccountSummary updateAccountsReceivableSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AccountsReceivableSettings accountsReceivableSettings) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_BALANCES_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    AccountStatementResponse getAccountBalances(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(FOLIO_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(TOTAL_SPENT_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Validated(ViewFolioRequest.class)
+    Page<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId,
+          ViewFolioRequest viewfoliosRequest) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + FOLIO_BALANCES_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<FolioBalance> getFolioBalances(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
+    @Validated(FolioSummary.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    FolioSummary createFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, FolioSummary folio) throws RGuestException, ServiceException;
 
     @POST
     @CreatedOnSuccess
@@ -488,6 +538,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<PaymentSetting> getPaymentSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(PAYMENT_SETTINGS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<PaymentInstrumentSetting>>  getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,  Set<String> accountIds)
           throws RGuestException, ServiceException;
 
     @POST
@@ -723,7 +780,6 @@ public interface AccountServiceInterfaceV1 {
     AccountClosableInfo getAccountClosableInfo(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
-
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + PAYOFF_BALANCE_PATH)
@@ -798,53 +854,4 @@ public interface AccountServiceInterfaceV1 {
     @Path(NEW_PROPERTY_AR_ACCOUNT)
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
-
-    @POST
-    @Path(ACCOUNT_BALANCES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    AccountStatementResponse getAccountBalances(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
-          throws RGuestException, ServiceException;
-
-    @POST
-    @Path(FOLIO_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
-
-    @POST
-    @Path(TOTAL_SPENT_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
-
-    @POST
-    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    @Validated(ViewFolioRequest.class)
-    Page<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId,
-          ViewFolioRequest viewfoliosRequest) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + FOLIO_BALANCES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<FolioBalance> getFolioBalances(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
-          throws RGuestException, ServiceException;
-
-    @POST
-    @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
-    @Validated(FolioSummary.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    FolioSummary createFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, FolioSummary folio) throws RGuestException, ServiceException;
 }
