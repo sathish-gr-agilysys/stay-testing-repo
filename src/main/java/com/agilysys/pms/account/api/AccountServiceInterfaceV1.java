@@ -85,7 +85,6 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
-import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -1290,10 +1289,8 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(FILTERED)
-    CollectionResponse<AccountSummary> findAccounts(
-          @ApiParam(value = "tenant id", required = true) @PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          @ApiParam(value = "collection request", required = false) AccountsCollectionRequest collectionRequest)
+    CollectionResponse<AccountSummary> findAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AccountsCollectionRequest collectionRequest)
           throws RGuestException, ServiceException;
 
     /* ----------------------------------------------------------- */
