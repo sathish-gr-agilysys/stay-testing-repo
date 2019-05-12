@@ -1447,15 +1447,12 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceNumber") String folioInvoiceNumber);
 
     @POST
-    @Path(INVOICES_PATH + "/templateLoad")
-    @Produces(MediaType.TEXT_HTML)
-    String printAndApplyFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          FolioInvoiceRequest folioInvoiceRequest);
-
-    @POST
     @Path(INVOICES_PATH + "/batch")
     List<String> printBatchFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest);
 
+    @POST
+    @Path(INVOICES_PATH + "/sendFolioEmail")
+    void sendEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId, FolioInvoiceRequest folioInvoiceRequest);
 }
 

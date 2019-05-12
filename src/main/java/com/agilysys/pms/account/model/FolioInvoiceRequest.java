@@ -6,10 +6,11 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Map;
 
+import com.agilysys.platform.communication.model.EmailDeliveryDetail;
+
 public class FolioInvoiceRequest {
 
     private List<String> accountIds;
-    private List<String> folioIds;
     private List<String> transactionIds;
     private List<String> parentIds;
     private List<String> summaryTransactionIds;
@@ -17,6 +18,7 @@ public class FolioInvoiceRequest {
     private List<String> summaryParentIds;
     private List<String> detailParentIds;
     private Map<String, List<String>> folioIdsByAccountId;
+    private EmailDeliveryDetail emailDeliveryDetail;
 
     public List<String> getAccountIds() {
         return accountIds;
@@ -24,14 +26,6 @@ public class FolioInvoiceRequest {
 
     public void setAccountIds(List<String> accountIds) {
         this.accountIds = accountIds;
-    }
-
-    public List<String> getFolioIds() {
-        return folioIds;
-    }
-
-    public void setFolioIds(List<String> folioIds) {
-        this.folioIds = folioIds;
     }
 
     public List<String> getTransactionIds() {
@@ -88,5 +82,13 @@ public class FolioInvoiceRequest {
 
     public void setFolioIdsByAccountId(Map<String, List<String>> folioIdsByAccountId) {
         this.folioIdsByAccountId = folioIdsByAccountId;
+    }
+
+    public EmailDeliveryDetail getEmailDeliveryDetail() {
+        return emailDeliveryDetail;
+    }
+
+    public void setEmailDeliveryDetail(EmailDeliveryDetail emailDeliveryDetail) {
+        this.emailDeliveryDetail = emailDeliveryDetail;
     }
 }
