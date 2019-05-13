@@ -785,7 +785,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(PAYMENTS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> findPaymentsForAccounts(@PathParam(TENANT_ID) String tenantId,
+    Map<String, List<LineItemView>> findPaymentsForAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<String> accountIds) throws Throwable;
 
     /**
