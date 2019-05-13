@@ -9,6 +9,7 @@ public class PostChargesRequest {
 
     private List<Charge> charges;
     private boolean distributed;
+    private boolean grouped;
     private boolean isRecurring;
     private String name;
 
@@ -26,6 +27,14 @@ public class PostChargesRequest {
 
     public void setDistributed(boolean distributed) {
         this.distributed = distributed;
+    }
+
+    public boolean isGrouped() {
+        return grouped;
+    }
+
+    public void setGrouped(boolean grouped) {
+        this.grouped = grouped;
     }
 
     public String getName() {
