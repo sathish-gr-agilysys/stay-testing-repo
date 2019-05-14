@@ -1453,6 +1453,12 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(INVOICES_PATH + "/sendFolioEmail")
-    void sendEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId, FolioInvoiceRequest folioInvoiceRequest);
+    void sendFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          FolioInvoiceRequest folioInvoiceRequest);
+
+    @POST
+    @Path(INVOICES_PATH + "/sendBatchFolioEmail")
+    List<String> sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          BatchFolioInvoiceRequest batchFolioInvoiceRequest);
 }
 
