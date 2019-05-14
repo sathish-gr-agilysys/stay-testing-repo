@@ -98,6 +98,7 @@ public interface AccountServiceInterfaceV1 {
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
 
     String ACCOUNT_BALANCES_PATH = "/balances";
+    String CANCEL_PAYMENTS = "/cancelPayemnts";
     String ACCOUNT_ID = "accountId";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
@@ -351,6 +352,13 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_BALANCES_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountStatementResponse getAccountBalances(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(CANCEL_PAYMENTS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    AccountStatementResponse processCancellation(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
           throws RGuestException, ServiceException;
 

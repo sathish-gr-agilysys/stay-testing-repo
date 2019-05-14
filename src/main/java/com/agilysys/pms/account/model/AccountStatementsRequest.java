@@ -3,11 +3,34 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.Map;
 import java.util.Set;
+
+import org.joda.time.LocalDate;
 
 public class AccountStatementsRequest {
 
+    private Map<String, String> accountIdsReservationCodes;
+
+    private LocalDate propertyDate;
+
     private Set<String> accountIds;
+
+    public Map<String, String> getReservationCodeAccountIds() {
+        return accountIdsReservationCodes;
+    }
+
+    public void setReservationCodeAccountIds(Map<String, String> accountIdsReservationCodes) {
+        this.accountIdsReservationCodes = accountIdsReservationCodes;
+    }
+
+    public LocalDate getPropertyDate() {
+        return propertyDate;
+    }
+
+    public void setPropertyDate(LocalDate propertyDate) {
+        this.propertyDate = propertyDate;
+    }
 
     public Set<String> getAccountIds() {
         return accountIds;
