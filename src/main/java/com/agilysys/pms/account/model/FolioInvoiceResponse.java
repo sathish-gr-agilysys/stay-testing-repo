@@ -16,7 +16,6 @@ public class FolioInvoiceResponse implements Cloneable {
     private FolioInvoiceAddressData folioInvoiceAddressData;
     private FolioInvoiceAllocationData folioInvoiceAllocationData;
     private FolioInvoiceProfileData folioInvoiceProfileData;
-    private FolioInvoicePropertyData folioInvoicePropertyData;
     private FolioInvoiceLoyalityInfo folioInvoiceLoyalityInfo;
     private String groupId;
     private String groupName;
@@ -78,14 +77,6 @@ public class FolioInvoiceResponse implements Cloneable {
 
     public void setFolioInvoiceProfileData(FolioInvoiceProfileData folioInvoiceProfileData) {
         this.folioInvoiceProfileData = folioInvoiceProfileData;
-    }
-
-    public FolioInvoicePropertyData getFolioInvoicePropertyData() {
-        return folioInvoicePropertyData;
-    }
-
-    public void setFolioInvoicePropertyData(FolioInvoicePropertyData folioInvoicePropertyData) {
-        this.folioInvoicePropertyData = folioInvoicePropertyData;
     }
 
     public FolioInvoiceLoyalityInfo getFolioInvoiceLoyalityInfo() {
