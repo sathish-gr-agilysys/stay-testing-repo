@@ -46,6 +46,7 @@ public class FolioInvoiceResponse implements Cloneable {
     private String accountId;
     //private List<LineItemView> printLineItemViews;
     private boolean hasLineItems;
+    private LocalDate reportDate;
 
     public FolioInvoiceReservationData getFolioInvoiceReservationData() {
         return folioInvoiceReservationData;
@@ -317,6 +318,14 @@ public class FolioInvoiceResponse implements Cloneable {
 
     public void setHasLineItems(boolean hasLineItems) {
         this.hasLineItems = hasLineItems;
+    }
+
+    public LocalDate getReportDate() {
+        return reportDate;
+    }
+
+    public void setReportDate(LocalDate reportDate) {
+        this.reportDate = reportDate;
     }
 
     public Object clone() {
