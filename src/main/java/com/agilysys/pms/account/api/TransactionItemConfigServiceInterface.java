@@ -41,6 +41,7 @@ public interface TransactionItemConfigServiceInterface {
     String INCLUDE_INTERNAL = "includeInternal";
     String INCLUDE_SUB_TRANSACTION_ITEMS = "includeSubTransactionItems";
     String INCLUDE_INACTIVE = "includeInactive";
+    String INCLUDE_PETMIT_COMP = "includePermitComp";
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
     String ACTIVE = "/active";
@@ -151,7 +152,7 @@ public interface TransactionItemConfigServiceInterface {
     List<TransactionItem> getActiveTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
           @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
-          @QueryParam(INCLUDE_INACTIVE) boolean includeInactive) throws RGuestException, ServiceException;
+          @QueryParam(INCLUDE_INACTIVE) boolean includeInactive, @QueryParam(INCLUDE_PETMIT_COMP) boolean includePermitComp) throws RGuestException, ServiceException;
 
     /**
      * Endpoint to update transaction to new collection, this end point
