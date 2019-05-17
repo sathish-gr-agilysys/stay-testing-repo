@@ -16,11 +16,11 @@ public class AccountStatementsRequest {
 
     private Set<String> accountIds;
 
-    public Map<String, String> getReservationCodeAccountIds() {
+    public Map<String, String> getAccountIdsReservationCodes() {
         return accountIdsReservationCodes;
     }
 
-    public void setReservationCodeAccountIds(Map<String, String> accountIdsReservationCodes) {
+    public void setAccountIdsReservationCodes(Map<String, String> accountIdsReservationCodes) {
         this.accountIdsReservationCodes = accountIdsReservationCodes;
     }
 
