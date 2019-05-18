@@ -29,6 +29,7 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
     private String formattedRefundGrandTotalAmount;
     private String formattedTaxAmount;
     private String formattedCorrectionTaxAmount;
+    private boolean showReason;
     private List<FolioInvoiceLineItemView> adjustmentFolioLineItems;
     private List<FolioInvoiceLineItemView> groupedFolioTaxLineItems;
     private List<FolioInvoiceLineItemView> refundFolioLineItems;
@@ -250,6 +251,14 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
 
     public void setTransferFolioLineItem(LineItemView transferFolioLineItem) {
         this.transferFolioLineItem = transferFolioLineItem;
+    }
+
+    public boolean getShowReason() {
+        return showReason;
+    }
+
+    public void setShowReason(boolean showReason) {
+        this.showReason = showReason;
     }
 
     public FolioInvoiceLineItemView lineItemToFolioInvoiceViewLineItem(LineItemView lineItemView) {
