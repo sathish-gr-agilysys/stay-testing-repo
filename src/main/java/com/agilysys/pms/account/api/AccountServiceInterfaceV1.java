@@ -16,11 +16,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.PathParam ;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.a3badran.platform.logging.LogParam;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -85,6 +86,9 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
+import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
+import com.agilysys.pms.payment.model.PaymentInstrumentView;
+import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -892,6 +896,21 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     /**
+     * Retrieve payment settings for a set of accounts
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of account where settings exist
+     * @return Existing paymentSettings
+     */
+    @POST
+    @Path(PAYMENT_SETTINGS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<PaymentInstrumentSetting>>  getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,  Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
+    /**
      * Save paymentSettings for an account
      *
      * @param tenantId        id of tenant where account exists
@@ -1065,14 +1084,16 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     InvoiceView getInvoiceById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
-          @QueryParam("") InvoiceOptionalParams optionalParams) throws RGuestException, ServiceException;
+          @QueryParam("") @LogParam("optionalParams") InvoiceOptionalParams optionalParams)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam("accountId") String accountId, @QueryParam("") InvoiceFilteringOptionalParams params)
+          @PathParam("accountId") String accountId,
+          @QueryParam("") @LogParam("params") InvoiceFilteringOptionalParams params)
           throws RGuestException, ServiceException;
 
     @GET
@@ -1289,9 +1310,11 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(FILTERED)
-    CollectionResponse<AccountSummary> findAccounts(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AccountsCollectionRequest collectionRequest)
-          throws RGuestException, ServiceException;
+    CollectionResponse<AccountSummary> findAccounts(
+          @ApiParam(value = "tenant id", required = true) @PathParam(TENANT_ID) @LogParam("tenantId") String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          @ApiParam(value = "collection request", required = false) @LogParam("params")
+                AccountsCollectionRequest collectionRequest) throws RGuestException, ServiceException;
 
     /* ----------------------------------------------------------- */
 
@@ -1397,4 +1420,3 @@ public interface AccountServiceInterfaceV1 {
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }
-
