@@ -5,12 +5,15 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
+import org.joda.time.LocalDate;
+
 public class PostChargesRequest {
 
     private List<Charge> charges;
     private boolean distributed;
     private boolean isRecurring;
     private String name;
+    private LocalDate postingDate;
     private boolean postRecurringCharge;
 
 
@@ -43,6 +46,14 @@ public class PostChargesRequest {
 
     public void setIsRecurring(boolean isRecurring) {
         this.isRecurring = isRecurring;
+    }
+
+    public LocalDate getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(LocalDate postingDate) {
+        this.postingDate = postingDate;
     }
 
     public boolean isPostRecurringCharge() {
