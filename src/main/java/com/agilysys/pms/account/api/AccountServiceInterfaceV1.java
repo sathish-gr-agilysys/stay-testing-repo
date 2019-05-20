@@ -774,6 +774,12 @@ public interface AccountServiceInterfaceV1 {
     List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId) throws Throwable;
 
+    @POST
+    @Path(PAYMENTS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<LineItemView>> findPaymentsForAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, List<String> accountIds) throws RGuestException, ServiceException;
+
     /**
      * Refunds a payment to an account
      *
