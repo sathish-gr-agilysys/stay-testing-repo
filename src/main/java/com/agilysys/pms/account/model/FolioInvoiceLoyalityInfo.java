@@ -6,7 +6,17 @@ import com.agilysys.platform.guestprofile.model.RewardIntegrationMetaData;
 
 public class FolioInvoiceLoyalityInfo {
 
+    private List<FolioInvoiceReservationLoyaltyInfo> folioInvoiceReservationLoyaltyInfos;
     private List<RewardIntegrationMetaData> rewardIntegrationMetaDataList;
+
+    public List<FolioInvoiceReservationLoyaltyInfo> getFolioInvoiceReservationLoyaltyInfo() {
+        return folioInvoiceReservationLoyaltyInfos;
+    }
+
+    public void setFolioInvoiceReservationLoyaltyInfo(
+          List<FolioInvoiceReservationLoyaltyInfo> folioInvoiceReservationLoyaltyInfos) {
+        this.folioInvoiceReservationLoyaltyInfos = folioInvoiceReservationLoyaltyInfos;
+    }
 
     public List<RewardIntegrationMetaData> getRewardIntegrationMetaDataList() {
         return rewardIntegrationMetaDataList;

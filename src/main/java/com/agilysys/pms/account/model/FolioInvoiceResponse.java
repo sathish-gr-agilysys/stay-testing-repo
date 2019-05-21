@@ -3,7 +3,6 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -17,8 +16,9 @@ public class FolioInvoiceResponse implements Cloneable {
     private FolioInvoiceAllocationData folioInvoiceAllocationData;
     private FolioInvoiceProfileData folioInvoiceProfileData;
     private FolioInvoiceLoyalityInfo folioInvoiceLoyalityInfo;
-    private String groupId;
-    private String groupName;
+    private FolioInvoiceGroupData folioInvoiceGroupData;
+    /*private String groupId;
+    private String groupName;*/
     private String companyId;
     private String companyName;
     /*private List<TaxBreakDown> taxBreakDownList; */
@@ -88,13 +88,21 @@ public class FolioInvoiceResponse implements Cloneable {
         this.folioInvoiceLoyalityInfo = folioInvoiceLoyalityInfo;
     }
 
-    public String getGroupName() {
+    public FolioInvoiceGroupData getFolioInvoiceGroupData() {
+        return folioInvoiceGroupData;
+    }
+
+    public void setFolioInvoiceGroupData(FolioInvoiceGroupData folioInvoiceGroupData) {
+        this.folioInvoiceGroupData = folioInvoiceGroupData;
+    }
+
+    /*public String getGroupName() {
         return groupName;
     }
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
-    }
+    }*/
 
     public String getCompanyName() {
         return companyName;
@@ -208,13 +216,13 @@ public class FolioInvoiceResponse implements Cloneable {
         this.contentServicePublicUrl = contentServicePublicUrl;
     }
 
-    public String getGroupId() {
+    /*public String getGroupId() {
         return groupId;
     }
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
-    }
+    }*/
 
     public String getCompanyId() {
         return companyId;
