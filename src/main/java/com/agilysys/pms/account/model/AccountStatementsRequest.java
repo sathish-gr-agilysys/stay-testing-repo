@@ -16,6 +16,8 @@ public class AccountStatementsRequest {
 
     private Set<String> accountIds;
 
+    private Map<String, Charge> accountsChargesMap;
+
     public Map<String, String> getAccountIdsReservationCodes() {
         return accountIdsReservationCodes;
     }
@@ -38,5 +40,13 @@ public class AccountStatementsRequest {
 
     public void setAccountIds(Set<String> accountIds) {
         this.accountIds = accountIds;
+    }
+
+    public Map<String, Charge> getAccountsChargesMap() {
+        return accountsChargesMap;
+    }
+
+    public void setAccountsChargesMap(Map<String, Charge> accountsChargesMap) {
+        this.accountsChargesMap = accountsChargesMap;
     }
 }
