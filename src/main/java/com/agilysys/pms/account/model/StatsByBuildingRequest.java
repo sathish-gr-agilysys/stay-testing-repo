@@ -13,6 +13,8 @@ public class StatsByBuildingRequest {
     private Set<String> buildingIds;
     private boolean byBuilding;
     private boolean includeNonBeddedRoomType;
+    private boolean roomRevenue;
+    private boolean embed;
 
     public LocalDate getStartDate() {
         return startDate;
@@ -52,5 +54,21 @@ public class StatsByBuildingRequest {
 
     public void setIncludeNonBeddedRoomType(boolean includeNonBeddedRoomType) {
         this.includeNonBeddedRoomType = includeNonBeddedRoomType;
+    }
+
+    public boolean isRoomRevenue() {
+        return roomRevenue;
+    }
+
+    public void setRoomRevenue(boolean roomRevenue) {
+        this.roomRevenue = roomRevenue;
+    }
+
+    public boolean isEmbed() {
+        return embed;
+    }
+
+    public void setEmbed(boolean embed) {
+        this.embed = embed;
     }
 }
