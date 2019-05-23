@@ -358,7 +358,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(CANCEL_PAYMENTS)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    AccountStatementResponse processCancellation(@PathParam(TENANT_ID) String tenantId,
+    void processCancellation(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
           throws RGuestException, ServiceException;
 
