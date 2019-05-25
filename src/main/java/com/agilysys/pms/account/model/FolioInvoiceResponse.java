@@ -9,7 +9,7 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.platform.user.model.Property;
 
-public class FolioInvoiceResponse implements Cloneable {
+public class FolioInvoiceResponse {
 
     private FolioInvoiceReservationData folioInvoiceReservationData;
     private FolioInvoiceAddressData folioInvoiceAddressData;
@@ -17,26 +17,17 @@ public class FolioInvoiceResponse implements Cloneable {
     private FolioInvoiceProfileData folioInvoiceProfileData;
     private FolioInvoiceLoyalityInfo folioInvoiceLoyalityInfo;
     private FolioInvoiceGroupData folioInvoiceGroupData;
-    /*private String groupId;
-    private String groupName;*/
     private String companyId;
     private String companyName;
-    /*private List<TaxBreakDown> taxBreakDownList; */
     private String vatNumber;
     private LocalDate taxPoint;
     private LocalDate taxDate;
     private List<FolioInvoiceSummaryData> folioInvoiceSummaryDatas;
-    /*private String paymentSettingId;
-    private String folioId;
-    private String folioName;*/
     private String accountType;
     private boolean showGuestInfo;
-    private boolean showReason;
     private String folioFooterMessage;
     private Property platformProperty;
     private String contentServicePublicUrl;
-    /*private String folioInvoiceNumber;
-    private List<LineItemView> lineItemViews;*/
     private String totalAmount;
     private String totalBalance;
     private String totalPayment;
@@ -44,9 +35,8 @@ public class FolioInvoiceResponse implements Cloneable {
     private LocalDate arrivalDate;
     private LocalDate departureDate;
     private String accountId;
-    //private List<LineItemView> printLineItemViews;
-    private boolean hasLineItems;
     private LocalDate reportDate;
+    private String userName;
 
     public FolioInvoiceReservationData getFolioInvoiceReservationData() {
         return folioInvoiceReservationData;
@@ -96,14 +86,6 @@ public class FolioInvoiceResponse implements Cloneable {
         this.folioInvoiceGroupData = folioInvoiceGroupData;
     }
 
-    /*public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }*/
-
     public String getCompanyName() {
         return companyName;
     }
@@ -111,14 +93,6 @@ public class FolioInvoiceResponse implements Cloneable {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
-
-    /*public List<TaxBreakDown> getTaxBreakDownList() {
-        return taxBreakDownList;
-    }
-
-    public void setTaxBreakDownList(List<TaxBreakDown> taxBreakDownList) {
-        this.taxBreakDownList = taxBreakDownList;
-    }*/
 
     public String getVatNumber() {
         return vatNumber;
@@ -152,22 +126,6 @@ public class FolioInvoiceResponse implements Cloneable {
         this.folioInvoiceSummaryDatas = folioInvoiceSummaryDatas;
     }
 
-    /*public String getPaymentSettingId() {
-        return paymentSettingId;
-    }
-
-    public void setPaymentSettingId(String paymentSettingId) {
-        this.paymentSettingId = paymentSettingId;
-    }
-
-    public String getFolioName() {
-        return folioName;
-    }
-
-    public void setFolioName(String folioName) {
-        this.folioName = folioName;
-    }*/
-
     public String getAccountType() {
         return accountType;
     }
@@ -182,14 +140,6 @@ public class FolioInvoiceResponse implements Cloneable {
 
     public void setShowGuestInfo(boolean showGuestInfo) {
         this.showGuestInfo = showGuestInfo;
-    }
-
-    public boolean isShowReason() {
-        return showReason;
-    }
-
-    public void setShowReason(boolean showReason) {
-        this.showReason = showReason;
     }
 
     public String getFolioFooterMessage() {
@@ -216,14 +166,6 @@ public class FolioInvoiceResponse implements Cloneable {
         this.contentServicePublicUrl = contentServicePublicUrl;
     }
 
-    /*public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }*/
-
     public String getCompanyId() {
         return companyId;
     }
@@ -231,30 +173,6 @@ public class FolioInvoiceResponse implements Cloneable {
     public void setCompanyId(String companyId) {
         this.companyId = companyId;
     }
-
-    /*public String getFolioId() {
-        return folioId;
-    }
-
-    public void setFolioId(String folioId) {
-        this.folioId = folioId;
-    }
-
-    public String getFolioInvoiceNumber() {
-        return folioInvoiceNumber;
-    }
-
-    public void setFolioInvoiceNumber(String folioInvoiceNumber) {
-        this.folioInvoiceNumber = folioInvoiceNumber;
-    }
-
-    public List<LineItemView> getLineItemViews() {
-        return lineItemViews;
-    }
-
-    public void setLineItemViews(List<LineItemView> lineItemViews) {
-        this.lineItemViews = lineItemViews;
-    }*/
 
     public String getTotalAmount() {
         return totalAmount;
@@ -312,22 +230,6 @@ public class FolioInvoiceResponse implements Cloneable {
         this.accountId = accountId;
     }
 
-    /*public List<LineItemView> getPrintLineItemViews() {
-        return printLineItemViews;
-    }
-
-    public void setPrintLineItemViews(List<LineItemView> printLineItemViews) {
-        this.printLineItemViews = printLineItemViews;
-    }*/
-
-    public boolean isHasLineItems() {
-        return hasLineItems;
-    }
-
-    public void setHasLineItems(boolean hasLineItems) {
-        this.hasLineItems = hasLineItems;
-    }
-
     public LocalDate getReportDate() {
         return reportDate;
     }
@@ -336,11 +238,11 @@ public class FolioInvoiceResponse implements Cloneable {
         this.reportDate = reportDate;
     }
 
-    public Object clone() {
-        try {
-            return (FolioInvoiceResponse) super.clone();
-        } catch (CloneNotSupportedException e) {
-            return new FolioInvoiceResponse();
-        }
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
