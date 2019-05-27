@@ -1412,12 +1412,14 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID + ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH)
     FolioInvoice getFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId) throws RGuestException, ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path("/profileId" + "/{profileId}" + INVOICES_PATH)
-    List<FolioInvoice> getFolioInvoiceFromProfileId(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam("profileId") String profileId) throws RGuestException, ServiceException;
+    List<FolioInvoice> getFolioInvoiceFromProfileId(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("profileId") String profileId)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + INVOICES_PATH)
@@ -1433,8 +1435,8 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(INVOICES_PATH)
     @Produces(MediaType.TEXT_HTML)
-    String printFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, FolioInvoiceRequest folioInvoiceRequest);
+    String printFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          FolioInvoiceRequest folioInvoiceRequest);
 
     @GET
     @Path(ACCOUNT_ID_PATH + "/folioInvoiceSummary")
@@ -1458,7 +1460,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(INVOICES_PATH + "/sendBatchFolioEmail")
-    List<String> sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          BatchFolioInvoiceRequest batchFolioInvoiceRequest);
+    List<String> sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest);
 }
 

@@ -350,24 +350,29 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
         });
     }
 
-    public void convertGroupTaxLineItemViewsToGroupTaxFolioInvoiceViewLineItemViews(List<LineItemView> groupTaxLineItemViews) {
+    public void convertGroupTaxLineItemViewsToGroupTaxFolioInvoiceViewLineItemViews(
+          List<LineItemView> groupTaxLineItemViews) {
         List<FolioInvoiceLineItemView> groupTaxFolioInvoiceViewLineItem = new ArrayList<>(groupTaxLineItemViews.size());
         groupTaxLineItemViews.forEach(lineItemView -> {
             groupTaxFolioInvoiceViewLineItem.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
         });
     }
 
-    public void convertAdjustmentLineItemViewsToAdjustmentFolioInvoiceViewLineItemViews(List<LineItemView> adjustmentLineItemViews) {
-        List<FolioInvoiceLineItemView> adjustmentFolioInvoiceViewLineItemViews = new ArrayList<>(adjustmentLineItemViews.size());
+    public void convertAdjustmentLineItemViewsToAdjustmentFolioInvoiceViewLineItemViews(
+          List<LineItemView> adjustmentLineItemViews) {
+        List<FolioInvoiceLineItemView> adjustmentFolioInvoiceViewLineItemViews =
+              new ArrayList<>(adjustmentLineItemViews.size());
         adjustmentLineItemViews.forEach(lineItemView -> {
             adjustmentFolioInvoiceViewLineItemViews.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
         });
     }
 
-    public void convertRefundLineItemViewsToRefundFolioInvoiceViewLineItemViews(List<LineItemView> refundLineItemViews) {
-        List<FolioInvoiceLineItemView> refundFolioInvoiceViewLineItemViews = new ArrayList<>(refundLineItemViews.size());
+    public void convertRefundLineItemViewsToRefundFolioInvoiceViewLineItemViews(
+          List<LineItemView> refundLineItemViews) {
+        List<FolioInvoiceLineItemView> refundFolioInvoiceViewLineItemViews =
+              new ArrayList<>(refundLineItemViews.size());
         refundLineItemViews.forEach(lineItemView -> {
-            if(lineItemView.getTaxLineItems()!=null) {
+            if (lineItemView.getTaxLineItems() != null) {
 
             }
             refundFolioInvoiceViewLineItemViews.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
