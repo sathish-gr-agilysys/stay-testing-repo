@@ -87,7 +87,6 @@ import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
-import com.agilysys.pms.payment.model.PaymentInstrumentView;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
