@@ -86,6 +86,7 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
+import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -902,6 +903,22 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     /**
+     * Retrieve payment settings for a set of accounts
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of account where settings exist
+     * @return Existing paymentSettings
+     */
+    @POST
+    @Path(PAYMENT_SETTINGS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<PaymentInstrumentSetting>>  getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,  Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
+    /**
+>>>>>>> e1012ebdf4557298b4b67afdeee826a489dfa80b
      * Save paymentSettings for an account
      *
      * @param tenantId        id of tenant where account exists
