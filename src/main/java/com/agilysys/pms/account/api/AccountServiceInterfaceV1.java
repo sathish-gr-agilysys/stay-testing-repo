@@ -1429,8 +1429,23 @@ public interface AccountServiceInterfaceV1 {
 
     @PUT
     @Path(FOLIO_PATH + INVOICES_PATH)
-    int updateFolioInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          UpdateFolioInvoicesRequest updateFolioInvoicesRequest);
+    int updateProfileIdsInMultiFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, UpdateFolioInvoicesRequest updateFolioInvoicesRequest);
+
+    @PUT
+    @Path(FOLIO_PATH + INVOICES_PATH + "/profile")
+    void findAndUpdateProfileIdInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
+
+    @PUT
+    @Path(FOLIO_PATH + INVOICES_PATH + "/sourceInfo")
+    void findAndUpdateSourceInfoInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
+
+    @PUT
+    @Path(FOLIO_PATH + INVOICES_PATH + "/modifyStayDetails")
+    void findAndUpdateModifyStayDetailsInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
 
     @POST
     @Path(INVOICES_PATH)
