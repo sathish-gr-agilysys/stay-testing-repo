@@ -79,6 +79,7 @@ import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
+import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
@@ -777,7 +778,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(PAYMENTS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, List<LineItemView>> findPaymentsForAccounts(@PathParam(TENANT_ID) String tenantId,
+    Map<String, List<TransactionReportItem>> findPaymentsForAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<String> accountIds) throws RGuestException, ServiceException;
 
     /**
