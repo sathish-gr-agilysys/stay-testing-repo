@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -38,6 +39,8 @@ public class TransactionReportItem {
     private String autoRecurringItemId;
     private String sourceId;
     private String mealPeriodId;
+    private List<PantryItemDetails> pantryItemDetails;
+    private LedgerTransactionHistory ledgerTransactionHistory;
 
     public String getId() {
         return id;
@@ -237,5 +240,21 @@ public class TransactionReportItem {
 
     public void setAutoRecurringItemId(String autoRecurringItemId) {
         this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public List<PantryItemDetails> getPantryItemDetails() {
+        return pantryItemDetails;
+    }
+
+    public void setPantryItemDetails(List<PantryItemDetails> pantryItemDetails) {
+        this.pantryItemDetails = pantryItemDetails;
+    }
+
+    public LedgerTransactionHistory getLedgerTransactionHistory() {
+        return ledgerTransactionHistory;
+    }
+
+    public void setLedgerTransactionHistory(LedgerTransactionHistory ledgerTransactionHistory) {
+        this.ledgerTransactionHistory = ledgerTransactionHistory;
     }
 }

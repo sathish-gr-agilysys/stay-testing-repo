@@ -60,6 +60,7 @@ public interface ReportingServiceInterface {
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
     String SOURCE_ID = "sourceId";
+    String PANTRY_TRANSACTION = "/pantryTransaction";
 
     /**
      * get the ledger report
@@ -283,5 +284,13 @@ public interface ReportingServiceInterface {
     Map<String, RoomRevenueItem> getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(PANTRY_TRANSACTION)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
+          throws RGuestException, ServiceException;
 }
 
