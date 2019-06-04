@@ -79,7 +79,6 @@ import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
-import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
@@ -87,6 +86,7 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
+import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -775,12 +775,6 @@ public interface AccountServiceInterfaceV1 {
     List<LineItemView> getPaymentResult(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId) throws Throwable;
 
-    @POST
-    @Path(PAYMENTS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    Map<String, List<TransactionReportItem>> findPaymentsForAccounts(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, List<String> accountIds) throws RGuestException, ServiceException;
-
     /**
      * Refunds a payment to an account
      *
@@ -898,6 +892,21 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<PaymentSetting> getPaymentSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve payment settings for a set of accounts
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of account where settings exist
+     * @return Existing paymentSettings
+     */
+    @POST
+    @Path(PAYMENT_SETTINGS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<PaymentInstrumentSetting>>  getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,  Set<String> accountIds)
           throws RGuestException, ServiceException;
 
     /**
@@ -1410,4 +1419,3 @@ public interface AccountServiceInterfaceV1 {
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }
-
