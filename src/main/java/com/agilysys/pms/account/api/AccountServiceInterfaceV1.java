@@ -1421,29 +1421,23 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("profileId") String profileId)
           throws RGuestException, ServiceException;
 
-    @GET
-    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + INVOICES_PATH)
-    List<FolioInvoice> getFolioInvoiceFromAccount(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
-          throws RGuestException, ServiceException;
-
     @PUT
-    @Path(FOLIO_PATH + INVOICES_PATH)
+    @Path(FOLIO_PATH + "/profileId" + "/{profileId}" + INVOICES_PATH)
     int updateProfileIdsInMultiFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, UpdateFolioInvoicesRequest updateFolioInvoicesRequest);
 
     @PUT
-    @Path(FOLIO_PATH + INVOICES_PATH + "/profile")
+    @Path(FOLIO_PATH + "/profileId" + INVOICES_PATH)
     void findAndUpdateProfileIdInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
 
     @PUT
-    @Path(FOLIO_PATH + INVOICES_PATH + "/sourceInfo")
+    @Path(FOLIO_PATH + "/sourceInfo" + INVOICES_PATH)
     void findAndUpdateSourceInfoInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
 
     @PUT
-    @Path(FOLIO_PATH + INVOICES_PATH + "/modifyStayDetails")
+    @Path(FOLIO_PATH + "/modifyStayDetails" + INVOICES_PATH)
     void findAndUpdateModifyStayDetailsInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
 

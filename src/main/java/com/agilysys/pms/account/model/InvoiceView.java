@@ -11,6 +11,8 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.account.VATTotalBreakDown;
+
 public class InvoiceView {
     private String id;
     private String tenantId;
@@ -26,7 +28,7 @@ public class InvoiceView {
     private int daysOverdue;
     private List<TaxAmountInfo> taxTotalsBreakdown = new ArrayList<>();
     private DateTime sentOnDate;
-    private List<TaxBreakDown> vatTaxBreakDowns;
+    private VATTotalBreakDown vatTotalBreakDown;
     private boolean reverseTax;
 
     public String getId() {
@@ -220,12 +222,12 @@ public class InvoiceView {
         this.sentOnDate = sentOnDate;
     }
 
-    public List<TaxBreakDown> getVatTaxBreakDowns() {
-        return vatTaxBreakDowns;
+    public VATTotalBreakDown getVatTotalBreakDown() {
+        return vatTotalBreakDown;
     }
 
-    public void setVatTaxBreakDowns(List<TaxBreakDown> vatTaxBreakDowns) {
-        this.vatTaxBreakDowns = vatTaxBreakDowns;
+    public void setVatTotalBreakDown(VATTotalBreakDown vatTotalBreakDown) {
+        this.vatTotalBreakDown = vatTotalBreakDown;
     }
 
     public boolean isReverseTax() {

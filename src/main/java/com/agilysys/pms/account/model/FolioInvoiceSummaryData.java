@@ -6,6 +6,8 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.agilysys.pms.account.VATTotalBreakDown;
+
 public class FolioInvoiceSummaryData {
 
     private String accountId;
@@ -25,7 +27,7 @@ public class FolioInvoiceSummaryData {
     private String formattedTotalPaymentsCurrency;
     private String formattedTotalBalanceCurrency;
     private String pageBreakAfter;
-    private List<TaxBreakDown> taxBreakDownList;
+    private VATTotalBreakDown vatTotalBreakDown;
     private boolean showReason;
     private String folioInvoiceNumber;
 
@@ -165,12 +167,12 @@ public class FolioInvoiceSummaryData {
         this.formattedTotalBalanceCurrency = formattedTotalBalanceCurrency;
     }
 
-    public List<TaxBreakDown> getTaxBreakDownList() {
-        return taxBreakDownList;
+    public VATTotalBreakDown getVatTotalBreakDown() {
+        return vatTotalBreakDown;
     }
 
-    public void setTaxBreakDownList(List<TaxBreakDown> taxBreakDownList) {
-        this.taxBreakDownList = taxBreakDownList;
+    public void setVatTotalBreakDown(VATTotalBreakDown vatTotalBreakDown) {
+        this.vatTotalBreakDown = vatTotalBreakDown;
     }
 
     public boolean isShowReason() {
