@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.account.VATTotalBreakDown;
+
 public class FolioInvoice {
 
     private String id;
@@ -32,7 +34,7 @@ public class FolioInvoice {
     private BigDecimal totalAmount;
     private BigDecimal totalPayments;
     private BigDecimal totalBalances;
-    private List<TaxBreakDown> taxBreakDowns;
+    private VATTotalBreakDown vatTotalBreakDown;
 
     public String getId() {
         return id;
@@ -210,11 +212,11 @@ public class FolioInvoice {
         this.totalBalances = totalBalances;
     }
 
-    public List<TaxBreakDown> getTaxBreakDowns() {
-        return taxBreakDowns;
+    public VATTotalBreakDown getVatTotalBreakDown() {
+        return vatTotalBreakDown;
     }
 
-    public void setTaxBreakDowns(List<TaxBreakDown> taxBreakDowns) {
-        this.taxBreakDowns = taxBreakDowns;
+    public void setVatTotalBreakDown(VATTotalBreakDown vatTotalBreakDown) {
+        this.vatTotalBreakDown = vatTotalBreakDown;
     }
 }
