@@ -1,6 +1,5 @@
 package com.agilysys.pms.account.api;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -23,7 +22,6 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.platform.tax.model.TaxRuleData;
 import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
-import com.agilysys.pms.common.migration.model.MigrationResult;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -152,5 +150,6 @@ public interface TransactionItemConfigServiceInterface {
     List<TransactionItem> getActiveTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
           @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
-          @QueryParam(INCLUDE_INACTIVE) boolean includeInactive, @QueryParam(INCLUDE_PETMIT_COMP) boolean includePermitComp) throws RGuestException, ServiceException;
+          @QueryParam(INCLUDE_INACTIVE) boolean includeInactive,
+          @QueryParam(INCLUDE_PETMIT_COMP) boolean includePermitComp) throws RGuestException, ServiceException;
 }

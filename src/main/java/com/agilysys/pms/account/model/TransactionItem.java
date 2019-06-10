@@ -61,8 +61,8 @@ public class TransactionItem extends AccountingItem {
 
     @DataPortReference(name = "taxClassNames", type = TaxClass.class, multiple = true)
     @AuditField(inline = true)
-    protected List<String> taxClasses;   
-    
+    protected List<String> taxClasses;
+
     public TransactionItem() {
         super();
 
