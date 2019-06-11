@@ -1,9 +1,8 @@
-/**
+/*
  * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FolioInvoiceLineItemView extends FolioViewLineItem {
@@ -262,7 +261,6 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
     }
 
     public FolioInvoiceLineItemView lineItemToFolioInvoiceViewLineItem(LineItemView lineItemView) {
-        //setTaxLineItems(lineItemView.getTaxLineItems());
         setTaxAmount(lineItemView.getTaxAmount());
         setTotalAmount(lineItemView.getTotalAmount());
         setGrandTotalAmount(lineItemView.getGrandTotalAmount());
@@ -281,21 +279,18 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
         setTransferTaxAmount(lineItemView.getTransferTaxAmount());
         setTransferTotalAmount(lineItemView.getTransferTotalAmount());
         setAccountId(lineItemView.getAccountId());
-        //setAdjustmentLineItems(lineItemView.getAdjustmentLineItems());
         setAutoRecurringItemId(lineItemView.getAutoRecurringItemId());
         setAutoRouted(lineItemView.isAutoRouted());
         setCallType(lineItemView.getCallType());
         setCategoryId(lineItemView.getCategoryId());
         setCompInfo(lineItemView.getCompInfo());
         setComponentType(lineItemView.getComponentType());
-        //setCorrectionLineItem(lineItemView.getCorrectionLineItem());
         setDescription(lineItemView.getDescription());
         setDisplayDate(lineItemView.getDisplayDate());
         setDistributed(lineItemView.isDistributed());
         setFolioId(lineItemView.getFolioId());
         setFolioLineType(lineItemView.getFolioLineType());
         setFreeAllowanceAmount(lineItemView.getFreeAllowanceAmount());
-        //setGroupedTaxLineItems(lineItemView.getGroupedTaxLineItems());
         setId(lineItemView.getId());
         setInvalid(lineItemView.isInvalid());
         setItemId(lineItemView.getItemId());
@@ -313,7 +308,6 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
         setReceiptTextImage(lineItemView.getReceiptTextImage());
         setRecurringChargeId(lineItemView.getRecurringChargeId());
         setReference(lineItemView.getReference());
-        //setRefundLineItems(lineItemView.getRefundLineItems());
         setReservationId(lineItemView.getReservationId());
         setReverseTax(lineItemView.isReverseTax());
         setReverseTaxTotalChargeAmount(lineItemView.getReverseTaxTotalChargeAmount());
@@ -327,55 +321,10 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
         setTransactionMessageAttributes(lineItemView.getTransactionMessageAttributes());
         setTransactionSourceAccountId(lineItemView.getTransactionSourceAccountId());
         setTransactionType(lineItemView.getTransactionType());
-        //setTransferLineItem(lineItemView.getTransferLineItem());
         setUnitAmount(lineItemView.getUnitAmount());
         setUserId(lineItemView.getUserId());
         setReverseTaxTotalChargeAmount(lineItemView.getReverseTaxTotalChargeAmount());
         setReverseTax(lineItemView.isReverseTax());
         return this;
-    }
-
-    public void convertTransferLineItemViewToTransferFolioInvoiceViewLineItemView(LineItemView lineItemView) {
-        FolioInvoiceLineItemView transferFolioInvoiceViewLineItem = lineItemToFolioInvoiceViewLineItem(lineItemView);
-    }
-
-    public void convertCorrectionLineItemViewToCorrectionFolioInvoiceViewLineItemView(LineItemView lineItemView) {
-        FolioInvoiceLineItemView correctionFolioInvoiceViewLineItem = lineItemToFolioInvoiceViewLineItem(lineItemView);
-    }
-
-    public void convertTaxLineItemViewsToTaxFolioInvoiceViewLineItemViews(List<LineItemView> taxLineItemViews) {
-        List<FolioInvoiceLineItemView> taxFolioInvoiceViewLineItem = new ArrayList<>(taxLineItemViews.size());
-        taxLineItemViews.forEach(lineItemView -> {
-            taxFolioInvoiceViewLineItem.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
-        });
-    }
-
-    public void convertGroupTaxLineItemViewsToGroupTaxFolioInvoiceViewLineItemViews(
-          List<LineItemView> groupTaxLineItemViews) {
-        List<FolioInvoiceLineItemView> groupTaxFolioInvoiceViewLineItem = new ArrayList<>(groupTaxLineItemViews.size());
-        groupTaxLineItemViews.forEach(lineItemView -> {
-            groupTaxFolioInvoiceViewLineItem.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
-        });
-    }
-
-    public void convertAdjustmentLineItemViewsToAdjustmentFolioInvoiceViewLineItemViews(
-          List<LineItemView> adjustmentLineItemViews) {
-        List<FolioInvoiceLineItemView> adjustmentFolioInvoiceViewLineItemViews =
-              new ArrayList<>(adjustmentLineItemViews.size());
-        adjustmentLineItemViews.forEach(lineItemView -> {
-            adjustmentFolioInvoiceViewLineItemViews.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
-        });
-    }
-
-    public void convertRefundLineItemViewsToRefundFolioInvoiceViewLineItemViews(
-          List<LineItemView> refundLineItemViews) {
-        List<FolioInvoiceLineItemView> refundFolioInvoiceViewLineItemViews =
-              new ArrayList<>(refundLineItemViews.size());
-        refundLineItemViews.forEach(lineItemView -> {
-            if (lineItemView.getTaxLineItems() != null) {
-
-            }
-            refundFolioInvoiceViewLineItemViews.add(lineItemToFolioInvoiceViewLineItem(lineItemView));
-        });
     }
 }

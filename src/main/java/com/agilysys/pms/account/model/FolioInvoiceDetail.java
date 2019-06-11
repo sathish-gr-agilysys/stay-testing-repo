@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class FolioInvoiceDetail {
 
@@ -12,8 +11,6 @@ public class FolioInvoiceDetail {
     private String folioName;
     private InvoiceStatus invoiceStatus;
     private BigDecimal folioBalance;
-    private List<LineItemView> lineItemViews;
-    private FolioInvoice folioInvoice;
 
     public String getFolioInvoiceNumber() {
         return folioInvoiceNumber;
@@ -45,21 +42,5 @@ public class FolioInvoiceDetail {
 
     public void setFolioBalance(BigDecimal folioBalance) {
         this.folioBalance = folioBalance;
-    }
-
-    public List<LineItemView> getLineItemViews() {
-        return lineItemViews;
-    }
-
-    public void setLineItemViews(List<LineItemView> lineItemViews) {
-        this.lineItemViews = lineItemViews;
-    }
-
-    public FolioInvoice getFolioInvoice() {
-        return folioInvoice;
-    }
-
-    public void setFolioInvoice(FolioInvoice folioInvoice) {
-        this.folioInvoice = folioInvoice;
     }
 }

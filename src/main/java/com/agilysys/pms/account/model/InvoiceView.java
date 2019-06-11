@@ -11,8 +11,6 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import com.agilysys.pms.account.VATTotalBreakDown;
-
 public class InvoiceView {
     private String id;
     private String tenantId;

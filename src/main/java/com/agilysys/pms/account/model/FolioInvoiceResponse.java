@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -12,7 +12,6 @@ import com.agilysys.platform.user.model.Property;
 public class FolioInvoiceResponse {
 
     private FolioInvoiceReservationData folioInvoiceReservationData;
-    private FolioInvoiceAddressData folioInvoiceAddressData;
     private FolioInvoiceAllocationData folioInvoiceAllocationData;
     private FolioInvoiceProfileData folioInvoiceProfileData;
     private FolioInvoiceLoyalityInfo folioInvoiceLoyalityInfo;
@@ -44,14 +43,6 @@ public class FolioInvoiceResponse {
 
     public void setFolioInvoiceReservationData(FolioInvoiceReservationData folioInvoiceReservationData) {
         this.folioInvoiceReservationData = folioInvoiceReservationData;
-    }
-
-    public FolioInvoiceAddressData getFolioInvoiceAddressData() {
-        return folioInvoiceAddressData;
-    }
-
-    public void setFolioInvoiceAddressData(FolioInvoiceAddressData folioInvoiceAddressData) {
-        this.folioInvoiceAddressData = folioInvoiceAddressData;
     }
 
     public FolioInvoiceAllocationData getFolioInvoiceAllocationData() {

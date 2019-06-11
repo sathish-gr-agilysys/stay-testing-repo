@@ -1,12 +1,10 @@
-/**
+/*
  * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-import com.agilysys.pms.account.VATTotalBreakDown;
 
 public class FolioInvoiceSummaryData {
 
@@ -28,7 +26,6 @@ public class FolioInvoiceSummaryData {
     private String formattedTotalBalanceCurrency;
     private String pageBreakAfter;
     private VATTotalBreakDown vatTotalBreakDown;
-    private boolean showReason;
     private String folioInvoiceNumber;
 
     public String getAccountId() {
@@ -173,14 +170,6 @@ public class FolioInvoiceSummaryData {
 
     public void setVatTotalBreakDown(VATTotalBreakDown vatTotalBreakDown) {
         this.vatTotalBreakDown = vatTotalBreakDown;
-    }
-
-    public boolean isShowReason() {
-        return showReason;
-    }
-
-    public void setShowReason(boolean showReason) {
-        this.showReason = showReason;
     }
 
     public String getFolioInvoiceNumber() {
