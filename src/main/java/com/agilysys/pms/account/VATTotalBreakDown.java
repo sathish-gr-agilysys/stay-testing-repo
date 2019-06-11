@@ -14,6 +14,9 @@ public class VATTotalBreakDown {
     private BigDecimal totalNet;
     private BigDecimal totalVat;
     private BigDecimal totalGross;
+    private String formattedTotalNet;
+    private String formattedTotalVat;
+    private String formattedTotalGross;
 
     public List<TaxBreakDown> getTaxBreakDowns() {
         return taxBreakDowns;
@@ -45,5 +48,29 @@ public class VATTotalBreakDown {
 
     public void setTotalGross(BigDecimal totalGross) {
         this.totalGross = totalGross;
+    }
+
+    public String getFormattedTotalNet() {
+        return formattedTotalNet;
+    }
+
+    public void setFormattedTotalNet(String formattedTotalNet) {
+        this.formattedTotalNet = formattedTotalNet;
+    }
+
+    public String getFormattedTotalVat() {
+        return formattedTotalVat;
+    }
+
+    public void setFormattedTotalVat(String formattedTotalVat) {
+        this.formattedTotalVat = formattedTotalVat;
+    }
+
+    public String getFormattedTotalGross() {
+        return formattedTotalGross;
+    }
+
+    public void setFormattedTotalGross(String formattedTotalGross) {
+        this.formattedTotalGross = formattedTotalGross;
     }
 }

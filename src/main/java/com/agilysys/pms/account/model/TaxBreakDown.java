@@ -10,6 +10,9 @@ public class TaxBreakDown {
     private BigDecimal net;
     private BigDecimal vat;
     private BigDecimal gross;
+    private String formattedNet;
+    private String formattedVat;
+    private String formattedGross;
 
     public TaxBreakDown() {
     }
@@ -51,5 +54,29 @@ public class TaxBreakDown {
 
     public void setGross(BigDecimal gross) {
         this.gross = gross;
+    }
+
+    public String getFormattedNet() {
+        return formattedNet;
+    }
+
+    public void setFormattedNet(String formattedNet) {
+        this.formattedNet = formattedNet;
+    }
+
+    public String getFormattedVat() {
+        return formattedVat;
+    }
+
+    public void setFormattedVat(String formattedVat) {
+        this.formattedVat = formattedVat;
+    }
+
+    public String getFormattedGross() {
+        return formattedGross;
+    }
+
+    public void setFormattedGross(String formattedGross) {
+        this.formattedGross = formattedGross;
     }
 }
