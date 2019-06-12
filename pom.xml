@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>74.904.0</version>
+        <version>74.904-VCTRS-62897-SNAPSHOT</version>
     </parent>
     <properties>
     </properties>
@@ -23,32 +23,32 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.914.0</version>
+            <version>74.914-VCTRS-62897-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>payment-interface</artifactId>
-            <version>74.914.0</version>
+            <version>74.914-VCTRS-62897-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.914.0</version>
+            <version>74.914-VCTRS-62897-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.917.0</version>
+            <version>74.917-VCTRS-62897-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.900.0</version>
+            <version>74.900-VCTRS-62897-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.847.0</version>
+            <version>74.847-VCTRS-62897-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
