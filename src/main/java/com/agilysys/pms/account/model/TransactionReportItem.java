@@ -40,7 +40,7 @@ public class TransactionReportItem {
     private String sourceId;
     private String mealPeriodId;
     private List<PantryItemDetails> pantryItemDetails;
-    private LedgerTransactionHistory ledgerTransactionHistory;
+    private DateTime createTime;
 
     public String getId() {
         return id;
@@ -250,11 +250,11 @@ public class TransactionReportItem {
         this.pantryItemDetails = pantryItemDetails;
     }
 
-    public LedgerTransactionHistory getLedgerTransactionHistory() {
-        return ledgerTransactionHistory;
+    public DateTime getCreateTime() {
+        return createTime;
     }
 
-    public void setLedgerTransactionHistory(LedgerTransactionHistory ledgerTransactionHistory) {
-        this.ledgerTransactionHistory = ledgerTransactionHistory;
+    public void setCreateTime(DateTime createTime) {
+        this.createTime = createTime;
     }
 }
