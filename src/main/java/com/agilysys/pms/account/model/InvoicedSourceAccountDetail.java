@@ -10,8 +10,8 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.common.model.ThirdPartyConfirmation;
 import com.agilysys.pms.profile.model.AddressDetails;
-import com.agilysys.pms.reservation.model.ThirdPartyConfirmation;
 
 public class InvoicedSourceAccountDetail {
     protected String sourceAccountId;
