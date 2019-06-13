@@ -26,6 +26,8 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
+import com.agilysys.pms.account.model.GlCodeTemplate;
+import com.agilysys.pms.account.model.GlCodeTemplateRequest;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
@@ -45,6 +47,7 @@ public interface ReportingServiceInterface {
     String TO_DATE_TOTALS_PATH = "/toDateTotals";
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
+    String GENERAL_LEDGER = "/generalLedger";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String REVENUE_PATH = "/revenueDetails";
     String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
@@ -235,6 +238,23 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
     AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountBalancesRequest request)
+          throws RGuestException, ServiceException;
+
+    /**
+     * retrieves General Ledger reports.
+     *
+     * @param request
+     * @return
+     * @throws ServiceException
+     */
+    @POST
+    @Path(GENERAL_LEDGER)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Validated(AccountBalancesRequest.class)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
+    List <GlCodeTemplate> getGeneralLedgers(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, GlCodeTemplateRequest request)
           throws RGuestException, ServiceException;
 
     /**
