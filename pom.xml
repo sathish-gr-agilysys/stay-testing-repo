@@ -22,6 +22,11 @@
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
+            <artifactId>common-interface</artifactId>
+            <version>74.929-VCTRS-62897-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms</groupId>
             <artifactId>payment-interface</artifactId>
             <version>74.923.0</version>
         </dependency>
@@ -69,12 +74,6 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.agilysys.pms</groupId>
-            <artifactId>common-interface</artifactId>
-            <version>74.929-VCTRS-62897-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>
