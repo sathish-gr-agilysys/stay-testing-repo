@@ -83,13 +83,12 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
-<<<<<<< HEAD
+
     private GatewayType gatewayType;
     private boolean giftCard;
-=======
+
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
->>>>>>> 8b1a72aa97e26a4db3624b4ad99d8d0d22b57fc9
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -793,7 +792,6 @@ public class LineItemView implements Comparable<LineItemView> {
         this.callType = callType;
     }
 
-<<<<<<< HEAD
     public GatewayType getGatewayType() {
         return gatewayType;
     }
@@ -808,7 +806,8 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setGiftCard(boolean giftCard) {
         this.giftCard = giftCard;
-=======
+    }
+
     public boolean isReverseTax() {
         return reverseTax;
     }
@@ -823,7 +822,6 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
         this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
->>>>>>> 8b1a72aa97e26a4db3624b4ad99d8d0d22b57fc9
     }
 
     @Override
