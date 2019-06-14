@@ -38,17 +38,17 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.914.0</version>
+            <version>74.929.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.900.0</version>
+            <version>74.929.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.847.0</version>
+            <version>74.929.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
