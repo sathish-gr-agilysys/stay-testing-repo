@@ -12,7 +12,6 @@ public class FolioInvoiceRequest {
 
     private List<String> accountIds;
     private List<String> transactionIds;
-    private List<String> parentIds;
     private List<String> summaryTransactionIds;
     private List<String> detailTransactionIds;
     private List<String> summaryParentIds;
@@ -34,14 +33,6 @@ public class FolioInvoiceRequest {
 
     public void setTransactionIds(List<String> transactionIds) {
         this.transactionIds = transactionIds;
-    }
-
-    public List<String> getParentIds() {
-        return parentIds;
-    }
-
-    public void setParentIds(List<String> parentIds) {
-        this.parentIds = parentIds;
     }
 
     public List<String> getSummaryTransactionIds() {

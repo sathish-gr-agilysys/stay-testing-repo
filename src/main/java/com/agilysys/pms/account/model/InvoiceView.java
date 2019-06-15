@@ -28,6 +28,7 @@ public class InvoiceView {
     private DateTime sentOnDate;
     private VATTotalBreakDown vatTotalBreakDown;
     private boolean reverseTax;
+    private String vatNumber;
 
     public String getId() {
         return id;
@@ -234,5 +235,13 @@ public class InvoiceView {
 
     public void setReverseTax(boolean reverseTax) {
         this.reverseTax = reverseTax;
+    }
+
+    public String getVatNumber() {
+        return vatNumber;
+    }
+
+    public void setVatNumber(String vatNumber) {
+        this.vatNumber = vatNumber;
     }
 }
