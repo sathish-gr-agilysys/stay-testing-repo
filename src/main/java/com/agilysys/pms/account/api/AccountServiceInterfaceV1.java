@@ -563,6 +563,13 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @POST
+    @Path(TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, TaxExemptSettingsByDate> getTaxExemptSettingsByDateForAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
+    @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
     @Validated(TaxExemptSettingsByDate.class)
