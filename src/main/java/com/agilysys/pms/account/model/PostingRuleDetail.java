@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -31,13 +32,13 @@ public class PostingRuleDetail {
     private String subcategoryId;
     private Set<String> itemIds;
 
-    @JsonProperty(required = true)
-    @NotNull
+    @Deprecated
     private String destinationFolioId;
+    private String splitBy;
 
-    @JsonProperty(required = true)
-    @NotNull
+    @Deprecated
     private String destinationAccountId;
+    private List<DestinationDetail> destinations;
 
     @JsonProperty(required = true)
     @NotNull
@@ -60,12 +61,26 @@ public class PostingRuleDetail {
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
 
+    public PostingRuleDetail() { }
+
+    @Deprecated
     public String getDestinationAccountId() {
         return destinationAccountId;
     }
 
+    @Deprecated
     public void setDestinationAccountId(String destinationAccountId) {
         this.destinationAccountId = destinationAccountId;
+    }
+
+    @Deprecated
+    public String getDestinationFolioId() {
+        return destinationFolioId;
+    }
+
+    @Deprecated
+    public void setDestinationFolioId(String destinationFolioId) {
+        this.destinationFolioId = destinationFolioId;
     }
 
     public String getRuleName() {
@@ -108,13 +123,13 @@ public class PostingRuleDetail {
         this.itemIds = itemIds;
     }
 
-    public String getDestinationFolioId() {
-        return destinationFolioId;
-    }
+    public String getSplitBy() { return splitBy; }
 
-    public void setDestinationFolioId(String destinationFolioId) {
-        this.destinationFolioId = destinationFolioId;
-    }
+    public void setSplitBy(String splitBy) { this.splitBy = splitBy; }
+
+    public List<DestinationDetail> getDestinations() { return destinations; }
+
+    public void setDestinations(List<DestinationDetail> destinations) { this.destinations = destinations; }
 
     public LocalDate getStartDate() {
         return startDate;
