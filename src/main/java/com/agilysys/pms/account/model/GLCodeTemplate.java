@@ -1,9 +1,12 @@
+/*
+ * Copyright (c) 2019. Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import com.agilysys.pms.common.model.GeneralLedgerCodeType;
 
-public class GlCodeTemplate {
-    private String autoGlCodeTemplate;
+public class GLCodeTemplate {
+    private String autoGLCodeTemplate;
     private String building;
     private String guestType;
     private String guestTypeTemplate;
@@ -16,38 +19,38 @@ public class GlCodeTemplate {
     private String payment;
     private String transactionItemTemplate;
 
-    public GlCodeTemplate() {}
+    public GLCodeTemplate() {}
 
-    public GlCodeTemplate(String building, String outlet, String mealperiod, String transactionItemName,
+    public GLCodeTemplate(String building, String outlet, String mealperiod, String transactionItemName,
           String transactionItemTemplate) {
         this.building = building;
         this.outlet = outlet;
         this.mealperiod = mealperiod;
         this.transactionItemName = transactionItemName;
-        this.autoGlCodeTemplate = transactionItemTemplate;
+        this.autoGLCodeTemplate = transactionItemTemplate;
     }
 
-    public GlCodeTemplate(String building, String guestTypeName, String marketSegmentName, String autoGlCodeTemplate) {
+    public GLCodeTemplate(String building, String guestTypeName, String marketSegmentName, String autoGlCodeTemplate) {
         this.building = building;
-        this.autoGlCodeTemplate = autoGlCodeTemplate;
+        this.autoGLCodeTemplate = autoGlCodeTemplate;
         this.guestType = guestTypeName;
         this.marketSegment = marketSegmentName;
     }
 
-    public GlCodeTemplate(String building, String outletCode, String paymentMethodName, String autoGlCodeTemplate,
+    public GLCodeTemplate(String building, String outletCode, String paymentMethodName, String autoGlCodeTemplate,
           GeneralLedgerCodeType type) {
         this.building = building;
-        this.autoGlCodeTemplate = autoGlCodeTemplate;
+        this.autoGLCodeTemplate = autoGlCodeTemplate;
         this.outlet = outletCode;
         this.payment = paymentMethodName;
     }
 
     public String getAutoGlCodeTemplate() {
-        return autoGlCodeTemplate;
+        return autoGLCodeTemplate;
     }
 
     public void setAutoGlCodeTemplate(String autoGlCodeTemplate) {
-        this.autoGlCodeTemplate = autoGlCodeTemplate;
+        this.autoGLCodeTemplate = autoGlCodeTemplate;
     }
 
     public String getBuilding() {

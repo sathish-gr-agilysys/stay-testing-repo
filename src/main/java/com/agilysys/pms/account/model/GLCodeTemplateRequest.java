@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.agilysys.pms.common.model.GeneralLedgerCodeType;
 
-public class GlCodeTemplateRequest {
+public class GLCodeTemplateRequest {
     private Set<String> buildingIds;
     private Set<String> guestTypeIds;
     private Set<String> marketSegmentIds;
@@ -12,7 +12,7 @@ public class GlCodeTemplateRequest {
     private Set<String> outletIds;
     private Set<String> paymentIds;
     private Set<String> transactionItemIds;
-    private GeneralLedgerCodeType generalLedgerType;
+    private GeneralLedgerCodeType generalLedgerCodeType;
 
     public Set<String> getBuildingIds() {
         return buildingIds;
@@ -70,12 +70,12 @@ public class GlCodeTemplateRequest {
         this.transactionItemIds = transactionItemIds;
     }
 
-    public GeneralLedgerCodeType getGeneralLedgerType() {
-        return generalLedgerType;
+    public GeneralLedgerCodeType getGeneralLedgerCodeType() {
+        return generalLedgerCodeType;
     }
 
-    public void setGeneralLedgerType(GeneralLedgerCodeType generalLedgerType) {
-        this.generalLedgerType = generalLedgerType;
+    public void setGeneralLedgerCodeType(GeneralLedgerCodeType generalLedgerCodeType) {
+        this.generalLedgerCodeType = generalLedgerCodeType;
     }
 
 }

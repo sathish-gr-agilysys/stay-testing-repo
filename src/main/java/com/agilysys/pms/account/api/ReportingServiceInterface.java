@@ -26,8 +26,8 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
-import com.agilysys.pms.account.model.GlCodeTemplate;
-import com.agilysys.pms.account.model.GlCodeTemplateRequest;
+import com.agilysys.pms.account.model.GLCodeTemplate;
+import com.agilysys.pms.account.model.GLCodeTemplateRequest;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
@@ -251,10 +251,9 @@ public interface ReportingServiceInterface {
     @Path(GENERAL_LEDGER)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(AccountBalancesRequest.class)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
-    List <GlCodeTemplate> getGeneralLedgers(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, GlCodeTemplateRequest request)
+    List <GLCodeTemplate> getGeneralLedgers(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request)
           throws RGuestException, ServiceException;
 
     /**
