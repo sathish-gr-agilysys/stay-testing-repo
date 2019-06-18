@@ -21,6 +21,8 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
     private String transferInMessage;
     private String formattedGrandTotalAmount;
     private String formattedLineItemBalance;
+    private String formattedLineItemTaxBalance;
+    private String formattedLineItemChargeBalance;
     private String formattedUnitAmount;
     private String formattedAdjustmentsGrandTotalAmount;
     private String formattedAdjustmentsTaxAmount;
@@ -146,6 +148,22 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
 
     public void setFormattedLineItemBalance(String formattedLineItemBalance) {
         this.formattedLineItemBalance = formattedLineItemBalance;
+    }
+
+    public String getFormattedLineItemTaxBalance() {
+        return formattedLineItemTaxBalance;
+    }
+
+    public void setFormattedLineItemTaxBalance(String formattedLineItemTaxBalance) {
+        this.formattedLineItemTaxBalance = formattedLineItemTaxBalance;
+    }
+
+    public String getFormattedLineItemChargeBalance() {
+        return formattedLineItemChargeBalance;
+    }
+
+    public void setFormattedLineItemChargeBalance(String formattedLineItemChargeBalance) {
+        this.formattedLineItemChargeBalance = formattedLineItemChargeBalance;
     }
 
     public String getFormattedUnitAmount() {
