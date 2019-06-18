@@ -38,6 +38,8 @@ public class PayTransactionRequest {
     private boolean doNotDisclose;
     // Fields for making payment 
     private List<PaymentTransaction> payTransactions = new ArrayList<>();
+    private boolean pantryPay;
+    private String pantryName;
 
     public PayTransactionRequest() {
     }
@@ -242,6 +244,22 @@ public class PayTransactionRequest {
      */
     public void setInvoiceNumber(String reservationConfirmationNumber) {
         this.invoiceNumber = reservationConfirmationNumber;
+    }
+
+    public boolean isPantryPay() {
+        return pantryPay;
+    }
+
+    public void setPantryPay(boolean pantryPay) {
+        this.pantryPay = pantryPay;
+    }
+
+    public String getPantryName() {
+        return pantryName;
+    }
+
+    public void setPantryName(String pantryName) {
+        this.pantryName = pantryName;
     }
 
     private void isValidRequest() {

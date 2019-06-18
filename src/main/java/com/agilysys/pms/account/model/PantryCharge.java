@@ -25,6 +25,7 @@ public class PantryCharge {
     private String reference;
     private String terminalId;
     private BigDecimal amount;
+    private String name;
 
     @JsonProperty(required = true)
     private List<PantryItemDetails> pantryItems;
@@ -106,6 +107,14 @@ public class PantryCharge {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Charge toCharge(String itemId, BigDecimal amount) {

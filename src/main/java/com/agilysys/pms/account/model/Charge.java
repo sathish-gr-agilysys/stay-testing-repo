@@ -3,8 +3,6 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.List;
-
 import com.google.common.base.Objects;
 
 /**
@@ -15,8 +13,6 @@ public class Charge extends Transaction {
     private String recurringChargeId;
     private TransactionItemType transactionItemType;
     private String autoRecurringItemId;
-    private List<PantryItemDetails> pantryItems;
-    private Boolean pantryItem;
 
     public String getMealPeriodId() {
         return mealPeriodId;
@@ -48,22 +44,6 @@ public class Charge extends Transaction {
 
     public void setTransactionItemType(TransactionItemType transactionItemType) {
         this.transactionItemType = transactionItemType;
-    }
-
-    public List<PantryItemDetails> getPantryItems() {
-        return pantryItems;
-    }
-
-    public void setPantryItems(List<PantryItemDetails> pantryItems) {
-        this.pantryItems = pantryItems;
-    }
-
-    public Boolean getPantryItem() {
-        return pantryItem;
-    }
-
-    public void setPantryItem(Boolean pantryItem) {
-        this.pantryItem = pantryItem;
     }
 
     @Override
