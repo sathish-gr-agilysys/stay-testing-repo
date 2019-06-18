@@ -10,6 +10,7 @@ public class InvoiceFilteringOptionalParams {
     private LocalDate startDate;
     private LocalDate endDate;
     private String invoiceNumber;
+    private boolean detailedInfo;
 
     public boolean getIncludeClosed() {
         return includeClosed;
@@ -41,5 +42,13 @@ public class InvoiceFilteringOptionalParams {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
+    }
+
+    public boolean isDetailedInfo() {
+        return detailedInfo;
+    }
+
+    public void setDetailedInfo(boolean detailedInfo) {
+        this.detailedInfo = detailedInfo;
     }
 }
