@@ -5,11 +5,10 @@ package com.agilysys.pms.account.model;
 
 public enum GLCodeTemplateVariable {
     BUILDING_CODE,
-    GUESTTYPE_CODE,
-    MARKETSEGMENT_CODE,
-    MEALPERIOD_CODE,
+    GUEST_TYPE_CODE,
+    MARKET_SEGMENT_CODE,
+    MEAL_PERIOD_CODE,
     OUTLET_CODE,
     PAYMENT_CODE,
-    STRING,
     TRANSACTION_CODE
 }

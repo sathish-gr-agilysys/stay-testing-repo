@@ -252,7 +252,7 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
-    List <GLCodeTemplate> getGeneralLedgers(@PathParam(TENANT_ID) String tenantId,
+    List <GLCodeTemplate> getGeneralLedgerTemplates(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request)
           throws RGuestException, ServiceException;
 
