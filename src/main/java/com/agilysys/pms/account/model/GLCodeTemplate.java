@@ -30,27 +30,27 @@ public class GLCodeTemplate {
         this.autoGLCodeTemplate = transactionItemTemplate;
     }
 
-    public GLCodeTemplate(String building, String guestTypeName, String marketSegmentName, String autoGlCodeTemplate) {
+    public GLCodeTemplate(String building, String guestTypeName, String marketSegmentName, String autoGLCodeTemplate) {
         this.building = building;
-        this.autoGLCodeTemplate = autoGlCodeTemplate;
+        this.autoGLCodeTemplate = autoGLCodeTemplate;
         this.guestType = guestTypeName;
         this.marketSegment = marketSegmentName;
     }
 
-    public GLCodeTemplate(String building, String outletCode, String paymentMethodName, String autoGlCodeTemplate,
+    public GLCodeTemplate(String building, String outletCode, String paymentMethodName, String autoGLCodeTemplate,
           GeneralLedgerCodeType type) {
         this.building = building;
-        this.autoGLCodeTemplate = autoGlCodeTemplate;
+        this.autoGLCodeTemplate = autoGLCodeTemplate;
         this.outlet = outletCode;
         this.payment = paymentMethodName;
     }
 
-    public String getAutoGlCodeTemplate() {
+    public String getAutoGLCodeTemplate() {
         return autoGLCodeTemplate;
     }
 
-    public void setAutoGlCodeTemplate(String autoGlCodeTemplate) {
-        this.autoGLCodeTemplate = autoGlCodeTemplate;
+    public void setAutoGLCodeTemplate(String autoGLCodeTemplate) {
+        this.autoGLCodeTemplate = autoGLCodeTemplate;
     }
 
     public String getBuilding() {
