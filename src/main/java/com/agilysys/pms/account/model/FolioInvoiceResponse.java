@@ -19,8 +19,8 @@ public class FolioInvoiceResponse {
     private String companyId;
     private String companyName;
     private String vatNumber;
-    private LocalDate taxPoint;
-    private LocalDate taxDate;
+    private String taxPoint;
+    private String taxDate;
     private List<FolioInvoiceSummaryData> folioInvoiceSummaryDatas;
     private String accountType;
     private boolean showGuestInfo;
@@ -93,19 +93,19 @@ public class FolioInvoiceResponse {
         this.vatNumber = vatNumber;
     }
 
-    public LocalDate getTaxPoint() {
+    public String getTaxPoint() {
         return taxPoint;
     }
 
-    public void setTaxPoint(LocalDate taxPoint) {
+    public void setTaxPoint(String taxPoint) {
         this.taxPoint = taxPoint;
     }
 
-    public LocalDate getTaxDate() {
+    public String getTaxDate() {
         return taxDate;
     }
 
-    public void setTaxDate(LocalDate taxDate) {
+    public void setTaxDate(String taxDate) {
         this.taxDate = taxDate;
     }
 
