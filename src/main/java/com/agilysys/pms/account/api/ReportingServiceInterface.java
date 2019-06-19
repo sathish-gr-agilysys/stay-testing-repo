@@ -241,8 +241,6 @@ public interface ReportingServiceInterface {
           throws RGuestException, ServiceException;
 
     /**
-     * retrieves General Ledger reports.
-     *
      * @param request
      * @return
      * @throws ServiceException

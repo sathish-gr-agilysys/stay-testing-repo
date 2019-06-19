@@ -13,7 +13,7 @@ public class GLCodeTemplateRequest {
     private Set<String> marketSegmentIds;
     private Set<String> mealPeriodIds;
     private Set<String> outletIds;
-    private Set<String> paymentIds;
+    private Set<String> paymentMethodIds;
     private Set<String> transactionItemIds;
     private GeneralLedgerCodeType generalLedgerCodeType;
 
@@ -57,12 +57,12 @@ public class GLCodeTemplateRequest {
         this.outletIds = outletIds;
     }
 
-    public Set<String> getPaymentIds() {
-        return paymentIds;
+    public Set<String> getPaymentMethodIds() {
+        return paymentMethodIds;
     }
 
-    public void setPaymentIds(Set<String> paymentIds) {
-        this.paymentIds = paymentIds;
+    public void setPaymentMethodIds(Set<String> paymentMethodIds) {
+        this.paymentMethodIds = paymentMethodIds;
     }
 
     public Set<String> getTransactionItemIds() {
