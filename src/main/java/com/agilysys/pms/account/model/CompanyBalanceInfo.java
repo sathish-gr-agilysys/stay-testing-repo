@@ -23,6 +23,9 @@ public class CompanyBalanceInfo {
 
     private List<PropertyBalanceInfo> properties;
 
+    public CompanyBalanceInfo() {
+
+    }
     public CompanyBalanceInfo(String id, String name) {
         this.id = id;
         this.name = name;

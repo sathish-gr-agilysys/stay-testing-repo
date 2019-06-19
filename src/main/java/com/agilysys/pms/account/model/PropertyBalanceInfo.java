@@ -24,6 +24,9 @@ public class PropertyBalanceInfo {
     private BigDecimal unInvoicedTotal; // sum(unInvoicedCharges)
     private BigDecimal balance; // balance = subTotal + unInvoicedTotal
 
+    public PropertyBalanceInfo() {
+
+    }
     public PropertyBalanceInfo(String id, String name) {
         this.id = id;
         this.name = name;
