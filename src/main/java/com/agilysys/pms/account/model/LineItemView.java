@@ -82,6 +82,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private boolean reverseTax;
+    private BigDecimal reverseTaxTotalChargeAmount;
     private List<PantryItemDetails> pantryItemDetails;
     private Boolean pantryItem;
 
@@ -714,9 +716,12 @@ public class LineItemView implements Comparable<LineItemView> {
     public BigDecimal getTaxAmount() {
         BigDecimal taxAmount = BigDecimal.ZERO;
         for (LineItemView tax : getTaxLineItems()) {
-            taxAmount = taxAmount.add(tax.getUnitAmount().multiply(new BigDecimal(tax.getQuantity())));
+            if (tax.isReverseTax() && tax.getReverseTaxTotalChargeAmount() != null) {
+                taxAmount = taxAmount.add(tax.getReverseTaxTotalChargeAmount());
+            } else if (!tax.isReverseTax()) {
+                taxAmount = taxAmount.add(tax.getUnitAmount().multiply(new BigDecimal(tax.getQuantity())));
+            }
         }
-
         return taxAmount;
     }
 
@@ -724,6 +729,9 @@ public class LineItemView implements Comparable<LineItemView> {
      * @return the totalAmount
      */
     public BigDecimal getTotalAmount() {
+        if (isReverseTax()) {
+            return reverseTaxTotalChargeAmount != null ? reverseTaxTotalChargeAmount : BigDecimal.ZERO;
+        }
         return unitAmount.multiply(new BigDecimal(quantity));
     }
 
@@ -779,6 +787,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCallType(String callType) {
         this.callType = callType;
+    }
+
+    public boolean isReverseTax() {
+        return reverseTax;
+    }
+
+    public void setReverseTax(boolean reverseTax) {
+        this.reverseTax = reverseTax;
+    }
+
+    public BigDecimal getReverseTaxTotalChargeAmount() {
+        return reverseTaxTotalChargeAmount;
+    }
+
+    public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
+        this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
     }
 
     public List<PantryItemDetails> getPantryItemDetails() {
