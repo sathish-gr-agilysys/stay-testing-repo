@@ -35,6 +35,27 @@ public class ComponentChargeView {
 
     ChargeTaxAmountInfo estimatedTaxInfo;
 
+    private boolean reverseTax;
+
+    private BigDecimal reverseTaxTotalChargeAmount;
+
+    public ComponentChargeView() {
+    }
+
+    public ComponentChargeView(ComponentChargeView componentChargeView) {
+        componentBundleId = componentChargeView.getComponentBundleId();
+        transactionItemId = componentChargeView.getTransactionItemId();
+        transactionItemName = componentChargeView.getTransactionItemName();
+        amount = componentChargeView.getAmount();
+        quantity = componentChargeView.getQuantity();
+        totalQuantity = componentChargeView.getTotalQuantity();
+        totalAmount = componentChargeView.getTotalAmount();
+        componentType = componentChargeView.getComponentType();
+        roomChargePostingType = componentChargeView.getRoomChargePostingType();
+        transactionItemType = componentChargeView.getTransactionItemType();
+        estimatedTaxInfo = componentChargeView.getEstimatedTaxInfo();
+    }
+
     public String getComponentBundleId() {
         return componentBundleId;
     }
@@ -124,6 +145,22 @@ public class ComponentChargeView {
         this.transactionItemType = transactionItemType;
     }
 
+    public boolean isReverseTax() {
+        return reverseTax;
+    }
+
+    public void setReverseTax(boolean reverseTax) {
+        this.reverseTax = reverseTax;
+    }
+
+    public BigDecimal getReverseTaxTotalChargeAmount() {
+        return reverseTaxTotalChargeAmount;
+    }
+
+    public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
+        this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
+    }
+
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
@@ -156,10 +193,10 @@ public class ComponentChargeView {
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots) {
-
-        List<ComponentChargeView> componentChargeViews = new ArrayList<>(componentRateSnapshots.size());
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         componentRateSnapshots.stream().forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
+
