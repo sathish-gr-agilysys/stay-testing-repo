@@ -92,6 +92,7 @@ import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
+import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
@@ -900,6 +901,21 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     /**
+     * Retrieve payment settings for a set of accounts
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  ids of account where settings exist
+     * @return Existing paymentSettings
+     */
+    @POST
+    @Path(PAYMENT_SETTINGS_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<PaymentInstrumentSetting>>  getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,  Set<String> accountIds)
+          throws RGuestException, ServiceException;
+
+    /**
      * Save paymentSettings for an account
      *
      * @param tenantId        id of tenant where account exists
@@ -929,6 +945,21 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     TaxExemptSettingsByDate getTaxExemptSettingsByDate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve tax exempt settings for list of accounts by individual dates.
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  id of account where settings exist
+     * @return Existing taxExemptSettings by account id
+     */
+    @POST
+    @Path(TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, TaxExemptSettingsByDate> getTaxExemptSettingsByDateForAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds)
           throws RGuestException, ServiceException;
 
     /**
@@ -1472,4 +1503,3 @@ public interface AccountServiceInterfaceV1 {
     List<String> sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest);
 }
-

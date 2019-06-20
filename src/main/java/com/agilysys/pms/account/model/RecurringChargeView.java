@@ -13,6 +13,9 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.FrequencyType;
+import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
+import com.agilysys.pms.account.model.ComponentChargeView;
+import com.agilysys.pms.account.model.TransactionItemType;
 
 /**
  * Recurring Charges view object

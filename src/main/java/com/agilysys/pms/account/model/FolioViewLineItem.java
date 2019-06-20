@@ -2,7 +2,7 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
-public class FolioViewLineItem extends LineItemView {
+public class FolioViewLineItem extends LineItemView{
 
     private BigDecimal totalAmount;
     private BigDecimal taxAmount;

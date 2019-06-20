@@ -10,4 +10,3 @@ public enum InvoiceStatus {
     SENT_PRINT,
     VOIDED
 }
-
