@@ -562,6 +562,14 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
+    /**
+     * Retrieve tax exempt settings for list of accounts by individual dates.
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountIds  id of account where settings exist
+     * @return Existing taxExemptSettings by account id
+     */
     @POST
     @Path(TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -569,6 +577,15 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds)
           throws RGuestException, ServiceException;
 
+    /**
+     * Save tax exempt settings for an account by individual dates.
+     *
+     * @param tenantId                id of tenant where account exists
+     * @param propertyId              id of the property where the account exists
+     * @param accountId               id of account to save settings to
+     * @param taxExemptSettingsByDate list of tax exempt settings to save
+     * @return Created settings
+     */
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
