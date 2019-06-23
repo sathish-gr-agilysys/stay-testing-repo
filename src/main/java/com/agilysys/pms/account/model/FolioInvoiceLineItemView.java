@@ -26,7 +26,7 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
     private List<FolioInvoiceLineItemView> refundFolioLineItems;
     private List<FolioInvoiceLineItemView> taxFolioLineItems;
     private FolioInvoiceLineItemView correctionFolioLineItem;
-    private LineItemView transferFolioLineItem;
+    private FolioInvoiceLineItemView transferFolioLineItem;
 
     public String getFormattedDisplayDate() {
         return formattedDisplayDate;
@@ -172,11 +172,11 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
         this.correctionFolioLineItem = correctionFolioLineItem;
     }
 
-    public LineItemView getTransferFolioLineItem() {
+    public FolioInvoiceLineItemView getTransferFolioLineItem() {
         return transferFolioLineItem;
     }
 
-    public void setTransferFolioLineItem(LineItemView transferFolioLineItem) {
+    public void setTransferFolioLineItem(FolioInvoiceLineItemView transferFolioLineItem) {
         this.transferFolioLineItem = transferFolioLineItem;
     }
 
