@@ -87,9 +87,19 @@ public class EstimatedChargesSummaryView {
     private BigDecimal futureRoomTaxes = BigDecimal.ZERO;
 
     /**
+     * The total of future room charges and taxes
+     */
+    private BigDecimal futureRoomTotal = BigDecimal.ZERO;
+
+    /**
      * The total of future charges and taxes
      */
     private BigDecimal futureTotal = BigDecimal.ZERO;
+
+    /**
+     * The room revenue taxes for inclusive components
+     */
+    private BigDecimal inclusiveComponentsRoomRevenueTaxTotal = BigDecimal.ZERO;
 
     /**
      * Gets the estimate payment due at checkout
@@ -291,5 +301,21 @@ public class EstimatedChargesSummaryView {
 
     public void setFutureRoomTaxes(BigDecimal futureRoomTaxes) {
         this.futureRoomTaxes = futureRoomTaxes;
+    }
+
+    public BigDecimal getFutureRoomTotal() {
+        return futureRoomTotal;
+    }
+
+    public void setFutureRoomTotal(BigDecimal futureRoomTotal) {
+        this.futureRoomTotal = futureRoomTotal;
+    }
+
+    public BigDecimal getInclusiveComponentsRoomRevenueTaxTotal() {
+        return inclusiveComponentsRoomRevenueTaxTotal;
+    }
+
+    public void setInclusiveComponentsRoomRevenueTaxTotal(BigDecimal inclusiveComponentsRoomRevenueTaxTotal) {
+        this.inclusiveComponentsRoomRevenueTaxTotal = inclusiveComponentsRoomRevenueTaxTotal;
     }
 }
