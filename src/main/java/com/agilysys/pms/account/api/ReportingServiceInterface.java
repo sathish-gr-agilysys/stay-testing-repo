@@ -29,6 +29,7 @@ import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
+import com.agilysys.pms.account.model.RevenueReportItem;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
@@ -47,6 +48,7 @@ public interface ReportingServiceInterface {
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String REVENUE_PATH = "/revenueDetails";
+    String REVENUE_BY_ACCOUNT="revenueByAccount";
     String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
@@ -57,6 +59,7 @@ public interface ReportingServiceInterface {
     String END_DATE = "endDate";
     String ROOM_REVENUE = "roomRevenue";
     String REVENUE_OCCUPANCY = "revenueOccupancy";
+    String ALL_REVENUE = "allRevenue";
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
     String SOURCE_ID = "sourceId";
