@@ -9,6 +9,13 @@ public class UpdateFolioInvoicesRequest {
 
     private List<FolioInvoice> folioInvoices;
 
+    public UpdateFolioInvoicesRequest() {
+    }
+
+    public UpdateFolioInvoicesRequest(List<FolioInvoice> folioInvoices) {
+        this.folioInvoices = folioInvoices;
+    }
+
     public List<FolioInvoice> getFolioInvoices() {
         return folioInvoices;
     }
