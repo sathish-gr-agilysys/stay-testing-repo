@@ -9,6 +9,7 @@ public class FolioInvoiceAllocationData {
     private String roomTypeDescription;
     private String roomNumber;
     private String roomTypeCode;
+    private String roomTypeId;
 
     public String getRoomId() {
         return roomId;
@@ -40,5 +41,13 @@ public class FolioInvoiceAllocationData {
 
     public void setRoomTypeCode(String roomTypeCode) {
         this.roomTypeCode = roomTypeCode;
+    }
+
+    public String getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(String roomTypeId) {
+        this.roomTypeId = roomTypeId;
     }
 }
