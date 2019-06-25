@@ -23,6 +23,7 @@ public class FolioInvoice {
     private LocalDate arrivalDate;
     private LocalDate departureDate;
     private String invoiceNumber;
+    private String roomTypeId;
     private String roomId;
     private LocalDate taxPoint;
     private LocalDate taxDate;
@@ -32,6 +33,8 @@ public class FolioInvoice {
     private BigDecimal totalPayments;
     private BigDecimal totalBalances;
     private VATTotalBreakDown vatTotalBreakDown;
+    private int numberOfAdults;
+    private int numberOfChildren;
 
     public String getId() {
         return id;
@@ -137,6 +140,14 @@ public class FolioInvoice {
         this.invoiceNumber = invoiceNumber;
     }
 
+    public String getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(String roomTypeId) {
+        this.roomTypeId = roomTypeId;
+    }
+
     public String getRoomId() {
         return roomId;
     }
@@ -207,5 +218,21 @@ public class FolioInvoice {
 
     public void setVatTotalBreakDown(VATTotalBreakDown vatTotalBreakDown) {
         this.vatTotalBreakDown = vatTotalBreakDown;
+    }
+
+    public int getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
     }
 }

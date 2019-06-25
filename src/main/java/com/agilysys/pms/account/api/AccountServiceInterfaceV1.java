@@ -1460,11 +1460,17 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(FOLIO_PATH + "/profileId" + INVOICES_PATH)
     void findAndUpdateProfileIdInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
+          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice)
+          throws RGuestException, ServiceException;
 
     @PUT
     @Path(FOLIO_PATH + "/sourceInfo" + INVOICES_PATH)
     void findAndUpdateSourceInfoInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
+
+    @PUT
+    @Path(FOLIO_PATH + "/guestInfo" + INVOICES_PATH)
+    void findAndUpdateGuestInfoInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
 
     @PUT
