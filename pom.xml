@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>root-pom</artifactId>
-        <version>74.923.0</version>
+        <version>74.933.0</version>
     </parent>
     <properties>
     </properties>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.923.0</version>
+            <version>74.933.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.923.0</version>
+            <version>74.933.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>

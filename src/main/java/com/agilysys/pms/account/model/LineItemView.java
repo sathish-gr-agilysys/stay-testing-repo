@@ -78,6 +78,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private LineItemView transferLineItem;
     private String transactionId;
     private Map<String, String> transactionMessageAttributes;
+    private String transactionReferenceId;
     private String transactionSourceAccountId;
     private String transactionType;
     private BigDecimal unitAmount;
@@ -529,6 +530,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setTransactionMessageAttributes(Map<String, String> transactionMessageAttributes) {
         this.transactionMessageAttributes = transactionMessageAttributes;
+    }
+
+    public String getTransactionReferenceId() {
+        return transactionReferenceId;
+    }
+
+    public void setTransactionReferenceId(String transactionReferenceId) {
+        this.transactionReferenceId = transactionReferenceId;
     }
 
     public String getTransactionSourceAccountId() {
