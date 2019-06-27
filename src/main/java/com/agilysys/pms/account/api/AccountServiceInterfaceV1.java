@@ -55,6 +55,7 @@ import com.agilysys.pms.account.model.FolioInvoice;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
 import com.agilysys.pms.account.model.FolioInvoiceRequest;
 import com.agilysys.pms.account.model.FolioInvoiceResponse;
+import com.agilysys.pms.account.model.FolioInvoiceUpdateCategory;
 import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
@@ -116,7 +117,9 @@ public interface AccountServiceInterfaceV1 {
     String APPLY_PAYMENTS = "/applyPayments";
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
+    String BATCH_FOLIO_EMAIL = "/batchFolioEmail";
     String BATCH_FOLIO_PATH = "/batchFolios";
+    String BATCH_FOLIO_PRINT = "/batchPrintFolio";
     String CALL_TYPE = "callType";
     String CHARGE_TAX_AMOUNT_PATH = "/calculateChargeTaxAmount";
     String CHARGES_PATH = "/charges";
@@ -130,8 +133,11 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_PATH = "/folios";
     String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
+    String FOLIO_EMAIL = "/folioEmail";
     String FOLIO_ID = "folioId";
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
+    String FOLIO_INVOICE_NUMBER = "folioInvoiceNumber";
+    String FOLIO_INVOICE_NUMBER_PATH = "/" + FOLIO_INVOICE_NUMBER + "/{" + FOLIO_INVOICE_NUMBER + "}";
     String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
@@ -158,6 +164,11 @@ public interface AccountServiceInterfaceV1 {
     String POSTING_RULE_ID = "postingRulesId";
     String POSTING_RULE_ID_PATH = "/{" + POSTING_RULE_ID + "}";
     String POSTING_RULES_PATH = "/postingRules";
+    String PRINT_FOLIO = "/printFolio";
+    String FOLIO_INVOICE_SUMMARY = "/folioInvoiceSummary";
+    String PROFILE_ID = "profileId";
+    String PROFILES_PATH = "/profiles";
+    String PROFILE_ID_PATH = PROFILES_PATH + "/{" + PROFILE_ID + "/}";
     String PRESET =  "preset";
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
@@ -195,6 +206,8 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
+    String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILE_ID_PATH + INVOICES_PATH;
+    String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
 
     /**
      * Retrieve all accounts from a tenant
@@ -1441,71 +1454,62 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     @GET
-    @Path(ACCOUNT_ID + ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH)
+    @Path(FOLIO_INVOICE_BY_FOLIO_ID)
     FolioInvoice getFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId)
           throws RGuestException, ServiceException;
 
     @GET
-    @Path("/profileId" + "/{profileId}" + INVOICES_PATH)
+    @Path(FOLIO_INVOICE_BY_PROFILE_ID)
     List<FolioInvoice> getFolioInvoiceFromProfileId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("profileId") String profileId)
           throws RGuestException, ServiceException;
 
     @PUT
-    @Path(FOLIO_PATH + "/profileId" + "/{profileId}" + INVOICES_PATH)
-    int updateProfileIdsInMultiFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, UpdateFolioInvoicesRequest updateFolioInvoicesRequest);
-
-    @PUT
-    @Path(FOLIO_PATH + "/profileId" + INVOICES_PATH)
-    void findAndUpdateProfileIdInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice)
+    @Path(FOLIO_INVOICE_BY_PROFILE_ID)
+    void updateProfileIdsInMultiFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, UpdateFolioInvoicesRequest updateFolioInvoicesRequest)
           throws RGuestException, ServiceException;
 
     @PUT
-    @Path(FOLIO_PATH + "/sourceInfo" + INVOICES_PATH)
-    void findAndUpdateSourceInfoInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
-
-    @PUT
-    @Path(FOLIO_PATH + "/guestInfo" + INVOICES_PATH)
-    void findAndUpdateGuestInfoInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
-
-    @PUT
-    @Path(FOLIO_PATH + "/modifyStayDetails" + INVOICES_PATH)
-    void findAndUpdateModifyStayDetailsInFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, FolioInvoice folioInvoice);
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
+    void updateFolioInvoiceFromCategory(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID_PATH) String accountId,
+          FolioInvoice folioInvoice, FolioInvoiceUpdateCategory folioInvoiceUpdateCategory)
+          throws RGuestException, ServiceException;
 
     @POST
-    @Path(INVOICES_PATH)
+    @Path(INVOICES_PATH + PRINT_FOLIO)
     @Produces(MediaType.TEXT_HTML)
     String printFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          FolioInvoiceRequest folioInvoiceRequest);
+          FolioInvoiceRequest folioInvoiceRequest) throws RGuestException, ServiceException;
 
     @GET
-    @Path(ACCOUNT_ID_PATH + "/folioInvoiceSummary")
+    @Path(ACCOUNT_ID_PATH + FOLIO_INVOICE_SUMMARY)
     List<FolioInvoiceDetail> getFolioInvoiceSummary(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId);
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
 
     @GET
-    @Path("/folioInvoiceNumber/{folioInvoiceNumber}")
+    @Path(FOLIO_INVOICE_NUMBER_PATH)
     FolioInvoiceResponse getFolioInvoiceDetailFromFolioInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceNumber") String folioInvoiceNumber);
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceNumber") String folioInvoiceNumber)
+          throws RGuestException, ServiceException;
 
     @POST
-    @Path(INVOICES_PATH + "/batch")
+    @Path(INVOICES_PATH + BATCH_FOLIO_PRINT)
     List<String> printBatchFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest);
+          @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
+          throws RGuestException, ServiceException;
 
     @POST
-    @Path(INVOICES_PATH + "/sendFolioEmail")
+    @Path(INVOICES_PATH + FOLIO_EMAIL)
     void sendFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          FolioInvoiceRequest folioInvoiceRequest);
+          FolioInvoiceRequest folioInvoiceRequest) throws RGuestException, ServiceException;
 
     @POST
-    @Path(INVOICES_PATH + "/sendBatchFolioEmail")
+    @Path(INVOICES_PATH + BATCH_FOLIO_EMAIL)
     List<String> sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest);
+          @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
+          throws RGuestException, ServiceException;
 }
