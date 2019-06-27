@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-public class FolioInvoiceReservationData {
+public class FolioInvoiceReservation {
 
     private String reservationId;
     private String confirmationCode;

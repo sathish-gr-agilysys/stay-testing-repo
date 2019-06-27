@@ -8,7 +8,7 @@ import java.util.List;
 import com.agilysys.pms.profile.model.Email;
 import com.agilysys.pms.profile.model.Phone;
 
-public class FolioInvoiceProfileData {
+public class FolioInvoiceProfile {
 
     private String profileId;
     private String firstName;
@@ -18,7 +18,7 @@ public class FolioInvoiceProfileData {
     private String suffix;
     private List<Email> emails;
     private List<Phone> phoneNos;
-    private FolioInvoiceAddressData folioInvoiceAddressData;
+    private FolioInvoiceAddress folioInvoiceAddress;
 
     public String getProfileId() {
         return profileId;
@@ -76,12 +76,12 @@ public class FolioInvoiceProfileData {
         this.phoneNos = phoneNos;
     }
 
-    public FolioInvoiceAddressData getFolioInvoiceAddressData() {
-        return folioInvoiceAddressData;
+    public FolioInvoiceAddress getFolioInvoiceAddress() {
+        return folioInvoiceAddress;
     }
 
-    public void setFolioInvoiceAddressData(FolioInvoiceAddressData folioInvoiceAddressData) {
-        this.folioInvoiceAddressData = folioInvoiceAddressData;
+    public void setFolioInvoiceAddress(FolioInvoiceAddress folioInvoiceAddress) {
+        this.folioInvoiceAddress = folioInvoiceAddress;
     }
 
     public String getSuffix() {

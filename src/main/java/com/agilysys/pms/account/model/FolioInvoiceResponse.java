@@ -11,17 +11,17 @@ import com.agilysys.platform.user.model.Property;
 
 public class FolioInvoiceResponse {
 
-    private FolioInvoiceReservationData folioInvoiceReservationData;
-    private FolioInvoiceAllocationData folioInvoiceAllocationData;
-    private FolioInvoiceProfileData folioInvoiceProfileData;
+    private FolioInvoiceReservation folioInvoiceReservation;
+    private FolioInvoiceAllocation folioInvoiceAllocation;
+    private FolioInvoiceProfile folioInvoiceProfile;
     private FolioInvoiceLoyalityInfo folioInvoiceLoyalityInfo;
-    private FolioInvoiceGroupData folioInvoiceGroupData;
+    private FolioInvoiceGroup folioInvoiceGroup;
     private String companyId;
     private String companyName;
     private String vatNumber;
     private String taxPoint;
     private String taxDate;
-    private List<FolioInvoiceSummaryData> folioInvoiceSummaryDatas;
+    private List<FolioInvoiceSummary> folioInvoiceSummaries;
     private String accountType;
     private boolean showGuestInfo;
     private String folioFooterMessage;
@@ -37,28 +37,28 @@ public class FolioInvoiceResponse {
     private LocalDate reportDate;
     private String userName;
 
-    public FolioInvoiceReservationData getFolioInvoiceReservationData() {
-        return folioInvoiceReservationData;
+    public FolioInvoiceReservation getFolioInvoiceReservation() {
+        return folioInvoiceReservation;
     }
 
-    public void setFolioInvoiceReservationData(FolioInvoiceReservationData folioInvoiceReservationData) {
-        this.folioInvoiceReservationData = folioInvoiceReservationData;
+    public void setFolioInvoiceReservation(FolioInvoiceReservation folioInvoiceReservation) {
+        this.folioInvoiceReservation = folioInvoiceReservation;
     }
 
-    public FolioInvoiceAllocationData getFolioInvoiceAllocationData() {
-        return folioInvoiceAllocationData;
+    public FolioInvoiceAllocation getFolioInvoiceAllocation() {
+        return folioInvoiceAllocation;
     }
 
-    public void setFolioInvoiceAllocationData(FolioInvoiceAllocationData folioInvoiceAllocationData) {
-        this.folioInvoiceAllocationData = folioInvoiceAllocationData;
+    public void setFolioInvoiceAllocation(FolioInvoiceAllocation folioInvoiceAllocation) {
+        this.folioInvoiceAllocation = folioInvoiceAllocation;
     }
 
-    public FolioInvoiceProfileData getFolioInvoiceProfileData() {
-        return folioInvoiceProfileData;
+    public FolioInvoiceProfile getFolioInvoiceProfile() {
+        return folioInvoiceProfile;
     }
 
-    public void setFolioInvoiceProfileData(FolioInvoiceProfileData folioInvoiceProfileData) {
-        this.folioInvoiceProfileData = folioInvoiceProfileData;
+    public void setFolioInvoiceProfile(FolioInvoiceProfile folioInvoiceProfile) {
+        this.folioInvoiceProfile = folioInvoiceProfile;
     }
 
     public FolioInvoiceLoyalityInfo getFolioInvoiceLoyalityInfo() {
@@ -69,12 +69,12 @@ public class FolioInvoiceResponse {
         this.folioInvoiceLoyalityInfo = folioInvoiceLoyalityInfo;
     }
 
-    public FolioInvoiceGroupData getFolioInvoiceGroupData() {
-        return folioInvoiceGroupData;
+    public FolioInvoiceGroup getFolioInvoiceGroup() {
+        return folioInvoiceGroup;
     }
 
-    public void setFolioInvoiceGroupData(FolioInvoiceGroupData folioInvoiceGroupData) {
-        this.folioInvoiceGroupData = folioInvoiceGroupData;
+    public void setFolioInvoiceGroup(FolioInvoiceGroup folioInvoiceGroup) {
+        this.folioInvoiceGroup = folioInvoiceGroup;
     }
 
     public String getCompanyName() {
@@ -109,12 +109,12 @@ public class FolioInvoiceResponse {
         this.taxDate = taxDate;
     }
 
-    public List<FolioInvoiceSummaryData> getFolioInvoiceSummaryDatas() {
-        return folioInvoiceSummaryDatas;
+    public List<FolioInvoiceSummary> getFolioInvoiceSummaries() {
+        return folioInvoiceSummaries;
     }
 
-    public void setFolioInvoiceSummaryDatas(List<FolioInvoiceSummaryData> folioInvoiceSummaryDatas) {
-        this.folioInvoiceSummaryDatas = folioInvoiceSummaryDatas;
+    public void setFolioInvoiceSummaries(List<FolioInvoiceSummary> folioInvoiceSummaries) {
+        this.folioInvoiceSummaries = folioInvoiceSummaries;
     }
 
     public String getAccountType() {

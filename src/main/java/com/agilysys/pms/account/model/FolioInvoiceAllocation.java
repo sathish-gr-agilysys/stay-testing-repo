@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-public class FolioInvoiceAllocationData {
+public class FolioInvoiceAllocation {
 
     private String roomId;
     private String roomTypeDescription;

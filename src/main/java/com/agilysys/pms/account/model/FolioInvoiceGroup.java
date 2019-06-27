@@ -5,7 +5,7 @@ package com.agilysys.pms.account.model;
 
 import com.agilysys.pms.profile.model.LinkedGuestProfileDetails;
 
-public class FolioInvoiceGroupData {
+public class FolioInvoiceGroup {
 
     private String groupId;
     private String groupName;

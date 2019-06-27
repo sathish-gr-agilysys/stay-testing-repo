@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-public class FolioInvoiceAddressData {
+public class FolioInvoiceAddress {
     private String addressType;
     private String addressLine1;
     private String addressLine2;
