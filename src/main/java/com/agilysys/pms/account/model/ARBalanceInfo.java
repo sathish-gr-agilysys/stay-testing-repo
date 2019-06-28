@@ -15,9 +15,7 @@ public class ARBalanceInfo {
 
     private Map<String, LocalDate> propertyDateMap;
 
-    public ARBalanceInfo() {
-
-    }
+    public ARBalanceInfo() { }
 
     public String getTenantId() {
         return tenantId;
