@@ -1474,7 +1474,7 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     void updateFolioInvoiceFromCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID_PATH) String accountId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           FolioInvoiceUpdateRequest folioInvoiceUpdateRequest) throws RGuestException, ServiceException;
 
     @POST
