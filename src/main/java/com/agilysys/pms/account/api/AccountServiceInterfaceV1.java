@@ -55,7 +55,7 @@ import com.agilysys.pms.account.model.FolioInvoice;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
 import com.agilysys.pms.account.model.FolioInvoiceRequest;
 import com.agilysys.pms.account.model.FolioInvoiceResponse;
-import com.agilysys.pms.account.model.FolioInvoiceUpdateCategory;
+import com.agilysys.pms.account.model.FolioInvoiceUpdateRequest;
 import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
@@ -1475,8 +1475,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     void updateFolioInvoiceFromCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID_PATH) String accountId,
-          FolioInvoice folioInvoice, FolioInvoiceUpdateCategory folioInvoiceUpdateCategory)
-          throws RGuestException, ServiceException;
+          FolioInvoiceUpdateRequest folioInvoiceUpdateRequest) throws RGuestException, ServiceException;
 
     @POST
     @Path(INVOICES_PATH + PRINT_FOLIO)
