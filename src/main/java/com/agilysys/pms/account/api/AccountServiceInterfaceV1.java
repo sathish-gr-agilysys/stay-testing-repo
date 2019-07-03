@@ -44,6 +44,7 @@ import com.agilysys.pms.account.model.AccountsReceivableSettings;
 import com.agilysys.pms.account.model.AmountTransfer;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
+import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
@@ -1508,7 +1509,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(INVOICES_PATH + BATCH_FOLIO_EMAIL)
-    List<String> sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
+    BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException, ServiceException;
 }
