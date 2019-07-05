@@ -9,17 +9,15 @@ import java.math.RoundingMode;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.LocalDate;
-import org.springframework.data.annotation.Transient;
 
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import com.agilysys.platform.common.json.schema.MinValueRestriction;
 
 /**
  * Base class for different transaction types.
@@ -56,8 +54,6 @@ public abstract class Transaction {
     protected String terminalId;
     protected GatewayType gatewayType;
     protected boolean giftCard;
-
-    @Transient
     protected String giftCardNumber;
 
     public String getAccountId() {

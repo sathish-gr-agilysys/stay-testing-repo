@@ -1445,7 +1445,5 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + "/giftCard/issue")
     GiftCardResponse issueGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
-
-
 }
 
