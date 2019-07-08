@@ -1481,34 +1481,40 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(INVOICES_PATH + PRINT_FOLIO)
     @Produces(MediaType.TEXT_HTML)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     String printFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           FolioInvoiceRequest folioInvoiceRequest) throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_INVOICE_SUMMARY)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     List<FolioInvoiceDetail> getFolioInvoiceSummary(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
     @GET
     @Path(FOLIO_INVOICE_NUMBER_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     FolioInvoiceResponse getFolioInvoiceDetailFromFolioInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceNumber") String folioInvoiceNumber)
           throws RGuestException, ServiceException;
 
     @POST
     @Path(INVOICES_PATH + BATCH_FOLIO_PRINT)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     List<String> printBatchFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException, ServiceException;
 
     @POST
     @Path(INVOICES_PATH + FOLIO_EMAIL)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     void sendFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           FolioInvoiceRequest folioInvoiceRequest) throws RGuestException, ServiceException;
 
     @POST
     @Path(INVOICES_PATH + BATCH_FOLIO_EMAIL)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException, ServiceException;
