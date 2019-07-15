@@ -3,24 +3,31 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.List;
-
 public class UpdateFolioInvoicesRequest {
 
-    private List<FolioInvoice> folioInvoices;
+    private String sourceProfileId;
+    private String destinationProfileId;
 
-    public UpdateFolioInvoicesRequest() {
+    public UpdateFolioInvoicesRequest() {}
+
+    public UpdateFolioInvoicesRequest(String sourceProfileId, String destinationProfileId) {
+        this.sourceProfileId = sourceProfileId;
+        this.destinationProfileId = destinationProfileId;
     }
 
-    public UpdateFolioInvoicesRequest(List<FolioInvoice> folioInvoices) {
-        this.folioInvoices = folioInvoices;
+    public String getSourceProfileId() {
+        return sourceProfileId;
     }
 
-    public List<FolioInvoice> getFolioInvoices() {
-        return folioInvoices;
+    public void setSourceProfileId(String sourceProfileId) {
+        this.sourceProfileId = sourceProfileId;
     }
 
-    public void setFolioInvoices(List<FolioInvoice> folioInvoices) {
-        this.folioInvoices = folioInvoices;
+    public String getDestinationProfileId() {
+        return destinationProfileId;
+    }
+
+    public void setDestinationProfileId(String destinationProfileId) {
+        this.destinationProfileId = destinationProfileId;
     }
 }

@@ -1456,24 +1456,28 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(FOLIO_INVOICE_BY_FOLIO_ID)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     FolioInvoice getFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId)
           throws RGuestException, ServiceException;
 
     @GET
     @Path(FOLIO_INVOICE_BY_PROFILE_ID)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     List<FolioInvoice> getFolioInvoiceFromProfileId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("profileId") String profileId)
           throws RGuestException, ServiceException;
 
     @PUT
     @Path(FOLIO_INVOICE_BY_PROFILE_ID)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     void updateProfileIdsInMultiFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, UpdateFolioInvoicesRequest updateFolioInvoicesRequest)
           throws RGuestException, ServiceException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     void updateFolioInvoiceFromCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           FolioInvoiceUpdateRequest folioInvoiceUpdateRequest) throws RGuestException, ServiceException;

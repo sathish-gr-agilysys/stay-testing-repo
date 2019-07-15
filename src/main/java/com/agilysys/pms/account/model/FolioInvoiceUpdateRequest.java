@@ -8,8 +8,7 @@ public class FolioInvoiceUpdateRequest {
     private FolioInvoiceUpdateCategory folioInvoiceUpdateCategory;
     private FolioInvoice folioInvoice;
 
-    public FolioInvoiceUpdateRequest() {
-    }
+    public FolioInvoiceUpdateRequest() {}
 
     public FolioInvoiceUpdateRequest(FolioInvoiceUpdateCategory folioInvoiceUpdateCategory, FolioInvoice folioInvoice) {
         this.folioInvoiceUpdateCategory = folioInvoiceUpdateCategory;

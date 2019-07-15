@@ -14,8 +14,7 @@ public class TaxBreakDown {
     private String formattedVat;
     private String formattedGross;
 
-    public TaxBreakDown() {
-    }
+    public TaxBreakDown() {}
 
     public TaxBreakDown(String taxRule, BigDecimal net, BigDecimal vat, BigDecimal gross) {
         this.taxRule = taxRule;

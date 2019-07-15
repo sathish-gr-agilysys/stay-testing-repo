@@ -11,8 +11,7 @@ public class BatchFolioInvoiceResponse {
     private int emailSuccessCount;
     private int emailFailureCount;
 
-    public BatchFolioInvoiceResponse() {
-    }
+    public BatchFolioInvoiceResponse() {}
 
     public BatchFolioInvoiceResponse(List<String> emailFailedReservations, int emailSuccessCount,
           int emailFailureCount) {

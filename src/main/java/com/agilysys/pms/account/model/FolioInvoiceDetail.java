@@ -12,8 +12,7 @@ public class FolioInvoiceDetail {
     private InvoiceStatus invoiceStatus;
     private BigDecimal folioBalance;
 
-    public FolioInvoiceDetail() {
-    }
+    public FolioInvoiceDetail() {}
 
     public FolioInvoiceDetail(String folioInvoiceNumber, String folioName, InvoiceStatus invoiceStatus,
           BigDecimal folioBalance) {
