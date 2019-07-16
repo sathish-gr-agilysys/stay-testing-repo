@@ -50,6 +50,7 @@ public interface ReportingServiceInterface {
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String GENERAL_AVAILABILITY_STATS = "/generalAvailabilityStats";
     String REVENUE_PATH = "/revenueDetails";
+    String REVENUE_PATH_BY_BUILDING = "/revenueDetailsByBuilding";
     String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
@@ -192,7 +193,7 @@ public interface ReportingServiceInterface {
           throws RGuestException, ServiceException;
 
     @POST
-    @Path(REVENUE_PATH)
+    @Path(REVENUE_PATH_BY_BUILDING)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
