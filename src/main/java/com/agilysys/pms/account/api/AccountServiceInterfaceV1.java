@@ -1461,13 +1461,6 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId)
           throws RGuestException, ServiceException;
 
-    @GET
-    @Path(FOLIO_INVOICE_BY_PROFILE_ID)
-    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
-    List<FolioInvoice> getFolioInvoiceFromProfileId(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("profileId") String profileId)
-          throws RGuestException, ServiceException;
-
     @PUT
     @Path(FOLIO_INVOICE_BY_PROFILE_ID)
     @PreAuthorize("hasPermission('Required', 'ReadProperties')")
