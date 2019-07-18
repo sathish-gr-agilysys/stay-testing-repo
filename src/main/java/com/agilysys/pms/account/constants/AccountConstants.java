@@ -19,4 +19,5 @@ public class AccountConstants {
           "Transferred from another folio on this " + "account.";
     public static final String CORRECTION_MESSAGE = "Charge corrected by %s.";
     public static final String ADJUSTMENT_MESSAGE = "Charge adjusted by %s from %s to %s";
+    public static final String RESERVATION_ALIAS = "RESERVATION_ALIAS";
 }
