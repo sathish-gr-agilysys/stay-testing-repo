@@ -67,6 +67,7 @@ import com.agilysys.pms.account.model.LineItemView;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
 import com.agilysys.pms.account.model.Payment;
+import com.agilysys.pms.account.model.PaymentByAccountId;
 import com.agilysys.pms.account.model.PaymentInstrumentAuthStatus;
 import com.agilysys.pms.account.model.PaymentRefund;
 import com.agilysys.pms.account.model.PayoffBalanceRequest;
@@ -741,6 +742,24 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
+
+    /**
+     * Posts a payment to an account
+     *
+     * @param tenantId  the Tenant Id to post to
+     * @param propertyId id of the property where the account exists
+     * @param accountId  the Account to post to
+     * @param paymentAccountId  Payment object containing payment information for accountId
+     * @return a LineItemView for Display purposes
+     */
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH)
+    @Validated(Payment.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, PaymentByAccountId paymentAccountId,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
 
     /**
