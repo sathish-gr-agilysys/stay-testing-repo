@@ -26,11 +26,14 @@ public interface MaintenanceInterface {
     String BASE_PATH = "/maintenance";
 
     String ACCOUNTS_PATH = "/accounts";
+    String LEDGER_TRANSACTIONS_PATH = "/ledgertransactions";
 
     String COUNT_PATH = "/count";
+    String EXPORT_PATH = "/export";
     String INDEX_PATH = "/index";
     String RANGE_PATH = "/range";
     String UNINDEXED_PATH = "/unindexed";
+    String UNEXPORTED_PATH = "/unexported";
 
     String TENANT_ID = "tenantId";
     String TENANT_ID_TEMPLATE = "{" + TENANT_ID + "}";
@@ -66,4 +69,30 @@ public interface MaintenanceInterface {
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
     Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COUNT_PATH + RANGE_PATH + LEDGER_TRANSACTIONS_PATH + "/" + TENANT_ID_TEMPLATE)
+    long countRangeLedgerTransactions(@PathParam(TENANT_ID) String tenantId,
+          @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COUNT_PATH + UNEXPORTED_PATH + LEDGER_TRANSACTIONS_PATH + "/" + TENANT_ID_TEMPLATE)
+    long countUnexportedLedgerTransactions(@PathParam(TENANT_ID) String tenantId)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COUNT_PATH + UNEXPORTED_PATH + LEDGER_TRANSACTIONS_PATH)
+    Map<String, Long> countUnexportedLedgerTransactions() throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(EXPORT_PATH + LEDGER_TRANSACTIONS_PATH + "/" + TENANT_ID_TEMPLATE)
+    long exportLedgerTransactions(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(EXPORT_PATH + LEDGER_TRANSACTIONS_PATH)
+    Map<String, Long> exportLedgerTransactions(IndexRequest request) throws RGuestException, ServiceException;
 }
