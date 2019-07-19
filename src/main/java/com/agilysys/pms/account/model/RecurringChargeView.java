@@ -11,11 +11,8 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
-import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.FrequencyType;
-import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
-import com.agilysys.pms.account.model.ComponentChargeView;
-import com.agilysys.pms.account.model.TransactionItemType;
+import com.agilysys.common.model.rate.CompInfo;
 
 /**
  * Recurring Charges view object
@@ -68,8 +65,6 @@ public class RecurringChargeView {
     private LocalDate endDate;
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
-    private boolean afterDateRollChargesPosted;
-    private boolean afterDateRollCharges;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
@@ -254,7 +249,7 @@ public class RecurringChargeView {
     public void setCompInfo(CompInfo compInfo) {
         this.compInfo = compInfo;
     }
-    
+
     public boolean isDeleted() {
         return deleted;
     }
@@ -317,21 +312,5 @@ public class RecurringChargeView {
 
     public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
         this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
-    }
-
-    public boolean isAfterDateRollChargesPosted() {
-        return afterDateRollChargesPosted;
-    }
-
-    public void setAfterDateRollChargesPosted(boolean afterDateRollChargesPosted) {
-        this.afterDateRollChargesPosted = afterDateRollChargesPosted;
-    }
-
-    public boolean isAfterDateRollCharges() {
-        return afterDateRollCharges;
-    }
-
-    public void setAfterDateRollCharges(boolean afterDateRollCharges) {
-        this.afterDateRollCharges = afterDateRollCharges;
     }
 }
