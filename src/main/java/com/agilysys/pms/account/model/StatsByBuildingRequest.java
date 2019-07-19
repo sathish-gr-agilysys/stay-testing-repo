@@ -15,6 +15,7 @@ public class StatsByBuildingRequest {
     private boolean includeNonBeddedRoomType;
     private boolean roomRevenue;
     private boolean embed;
+    private boolean showReservationWithoutRooms;
 
     public LocalDate getStartDate() {
         return startDate;
@@ -70,5 +71,13 @@ public class StatsByBuildingRequest {
 
     public void setEmbed(boolean embed) {
         this.embed = embed;
+    }
+
+    public boolean isShowReservationWithoutRooms() {
+        return showReservationWithoutRooms;
+    }
+
+    public void setShowReservationWithoutRooms(boolean showReservationWithoutRooms) {
+        this.showReservationWithoutRooms = showReservationWithoutRooms;
     }
 }
