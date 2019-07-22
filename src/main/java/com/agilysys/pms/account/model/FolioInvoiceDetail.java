@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 public class FolioInvoiceDetail {
 
+    private String folioInvoiceId;
     private String folioInvoiceNumber;
     private String folioName;
     private InvoiceStatus invoiceStatus;
@@ -14,12 +15,21 @@ public class FolioInvoiceDetail {
 
     public FolioInvoiceDetail() {}
 
-    public FolioInvoiceDetail(String folioInvoiceNumber, String folioName, InvoiceStatus invoiceStatus,
-          BigDecimal folioBalance) {
+    public FolioInvoiceDetail(String folioInvoiceId, String folioInvoiceNumber, String folioName,
+          InvoiceStatus invoiceStatus, BigDecimal folioBalance) {
+        this.folioInvoiceId = folioInvoiceId;
         this.folioInvoiceNumber = folioInvoiceNumber;
         this.folioName = folioName;
         this.invoiceStatus = invoiceStatus;
         this.folioBalance = folioBalance;
+    }
+
+    public String getFolioInvoiceId() {
+        return folioInvoiceId;
+    }
+
+    public void setFolioInvoiceId(String folioInvoiceId) {
+        this.folioInvoiceId = folioInvoiceId;
     }
 
     public String getFolioInvoiceNumber() {
