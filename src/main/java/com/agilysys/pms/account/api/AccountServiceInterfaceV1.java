@@ -169,7 +169,7 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_SUMMARY = "/folioInvoiceSummary";
     String PROFILE_ID = "profileId";
     String PROFILES_PATH = "/profiles";
-    String PROFILE_ID_PATH = PROFILES_PATH + "/{" + PROFILE_ID + "/}";
+    String PROFILE_ID_PATH = PROFILES_PATH + "/{" + PROFILE_ID + "}";
     String PRESET =  "preset";
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
@@ -207,7 +207,7 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
-    String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILE_ID_PATH + INVOICES_PATH;
+    String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
 
     /**
@@ -1500,4 +1500,11 @@ public interface AccountServiceInterfaceV1 {
     BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException, ServiceException;
+
+    @PUT
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    void updateFolioInvoiceFromCategory(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          FolioInvoiceUpdateRequest folioInvoiceUpdateRequest) throws RGuestException, ServiceException;
 }
