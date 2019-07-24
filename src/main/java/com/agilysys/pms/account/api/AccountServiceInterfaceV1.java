@@ -137,8 +137,8 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_EMAIL = "/folioEmail";
     String FOLIO_ID = "folioId";
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
-    String FOLIO_INVOICE_NUMBER = "folioInvoiceNumber";
-    String FOLIO_INVOICE_NUMBER_PATH = "/" + FOLIO_INVOICE_NUMBER + "/{" + FOLIO_INVOICE_NUMBER + "}";
+    String FOLIO_INVOICE_ID = "folioInvoiceId";
+    String FOLIO_INVOICE_ID_PATH = "/" + FOLIO_INVOICE_ID + "/{" + FOLIO_INVOICE_ID + "}";
     String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
@@ -1475,10 +1475,10 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @GET
-    @Path(FOLIO_INVOICE_NUMBER_PATH)
+    @Path(FOLIO_INVOICE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     FolioInvoiceResponse getFolioInvoiceDetailFromFolioInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceNumber") String folioInvoiceNumber)
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceId") String folioInvoiceId)
           throws RGuestException, ServiceException;
 
     @POST
