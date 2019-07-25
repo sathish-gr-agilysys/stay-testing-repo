@@ -52,7 +52,6 @@ import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
-import com.agilysys.pms.account.model.FolioInvoice;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
 import com.agilysys.pms.account.model.FolioInvoiceRequest;
 import com.agilysys.pms.account.model.FolioInvoiceResponse;
@@ -1458,7 +1457,8 @@ public interface AccountServiceInterfaceV1 {
     @Path(FOLIO_INVOICE_BY_PROFILE_ID)
     @PreAuthorize("hasPermission('Required', 'ReadProperties')")
     void updateProfileIdsInMultiFolioInvoice(@PathParam(TENANT_ID) String tenantId,
-          UpdateFolioInvoicesRequest updateFolioInvoicesRequest) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, UpdateFolioInvoicesRequest updateFolioInvoicesRequest)
+          throws RGuestException, ServiceException;
 
     @POST
     @Path(INVOICES_PATH + PRINT_FOLIO)
