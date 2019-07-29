@@ -43,6 +43,7 @@ public interface TransactionItemConfigServiceInterface {
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
     String ACTIVE = "/active";
+    String PERMIT_COMP = "/permitComp";
     String MIGRATE_TO_V1_PATH = "/migrateToV1";
 
     /**
@@ -146,6 +147,20 @@ public interface TransactionItemConfigServiceInterface {
      */
     @GET
     @Path(ACTIVE)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    List<TransactionItem> getActiveTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
+          @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
+          @QueryParam(INCLUDE_INACTIVE) boolean includeInactive) throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve all Active permitComp items
+     *
+     * @param tenantId the tenantId to retrieve InventoryItems for
+     * @return List of InventoryItems
+     */
+    @GET
+    @Path(PERMIT_COMP)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<TransactionItem> getActiveTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
