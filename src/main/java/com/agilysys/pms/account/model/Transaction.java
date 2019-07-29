@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.rate.AllowanceCombination;
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
@@ -32,6 +33,7 @@ public abstract class Transaction {
     protected CompInfo compInfo;
     protected RoomChargePostingType roomChargePostingType;
     protected ComponentType componentType;
+    protected String descriptionOverride;
     protected String folioId;
     protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
@@ -220,6 +222,14 @@ public abstract class Transaction {
 
     public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
 
+    public String getDescriptionOverride() {
+        return descriptionOverride;
+    }
+
+    public void setDescriptionOverride(String descriptionOverride) {
+        this.descriptionOverride = descriptionOverride;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
@@ -245,5 +255,9 @@ public abstract class Transaction {
               .append(postingDate, other.postingDate).append(reason, other.reason).append(reference, other.reference)
               .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
               .append(displayDate, other.displayDate).isEquals();
+    }
+
+    public AllowanceCombination toAllowanceCombination() {
+        return null;
     }
 }

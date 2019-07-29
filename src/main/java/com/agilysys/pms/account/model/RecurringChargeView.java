@@ -11,11 +11,8 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
-import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.FrequencyType;
-import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
-import com.agilysys.pms.account.model.ComponentChargeView;
-import com.agilysys.pms.account.model.TransactionItemType;
+import com.agilysys.common.model.rate.CompInfo;
 
 /**
  * Recurring Charges view object
@@ -70,6 +67,7 @@ public class RecurringChargeView {
     private BigDecimal reverseTaxTotalChargeAmount;
     private boolean afterDateRollChargesPosted;
     private boolean afterDateRollCharges;
+    private String packageFolioId;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
@@ -333,5 +331,13 @@ public class RecurringChargeView {
 
     public void setAfterDateRollCharges(boolean afterDateRollCharges) {
         this.afterDateRollCharges = afterDateRollCharges;
+    }
+
+    public String getPackageFolioId() {
+        return packageFolioId;
+    }
+
+    public void setPackageFolioId(String packageFolioId) {
+        this.packageFolioId = packageFolioId;
     }
 }

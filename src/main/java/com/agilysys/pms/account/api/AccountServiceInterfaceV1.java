@@ -46,6 +46,7 @@ import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
+import com.agilysys.pms.account.model.CheckAllowanceRequest;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
@@ -1433,4 +1434,10 @@ public interface AccountServiceInterfaceV1 {
     @Path(NEW_PROPERTY_AR_ACCOUNT)
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(NEW_PROPERTY_AR_ACCOUNT)
+    void checkPackageAllowance(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, CheckAllowanceRequest checkAllowanceRequest) throws RGuestException, ServiceException;
 }

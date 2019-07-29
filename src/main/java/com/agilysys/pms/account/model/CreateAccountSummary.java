@@ -39,6 +39,7 @@ public class CreateAccountSummary extends AccountSummary {
 
     private LocalDate startDate;
     private LocalDate endDate;
+    private boolean createPackageFolio;
 
     //TODO add schema validation to this to make this required once it is required by the reservation service
     @JsonDeserialize(keyUsing = LocalDateJsonKeyDeserializer.class)
@@ -108,5 +109,13 @@ public class CreateAccountSummary extends AccountSummary {
 
     public void setReservationEndDate(LocalDate reservationEndDate) {
         this.reservationEndDate = reservationEndDate;
+    }
+
+    public boolean isCreatePackageFolio() {
+        return createPackageFolio;
+    }
+
+    public void setCreatePackageFolio(boolean createPackageFolio) {
+        this.createPackageFolio = createPackageFolio;
     }
 }

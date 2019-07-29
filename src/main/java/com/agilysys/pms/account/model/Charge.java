@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.common.model.rate.AllowanceCombination;
 import com.google.common.base.Objects;
 
 /**
@@ -70,5 +71,13 @@ public class Charge extends Transaction {
     public int hashCode() {
         return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId, transactionItemType,
               autoRecurringItemId);
+    }
+
+    @Override
+    public AllowanceCombination toAllowanceCombination() {
+        if (mealPeriodId == null && sourceId == null && itemId == null) {
+            return null;
+        }
+        return new AllowanceCombination(mealPeriodId, sourceId, itemId);
     }
 }
