@@ -35,6 +35,10 @@ public class ComponentChargeView {
 
     ChargeTaxAmountInfo estimatedTaxInfo;
 
+    private boolean reverseTax;
+
+    private BigDecimal reverseTaxTotalChargeAmount;
+
     public ComponentChargeView() {
     }
 
@@ -141,6 +145,22 @@ public class ComponentChargeView {
         this.transactionItemType = transactionItemType;
     }
 
+    public boolean isReverseTax() {
+        return reverseTax;
+    }
+
+    public void setReverseTax(boolean reverseTax) {
+        this.reverseTax = reverseTax;
+    }
+
+    public BigDecimal getReverseTaxTotalChargeAmount() {
+        return reverseTaxTotalChargeAmount;
+    }
+
+    public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
+        this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
+    }
+
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
@@ -156,28 +176,10 @@ public class ComponentChargeView {
     }
 
     public static List<ComponentChargeView> fromComponentRateSnapshots(
-          List<ComponentRateSnapshot> componentRateSnapshots, boolean isAfterDateRollChargesPosted,
-          boolean isChargesPosted, AccountStatus accountStatus, boolean dateChanged) {
-
-        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        for (ComponentRateSnapshot componentRateSnapshot : componentRateSnapshots) {
-            if ((RoomChargePostingType.BEFORE_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType() &&
-                  (!isChargesPosted || !dateChanged) && accountStatus == AccountStatus.OPEN) ||
-                  ((isAfterDateRollChargesPosted || accountStatus == AccountStatus.CLOSED) && isChargesPosted &&
-                        RoomChargePostingType.AFTER_DATE_ROLL == componentRateSnapshot.getRoomChargePostingType())) {
-                componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot));
-            }
-        }
-        return componentChargeViews;
-    }
-
-    public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots) {
-
-        List<ComponentChargeView> componentChargeViews = new ArrayList<>(componentRateSnapshots.size());
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         componentRateSnapshots.stream().forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
-

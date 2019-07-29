@@ -77,11 +77,14 @@ public class LineItemView implements Comparable<LineItemView> {
     private LineItemView transferLineItem;
     private String transactionId;
     private Map<String, String> transactionMessageAttributes;
+    private String transactionReferenceId;
     private String transactionSourceAccountId;
     private String transactionType;
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private boolean reverseTax;
+    private BigDecimal reverseTaxTotalChargeAmount;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -524,6 +527,14 @@ public class LineItemView implements Comparable<LineItemView> {
         this.transactionMessageAttributes = transactionMessageAttributes;
     }
 
+    public String getTransactionReferenceId() {
+        return transactionReferenceId;
+    }
+
+    public void setTransactionReferenceId(String transactionReferenceId) {
+        this.transactionReferenceId = transactionReferenceId;
+    }
+
     public String getTransactionSourceAccountId() {
         return transactionSourceAccountId;
     }
@@ -712,9 +723,12 @@ public class LineItemView implements Comparable<LineItemView> {
     public BigDecimal getTaxAmount() {
         BigDecimal taxAmount = BigDecimal.ZERO;
         for (LineItemView tax : getTaxLineItems()) {
-            taxAmount = taxAmount.add(tax.getUnitAmount().multiply(new BigDecimal(tax.getQuantity())));
+            if (tax.isReverseTax() && tax.getReverseTaxTotalChargeAmount() != null) {
+                taxAmount = taxAmount.add(tax.getReverseTaxTotalChargeAmount());
+            } else if (!tax.isReverseTax()) {
+                taxAmount = taxAmount.add(tax.getUnitAmount().multiply(new BigDecimal(tax.getQuantity())));
+            }
         }
-
         return taxAmount;
     }
 
@@ -722,6 +736,9 @@ public class LineItemView implements Comparable<LineItemView> {
      * @return the totalAmount
      */
     public BigDecimal getTotalAmount() {
+        if (isReverseTax()) {
+            return reverseTaxTotalChargeAmount != null ? reverseTaxTotalChargeAmount : BigDecimal.ZERO;
+        }
         return unitAmount.multiply(new BigDecimal(quantity));
     }
 
@@ -777,6 +794,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCallType(String callType) {
         this.callType = callType;
+    }
+
+    public boolean isReverseTax() {
+        return reverseTax;
+    }
+
+    public void setReverseTax(boolean reverseTax) {
+        this.reverseTax = reverseTax;
+    }
+
+    public BigDecimal getReverseTaxTotalChargeAmount() {
+        return reverseTaxTotalChargeAmount;
+    }
+
+    public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
+        this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
     }
 
     @Override
