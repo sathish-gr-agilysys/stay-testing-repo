@@ -1442,4 +1442,10 @@ public interface AccountServiceInterfaceV1 {
     @Path(NEW_PROPERTY_AR_ACCOUNT)
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path("/getReservationIdsToAuthorize")
+    Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId, Set<String> accountIds)
+          throws RGuestException, ServiceException;
 }
