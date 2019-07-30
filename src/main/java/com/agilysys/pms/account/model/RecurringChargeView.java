@@ -252,7 +252,7 @@ public class RecurringChargeView {
     public void setCompInfo(CompInfo compInfo) {
         this.compInfo = compInfo;
     }
-    
+
     public boolean isDeleted() {
         return deleted;
     }
