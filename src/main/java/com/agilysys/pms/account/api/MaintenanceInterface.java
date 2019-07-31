@@ -71,6 +71,25 @@ public interface MaintenanceInterface {
     Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
 
     @GET
+    @Path(COUNT_PATH + UNEXPORTED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
+    long countUnexportedAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COUNT_PATH + UNEXPORTED_PATH + ACCOUNTS_PATH)
+    Map<String, Long> countUnexportedAccounts() throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(EXPORT_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
+    long exportAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(EXPORT_PATH + ACCOUNTS_PATH)
+    Map<String, Long> exportAccounts(IndexRequest request) throws RGuestException, ServiceException;
+
+    @GET
     @Path(COUNT_PATH + RANGE_PATH + LEDGER_TRANSACTIONS_PATH + "/" + TENANT_ID_TEMPLATE)
     long countRangeLedgerTransactions(@PathParam(TENANT_ID) String tenantId,
           @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
