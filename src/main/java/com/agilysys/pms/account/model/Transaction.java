@@ -14,6 +14,7 @@ import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -52,6 +53,7 @@ public abstract class Transaction {
     protected String reference;
     protected String sourceId;
     protected String terminalId;
+    protected GatewayType gatewayType;
 
     public String getAccountId() {
         return accountId;
@@ -220,6 +222,14 @@ public abstract class Transaction {
 
     public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
 
+    public GatewayType getGatewayType() {
+        return gatewayType;
+    }
+
+    public void setGatewayType(GatewayType gatewayType) {
+        this.gatewayType = gatewayType;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
@@ -244,6 +254,6 @@ public abstract class Transaction {
               .append(folioId, other.folioId).append(ignoreRules, other.ignoreRules).append(itemId, other.itemId)
               .append(postingDate, other.postingDate).append(reason, other.reason).append(reference, other.reference)
               .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
-              .append(displayDate, other.displayDate).isEquals();
+              .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType).isEquals();
     }
 }
