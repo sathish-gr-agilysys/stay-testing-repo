@@ -100,7 +100,7 @@ public interface AccountServiceInterfaceV1 {
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
 
     String ACCOUNT_BALANCES_PATH = "/balances";
-    String CANCEL_PAYMENTS = "/cancelPayemnts";
+    String CANCEL_PAYMENTS = "/cancelPayments";
     String ACCOUNT_ID = "accountId";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
@@ -925,7 +925,6 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     /**
->>>>>>> e1012ebdf4557298b4b67afdeee826a489dfa80b
      * Save paymentSettings for an account
      *
      * @param tenantId        id of tenant where account exists
