@@ -66,6 +66,8 @@ import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
+import com.agilysys.pms.account.model.PantryCharge;
+import com.agilysys.pms.account.model.PantryTransactionResponse;
 import com.agilysys.pms.account.model.Payment;
 import com.agilysys.pms.account.model.PaymentInstrumentAuthStatus;
 import com.agilysys.pms.account.model.PaymentRefund;
@@ -190,6 +192,7 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
+    String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
 
     /**
      * Retrieve all accounts from a tenant
@@ -319,17 +322,21 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Update the status of an existing account for a tenant
      *
-     * @param tenantId      updated account's tenant
-     * @param propertyId    id of the property where the account exists
-     * @param accountId     account to update
-     * @param accountStatus account status string. One of PENDING, OPEN, CLOSED (see domain AccountStatus)
+     * @param tenantId                     updated account's tenant
+     * @param propertyId                   id of the property where the account exists
+     * @param accountId                    account to update
+     * @param accountStatus                account status string. One of PENDING, OPEN, CLOSED (see domain
+     *                                     AccountStatus)
+     * @param dissociatePantryHouseAccount When true, the House account associated with the disabled Pantry setting will
+     *                                     be dissociated permitting to close the House Account
      */
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNT_STATUS_PATH)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void updateAccountStatus(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus)
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus,
+          @QueryParam("dissociatePantryHouseAccount") boolean dissociatePantryHouseAccount)
           throws RGuestException, ServiceException;
 
     /**
@@ -1436,4 +1443,12 @@ public interface AccountServiceInterfaceV1 {
     @Path(NEW_PROPERTY_AR_ACCOUNT)
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'AddPantry')")
+    PantryTransactionResponse postPantryCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
+          @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException, ServiceException;
 }

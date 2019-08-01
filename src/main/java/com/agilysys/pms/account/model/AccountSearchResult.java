@@ -34,6 +34,7 @@ public class AccountSearchResult {
 
     private String number;
     private String reservationConfirmationId;
+    private String reservationId;
     private String reservationStatus;
     private String roomType;
     private String roomNumber;
@@ -64,7 +65,7 @@ public class AccountSearchResult {
 
     public AccountSearchResult(String accountId, AccountType accountType, Date arrivalDate, Date departureDate,
           String name, String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
-          String roomType, String tenantId, String vipStatus) {
+          String roomType, String tenantId, String vipStatus, String reservationId) {
         this(accountId, accountType, name, propertyId, tenantId);
 
         this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate) : null;
@@ -74,6 +75,7 @@ public class AccountSearchResult {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.vipStatus = vipStatus;
+        this.reservationId = reservationId;
     }
 
     public void setAccountStatus(String accountStatus) {
@@ -218,5 +220,13 @@ public class AccountSearchResult {
 
     public void setVipStatus(String vipStatus) {
         this.vipStatus = vipStatus;
+    }
+
+    public String getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(String reservationId) {
+        this.reservationId = reservationId;
     }
 }

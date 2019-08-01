@@ -87,6 +87,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private GatewayType gatewayType;
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
+    private List<PantryItemDetails> pantryItemDetails;
+    private Boolean pantryItem;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -820,6 +822,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
         this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
+    }
+
+    public List<PantryItemDetails> getPantryItemDetails() {
+        return pantryItemDetails;
+    }
+
+    public void setPantryItemDetails(List<PantryItemDetails> pantryItemDetails) {
+        this.pantryItemDetails = pantryItemDetails;
+    }
+
+    public Boolean getPantryItem() {
+        return pantryItem;
+    }
+
+    public void setPantryItem(Boolean pantryItem) {
+        this.pantryItem = pantryItem;
     }
 
     @Override
