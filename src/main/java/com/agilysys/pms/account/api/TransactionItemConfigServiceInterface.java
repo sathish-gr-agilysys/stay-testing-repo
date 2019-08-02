@@ -25,7 +25,7 @@ import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
-/**
+/*
  * CRUD methods for TransactionItem
  */
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/transactionItems")
@@ -39,7 +39,7 @@ public interface TransactionItemConfigServiceInterface {
     String INCLUDE_INTERNAL = "includeInternal";
     String INCLUDE_SUB_TRANSACTION_ITEMS = "includeSubTransactionItems";
     String INCLUDE_INACTIVE = "includeInactive";
-    String INCLUDE_PETMIT_COMP = "includePermitComp";
+    String INCLUDE_PERMIT_COMP = "includePermitComp";
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
     String ACTIVE = "/active";
@@ -166,5 +166,5 @@ public interface TransactionItemConfigServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
           @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
           @QueryParam(INCLUDE_INACTIVE) boolean includeInactive,
-          @QueryParam(INCLUDE_PETMIT_COMP) boolean includePermitComp) throws RGuestException, ServiceException;
+          @QueryParam(INCLUDE_PERMIT_COMP) boolean includePermitComp) throws RGuestException, ServiceException;
 }
