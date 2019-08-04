@@ -17,7 +17,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.PathParam ;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -88,7 +87,6 @@ import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
-import com.agilysys.pms.payment.model.PaymentInstrumentView;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -1449,6 +1447,6 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @CreatedOnSuccess
     @Path("/getReservationIdsToAuthorize")
-    Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId, Set<String> accountIds)
-          throws RGuestException, ServiceException;
+    Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
 }
