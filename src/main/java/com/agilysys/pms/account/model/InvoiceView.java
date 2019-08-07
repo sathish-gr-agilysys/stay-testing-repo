@@ -177,7 +177,7 @@ public class InvoiceView {
             balance = nonGroupInvoiceDetails.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
-        if(groupInvoiceDetails != null){
+        if (groupInvoiceDetails != null) {
             balance = balance.add(groupInvoiceDetails.stream()
                   .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getTotalBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add));
