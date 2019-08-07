@@ -46,6 +46,7 @@ public class ComponentChargeView {
     private AllowanceFrequencyType allowanceFrequencyType;
     private List<AllowanceCombination> allowanceCombinations;
     private String allowanceName;
+    private int allowanceTotalQuantity;
     private String breakageItemId;
 
     public ComponentChargeView() {
@@ -216,6 +217,14 @@ public class ComponentChargeView {
         this.allowanceName = allowanceName;
     }
 
+    public int getAllowanceTotalQuantity() {
+        return allowanceTotalQuantity;
+    }
+
+    public void setAllowanceTotalQuantity(int allowanceTotalQuantity) {
+        this.allowanceTotalQuantity = allowanceTotalQuantity;
+    }
+
     public String getBreakageItemId() {
         return breakageItemId;
     }
@@ -239,6 +248,7 @@ public class ComponentChargeView {
         componentChargeView.setAllowanceCombinations(componentRateSnapshot.getAllowanceCombinations());
         componentChargeView.setAllowanceFrequencyType(componentRateSnapshot.getAllowanceFrequencyType());
         componentChargeView.setAllowanceName(componentRateSnapshot.getAllowanceName());
+        componentChargeView.setAllowanceTotalQuantity(componentRateSnapshot.getAllowanceTotalQuantity());
         componentChargeView.setBreakageItemId(componentRateSnapshot.getBreakageItemId());
 
         return componentChargeView;

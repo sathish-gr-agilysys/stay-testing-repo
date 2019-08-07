@@ -260,4 +260,8 @@ public abstract class Transaction {
     public AllowanceCombination toAllowanceCombination() {
         return null;
     }
+
+    public boolean checkPosCharge() {
+        return false;
+    }
 }

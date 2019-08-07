@@ -17,7 +17,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.PathParam ;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -33,6 +32,8 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
+import com.agilysys.pms.account.data.domain.CheckAllowanceRequest;
+import com.agilysys.pms.account.data.domain.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
 import com.agilysys.pms.account.model.AccountSearchResult;
@@ -46,7 +47,6 @@ import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
-import com.agilysys.pms.account.model.CheckAllowanceRequest;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
@@ -89,7 +89,6 @@ import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
-import com.agilysys.pms.payment.model.PaymentInstrumentView;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -1440,7 +1439,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @CreatedOnSuccess
-    @Path(NEW_PROPERTY_AR_ACCOUNT)
-    void checkPackageAllowance(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, CheckAllowanceRequest checkAllowanceRequest) throws RGuestException, ServiceException;
+    @Path("/checkAllowance")
+    List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          CheckAllowanceRequest checkAllowanceRequest) throws RGuestException, ServiceException;
 }

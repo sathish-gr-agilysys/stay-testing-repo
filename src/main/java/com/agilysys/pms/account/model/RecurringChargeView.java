@@ -41,6 +41,8 @@ public class RecurringChargeView {
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
     private String routedFolioId;
+
+
     private List<ComponentChargeView> componentCharges = new ArrayList<>();
 
     /**
@@ -65,8 +67,6 @@ public class RecurringChargeView {
     private LocalDate endDate;
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
-    private boolean afterDateRollChargesPosted;
-    private boolean afterDateRollCharges;
     private String packageFolioId;
 
     public TransactionItemType getTransactionItemType() {
@@ -315,22 +315,6 @@ public class RecurringChargeView {
 
     public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
         this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
-    }
-
-    public boolean isAfterDateRollChargesPosted() {
-        return afterDateRollChargesPosted;
-    }
-
-    public void setAfterDateRollChargesPosted(boolean afterDateRollChargesPosted) {
-        this.afterDateRollChargesPosted = afterDateRollChargesPosted;
-    }
-
-    public boolean isAfterDateRollCharges() {
-        return afterDateRollCharges;
-    }
-
-    public void setAfterDateRollCharges(boolean afterDateRollCharges) {
-        this.afterDateRollCharges = afterDateRollCharges;
     }
 
     public String getPackageFolioId() {
