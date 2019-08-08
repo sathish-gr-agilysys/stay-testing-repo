@@ -136,7 +136,8 @@ public interface AccountServiceInterfaceV1 {
     String INVOICES_PATH = "/invoices";
     String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_VIEW_TYPE = "invoiceViewType";
-    String INVOICE_REPORT = "/invoice-report/{" + INVOICE_VIEW_TYPE + "}";
+    String INVOICE_REPORT = "/invoice-report";
+    String INVOICE_REPORT_TYPE = INVOICE_REPORT + "/{" + INVOICE_VIEW_TYPE + "}";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
@@ -1118,12 +1119,18 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @GET
-    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT)
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_TYPE)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(INVOICE_VIEW_TYPE) InvoiceViewType viewType, @QueryParam("includeClosed") boolean includeClosed)
           throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoiceBaseView> getInvoiceViews(String tenantId, String propertyId, String arAccountId,
+          Set<String> invoiceIds);
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
