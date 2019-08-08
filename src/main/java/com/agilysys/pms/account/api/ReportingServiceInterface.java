@@ -27,14 +27,17 @@ import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
+import com.agilysys.pms.account.model.RevenueDetailReportRequest;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
+import com.agilysys.pms.account.model.StatsByBuildingRequest;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
 import com.agilysys.pms.account.model.TransactionReportResponse;
 import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
+import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/reports")
 public interface ReportingServiceInterface {
@@ -45,7 +48,9 @@ public interface ReportingServiceInterface {
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
+    String GENERAL_AVAILABILITY_STATS = "/generalAvailabilityStats";
     String REVENUE_PATH = "/revenueDetails";
+    String REVENUE_PATH_BY_BUILDING = "/revenueDetailsByBuilding";
     String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
@@ -187,6 +192,15 @@ public interface ReportingServiceInterface {
           @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
           throws RGuestException, ServiceException;
 
+    @POST
+    @Path(REVENUE_PATH_BY_BUILDING)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    Map<String, RevenueReportResult> getRevenueDetailReportByBuilding(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, RevenueDetailReportRequest revenueDetailReportRequest)
+          throws RGuestException, ServiceException;
+
     /**
      * retrieve recurring charge detail information for a given date
      *
@@ -297,5 +311,13 @@ public interface ReportingServiceInterface {
     Map<String, RoomRevenueItem> getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(GENERAL_AVAILABILITY_STATS)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
+          throws RGuestException, ServiceException;
 }
 
