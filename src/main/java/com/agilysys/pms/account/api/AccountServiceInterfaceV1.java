@@ -98,7 +98,6 @@ public interface AccountServiceInterfaceV1 {
     String BASE_PATH = "/v1/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/accounts";
 
     String ACCOUNT_BALANCES_PATH = "/balances";
-    String CANCEL_PAYMENTS = "/cancelPayments";
     String ACCOUNT_ID = "accountId";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
@@ -189,6 +188,8 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
+    String CANCEL_PAYMENTS = "/cancelPayments";
+    String RESERVATION_IDS_TO_AUTHORIZE = "/getReservationIdsToAuthorize";
 
     /**
      * Retrieve all accounts from a tenant
@@ -352,13 +353,6 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_BALANCES_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountStatementResponse getAccountBalances(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
-          throws RGuestException, ServiceException;
-
-    @POST
-    @Path(CANCEL_PAYMENTS)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    void processCancellation(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
           throws RGuestException, ServiceException;
 
@@ -1444,8 +1438,15 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     @POST
+    @Path(CANCEL_PAYMENTS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    void processCancellation(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
+          throws RGuestException, ServiceException;
+
+    @POST
     @CreatedOnSuccess
-    @Path("/getReservationIdsToAuthorize")
+    @Path(RESERVATION_IDS_TO_AUTHORIZE)
     Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
 }

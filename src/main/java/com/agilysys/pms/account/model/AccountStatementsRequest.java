@@ -10,7 +10,7 @@ import org.joda.time.LocalDate;
 
 public class AccountStatementsRequest {
 
-    private Map<String, String> accountIdsReservationCodes;
+    private Map<String, String> reservationConfirmationCodeByAccountId;
 
     private LocalDate propertyDate;
 
@@ -18,12 +18,12 @@ public class AccountStatementsRequest {
 
     private Map<String, Charge> accountsChargesMap;
 
-    public Map<String, String> getAccountIdsReservationCodes() {
-        return accountIdsReservationCodes;
+    public Map<String, String> getReservationConfirmationCodeByAccountId() {
+        return reservationConfirmationCodeByAccountId;
     }
 
-    public void setAccountIdsReservationCodes(Map<String, String> accountIdsReservationCodes) {
-        this.accountIdsReservationCodes = accountIdsReservationCodes;
+    public void setReservationConfirmationCodeByAccountId(Map<String, String> reservationConfirmationCodeByAccountId) {
+        this.reservationConfirmationCodeByAccountId = reservationConfirmationCodeByAccountId;
     }
 
     public LocalDate getPropertyDate() {
