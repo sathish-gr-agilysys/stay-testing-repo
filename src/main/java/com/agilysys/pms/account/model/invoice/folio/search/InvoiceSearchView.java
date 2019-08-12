@@ -7,5 +7,6 @@ import com.agilysys.pms.account.model.invoice.folio.InvoiceFolioView;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({ "id", "accountId", "terms", "payments", "sentOnDate" })
-public class InvoiceSearchView
-      extends InvoiceFolioView<InvoicedSourceAccountSearchView, GroupInvoicedSourceAccountSearchView> {}
+public class InvoiceSearchView extends
+      InvoiceFolioView<InvoiceFolioLineSearchView, InvoicedSourceAccountSearchView,
+            GroupInvoicedSourceAccountSearchView> {}

@@ -1129,8 +1129,8 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    List<InvoiceBaseView> getInvoiceViews(String tenantId, String propertyId, String arAccountId,
-          Set<String> invoiceIds);
+    List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIds);
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)

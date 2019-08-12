@@ -10,8 +10,8 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.joda.time.LocalDate;
 
-public class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends InvoiceFolioLineView, SOURCE_VIEW extends
-      InvoicedSourceAccountFolioView> {
+public class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends InvoiceFolioLineView<FOLIO_LINE_VIEW>,
+      SOURCE_VIEW extends InvoicedSourceAccountFolioView<FOLIO_LINE_VIEW>> {
     private LocalDate arrivalDate;
     private LocalDate departureDate;
     private String groupCode;
@@ -68,13 +68,14 @@ public class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends Invoice
     }
 
     public BigDecimal getChargesBalance() {
-        if (CollectionUtils.isEmpty(invoicedCharges)) {
+        BigDecimal chargesBalance = getGroupChargesBalance();
+        if (CollectionUtils.isEmpty(invoicedSourceAccountViews)) {
             return null;
         }
 
-        BigDecimal chargesBalance = BigDecimal.ZERO;
-        for (FOLIO_LINE_VIEW invoicedChargeItem : invoicedCharges) {
-            chargesBalance = chargesBalance.add(invoicedChargeItem.getLineItemChargesBalance());
+        chargesBalance = chargesBalance != null ? chargesBalance : BigDecimal.ZERO;
+        for (SOURCE_VIEW sourceView : invoicedSourceAccountViews) {
+            chargesBalance = chargesBalance.add(sourceView.getChargesBalance());
         }
 
         return chargesBalance;
@@ -82,13 +83,13 @@ public class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends Invoice
 
     public BigDecimal getTaxBalance() {
         BigDecimal groupSourceTaxBalance = getGroupTaxBalance();
-        if (CollectionUtils.isEmpty(invoicedCharges)) {
+        if (CollectionUtils.isEmpty(invoicedSourceAccountViews)) {
             return groupSourceTaxBalance;
         }
 
         BigDecimal taxBalance = groupSourceTaxBalance == null ? BigDecimal.ZERO : groupSourceTaxBalance;
-        for (FOLIO_LINE_VIEW invoicedChargeItem : invoicedCharges) {
-            taxBalance = taxBalance.add(invoicedChargeItem.getLineItemTaxBalance());
+        for (SOURCE_VIEW sourceView : invoicedSourceAccountViews) {
+            taxBalance = taxBalance.add(sourceView.getTaxBalance());
         }
 
         return taxBalance;
@@ -109,13 +110,13 @@ public class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends Invoice
     }
 
     private BigDecimal getGroupTaxBalance() {
-        if (CollectionUtils.isEmpty(invoicedSourceAccountViews)) {
+        if (CollectionUtils.isEmpty(invoicedCharges)) {
             return null;
         }
 
         BigDecimal taxBalance = BigDecimal.ZERO;
-        for (SOURCE_VIEW sourceView : invoicedSourceAccountViews) {
-            taxBalance = taxBalance.add(sourceView.getTaxBalance());
+        for (FOLIO_LINE_VIEW invoicedChargeItem : invoicedCharges) {
+            taxBalance = taxBalance.add(invoicedChargeItem.getLineItemTaxBalance());
         }
 
         return taxBalance;
@@ -132,5 +133,18 @@ public class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends Invoice
         }
 
         return lineItemBalance;
+    }
+
+    private BigDecimal getGroupChargesBalance() {
+        if (CollectionUtils.isEmpty(invoicedCharges)) {
+            return null;
+        }
+
+        BigDecimal chargesBalance = BigDecimal.ZERO;
+        for (FOLIO_LINE_VIEW invoicedChargeItem : invoicedCharges) {
+            chargesBalance = chargesBalance.add(invoicedChargeItem.getLineItemChargesBalance());
+        }
+
+        return chargesBalance;
     }
 }

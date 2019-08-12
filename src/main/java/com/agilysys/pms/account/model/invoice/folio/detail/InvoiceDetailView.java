@@ -8,8 +8,9 @@ import java.util.List;
 import com.agilysys.pms.account.model.TaxAmountInfo;
 import com.agilysys.pms.account.model.invoice.folio.InvoiceFolioView;
 
-public class InvoiceDetailView
-      extends InvoiceFolioView<InvoicedSourceAccountDetailView, GroupInvoicedSourceAccountDetailView> {
+public class InvoiceDetailView extends
+      InvoiceFolioView<InvoiceFolioLineDetailView, InvoicedSourceAccountDetailView,
+            GroupInvoicedSourceAccountDetailView> {
 
     private List<TaxAmountInfo> taxTotalsBreakdown;
 

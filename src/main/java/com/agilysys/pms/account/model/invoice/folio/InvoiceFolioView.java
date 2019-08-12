@@ -11,8 +11,10 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 
-public class InvoiceFolioView<SOURCE_VIEW extends InvoicedSourceAccountFolioView, GROUP_SOURCE_VIEW extends
-      GroupInvoicedSourceAccountFolioView> extends InvoiceBaseView {
+public class InvoiceFolioView<FOLIO_LINE_VIEW extends InvoiceFolioLineView<FOLIO_LINE_VIEW>, SOURCE_VIEW extends
+      InvoicedSourceAccountFolioView<FOLIO_LINE_VIEW>, GROUP_SOURCE_VIEW extends
+      GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW, SOURCE_VIEW>>
+      extends InvoiceBaseView {
 
     private List<GROUP_SOURCE_VIEW> groupInvoiceDetails;
     private List<SOURCE_VIEW> nonGroupInvoiceDetails;
