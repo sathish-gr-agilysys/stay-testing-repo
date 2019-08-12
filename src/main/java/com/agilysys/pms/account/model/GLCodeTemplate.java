@@ -22,27 +22,30 @@ public class GLCodeTemplate {
     public GLCodeTemplate() {}
 
     public GLCodeTemplate(String building, String outlet, String mealperiod, String transactionItemName,
-          String transactionItemTemplate) {
+          String autoGLCodeTemplate, String transactionItemTemplate) {
         this.building = building;
         this.outlet = outlet;
         this.mealperiod = mealperiod;
         this.transactionItemName = transactionItemName;
-        this.autoGLCodeTemplate = transactionItemTemplate;
+        this.autoGLCodeTemplate = autoGLCodeTemplate;
+        this.template = transactionItemTemplate;
     }
 
-    public GLCodeTemplate(String building, String guestTypeName, String marketSegmentName, String autoGLCodeTemplate) {
+    public GLCodeTemplate(String building, String guestTypeName, String marketSegmentName, String autoGLCodeTemplate, String guestTypeTemplate) {
         this.building = building;
         this.autoGLCodeTemplate = autoGLCodeTemplate;
         this.guestType = guestTypeName;
         this.marketSegment = marketSegmentName;
+        this.template = guestTypeTemplate;
     }
 
     public GLCodeTemplate(String building, String outletCode, String paymentMethodName, String autoGLCodeTemplate,
-          GeneralLedgerCodeType type) {
+          String paymentTemplate, GeneralLedgerCodeType type) {
         this.building = building;
         this.autoGLCodeTemplate = autoGLCodeTemplate;
         this.outlet = outletCode;
         this.payment = paymentMethodName;
+        this.template = paymentTemplate;
     }
 
     public String getAutoGLCodeTemplate() {
