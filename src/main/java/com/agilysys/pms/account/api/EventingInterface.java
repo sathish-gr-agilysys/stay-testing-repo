@@ -13,8 +13,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.a3badran.platform.logging.LogParam;
-import org.a3badran.platform.logging.LogRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
@@ -43,50 +41,42 @@ public interface EventingInterface {
     @GET
     @Path(INVOICE_BASE + ID + HISTORY)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    @LogRequest("getInvoiceHistoryEvents")
-    HistoryEventsResult getInvoiceHistoryEvents(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
-          @PathParam("id") @LogParam("id") String invoiceId) throws RGuestException, ServiceException;
+    HistoryEventsResult getInvoiceHistoryEvents(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId)
+          throws RGuestException, ServiceException;
 
     @POST
     @Path(INVOICE_BASE + HISTORY + AR_NUMBER_BASE)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    @LogRequest("getInvoiceHistoryEventsForARNumber")
-    List<ARInvoiceEvents> getInvoiceHistoryEventsForARNumber(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId, ARReportRequest arReportRequest)
+    List<ARInvoiceEvents> getInvoiceHistoryEventsForARNumber(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, ARReportRequest arReportRequest)
           throws RGuestException, ServiceException;
 
     @GET
     @Path(INVOICE_BASE + ID + RAW_EVENTS)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    @LogRequest("getInvoiceRawEvents")
-    RawEventsResult getInvoiceRawEvents(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
-          @PathParam("id") @LogParam("id") String invoiceId) throws RGuestException, ServiceException;
+    RawEventsResult getInvoiceRawEvents(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path(ACCOUNTS + ID + HISTORY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    @LogRequest("getAccountHistoryEvents")
-    HistoryEventsResult getAccountHistoryEvents(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
-          @PathParam("id") @LogParam("id") String accountId) throws RGuestException, ServiceException;
+    HistoryEventsResult getAccountHistoryEvents(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String accountId)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path(PAYAGENTTRANSACTION + ID + RAW_EVENTS)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    @LogRequest("getInvoiceHistoryEvents")
-    List<PayAgentTransactionEvent> getPayAgentTransactionHistoryEvents(
-          @PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
-          @PathParam("id") @LogParam("id") String invoiceId) throws RGuestException, ServiceException;
+    List<PayAgentTransactionEvent> getPayAgentTransactionHistoryEvents(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId)
+          throws RGuestException, ServiceException;
 
     @POST
     @Path(ACCOUNTS + ID + HISTORY)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    @LogRequest("createAccountHistoryEvent")
-    HistoryEventsResult createAccountHistoryEvent(@PathParam(TENANT_ID) @LogParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) @LogParam(PROPERTY_ID) String propertyId,
-          @PathParam("id") @LogParam("id") String accountId, AccountPostEvent event)
+    HistoryEventsResult createAccountHistoryEvent(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String accountId, AccountPostEvent event)
           throws RGuestException, ServiceException;
 }
