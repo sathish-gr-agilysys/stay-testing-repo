@@ -43,7 +43,6 @@ public interface TransactionItemConfigServiceInterface {
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
     String ACTIVE = "/active";
-    String PERMIT_COMP = "/permitComp";
     String MIGRATE_TO_V1_PATH = "/migrateToV1";
 
     /**
