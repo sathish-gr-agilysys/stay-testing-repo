@@ -29,6 +29,7 @@ import com.agilysys.pms.account.model.CreateRecurringCharge;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.EstimatedRoomChargeView;
+import com.agilysys.pms.account.model.MultipleAccountRecurringCharge;
 import com.agilysys.pms.account.model.ProgressStatusView;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
@@ -77,6 +78,7 @@ public interface RecurringChargesServiceInterface {
     String BATCH = "/batch";
     String VALIDITY = "/validity";
     String INVENTORY = "/inventory";
+    String BULK = "/bulk";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -149,6 +151,13 @@ public interface RecurringChargesServiceInterface {
           List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
 
+    @POST
+    @Path(RECURRING_CHARGES_PATH + BULK)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<RecurringChargeView> createBulkRecurringCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, MultipleAccountRecurringCharge multipleAccountRecurringCharge,
+          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
+          throws RGuestException, ServiceException;
     /**
      * Retrieve recurring charge for an account
      *

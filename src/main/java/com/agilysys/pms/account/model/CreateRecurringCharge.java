@@ -56,6 +56,8 @@ public class CreateRecurringCharge {
 
     private Set<OverrideType> overrideTypes;
 
+    private String accountId;
+
     private Map<LocalDate, CreateRecurringChargeOverride> recurringChargeOverrides;
 
     public Map<LocalDate, CreateRecurringChargeOverride> getRecurringChargeOverrides() {
@@ -181,6 +183,14 @@ public class CreateRecurringCharge {
         this.folioId = folioId;
     }
 
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
     @Override
     public String toString() {
         return "RecurringCharge [agentId=" + agentId + ", itemId=" + itemId + ", amount=" + amount + ", reason=" +
@@ -200,7 +210,8 @@ public class CreateRecurringCharge {
     }
 
     public CreateRecurringCharge(String agentId, String itemId, PetRateSnapshot petRateSnapshot, String reason,
-          String folioId, Set<Integer> occurrenceDays, String sourceId, LocalDate startDate, LocalDate endDate) {
+          String folioId, Set<Integer> occurrenceDays, String sourceId, LocalDate startDate, LocalDate endDate,
+          String accountId) {
         this.agentId = agentId;
         this.itemId = itemId;
         this.amount = petRateSnapshot.getAmount();
@@ -213,6 +224,7 @@ public class CreateRecurringCharge {
         this.startDate = startDate;
         this.endDate = endDate;
         this.quantity = petRateSnapshot.getQuantity();
+        this.accountId = accountId;
     }
 
     public CreateRecurringCharge() {
