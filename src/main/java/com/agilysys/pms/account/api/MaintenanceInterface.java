@@ -13,10 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.joda.time.DateTime;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.maintenance.model.IndexRequest;
 
@@ -46,24 +44,24 @@ public interface MaintenanceInterface {
     @GET
     @Path(COUNT_PATH + RANGE_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long countRangeAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException;
 
     @GET
     @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long countUnindexedAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
+    long countUnindexedAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException;
 
     @GET
     @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH)
-    Map<String, Long> countUnindexedAccounts() throws RGuestException, ServiceException;
+    Map<String, Long> countUnindexedAccounts() throws RGuestException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
-    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
+    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException;
 }

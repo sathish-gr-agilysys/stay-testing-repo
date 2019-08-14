@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.api;
@@ -20,7 +20,6 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.AutoRecurringItem;
@@ -43,13 +42,12 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(ITEM_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     AutoRecurringItem getAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<AutoRecurringItem> getAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -57,7 +55,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     List<AutoRecurringItem> createAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
-          List<AutoRecurringItem> items) throws RGuestException, ServiceException;
+          List<AutoRecurringItem> items) throws RGuestException;
 
     @PUT
     @Path(ITEM_ID_PATH)
@@ -65,18 +63,18 @@ public interface AutoRecurringItemConfigServiceInterface {
     AutoRecurringItem updateAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
           @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
-          AutoRecurringItem item) throws RGuestException, ServiceException;
+          AutoRecurringItem item) throws RGuestException;
 
     @GET
     @Path(ACTIVE_ITEM)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     SortedMap<LocalDate, List<AutoRecurringItem>> getValidAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
+          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
 
     @DELETE
     @Path(ITEM_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteAutoRecurringItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
+          @PathParam(ITEM_ID) String itemId) throws RGuestException;
 }

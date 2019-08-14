@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.api;
@@ -18,7 +18,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
@@ -48,7 +47,7 @@ public interface InventoryItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<InventoryItem> getInventoryItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     /**
      * Retrieve a specific InventoryItems
@@ -61,7 +60,7 @@ public interface InventoryItemConfigServiceInterface {
     @Path(ITEM_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     InventoryItem getInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
+          @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     /**
      * Create a new InventoryItems
@@ -75,7 +74,7 @@ public interface InventoryItemConfigServiceInterface {
     @Validated(InventoryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     InventoryItem createInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          InventoryItem item) throws RGuestException, ServiceException;
+          InventoryItem item) throws RGuestException;
 
     /**
      * Modify an existing InventoryItem
@@ -94,7 +93,7 @@ public interface InventoryItemConfigServiceInterface {
     InventoryItem updateInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId,
           @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
-          InventoryItem item) throws RGuestException, ServiceException;
+          InventoryItem item) throws RGuestException;
 
     /**
      * Delete an existing InventoryItem
@@ -106,7 +105,7 @@ public interface InventoryItemConfigServiceInterface {
     @Path(ITEM_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
+          @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     /**
      * convert transaction item to InventoryItem
@@ -118,6 +117,5 @@ public interface InventoryItemConfigServiceInterface {
     @Path(CONVERT_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     List<InventoryItem> convertToInventoryItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, List<InventoryItem> items)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, List<InventoryItem> items) throws RGuestException;
 }
