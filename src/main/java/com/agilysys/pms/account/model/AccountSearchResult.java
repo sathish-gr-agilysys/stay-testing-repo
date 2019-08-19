@@ -38,7 +38,7 @@ public class AccountSearchResult {
     private String reservationStatus;
     private String roomType;
     private String roomNumber;
-    // TODO: the requirements for this are currently pretty vague, we need to figure out if there are multiple types of
+    // TODO: The requirements for this are currently pretty vague; we need to figure out if there are multiple types of
     //  statuses such as VIP that an account can have and how to return them in the search results.
     private String vipStatus;
 
@@ -78,12 +78,20 @@ public class AccountSearchResult {
         this.reservationId = reservationId;
     }
 
-    public void setAccountStatus(String accountStatus) {
-        this.accountStatus = accountStatus;
+    public String getTenantId() {
+        return tenantId;
     }
 
-    public BigDecimal getAccountBalance() {
-        return accountBalance;
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(String propertyId) {
+        this.propertyId = propertyId;
     }
 
     public String getAccountId() {
@@ -94,20 +102,28 @@ public class AccountSearchResult {
         this.accountId = accountId;
     }
 
-    public String getAccountType() {
-        return accountType;
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
     }
 
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
+    public void setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
     }
 
     public String getAccountStatus() {
         return accountStatus;
     }
 
-    public void setAccountBalance(BigDecimal accountBalance) {
-        this.accountBalance = accountBalance;
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
     public DateTime getArrivalDate() {
@@ -158,12 +174,12 @@ public class AccountSearchResult {
         this.name = name;
     }
 
-    public String getPropertyId() {
-        return propertyId;
+    public String getNumber() {
+        return number;
     }
 
-    public void setPropertyId(String propertyId) {
-        this.propertyId = propertyId;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getReservationConfirmationId() {
@@ -196,22 +212,6 @@ public class AccountSearchResult {
 
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
     }
 
     public String getVipStatus() {
