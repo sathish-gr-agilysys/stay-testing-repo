@@ -24,7 +24,9 @@ public class InvoiceBaseView {
     private String propertyId;
     private DateTime sentOnDate;
     private int terms;
-    private BigDecimal totalAmount;
+    private BigDecimal invoiceChargesAmount;
+    private BigDecimal invoiceTotalAmount;
+    private BigDecimal paymentAmount;
 
     public String getId() {
         return id;
@@ -106,26 +108,37 @@ public class InvoiceBaseView {
         this.terms = terms;
     }
 
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
+    public BigDecimal getInvoiceChargesAmount() {
+        return invoiceChargesAmount;
     }
 
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setInvoiceChargesAmount(BigDecimal invoiceChargesAmount) {
+        this.invoiceChargesAmount = invoiceChargesAmount;
+    }
+
+    public BigDecimal getInvoiceTotalAmount() {
+        return invoiceTotalAmount;
+    }
+
+    public void setInvoiceTotalAmount(BigDecimal totalAmount) {
+        this.invoiceTotalAmount = totalAmount;
+    }
+
+    public BigDecimal getInvoiceTaxAmount() {
+        return invoiceTotalAmount.subtract(invoiceChargesAmount);
     }
 
     public BigDecimal getPaymentAmount() {
-        if (payments != null) {
-            return payments.stream().map(InvoicePaymentView::getPaymentBalance)
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+        return paymentAmount;
+    }
 
-        return null;
+    public void setPaymentAmount(BigDecimal paymentAmount) {
+        this.paymentAmount = paymentAmount;
     }
 
     public BigDecimal getOverdueAmount() {
         BigDecimal payment = getPaymentAmount();
-        BigDecimal totalAmount = getTotalAmount();
+        BigDecimal totalAmount = getInvoiceTotalAmount();
         return payment != null ? totalAmount.add(payment) : totalAmount;
     }
 

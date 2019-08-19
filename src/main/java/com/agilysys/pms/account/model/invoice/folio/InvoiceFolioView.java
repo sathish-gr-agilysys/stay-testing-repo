@@ -4,10 +4,7 @@
 
 package com.agilysys.pms.account.model.invoice.folio;
 
-import java.math.BigDecimal;
 import java.util.List;
-
-import org.apache.commons.collections.CollectionUtils;
 
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 
@@ -33,20 +30,5 @@ public class InvoiceFolioView<FOLIO_LINE_VIEW extends InvoiceFolioLineView<FOLIO
 
     public void setNonGroupInvoiceDetails(List<SOURCE_VIEW> nonGroupInvoiceDetails) {
         this.nonGroupInvoiceDetails = nonGroupInvoiceDetails;
-    }
-
-    public BigDecimal getTotalAmount() {
-        BigDecimal balance = BigDecimal.ZERO;
-        if (CollectionUtils.isNotEmpty(nonGroupInvoiceDetails)) {
-            balance = nonGroupInvoiceDetails.stream().map(SOURCE_VIEW::getTotalBalance)
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
-
-        if (CollectionUtils.isNotEmpty(groupInvoiceDetails)) {
-            balance = balance.add(groupInvoiceDetails.stream().map(GROUP_SOURCE_VIEW::getTotalBalance)
-                  .reduce(BigDecimal.ZERO, BigDecimal::add));
-        }
-
-        return balance;
     }
 }
