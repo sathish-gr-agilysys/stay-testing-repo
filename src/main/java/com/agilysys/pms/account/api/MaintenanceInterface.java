@@ -159,10 +159,10 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(SEED_EXPORT_PATH + REVENUE_AGGREGATES_PATH + "/" + TENANT_ID_TEMPLATE)
-    long seedRevenueAggregates(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
+    void seedRevenueAggregates(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(SEED_EXPORT_PATH + REVENUE_AGGREGATES_PATH)
-    Map<String, Long> seedRevenueAggregates(Set<String> tenantIds) throws RGuestException, ServiceException;
+    void seedRevenueAggregates(Set<String> tenantIds) throws RGuestException, ServiceException;
 }
