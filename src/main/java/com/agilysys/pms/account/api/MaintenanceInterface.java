@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.api;
 
 import java.util.Map;
-import java.util.Set;
 
 import javax.ws.rs.Consumes;
 
@@ -158,11 +157,6 @@ public interface MaintenanceInterface {
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(SEED_EXPORT_PATH + REVENUE_AGGREGATES_PATH + "/" + TENANT_ID_TEMPLATE)
-    void seedRevenueAggregates(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(SEED_EXPORT_PATH + REVENUE_AGGREGATES_PATH)
-    void seedRevenueAggregates(Set<String> tenantIds) throws RGuestException, ServiceException;
+    void seedRevenueAggregates() throws RGuestException, ServiceException;
 }
