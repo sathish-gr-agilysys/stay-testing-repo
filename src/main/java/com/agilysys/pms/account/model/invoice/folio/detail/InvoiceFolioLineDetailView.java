@@ -39,7 +39,6 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
     private String reservationId;
     private boolean roomRevenue;
     private String sourceId;
-    private Map<String, String> transactionMessageAttributes;
     private String transactionDestinationAccountId;
     private String transactionId;
     private String transactionReferenceId;
@@ -229,14 +228,6 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
 
     public void setSourceId(String sourceId) {
         this.sourceId = sourceId;
-    }
-
-    public Map<String, String> getTransactionMessageAttributes() {
-        return transactionMessageAttributes;
-    }
-
-    public void setTransactionMessageAttributes(Map<String, String> transactionMessageAttributes) {
-        this.transactionMessageAttributes = transactionMessageAttributes;
     }
 
     public String getTransactionDestinationAccountId() {

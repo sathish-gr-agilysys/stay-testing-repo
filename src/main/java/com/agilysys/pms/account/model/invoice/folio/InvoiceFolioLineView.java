@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model.invoice.folio;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.joda.time.LocalDate;
@@ -22,6 +23,7 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
     private List<T> refundLineItems;
     private List<T> taxLineItems;
     private T transferLineItem;
+    private Map<String, String> transactionMessageAttributes;
 
     public String getDescription() {
         return description;
@@ -178,6 +180,14 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
 
     public BigDecimal getTransferTotalAmount() {
         return transferLineItem != null ? transferLineItem.getTotalAmount() : null;
+    }
+
+    public Map<String, String> getTransactionMessageAttributes() {
+        return transactionMessageAttributes;
+    }
+
+    public void setTransactionMessageAttributes(Map<String, String> transactionMessageAttributes) {
+        this.transactionMessageAttributes = transactionMessageAttributes;
     }
 
     public BigDecimal getAdjustmentsTotalAmount() {
