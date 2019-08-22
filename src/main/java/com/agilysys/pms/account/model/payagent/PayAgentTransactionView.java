@@ -26,6 +26,7 @@ public class PayAgentTransactionView {
     private String accountErrorCode;
     private String accountErrorDescription;
     private PaymentSetting paymentSetting;
+    private String pantryName;
 
     public PayAgentTransactionView() {
     }
@@ -189,4 +190,11 @@ public class PayAgentTransactionView {
         this.paymentSetting = paymentSetting;
     }
 
+    public String getPantryName() {
+        return pantryName;
+    }
+
+    public void setPantryName(String pantryName) {
+        this.pantryName = pantryName;
+    }
 }

@@ -12,6 +12,7 @@ public class TransactionReportRequest {
     private Set<String> accountIds;
     private LocalDate startDate;
     private LocalDate endDate;
+    private boolean isPantry;
 
     public Set<String> getAccountIds() {
         return accountIds;
@@ -35,5 +36,13 @@ public class TransactionReportRequest {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public boolean getPantry() {
+        return isPantry;
+    }
+
+    public void setPantry(boolean pantry) {
+        isPantry = pantry;
     }
 }
