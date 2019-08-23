@@ -4,7 +4,17 @@
 package com.agilysys.pms.account.model;
 
 public enum AccountStatus {
-    PENDING,
-    OPEN,
-    CLOSED
+    PENDING(true),
+    OPEN(true),
+    CLOSED(false);
+
+    private boolean active;
+
+    AccountStatus(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
 }
