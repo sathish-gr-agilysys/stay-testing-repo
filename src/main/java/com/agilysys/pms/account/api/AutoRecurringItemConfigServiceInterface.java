@@ -22,8 +22,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.AutoRecurringChargeOptionalParameters;
 import com.agilysys.pms.account.model.AutoRecurringItem;
+import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path(AutoRecurringItemConfigServiceInterface.BASE_PATH)
@@ -56,7 +56,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     List<AutoRecurringItem> createAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
-          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
           List<AutoRecurringItem> items) throws RGuestException, ServiceException;
 
     @PUT
@@ -64,8 +64,8 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     AutoRecurringItem updateAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
-          @QueryParam("") AutoRecurringChargeOptionalParameters autoRecurringChargeOptionalParameters,
-          AutoRecurringItem item) throws RGuestException, ServiceException;
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, AutoRecurringItem item)
+          throws RGuestException, ServiceException;
 
     @GET
     @Path(ACTIVE_ITEM)

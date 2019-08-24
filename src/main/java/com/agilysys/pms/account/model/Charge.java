@@ -59,8 +59,7 @@ public class Charge extends Transaction {
         }
         Charge that = (Charge) o;
 
-        return Objects.equal(mealPeriodId, that.mealPeriodId) &&
-              Objects.equal(quantity, that.quantity) &&
+        return Objects.equal(mealPeriodId, that.mealPeriodId) && Objects.equal(quantity, that.quantity) &&
               Objects.equal(recurringChargeId, that.recurringChargeId) &&
               Objects.equal(transactionItemType, that.transactionItemType) &&
               Objects.equal(autoRecurringItemId, that.autoRecurringItemId);
