@@ -13,7 +13,7 @@ public class PantryItemDetails {
     private int quantity;
 
     public PantryItemDetails() {}
-    
+
     public PantryItemDetails(String itemId, String description, BigDecimal price, int quantity) {
         this.itemId = itemId;
         this.description = description;
