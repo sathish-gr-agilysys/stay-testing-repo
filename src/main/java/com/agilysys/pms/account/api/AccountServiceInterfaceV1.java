@@ -70,6 +70,8 @@ import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
+import com.agilysys.pms.account.model.PantryCharge;
+import com.agilysys.pms.account.model.PantryTransactionResponse;
 import com.agilysys.pms.account.model.Payment;
 import com.agilysys.pms.account.model.PaymentInstrumentAuthStatus;
 import com.agilysys.pms.account.model.PaymentRefund;
@@ -204,6 +206,7 @@ public interface AccountServiceInterfaceV1 {
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
+    String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -271,7 +274,8 @@ public interface AccountServiceInterfaceV1 {
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void updateAccountStatus(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus)
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus,
+          @QueryParam("dissociatePantryHouseAccount") boolean dissociatePantryHouseAccount)
           throws RGuestException, ServiceException;
 
     @PUT
@@ -953,4 +957,11 @@ public interface AccountServiceInterfaceV1 {
     BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException, ServiceException;
+    @POST
+    @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'AddPantry')")
+    PantryTransactionResponse postPantryCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
+          @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException, ServiceException;
 }
