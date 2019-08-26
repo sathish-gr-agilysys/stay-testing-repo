@@ -21,6 +21,8 @@ public class Payment {
     private CardInformation cardInformation;
     private String terminalId;
     private String invoiceNumber;
+    private boolean distributed;
+    private String name;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -91,5 +93,21 @@ public class Payment {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
+    }
+
+    public boolean isDistributed() {
+        return distributed;
+    }
+
+    public void setDistributed(boolean distributed) {
+        this.distributed = distributed;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
