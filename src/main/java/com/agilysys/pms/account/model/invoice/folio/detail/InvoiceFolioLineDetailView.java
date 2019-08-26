@@ -43,7 +43,6 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
     private String transactionId;
     private String transactionReferenceId;
     private String transactionSourceAccountId;
-    private String transactionType;
     private String transferMessage;
     private BigDecimal unitAmount;
     private String userId;
@@ -260,14 +259,6 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
 
     public void setTransactionSourceAccountId(String transactionSourceAccountId) {
         this.transactionSourceAccountId = transactionSourceAccountId;
-    }
-
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
     }
 
     public String getTransferMessage() {

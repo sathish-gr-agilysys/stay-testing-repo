@@ -24,6 +24,7 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
     private List<T> taxLineItems;
     private T transferLineItem;
     private Map<String, String> transactionMessageAttributes;
+    private String transactionType;
 
     public String getDescription() {
         return description;
@@ -188,6 +189,14 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
 
     public void setTransactionMessageAttributes(Map<String, String> transactionMessageAttributes) {
         this.transactionMessageAttributes = transactionMessageAttributes;
+    }
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
     public BigDecimal getAdjustmentsTotalAmount() {
