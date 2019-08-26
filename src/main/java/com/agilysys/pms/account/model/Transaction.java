@@ -1,10 +1,11 @@
-/**
+/*
  * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -39,6 +40,8 @@ public abstract class Transaction {
     @JsonProperty(required = true)
     protected String itemId;
     public static final String ITEM_ID_FIELD = "itemId";
+    protected Boolean pantryItem;
+    protected List<PantryItemDetails> pantryItems;
     protected String parentId;
     protected String petDisplayName;
     protected LocalDate postingDate;
@@ -245,6 +248,22 @@ public abstract class Transaction {
 
     public void setGiftCard(boolean giftCard) {
         this.giftCard = giftCard;
+    }
+
+    public List<PantryItemDetails> getPantryItems() {
+        return pantryItems;
+    }
+
+    public void setPantryItems(List<PantryItemDetails> pantryItems) {
+        this.pantryItems = pantryItems;
+    }
+
+    public Boolean getPantryItem() {
+        return pantryItem;
+    }
+
+    public void setPantryItem(Boolean pantryItem) {
+        this.pantryItem = pantryItem;
     }
 
     @Override
