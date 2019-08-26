@@ -20,6 +20,7 @@ public class PantryItemDetails {
         this.price = price;
         this.quantity = quantity;
     }
+
     public PantryItemDetails(String itemId, String description, BigDecimal price, int quantity,
           BigDecimal defaultPrice) {
         this(itemId, description, price, quantity);
