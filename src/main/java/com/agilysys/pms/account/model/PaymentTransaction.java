@@ -17,4 +17,11 @@ public class PaymentTransaction extends Transaction {
         this.amount = amount;
         this.itemId = itemId;
     }
+
+    public void toTransaction(String accountId, String folioId, Boolean pantryItem) {
+        this.accountId = accountId;
+        this.folioId = folioId;
+        this.pantryItem = pantryItem;
+    }
+
 }
