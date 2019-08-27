@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CompInfo;
+import com.agilysys.pms.payment.model.GatewayType;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -83,8 +84,11 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private GatewayType gatewayType;
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
+    private List<PantryItemDetails> pantryItemDetails;
+    private Boolean pantryItem;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -796,6 +800,14 @@ public class LineItemView implements Comparable<LineItemView> {
         this.callType = callType;
     }
 
+    public GatewayType getGatewayType() {
+        return gatewayType;
+    }
+
+    public void setGatewayType(GatewayType gatewayType) {
+        this.gatewayType = gatewayType;
+    }
+
     public boolean isReverseTax() {
         return reverseTax;
     }
@@ -810,6 +822,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
         this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
+    }
+
+    public List<PantryItemDetails> getPantryItemDetails() {
+        return pantryItemDetails;
+    }
+
+    public void setPantryItemDetails(List<PantryItemDetails> pantryItemDetails) {
+        this.pantryItemDetails = pantryItemDetails;
+    }
+
+    public Boolean getPantryItem() {
+        return pantryItem;
+    }
+
+    public void setPantryItem(Boolean pantryItem) {
+        this.pantryItem = pantryItem;
     }
 
     @Override
