@@ -64,6 +64,7 @@ public interface ReportingServiceInterface {
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
     String SOURCE_ID = "sourceId";
+    String PANTRY_TRANSACTION = "/pantryTransaction";
     String DEPARTMENT_REVENUE = "/departmentRevenue";
     String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
 
@@ -317,7 +318,13 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
+          @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest);
+
+    @Path(PANTRY_TRANSACTION)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
           throws RGuestException, ServiceException;
 }
 
