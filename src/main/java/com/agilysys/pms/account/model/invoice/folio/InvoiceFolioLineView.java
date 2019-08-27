@@ -12,8 +12,10 @@ import org.apache.commons.collections.CollectionUtils;
 import org.joda.time.LocalDate;
 
 public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
+    private String accountId;
     private String description;
     private LocalDate displayDate;
+    private LocalDate postingPropertyDate;
     private String reason;
     private BigDecimal taxAmount;
     private BigDecimal totalAmount;
@@ -25,6 +27,14 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
     private T transferLineItem;
     private Map<String, String> transactionMessageAttributes;
     private String transactionType;
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
 
     public String getDescription() {
         return description;
@@ -40,6 +50,14 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
 
     public void setDisplayDate(LocalDate displayDate) {
         this.displayDate = displayDate;
+    }
+
+    public LocalDate getPostingPropertyDate() {
+        return postingPropertyDate;
+    }
+
+    public void setPostingPropertyDate(LocalDate postingPropertyDate) {
+        this.postingPropertyDate = postingPropertyDate;
     }
 
     public String getReason() {

@@ -3,17 +3,14 @@
  */
 package com.agilysys.pms.account.model.invoice.folio.detail;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.pms.account.model.LedgerTransactionHistory;
 import com.agilysys.pms.account.model.invoice.folio.InvoiceFolioLineView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.joda.time.DateTime;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFolioLineDetailView> {
     private String id;
@@ -32,7 +29,6 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
     private String parentId;
     private String petDisplayName;
     private DateTime postingCalendarDateTime;
-    private LocalDate postingPropertyDate;
     private int quantity;
     private String rateChangeComment;
     private String reference;
@@ -171,14 +167,6 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
 
     public void setPostingCalendarDateTime(DateTime postingCalendarDateTime) {
         this.postingCalendarDateTime = postingCalendarDateTime;
-    }
-
-    public LocalDate getPostingPropertyDate() {
-        return postingPropertyDate;
-    }
-
-    public void setPostingPropertyDate(LocalDate postingPropertyDate) {
-        this.postingPropertyDate = postingPropertyDate;
     }
 
     public int getQuantity() {
