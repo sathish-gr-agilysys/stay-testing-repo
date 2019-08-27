@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response.Status;
 import com.agilysys.pms.account.exception.ServiceError;
 import com.agilysys.pms.account.model.PaymentTransaction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
+import com.agilysys.pms.payment.model.GatewayType;
 
 /**
  * This is the generic request coming up from browser to request the payload
@@ -38,6 +39,7 @@ public class PayTransactionRequest {
     private boolean doNotDisclose;
     // Fields for making payment 
     private List<PaymentTransaction> payTransactions = new ArrayList<>();
+    private String pantryName;
 
     public PayTransactionRequest() {
     }
@@ -244,9 +246,18 @@ public class PayTransactionRequest {
         this.invoiceNumber = reservationConfirmationNumber;
     }
 
+    public String getPantryName() {
+        return pantryName;
+    }
+
+    public void setPantryName(String pantryName) {
+        this.pantryName = pantryName;
+    }
+
     private void isValidRequest() {
         if (deviceGuid == null || (accountId == null && profileId == null && payActionType != PayActionType.BOOK) ||
-              terminalId == null || payActionType == null || payAgentCode == null || payAgentUrl == null) {
+              (GatewayType.getGatewayTypeFromId(deviceHandlerId).isTerminalIdSupported() && terminalId == null) ||
+              payActionType == null || payAgentCode == null || payAgentUrl == null) {
             throwException();
         }
     }
