@@ -3,14 +3,15 @@
  */
 package com.agilysys.pms.account.model.invoice.folio.detail;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.joda.time.DateTime;
+
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.pms.account.model.LedgerTransactionHistory;
 import com.agilysys.pms.account.model.invoice.folio.InvoiceFolioLineView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.joda.time.DateTime;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFolioLineDetailView> {
     private String id;
