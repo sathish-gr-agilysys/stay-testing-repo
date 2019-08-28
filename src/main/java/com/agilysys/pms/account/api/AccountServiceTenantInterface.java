@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.Consumes;
@@ -20,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.ARBalanceInfo;
+import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.CentralARRequest;
 import com.agilysys.pms.account.model.CentralARView;
 import com.agilysys.pms.account.model.InvoiceBalanceResponse;
@@ -41,6 +43,7 @@ public interface AccountServiceTenantInterface {
     String CALCULATE_INVOICE_BALANCE = "/calculateBalance";
     String INVOICES_PATH = "/invoices";
     String PREFERRED_COMMUNICATION = "/preferredCommunication";
+    String OPEN_AR_ACCOUNT = "/openARAccounts";
 
     @GET
     @Path(AR_BALANCES_PATH)
@@ -71,4 +74,9 @@ public interface AccountServiceTenantInterface {
     @Path(PREFERRED_COMMUNICATION)
     List<CentralARView> getPreferredCommunication(@PathParam(TENANT_ID) String tenantId,
           CentralARRequest centralARRequest) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(OPEN_AR_ACCOUNT)
+    Map<String, List<AccountSummary>> getOpenARAccountsByReferenceIds(@PathParam(TENANT_ID) String tenantId,
+          Set<String> referenceIds) throws RGuestException, ServiceException;
 }
