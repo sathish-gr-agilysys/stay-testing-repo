@@ -1,10 +1,11 @@
-/**
+/*
  * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -14,6 +15,7 @@ import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -39,6 +41,8 @@ public abstract class Transaction {
     @JsonProperty(required = true)
     protected String itemId;
     public static final String ITEM_ID_FIELD = "itemId";
+    protected Boolean pantryItem;
+    protected List<PantryItemDetails> pantryItems;
     protected String parentId;
     protected String petDisplayName;
     protected LocalDate postingDate;
@@ -52,6 +56,7 @@ public abstract class Transaction {
     protected String reference;
     protected String sourceId;
     protected String terminalId;
+    protected GatewayType gatewayType;
 
     public String getAccountId() {
         return accountId;
@@ -220,6 +225,30 @@ public abstract class Transaction {
 
     public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
 
+    public GatewayType getGatewayType() {
+        return gatewayType;
+    }
+
+    public void setGatewayType(GatewayType gatewayType) {
+        this.gatewayType = gatewayType;
+    }
+
+    public List<PantryItemDetails> getPantryItems() {
+        return pantryItems;
+    }
+
+    public void setPantryItems(List<PantryItemDetails> pantryItems) {
+        this.pantryItems = pantryItems;
+    }
+
+    public Boolean getPantryItem() {
+        return pantryItem;
+    }
+
+    public void setPantryItem(Boolean pantryItem) {
+        this.pantryItem = pantryItem;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
@@ -244,6 +273,6 @@ public abstract class Transaction {
               .append(folioId, other.folioId).append(ignoreRules, other.ignoreRules).append(itemId, other.itemId)
               .append(postingDate, other.postingDate).append(reason, other.reason).append(reference, other.reference)
               .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
-              .append(displayDate, other.displayDate).isEquals();
+              .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType).isEquals();
     }
 }
