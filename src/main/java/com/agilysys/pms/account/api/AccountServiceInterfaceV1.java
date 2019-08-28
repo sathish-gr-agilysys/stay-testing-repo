@@ -90,7 +90,6 @@ import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.SearchPage;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
-import com.agilysys.pms.payment.model.PaymentInstrumentView;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -189,6 +188,8 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
+    String CANCEL_PAYMENTS = "/cancelPayments";
+    String RESERVATION_IDS_TO_AUTHORIZE = "/getReservationIdsToAuthorize";
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
 
     String PAGE = "page";
@@ -894,6 +895,19 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     @POST
+    @Path(CANCEL_PAYMENTS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    void processCancellation(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(RESERVATION_IDS_TO_AUTHORIZE)
+    Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
+
+
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'AddPantry')")
     PantryTransactionResponse postPantryCharges(@PathParam(TENANT_ID) String tenantId,
