@@ -46,13 +46,14 @@ public interface ReportingServiceInterface {
     String GENERAL_AVAILABILITY_PATH = "/generalAvailability";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
     String LEDGER_PATH = "/ledger";
+    String PANTRY_TRANSACTION_PATH = "/pantryTransaction";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String REVENUE_PATH = "/revenueDetails";
     String REVENUE_PATH_BY_ROOM_PATH = "/revenueDetailsByRoom";
     String TAX_EXEMPT_ACCOUNTS_PATH = "/taxExemptAccounts";
     String TO_DATE_TOTALS_PATH = "/toDateTotals";
-    String TRANS_PATH = "/transaction";
+    String TRANSACTION_PATH = "/transaction";
 
     String BY_CASHIER = "byCashier";
     String END_DATE = "endDate";
@@ -139,6 +140,14 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
           throws RGuestException, ServiceException;
 
+    @POST
+    @Path(PANTRY_TRANSACTION_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
+          throws RGuestException, ServiceException;
+
     /**
      * Retrieve recurring charge detail information for a given date.
      */
@@ -202,7 +211,7 @@ public interface ReportingServiceInterface {
      */
     @Deprecated
     @GET
-    @Path(TRANS_PATH)
+    @Path(TRANSACTION_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
@@ -214,7 +223,7 @@ public interface ReportingServiceInterface {
      * INCLUDE_MTD_TRANSACTIONS is true.
      */
     @GET
-    @Path(DEPARTMENT_REVENUE_PATH + TRANS_PATH)
+    @Path(DEPARTMENT_REVENUE_PATH + TRANSACTION_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
@@ -222,23 +231,23 @@ public interface ReportingServiceInterface {
           @QueryParam(INCLUDE_MTD_TRANSACTIONS) boolean includeMTDTransactions)
           throws RGuestException, ServiceException;
 
-    @POST
-    @Path(TRANS_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    TransactionReportResponse getTransactions(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
-          throws RGuestException, ServiceException;
-
     /**
      * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
      * cashier.
      */
     @GET
-    @Path(TRANS_PATH + TO_DATE_TOTALS_PATH)
+    @Path(TRANSACTION_PATH + TO_DATE_TOTALS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     TransactionToDateTotalsResult getTransactionToDateTotals(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate,
           @QueryParam(BY_CASHIER) Boolean breakdownByCashier) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(TRANSACTION_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    TransactionReportResponse getTransactions(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
+          throws RGuestException, ServiceException;
 }
