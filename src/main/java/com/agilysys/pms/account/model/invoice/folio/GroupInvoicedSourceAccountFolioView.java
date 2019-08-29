@@ -26,7 +26,7 @@ public class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends Invoice
     public BigDecimal getChargesBalance() {
         BigDecimal chargesBalance = super.getChargesBalance();
         if (CollectionUtils.isEmpty(invoicedSourceAccountViews)) {
-            return null;
+            return chargesBalance;
         }
 
         chargesBalance = chargesBalance != null ? chargesBalance : BigDecimal.ZERO;
