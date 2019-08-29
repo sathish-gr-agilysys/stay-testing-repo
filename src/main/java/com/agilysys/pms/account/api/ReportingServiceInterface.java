@@ -65,6 +65,7 @@ public interface ReportingServiceInterface {
     String PANTRY_TRANSACTION = "/pantryTransaction";
     String DEPARTMENT_REVENUE = "/departmentRevenue";
     String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
+    String STAY_DATE_SUMMARY = "stayDateSummary";
 
     /**
      * get the ledger report
@@ -178,7 +179,8 @@ public interface ReportingServiceInterface {
     RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
-          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
+          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy,
+          @QueryParam(STAY_DATE_SUMMARY) boolean stayDateSummary)
           throws RGuestException, ServiceException;
 
     @GET
