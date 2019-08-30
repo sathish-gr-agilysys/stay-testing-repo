@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -69,6 +70,7 @@ import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
+import com.agilysys.pms.account.model.NonInvoiceReport;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
 import com.agilysys.pms.account.model.PantryCharge;
 import com.agilysys.pms.account.model.PantryTransactionResponse;
@@ -194,6 +196,9 @@ public interface AccountServiceInterfaceV1 {
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String TRANSFER_FOLIO_LINES = "/transferFolioLines";
     String TRANSFER_HISTORY = "/transferHistory";
+    String TRANSFER_HISTORY_ID = "transferHistoryId";
+    String LEDGER_TRANSACTION_ID = "/ledgerTransactionIds";
+    String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
@@ -693,6 +698,32 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
+    /**
+     * Retrieves the non-invoiced details of a COMPANY account based on the Transaction Ids
+     *
+     * @param tenantId         id of tenant where the COMPANY account exists
+     * @param propertyId       id of the property
+     * @param accountId        id of COMPANY account to retrieve non-invoiced details from
+     * @param nonInvoiceReport class contains the transaction ids to retrieve non-invoiced details
+     * @return Non-invoiced details for a COMPANY account
+     */
+    @POST
+    @Path(ACCOUNT_ID_PATH + NON_INVOICED_PATH + LEDGER_TRANSACTION_ID)
+    @Validated(NonInvoiceReport.class)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    NonInvoicedARDetail getNonInvoicedARDetailByTransactionIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          NonInvoiceReport nonInvoiceReport) throws RGuestException, ServiceException;
+
+    /**
+     * Create an invoice for an account
+     *
+     * @param tenantId   id of tenant for the account
+     * @param propertyId id of the property
+     * @param accountId  id of account to save an invoice to
+     * @param invoice
+     * @return Created invoice
+     */
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
