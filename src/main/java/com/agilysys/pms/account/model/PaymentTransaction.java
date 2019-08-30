@@ -18,11 +18,6 @@ public class PaymentTransaction extends Transaction {
         this.itemId = itemId;
     }
 
-    public PaymentTransaction(String accountId, String folioId, BigDecimal amount, String itemId) {
-        this(accountId, amount, itemId);
-        this.folioId = folioId;
-    }
-
     public void toTransaction(String accountId, String folioId, Boolean pantryItem) {
         this.accountId = accountId;
         this.folioId = folioId;
