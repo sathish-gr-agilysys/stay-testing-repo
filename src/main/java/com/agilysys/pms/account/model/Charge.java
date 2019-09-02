@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
+
 import com.agilysys.common.model.rate.AllowanceCombination;
 import com.google.common.base.Objects;
 
@@ -14,6 +16,19 @@ public class Charge extends Transaction {
     private String recurringChargeId;
     private TransactionItemType transactionItemType;
     private String autoRecurringItemId;
+    private boolean notGrouped;
+
+    public Charge() {}
+
+    public Charge(BigDecimal amount, String descriptionOverride, String folioId, int quantity, boolean notGrouped,
+          String itemId) {
+        this.amount = amount;
+        this.descriptionOverride = descriptionOverride;
+        this.folioId = folioId;
+        this.quantity = quantity;
+        this.notGrouped = notGrouped;
+        this.itemId = itemId;
+    }
 
     public String getMealPeriodId() {
         return mealPeriodId;
@@ -47,6 +62,14 @@ public class Charge extends Transaction {
         this.transactionItemType = transactionItemType;
     }
 
+    public boolean isNotGrouped() {
+        return notGrouped;
+    }
+
+    public void setNotGrouped(boolean notGrouped) {
+        this.notGrouped = notGrouped;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -64,13 +87,13 @@ public class Charge extends Transaction {
               Objects.equal(quantity, that.quantity) &&
               Objects.equal(recurringChargeId, that.recurringChargeId) &&
               Objects.equal(transactionItemType, that.transactionItemType) &&
-              Objects.equal(autoRecurringItemId, that.autoRecurringItemId);
+              Objects.equal(autoRecurringItemId, that.autoRecurringItemId) && Objects.equal(notGrouped, that.notGrouped);
     }
 
     @Override
     public int hashCode() {
         return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId, transactionItemType,
-              autoRecurringItemId);
+              autoRecurringItemId, notGrouped);
     }
 
     @Override

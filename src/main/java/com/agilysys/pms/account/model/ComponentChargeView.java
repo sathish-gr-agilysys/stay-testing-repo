@@ -47,7 +47,8 @@ public class ComponentChargeView {
     private List<AllowanceCombination> allowanceCombinations;
     private String allowanceName;
     private int allowanceTotalQuantity;
-    private String breakageItemId;
+    private String breakageId;
+    private ChargeTaxAmountInfo breakageEstimatedTaxInfo;
 
     public ComponentChargeView() {
     }
@@ -69,7 +70,8 @@ public class ComponentChargeView {
         allowanceComponentType = componentChargeView.getAllowanceComponentType();
         allowanceFrequencyType = componentChargeView.getAllowanceFrequencyType();
         allowanceName = componentChargeView.getAllowanceName();
-        breakageItemId = componentChargeView.getBreakageItemId();
+        breakageId = componentChargeView.getBreakageId();
+        breakageEstimatedTaxInfo = componentChargeView.getBreakageEstimatedTaxInfo();
     }
 
     public String getComponentBundleId() {
@@ -225,12 +227,20 @@ public class ComponentChargeView {
         this.allowanceTotalQuantity = allowanceTotalQuantity;
     }
 
-    public String getBreakageItemId() {
-        return breakageItemId;
+    public String getBreakageId() {
+        return breakageId;
     }
 
-    public void setBreakageItemId(String breakageItemId) {
-        this.breakageItemId = breakageItemId;
+    public void setBreakageId(String breakageId) {
+        this.breakageId = breakageId;
+    }
+
+    public ChargeTaxAmountInfo getBreakageEstimatedTaxInfo() {
+        return breakageEstimatedTaxInfo;
+    }
+
+    public void setBreakageEstimatedTaxInfo(ChargeTaxAmountInfo breakageEstimatedTaxInfo) {
+        this.breakageEstimatedTaxInfo = breakageEstimatedTaxInfo;
     }
 
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
@@ -249,7 +259,7 @@ public class ComponentChargeView {
         componentChargeView.setAllowanceFrequencyType(componentRateSnapshot.getAllowanceFrequencyType());
         componentChargeView.setAllowanceName(componentRateSnapshot.getAllowanceName());
         componentChargeView.setAllowanceTotalQuantity(componentRateSnapshot.getAllowanceTotalQuantity());
-        componentChargeView.setBreakageItemId(componentRateSnapshot.getBreakageItemId());
+        componentChargeView.setBreakageId(componentRateSnapshot.getBreakageId());
 
         return componentChargeView;
     }

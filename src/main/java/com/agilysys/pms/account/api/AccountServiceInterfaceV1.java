@@ -32,7 +32,6 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
-import com.agilysys.pms.account.data.domain.CheckAllowanceRequest;
 import com.agilysys.pms.account.data.domain.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
@@ -1437,9 +1436,8 @@ public interface AccountServiceInterfaceV1 {
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
-    @POST
-    @CreatedOnSuccess
-    @Path("/checkAllowance")
+    @GET
+    @Path(ACCOUNT_ID_PATH + "/checkAllowance" + FOLIO_ID_PATH)
     List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          CheckAllowanceRequest checkAllowanceRequest) throws RGuestException, ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String packageFolioId) throws RGuestException, ServiceException;
 }
