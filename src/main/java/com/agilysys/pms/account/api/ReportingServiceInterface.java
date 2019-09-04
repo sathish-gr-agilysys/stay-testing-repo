@@ -25,6 +25,7 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
+import com.agilysys.pms.account.model.GroupRevenueReportResult;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
@@ -54,6 +55,7 @@ public interface ReportingServiceInterface {
     String PROPERTY_DATE = "propertyDate";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
+    String DATE = "date";
     String ROOM_REVENUE = "roomRevenue";
     String REVENUE_OCCUPANCY = "revenueOccupancy";
     String BY_CASHIER = "byCashier";
@@ -62,6 +64,7 @@ public interface ReportingServiceInterface {
     String PANTRY_TRANSACTION = "/pantryTransaction";
     String DEPARTMENT_REVENUE = "/departmentRevenue";
     String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
+    String GROUPS_REVENUE_PATH = "/groupsRevenue";
 
     /**
      * get the ledger report
@@ -306,5 +309,19 @@ public interface ReportingServiceInterface {
     TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
           throws RGuestException, ServiceException;
+
+    /**
+     * Retrieve group revenue detail for the given group identifiers.
+     *
+     * @param tenantId
+     * @param propertyId
+     * @return
+     */
+    @POST
+    @Path(GROUPS_REVENUE_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    GroupRevenueReportResult getRevenueDetailsForGroups(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(DATE) LocalDate date, Set<String> groupIds);
 }
 
