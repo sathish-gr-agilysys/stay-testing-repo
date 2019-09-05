@@ -63,12 +63,12 @@ import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
+import com.agilysys.pms.account.model.MultiplePayment;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
 import com.agilysys.pms.account.model.PantryCharge;
 import com.agilysys.pms.account.model.PantryTransactionResponse;
 import com.agilysys.pms.account.model.Payment;
-import com.agilysys.pms.account.model.PaymentByAccountId;
 import com.agilysys.pms.account.model.PaymentInstrumentAuthStatus;
 import com.agilysys.pms.account.model.PaymentRefund;
 import com.agilysys.pms.account.model.PayoffBalanceRequest;
@@ -91,7 +91,6 @@ import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.SearchPage;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
-import com.agilysys.pms.payment.model.PaymentInstrumentView;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -145,6 +144,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String LODGING_PATH = ACCOUNT_ID_PATH + "/lodging";
+    String MULTIPLE_PAYMENTS = "/multiplePayments";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
     String PAGE_PATH = "/page";
@@ -466,21 +466,18 @@ public interface AccountServiceInterfaceV1 {
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
 
     /**
-     * Posts a payment to an account
+     * Posts payment to multiple account
      *
-     * @param tenantId  the Tenant Id to post to
-     * @param propertyId id of the property where the account exists
-     * @param accountId  the Account to post to
-     * @param paymentAccountId  Payment object containing payment information for accountId
+     * @param tenantId               the Tenant Id to post to
+     * @param propertyId             id of the property where the account exists
+     * @param multiplePaymentRequest Payment request containing payment information for multiple accounts
      * @return a LineItemView for Display purposes
      */
     @POST
-    @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH)
-    @Validated(Payment.class)
+    @Path(MULTIPLE_PAYMENTS)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, PaymentByAccountId paymentAccountId,
+    List<LineItemView> postMultipleAccountPayment(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, MultiplePayment multiplePaymentRequest,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
 
     /**
