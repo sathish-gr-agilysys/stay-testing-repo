@@ -17,6 +17,8 @@ public class ComponentChargeView {
 
     private String componentBundleId;
 
+    private String componentId;
+
     private String transactionItemId;
 
     private String transactionItemName;
@@ -55,6 +57,7 @@ public class ComponentChargeView {
 
     public ComponentChargeView(ComponentChargeView componentChargeView) {
         componentBundleId = componentChargeView.getComponentBundleId();
+        componentId = componentChargeView.componentId;
         transactionItemId = componentChargeView.getTransactionItemId();
         transactionItemName = componentChargeView.getTransactionItemName();
         amount = componentChargeView.getAmount();
@@ -80,6 +83,14 @@ public class ComponentChargeView {
 
     public void setComponentBundleId(String componentBundleId) {
         this.componentBundleId = componentBundleId;
+    }
+
+    public String getComponentId() {
+        return componentId;
+    }
+
+    public void setComponentId(String componentId) {
+        this.componentId = componentId;
     }
 
     public String getTransactionItemId() {
@@ -248,6 +259,7 @@ public class ComponentChargeView {
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
         componentChargeView.setComponentBundleId(componentRateSnapshot.getComponentBundleId());
+        componentChargeView.setComponentId(componentRateSnapshot.getComponentId());
         componentChargeView.setAmount(componentRateSnapshot.getAmount());
         componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
         componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
