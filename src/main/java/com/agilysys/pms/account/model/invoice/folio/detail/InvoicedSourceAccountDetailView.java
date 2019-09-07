@@ -15,7 +15,6 @@ public class InvoicedSourceAccountDetailView extends InvoicedSourceAccountFolioV
     private AddressDetails addressDetails;
     private String referenceId;
     private String reservationAlias;
-    private String sourceAccountId;
     private String sourceAccountName;
     private String sourceAccountType;
     private Set<ThirdPartyConfirmation> thirdPartyConfirmation;
@@ -50,14 +49,6 @@ public class InvoicedSourceAccountDetailView extends InvoicedSourceAccountFolioV
 
     public void setReservationAlias(String reservationAlias) {
         this.reservationAlias = reservationAlias;
-    }
-
-    public String getSourceAccountId() {
-        return sourceAccountId;
-    }
-
-    public void setSourceAccountId(String sourceAccountId) {
-        this.sourceAccountId = sourceAccountId;
     }
 
     public String getSourceAccountName() {

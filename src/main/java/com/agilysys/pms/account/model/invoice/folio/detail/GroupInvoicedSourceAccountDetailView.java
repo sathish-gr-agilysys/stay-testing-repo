@@ -8,7 +8,6 @@ import com.agilysys.pms.account.model.invoice.folio.GroupInvoicedSourceAccountFo
 public class GroupInvoicedSourceAccountDetailView
       extends GroupInvoicedSourceAccountFolioView<InvoiceFolioLineDetailView, InvoicedSourceAccountDetailView> {
     private String referenceId;
-    private String sourceAccountId;
     private String sourceAccountName;
     private String sourceAccountType;
 
@@ -18,14 +17,6 @@ public class GroupInvoicedSourceAccountDetailView
 
     public void setReferenceId(String referenceId) {
         this.referenceId = referenceId;
-    }
-
-    public String getSourceAccountId() {
-        return sourceAccountId;
-    }
-
-    public void setSourceAccountId(String sourceAccountId) {
-        this.sourceAccountId = sourceAccountId;
     }
 
     public String getSourceAccountName() {

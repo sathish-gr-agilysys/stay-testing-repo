@@ -17,6 +17,7 @@ public class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineView<T>> {
     private String groupCode;
     private List<T> invoicedCharges;
     private String name;
+    private String sourceAccountId;
 
     public LocalDate getArrivalDate() {
         return arrivalDate;
@@ -64,6 +65,14 @@ public class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineView<T>> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSourceAccountId() {
+        return sourceAccountId;
+    }
+
+    public void setSourceAccountId(String sourceAccountId) {
+        this.sourceAccountId = sourceAccountId;
     }
 
     public BigDecimal getChargesBalance() {
