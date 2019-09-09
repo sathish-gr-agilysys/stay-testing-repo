@@ -1,3 +1,6 @@
+/*
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.client;
 
 import javax.ws.rs.core.Response.Status;
@@ -11,6 +14,10 @@ import com.agilysys.pms.common.exceptions.NextGenExceptionToggle;
 public class AccountServiceV1Client extends StayServiceClient<AccountServiceInterfaceV1> {
     public AccountServiceV1Client(String uri) {
         super(AccountServiceInterfaceV1.class, uri, clientProviderConfigurer());
+    }
+
+    public AccountServiceV1Client(String uri, int limit) {
+        super(AccountServiceInterfaceV1.class, uri, clientProviderConfigurer(), limit);
     }
 
     protected static ClientProviderConfigurer clientProviderConfigurer() {
