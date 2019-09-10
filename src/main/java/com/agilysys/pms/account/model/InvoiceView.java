@@ -26,6 +26,9 @@ public class InvoiceView {
     private int daysOverdue;
     private List<TaxAmountInfo> taxTotalsBreakdown = new ArrayList<>();
     private DateTime sentOnDate;
+    private VATTotalBreakDown vatTotalBreakDown;
+    private boolean reverseTax;
+    private String vatNumber;
 
     public String getId() {
         return id;
@@ -216,5 +219,29 @@ public class InvoiceView {
 
     public void setSentOnDate(DateTime sentOnDate) {
         this.sentOnDate = sentOnDate;
+    }
+
+    public VATTotalBreakDown getVatTotalBreakDown() {
+        return vatTotalBreakDown;
+    }
+
+    public void setVatTotalBreakDown(VATTotalBreakDown vatTotalBreakDown) {
+        this.vatTotalBreakDown = vatTotalBreakDown;
+    }
+
+    public boolean isReverseTax() {
+        return reverseTax;
+    }
+
+    public void setReverseTax(boolean reverseTax) {
+        this.reverseTax = reverseTax;
+    }
+
+    public String getVatNumber() {
+        return vatNumber;
+    }
+
+    public void setVatNumber(String vatNumber) {
+        this.vatNumber = vatNumber;
     }
 }

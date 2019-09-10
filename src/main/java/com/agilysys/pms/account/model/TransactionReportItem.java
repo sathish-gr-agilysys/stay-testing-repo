@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -18,6 +19,7 @@ public class TransactionReportItem {
     private int quantity;
     private String categoryId;
     private String subcategoryId;
+    private String glCodeTemplate;
     private String itemId;
     private String description;
     private String userId;
@@ -38,6 +40,8 @@ public class TransactionReportItem {
     private String autoRecurringItemId;
     private String sourceId;
     private String mealPeriodId;
+    private List<PantryItemDetails> pantryItemDetails;
+    private DateTime createTime;
 
     public String getId() {
         return id;
@@ -101,6 +105,14 @@ public class TransactionReportItem {
 
     public void setSubcategoryId(String subcategoryId) {
         this.subcategoryId = subcategoryId;
+    }
+
+    public String getGlCodeTemplate() {
+        return glCodeTemplate;
+    }
+
+    public void setGlCodeTemplate(String glCodeTemplate) {
+        this.glCodeTemplate = glCodeTemplate;
     }
 
     public String getItemId() {
@@ -237,5 +249,21 @@ public class TransactionReportItem {
 
     public void setAutoRecurringItemId(String autoRecurringItemId) {
         this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public List<PantryItemDetails> getPantryItemDetails() {
+        return pantryItemDetails;
+    }
+
+    public void setPantryItemDetails(List<PantryItemDetails> pantryItemDetails) {
+        this.pantryItemDetails = pantryItemDetails;
+    }
+
+    public DateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(DateTime createTime) {
+        this.createTime = createTime;
     }
 }

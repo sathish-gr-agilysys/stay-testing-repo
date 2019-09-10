@@ -6,9 +6,11 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.common.model.ThirdPartyConfirmation;
 import com.agilysys.pms.profile.model.AddressDetails;
 
 public class NonInvoicedSourceAccountDetail {
@@ -27,6 +29,7 @@ public class NonInvoicedSourceAccountDetail {
     protected BigDecimal nonInvoicedChargesTaxBalance = BigDecimal.ZERO;
     protected BigDecimal nonInvoicedChargesTotalBalance = BigDecimal.ZERO;
     protected BigDecimal nonInvoicedPaymentsTotalBalance = BigDecimal.ZERO;
+    protected Set<ThirdPartyConfirmation> thirdPartyConfirmation;
 
     public String getSourceAccountId() {
         return sourceAccountId;
@@ -146,5 +149,13 @@ public class NonInvoicedSourceAccountDetail {
 
     public void setNonInvoicedPaymentsTotalBalance(BigDecimal nonInvoicedPaymentsTotalBalance) {
         this.nonInvoicedPaymentsTotalBalance = nonInvoicedPaymentsTotalBalance;
+    }
+
+    public Set<ThirdPartyConfirmation> getThirdPartyConfirmation() {
+        return thirdPartyConfirmation;
+    }
+
+    public void setThirdPartyConfirmation(Set<ThirdPartyConfirmation> thirdPartyConfirmation) {
+        this.thirdPartyConfirmation = thirdPartyConfirmation;
     }
 }
