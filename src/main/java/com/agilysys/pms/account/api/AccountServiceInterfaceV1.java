@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.api;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -83,6 +82,7 @@ import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
+import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
@@ -936,4 +936,9 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + "/checkAllowance" + FOLIO_ID_PATH)
     List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String packageFolioId) throws RGuestException, ServiceException;
+
+    @GET
+    @Path("/createAllowanceTransactionItem")
+    TransactionItem createAllowanceTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }
