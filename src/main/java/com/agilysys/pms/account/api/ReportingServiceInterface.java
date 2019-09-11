@@ -25,10 +25,11 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
+import com.agilysys.pms.account.model.GLCodeTemplate;
+import com.agilysys.pms.account.model.GLCodeTemplateRequest;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
-import com.agilysys.pms.account.model.RevenueReportItem;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
@@ -45,9 +46,9 @@ public interface ReportingServiceInterface {
     String TO_DATE_TOTALS_PATH = "/toDateTotals";
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
+    String GENERAL_LEDGER = "/generalLedger";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String REVENUE_PATH = "/revenueDetails";
-    String REVENUE_BY_ACCOUNT="revenueByAccount";
     String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
@@ -58,7 +59,6 @@ public interface ReportingServiceInterface {
     String END_DATE = "endDate";
     String ROOM_REVENUE = "roomRevenue";
     String REVENUE_OCCUPANCY = "revenueOccupancy";
-    String ALL_REVENUE = "allRevenue";
     String BY_CASHIER = "byCashier";
     String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
     String SOURCE_ID = "sourceId";
@@ -255,6 +255,20 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
     AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountBalancesRequest request)
+          throws RGuestException, ServiceException;
+
+    /**
+     * @param request
+     * @return
+     * @throws ServiceException
+     */
+    @POST
+    @Path(GENERAL_LEDGER)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
+    List <GLCodeTemplate> getGeneralLedgerTemplates(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request)
           throws RGuestException, ServiceException;
 
     /**
