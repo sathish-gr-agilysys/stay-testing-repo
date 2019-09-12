@@ -118,7 +118,8 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     GeneralAvailabilityResult getGeneralAvailabilityReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException, ServiceException;
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue)
+          throws RGuestException, ServiceException;
 
     /**
      * Retrieve inventory recurring charge detail information for the given date range.
