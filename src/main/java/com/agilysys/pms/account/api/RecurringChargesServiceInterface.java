@@ -25,7 +25,7 @@ import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AuthDetailResponse;
-import com.agilysys.pms.account.model.CreateRecurringCharge;
+import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.EstimatedRoomChargeView;
