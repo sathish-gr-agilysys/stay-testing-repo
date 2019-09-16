@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.api;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.Consumes;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.pms.common.model.AggregationJob;
 import com.agilysys.pms.maintenance.model.IndexRequest;
 
 @Path(MaintenanceInterface.BASE_PATH)
@@ -39,6 +41,8 @@ public interface MaintenanceInterface {
     String UNINDEXED_PATH = "/unindexed";
     String UNEXPORTED_PATH = "/unexported";
 
+    String NAME = "name";
+    String NAME_TEMPLATE = "{" + NAME + "}";
     String TENANT_ID = "tenantId";
     String TENANT_ID_TEMPLATE = "{" + TENANT_ID + "}";
 
@@ -154,8 +158,18 @@ public interface MaintenanceInterface {
     @Path(EXPORT_PATH + REVENUE_AGGREGATES_PATH)
     Map<String, Long> exportRevenueAggregates(IndexRequest request) throws RGuestException, ServiceException;
 
+    @GET
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(AGGREGATE_PATH + "/" + NAME_TEMPLATE)
+    AggregationJob getAggregate(@PathParam(NAME) String name) throws RGuestException, ServiceException;
+
+    @GET
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(AGGREGATE_PATH)
+    List<AggregationJob> getAggregates() throws RGuestException, ServiceException;
+
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(AGGREGATE_PATH + REVENUE_AGGREGATES_PATH)
-    void aggregateRevenue() throws RGuestException, ServiceException;
+    @Path(AGGREGATE_PATH + "/" + NAME_TEMPLATE)
+    void aggregate(@PathParam(NAME) String name) throws RGuestException, ServiceException;
 }
