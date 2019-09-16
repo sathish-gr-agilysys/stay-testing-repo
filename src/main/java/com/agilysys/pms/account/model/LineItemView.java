@@ -63,6 +63,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private int quantity;
     private String rateChangeComment;
     private List<LineItemView> refundLineItems;
+    private List<LineItemView> compLineItems;
     private String reason;
     private String transferMessage;
     private String receiptTextImage;
@@ -96,6 +97,7 @@ public class LineItemView implements Comparable<LineItemView> {
         groupedTaxLineItems = new ArrayList<>();
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
+        compLineItems = new ArrayList<>();
     }
 
     /**
@@ -457,6 +459,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setRefundLineItems(List<LineItemView> refundLineItems) {
         this.refundLineItems = refundLineItems;
+    }
+
+    public List<LineItemView> getCompLineItems() {
+        return compLineItems;
+    }
+
+    public void setCompLineItems(List<LineItemView> compLineItems) {
+        this.compLineItems = compLineItems;
     }
 
     /**
