@@ -3,7 +3,6 @@
  */
 package com.agilysys.pms.account.api;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.Consumes;
@@ -97,11 +96,6 @@ public interface MaintenanceInterface {
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
     AggregationJob getAggregate(@PathParam(TYPE) AggregationType type) throws RGuestException, ServiceException;
-
-    @GET
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(AGGREGATE_PATH)
-    List<AggregationJob> getAggregates() throws RGuestException, ServiceException;
 
     @GET
     @Path(COUNT_PATH + RANGE_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
