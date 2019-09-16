@@ -29,14 +29,13 @@ public interface MaintenanceInterface {
     String BASE_PATH = "/maintenance";
 
     String ACCOUNTS_PATH = "/accounts";
-    String LEDGER_TRANSACTIONS_PATH = "/ledgerTransactions";
-    String REVENUE_AGGREGATES_PATH = "/revenueAggregates";
-
+    String AGGREGATE_PATH = "/aggregate";
     String COUNT_PATH = "/count";
     String EXPORT_PATH = "/export";
     String INDEX_PATH = "/index";
+    String LEDGER_TRANSACTIONS_PATH = "/ledgerTransactions";
     String RANGE_PATH = "/range";
-    String SEED_EXPORT_PATH = "/seedExport";
+    String REVENUE_AGGREGATES_PATH = "/revenueAggregates";
     String UNINDEXED_PATH = "/unindexed";
     String UNEXPORTED_PATH = "/unexported";
 
@@ -157,6 +156,6 @@ public interface MaintenanceInterface {
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(SEED_EXPORT_PATH + REVENUE_AGGREGATES_PATH)
-    void seedRevenueAggregates() throws RGuestException, ServiceException;
+    @Path(AGGREGATE_PATH + REVENUE_AGGREGATES_PATH)
+    void aggregateRevenue() throws RGuestException, ServiceException;
 }
