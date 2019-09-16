@@ -24,6 +24,7 @@ import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AggregationType;
 import com.agilysys.pms.common.model.AggregationJob;
+import com.agilysys.pms.maintenance.model.ExportRequest;
 import com.agilysys.pms.maintenance.model.IndexRequest;
 
 @Path(MaintenanceInterface.BASE_PATH)
@@ -36,9 +37,7 @@ public interface MaintenanceInterface {
     String COUNT_PATH = "/count";
     String EXPORT_PATH = "/export";
     String INDEX_PATH = "/index";
-    String LEDGER_TRANSACTIONS_PATH = "/ledgerTransactions";
     String RANGE_PATH = "/range";
-    String REVENUE_AGGREGATES_PATH = "/revenueAggregates";
     String UNINDEXED_PATH = "/unindexed";
     String UNEXPORTED_PATH = "/unexported";
 
@@ -88,76 +87,10 @@ public interface MaintenanceInterface {
     @Path(INDEX_PATH + ACCOUNTS_PATH)
     Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
 
-    @GET
-    @Path(COUNT_PATH + UNEXPORTED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long countUnexportedAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + UNEXPORTED_PATH + ACCOUNTS_PATH)
-    Map<String, Long> countUnexportedAccounts() throws RGuestException, ServiceException;
-
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long exportAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + ACCOUNTS_PATH)
-    Map<String, Long> exportAccounts(IndexRequest request) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + RANGE_PATH + LEDGER_TRANSACTIONS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long countRangeLedgerTransactions(@PathParam(TENANT_ID) String tenantId,
-          @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + UNEXPORTED_PATH + LEDGER_TRANSACTIONS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long countUnexportedLedgerTransactions(@PathParam(TENANT_ID) String tenantId)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + UNEXPORTED_PATH + LEDGER_TRANSACTIONS_PATH)
-    Map<String, Long> countUnexportedLedgerTransactions() throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + LEDGER_TRANSACTIONS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long exportLedgerTransactions(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + LEDGER_TRANSACTIONS_PATH)
-    Map<String, Long> exportLedgerTransactions(IndexRequest request) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + RANGE_PATH + REVENUE_AGGREGATES_PATH + "/" + TENANT_ID_TEMPLATE)
-    long countRangeRevenueAggregates(@PathParam(TENANT_ID) String tenantId,
-          @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + UNEXPORTED_PATH + REVENUE_AGGREGATES_PATH + "/" + TENANT_ID_TEMPLATE)
-    long countUnexportedRevenueAggregates(@PathParam(TENANT_ID) String tenantId)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + UNEXPORTED_PATH + REVENUE_AGGREGATES_PATH)
-    Map<String, Long> countUnexportedRevenueAggregates() throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + REVENUE_AGGREGATES_PATH + "/" + TENANT_ID_TEMPLATE)
-    long exportRevenueAggregates(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + REVENUE_AGGREGATES_PATH)
-    Map<String, Long> exportRevenueAggregates(IndexRequest request) throws RGuestException, ServiceException;
+    @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
+    void aggregate(@PathParam(TYPE) AggregationType type) throws RGuestException, ServiceException;
 
     @GET
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
@@ -169,8 +102,30 @@ public interface MaintenanceInterface {
     @Path(AGGREGATE_PATH)
     List<AggregationJob> getAggregates() throws RGuestException, ServiceException;
 
+    @GET
+    @Path(COUNT_PATH + RANGE_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
+    long countRange(@PathParam(TYPE) AggregationType type, @PathParam(TENANT_ID) String tenantId,
+          @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
+    long countUnexported(@PathParam(TYPE) AggregationType type, @PathParam(TENANT_ID) String tenantId)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE)
+    Map<String, Long> countUnexported(@PathParam(TYPE) AggregationType type) throws RGuestException, ServiceException;
+
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
-    void aggregate(@PathParam(TYPE) AggregationType type) throws RGuestException, ServiceException;
+    @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
+    long export(@PathParam(TYPE) AggregationType type, @PathParam(TENANT_ID) String tenantId,
+          @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE)
+    Map<String, Long> export(ExportRequest<AggregationType> request) throws RGuestException, ServiceException;
 }
