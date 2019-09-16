@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AggregationType;
+import com.agilysys.pms.account.model.WarehouseType;
 import com.agilysys.pms.common.model.AggregationJob;
 import com.agilysys.pms.maintenance.model.ExportRequest;
 import com.agilysys.pms.maintenance.model.IndexRequest;
@@ -104,28 +105,28 @@ public interface MaintenanceInterface {
 
     @GET
     @Path(COUNT_PATH + RANGE_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
-    long countRange(@PathParam(TYPE) AggregationType type, @PathParam(TENANT_ID) String tenantId,
+    long countRange(@PathParam(TYPE) WarehouseType type, @PathParam(TENANT_ID) String tenantId,
           @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
           throws RGuestException, ServiceException;
 
     @GET
     @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
-    long countUnexported(@PathParam(TYPE) AggregationType type, @PathParam(TENANT_ID) String tenantId)
+    long countUnexported(@PathParam(TYPE) WarehouseType type, @PathParam(TENANT_ID) String tenantId)
           throws RGuestException, ServiceException;
 
     @GET
     @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE)
-    Map<String, Long> countUnexported(@PathParam(TYPE) AggregationType type) throws RGuestException, ServiceException;
+    Map<String, Long> countUnexported(@PathParam(TYPE) WarehouseType type) throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
-    long export(@PathParam(TYPE) AggregationType type, @PathParam(TENANT_ID) String tenantId,
+    long export(@PathParam(TYPE) WarehouseType type, @PathParam(TENANT_ID) String tenantId,
           @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
           throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE)
-    Map<String, Long> export(ExportRequest<AggregationType> request) throws RGuestException, ServiceException;
+    Map<String, Long> export(ExportRequest<WarehouseType> request) throws RGuestException, ServiceException;
 }
