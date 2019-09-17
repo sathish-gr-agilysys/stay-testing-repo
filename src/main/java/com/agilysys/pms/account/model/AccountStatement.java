@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -9,10 +9,18 @@ import java.util.Map;
 import java.util.Optional;
 
 public class AccountStatement {
+    private Balance balance;
+    private Map<String, Balance> folioBalances;
 
-    private Balance balance = new Balance();
+    public AccountStatement() {
+        balance = new Balance();
+        folioBalances = new HashMap<>();
+    }
 
-    private Map<String, Balance> folioBalances = new HashMap<>();
+    public AccountStatement(Balance balance, Map<String, Balance> folioBalances) {
+        this.balance = balance;
+        this.folioBalances = folioBalances;
+    }
 
     public Balance getBalance() {
         return balance;
