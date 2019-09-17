@@ -19,6 +19,7 @@ public class TransactionReportItem {
     private int quantity;
     private String categoryId;
     private String subcategoryId;
+    private String glCodeTemplate;
     private String itemId;
     private String description;
     private String userId;
@@ -104,6 +105,14 @@ public class TransactionReportItem {
 
     public void setSubcategoryId(String subcategoryId) {
         this.subcategoryId = subcategoryId;
+    }
+
+    public String getGlCodeTemplate() {
+        return glCodeTemplate;
+    }
+
+    public void setGlCodeTemplate(String glCodeTemplate) {
+        this.glCodeTemplate = glCodeTemplate;
     }
 
     public String getItemId() {

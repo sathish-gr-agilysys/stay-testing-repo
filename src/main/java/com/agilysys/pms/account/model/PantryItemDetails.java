@@ -9,6 +9,7 @@ public class PantryItemDetails {
     private String description;
     private String itemId;
     private BigDecimal price;
+    private BigDecimal defaultPrice;
     private int quantity;
 
     public PantryItemDetails() {}
@@ -20,12 +21,18 @@ public class PantryItemDetails {
         this.quantity = quantity;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public PantryItemDetails(String itemId, String description, BigDecimal price, int quantity,
+          BigDecimal defaultPrice) {
+        this(itemId, description, price, quantity);
+        this.defaultPrice = defaultPrice;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getItemId() {
@@ -36,12 +43,20 @@ public class PantryItemDetails {
         this.itemId = itemId;
     }
 
-    public String getDescription() {
-        return description;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getDefaultPrice() {
+        return defaultPrice;
+    }
+
+    public void setDefaultPrice(BigDecimal defaultPrice) {
+        this.defaultPrice = defaultPrice;
     }
 
     public int getQuantity() {
