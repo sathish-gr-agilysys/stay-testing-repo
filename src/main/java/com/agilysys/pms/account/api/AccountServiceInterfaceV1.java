@@ -65,6 +65,8 @@ import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
+import com.agilysys.pms.account.model.PantryCharge;
+import com.agilysys.pms.account.model.PantryTransactionResponse;
 import com.agilysys.pms.account.model.Payment;
 import com.agilysys.pms.account.model.PaymentInstrumentAuthStatus;
 import com.agilysys.pms.account.model.PaymentRefund;
@@ -186,8 +188,7 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
-    String CANCEL_PAYMENTS = "/cancelPayments";
-    String RESERVATION_IDS_TO_AUTHORIZE = "/getReservationIdsToAuthorize";
+    String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -255,7 +256,8 @@ public interface AccountServiceInterfaceV1 {
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void updateAccountStatus(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus)
+          @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus,
+          @QueryParam("dissociatePantryHouseAccount") boolean dissociatePantryHouseAccount)
           throws RGuestException, ServiceException;
 
     @PUT
@@ -891,15 +893,10 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 
     @POST
-    @Path(CANCEL_PAYMENTS)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    void processCancellation(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
-          throws RGuestException, ServiceException;
-
-    @POST
-    @CreatedOnSuccess
-    @Path(RESERVATION_IDS_TO_AUTHORIZE)
-    Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
+    @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'AddPantry')")
+    PantryTransactionResponse postPantryCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
+          @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException, ServiceException;
 }
