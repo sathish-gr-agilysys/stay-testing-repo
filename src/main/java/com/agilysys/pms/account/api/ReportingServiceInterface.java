@@ -25,6 +25,8 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
+import com.agilysys.pms.account.model.GLCodeTemplate;
+import com.agilysys.pms.account.model.GLCodeTemplateRequest;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.RevenueDetailReportRequest;
@@ -47,6 +49,7 @@ public interface ReportingServiceInterface {
     String TO_DATE_TOTALS_PATH = "/toDateTotals";
     String TRANS_PATH = "/transaction";
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
+    String GENERAL_LEDGER = "/generalLedger";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
     String GENERAL_AVAILABILITY_STATS = "/generalAvailabilityStats";
     String REVENUE_PATH = "/revenueDetails";
@@ -67,6 +70,7 @@ public interface ReportingServiceInterface {
     String PANTRY_TRANSACTION = "/pantryTransaction";
     String DEPARTMENT_REVENUE = "/departmentRevenue";
     String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
+    String STAY_DATE_SUMMARY = "stayDateSummary";
 
     /**
      * get the ledger report
@@ -180,7 +184,8 @@ public interface ReportingServiceInterface {
     RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
-          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
+          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy,
+          @QueryParam(STAY_DATE_SUMMARY) boolean stayDateSummary)
           throws RGuestException, ServiceException;
 
     @GET
@@ -267,6 +272,20 @@ public interface ReportingServiceInterface {
           throws RGuestException, ServiceException;
 
     /**
+     * @param request
+     * @return
+     * @throws ServiceException
+     */
+    @POST
+    @Path(GENERAL_LEDGER)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
+    List <GLCodeTemplate> getGeneralLedgerTemplates(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request)
+          throws RGuestException, ServiceException;
+
+    /**
      * Lists all cashiers associated with ledger transactions for the given tenant and property
      * that are associated with transactions between the specified start and end dates.
      */
@@ -318,7 +337,8 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest);
+          @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
+          throws RGuestException, ServiceException;
 
     @Path(PANTRY_TRANSACTION)
     @Produces(MediaType.APPLICATION_JSON)
