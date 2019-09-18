@@ -85,7 +85,7 @@ public interface HouseAccountCategoryInterface {
      * @param id                   House account category id to update
      * @param houseAccountCategory House account category payload to update
      * @return Updated House account category
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @PUT
     @Path(ID_PATH)
@@ -102,7 +102,7 @@ public interface HouseAccountCategoryInterface {
      * @param tenantId   id of tenant where the house account category exists
      * @param propertyId id of the property where the house account category exists
      * @param id         House account category id to delete
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @DELETE
     @Path(ID_PATH)

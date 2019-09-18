@@ -33,7 +33,7 @@ public interface PayAgentTransactionInterface {
      * @param propertyId       id of property where the account exists
      * @param payTransactionId reference id of the account to retrieve
      * @return an account for the tenant and referenceId
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @GET
     @Path("/{payTransactionId}")
@@ -53,7 +53,7 @@ public interface PayAgentTransactionInterface {
      *                   (auth, sale, token, etc) based on the rGuest Pay
      *                   endpoint that will be called
      * @return a PayTransactionResponse object with the required payload, account id, and reference id
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -70,7 +70,7 @@ public interface PayAgentTransactionInterface {
      * @param payTransactionId
      * @param request
      * @return the updated PayTransactionResponse
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @PUT
     @Path("/{payTransactionId}")
@@ -90,7 +90,7 @@ public interface PayAgentTransactionInterface {
      * @param payTransactionId
      * @param id
      * @return the updated PayTransactionResponse
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @POST
     @Path("/{payTransactionId}")
@@ -107,7 +107,7 @@ public interface PayAgentTransactionInterface {
      * @param propertyId
      * @param payTransactionId
      * @return the updated PayTransactionResponse
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @DELETE
     @Path("/{payTransactionId}")

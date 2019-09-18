@@ -133,7 +133,7 @@ public interface ReportingServiceInterface {
      * @param propertyId the property ID
      * @param request    TransactionReportRequest object that holds accountIds filter
      * @return TransactionReportResponse object that holds TransactionReportItem mapped by account id
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @POST
     @Path(TRANS_PATH)
@@ -240,7 +240,7 @@ public interface ReportingServiceInterface {
      *
      * @param request
      * @return
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @POST
     @Path(ACCOUNT_BALANCES_PATH)
@@ -254,7 +254,7 @@ public interface ReportingServiceInterface {
     /**
      * @param request
      * @return
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @POST
     @Path(GENERAL_LEDGER)
@@ -263,7 +263,7 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
     List <GLCodeTemplate> getGeneralLedgerTemplates(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     /**
      * Lists all cashiers associated with ledger transactions for the given tenant and property

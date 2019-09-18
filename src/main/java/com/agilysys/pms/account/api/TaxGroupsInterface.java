@@ -34,7 +34,7 @@ public interface TaxGroupsInterface {
      * @param tenantId
      * @param propertyId
      * @return the list of tax groups
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -51,7 +51,7 @@ public interface TaxGroupsInterface {
      * @param propertyId
      * @param create
      * @return the list of all tax groups associated with the tenant and property
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -68,7 +68,7 @@ public interface TaxGroupsInterface {
      * @param propertyId
      * @param create
      * @return the list of all tax groups associated with the tenant and property
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @POST
     @Path("/list")
@@ -86,7 +86,7 @@ public interface TaxGroupsInterface {
      * @param propertyId
      * @param taxGroupId
      * @return
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @GET
     @Path(TAX_GROUP_ID_PATH)
@@ -105,7 +105,7 @@ public interface TaxGroupsInterface {
      * @param taxGroupId, must be unique for the given tenant/property.
      * @param update
      * @return
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @PUT
     @Path(TAX_GROUP_ID_PATH)
@@ -121,10 +121,9 @@ public interface TaxGroupsInterface {
      *
      * @param tenantId
      * @param propertyId
-     * @param taxGroupId, must be unique for the given tenant/property.
      * @param updates
      * @return
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
@@ -141,7 +140,7 @@ public interface TaxGroupsInterface {
      * @param propertyId
      * @param taxGroupId
      * @return
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @DELETE
     @Path(TAX_GROUP_ID_PATH)

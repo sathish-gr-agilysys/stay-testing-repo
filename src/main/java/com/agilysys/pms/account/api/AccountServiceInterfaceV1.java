@@ -376,7 +376,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, LedgerTransactionTransferDetail> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<String> ledgerTransactionHistoryId)
-          throws RGuestException, ServiceException, AccountException;
+          throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH)
@@ -674,7 +674,7 @@ public interface AccountServiceInterfaceV1 {
     SearchPage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
           @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) Integer page,
-          @QueryParam(SIZE) Integer size) throws RGuestException, ServiceException;
+          @QueryParam(SIZE) Integer size) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + NON_INVOICED_PATH)
@@ -697,7 +697,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     NonInvoicedARDetail getNonInvoicedARDetailByTransactionIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          NonInvoiceReport nonInvoiceReport) throws RGuestException, ServiceException;
+          NonInvoiceReport nonInvoiceReport) throws RGuestException;
 
     /**
      * Create an invoice for an account
