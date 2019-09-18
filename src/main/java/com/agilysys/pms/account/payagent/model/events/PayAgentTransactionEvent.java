@@ -70,4 +70,3 @@ public abstract class PayAgentTransactionEvent extends StayDomainEvent {
 
     public abstract List<String> getHistoryMessages();
 }
-

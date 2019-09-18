@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.api;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -1013,11 +1012,13 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
     @POST
     @Path(ACCOUNT_ID_PATH + "/giftCard/load")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GiftCardResponse loadGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + "/giftCard/issue")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GiftCardResponse issueGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
 
@@ -1028,4 +1029,3 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException, ServiceException;
 }
-

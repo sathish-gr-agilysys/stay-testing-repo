@@ -91,7 +91,6 @@ public class LineItemView implements Comparable<LineItemView> {
     private List<PantryItemDetails> pantryItemDetails;
     private Boolean pantryItem;
 
-
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
         freeAllowanceAmount = BigDecimal.ZERO;
