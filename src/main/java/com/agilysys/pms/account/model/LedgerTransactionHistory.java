@@ -17,8 +17,10 @@ public class LedgerTransactionHistory {
     private String id;
 
     private String sourceId;
+    public static final String SOURCE_ID_FIELD = "sourceId";
 
     private String sourceAccountType;
+    public static final String SOURCE_ACCOUNT_TYPE_FIELD = "sourceAccountType";
 
     private String destinationId;
 
