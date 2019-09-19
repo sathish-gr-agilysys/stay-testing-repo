@@ -12,7 +12,7 @@ public class GroupRevenueReportItem extends RevenueReportItem {
 
     public GroupRevenueReportItem() {}
 
-    public GroupRevenueReportItem(RevenueReportItem revenueReportItem) {
+    public GroupRevenueReportItem(GroupRevenueReportItem revenueReportItem) {
         super(revenueReportItem);
     }
 
