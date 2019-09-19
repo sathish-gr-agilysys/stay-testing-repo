@@ -3,24 +3,24 @@ package com.agilysys.pms.account.data.domain;
 import java.math.BigDecimal;
 
 public class CheckAllowanceResponse {
-    private BigDecimal availableAllowance;
+    private BigDecimal remainingAllowance;
     private BigDecimal breakage;
     private BigDecimal usedAllowance;
 
     public CheckAllowanceResponse() {}
 
-    public CheckAllowanceResponse(BigDecimal availableAllowance, BigDecimal breakage, BigDecimal usedAllowance) {
+    public CheckAllowanceResponse(BigDecimal remainingAllowance, BigDecimal breakage, BigDecimal usedAllowance) {
         this.breakage = breakage;
-        this.availableAllowance = availableAllowance;
+        this.remainingAllowance = remainingAllowance;
         this.usedAllowance = usedAllowance;
     }
 
-    public BigDecimal getAvailableAllowance() {
-        return availableAllowance;
+    public BigDecimal getRemainingAllowance() {
+        return remainingAllowance;
     }
 
-    public void setAvailableAllowance(BigDecimal availableAllowance) {
-        this.availableAllowance = availableAllowance;
+    public void setRemainingAllowance(BigDecimal remainingAllowance) {
+        this.remainingAllowance = remainingAllowance;
     }
 
     public BigDecimal getBreakage() {
