@@ -8,4 +8,6 @@ import java.math.BigDecimal;
 public class CompRedeemRequest {
     private String lineItemId;
     private BigDecimal amount;
+    private String pin;
+    private String playerOrCardId;
 }
