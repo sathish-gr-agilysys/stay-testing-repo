@@ -217,6 +217,9 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String AUTHORIZER_CODE = "code";
+    String CODE = "/{" + AUTHORIZER_CODE + "}";
+    String AUTHORIZERD_FOLIO_ITEMS = CODE + "/authorizedFolioItems";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -278,6 +281,12 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     AccountDetail createAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           CreateAccountSummary account) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(AUTHORIZERD_FOLIO_ITEMS)
+    List<LineItemView> getEligibleFolioItemsByAuthorizerDetails(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(AUTHORIZER_CODE) String code)
+          throws RGuestException, ServiceException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNT_STATUS_PATH)
