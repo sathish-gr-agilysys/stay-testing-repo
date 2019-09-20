@@ -4,19 +4,20 @@
 package com.agilysys.pms.account.model;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class MultipleAccountRecurringCharge {
-
-    private Map<String, String> accountAndFolios;
+    private Set<String> accountIds;
     private List<CreateRecurringCharge> createRecurringCharges;
 
-    public Map<String, String> getAccountAndFolios() {
-        return accountAndFolios;
+    public MultipleAccountRecurringCharge() {}
+
+    public Set<String> getAccountIds() {
+        return accountIds;
     }
 
-    public void setAccountAndFolios(Map<String, String> accountAndFolios) {
-        this.accountAndFolios = accountAndFolios;
+    public void setAccountIds(Set<String> accountIds) {
+        this.accountIds = accountIds;
     }
 
     public List<CreateRecurringCharge> getCreateRecurringCharges() {
