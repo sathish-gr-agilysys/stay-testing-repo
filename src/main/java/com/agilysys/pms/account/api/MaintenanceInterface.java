@@ -21,10 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.AggregationType;
-import com.agilysys.pms.account.model.WarehouseType;
+import com.agilysys.pms.account.model.AccountAggregateType;
+import com.agilysys.pms.account.model.AccountWarehouseType;
 import com.agilysys.pms.common.model.AggregationJob;
-import com.agilysys.pms.maintenance.model.ExportRequest;
 import com.agilysys.pms.maintenance.model.IndexRequest;
 
 @Path(MaintenanceInterface.BASE_PATH)
@@ -90,37 +89,19 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
-    void aggregate(@PathParam(TYPE) AggregationType type) throws RGuestException, ServiceException;
+    void aggregate(@PathParam(TYPE) AccountAggregateType type) throws RGuestException, ServiceException;
 
     @GET
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
-    AggregationJob getAggregate(@PathParam(TYPE) AggregationType type) throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + RANGE_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
-    long countRange(@PathParam(TYPE) WarehouseType type, @PathParam(TENANT_ID) String tenantId,
-          @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
-    long countUnexported(@PathParam(TYPE) WarehouseType type, @PathParam(TENANT_ID) String tenantId)
-          throws RGuestException, ServiceException;
+    AggregationJob getAggregate(@PathParam(TYPE) AccountAggregateType type) throws RGuestException, ServiceException;
 
     @GET
     @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE)
-    Map<String, Long> countUnexported(@PathParam(TYPE) WarehouseType type) throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE + "/" + TENANT_ID_TEMPLATE)
-    long export(@PathParam(TYPE) WarehouseType type, @PathParam(TENANT_ID) String tenantId,
-          @QueryParam(UPDATED_SINCE) String updatedSince, @QueryParam(UPDATED_UNTIL) String updatedUntil)
-          throws RGuestException, ServiceException;
+    long countUnexported(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException, ServiceException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE)
-    Map<String, Long> export(ExportRequest<WarehouseType> request) throws RGuestException, ServiceException;
+    void export(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException, ServiceException;
 }

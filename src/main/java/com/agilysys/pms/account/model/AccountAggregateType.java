@@ -3,8 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
-public enum WarehouseType {
-    ACCOUNT,
-    LEDGER_TRANSACTION,
+import com.agilysys.pms.common.model.export.AggregateType;
+
+public enum AccountAggregateType implements AggregateType {
     REVENUE
 }
