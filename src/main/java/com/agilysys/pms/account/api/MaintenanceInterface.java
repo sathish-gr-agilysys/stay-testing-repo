@@ -103,5 +103,5 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE)
-    void export(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException, ServiceException;
+    long export(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException, ServiceException;
 }
