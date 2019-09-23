@@ -6,6 +6,8 @@ public class CheckAllowanceResponse {
     private BigDecimal remainingAllowance;
     private BigDecimal breakage;
     private BigDecimal usedAllowance;
+    private boolean applicable = true;
+    private boolean allowanceComponent = true;
 
     public CheckAllowanceResponse() {}
 
@@ -13,6 +15,11 @@ public class CheckAllowanceResponse {
         this.breakage = breakage;
         this.remainingAllowance = remainingAllowance;
         this.usedAllowance = usedAllowance;
+    }
+
+    public CheckAllowanceResponse(boolean allowanceComponent, boolean applicable) {
+        this.allowanceComponent = allowanceComponent;
+        this.applicable = applicable;
     }
 
     public BigDecimal getRemainingAllowance() {
@@ -37,5 +44,21 @@ public class CheckAllowanceResponse {
 
     public void setUsedAllowance(BigDecimal usedAllowance) {
         this.usedAllowance = usedAllowance;
+    }
+
+    public boolean isApplicable() {
+        return applicable;
+    }
+
+    public void setApplicable(boolean applicable) {
+        this.applicable = applicable;
+    }
+
+    public boolean isAllowanceComponent() {
+        return allowanceComponent;
+    }
+
+    public void setAllowanceComponent(boolean allowanceComponent) {
+        this.allowanceComponent = allowanceComponent;
     }
 }
