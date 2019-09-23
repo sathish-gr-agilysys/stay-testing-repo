@@ -25,9 +25,9 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
-import com.agilysys.pms.account.model.GroupRevenueReportResult;
 import com.agilysys.pms.account.model.GLCodeTemplate;
 import com.agilysys.pms.account.model.GLCodeTemplateRequest;
+import com.agilysys.pms.account.model.GroupRevenueReportItem;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
@@ -341,7 +341,7 @@ public interface ReportingServiceInterface {
     @Path(GROUPS_REVENUE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    GroupRevenueReportResult getRevenueDetailsForGroups(@PathParam(TENANT_ID) String tenantId,
+    Map<String, List<GroupRevenueReportItem>>  getRevenueDetailsForGroups(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(DATE) LocalDate date, Set<String> groupIds);
 }
 
