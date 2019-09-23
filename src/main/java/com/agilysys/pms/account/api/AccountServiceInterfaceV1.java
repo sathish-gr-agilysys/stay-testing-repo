@@ -1022,6 +1022,7 @@ public interface AccountServiceInterfaceV1 {
     GiftCardResponse issueGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
 
+    @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'AddPantry')")
     PantryTransactionResponse postPantryCharges(@PathParam(TENANT_ID) String tenantId,
