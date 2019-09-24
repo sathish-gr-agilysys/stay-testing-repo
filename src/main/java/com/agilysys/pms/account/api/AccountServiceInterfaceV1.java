@@ -25,7 +25,9 @@ import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.constants.Constants.HTTPRequestConstants;
 import com.agilysys.common.model.BatchStatusResponse;
+import com.agilysys.common.model.CancelBatchRequest;
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
@@ -195,6 +197,7 @@ public interface AccountServiceInterfaceV1 {
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
     String BATCH_DEPOSIT_COLLECTION_JOB_PATH = "/batchDepositCollectionJob";
     String BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH = "/batchDepositCollectionJobStatus";
+    String BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH = "/batchDepositCollectionJobCancel";
     String JOB_ID = "jobId";
 
     String PAGE = "page";
@@ -918,4 +921,9 @@ public interface AccountServiceInterfaceV1 {
     BatchStatusResponse batchDepositCollectionStatus(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(JOB_ID) String jobId)
           throws RGuestException, ServiceException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH)
+    void cancelBatchDepositCollection(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          CancelBatchRequest request) throws RGuestException, ServiceException;
 }
