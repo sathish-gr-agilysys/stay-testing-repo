@@ -25,6 +25,7 @@ import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.BatchStatusResponse;
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
@@ -42,6 +43,8 @@ import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
 import com.agilysys.pms.account.model.AmountTransfer;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
+import com.agilysys.pms.account.model.BatchDepositCollectionRequest;
+import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
@@ -190,6 +193,9 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String BATCH_DEPOSIT_COLLECTION_JOB_PATH = "/batchDepositCollectionJob";
+    String BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH = "/batchDepositCollectionJobStatus";
+    String JOB_ID = "jobId";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -900,4 +906,16 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_PATH)
+    BatchDepositCollectionResponse postBatchDepositCollectionJob(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchDepositCollectionRequest batchDepositCollectionRequest)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH)
+    BatchStatusResponse batchDepositCollectionStatus(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(JOB_ID) String jobId)
+          throws RGuestException, ServiceException;
 }
