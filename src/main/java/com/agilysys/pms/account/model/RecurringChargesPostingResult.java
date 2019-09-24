@@ -13,6 +13,7 @@ public class RecurringChargesPostingResult {
     List<RecurringChargePostingError> errors = new ArrayList<>();
     private List<RecurringChargeView> recurringCharges = new ArrayList<>();
     private List<RecurringChargeView> roomCharges = new ArrayList<>();
+    List<BreakageChargesPostingError> breakageChargesPostingErrors = new ArrayList<>();
 
     public List<RecurringChargePostingError> getErrors() {
         return errors;
@@ -36,5 +37,13 @@ public class RecurringChargesPostingResult {
 
     public void setRoomCharges(List<RecurringChargeView> roomCharges) {
         this.roomCharges = roomCharges;
+    }
+
+    public List<BreakageChargesPostingError> getBreakageChargesPostingErrors() {
+        return breakageChargesPostingErrors;
+    }
+
+    public void setBreakageChargesPostingErrors(List<BreakageChargesPostingError> breakageChargesPostingErrors) {
+        this.breakageChargesPostingErrors = breakageChargesPostingErrors;
     }
 }
