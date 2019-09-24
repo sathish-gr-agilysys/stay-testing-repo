@@ -12,7 +12,7 @@ public class MultiplePaymentResponse {
     private List<LineItemView> paymentLineItems = new ArrayList<>();
     private List<String> failedAccountIds = new ArrayList<>();
     private List<String> successAccountIds = new ArrayList<>();
-    private Map<String, Throwable> error = new HashMap<>();
+    private Map<String, String> error = new HashMap<>();
 
     public List<LineItemView> getPaymentLineItems() {
         return paymentLineItems;
@@ -38,12 +38,11 @@ public class MultiplePaymentResponse {
         this.successAccountIds = successAccountIds;
     }
 
-    public Map<String, Throwable> getError() {
+    public Map<String, String> getError() {
         return error;
     }
 
-    public void setError(Map<String, Throwable> error) {
+    public void setError(Map<String, String> error) {
         this.error = error;
     }
-
 }
