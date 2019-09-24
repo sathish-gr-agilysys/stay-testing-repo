@@ -97,12 +97,12 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
         return correctedMessage;
     }
 
-    public String getAdjusteddMessage() {
-        return adjustedMessage;
-    }
-
     public void setCorrectedMessage(String correctedMessage) {
         this.correctedMessage = correctedMessage;
+    }
+
+    public String getAdjusteddMessage() {
+        return adjustedMessage;
     }
 
     public void setAdjustedMessage(String adjustedMessage) {
