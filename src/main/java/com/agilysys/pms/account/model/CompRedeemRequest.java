@@ -24,4 +24,5 @@ public class CompRedeemRequest {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
 }
