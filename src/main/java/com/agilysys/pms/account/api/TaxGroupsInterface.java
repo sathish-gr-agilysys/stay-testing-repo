@@ -118,7 +118,6 @@ public interface TaxGroupsInterface {
      *
      * @param tenantId
      * @param propertyId
-     * @param taxGroupId, must be unique for the given tenant/property.
      * @param updates
      * @return
      * @throws ServiceException
