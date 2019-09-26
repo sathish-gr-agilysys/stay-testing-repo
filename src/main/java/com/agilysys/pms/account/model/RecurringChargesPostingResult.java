@@ -6,11 +6,8 @@ package com.agilysys.pms.account.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Result return after running all recurring charges for a given day
- */
 public class RecurringChargesPostingResult {
-    List<RecurringChargePostingError> errors = new ArrayList<>();
+    private List<RecurringChargePostingError> errors = new ArrayList<>();
     private List<RecurringChargeView> recurringCharges = new ArrayList<>();
     private List<RecurringChargeView> roomCharges = new ArrayList<>();
 
