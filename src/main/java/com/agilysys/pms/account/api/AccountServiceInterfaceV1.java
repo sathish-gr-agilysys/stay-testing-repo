@@ -32,7 +32,7 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
-import com.agilysys.pms.account.data.domain.CheckAllowanceResponse;
+import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
 import com.agilysys.pms.account.model.AccountSearchResult;
