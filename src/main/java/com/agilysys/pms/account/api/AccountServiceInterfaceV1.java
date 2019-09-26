@@ -57,6 +57,8 @@ import com.agilysys.pms.account.model.FolioInvoiceResponse;
 import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
+import com.agilysys.pms.account.model.GiftCardRequest;
+import com.agilysys.pms.account.model.GiftCardResponse;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
 import com.agilysys.pms.account.model.InventoryAllocationDetails;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
@@ -91,6 +93,8 @@ import com.agilysys.pms.account.model.UpdateFolioInvoicesRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
+import com.agilysys.pms.account.model.invoice.InvoiceViewType;
+import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
@@ -149,6 +153,9 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
     String INVOICE_REPORT_START = "/invoice-report-start";
+    String INVOICE_VIEW_TYPE = "invoiceViewType";
+    String INVOICE_REPORT = "/invoice-report";
+    String INVOICE_REPORT_TYPE = INVOICE_REPORT + "/{" + INVOICE_VIEW_TYPE + "}";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
@@ -733,6 +740,21 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException;
 
     @GET
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_TYPE)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(INVOICE_VIEW_TYPE) InvoiceViewType viewType, @QueryParam("includeClosed") boolean includeClosed)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIds)
+          throws RGuestException, ServiceException;
+
+    @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
@@ -740,6 +762,7 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed) throws RGuestException;
 
+    @Deprecated
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
     @OkOnEmpty
@@ -966,6 +989,18 @@ public interface AccountServiceInterfaceV1 {
     BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + "/giftCard/load")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    GiftCardResponse loadGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + "/giftCard/issue")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    GiftCardResponse issueGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
