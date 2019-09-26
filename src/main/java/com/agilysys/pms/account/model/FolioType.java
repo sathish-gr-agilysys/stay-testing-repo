@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 public enum FolioType {
+    CHARGE(false, false),
     GUEST(true, false),
     THIRD_PARTY(false, false),
     PLAYER(true, false);

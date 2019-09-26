@@ -9,6 +9,10 @@ public class CompTransaction {
     private String authorizerId;
     private String departmentId;
     private String accountId;
+    private String compPoints;
+    private String playerPoints;
+    private String pin;
+    private String playerOrCardId;
     private List<CompRedeemRequest> compRedeemRequests;
 
     public String getAuthorizerId() {
@@ -41,5 +45,37 @@ public class CompTransaction {
 
     public void setCompRedeemRequests(List<CompRedeemRequest> compRedeemRequests) {
         this.compRedeemRequests = compRedeemRequests;
+    }
+
+    public String getCompPoints() {
+        return compPoints;
+    }
+
+    public void setCompPoints(String compPoints) {
+        this.compPoints = compPoints;
+    }
+
+    public String getPlayerPoints() {
+        return playerPoints;
+    }
+
+    public void setPlayerPoints(String playerPoints) {
+        this.playerPoints = playerPoints;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    public String getPlayerOrCardId() {
+        return playerOrCardId;
+    }
+
+    public void setPlayerOrCardId(String playerOrCardId) {
+        this.playerOrCardId = playerOrCardId;
     }
 }
