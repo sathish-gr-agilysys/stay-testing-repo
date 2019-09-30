@@ -8,7 +8,6 @@ import java.util.List;
 public class CompTransaction {
     private String authorizerId;
     private String departmentId;
-    private String accountId;
     private String compPoints;
     private String playerPoints;
     private String pin;
@@ -29,14 +28,6 @@ public class CompTransaction {
 
     public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
-    }
-
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
     }
 
     public List<CompRedeemRequest> getCompRedeemRequests() {
