@@ -41,8 +41,6 @@ public class RecurringChargeView {
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
     private String routedFolioId;
-
-
     private List<ComponentChargeView> componentCharges = new ArrayList<>();
 
     /**

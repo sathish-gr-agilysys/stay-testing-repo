@@ -42,7 +42,6 @@ public class ComponentChargeView {
     private boolean reverseTax;
 
     private BigDecimal reverseTaxTotalChargeAmount;
-
     private ComponentType allowanceComponentType;
     private BigDecimal allowanceAmount;
     private AllowanceFrequencyType allowanceFrequencyType;
@@ -50,7 +49,6 @@ public class ComponentChargeView {
     private String allowanceName;
     private int allowanceTotalQuantity;
     private String breakageId;
-    private ChargeTaxAmountInfo breakageEstimatedTaxInfo;
 
     public ComponentChargeView() {
     }
@@ -74,7 +72,6 @@ public class ComponentChargeView {
         allowanceFrequencyType = componentChargeView.getAllowanceFrequencyType();
         allowanceName = componentChargeView.getAllowanceName();
         breakageId = componentChargeView.getBreakageId();
-        breakageEstimatedTaxInfo = componentChargeView.getBreakageEstimatedTaxInfo();
     }
 
     public String getComponentBundleId() {
@@ -244,14 +241,6 @@ public class ComponentChargeView {
 
     public void setBreakageId(String breakageId) {
         this.breakageId = breakageId;
-    }
-
-    public ChargeTaxAmountInfo getBreakageEstimatedTaxInfo() {
-        return breakageEstimatedTaxInfo;
-    }
-
-    public void setBreakageEstimatedTaxInfo(ChargeTaxAmountInfo breakageEstimatedTaxInfo) {
-        this.breakageEstimatedTaxInfo = breakageEstimatedTaxInfo;
     }
 
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {

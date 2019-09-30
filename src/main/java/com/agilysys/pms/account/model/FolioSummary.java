@@ -21,9 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
       "formattedTotalBalance" })
 public class FolioSummary {
     private String id;
-
     private boolean defaultFolio;
-
     private FolioType folioType;
 
     @MaxLengthRestriction(50)
