@@ -7,7 +7,6 @@ import java.util.List;
 import java.math.BigDecimal;
 
 public class PostChargesResponse {
-
     private String parentId;
     private GroupSummary groupSummary;
 
