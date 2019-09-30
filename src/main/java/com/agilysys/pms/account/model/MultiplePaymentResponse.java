@@ -9,10 +9,17 @@ import java.util.List;
 import java.util.Map;
 
 public class MultiplePaymentResponse {
-    private List<LineItemView> paymentLineItems = new ArrayList<>();
-    private List<String> failedAccountIds = new ArrayList<>();
-    private List<String> successAccountIds = new ArrayList<>();
-    private Map<String, String> error = new HashMap<>();
+    private List<LineItemView> paymentLineItems;
+    private List<String> failedAccountIds;
+    private List<String> successAccountIds;
+    private Map<String, String> error;
+
+    public MultiplePaymentResponse() {
+        paymentLineItems = new ArrayList<>();
+        failedAccountIds = new ArrayList<>();
+        successAccountIds = new ArrayList<>();
+        error = new HashMap<>();
+    }
 
     public List<LineItemView> getPaymentLineItems() {
         return paymentLineItems;
