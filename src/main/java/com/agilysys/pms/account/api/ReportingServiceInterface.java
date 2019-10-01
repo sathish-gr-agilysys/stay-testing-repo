@@ -201,7 +201,7 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     Map<String, RevenueReportResult> getRevenueDetailReportByBuilding(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, RevenueDetailReportRequest revenueDetailReportRequest)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     /**
      * retrieve recurring charge detail information for a given date
@@ -330,7 +330,7 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     @Path(PANTRY_TRANSACTION)
     @Produces(MediaType.APPLICATION_JSON)

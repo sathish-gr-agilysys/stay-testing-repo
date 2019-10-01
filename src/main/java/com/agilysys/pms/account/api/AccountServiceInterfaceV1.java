@@ -745,14 +745,14 @@ public interface AccountServiceInterfaceV1 {
     List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(INVOICE_VIEW_TYPE) InvoiceViewType viewType, @QueryParam("includeClosed") boolean includeClosed)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIds)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
@@ -994,13 +994,13 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + "/giftCard/load")
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GiftCardResponse loadGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + "/giftCard/issue")
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GiftCardResponse issueGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
+          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
