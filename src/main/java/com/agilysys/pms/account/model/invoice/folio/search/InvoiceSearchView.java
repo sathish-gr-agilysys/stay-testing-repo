@@ -7,4 +7,10 @@ import com.agilysys.pms.account.model.invoice.folio.InvoiceFolioView;
 
 public class InvoiceSearchView extends
       InvoiceFolioView<InvoiceFolioLineSearchView, InvoicedSourceAccountSearchView,
-            GroupInvoicedSourceAccountSearchView> {}
+            GroupInvoicedSourceAccountSearchView> {
+
+    @Override
+    public String getType() {
+        return "search";
+    }
+}

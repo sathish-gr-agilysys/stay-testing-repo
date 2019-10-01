@@ -21,4 +21,9 @@ public class InvoiceDetailView extends
     public void setTaxTotalsBreakdown(List<TaxAmountInfo> taxTotalsBreakdown) {
         this.taxTotalsBreakdown = taxTotalsBreakdown;
     }
+
+    @Override
+    public String getType() {
+        return "detail";
+    }
 }
