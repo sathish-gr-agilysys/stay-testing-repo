@@ -90,7 +90,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal reverseTaxTotalChargeAmount;
     private List<PantryItemDetails> pantryItemDetails;
     private Boolean pantryItem;
-    private String compType;
+    private TransactionType compType;
     private String folioType;
 
     public LineItemView() {
@@ -852,11 +852,11 @@ public class LineItemView implements Comparable<LineItemView> {
         this.pantryItem = pantryItem;
     }
 
-    public String getCompType() {
+    public TransactionType getCompType() {
         return compType;
     }
 
-    public void setCompType(String compType) {
+    public void setCompType(TransactionType compType) {
         this.compType = compType;
     }
 
