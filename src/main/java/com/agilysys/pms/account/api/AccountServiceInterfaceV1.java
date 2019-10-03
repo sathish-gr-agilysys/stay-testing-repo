@@ -1024,8 +1024,8 @@ public interface AccountServiceInterfaceV1 {
     List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String packageFolioId) throws RGuestException, ServiceException;
 
-    @GET
-    @Path("/createAllowanceTransactionItem")
+    @POST
+    @Path("/transactionItem/allowance")
     TransactionItem createAllowanceTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }

@@ -4,7 +4,23 @@
 package com.agilysys.pms.account.model;
 
 public enum FolioType {
-    GUEST,
-    PACKAGE,
-    THIRD_PARTY
+    GUEST(true, false),
+    PACKAGE(false, false),
+    THIRD_PARTY(false, false);
+
+    private boolean guestFolio;
+    private boolean restrictive;
+
+    public boolean isGuestFolio() {
+        return guestFolio;
     }
+
+    public boolean isRestrictive() {
+        return restrictive;
+    }
+
+    private FolioType(boolean guestFolio, boolean restrictive) {
+        this.guestFolio = guestFolio;
+        this.restrictive = restrictive;
+    }
+}

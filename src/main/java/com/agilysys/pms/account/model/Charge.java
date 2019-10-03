@@ -87,7 +87,8 @@ public class Charge extends Transaction {
               Objects.equal(quantity, that.quantity) &&
               Objects.equal(recurringChargeId, that.recurringChargeId) &&
               Objects.equal(transactionItemType, that.transactionItemType) &&
-              Objects.equal(autoRecurringItemId, that.autoRecurringItemId) && Objects.equal(notGrouped, that.notGrouped);
+              Objects.equal(autoRecurringItemId, that.autoRecurringItemId) &&
+              Objects.equal(notGrouped, that.notGrouped);
     }
 
     @Override

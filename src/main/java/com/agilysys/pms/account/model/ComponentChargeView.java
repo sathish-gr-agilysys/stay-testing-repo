@@ -272,4 +272,24 @@ public class ComponentChargeView {
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
+
+    public static List<ComponentChargeView> getDayPlusOneComponentRateSnapshots(
+          List<ComponentRateSnapshot> componentRateSnapshots) {
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
+        componentRateSnapshots.stream().filter(
+              componentRateSnapshot -> componentRateSnapshot.getAllowanceFrequencyType() ==
+                    AllowanceFrequencyType.DAY_PLUS_ONE).forEach(
+              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
+        return componentChargeViews;
+    }
+
+    public static List<ComponentChargeView> getComponentRateSnapshotsWithoutDayPlusOneComponents(
+          List<ComponentRateSnapshot> componentRateSnapshots) {
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
+        componentRateSnapshots.stream().filter(
+              componentRateSnapshot -> !(componentRateSnapshot.getAllowanceFrequencyType() ==
+                    AllowanceFrequencyType.DAY_PLUS_ONE)).forEach(
+              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
+        return componentChargeViews;
+    }
 }
