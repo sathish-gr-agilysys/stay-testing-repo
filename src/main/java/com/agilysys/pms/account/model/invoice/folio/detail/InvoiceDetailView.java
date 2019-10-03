@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model.invoice.folio.detail;
 import java.util.List;
 
 import com.agilysys.pms.account.model.TaxAmountInfo;
+import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.folio.InvoiceFolioView;
 
 public class InvoiceDetailView extends
@@ -24,6 +25,6 @@ public class InvoiceDetailView extends
 
     @Override
     public String getType() {
-        return "detail";
+        return InvoiceViewType.DETAIL.name();
     }
 }

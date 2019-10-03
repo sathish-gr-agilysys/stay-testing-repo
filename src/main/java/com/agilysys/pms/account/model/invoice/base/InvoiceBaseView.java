@@ -11,6 +11,7 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.pms.account.model.InvoicePaymentView;
 import com.agilysys.pms.account.model.InvoiceStatus;
+import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.folio.detail.InvoiceDetailView;
 import com.agilysys.pms.account.model.invoice.folio.search.InvoiceSearchView;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -18,9 +19,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes(value = {
-      @JsonSubTypes.Type(name = "base", value = InvoiceBaseView.class),
-      @JsonSubTypes.Type(name = "search", value = InvoiceSearchView.class),
-      @JsonSubTypes.Type(name = "detail", value = InvoiceDetailView.class) })
+      @JsonSubTypes.Type(name = "BASE", value = InvoiceBaseView.class),
+      @JsonSubTypes.Type(name = "SEARCH", value = InvoiceSearchView.class),
+      @JsonSubTypes.Type(name = "DETAIL", value = InvoiceDetailView.class) })
 public class InvoiceBaseView {
     private String id;
 
@@ -156,6 +157,6 @@ public class InvoiceBaseView {
     }
 
     public String getType() {
-        return "base";
+        return InvoiceViewType.BASE.name();
     }
 }

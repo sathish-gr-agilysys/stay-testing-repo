@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model.invoice.folio.search;
 
+import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.folio.InvoiceFolioView;
 
 public class InvoiceSearchView extends
@@ -11,6 +12,6 @@ public class InvoiceSearchView extends
 
     @Override
     public String getType() {
-        return "search";
+        return InvoiceViewType.SEARCH.name();
     }
 }
