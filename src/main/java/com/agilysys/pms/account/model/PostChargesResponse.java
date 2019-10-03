@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.model;
 
 import java.util.List;
-import java.math.BigDecimal;
 
 public class PostChargesResponse {
     private String parentId;

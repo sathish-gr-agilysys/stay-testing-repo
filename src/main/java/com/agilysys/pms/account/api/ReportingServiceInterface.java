@@ -25,17 +25,22 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
+import com.agilysys.pms.account.model.GLCodeTemplate;
+import com.agilysys.pms.account.model.GLCodeTemplateRequest;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
+import com.agilysys.pms.account.model.RevenueDetailReportRequest;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
+import com.agilysys.pms.account.model.StatsByBuildingRequest;
 import com.agilysys.pms.account.model.TaxExemptReportResult;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
 import com.agilysys.pms.account.model.TransactionReportResponse;
 import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
 import com.agilysys.pms.common.model.GeneralAvailabilityResult;
+import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/reports")
 public interface ReportingServiceInterface {
@@ -44,13 +49,16 @@ public interface ReportingServiceInterface {
     String CASHIERS_LIST_PATH = "/cashiersList";
     String DEPARTMENT_REVENUE_PATH = "/departmentRevenue";
     String GENERAL_AVAILABILITY_PATH = "/generalAvailability";
+    String GENERAL_AVAILABILITY_STATS_PATH = "/generalAvailabilityStats";
+    String GENERAL_LEDGER_PATH = "/generalLedger";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
     String LEDGER_PATH = "/ledger";
     String PANTRY_TRANSACTION_PATH = "/pantryTransaction";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
-    String REVENUE_PATH = "/revenueDetails";
-    String REVENUE_PATH_BY_ROOM_PATH = "/revenueDetailsByRoom";
+    String REVENUE_DETAILS_PATH = "/revenueDetails";
+    String REVENUE_DETAILS_BY_BUILDING_PATH = "/revenueDetailsByBuilding";
+    String REVENUE_DETAILS_BY_ROOM_PATH = "/revenueDetailsByRoom";
     String TAX_EXEMPT_ACCOUNTS_PATH = "/taxExemptAccounts";
     String TO_DATE_TOTALS_PATH = "/toDateTotals";
     String TRANSACTION_PATH = "/transaction";
@@ -64,6 +72,7 @@ public interface ReportingServiceInterface {
     String ROOM_REVENUE = "roomRevenue";
     String SOURCE_ID = "sourceId";
     String START_DATE = "startDate";
+    String STAY_DATE_SUMMARY = "stayDateSummary";
     String TENANT_ID = "tenantId";
 
     /**
@@ -121,6 +130,23 @@ public interface ReportingServiceInterface {
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue)
           throws RGuestException, ServiceException;
 
+    @POST
+    @Path(GENERAL_AVAILABILITY_STATS_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(GENERAL_LEDGER_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
+    List <GLCodeTemplate> getGeneralLedgerTemplates(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request)
+          throws RGuestException, ServiceException;
+
     /**
      * Retrieve inventory recurring charge detail information for the given date range.
      */
@@ -175,23 +201,33 @@ public interface ReportingServiceInterface {
      * Retrieve revenue detail information for given dates.
      */
     @GET
-    @Path(REVENUE_PATH)
+    @Path(REVENUE_DETAILS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
-          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
+          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy,
+          @QueryParam(STAY_DATE_SUMMARY) boolean stayDateSummary)
           throws RGuestException, ServiceException;
 
     @GET
-    @Path(REVENUE_PATH_BY_ROOM_PATH)
+    @Path(REVENUE_DETAILS_BY_ROOM_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<ReservationRevenueReportItem> getRevenueDetailReportByRoom(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
           @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(REVENUE_DETAILS_BY_BUILDING_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    Map<String, RevenueReportResult> getRevenueDetailReportByBuilding(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, RevenueDetailReportRequest revenueDetailReportRequest)
           throws RGuestException, ServiceException;
 
     /**
@@ -206,11 +242,6 @@ public interface ReportingServiceInterface {
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenueOnly)
           throws RGuestException, ServiceException;
 
-    /**
-     * This endpoint is deprecated in favor of getTransactionReportByAccountIdsAndPropertyDateRange
-     * get the transaction report.
-     */
-    @Deprecated
     @GET
     @Path(TRANSACTION_PATH)
     @Produces(MediaType.APPLICATION_JSON)

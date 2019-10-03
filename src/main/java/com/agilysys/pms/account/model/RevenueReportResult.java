@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,9 @@ public class RevenueReportResult {
     @JsonDeserialize(keyUsing = LocalDateJsonKeyDeserializer.class)
     private Map<LocalDate, List<RevenueReportItem>> revenueDetails;
 
-    public RevenueReportResult() {}
+    public RevenueReportResult() {
+        this.revenueDetails = new HashMap<>();
+    }
 
     public RevenueReportResult(Map<LocalDate, List<RevenueReportItem>> revenueDetails) {
         this.revenueDetails = revenueDetails;
