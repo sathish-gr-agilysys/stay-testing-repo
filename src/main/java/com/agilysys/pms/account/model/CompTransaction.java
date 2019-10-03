@@ -12,6 +12,7 @@ public class CompTransaction {
     private String playerPoints;
     private String pin;
     private String playerOrCardId;
+    private String authorizerCode;
     private List<CompRedeemRequest> compRedeemRequests;
 
     public String getAuthorizerId() {
@@ -28,14 +29,6 @@ public class CompTransaction {
 
     public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
-    }
-
-    public List<CompRedeemRequest> getCompRedeemRequests() {
-        return compRedeemRequests;
-    }
-
-    public void setCompRedeemRequests(List<CompRedeemRequest> compRedeemRequests) {
-        this.compRedeemRequests = compRedeemRequests;
     }
 
     public String getCompPoints() {
@@ -68,5 +61,21 @@ public class CompTransaction {
 
     public void setPlayerOrCardId(String playerOrCardId) {
         this.playerOrCardId = playerOrCardId;
+    }
+
+    public String getAuthorizerCode() {
+        return authorizerCode;
+    }
+
+    public void setAuthorizerCode(String authorizerCode) {
+        this.authorizerCode = authorizerCode;
+    }
+
+    public List<CompRedeemRequest> getCompRedeemRequests() {
+        return compRedeemRequests;
+    }
+
+    public void setCompRedeemRequests(List<CompRedeemRequest> compRedeemRequests) {
+        this.compRedeemRequests = compRedeemRequests;
     }
 }
