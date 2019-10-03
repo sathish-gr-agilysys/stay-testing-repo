@@ -56,6 +56,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String ledgerTransactionHistoryId;
     private String mealPeriodId;
     private String name;
+    private Integer order;
     private String parentId;
     private String petDisplayName;
     private DateTime postingCalendarDateTime;
@@ -866,6 +867,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setFolioType(String folioType) {
         this.folioType = folioType;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     @Override
