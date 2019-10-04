@@ -287,8 +287,8 @@ public class ComponentChargeView {
           List<ComponentRateSnapshot> componentRateSnapshots) {
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         componentRateSnapshots.stream().filter(
-              componentRateSnapshot -> !(componentRateSnapshot.getAllowanceFrequencyType() ==
-                    AllowanceFrequencyType.DAY_PLUS_ONE)).forEach(
+              componentRateSnapshot -> componentRateSnapshot.getAllowanceFrequencyType() !=
+                    AllowanceFrequencyType.DAY_PLUS_ONE).forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
