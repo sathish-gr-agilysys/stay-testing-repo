@@ -7,17 +7,16 @@ import static com.agilysys.pms.common.exceptions.ExceptionFactory.accountExcepti
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.agilysys.common.model.FrequencyType;
-import com.agilysys.common.model.rate.PetRateSnapshot;
 import org.joda.time.LocalDate;
 
-import com.agilysys.common.permission.OverrideType;
+import com.agilysys.common.model.FrequencyType;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
+import com.agilysys.common.model.rate.PetRateSnapshot;
+import com.agilysys.common.permission.OverrideType;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -149,7 +148,7 @@ public class CreateRecurringCharge {
         if (occurrenceDays != null) {
             for (Integer day : occurrenceDays) {
                 if (day < 1 || day > 7) {
-                    throw accountException(AccountErrorCode.OCCURRENCE_DAYS_INVALID).buildCompatible();
+                    throw accountException(AccountErrorCode.OCCURRENCE_DAYS_INVALID).build();
                 }
             }
         }
