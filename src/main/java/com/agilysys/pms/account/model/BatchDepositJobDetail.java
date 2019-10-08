@@ -8,6 +8,9 @@ public class BatchDepositJobDetail extends JobDetail {
     private String scheduledDepositDueId;
     private boolean isPaymentFailed;
 
+    public BatchDepositJobDetail() {
+    }
+
     public BatchDepositJobDetail(String tenantId, String propertyId, String type) {
         super(tenantId, propertyId, type);
     }
