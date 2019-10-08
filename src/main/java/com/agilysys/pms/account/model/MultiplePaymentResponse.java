@@ -3,8 +3,6 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,11 +12,14 @@ public class MultiplePaymentResponse {
     private List<String> successAccountIds;
     private Map<String, String> error;
 
-    public MultiplePaymentResponse() {
-        paymentLineItems = new ArrayList<>();
-        failedAccountIds = new ArrayList<>();
-        successAccountIds = new ArrayList<>();
-        error = new HashMap<>();
+    public MultiplePaymentResponse() {}
+
+    public MultiplePaymentResponse(List<LineItemView> paymentLineItems, List<String> successAccountIds,
+          List<String> failedAccountIds, Map<String, String> error) {
+        this.paymentLineItems = paymentLineItems;
+        this.successAccountIds = successAccountIds;
+        this.failedAccountIds = failedAccountIds;
+        this.error = error;
     }
 
     public List<LineItemView> getPaymentLineItems() {
