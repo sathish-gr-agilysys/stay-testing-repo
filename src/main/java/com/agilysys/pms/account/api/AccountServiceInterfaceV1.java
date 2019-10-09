@@ -47,6 +47,8 @@ import com.agilysys.pms.account.model.AmountTransfer;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.BatchDepositCollectionRequest;
 import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
+import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
+import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
@@ -54,9 +56,14 @@ import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
+import com.agilysys.pms.account.model.FolioInvoiceDetail;
+import com.agilysys.pms.account.model.FolioInvoiceRequest;
+import com.agilysys.pms.account.model.FolioInvoiceResponse;
 import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
+import com.agilysys.pms.account.model.GiftCardRequest;
+import com.agilysys.pms.account.model.GiftCardResponse;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
 import com.agilysys.pms.account.model.InventoryAllocationDetails;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
@@ -69,6 +76,7 @@ import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
+import com.agilysys.pms.account.model.NonInvoiceReport;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
 import com.agilysys.pms.account.model.PantryCharge;
 import com.agilysys.pms.account.model.PantryTransactionResponse;
@@ -86,16 +94,18 @@ import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.TransactionReportItem;
+import com.agilysys.pms.account.model.UpdateFolioInvoicesRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
+import com.agilysys.pms.account.model.invoice.InvoiceViewType;
+import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.SearchPage;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
-import com.agilysys.pms.payment.model.PaymentInstrumentView;
 
 @Path(AccountServiceInterfaceV1.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -118,7 +128,9 @@ public interface AccountServiceInterfaceV1 {
     String APPLY_PAYMENTS = "/applyPayments";
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
+    String BATCH_FOLIO_EMAIL = "/batchFolioEmail";
     String BATCH_FOLIO_PATH = "/batchFolios";
+    String BATCH_FOLIO_PRINT = "/batchPrintFolio";
     String CALL_TYPE = "callType";
     String CHARGE_TAX_AMOUNT_PATH = "/calculateChargeTaxAmount";
     String CHARGES_PATH = "/charges";
@@ -132,8 +144,11 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_PATH = "/folios";
     String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
+    String FOLIO_EMAIL = "/folioEmail";
     String FOLIO_ID = "folioId";
     String FOLIO_ID_PATH = "/{" + FOLIO_ID + "}";
+    String FOLIO_INVOICE_ID = "folioInvoiceId";
+    String FOLIO_INVOICE_ID_PATH = "/" + FOLIO_INVOICE_ID + "/{" + FOLIO_INVOICE_ID + "}";
     String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
@@ -143,6 +158,9 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
     String INVOICE_REPORT_START = "/invoice-report-start";
+    String INVOICE_VIEW_TYPE = "invoiceViewType";
+    String INVOICE_REPORT = "/invoice-report";
+    String INVOICE_REPORT_TYPE = INVOICE_REPORT + "/{" + INVOICE_VIEW_TYPE + "}";
     String INVOICE_REMOVE_ITEMS_PATH = "/removeItems";
     String INVOICE_REPORT_POLL = "/invoice-report-poll";
     String INVOICE_SET_INVOICE_SENT = "/setInvoiceSent";
@@ -162,6 +180,11 @@ public interface AccountServiceInterfaceV1 {
     String POSTING_RULE_ID = "postingRulesId";
     String POSTING_RULE_ID_PATH = "/{" + POSTING_RULE_ID + "}";
     String POSTING_RULES_PATH = "/postingRules";
+    String PRINT_FOLIO = "/printFolio";
+    String FOLIO_INVOICE_SUMMARY = "/folioInvoiceSummary";
+    String PROFILE_ID = "profileId";
+    String PROFILES_PATH = "/profiles";
+    String PROFILE_ID_PATH = PROFILES_PATH + "/{" + PROFILE_ID + "}";
     String PRESET =  "preset";
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
@@ -184,6 +207,9 @@ public interface AccountServiceInterfaceV1 {
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String TRANSFER_FOLIO_LINES = "/transferFolioLines";
     String TRANSFER_HISTORY = "/transferHistory";
+    String TRANSFER_HISTORY_ID = "transferHistoryId";
+    String LEDGER_TRANSACTION_ID = "/ledgerTransactionIds";
+    String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
@@ -194,6 +220,8 @@ public interface AccountServiceInterfaceV1 {
     String TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH = TENANT_DEFAULT_SETTINGS_PATH + "/jobStatus";
     String TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH =  TENANT_DEFAULT_SETTINGS_PATH + "/propertyStatus";
     String NEW_PROPERTY_AR_ACCOUNT = "/newPropertyARAccount";
+    String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
+    String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
     String BATCH_DEPOSIT_COLLECTION_JOB_PATH = "/batchDepositCollectionJob";
     String BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH = "/batchDepositCollectionJobStatus";
@@ -685,6 +713,32 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
           throws RGuestException, ServiceException;
 
+    /**
+     * Retrieves the non-invoiced details of a COMPANY account based on the Transaction Ids
+     *
+     * @param tenantId         id of tenant where the COMPANY account exists
+     * @param propertyId       id of the property
+     * @param accountId        id of COMPANY account to retrieve non-invoiced details from
+     * @param nonInvoiceReport class contains the transaction ids to retrieve non-invoiced details
+     * @return Non-invoiced details for a COMPANY account
+     */
+    @POST
+    @Path(ACCOUNT_ID_PATH + NON_INVOICED_PATH + LEDGER_TRANSACTION_ID)
+    @Validated(NonInvoiceReport.class)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    NonInvoicedARDetail getNonInvoicedARDetailByTransactionIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          NonInvoiceReport nonInvoiceReport) throws RGuestException, ServiceException;
+
+    /**
+     * Create an invoice for an account
+     *
+     * @param tenantId   id of tenant for the account
+     * @param propertyId id of the property
+     * @param accountId  id of account to save an invoice to
+     * @param invoice
+     * @return Created invoice
+     */
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
@@ -710,6 +764,21 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException, ServiceException;
 
     @GET
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_TYPE)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(INVOICE_VIEW_TYPE) InvoiceViewType viewType, @QueryParam("includeClosed") boolean includeClosed)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + INVOICE_REPORT)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIds)
+          throws RGuestException, ServiceException;
+
+    @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
     @OkOnEmpty
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
@@ -718,6 +787,7 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed)
           throws RGuestException, ServiceException;
 
+    @Deprecated
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
     @OkOnEmpty
@@ -901,6 +971,65 @@ public interface AccountServiceInterfaceV1 {
     @Path(NEW_PROPERTY_AR_ACCOUNT)
     void createNewPropertyARAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+
+    @PUT
+    @Path(FOLIO_INVOICE_BY_PROFILE_ID)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    void updateProfileIdsInMultiFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, UpdateFolioInvoicesRequest updateFolioInvoicesRequest)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(INVOICES_PATH + PRINT_FOLIO)
+    @Produces(MediaType.TEXT_HTML)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    String printFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          FolioInvoiceRequest folioInvoiceRequest) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + FOLIO_INVOICE_SUMMARY)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    List<FolioInvoiceDetail> getFolioInvoiceSummary(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
+          throws RGuestException, ServiceException;
+
+    @GET
+    @Path(FOLIO_INVOICE_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    FolioInvoiceResponse getFolioInvoiceDetailFromFolioInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceId") String folioInvoiceId)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(INVOICES_PATH + BATCH_FOLIO_PRINT)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    List<String> printBatchFolioInvoice(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(INVOICES_PATH + FOLIO_EMAIL)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    void sendFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          FolioInvoiceRequest folioInvoiceRequest) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(INVOICES_PATH + BATCH_FOLIO_EMAIL)
+    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
+          throws RGuestException, ServiceException;
+    @POST
+    @Path(ACCOUNT_ID_PATH + "/giftCard/load")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    GiftCardResponse loadGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + "/giftCard/issue")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    GiftCardResponse issueGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
