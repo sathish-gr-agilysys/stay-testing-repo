@@ -15,9 +15,9 @@ public class BatchDepositJobDetail extends JobDetail {
         super(tenantId, propertyId, type);
     }
 
-    public BatchDepositJobDetail(String tenantId, String type, String accountId, Payment payment,
+    public BatchDepositJobDetail(String tenantId, String propertyId, String type, String accountId, Payment payment,
           String scheduledDepositDueId) {
-        super(tenantId, type);
+        super(tenantId, propertyId, type);
         this.accountId = accountId;
         this.payment = payment;
         this.scheduledDepositDueId = scheduledDepositDueId;
