@@ -13,17 +13,22 @@ public class EligibleFolioLineItems {
     private String departmentId;
     private String authorizerName;
     private String departmentName;
+    private Boolean tax;
+    private Boolean taxFollowsPosting;
 
     public EligibleFolioLineItems() {
         lineItemViews = new ArrayList<>();
     }
 
-    public EligibleFolioLineItems(List<LineItemView> lineItemViews, String authorizerId, String departmentId, String authorizerName, String departmentName) {
+    public EligibleFolioLineItems(List<LineItemView> lineItemViews, String authorizerId, String departmentId,
+          String authorizerName, String departmentName, Boolean tax, Boolean taxFollowsPosting) {
         this.lineItemViews = lineItemViews;
         this.authorizerId = authorizerId;
         this.departmentId = departmentId;
         this.authorizerName = authorizerName;
         this.departmentName = departmentName;
+        this.tax = tax;
+        this.taxFollowsPosting = taxFollowsPosting;
     }
 
     public List<LineItemView> getLineItemViews() {
@@ -64,5 +69,21 @@ public class EligibleFolioLineItems {
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
+    }
+
+    public Boolean getTax() {
+        return tax;
+    }
+
+    public void setTax(Boolean tax) {
+        this.tax = tax;
+    }
+
+    public Boolean getTaxFollowsPosting() {
+        return taxFollowsPosting;
+    }
+
+    public void setTaxFollowsPosting(Boolean taxFollowsPosting) {
+        this.taxFollowsPosting = taxFollowsPosting;
     }
 }
