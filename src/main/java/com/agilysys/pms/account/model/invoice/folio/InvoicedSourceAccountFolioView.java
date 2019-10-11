@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.joda.time.LocalDate;
 
-public class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineView<T>> {
+public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineView<T>> {
     private LocalDate arrivalDate;
     private String confirmationCode;
     private LocalDate departureDate;
