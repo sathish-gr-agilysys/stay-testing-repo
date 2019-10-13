@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 
-public class InvoiceFolioView<FOLIO_LINE_VIEW extends InvoiceFolioLineView<FOLIO_LINE_VIEW>, SOURCE_VIEW extends
+public abstract class InvoiceFolioView<FOLIO_LINE_VIEW extends InvoiceFolioLineView<FOLIO_LINE_VIEW>, SOURCE_VIEW extends
       InvoicedSourceAccountFolioView<FOLIO_LINE_VIEW>, GROUP_SOURCE_VIEW extends
       GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW, SOURCE_VIEW>>
       extends InvoiceBaseView {
