@@ -58,6 +58,8 @@ public abstract class Transaction {
     protected String sourceId;
     protected String terminalId;
     protected GatewayType gatewayType;
+    protected boolean giftCard;
+    protected String giftCardNumber;
 
     public String getAccountId() {
         return accountId;
@@ -242,6 +244,22 @@ public abstract class Transaction {
         this.gatewayType = gatewayType;
     }
 
+    public String getGiftCardNumber() {
+        return giftCardNumber;
+    }
+
+    public void setGiftCardNumber(String giftCardNumber) {
+        this.giftCardNumber = giftCardNumber;
+    }
+
+    public boolean isGiftCard() {
+        return giftCard;
+    }
+
+    public void setGiftCard(boolean giftCard) {
+        this.giftCard = giftCard;
+    }
+
     public List<PantryItemDetails> getPantryItems() {
         return pantryItems;
     }
@@ -262,7 +280,7 @@ public abstract class Transaction {
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
               .append(postingDate).append(displayDate).append(reason).append(reference).append(sourceId)
-              .append(terminalId).toHashCode();
+              .append(terminalId).append(gatewayType).append(giftCardNumber).append(giftCard).toHashCode();
     }
 
     @Override
@@ -283,6 +301,7 @@ public abstract class Transaction {
               .append(postingDate, other.postingDate).append(reason, other.reason).append(reference, other.reference)
               .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
               .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType)
+              .append(giftCardNumber, other.giftCardNumber).append(giftCard, other.giftCard)
               .append(descriptionOverride, other.getDescriptionOverride()).isEquals();
     }
 

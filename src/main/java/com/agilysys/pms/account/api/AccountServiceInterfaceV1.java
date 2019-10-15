@@ -58,6 +58,8 @@ import com.agilysys.pms.account.model.FolioInvoiceResponse;
 import com.agilysys.pms.account.model.FolioSummary;
 import com.agilysys.pms.account.model.FolioViewLineItem;
 import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
+import com.agilysys.pms.account.model.GiftCardRequest;
+import com.agilysys.pms.account.model.GiftCardResponse;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
 import com.agilysys.pms.account.model.InventoryAllocationDetails;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
@@ -1012,6 +1014,18 @@ public interface AccountServiceInterfaceV1 {
     BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException, ServiceException;
+    @POST
+    @Path(ACCOUNT_ID_PATH + "/giftCard/load")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    GiftCardResponse loadGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + "/giftCard/issue")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    GiftCardResponse issueGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, GiftCardRequest request) throws RGuestException, ServiceException;
+
     @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'AddPantry')")
