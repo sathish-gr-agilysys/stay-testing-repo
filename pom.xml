@@ -6,7 +6,7 @@
     <version>74.1039-STAY-954-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
-        <artifactId>root-pom</artifactId>
+        <artifactId>stay-root-pom</artifactId>
         <version>74.1024-STAY-954-SNAPSHOT</version>
     </parent>
     <properties>
