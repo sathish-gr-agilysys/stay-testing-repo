@@ -54,6 +54,7 @@ import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
+import com.agilysys.pms.account.model.DepositPaymentInfo;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
@@ -519,7 +520,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     @Produces(MediaType.TEXT_PLAIN)
     String postDepositAsync(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, Payment payment, String scheduledDepositId,
+          @PathParam(ACCOUNT_ID) String accountId, DepositPaymentInfo depositPaymentInfo,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
 
     @GET
