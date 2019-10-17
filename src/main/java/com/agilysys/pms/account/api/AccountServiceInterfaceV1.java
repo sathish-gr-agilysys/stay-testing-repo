@@ -541,7 +541,6 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(MULTIPLE_PAYMENTS_ASYNC_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    @Produces(MediaType.TEXT_PLAIN)
     MultipleAccountPaymentRequestAsyncJobId postMultipleAccountPaymentAsync(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth,
           MultiplePayment multiplePaymentRequest) throws RGuestException, ServiceException;

@@ -6,9 +6,7 @@ package com.agilysys.pms.account.model;
 public class MultipleAccountPaymentRequestAsyncJobId {
     private String asyncJobId;
 
-    public MultipleAccountPaymentRequestAsyncJobId(){
-
-    }
+    public MultipleAccountPaymentRequestAsyncJobId(){}
 
     public MultipleAccountPaymentRequestAsyncJobId(String asyncJobId){
         this.asyncJobId = asyncJobId;
