@@ -339,7 +339,8 @@ public interface ReportingServiceInterface {
     List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
           throws RGuestException, ServiceException;
-
+          
+    @POST
     @Path(PANTRY_TRANSACTION)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
