@@ -69,6 +69,7 @@ import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
+import com.agilysys.pms.account.model.MultipleAccountPaymentRequestAsyncJobId;
 import com.agilysys.pms.account.model.MultiplePayment;
 import com.agilysys.pms.account.model.MultiplePaymentResponse;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
@@ -164,6 +165,7 @@ public interface AccountServiceInterfaceV1 {
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String LODGING_PATH = ACCOUNT_ID_PATH + "/lodging";
     String MULTIPLE_PAYMENTS = "/multiplePayments";
+    String MULTIPLE_PAYMENTS_ASYNC_PATH = "/multiplePaymentsAsync";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
     String PAGE_PATH = "/page";
@@ -534,6 +536,20 @@ public interface AccountServiceInterfaceV1 {
     String postPaymentAsync(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException, ServiceException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(MULTIPLE_PAYMENTS_ASYNC_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    MultipleAccountPaymentRequestAsyncJobId postMultipleAccountPaymentAsync(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth,
+          MultiplePayment multiplePaymentRequest) throws RGuestException, ServiceException;
+
+    @GET
+    @Path(MULTIPLE_PAYMENTS_ASYNC_PATH + TASK_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    MultiplePaymentResponse getMultiplePaymentResponse(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId);
 
     @GET
     @Path(ACCOUNT_ID_PATH + TASK_ID_PATH)
