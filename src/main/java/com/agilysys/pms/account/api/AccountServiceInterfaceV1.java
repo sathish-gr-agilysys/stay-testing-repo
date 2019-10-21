@@ -84,6 +84,7 @@ import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
+import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -1011,10 +1012,13 @@ public interface AccountServiceInterfaceV1 {
     BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException, ServiceException;
+
     @POST
     @Path(CANCEL_PAYMENTS)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    void processCancellation(@PathParam(TENANT_ID) String tenantId,
+    ReservationCancellationResponse processCancellation(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
           throws RGuestException, ServiceException;
 
