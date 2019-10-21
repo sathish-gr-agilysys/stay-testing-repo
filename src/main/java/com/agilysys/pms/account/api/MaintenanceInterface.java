@@ -19,7 +19,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AccountAggregateType;
 import com.agilysys.pms.account.model.AccountWarehouseType;
@@ -57,51 +56,44 @@ public interface MaintenanceInterface {
     @GET
     @Path(COUNT_PATH + RANGE_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long countRangeAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException, ServiceException;
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException;
 
     @GET
     @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long countUnindexedAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(NEXT_GEN) boolean nextGen)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     @GET
     @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH)
-    Map<String, Long> countUnindexedAccounts(@QueryParam(NEXT_GEN) boolean nextGen)
-          throws RGuestException, ServiceException;
+    Map<String, Long> countUnindexedAccounts(@QueryParam(NEXT_GEN) boolean nextGen) throws RGuestException;
 
     @DELETE
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
-    void deleteAccountsIndex() throws RGuestException, ServiceException;
+    void deleteAccountsIndex() throws RGuestException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil, @QueryParam(NEXT_GEN) boolean nextGen)
-          throws RGuestException, ServiceException;
+          @QueryParam(UPDATED_UNTIL) String updatedUntil, @QueryParam(NEXT_GEN) boolean nextGen) throws RGuestException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
-    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException, ServiceException;
+    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
-    void aggregate(@PathParam(TYPE) AccountAggregateType type) throws RGuestException, ServiceException;
+    void aggregate(@PathParam(TYPE) AccountAggregateType type) throws RGuestException;
 
     @GET
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
-    AggregationJob getAggregate(@PathParam(TYPE) AccountAggregateType type) throws RGuestException, ServiceException;
+    AggregationJob getAggregate(@PathParam(TYPE) AccountAggregateType type) throws RGuestException;
 
     @GET
     @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE)
-    long countUnexported(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException, ServiceException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE)
-    long export(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException, ServiceException;
+    long countUnexported(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException;
 }
