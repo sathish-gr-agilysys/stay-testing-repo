@@ -222,9 +222,9 @@ public interface AccountServiceInterfaceV1 {
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
     String DATE = "date";
     String DATE_PATH = "/{" + DATE + "}";
-
     String PAGE = "page";
     String SIZE = "size";
+    String ALLOWANCE = "/allowance";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -1035,15 +1035,16 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException, ServiceException;
 
     @GET
-    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + "/allowance" + DATE_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + ALLOWANCE + DATE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(FOLIO_ID) String packageFolioId, @PathParam(DATE) LocalDate date)
           throws RGuestException, ServiceException;
 
     @POST
-    @Path("/transactionItem/allowance")
+    @Path("/transactionItem" + ALLOWANCE)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     TransactionItem createAllowanceTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
 }

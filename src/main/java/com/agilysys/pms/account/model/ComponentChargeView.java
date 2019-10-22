@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.agilysys.common.model.rate.AllowanceCombination;
 import com.agilysys.common.model.rate.AllowanceFrequencyType;
@@ -72,6 +73,7 @@ public class ComponentChargeView {
         allowanceFrequencyType = componentChargeView.getAllowanceFrequencyType();
         allowanceName = componentChargeView.getAllowanceName();
         breakageId = componentChargeView.getBreakageId();
+        allowanceTotalQuantity = componentChargeView.getAllowanceTotalQuantity();
     }
 
     public String getComponentBundleId() {
@@ -273,22 +275,11 @@ public class ComponentChargeView {
         return componentChargeViews;
     }
 
-    public static List<ComponentChargeView> getDayPlusOneComponentRateSnapshots(
-          List<ComponentRateSnapshot> componentRateSnapshots) {
+    public static List<ComponentChargeView> getComponentRateSnapshotsByAllowanceFrequencyType(
+          List<ComponentRateSnapshot> componentRateSnapshots, Set<AllowanceFrequencyType> allowanceFrequencyTypes) {
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        componentRateSnapshots.stream().filter(
-              componentRateSnapshot -> componentRateSnapshot.getAllowanceFrequencyType() ==
-                    AllowanceFrequencyType.DAY_PLUS_ONE).forEach(
-              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
-        return componentChargeViews;
-    }
-
-    public static List<ComponentChargeView> getComponentRateSnapshotsWithoutDayPlusOneComponents(
-          List<ComponentRateSnapshot> componentRateSnapshots) {
-        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        componentRateSnapshots.stream().filter(
-              componentRateSnapshot -> componentRateSnapshot.getAllowanceFrequencyType() !=
-                    AllowanceFrequencyType.DAY_PLUS_ONE).forEach(
+        componentRateSnapshots.stream().filter(componentRateSnapshot -> allowanceFrequencyTypes
+              .contains(componentRateSnapshot.getAllowanceFrequencyType())).forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
