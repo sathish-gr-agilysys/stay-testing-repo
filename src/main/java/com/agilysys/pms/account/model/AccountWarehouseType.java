@@ -10,4 +10,12 @@ public enum AccountWarehouseType implements WarehouseType {
     LEDGER_TRANSACTIONS,
     RECURRING_CHARGES,
     REVENUE;
+    // This is implicitly used by Jersey when converting @PathParam/@QueryParam
+    public static AccountWarehouseType fromString(String s) {
+        try {
+            return valueOf(s.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw WarehouseType.warehouseTypeUnsupported(s);
+        }
+    }
 }
