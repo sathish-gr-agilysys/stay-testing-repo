@@ -39,74 +39,63 @@ import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
 import com.agilysys.pms.account.model.TransactionReportResponse;
 import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
-import com.agilysys.pms.common.model.GeneralAvailabilityResult;
 import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
+import com.agilysys.pms.common.model.GeneralAvailabilityResult;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/reports")
 public interface ReportingServiceInterface {
-    String ACCOUNT_BALANCES_PATH = "/accountBalances";
+    String LEDGER_PATH = "/ledger";
     String CASHIER_PATH = "/cashier";
     String CASHIERS_LIST_PATH = "/cashiersList";
-    String DEPARTMENT_REVENUE_PATH = "/departmentRevenue";
-    String GENERAL_AVAILABILITY_PATH = "/generalAvailability";
-    String GENERAL_AVAILABILITY_STATS_PATH = "/generalAvailabilityStats";
-    String GENERAL_LEDGER_PATH = "/generalLedger";
-    String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
-    String LEDGER_PATH = "/ledger";
-    String PANTRY_TRANSACTION_PATH = "/pantryTransaction";
-    String RECURRING_CHARGES_PATH = "/recurringCharges";
-    String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
-    String REVENUE_DETAILS_PATH = "/revenueDetails";
-    String REVENUE_DETAILS_BY_BUILDING_PATH = "/revenueDetailsByBuilding";
-    String REVENUE_DETAILS_BY_ROOM_PATH = "/revenueDetailsByRoom";
-    String TAX_EXEMPT_ACCOUNTS_PATH = "/taxExemptAccounts";
     String TO_DATE_TOTALS_PATH = "/toDateTotals";
-    String TRANSACTION_PATH = "/transaction";
-
-    String BY_CASHIER = "byCashier";
-    String END_DATE = "endDate";
-    String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
-    String PROPERTY_DATE = "propertyDate";
-    String PROPERTY_ID = "propertyId";
-    String REVENUE_OCCUPANCY = "revenueOccupancy";
-    String ROOM_REVENUE = "roomRevenue";
-    String SOURCE_ID = "sourceId";
-    String START_DATE = "startDate";
-    String STAY_DATE_SUMMARY = "stayDateSummary";
+    String TRANS_PATH = "/transaction";
+    String ACCOUNT_BALANCES_PATH = "/accountBalances";
+    String GENERAL_LEDGER = "/generalLedger";
+    String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
+    String GENERAL_AVAILABILITY_PATH = "/generalAvailability";
+    String GENERAL_AVAILABILITY_STATS = "/generalAvailabilityStats";
+    String REVENUE_PATH = "/revenueDetails";
+    String REVENUE_PATH_BY_BUILDING = "/revenueDetailsByBuilding";
+    String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
+    String RECURRING_CHARGES_PATH = "/recurringCharges";
+    String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
     String TENANT_ID = "tenantId";
+    String PROPERTY_ID = "propertyId";
+    String PROPERTY_DATE = "propertyDate";
+    String START_DATE = "startDate";
+    String END_DATE = "endDate";
+    String ROOM_REVENUE = "roomRevenue";
+    String REVENUE_OCCUPANCY = "revenueOccupancy";
+    String BY_CASHIER = "byCashier";
+    String TAX_EXEMPT_ACCOUNTS = "/taxExemptAccounts";
+    String SOURCE_ID = "sourceId";
+    String PANTRY_TRANSACTION = "/pantryTransaction";
+    String DEPARTMENT_REVENUE = "/departmentRevenue";
+    String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
+    String STAY_DATE_SUMMARY = "stayDateSummary";
 
     /**
-     * @deprecated use {@link  #getAccountBalances(String, String,
-     * com.agilysys.pms.account.model.AccountBalancesRequest)} instead.
+     * get the ledger report
+     *
+     * @param tenantId     the tenant ID
+     * @param propertyId   the property ID
+     * @param propertyDate the propertyDate to get the report for
      */
     @GET
-    @Path(ACCOUNT_BALANCES_PATH)
+    @Path(LEDGER_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-    @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    @Deprecated
-    AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
-=======
     @PreAuthorize("hasPermission('Required', 'DateRoll')")
     List<NightAuditReport> ledgerReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
           throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
     /**
-     * Retrieves account folio balance information for accounts filtered by the contents of the request.
+     * get the cashier report
+     *
+     * @param tenantId     the tenant ID
+     * @param propertyId   the property ID
+     * @param propertyDate the propertyDate to get the report for
      */
-    @POST
-    @Path(ACCOUNT_BALANCES_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(AccountBalancesRequest.class)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
-    AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AccountBalancesRequest request)
-          throws RGuestException, ServiceException;
-
     @GET
     @Path(CASHIER_PATH)
     @Produces(MediaType.APPLICATION_JSON)
@@ -116,36 +105,30 @@ public interface ReportingServiceInterface {
           throws RGuestException;
 
     /**
-     * Lists all cashiers associated with ledger transactions for the given tenant and property
-     * that are associated with transactions between the specified start and end dates.
+     * This endpoint is deprecated in favor of getTransactionReportByAccountIdsAndPropertyDateRange
+     * get the transaction report
+     *
+     * @param tenantId     the tenant ID
+     * @param propertyId   the property ID
+     * @param propertyDate the propertyDate to get the report for
      */
+    @Deprecated
     @GET
-    @Path(CASHIERS_LIST_PATH)
+    @Path(TRANS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-    @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
-    List<Cashier> getCashiersList(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate)
-          throws RGuestException, ServiceException;
-=======
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
           throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
+    /**
+     * This endpoint is to fetch all the transaction of given date and include the MTD transactions, if
+     * INCLUDE_MTD_TRANSACTIONS is true
+     */
     @GET
-    @Path(GENERAL_AVAILABILITY_PATH)
+    @Path(DEPARTMENT_REVENUE + TRANS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-<<<<<<< HEAD
-    GeneralAvailabilityResult getGeneralAvailabilityReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue)
-          throws RGuestException, ServiceException;
-
-=======
     List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate,
           @QueryParam(INCLUDE_MTD_TRANSACTIONS) boolean includeMTDTransactions) throws RGuestException;
@@ -159,86 +142,76 @@ public interface ReportingServiceInterface {
      * @return TransactionReportResponse object that holds TransactionReportItem mapped by account id
      * @throws RGuestException
      */
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
     @POST
-    @Path(GENERAL_AVAILABILITY_STATS_PATH)
+    @Path(TRANS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-<<<<<<< HEAD
-    List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
-          throws RGuestException, ServiceException;
-=======
     TransactionReportResponse getTransactions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
-    @POST
-    @Path(GENERAL_LEDGER_PATH)
+    /**
+     * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
+     * cashier.
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param propertyDate
+     * @param breakdownByCashier
+     * @return
+     */
+    @GET
+    @Path(TRANS_PATH + TO_DATE_TOTALS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-    @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
-    List <GLCodeTemplate> getGeneralLedgerTemplates(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request)
-          throws RGuestException, ServiceException;
-=======
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     TransactionToDateTotalsResult getTransactionToDateTotals(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate,
           @QueryParam(BY_CASHIER) Boolean breakdownByCashier) throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
     /**
-     * Retrieve inventory recurring charge detail information for the given date range.
+     * retrieve revenue detail information for given dates
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param startDate
+     * @param endDate
+     * @param roomRevenue
+     * @return
      */
     @GET
-    @Path(INVENTORY_RECURRING_CHARGES_PATH)
+    @Path(REVENUE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    RecurringChargesReportResult getInventoryRecurringChargesReport(@PathParam(TENANT_ID) String tenantId,
+    RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-<<<<<<< HEAD
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(SOURCE_ID) String sourceId)
-          throws RGuestException, ServiceException;
-=======
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
           @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy,
           @QueryParam(STAY_DATE_SUMMARY) boolean stayDateSummary) throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
     @GET
-    @Path(LEDGER_PATH)
+    @Path(REVENUE_PATH_BY_ROOM)
     @Produces(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-    @PreAuthorize("hasPermission('Required', 'DateRoll')")
-    List<NightAuditReport> ledgerReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
-          throws RGuestException, ServiceException;
-=======
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<ReservationRevenueReportItem> getRevenueDetailReportByRoom(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
           @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy) throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
     @POST
-    @Path(PANTRY_TRANSACTION_PATH)
+    @Path(REVENUE_PATH_BY_BUILDING)
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-<<<<<<< HEAD
-    TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
-          throws RGuestException, ServiceException;
-=======
     Map<String, RevenueReportResult> getRevenueDetailReportByBuilding(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, RevenueDetailReportRequest revenueDetailReportRequest)
           throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
     /**
-     * Retrieve recurring charge detail information for a given date.
+     * retrieve recurring charge detail information for a given date
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param date
+     * @return
      */
     @GET
     @Path(RECURRING_CHARGES_PATH)
@@ -248,47 +221,32 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam("date") LocalDate date) throws RGuestException;
 
     /**
-     * Retrieve room revenue detail for the given reservation identifiers.
+     * retrieve account tax exemption for given dates
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param startDate
+     * @param endDate
+     * @return
      */
-    @POST
-    @Path(RESERVATION_ROOM_REVENUE_PATH)
+    @GET
+    @Path(TAX_EXEMPT_ACCOUNTS)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    Map<String, RoomRevenueItem> getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
+    TaxExemptReportResult getTaxExemptReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-<<<<<<< HEAD
-          @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException, ServiceException;
-=======
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenueOnly)
           throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
     /**
-     * Retrieve revenue detail information for given dates.
+     * @deprecated use {@link  #getAccountBalances(String, String,
+     * com.agilysys.pms.account.model.AccountBalancesRequest)}
+     * instead.
      */
     @GET
-    @Path(REVENUE_DETAILS_PATH)
+    @Path(ACCOUNT_BALANCES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-<<<<<<< HEAD
-    RevenueReportResult getRevenueDetailReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
-          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy,
-          @QueryParam(STAY_DATE_SUMMARY) boolean stayDateSummary)
-          throws RGuestException, ServiceException;
-
-    @GET
-    @Path(REVENUE_DETAILS_BY_ROOM_PATH)
-    @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    List<ReservationRevenueReportItem> getRevenueDetailReportByRoom(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue,
-          @QueryParam(REVENUE_OCCUPANCY) Boolean revenueOccupancy)
-          throws RGuestException, ServiceException;
-
-=======
     @Deprecated
     AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
@@ -314,103 +272,79 @@ public interface ReportingServiceInterface {
      * @return
      * @throws RGuestException
      */
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
     @POST
-    @Path(REVENUE_DETAILS_BY_BUILDING_PATH)
+    @Path(GENERAL_LEDGER)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-    @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    Map<String, RevenueReportResult> getRevenueDetailReportByBuilding(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, RevenueDetailReportRequest revenueDetailReportRequest)
-          throws RGuestException, ServiceException;
-=======
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
     List <GLCodeTemplate> getGeneralLedgerTemplates(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request)
           throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
     /**
-     * Retrieve account tax exemption for given dates.
+     * Lists all cashiers associated with ledger transactions for the given tenant and property
+     * that are associated with transactions between the specified start and end dates.
      */
     @GET
-    @Path(TAX_EXEMPT_ACCOUNTS_PATH)
+    @Path(CASHIERS_LIST_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-    @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    TaxExemptReportResult getTaxExemptReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenueOnly)
-          throws RGuestException, ServiceException;
-=======
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
     List<Cashier> getCashiersList(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
+    /**
+     * retrieve inventory recurring charge detail information for the given date range
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param startDate
+     * @param endDate
+     * @param sourceId
+     * @return
+     */
     @GET
-    @Path(TRANSACTION_PATH)
+    @Path(INVENTORY_RECURRING_CHARGES_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-<<<<<<< HEAD
-    List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate)
-          throws RGuestException, ServiceException;
-=======
     RecurringChargesReportResult getInventoryRecurringChargesReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, @QueryParam(SOURCE_ID) String sourceId) throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
     /**
-     * This endpoint is to fetch all the transaction of given date and include the MTD transactions, if
-     * INCLUDE_MTD_TRANSACTIONS is true.
+     * Retrieve room revenue detail for the given reservation identifiers.
+     *
+     * @param tenantId
+     * @param propertyId
+     * @return
      */
-    @GET
-    @Path(DEPARTMENT_REVENUE_PATH + TRANSACTION_PATH)
+    @POST
+    @Path(RESERVATION_ROOM_REVENUE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-<<<<<<< HEAD
-    List<TransactionReportItem> getTransactionReport(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate,
-          @QueryParam(INCLUDE_MTD_TRANSACTIONS) boolean includeMTDTransactions)
-          throws RGuestException, ServiceException;
-=======
     Map<String, RoomRevenueItem> getRoomRevenueForReservations(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
-    /**
-     * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
-     * cashier.
-     */
     @GET
-    @Path(TRANSACTION_PATH + TO_DATE_TOTALS_PATH)
+    @Path(GENERAL_AVAILABILITY_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-<<<<<<< HEAD
-    TransactionToDateTotalsResult getTransactionToDateTotals(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(PROPERTY_DATE) LocalDate propertyDate,
-          @QueryParam(BY_CASHIER) Boolean breakdownByCashier) throws RGuestException, ServiceException;
-=======
+    GeneralAvailabilityResult getGeneralAvailabilityReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue) throws RGuestException;
+
+    @POST
+    @Path(GENERAL_AVAILABILITY_STATS)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
     List<GeneralAvailabilityStatsResult> getGeneralAvailabilityStats(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
           throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 
-    @POST
-    @Path(TRANSACTION_PATH)
+    @Path(PANTRY_TRANSACTION)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-<<<<<<< HEAD
-    TransactionReportResponse getTransactions(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
-          throws RGuestException, ServiceException;
-=======
     TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws RGuestException;
->>>>>>> b8e8fa855b124ba642f31ad6bb6c67ba476650f6
 }
