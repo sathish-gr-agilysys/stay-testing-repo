@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.constants;
 
 public class AccountConstants {
+    public static final String ADJUSTED = "(Adjusted)";
     public static final String ADJUSTED_BY = "adjustedBy";
     public static final String ADJUSTMENT_ERROR = "calculated amount is negative";
     public static final String ADJUSTMENT_MESSAGE = "Charge adjusted by %s from %s to %s";
