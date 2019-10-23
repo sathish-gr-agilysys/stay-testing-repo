@@ -189,6 +189,7 @@ public interface AccountServiceInterfaceV1 {
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
     String MULTIPLE_REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
+    String RESERVATION_ACCOUNT_AR_PAYMENT_ACCOUNTS = "/reservationAccountWithARPaymentAccounts";
     String REFUND_PATH = "/refund";
     String REFUNDS_PATH = "/refunds";
     String REMAINING_PATH = "/{" + PATH + ":.*}";
@@ -278,7 +279,7 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException, ServiceException;
 
     @GET
-    @Path(ACCOUNT_ID_PATH + "/reservationAccountWithARPaymentAccounts")
+    @Path(ACCOUNT_ID_PATH + RESERVATION_ACCOUNT_AR_PAYMENT_ACCOUNTS)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, AccountDetail> getReservationAccountWithARAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String reservationAccountId)
@@ -547,7 +548,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(MULTIPLE_PAYMENTS_ASYNC_PATH + TASK_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     MultiplePaymentResponse getMultiplePaymentResponse(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId);
 
