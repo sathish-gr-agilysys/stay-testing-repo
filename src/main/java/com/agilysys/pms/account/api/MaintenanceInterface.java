@@ -96,4 +96,9 @@ public interface MaintenanceInterface {
     @GET
     @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE)
     long countUnexported(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException;
+
+    @POST
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE)
+    long export(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException;
 }
