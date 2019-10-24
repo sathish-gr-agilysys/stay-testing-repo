@@ -9,5 +9,6 @@ package com.agilysys.pms.account.model;
 public enum PaymentClass {
     CASH,
     CREDIT_CARD,
-    ACCOUNT
+    ACCOUNT,
+    GIFT_CARD
 }
