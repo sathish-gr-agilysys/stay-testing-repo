@@ -3,7 +3,7 @@ package com.agilysys.pms.account.model;
 public class GetFoliosOptionalParameters {
     private boolean groupTaxLineItems = false;
     private String transactionIds;
-    private boolean excludePackageFolio;
+    private boolean includePackageFolio;
 
     public boolean isGroupTaxLineItems() {
         return groupTaxLineItems;
@@ -21,11 +21,11 @@ public class GetFoliosOptionalParameters {
         this.transactionIds = transactionIds;
     }
 
-    public boolean isExcludePackageFolio() {
-        return excludePackageFolio;
+    public boolean isIncludePackageFolio() {
+        return includePackageFolio;
     }
 
-    public void setExcludePackageFolio(boolean excludePackageFolio) {
-        this.excludePackageFolio = excludePackageFolio;
+    public void setIncludePackageFolio(boolean includePackageFolio) {
+        this.includePackageFolio = includePackageFolio;
     }
 }
