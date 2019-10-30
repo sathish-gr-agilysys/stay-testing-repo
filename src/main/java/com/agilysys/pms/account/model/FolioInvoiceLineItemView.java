@@ -12,6 +12,7 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
     private String originalBalance;
     private String newBalance;
     private String adjustmentMessage;
+    private String adjustedMessage;
     private String refundMessage;
     private String transferOutTransactionMessage;
     private String correctionMessage;
@@ -98,6 +99,14 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
 
     public void setCorrectedMessage(String correctedMessage) {
         this.correctedMessage = correctedMessage;
+    }
+
+    public String getAdjusteddMessage() {
+        return adjustedMessage;
+    }
+
+    public void setAdjustedMessage(String adjustedMessage) {
+        this.adjustedMessage = adjustedMessage;
     }
 
     public String getCreditMessage() {
