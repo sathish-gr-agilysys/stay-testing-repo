@@ -13,7 +13,7 @@ public class PayoffBalanceRequest {
     private String guestName;
     private Map<String, String> companyNameMap;
     private boolean useDefaultFolioPaymentSettings;
-    private boolean continueNightAudit;
+    private boolean continueOnPaymentFailure;
 
     public PayoffBalanceRequest() {}
 
@@ -79,11 +79,11 @@ public class PayoffBalanceRequest {
         this.useDefaultFolioPaymentSettings = useDefaultFolioPaymentSettings;
     }
 
-    public boolean isContinueNightAudit() {
-        return continueNightAudit;
+    public boolean isContinueOnPaymentFailure() {
+        return continueOnPaymentFailure;
     }
 
-    public void setContinueNightAudit(boolean continueNightAudit) {
-        this.continueNightAudit = continueNightAudit;
+    public void setContinueOnPaymentFailure(boolean continueOnPaymentFailure) {
+        this.continueOnPaymentFailure = continueOnPaymentFailure;
     }
 }
