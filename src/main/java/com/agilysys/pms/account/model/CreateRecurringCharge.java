@@ -148,7 +148,7 @@ public class CreateRecurringCharge {
         if (occurrenceDays != null) {
             for (Integer day : occurrenceDays) {
                 if (day < 1 || day > 7) {
-                    throw accountException(AccountErrorCode.OCCURRENCE_DAYS_INVALID).buildCompatible();
+                    throw accountException(AccountErrorCode.OCCURRENCE_DAYS_INVALID).build();
                 }
             }
         }
