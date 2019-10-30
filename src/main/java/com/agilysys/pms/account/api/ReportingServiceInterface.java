@@ -25,6 +25,8 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
+import com.agilysys.pms.account.model.DepositCollectionStatusEmailRequest;
+import com.agilysys.pms.account.model.DepositEmailNotificationRequest;
 import com.agilysys.pms.account.model.GLCodeTemplate;
 import com.agilysys.pms.account.model.GLCodeTemplateRequest;
 import com.agilysys.pms.account.model.NightAuditReport;
@@ -71,6 +73,8 @@ public interface ReportingServiceInterface {
     String DEPARTMENT_REVENUE = "/departmentRevenue";
     String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
     String STAY_DATE_SUMMARY = "stayDateSummary";
+    String SEND_DEPOSIT_COLLECTION_STATUS_EMAIL = "sendDepositCollectionStatus";
+    String SEND_BATCH_DEPOSIT_DUE_NOTIFICATION = "sendBatchDepositDueNotification";
 
     /**
      * get the ledger report
@@ -345,6 +349,19 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request)
+          throws RGuestException, ServiceException;
+
+    @POST
+    @Path(SEND_DEPOSIT_COLLECTION_STATUS_EMAIL)
+    void sendDepositCollectionStatusEmail(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, DepositCollectionStatusEmailRequest request)
+        throws RGuestException, ServiceException;
+
+    @POST
+    @Path(SEND_BATCH_DEPOSIT_DUE_NOTIFICATION)
+    void sendBatchDepositDueNotification(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          List<DepositEmailNotificationRequest> depositEmailNotificationRequestList)
           throws RGuestException, ServiceException;
 }
 
