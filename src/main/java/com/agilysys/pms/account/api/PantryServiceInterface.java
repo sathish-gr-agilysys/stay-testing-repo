@@ -34,32 +34,32 @@ public interface PantryServiceInterface {
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
     List<PantryItem> getPantryItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     @GET
     @Path(ITEM_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt')")
     PantryItem getPantryItemById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId) throws RGuestException, ServiceException;
+          @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     @POST
     @Validated(PantryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
     PantryItem createPantryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          PantryItem item) throws RGuestException, ServiceException;
+          PantryItem item) throws RGuestException;
 
     @PUT
     @Path(ITEM_ID_PATH)
     @Validated(PantryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
     PantryItem updatePantryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId, PantryItem item) throws RGuestException, ServiceException;
+          @PathParam(ITEM_ID) String itemId, PantryItem item) throws RGuestException;
 
     @PUT
     @Path(PANTRY_ITEM_BULK_UPDATE)
     @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
     List<PantryItem> bulkUpdatePantryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<PantryItem> pantryItemList)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
 }
