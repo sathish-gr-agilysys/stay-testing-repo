@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
-public class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends InvoiceFolioLineView<FOLIO_LINE_VIEW>,
+public abstract class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extends InvoiceFolioLineView<FOLIO_LINE_VIEW>,
       SOURCE_VIEW extends InvoicedSourceAccountFolioView<FOLIO_LINE_VIEW>>
       extends InvoicedSourceAccountFolioView<FOLIO_LINE_VIEW> {
 
