@@ -6,16 +6,18 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Map;
 
+import com.agilysys.pms.reservation.model.ErrorHandlingMultipleReservation;
+
 public class MultiplePaymentResponse {
     private List<LineItemView> paymentLineItems;
     private List<String> failedAccountIds;
     private List<String> successAccountIds;
-    private Map<String, Throwable> error;
+    private Map<String, ErrorHandlingMultipleReservation> error;
 
     public MultiplePaymentResponse() {}
 
     public MultiplePaymentResponse(List<LineItemView> paymentLineItems, List<String> successAccountIds,
-          List<String> failedAccountIds, Map<String, Throwable> error) {
+          List<String> failedAccountIds, Map<String, ErrorHandlingMultipleReservation> error) {
         this.paymentLineItems = paymentLineItems;
         this.successAccountIds = successAccountIds;
         this.failedAccountIds = failedAccountIds;
@@ -46,11 +48,11 @@ public class MultiplePaymentResponse {
         this.successAccountIds = successAccountIds;
     }
 
-    public Map<String, Throwable> getError() {
+    public Map<String, ErrorHandlingMultipleReservation> getError() {
         return error;
     }
 
-    public void setError(Map<String, Throwable> error) {
+    public void setError(Map<String, ErrorHandlingMultipleReservation> error) {
         this.error = error;
     }
 }
