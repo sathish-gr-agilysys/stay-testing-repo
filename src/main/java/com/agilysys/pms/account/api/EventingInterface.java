@@ -1,7 +1,6 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
-
 package com.agilysys.pms.account.api;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.ARReportRequest;
 import com.agilysys.pms.account.model.RawEventsResult;
@@ -42,41 +40,36 @@ public interface EventingInterface {
     @Path(INVOICE_BASE + ID + HISTORY)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     HistoryEventsResult getInvoiceHistoryEvents(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId) throws RGuestException;
 
     @POST
     @Path(INVOICE_BASE + HISTORY + AR_NUMBER_BASE)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<ARInvoiceEvents> getInvoiceHistoryEventsForARNumber(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, ARReportRequest arReportRequest)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, ARReportRequest arReportRequest) throws RGuestException;
 
     @GET
     @Path(INVOICE_BASE + ID + RAW_EVENTS)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     RawEventsResult getInvoiceRawEvents(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId) throws RGuestException;
 
     @GET
     @Path(ACCOUNTS + ID + HISTORY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     HistoryEventsResult getAccountHistoryEvents(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String accountId)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String accountId) throws RGuestException;
 
     @GET
     @Path(PAYAGENTTRANSACTION + ID + RAW_EVENTS)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<PayAgentTransactionEvent> getPayAgentTransactionHistoryEvents(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String invoiceId) throws RGuestException;
 
     @POST
     @Path(ACCOUNTS + ID + HISTORY)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     HistoryEventsResult createAccountHistoryEvent(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String accountId, AccountPostEvent event)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 }
