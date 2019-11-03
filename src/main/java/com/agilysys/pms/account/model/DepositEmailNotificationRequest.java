@@ -1,5 +1,6 @@
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -14,7 +15,7 @@ public class DepositEmailNotificationRequest {
     private String paymentMethodId;
     private String paymentInstrumentId;
 
-    private String dueAmount;
+    private BigDecimal dueAmount;
     private LocalDate dueDate;
     private String scheduledDepositDueId;
 
@@ -52,11 +53,11 @@ public class DepositEmailNotificationRequest {
         this.paymentInstrumentId = paymentInstrumentId;
     }
 
-    public String getDueAmount() {
+    public BigDecimal getDueAmount() {
         return dueAmount;
     }
 
-    public void setDueAmount(String dueAmount) {
+    public void setDueAmount(BigDecimal dueAmount) {
         this.dueAmount = dueAmount;
     }
 

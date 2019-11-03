@@ -350,8 +350,7 @@ public interface ReportingServiceInterface {
     @POST
     @Path(SEND_BATCH_DEPOSIT_DUE_NOTIFICATION)
     void sendBatchDepositDueNotification(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          List<DepositEmailNotificationRequest> depositEmailNotificationRequestList)
+          @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
 
 }
