@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.security.auth.login.AccountException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -1008,7 +1007,7 @@ public interface AccountServiceInterfaceV1 {
     Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
 
-
+    @POST
     @Path(ACCOUNT_ID_PATH + "/giftCard/load")
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     GiftCardResponse loadGiftCard(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
