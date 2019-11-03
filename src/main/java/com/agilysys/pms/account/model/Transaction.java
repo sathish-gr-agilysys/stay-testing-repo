@@ -60,6 +60,7 @@ public abstract class Transaction {
     protected GatewayType gatewayType;
     protected boolean giftCard;
     protected String giftCardNumber;
+    protected boolean excludeTax;
 
     public String getAccountId() {
         return accountId;
@@ -276,11 +277,20 @@ public abstract class Transaction {
         this.pantryItem = pantryItem;
     }
 
+    public boolean isExcludeTax() {
+        return excludeTax;
+    }
+
+    public void setExcludeTax(boolean excludeTax) {
+        this.excludeTax = excludeTax;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
               .append(postingDate).append(displayDate).append(reason).append(reference).append(sourceId)
-              .append(terminalId).append(gatewayType).append(giftCardNumber).append(giftCard).toHashCode();
+              .append(terminalId).append(gatewayType).append(giftCardNumber).append(giftCard).append(excludeTax)
+              .toHashCode();
     }
 
     @Override
@@ -302,7 +312,8 @@ public abstract class Transaction {
               .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
               .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType)
               .append(giftCardNumber, other.giftCardNumber).append(giftCard, other.giftCard)
-              .append(descriptionOverride, other.getDescriptionOverride()).isEquals();
+              .append(descriptionOverride, other.getDescriptionOverride()).append(excludeTax, other.isExcludeTax())
+              .isEquals();
     }
 
     public AllowanceCombination toAllowanceCombination() {
