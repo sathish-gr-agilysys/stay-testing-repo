@@ -93,6 +93,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private Boolean pantryItem;
     private TransactionType compType;
     private String folioType;
+    private String authorizerId;
+    private CompPostingTaxType taxPostingType;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -875,6 +877,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setOrder(Integer order) {
         this.order = order;
+    }
+
+    public String getAuthorizerId() {
+        return authorizerId;
+    }
+
+    public void setAuthorizerId(String authorizerId) {
+        this.authorizerId = authorizerId;
+    }
+
+    public CompPostingTaxType getTaxPostingType() {
+        return taxPostingType;
+    }
+
+    public void setTaxPostingType(CompPostingTaxType taxPostingType) {
+        this.taxPostingType = taxPostingType;
     }
 
     @Override
