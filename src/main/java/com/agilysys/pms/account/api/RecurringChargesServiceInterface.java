@@ -20,15 +20,14 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AuthDetailResponse;
-import com.agilysys.pms.account.model.CreateRecurringCharge;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.EstimatedRoomChargeView;
-import com.agilysys.pms.account.model.MultipleAccountRecurringCharge;
 import com.agilysys.pms.account.model.ProgressStatusView;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
@@ -149,12 +148,6 @@ public interface RecurringChargesServiceInterface {
           List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
 
-    @POST
-    @Path(RECURRING_CHARGES_PATH + BULK)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<RecurringChargeView> createBulkRecurringCharges(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, MultipleAccountRecurringCharge multipleAccountRecurringCharge,
-          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
     /**
      * Retrieve recurring charge for an account
      *
