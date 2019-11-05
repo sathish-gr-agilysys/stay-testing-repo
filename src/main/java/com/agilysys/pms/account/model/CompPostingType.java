@@ -23,4 +23,13 @@ public enum CompPostingType {
         this.tax = tax;
         this.taxFollowsPosting = taxFollowsPosting;
     }
+
+    public CompPostingType getCompPostingType(boolean tax, boolean taxFollowsPosting) {
+        for (CompPostingType value : values()) {
+            if (tax == value.isTax() && taxFollowsPosting == value.isTaxFollowsPosting()) {
+                return value;
+            }
+        }
+        return null;
+    }
 }
