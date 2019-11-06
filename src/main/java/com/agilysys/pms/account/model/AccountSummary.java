@@ -4,7 +4,9 @@
 package com.agilysys.pms.account.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
@@ -51,6 +53,8 @@ public class AccountSummary {
     protected String name;
 
     protected String houseAccountCategoryId;
+
+    private Map<String, Object> taxFacts = new HashMap<>();
 
     public String getId() {
         return id;
@@ -162,5 +166,13 @@ public class AccountSummary {
 
     public void setHouseAccountCategoryId(String houseAccountCategoryId) {
         this.houseAccountCategoryId = houseAccountCategoryId;
+    }
+
+    public Map<String, Object> getTaxFacts() {
+        return taxFacts;
+    }
+
+    public void setTaxFacts(Map<String, Object> taxFacts) {
+        this.taxFacts = taxFacts;
     }
 }
