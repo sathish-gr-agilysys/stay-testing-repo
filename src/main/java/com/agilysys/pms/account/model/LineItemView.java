@@ -86,6 +86,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private boolean giftCard;
     private GatewayType gatewayType;
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
@@ -821,6 +822,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setGatewayType(GatewayType gatewayType) {
         this.gatewayType = gatewayType;
+    }
+
+    public boolean isGiftCard() {
+        return giftCard;
+    }
+
+    public void setGiftCard(boolean giftCard) {
+        this.giftCard = giftCard;
     }
 
     public boolean isReverseTax() {
