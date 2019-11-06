@@ -1,8 +1,8 @@
+/*
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
-/**
- * Created by JaffaralliH on 9/23/2019.
- */
 public class DepositPaymentInfo extends Payment {
     String scheduleDepositId;
 
