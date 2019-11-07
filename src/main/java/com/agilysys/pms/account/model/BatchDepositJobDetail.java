@@ -9,6 +9,7 @@ public class BatchDepositJobDetail extends JobDetail {
     private String accountId;
     private Payment payment;
     private String scheduledDepositDueId;
+    private String splitId;
     private boolean isPaymentFailed;
 
     public BatchDepositJobDetail() {
@@ -19,10 +20,11 @@ public class BatchDepositJobDetail extends JobDetail {
     }
 
     public BatchDepositJobDetail(String tenantId, String propertyId, String type, String accountId, Payment payment,
-          String scheduledDepositDueId) {
+          String scheduledDepositDueId, String splitId) {
         super(tenantId, propertyId, type);
         this.accountId = accountId;
         this.payment = payment;
+        this.splitId = splitId;
         this.scheduledDepositDueId = scheduledDepositDueId;
     }
 
@@ -56,6 +58,14 @@ public class BatchDepositJobDetail extends JobDetail {
 
     public void setIsPaymentFailed(boolean isPaymentFailed) {
         this.isPaymentFailed = isPaymentFailed;
+    }
+
+    public String getSplitId() {
+        return splitId;
+    }
+
+    public void setSplitId(String splitId) {
+        this.splitId = splitId;
     }
 }
 
