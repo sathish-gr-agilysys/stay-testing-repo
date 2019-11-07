@@ -36,7 +36,6 @@ public interface MaintenanceInterface {
     String TENANT_ID = "tenantId";
     String TENANT_ID_TEMPLATE = "{" + TENANT_ID + "}";
 
-    String NEXT_GEN = "nextGen";
     String UPDATED_SINCE = "updatedSince";
     String UPDATED_UNTIL = "updatedUntil";
 
@@ -52,12 +51,11 @@ public interface MaintenanceInterface {
 
     @GET
     @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
-    long countUnindexedAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(NEXT_GEN) boolean nextGen)
-          throws RGuestException;
+    long countUnindexedAccounts(@PathParam(TENANT_ID) String tenantId) throws RGuestException;
 
     @GET
     @Path(COUNT_PATH + UNINDEXED_PATH + ACCOUNTS_PATH)
-    Map<String, Long> countUnindexedAccounts(@QueryParam(NEXT_GEN) boolean nextGen) throws RGuestException;
+    Map<String, Long> countUnindexedAccounts() throws RGuestException;
 
     @DELETE
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
@@ -68,7 +66,7 @@ public interface MaintenanceInterface {
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
-          @QueryParam(UPDATED_UNTIL) String updatedUntil, @QueryParam(NEXT_GEN) boolean nextGen) throws RGuestException;
+          @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException;
 
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
