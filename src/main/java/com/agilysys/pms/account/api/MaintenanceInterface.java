@@ -31,18 +31,13 @@ public interface MaintenanceInterface {
     String BASE_PATH = "/maintenance";
 
     String ACCOUNTS_PATH = "/accounts";
-    String AGGREGATE_PATH = "/aggregate";
     String COUNT_PATH = "/count";
-    String EXPORT_PATH = "/export";
     String INDEX_PATH = "/index";
     String RANGE_PATH = "/range";
     String UNINDEXED_PATH = "/unindexed";
-    String UNEXPORTED_PATH = "/unexported";
 
     String TENANT_ID = "tenantId";
     String TENANT_ID_TEMPLATE = "{" + TENANT_ID + "}";
-    String TYPE = "type";
-    String TYPE_TEMPLATE = "{" + TYPE + "}";
 
     String NEXT_GEN = "nextGen";
     String UPDATED_SINCE = "updatedSince";
@@ -82,23 +77,4 @@ public interface MaintenanceInterface {
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
     Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
-    void aggregate(@PathParam(TYPE) AccountAggregateType type) throws RGuestException;
-
-    @GET
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(AGGREGATE_PATH + "/" + TYPE_TEMPLATE)
-    AggregationJob getAggregate(@PathParam(TYPE) AccountAggregateType type) throws RGuestException;
-
-    @GET
-    @Path(COUNT_PATH + UNEXPORTED_PATH + "/" + TYPE_TEMPLATE)
-    long countUnexported(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException;
-
-    @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
-    @Path(EXPORT_PATH + "/" + TYPE_TEMPLATE)
-    long export(@PathParam(TYPE) AccountWarehouseType type) throws RGuestException;
 }
