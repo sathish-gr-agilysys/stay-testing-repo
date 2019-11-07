@@ -12,16 +12,16 @@ public class MultiplePaymentResponse {
     private List<LineItemView> paymentLineItems;
     private List<String> failedAccountIds;
     private List<String> successAccountIds;
-    private Map<String, ErrorHandlingMultipleReservation> error;
+    private List<ErrorHandlingMultipleReservation> errors;
 
     public MultiplePaymentResponse() {}
 
     public MultiplePaymentResponse(List<LineItemView> paymentLineItems, List<String> successAccountIds,
-          List<String> failedAccountIds, Map<String, ErrorHandlingMultipleReservation> error) {
+          List<String> failedAccountIds, List<ErrorHandlingMultipleReservation> errors) {
         this.paymentLineItems = paymentLineItems;
         this.successAccountIds = successAccountIds;
         this.failedAccountIds = failedAccountIds;
-        this.error = error;
+        this.errors = errors;
     }
 
     public List<LineItemView> getPaymentLineItems() {
@@ -48,11 +48,11 @@ public class MultiplePaymentResponse {
         this.successAccountIds = successAccountIds;
     }
 
-    public Map<String, ErrorHandlingMultipleReservation> getError() {
-        return error;
+    public List<ErrorHandlingMultipleReservation> getErrors() {
+        return errors;
     }
 
-    public void setError(Map<String, ErrorHandlingMultipleReservation> error) {
-        this.error = error;
+    public void setErrors(List<ErrorHandlingMultipleReservation> errors) {
+        this.errors = errors;
     }
 }
