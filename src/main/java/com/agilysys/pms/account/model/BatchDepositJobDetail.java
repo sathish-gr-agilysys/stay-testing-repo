@@ -10,7 +10,6 @@ public class BatchDepositJobDetail extends JobDetail {
     private Payment payment;
     private String scheduledDepositDueId;
     private String splitId;
-    private boolean isPaymentFailed;
 
     public BatchDepositJobDetail() {
     }
@@ -50,14 +49,6 @@ public class BatchDepositJobDetail extends JobDetail {
 
     public void setScheduledDepositDueId(String scheduledDepositDueId) {
         this.scheduledDepositDueId = scheduledDepositDueId;
-    }
-
-    public boolean isPaymentFailed() {
-        return isPaymentFailed;
-    }
-
-    public void setIsPaymentFailed(boolean isPaymentFailed) {
-        this.isPaymentFailed = isPaymentFailed;
     }
 
     public String getSplitId() {
