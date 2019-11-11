@@ -12,7 +12,6 @@ import com.agilysys.platform.communication.model.EmailDeliveryDetail;
 
 import lombok.Data;
 
-@Data
 public class DepositEmailNotificationRequest {
     private String maskedCardNumber;
     private String paymentMethodId;

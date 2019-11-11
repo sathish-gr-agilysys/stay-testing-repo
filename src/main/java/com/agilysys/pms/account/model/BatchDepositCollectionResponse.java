@@ -6,8 +6,7 @@ package com.agilysys.pms.account.model;
 public class BatchDepositCollectionResponse {
     private String jobId;
 
-    public BatchDepositCollectionResponse() {
-    }
+    public BatchDepositCollectionResponse() {}
 
     public String getJobId() {
         return jobId;
