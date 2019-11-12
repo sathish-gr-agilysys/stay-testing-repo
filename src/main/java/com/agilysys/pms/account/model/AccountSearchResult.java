@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -63,13 +62,14 @@ public class AccountSearchResult {
         this.groupCode = groupCode;
     }
 
-    public AccountSearchResult(String accountId, AccountType accountType, Date arrivalDate, Date departureDate,
-          String name, String propertyId, String reservationConfirmationId, String reservationStatus, String roomNumber,
-          String roomType, String tenantId, String vipStatus, String reservationId) {
+    public AccountSearchResult(String accountId, AccountType accountType, LocalDate arrivalDate,
+          LocalDate departureDate, String name, String propertyId, String reservationConfirmationId,
+          String reservationStatus, String roomNumber, String roomType, String tenantId, String vipStatus,
+          String reservationId) {
         this(accountId, accountType, name, propertyId, tenantId);
 
-        this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate) : null;
-        this.departureDate = departureDate != null ? new DateTime(departureDate) : null;
+        this.arrivalDate = arrivalDate != null ? arrivalDate.toDateTimeAtStartOfDay() : null;
+        this.departureDate = departureDate != null ? departureDate.toDateTimeAtStartOfDay() : null;
         this.reservationConfirmationId = reservationConfirmationId;
         this.reservationStatus = reservationStatus;
         this.roomNumber = roomNumber;
