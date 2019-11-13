@@ -6,8 +6,7 @@ package com.agilysys.pms.account.model;
 public class DepositCollectionStatusEmailRequest {
     private boolean paymentSuccess;
     private String scheduledDepositId;
-    private String paymentInstrumentId;
-    private String paymentMethodId;
+    private String splitId;
 
     public boolean isPaymentSuccess() {
         return paymentSuccess;
@@ -25,19 +24,11 @@ public class DepositCollectionStatusEmailRequest {
         this.scheduledDepositId = scheduledDepositId;
     }
 
-    public String getPaymentInstrumentId() {
-        return paymentInstrumentId;
+    public String getSplitId() {
+        return splitId;
     }
 
-    public void setPaymentInstrumentId(String paymentInstrumentId) {
-        this.paymentInstrumentId = paymentInstrumentId;
-    }
-
-    public String getPaymentMethodId() {
-        return paymentMethodId;
-    }
-
-    public void setPaymentMethodId(String paymentMethodId) {
-        this.paymentMethodId = paymentMethodId;
+    public void setSplitId(String splitId) {
+        this.splitId = splitId;
     }
 }

@@ -25,7 +25,6 @@ import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.DepositCollectionStatusEmailRequest;
-import com.agilysys.pms.account.model.DepositEmailNotificationRequest;
 import com.agilysys.pms.account.model.GLCodeTemplate;
 import com.agilysys.pms.account.model.GLCodeTemplateRequest;
 import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
