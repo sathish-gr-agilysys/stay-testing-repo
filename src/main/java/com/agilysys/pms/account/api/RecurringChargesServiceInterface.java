@@ -323,6 +323,13 @@ public interface RecurringChargesServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, RecurringChargesValidityRequest recurringChargesValidityRequest)
           throws RGuestException;
 
+    @POST
+    @Path(RECURRING_CHARGES_PATH + VALIDITY + BULK)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<RecurringChargesValidityResponse> getBulkRecurringChargesValidityForCreate(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          RecurringChargesValidityRequest recurringChargesValidityRequest) throws RGuestException;
+
     /**
      * @return The estimated room charges for the given date range, or the current
      * date if date range not given. Returns a list of estimated room charge view.
