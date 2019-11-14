@@ -23,7 +23,7 @@ public class PantryItem extends AccountingObjectBase {
 
     @JsonProperty(required = true)
     @AuditField(name = "transactionItem", references = EntityTypes.TRANSACTION_ITEM)
-    @DataPortReference(name = "transactionItemCode", type = { TransactionItem.class, InventoryItem.class })
+    @DataPortReference(name = "transactionItemCode", type = { TransactionItem.class })
     private String transactionItemId;
 
     private CanonicalId status;
