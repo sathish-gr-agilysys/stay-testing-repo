@@ -11,32 +11,54 @@ import org.joda.time.LocalDate;
 
 public class AccountSearchResult {
     private String tenantId;
+
     private String propertyId;
 
     private String accountId;
     public static final String ACCOUNT_ID_FIELD = "accountId";
 
     private BigDecimal accountBalance;
+
     private String accountStatus;
 
     private String accountType;
     public static final String ACCOUNT_TYPE_FIELD = "accountType";
 
+    @Deprecated
     private DateTime arrivalDate;
+    public static final String ARRIVAL_DATE_FIELD = "arrivalDate";
+
+    private LocalDate arrivalDateLocalDate;
+    public static final String ARRIVAL_DATE_LOCAL_DATE_FIELD = ARRIVAL_DATE_FIELD;
+
     private String bookingStatus;
+
+    @Deprecated
     private DateTime departureDate;
+    public static final String DEPARTURE_DATE_FIELD = "departureDate";
+
+    private LocalDate departureDateLocalDate;
+    public static final String DEPARTURE_DATE_LOCAL_DATE_FIELD = DEPARTURE_DATE_FIELD;
+
     private List<FolioBalance> folios;
+
     private String groupCode;
 
     private String name;
     public static final String NAME_FIELD = "name";
 
     private String number;
+
     private String reservationConfirmationId;
+
     private String reservationId;
+
     private String reservationStatus;
+
     private String roomType;
+
     private String roomNumber;
+
     // TODO: The requirements for this are currently pretty vague; we need to figure out if there are multiple types of
     //  statuses such as VIP that an account can have and how to return them in the search results.
     private String vipStatus;
@@ -57,8 +79,10 @@ public class AccountSearchResult {
         this(accountId, accountType, name, propertyId, tenantId);
 
         this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate.toDate()) : null;
+        arrivalDateLocalDate = arrivalDate;
         this.bookingStatus = bookingStatus;
         this.departureDate = departureDate != null ? new DateTime(departureDate.toDate()) : null;
+        departureDateLocalDate = departureDate;
         this.groupCode = groupCode;
     }
 
@@ -69,7 +93,9 @@ public class AccountSearchResult {
         this(accountId, accountType, name, propertyId, tenantId);
 
         this.arrivalDate = arrivalDate != null ? arrivalDate.toDateTimeAtStartOfDay() : null;
+        arrivalDateLocalDate = arrivalDate;
         this.departureDate = departureDate != null ? departureDate.toDateTimeAtStartOfDay() : null;
+        departureDateLocalDate = departureDate;
         this.reservationConfirmationId = reservationConfirmationId;
         this.reservationStatus = reservationStatus;
         this.roomNumber = roomNumber;
@@ -134,6 +160,14 @@ public class AccountSearchResult {
         this.arrivalDate = arrivalDate;
     }
 
+    public LocalDate getArrivalDateLocalDate() {
+        return arrivalDateLocalDate;
+    }
+
+    public void setArrivalDateLocalDate(LocalDate arrivalDateLocalDate) {
+        this.arrivalDateLocalDate = arrivalDateLocalDate;
+    }
+
     public String getBookingStatus() {
         return bookingStatus;
     }
@@ -148,6 +182,14 @@ public class AccountSearchResult {
 
     public void setDepartureDate(DateTime departureDate) {
         this.departureDate = departureDate;
+    }
+
+    public LocalDate getDepartureDateLocalDate() {
+        return departureDateLocalDate;
+    }
+
+    public void setDepartureDateLocalDate(LocalDate departureDateLocalDate) {
+        this.departureDateLocalDate = departureDateLocalDate;
     }
 
     public List<FolioBalance> getFolios() {
