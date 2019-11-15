@@ -26,6 +26,8 @@ public class DepositEmailNotificationRequest {
     private String lastName;
     private String reservationConfirmationId;
     private String reservationId;
+    private LocalDate arrivalDate;
+    private LocalDate departureDate;
     private String accountId;
 
     private String propertyName;
@@ -141,5 +143,21 @@ public class DepositEmailNotificationRequest {
 
     public void setPropertyAddress(String propertyAddress) {
         this.propertyAddress = propertyAddress;
+    }
+
+    public LocalDate getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(LocalDate arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
     }
 }
