@@ -998,13 +998,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     ReservationCancellationResponse processCancellation(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(RESERVATION_IDS_TO_AUTHORIZE)
     Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + "/giftCard/load")
