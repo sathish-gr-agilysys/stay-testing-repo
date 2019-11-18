@@ -26,10 +26,11 @@ import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.GLCodeTemplate;
 import com.agilysys.pms.account.model.GLCodeTemplateRequest;
+import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
-import com.agilysys.pms.account.model.RevenueDetailReportRequest;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
+import com.agilysys.pms.account.model.RevenueDetailReportRequest;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
 import com.agilysys.pms.account.model.StatsByBuildingRequest;
@@ -341,6 +342,7 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
           throws RGuestException;
 
+    @POST
     @Path(PANTRY_TRANSACTION)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
