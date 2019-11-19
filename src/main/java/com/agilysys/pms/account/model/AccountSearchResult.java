@@ -29,7 +29,6 @@ public class AccountSearchResult {
     public static final String ARRIVAL_DATE_FIELD = "arrivalDate";
 
     private LocalDate arrivalDateLocalDate;
-    public static final String ARRIVAL_DATE_LOCAL_DATE_FIELD = ARRIVAL_DATE_FIELD;
 
     private String bookingStatus;
 
@@ -38,7 +37,6 @@ public class AccountSearchResult {
     public static final String DEPARTURE_DATE_FIELD = "departureDate";
 
     private LocalDate departureDateLocalDate;
-    public static final String DEPARTURE_DATE_LOCAL_DATE_FIELD = DEPARTURE_DATE_FIELD;
 
     private List<FolioBalance> folios;
 
