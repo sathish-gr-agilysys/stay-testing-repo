@@ -87,6 +87,7 @@ import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
+import com.agilysys.pms.account.model.ReverseRedemptionRequest;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -1032,6 +1033,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + REVERSE_REDEEM_CHARGE)
     void completeReverseRedemption(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, List<String> transactionIds) throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, ReverseRedemptionRequest reverseRedemptionRequest)
+          throws RGuestException;
 
 }

@@ -17,6 +17,10 @@ public class CompTransaction {
     private List<CompRedeemRequest> compRedeemRequests;
     private RedemptionType redemptionType;
 
+    public CompTransaction() {
+
+    }
+
     public enum RedemptionType {
         PLAYER_POINT,
         COMP_POINT;
