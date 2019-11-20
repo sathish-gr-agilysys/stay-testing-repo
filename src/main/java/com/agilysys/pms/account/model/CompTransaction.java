@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 
 public class CompTransaction {
+
     private String authorizerId;
     private String departmentId;
     private String compPoints;
@@ -14,6 +15,12 @@ public class CompTransaction {
     private String playerOrCardId;
     private String authorizerCode;
     private List<CompRedeemRequest> compRedeemRequests;
+    private RedemptionType redemptionType;
+
+    public enum RedemptionType {
+        PLAYER_POINT,
+        COMP_POINT;
+    }
 
     public String getAuthorizerId() {
         return authorizerId;
@@ -77,5 +84,13 @@ public class CompTransaction {
 
     public void setCompRedeemRequests(List<CompRedeemRequest> compRedeemRequests) {
         this.compRedeemRequests = compRedeemRequests;
+    }
+
+    public RedemptionType getRedemptionType() {
+        return redemptionType;
+    }
+
+    public void setRedemptionType(RedemptionType redemptionType) {
+        this.redemptionType = redemptionType;
     }
 }
