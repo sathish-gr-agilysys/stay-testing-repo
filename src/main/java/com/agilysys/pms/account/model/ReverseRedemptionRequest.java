@@ -14,6 +14,10 @@ public class ReverseRedemptionRequest {
         transactionIds = new ArrayList<>();
     }
 
+    public ReverseRedemptionRequest(List<String> transactionIds){
+        this.transactionIds = transactionIds;
+    }
+
     public List<String> getTransactionIds() {
         return transactionIds;
     }
