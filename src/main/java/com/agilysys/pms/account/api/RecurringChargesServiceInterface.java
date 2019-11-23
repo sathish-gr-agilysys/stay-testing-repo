@@ -20,11 +20,11 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AuthDetailResponse;
-import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.EstimatedRoomChargeView;
@@ -76,6 +76,7 @@ public interface RecurringChargesServiceInterface {
     String BATCH = "/batch";
     String VALIDITY = "/validity";
     String INVENTORY = "/inventory";
+    String BULK = "/bulk";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -321,6 +322,13 @@ public interface RecurringChargesServiceInterface {
     RecurringChargesValidityResponse getRecurringChargesValidityForCreate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, RecurringChargesValidityRequest recurringChargesValidityRequest)
           throws RGuestException;
+
+    @POST
+    @Path(RECURRING_CHARGES_PATH + VALIDITY + BULK)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<RecurringChargesValidityResponse> getBulkRecurringChargesValidityForCreate(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          RecurringChargesValidityRequest recurringChargesValidityRequest) throws RGuestException;
 
     /**
      * @return The estimated room charges for the given date range, or the current
