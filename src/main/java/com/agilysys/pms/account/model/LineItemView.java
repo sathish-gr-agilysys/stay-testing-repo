@@ -97,6 +97,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String folioType;
     private String authorizerId;
     private CompPostingTaxType taxPostingType;
+    private boolean reverseRedemptionComp;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -959,6 +960,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setTaxPostingType(CompPostingTaxType taxPostingType) {
         this.taxPostingType = taxPostingType;
+    }
+
+    public boolean isReverseRedemptionComp() {
+        return reverseRedemptionComp;
+    }
+
+    public void setReverseRedemptionComp(boolean reverseRedemptionComp) {
+        this.reverseRedemptionComp = reverseRedemptionComp;
     }
 
     @Override
