@@ -9,6 +9,7 @@ import java.util.List;
 public class ReverseRedemptionRequest {
 
     private List<String> transactionIds;
+    private String playerPin;
 
     public ReverseRedemptionRequest(){
         transactionIds = new ArrayList<>();
@@ -24,5 +25,13 @@ public class ReverseRedemptionRequest {
 
     public void setTransactionIds(List<String> transactionIds) {
         this.transactionIds = transactionIds;
+    }
+
+    public String getPlayerPin() {
+        return playerPin;
+    }
+
+    public void setPlayerPin(String playerPin) {
+        this.playerPin = playerPin;
     }
 }
