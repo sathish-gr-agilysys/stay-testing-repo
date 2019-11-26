@@ -12,6 +12,7 @@ public class AccountConstants {
     public static final String AUTO_TRANSFER = "Auto transfer";
     public static final String BALANCE_TRANSFER = "balance transfer";
     public static final String CHARGE_TRANSFERRED = "Charge transferred";
+    public static final String COMP_FOLIO = "Comp Folio";
     public static final String COMPANY = "COMPANY";
     public static final String CORRECTED = "(Corrected)";
     public static final String CORRECTED_BY = "correctedBy";
@@ -48,5 +49,4 @@ public class AccountConstants {
     public static final String TRANSFER_TO_RESERVED_GUEST_ACCOUNT_MESSAGE = " to %s with Reservation #%s.";
     public static final String VAT_INVOICES = "VATInvoices";
     public static final String VAT_SETTINGS = "VAT_SETTINGS";
-    public static final String PLAYER_FOLIO = "Player Folio";
 }
