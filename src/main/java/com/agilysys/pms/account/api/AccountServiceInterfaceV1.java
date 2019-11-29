@@ -25,7 +25,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.model.PaymentSetting;
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
@@ -1050,13 +1049,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     ReservationCancellationResponse processCancellation(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(RESERVATION_IDS_TO_AUTHORIZE)
     Set<String> getReservationIdsToAuthorize(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + "/giftCard/load")
