@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.EnhancementRequest;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
@@ -321,6 +322,22 @@ public interface RecurringChargesServiceInterface {
     RecurringChargesValidityResponse getRecurringChargesValidityForCreate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, RecurringChargesValidityRequest recurringChargesValidityRequest)
           throws RGuestException;
+
+
+    /**
+     * Retrieves the details of Items for Rbook
+     * 1. Do not dependent on reservation dates
+     * 2. Violates inventory max per reservation restriction
+     * 3. Violates inventory room type restriction
+     * 4. Required quantity not available
+     */
+    @POST
+    @Path(RECURRING_CHARGES_PATH + VALIDITY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    RecurringChargesValidityResponse getRecurringChargesValidityForRbookCreate(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, EnhancementRequest enhancementRequest)
+          throws RGuestException;
+
 
     /**
      * @return The estimated room charges for the given date range, or the current
