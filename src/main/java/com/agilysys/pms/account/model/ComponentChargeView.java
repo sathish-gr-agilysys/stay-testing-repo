@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2016 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -12,7 +12,6 @@ import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 
 public class ComponentChargeView {
-
     private String componentBundleId;
 
     private String componentId;
@@ -35,7 +34,7 @@ public class ComponentChargeView {
 
     private TransactionItemType transactionItemType;
 
-    ChargeTaxAmountInfo estimatedTaxInfo;
+    private ChargeTaxAmountInfo estimatedTaxInfo;
 
     private boolean reverseTax;
 
@@ -192,6 +191,7 @@ public class ComponentChargeView {
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
         componentRateSnapshots.stream().forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
+
         return componentChargeViews;
     }
 }
