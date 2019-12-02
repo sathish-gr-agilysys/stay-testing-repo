@@ -20,10 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.AccountAggregateType;
-import com.agilysys.pms.account.model.AccountWarehouseType;
-import com.agilysys.pms.common.model.AggregationJob;
-import com.agilysys.pms.maintenance.model.IndexRequest;
+import com.agilysys.pms.maintenance.model.MaintenanceRequest;
 
 @Path(MaintenanceInterface.BASE_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -74,5 +71,5 @@ public interface MaintenanceInterface {
     @POST
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
-    Map<String, Long> indexAccounts(IndexRequest request) throws RGuestException;
+    Map<String, Long> indexAccounts(MaintenanceRequest request) throws RGuestException;
 }
