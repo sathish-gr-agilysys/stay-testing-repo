@@ -6,6 +6,7 @@ package com.agilysys.pms.account.api;
 import java.util.Map;
 
 import javax.ws.rs.Consumes;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,11 +15,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.pms.account.model.AccountAggregateType;
+import com.agilysys.pms.account.model.AccountWarehouseType;
+import com.agilysys.pms.common.model.AggregationJob;
 import com.agilysys.pms.maintenance.model.IndexRequest;
 
 @Path(MaintenanceInterface.BASE_PATH)
@@ -27,7 +31,6 @@ public interface MaintenanceInterface {
     String BASE_PATH = "/maintenance";
 
     String ACCOUNTS_PATH = "/accounts";
-
     String COUNT_PATH = "/count";
     String INDEX_PATH = "/index";
     String RANGE_PATH = "/range";
