@@ -21,6 +21,7 @@ import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.model.EnhancementRequest;
+import com.agilysys.common.model.EnhancementResponse;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
@@ -334,7 +335,7 @@ public interface RecurringChargesServiceInterface {
     @POST
     @Path(RECURRING_CHARGES_PATH + VALIDITY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    RecurringChargesValidityResponse getRecurringChargesValidityForRbookCreate(@PathParam(TENANT_ID) String tenantId,
+    EnhancementResponse getRecurringChargesValidityForRbookCreate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, EnhancementRequest enhancementRequest)
           throws RGuestException;
 
