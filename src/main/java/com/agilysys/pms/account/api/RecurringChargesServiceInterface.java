@@ -335,7 +335,7 @@ public interface RecurringChargesServiceInterface {
     @POST
     @Path(RECURRING_CHARGES_PATH + VALIDITY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    EnhancementResponse getEnhancementItemValidityForRbook(@PathParam(TENANT_ID) String tenantId,
+    EnhancementResponse getValidEnhancementItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, EnhancementRequest enhancementRequest)
           throws RGuestException;
 
