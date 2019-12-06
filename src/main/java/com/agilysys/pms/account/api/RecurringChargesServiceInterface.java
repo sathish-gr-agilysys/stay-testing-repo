@@ -53,6 +53,7 @@ public interface RecurringChargesServiceInterface {
     String TERMINAL_ID = "terminalId";
 
     String RECURRING_CHARGES_PATH = "/recurringCharges";
+    String ENHANCEMENT_VALIDITY_PATH = "/enhancements";
     String RECURRING_CHARGE_ID = "recurringChargeId";
     String RECURRING_CHARGE_ID_PATH = "/{recurringChargeId}";
     String RECURRING_CHARGE_OVERRIDE = "/override";
@@ -333,7 +334,7 @@ public interface RecurringChargesServiceInterface {
      * 4. Required quantity not available
      */
     @POST
-    @Path(RECURRING_CHARGES_PATH + VALIDITY)
+    @Path(ENHANCEMENT_VALIDITY_PATH + VALIDITY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     EnhancementResponse getValidEnhancementItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, EnhancementRequest enhancementRequest)
