@@ -342,4 +342,9 @@ public interface RecurringChargesServiceInterface {
     List<EstimatedRoomChargeView> getEstimatedRoomCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + "CheckIfRoomTypeAllowed")
+    Boolean checkIfRoomTypeChangeAllowedForRecurringCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) Set<String> accountId, @PathParam("roomTypeId") String roomTypeId);
 }
