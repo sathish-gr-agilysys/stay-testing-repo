@@ -19,7 +19,6 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
@@ -27,10 +26,11 @@ import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.GLCodeTemplate;
 import com.agilysys.pms.account.model.GLCodeTemplateRequest;
+import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
-import com.agilysys.pms.account.model.RevenueDetailReportRequest;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
+import com.agilysys.pms.account.model.RevenueDetailReportRequest;
 import com.agilysys.pms.account.model.RevenueReportResult;
 import com.agilysys.pms.account.model.RoomRevenueItem;
 import com.agilysys.pms.account.model.StatsByBuildingRequest;
@@ -40,6 +40,7 @@ import com.agilysys.pms.account.model.TransactionReportRequest;
 import com.agilysys.pms.account.model.TransactionReportResponse;
 import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
 import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
+import com.agilysys.pms.common.model.GeneralAvailabilityResult;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/reports")
 public interface ReportingServiceInterface {
@@ -51,6 +52,7 @@ public interface ReportingServiceInterface {
     String ACCOUNT_BALANCES_PATH = "/accountBalances";
     String GENERAL_LEDGER = "/generalLedger";
     String RESERVATION_ROOM_REVENUE_PATH = "/reservationRoomRevenue";
+    String GENERAL_AVAILABILITY_PATH = "/generalAvailability";
     String GENERAL_AVAILABILITY_STATS = "/generalAvailabilityStats";
     String REVENUE_PATH = "/revenueDetails";
     String REVENUE_PATH_BY_BUILDING = "/revenueDetailsByBuilding";
@@ -324,6 +326,14 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException;
 
+    @GET
+    @Path(GENERAL_AVAILABILITY_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    GeneralAvailabilityResult getGeneralAvailabilityReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(ROOM_REVENUE) Boolean roomRevenue) throws RGuestException;
+
     @POST
     @Path(GENERAL_AVAILABILITY_STATS)
     @Produces(MediaType.APPLICATION_JSON)
@@ -332,10 +342,10 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, StatsByBuildingRequest statsByBuildingRequest)
           throws RGuestException;
 
+    @POST
     @Path(PANTRY_TRANSACTION)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws RGuestException;
 }
-
