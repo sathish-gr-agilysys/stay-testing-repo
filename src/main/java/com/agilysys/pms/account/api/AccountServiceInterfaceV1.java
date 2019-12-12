@@ -515,7 +515,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + DEPOSITS_PATH)
     @Validated(Payment.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     List<LineItemView> postDeposit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, DepositPaymentInfo depositPaymentInfo,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
