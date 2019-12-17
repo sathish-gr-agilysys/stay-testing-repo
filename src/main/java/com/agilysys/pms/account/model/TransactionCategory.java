@@ -38,6 +38,16 @@ public class TransactionCategory extends AccountingObjectBase {
     @AuditField(name = "defaultSource", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
     private String defaultSourceId;
 
+    @JsonProperty(required = true)
+    @DataPortReference(name = "htngCode", type = {Building.class, Outlet.class})
+    @AuditField(name = "htngCode", references = {EntityTypes.BUILDING, EntityTypes.OUTLET})
+    private Integer htngCode;
+
+    @JsonProperty(required = true)
+    @DataPortReference(name = "htngDescription", type = {Building.class, Outlet.class})
+    @AuditField(name = "htngDescription", references = {EntityTypes.BUILDING, EntityTypes.OUTLET})
+    private String htngDescription;
+
     /**
      * @return the sourceIds
      */
@@ -58,6 +68,22 @@ public class TransactionCategory extends AccountingObjectBase {
 
     public void setDefaultSourceId(String defaultSourceId) {
         this.defaultSourceId = defaultSourceId;
+    }
+
+    public Integer getHtngCode() {
+        return htngCode;
+    }
+
+    public void setHtngCode(Integer htngCode) {
+        this.htngCode = htngCode;
+    }
+
+    public String getHtngDescription() {
+        return htngDescription;
+    }
+
+    public void setHtngDescription(String htngDescription) {
+        this.htngDescription = htngDescription;
     }
 
     /** {@inheritDoc} */
