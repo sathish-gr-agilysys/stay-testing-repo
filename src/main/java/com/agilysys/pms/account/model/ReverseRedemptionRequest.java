@@ -10,6 +10,7 @@ public class ReverseRedemptionRequest {
 
     private List<String> transactionIds;
     private String playerPin;
+    private String playerOrCardId;
 
     public ReverseRedemptionRequest(){
         transactionIds = new ArrayList<>();
@@ -33,5 +34,13 @@ public class ReverseRedemptionRequest {
 
     public void setPlayerPin(String playerPin) {
         this.playerPin = playerPin;
+    }
+
+    public String getPlayerOrCardId() {
+        return playerOrCardId;
+    }
+
+    public void setPlayerOrCardId(String playerOrCardId) {
+        this.playerOrCardId = playerOrCardId;
     }
 }
