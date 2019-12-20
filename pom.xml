@@ -75,6 +75,12 @@
             <artifactId>hamcrest-all</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms.common</groupId>
+            <artifactId>document-toolkit</artifactId>
+            <version>74.1081-VCTRS-59482-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

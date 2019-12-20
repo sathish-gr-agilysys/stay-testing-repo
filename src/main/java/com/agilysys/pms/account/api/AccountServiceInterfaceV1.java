@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.api;
 
+import static com.agilysys.common.constants.Constants.FILE;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -20,10 +22,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
+import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.constants.Constants.HTTPRequestConstants;
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
@@ -97,6 +102,8 @@ import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
+import com.agilysys.pms.common.document.model.DocumentDetails;
+import com.agilysys.pms.common.document.model.DocumentRequest;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.SearchPage;
 import com.agilysys.pms.payment.model.LodgingInformation;
@@ -220,6 +227,8 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String UPLOAD_COMPANY_AR_DOCUMENTS = "/document/uploadCompanyARDocuments/{accountId}";
+    String DELETE_COMPANY_AR_DOCUMENTS = "/document/deleteCompanyARDocuments";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -1026,4 +1035,20 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException;
+
+    @POST
+    @Path(UPLOAD_COMPANY_AR_DOCUMENTS)
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @PreAuthorize("hasPermission('Required', 'Platform_writeContent')")
+    DocumentDetails uploadCompanyARDocuments(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @Multipart(value = FILE) Attachment attachment,
+          @Multipart(value = "description", type = "String") String description) throws RGuestException;
+
+    @DELETE
+    @Path(DELETE_COMPANY_AR_DOCUMENTS)
+    @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
+    @PreAuthorize("hasPermission('Required', 'DeleteCompanyARDocument')")
+    void deleteCompanyARDocuments(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          DocumentRequest documentRequest) throws RGuestException;
 }
