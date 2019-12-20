@@ -30,6 +30,8 @@ public class FolioSummary {
 
     private String paymentSettingId;
 
+    private FolioType folioType;
+
     public String getId() {
         return id;
     }
@@ -90,5 +92,13 @@ public class FolioSummary {
      */
     public void setPaymentSettingId(String paymentSettingId) {
         this.paymentSettingId = paymentSettingId;
+    }
+
+    public FolioType getFolioType() {
+        return folioType;
+    }
+
+    public void setFolioType(FolioType folioType) {
+        this.folioType = folioType;
     }
 }

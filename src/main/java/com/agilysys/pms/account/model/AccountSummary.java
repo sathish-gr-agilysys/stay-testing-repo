@@ -52,6 +52,8 @@ public class AccountSummary {
 
     protected String houseAccountCategoryId;
 
+    protected CompAccountingRedeemDetails compAccountingRedeemDetails;
+
     public String getId() {
         return id;
     }
@@ -162,5 +164,13 @@ public class AccountSummary {
 
     public void setHouseAccountCategoryId(String houseAccountCategoryId) {
         this.houseAccountCategoryId = houseAccountCategoryId;
+    }
+
+    public CompAccountingRedeemDetails getCompAccountingRedeemDetails() {
+        return compAccountingRedeemDetails;
+    }
+
+    public void setCompAccountingRedeemDetails(CompAccountingRedeemDetails compAccountingRedeemDetails) {
+        this.compAccountingRedeemDetails = compAccountingRedeemDetails;
     }
 }

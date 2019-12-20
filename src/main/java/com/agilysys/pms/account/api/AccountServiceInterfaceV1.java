@@ -45,8 +45,10 @@ import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
+import com.agilysys.pms.account.model.CompTransaction;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
+import com.agilysys.pms.account.model.EligibleFolioLineItems;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
@@ -83,6 +85,7 @@ import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
+import com.agilysys.pms.account.model.ReverseRedemptionRequest;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
@@ -219,6 +222,11 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String AUTHORIZER_CODE = "authorizerCode";
+    String CODE = "/{" + AUTHORIZER_CODE + "}";
+    String AUTHORIZERD_FOLIO_ITEMS = "/authorizedFolioItems" + CODE;
+    String REDEEM_FOLIO_CHARGE = "/redeemFolio";
+    String REVERSE_REDEEM_CHARGE = "/reverseRedeemFolio";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -280,6 +288,12 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     AccountDetail createAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           CreateAccountSummary account) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + AUTHORIZERD_FOLIO_ITEMS)
+    EligibleFolioLineItems getEligibleFolioItemsByAuthorizerDetails(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(AUTHORIZER_CODE) String authorizerCode) throws RGuestException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNT_STATUS_PATH)
@@ -1025,4 +1039,17 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + REDEEM_FOLIO_CHARGE)
+    List<String> redeemPlayerFolioItemsCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          CompTransaction compTransaction) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + REVERSE_REDEEM_CHARGE)
+    List<String> completeReverseRedemption(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, ReverseRedemptionRequest reverseRedemptionRequest)
+          throws RGuestException;
+
 }
