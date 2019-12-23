@@ -13,6 +13,7 @@ import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
+import com.agilysys.pms.common.secondarywrites.SecondaryWritable;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.Outlet;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionCategory in the application.
  */
 @AuditEntity(EntityTypes.TRANSACTION_CATEGORY)
-public class TransactionCategory extends AccountingObjectBase {
+public class TransactionCategory extends AccountingObjectBase implements SecondaryWritable<String> {
 
     private static final String DISPLAY_NAME = "Transaction category";
 
