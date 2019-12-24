@@ -1042,6 +1042,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(ACCOUNT_ID_PATH + REDEEM_FOLIO_CHARGE)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<String> redeemPlayerFolioItemsCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           CompTransaction compTransaction) throws RGuestException;
