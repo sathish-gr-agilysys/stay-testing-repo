@@ -12,9 +12,9 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CompInfo;
-import com.agilysys.pms.payment.model.GatewayType;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
+import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -65,7 +65,6 @@ public class LineItemView implements Comparable<LineItemView> {
     private String rateChangeComment;
     private List<LineItemView> refundLineItems;
     private List<LineItemView> compLineItems;
-    private List<LineItemView> reverseCompLineItems;
     private String reason;
     private String transferMessage;
     private String receiptTextImage;
@@ -106,7 +105,6 @@ public class LineItemView implements Comparable<LineItemView> {
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
         compLineItems = new ArrayList<>();
-        reverseCompLineItems = new ArrayList<>();
     }
 
     /**
@@ -478,14 +476,6 @@ public class LineItemView implements Comparable<LineItemView> {
         this.compLineItems = compLineItems;
     }
 
-    public List<LineItemView> getReverseCompLineItems() {
-        return reverseCompLineItems;
-    }
-
-    public void setReverseCompLineItems(List<LineItemView> reverseCompLineItems) {
-        this.reverseCompLineItems = reverseCompLineItems;
-    }
-
     /**
      * @return the sourceId
      */
@@ -651,10 +641,6 @@ public class LineItemView implements Comparable<LineItemView> {
         return getCompTotalAmount().add(getCompTaxAmount());
     }
 
-    public BigDecimal getReverseCompGrandTotalAmount() {
-        return getReverseCompTotalAmount().add(getReverseCompTaxAmount());
-    }
-
     /**
      * @return amount of adjustment tax
      */
@@ -697,27 +683,9 @@ public class LineItemView implements Comparable<LineItemView> {
         return compTaxAmount;
     }
 
-    public BigDecimal getReverseCompTotalAmount() {
-        BigDecimal reverseCompTotalAmount = BigDecimal.ZERO;
-        for (LineItemView revCompLine : getReverseCompLineItems()) {
-            reverseCompTotalAmount = reverseCompTotalAmount.add(revCompLine.getTotalAmount());
-        }
-
-        return reverseCompTotalAmount;
-    }
-
-    public BigDecimal getReverseCompTaxAmount() {
-        BigDecimal reverseCompTaxAmount = BigDecimal.ZERO;
-        for (LineItemView revCompLine : getReverseCompLineItems()) {
-            reverseCompTaxAmount = reverseCompTaxAmount.add(revCompLine.getTaxAmount());
-        }
-
-        return reverseCompTaxAmount;
-    }
-
-        /**
-         * @return total + taxes of an associated correction line item
-         */
+    /**
+     * @return total + taxes of an associated correction line item
+     */
     public BigDecimal getCorrectionGrandTotalAmount() {
         return getCorrectionTotalAmount().add(getCorrectionTaxAmount());
     }
@@ -761,8 +729,7 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemBalance() {
         return getGrandTotalAmount().add(getAdjustmentsGrandTotalAmount()).add(getTransferGrandTotalAmount())
-              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount())).add(getCompGrandTotalAmount())
-              .add(getReverseCompGrandTotalAmount());
+              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount())).add(getCompGrandTotalAmount());
     }
 
     /**
@@ -770,8 +737,7 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemChargesBalance() {
         return getTotalAmount().add(getAdjustmentsTotalAmount()).add(getTransferTotalAmount())
-              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount()).add(getCompTotalAmount())
-              .add(getReverseCompTotalAmount());
+              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount()).add(getCompTotalAmount());
     }
 
     /**
@@ -780,7 +746,7 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemTaxBalance() {
         return getTaxAmount().add(getAdjustmentsTaxAmount()).add(getTransferTaxAmount()).add(getCorrectionTaxAmount())
-              .add(getCompTaxAmount()).add(getReverseCompTaxAmount());
+              .add(getCompTaxAmount());
     }
 
     /**

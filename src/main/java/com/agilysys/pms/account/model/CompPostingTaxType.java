@@ -8,6 +8,11 @@ public enum CompPostingTaxType {
     INCLUDE_TAX(true, false),
     TAX_FOLLOWS_POSTING(true, true);
 
+    CompPostingTaxType(boolean tax, boolean taxFollowsPosting) {
+        this.tax = tax;
+        this.taxFollowsPosting = taxFollowsPosting;
+    }
+
     private boolean tax;
     private boolean taxFollowsPosting;
 
@@ -17,11 +22,6 @@ public enum CompPostingTaxType {
 
     public boolean isTaxFollowsPosting() {
         return taxFollowsPosting;
-    }
-
-    CompPostingTaxType(boolean tax, boolean taxFollowsPosting) {
-        this.tax = tax;
-        this.taxFollowsPosting = taxFollowsPosting;
     }
 
     public static CompPostingTaxType fromValues(boolean tax, boolean taxFollowsPosting) {
