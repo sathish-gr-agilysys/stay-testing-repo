@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model.payagent;
@@ -284,6 +284,6 @@ public class PayTransactionRequest {
 
     private void throwException() {
         throw accountException(AccountErrorCode.REQUEST_INVALID)
-              .asininePayload(ServiceError.CLIENT_INVALID_REQUEST, Status.NOT_FOUND).buildCompatible();
+              .asininePayload(ServiceError.CLIENT_INVALID_REQUEST, Status.NOT_FOUND).build();
     }
 }
