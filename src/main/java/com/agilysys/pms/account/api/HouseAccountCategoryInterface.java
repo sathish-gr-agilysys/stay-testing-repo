@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2016 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.api;
@@ -19,7 +19,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.HouseAccountCategory;
@@ -45,8 +44,7 @@ public interface HouseAccountCategoryInterface {
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<HouseAccountCategory> findHouseAccountCategories(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
-          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
-          throws RGuestException, ServiceException;
+          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws RGuestException;
 
     /**
      * Create a House account category for a tenant & property
@@ -62,8 +60,7 @@ public interface HouseAccountCategoryInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     HouseAccountCategory createHouseAccountCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, HouseAccountCategory houseAccountCategory)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, HouseAccountCategory houseAccountCategory) throws RGuestException;
 
     /**
      * Retrieve a House account category
@@ -77,8 +74,7 @@ public interface HouseAccountCategoryInterface {
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     @Path(ID_PATH)
     HouseAccountCategory getHouseAccountCategoryById(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(RESOURCE_ID) String id)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(RESOURCE_ID) String id) throws RGuestException;
 
     /**
      * Update a House account category
@@ -88,7 +84,7 @@ public interface HouseAccountCategoryInterface {
      * @param id                   House account category id to update
      * @param houseAccountCategory House account category payload to update
      * @return Updated House account category
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @PUT
     @Path(ID_PATH)
@@ -97,7 +93,7 @@ public interface HouseAccountCategoryInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     HouseAccountCategory updateHouseAccountCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(RESOURCE_ID) String id,
-          HouseAccountCategory houseAccountCategory) throws RGuestException, ServiceException;
+          HouseAccountCategory houseAccountCategory) throws RGuestException;
 
     /**
      * Deletes a House account category
@@ -105,12 +101,12 @@ public interface HouseAccountCategoryInterface {
      * @param tenantId   id of tenant where the house account category exists
      * @param propertyId id of the property where the house account category exists
      * @param id         House account category id to delete
-     * @throws ServiceException
+     * @throws RGuestException
      */
     @DELETE
     @Path(ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteHouseAccountCategory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(RESOURCE_ID) String id) throws RGuestException, ServiceException;
+          @PathParam(RESOURCE_ID) String id) throws RGuestException;
 
 }
