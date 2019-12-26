@@ -5,14 +5,14 @@ package com.agilysys.pms.account.model;
 
 public class HtngCategory extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "Htng category";
-    private Integer htngCode;
+    private String htngCode;
     private String htngDescription;
 
-    public Integer getHtngCode() {
+    public String getHtngCode() {
         return htngCode;
     }
 
-    public void setHtngCode(Integer htngCode) {
+    public void setHtngCode(String htngCode) {
         this.htngCode = htngCode;
     }
 
