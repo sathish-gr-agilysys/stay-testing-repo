@@ -52,6 +52,8 @@ public class AccountSummary {
 
     protected String houseAccountCategoryId;
 
+    protected int noOfDocuments;
+
     public String getId() {
         return id;
     }
@@ -162,5 +164,13 @@ public class AccountSummary {
 
     public void setHouseAccountCategoryId(String houseAccountCategoryId) {
         this.houseAccountCategoryId = houseAccountCategoryId;
+    }
+
+    public int getNoOfDocuments() {
+        return noOfDocuments;
+    }
+
+    public void setNoOfDocuments(int noOfDocuments) {
+        this.noOfDocuments = noOfDocuments;
     }
 }
