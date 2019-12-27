@@ -1,3 +1,6 @@
+/*
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.util.HashMap;
@@ -15,6 +18,10 @@ public class RevenueReportResult {
 
     public RevenueReportResult() {
         this.revenueDetails = new HashMap<>();
+    }
+
+    public RevenueReportResult(Map<LocalDate, List<RevenueReportItem>> revenueDetails) {
+        this.revenueDetails = revenueDetails;
     }
 
     public Map<LocalDate, List<RevenueReportItem>> getRevenueDetails() {
