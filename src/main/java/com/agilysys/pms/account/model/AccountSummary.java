@@ -55,8 +55,6 @@ public class AccountSummary {
 
     protected String houseAccountCategoryId;
 
-    protected int noOfDocuments;
-
     private Map<String, Date> taxFacts = new HashMap<>();
 
     public String getId() {
@@ -177,13 +175,5 @@ public class AccountSummary {
 
     public void setTaxFacts(Map<String, Date> taxFacts) {
         this.taxFacts = taxFacts;
-    }
-
-    public int getNoOfDocuments() {
-        return noOfDocuments;
-    }
-
-    public void setNoOfDocuments(int noOfDocuments) {
-        this.noOfDocuments = noOfDocuments;
     }
 }
