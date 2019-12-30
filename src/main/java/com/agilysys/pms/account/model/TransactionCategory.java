@@ -38,6 +38,10 @@ public class TransactionCategory extends AccountingObjectBase {
     @AuditField(name = "defaultSource", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
     private String defaultSourceId;
 
+    private String htngCode;
+
+    private String htngDescription;
+
     /**
      * @return the sourceIds
      */
@@ -58,6 +62,22 @@ public class TransactionCategory extends AccountingObjectBase {
 
     public void setDefaultSourceId(String defaultSourceId) {
         this.defaultSourceId = defaultSourceId;
+    }
+
+    public String getHtngCode() {
+        return htngCode;
+    }
+
+    public void setHtngCode(String htngCode) {
+        this.htngCode = htngCode;
+    }
+
+    public String getHtngDescription() {
+        return htngDescription;
+    }
+
+    public void setHtngDescription(String htngDescription) {
+        this.htngDescription = htngDescription;
     }
 
     /** {@inheritDoc} */
