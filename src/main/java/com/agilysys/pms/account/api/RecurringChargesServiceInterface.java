@@ -20,11 +20,11 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AuthDetailResponse;
-import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.EstimatedRoomChargeView;
@@ -76,6 +76,11 @@ public interface RecurringChargesServiceInterface {
     String BATCH = "/batch";
     String VALIDITY = "/validity";
     String INVENTORY = "/inventory";
+    String BULK = "/bulk";
+    String CHECK_IF_ROOM_TYPE_ALLOWED = "/CheckIfRoomTypeAllowed";
+    String ROOM_TYPE_ID = "roomTypeId";
+    String ROOM_TYPE_ID_PATH = "/{roomTypeId}";
+
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -322,6 +327,13 @@ public interface RecurringChargesServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, RecurringChargesValidityRequest recurringChargesValidityRequest)
           throws RGuestException;
 
+    @POST
+    @Path(RECURRING_CHARGES_PATH + VALIDITY + BULK)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<RecurringChargesValidityResponse> getBulkRecurringChargesValidityForCreate(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          RecurringChargesValidityRequest recurringChargesValidityRequest) throws RGuestException;
+
     /**
      * @return The estimated room charges for the given date range, or the current
      * date if date range not given. Returns a list of estimated room charge view.
@@ -334,4 +346,9 @@ public interface RecurringChargesServiceInterface {
     List<EstimatedRoomChargeView> getEstimatedRoomCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + CHECK_IF_ROOM_TYPE_ALLOWED + ROOM_TYPE_ID_PATH)
+    Boolean checkIfRoomTypeChangeAllowedForRecurringCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) Set<String> accountId, @PathParam(ROOM_TYPE_ID) String roomTypeId);
 }
