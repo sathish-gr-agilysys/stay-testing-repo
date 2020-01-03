@@ -3,6 +3,13 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.pms.common.audit.EntityTypes;
+import com.agilysys.pms.common.audit.annotation.AuditEntity;
+
+/**
+ * Class that represents a HtngCategoryCode in the application.
+ */
+@AuditEntity(EntityTypes.HTNG_CATEGORY)
 public class HtngCategory extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "Htng category";
     private String htngCode;
