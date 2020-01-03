@@ -28,6 +28,7 @@ import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
+import com.agilysys.pms.account.BulkCredits;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -225,6 +226,7 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String BULK_CREDIT_PATH = "/bulkCredit";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -483,6 +485,14 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'AllowCredits')")
     LineItemView postCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Credit credit) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(BULK_CREDIT_PATH)
+    @Validated(Credit.class)
+    @PreAuthorize("hasPermission('Required', 'AllowCredits')")
+    void bulkPostCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+           BulkCredits bulkCredits) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
