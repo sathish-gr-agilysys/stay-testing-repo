@@ -28,6 +28,7 @@ public class AccountSearchResult {
     private DateTime departureDate;
     private List<FolioBalance> folios;
     private String groupCode;
+    private String groupConfirmationId;
 
     private String name;
     public static final String NAME_FIELD = "name";
@@ -54,13 +55,15 @@ public class AccountSearchResult {
     }
 
     public AccountSearchResult(String accountId, AccountType accountType, LocalDate arrivalDate, String bookingStatus,
-          LocalDate departureDate, String groupCode, String name, String propertyId, String tenantId) {
+          LocalDate departureDate, String groupCode, String name, String propertyId, String tenantId,
+          String confirmationId) {
         this(accountId, accountType, name, propertyId, tenantId);
 
         this.arrivalDate = arrivalDate != null ? new DateTime(arrivalDate.toDate()) : null;
         this.bookingStatus = bookingStatus;
         this.departureDate = departureDate != null ? new DateTime(departureDate.toDate()) : null;
         this.groupCode = groupCode;
+        this.groupConfirmationId = confirmationId;
     }
 
     public AccountSearchResult(String accountId, AccountType accountType, Date arrivalDate, Date departureDate,
@@ -164,6 +167,14 @@ public class AccountSearchResult {
 
     public void setGroupCode(String groupCode) {
         this.groupCode = groupCode;
+    }
+
+    public String getGroupConfirmationId() {
+        return groupConfirmationId;
+    }
+
+    public void setGroupConfirmationId(String groupConfirmationId) {
+        this.groupConfirmationId = groupConfirmationId;
     }
 
     public String getName() {
