@@ -55,11 +55,8 @@ public class AccountSummary {
 
     protected String houseAccountCategoryId;
 
-<<<<<<< HEAD
-    protected CompAccountingRedeemDetails compAccountingRedeemDetails;
-=======
     private Map<String, Date> taxFacts = new HashMap<>();
->>>>>>> 7a0486b7018652d005f66550cd028f85df71b626
+    protected CompAccountingRedeemDetails compAccountingRedeemDetails;
 
     public String getId() {
         return id;
@@ -173,20 +170,19 @@ public class AccountSummary {
         this.houseAccountCategoryId = houseAccountCategoryId;
     }
 
-<<<<<<< HEAD
-    public CompAccountingRedeemDetails getCompAccountingRedeemDetails() {
-        return compAccountingRedeemDetails;
-    }
-
-    public void setCompAccountingRedeemDetails(CompAccountingRedeemDetails compAccountingRedeemDetails) {
-        this.compAccountingRedeemDetails = compAccountingRedeemDetails;
-=======
     public Map<String, Date> getTaxFacts() {
         return taxFacts;
     }
 
     public void setTaxFacts(Map<String, Date> taxFacts) {
         this.taxFacts = taxFacts;
->>>>>>> 7a0486b7018652d005f66550cd028f85df71b626
+    }
+
+    public CompAccountingRedeemDetails getCompAccountingRedeemDetails() {
+        return compAccountingRedeemDetails;
+    }
+
+    public void setCompAccountingRedeemDetails(CompAccountingRedeemDetails compAccountingRedeemDetails) {
+        this.compAccountingRedeemDetails = compAccountingRedeemDetails;
     }
 }
