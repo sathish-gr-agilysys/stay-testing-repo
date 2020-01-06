@@ -3,8 +3,13 @@
  */
 package com.agilysys.pms.account.model;
 
+import static com.agilysys.common.utils.Utils.ALPHANUMERIC_HYPHEN_VALIDATION_REGEX;
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
@@ -12,8 +17,6 @@ import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.common.json.schema.PatternRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
-import static com.agilysys.common.utils.Utils.ALPHANUMERIC_HYPHEN_VALIDATION_REGEX;
 
 public class AccountSummary {
     protected String id;
@@ -52,6 +55,7 @@ public class AccountSummary {
 
     protected String houseAccountCategoryId;
 
+    private Map<String, Date> taxFacts = new HashMap<>();
     protected CompAccountingRedeemDetails compAccountingRedeemDetails;
 
     public String getId() {
@@ -164,6 +168,14 @@ public class AccountSummary {
 
     public void setHouseAccountCategoryId(String houseAccountCategoryId) {
         this.houseAccountCategoryId = houseAccountCategoryId;
+    }
+
+    public Map<String, Date> getTaxFacts() {
+        return taxFacts;
+    }
+
+    public void setTaxFacts(Map<String, Date> taxFacts) {
+        this.taxFacts = taxFacts;
     }
 
     public CompAccountingRedeemDetails getCompAccountingRedeemDetails() {
