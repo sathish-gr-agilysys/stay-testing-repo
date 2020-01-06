@@ -68,6 +68,9 @@ import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
+import com.agilysys.pms.account.model.MultipleAccountPaymentRequestAsyncJobId;
+import com.agilysys.pms.account.model.MultiplePayment;
+import com.agilysys.pms.account.model.MultiplePaymentResponse;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
 import com.agilysys.pms.account.model.NonInvoiceReport;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
@@ -161,6 +164,8 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String LODGING_PATH = ACCOUNT_ID_PATH + "/lodging";
+    String MULTIPLE_PAYMENTS = "/multiplePayments";
+    String MULTIPLE_PAYMENTS_ASYNC_PATH = "/multiplePaymentsAsync";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
     String PAGE_PATH = "/page";
@@ -184,6 +189,7 @@ public interface AccountServiceInterfaceV1 {
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
     String MULTIPLE_REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
+    String RESERVATION_ACCOUNT_AR_PAYMENT_ACCOUNTS = "/reservationAccountWithARPaymentAccounts";
     String REFUND_PATH = "/refund";
     String REFUNDS_PATH = "/refunds";
     String REMAINING_PATH = "/{" + PATH + ":.*}";
@@ -273,6 +279,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountDetail getAccountDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + RESERVATION_ACCOUNT_AR_PAYMENT_ACCOUNTS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, AccountDetail> getReservationAccountWithARAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String reservationAccountId)
+          throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -488,6 +501,30 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
+    /**
+     * Posts payment to multiple account
+     *
+     * @param tenantId               the Tenant Id to post to
+     * @param propertyId             id of the property where the account exists
+     * @param multiplePaymentRequest Payment request containing payment information for multiple accounts
+     * @return a LineItemView for Display purposes
+     */
+    @POST
+    @Path(MULTIPLE_PAYMENTS)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    MultiplePaymentResponse postMultipleAccountPayment(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, MultiplePayment multiplePaymentRequest,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    /**
+     * Posts a payment to an account async
+     *
+     * @param tenantId  the Tenant Id to post to
+     * @param propertyId id of the property where the account exists
+     * @param accountId  the Account Id to post to
+     * @param payment    Payment object containing payment information
+     * @return a TaskId to track the async process
+     */
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + PAYMENTS_ASYNC_PATH)
@@ -497,6 +534,20 @@ public interface AccountServiceInterfaceV1 {
     String postPaymentAsync(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(MULTIPLE_PAYMENTS_ASYNC_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    MultipleAccountPaymentRequestAsyncJobId postMultipleAccountPaymentAsync(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth,
+          MultiplePayment multiplePaymentRequest) throws RGuestException;
+
+    @GET
+    @Path(MULTIPLE_PAYMENTS_ASYNC_PATH + TASK_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    MultiplePaymentResponse getMultiplePaymentResponse(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId);
 
     @GET
     @Path(ACCOUNT_ID_PATH + TASK_ID_PATH)
