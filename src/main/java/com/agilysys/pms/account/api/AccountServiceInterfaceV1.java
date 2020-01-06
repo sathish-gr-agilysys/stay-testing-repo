@@ -489,7 +489,6 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @CreatedOnSuccess
     @Path(BULK_CREDIT_PATH)
-    @Validated(Credit.class)
     @PreAuthorize("hasPermission('Required', 'AllowCredits')")
     void bulkPostCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
            BulkCredits bulkCredits) throws RGuestException;

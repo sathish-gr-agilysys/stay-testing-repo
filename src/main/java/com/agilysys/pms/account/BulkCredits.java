@@ -1,22 +1,50 @@
 package com.agilysys.pms.account;
 
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.Set;
-
-import com.agilysys.pms.account.model.Credit;
 
 public class BulkCredits {
 
-    private List<Credit> credits;
+    protected BigDecimal amount;
+
+    protected String itemId;
+
+    protected String reason;
+
+    protected String sourceId;
 
     private Set<String> reservationIds;
 
-    public List<Credit> getCredits() {
-        return credits;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setCredits(List<Credit> credits) {
-        this.credits = credits;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
     }
 
     public Set<String> getReservationIds() {
