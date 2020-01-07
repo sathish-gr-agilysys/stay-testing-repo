@@ -15,6 +15,7 @@ import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.pms.payment.model.GatewayType;
+import com.agilysys.pms.property.model.compaccounting.CompDetail.CompType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -97,6 +98,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String authorizerId;
     private CompPostingTaxType taxPostingType;
     private boolean reverseRedemptionComp;
+    private CompType compTransactionType;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -934,6 +936,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setReverseRedemptionComp(boolean reverseRedemptionComp) {
         this.reverseRedemptionComp = reverseRedemptionComp;
+    }
+
+    public void setCompType(CompType compTransactionType) {
+        this.compTransactionType = compTransactionType;
+    }
+
+    public CompType getCompTransactionType() {
+        return compTransactionType;
     }
 
     @Override
