@@ -13,7 +13,6 @@ import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
-import com.agilysys.pms.common.secondarywrites.SecondaryWritable;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.Outlet;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class that represents a TransactionCategory in the application.
  */
 @AuditEntity(EntityTypes.TRANSACTION_CATEGORY)
-public class TransactionCategory extends AccountingObjectBase implements SecondaryWritable<String> {
+public class TransactionCategory extends AccountingObjectBase {
 
     private static final String DISPLAY_NAME = "Transaction category";
 
@@ -61,17 +60,19 @@ public class TransactionCategory extends AccountingObjectBase implements Seconda
         this.defaultSourceId = defaultSourceId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
     }
 
