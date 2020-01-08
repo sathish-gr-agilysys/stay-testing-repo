@@ -938,7 +938,7 @@ public class LineItemView implements Comparable<LineItemView> {
         this.reverseRedemptionComp = reverseRedemptionComp;
     }
 
-    public void setCompType(CompType compTransactionType) {
+    public void setCompTransactionType(CompType compTransactionType) {
         this.compTransactionType = compTransactionType;
     }
 
