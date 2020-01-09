@@ -227,6 +227,7 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
     String BULK_CREDIT_PATH = "/bulkCredit";
+    String BULK = "/bulk";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -865,6 +866,14 @@ public interface AccountServiceInterfaceV1 {
           "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     InvoiceView setInvoiceSent(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
+          @QueryParam("isEmail") boolean isEmail) throws RGuestException;
+
+    @PUT
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_SET_INVOICE_SENT + BULK)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIdSet,
           @QueryParam("isEmail") boolean isEmail) throws RGuestException;
 
     @POST
