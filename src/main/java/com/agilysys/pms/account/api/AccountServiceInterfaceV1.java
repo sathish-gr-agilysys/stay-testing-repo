@@ -30,6 +30,7 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
+import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
 import com.agilysys.pms.account.model.AccountSearchResult;
@@ -226,6 +227,7 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
     String BULK = "/bulk";
+    String AR_DISPUTE_PATH = "/arDisputedLedgerTransaction";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -741,6 +743,12 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     NonInvoicedARDetail getNonInvoicedARDetail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
+    @PUT
+    @Path(ACCOUNT_ID_PATH + AR_DISPUTE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    void setARDisputeDetails(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, DisputedARLedgerTransaction disputedARLedgerTransaction) throws RGuestException;
 
     /**
      * Retrieves the non-invoiced details of a COMPANY account based on the Transaction Ids
