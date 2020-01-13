@@ -747,8 +747,9 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + AR_DISPUTE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    void setARDisputeDetails(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, DisputedARLedgerTransaction disputedARLedgerTransaction) throws RGuestException;
+    void setARDisputeDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, DisputedARLedgerTransaction disputedARLedgerTransaction)
+          throws RGuestException;
 
     /**
      * Retrieves the non-invoiced details of a COMPANY account based on the Transaction Ids
