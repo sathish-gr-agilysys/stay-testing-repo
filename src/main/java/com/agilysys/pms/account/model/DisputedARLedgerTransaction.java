@@ -4,6 +4,8 @@ public class DisputedARLedgerTransaction {
     private String ledgerTransactionId;
     private boolean dispute;
 
+    public DisputedARLedgerTransaction() { }
+
     public DisputedARLedgerTransaction(String ledgerTransactionId, boolean dispute) {
         this.ledgerTransactionId = ledgerTransactionId;
         this.dispute = dispute;
