@@ -35,6 +35,14 @@ public class FolioInvoice {
     private VATTotalBreakDown vatTotalBreakDown;
     private int numberOfAdults;
     private int numberOfChildren;
+    private int numberOfAgeCategory1;
+    private int numberOfAgeCategory2;
+    private int numberOfAgeCategory3;
+    private int numberOfAgeCategory4;
+    private int numberOfAgeCategory5;
+    private int numberOfAgeCategory6;
+    private int numberOfAgeCategory7;
+    private int numberOfAgeCategory8;
 
     public String getId() {
         return id;
@@ -234,5 +242,69 @@ public class FolioInvoice {
 
     public void setNumberOfChildren(int numberOfChildren) {
         this.numberOfChildren = numberOfChildren;
+    }
+
+    public int getNumberOfAgeCategory1() {
+        return numberOfAgeCategory1;
+    }
+
+    public void setNumberOfAgeCategory1(int numberOfAgeCategory1) {
+        this.numberOfAgeCategory1 = numberOfAgeCategory1;
+    }
+
+    public int getNumberOfAgeCategory2() {
+        return numberOfAgeCategory2;
+    }
+
+    public void setNumberOfAgeCategory2(int numberOfAgeCategory2) {
+        this.numberOfAgeCategory2 = numberOfAgeCategory2;
+    }
+
+    public int getNumberOfAgeCategory3() {
+        return numberOfAgeCategory3;
+    }
+
+    public void setNumberOfAgeCategory3(int numberOfAgeCategory3) {
+        this.numberOfAgeCategory3 = numberOfAgeCategory3;
+    }
+
+    public int getNumberOfAgeCategory4() {
+        return numberOfAgeCategory4;
+    }
+
+    public void setNumberOfAgeCategory4(int numberOfAgeCategory4) {
+        this.numberOfAgeCategory4 = numberOfAgeCategory4;
+    }
+
+    public int getNumberOfAgeCategory5() {
+        return numberOfAgeCategory5;
+    }
+
+    public void setNumberOfAgeCategory5(int numberOfAgeCategory5) {
+        this.numberOfAgeCategory5 = numberOfAgeCategory5;
+    }
+
+    public int getNumberOfAgeCategory6() {
+        return numberOfAgeCategory6;
+    }
+
+    public void setNumberOfAgeCategory6(int numberOfAgeCategory6) {
+        this.numberOfAgeCategory6 = numberOfAgeCategory6;
+    }
+
+    public int getNumberOfAgeCategory7() {
+        return numberOfAgeCategory7;
+    }
+
+    public void setNumberOfAgeCategory7(int numberOfAgeCategory7) {
+        this.numberOfAgeCategory7 = numberOfAgeCategory7;
+    }
+
+    public int getNumberOfAgeCategory8() {
+        return numberOfAgeCategory8;
+    }
+
+    public void setNumberOfAgeCategory8(int numberOfAgeCategory8) {
+        this.numberOfAgeCategory8 = numberOfAgeCategory8;
     }
 }
