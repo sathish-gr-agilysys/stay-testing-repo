@@ -50,6 +50,7 @@ import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
+import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
@@ -96,6 +97,7 @@ import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
+import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.UpdateFolioInvoicesRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
@@ -236,9 +238,12 @@ public interface AccountServiceInterfaceV1 {
     String BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH = "/batchDepositCollectionJobStatus";
     String BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH = "/batchDepositCollectionJobCancel";
     String JOB_ID = "jobId";
-
+    String DATE = "date";
+    String DATE_PATH = "/{" + DATE + "}";
+    String BULK = "/bulk";
     String PAGE = "page";
     String SIZE = "size";
+    String ALLOWANCE = "/allowance";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -879,6 +884,14 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("isEmail") boolean isEmail) throws RGuestException;
 
+    @PUT
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_SET_INVOICE_SENT + BULK)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIdSet,
+          @QueryParam("isEmail") boolean isEmail) throws RGuestException;
+
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_PAYMENTS)
@@ -1113,4 +1126,17 @@ public interface AccountServiceInterfaceV1 {
     @Path(BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH)
     void cancelBatchDepositCollection(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           CancelBatchRequest request) throws RGuestException;
+    @GET
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + ALLOWANCE + DATE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(FOLIO_ID) String packageFolioId, @PathParam(DATE) LocalDate date)
+          throws RGuestException;
+
+    @POST
+    @Path("/transactionItem" + ALLOWANCE)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    TransactionItem createAllowanceTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 }
