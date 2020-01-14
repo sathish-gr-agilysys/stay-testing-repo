@@ -24,6 +24,9 @@ import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.constants.Constants.HTTPRequestConstants;
+import com.agilysys.common.model.BatchStatusResponse;
+import com.agilysys.common.model.CancelBatchRequest;
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
@@ -40,6 +43,8 @@ import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
 import com.agilysys.pms.account.model.AmountTransfer;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
+import com.agilysys.pms.account.model.BatchDepositCollectionRequest;
+import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
 import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
 import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.Charge;
@@ -48,6 +53,7 @@ import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
 import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
+import com.agilysys.pms.account.model.DepositPaymentInfo;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
@@ -175,6 +181,7 @@ public interface AccountServiceInterfaceV1 {
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
+    String DEPOSITS_PATH = "/deposits";
     String PAYOFF_BALANCE_PATH = "/payOffBalance";
     String POS_CHARGE_PATH = "/posCharge";
     String POS_CREDIT_PATH = "/posCredit";
@@ -227,6 +234,10 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String BATCH_DEPOSIT_COLLECTION_JOB_PATH = "/batchDepositCollectionJob";
+    String BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH = "/batchDepositCollectionJobStatus";
+    String BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH = "/batchDepositCollectionJobCancel";
+    String JOB_ID = "jobId";
     String DATE = "date";
     String DATE_PATH = "/{" + DATE + "}";
     String BULK = "/bulk";
@@ -538,6 +549,16 @@ public interface AccountServiceInterfaceV1 {
     @Produces(MediaType.TEXT_PLAIN)
     String postPaymentAsync(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + DEPOSITS_PATH)
+    @Validated(Payment.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Produces(MediaType.APPLICATION_JSON)
+    List<LineItemView> postDeposit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, DepositPaymentInfo depositPaymentInfo,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
     @POST
@@ -1090,6 +1111,21 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException;
 
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_PATH)
+    BatchDepositCollectionResponse postBatchDepositCollectionJob(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchDepositCollectionRequest batchDepositCollectionRequest)
+          throws RGuestException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH)
+    BatchStatusResponse batchDepositCollectionStatus(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(JOB_ID) String jobId) throws RGuestException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH)
+    void cancelBatchDepositCollection(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          CancelBatchRequest request) throws RGuestException;
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + ALLOWANCE + DATE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
