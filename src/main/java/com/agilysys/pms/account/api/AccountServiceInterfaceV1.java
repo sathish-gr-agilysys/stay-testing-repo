@@ -24,6 +24,9 @@ import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.constants.Constants.HTTPRequestConstants;
+import com.agilysys.common.model.BatchStatusResponse;
+import com.agilysys.common.model.CancelBatchRequest;
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
@@ -40,13 +43,17 @@ import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
 import com.agilysys.pms.account.model.AmountTransfer;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
+import com.agilysys.pms.account.model.BatchDepositCollectionRequest;
+import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
 import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
 import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
+import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
+import com.agilysys.pms.account.model.DepositPaymentInfo;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
@@ -68,6 +75,9 @@ import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
+import com.agilysys.pms.account.model.MultipleAccountPaymentRequestAsyncJobId;
+import com.agilysys.pms.account.model.MultiplePayment;
+import com.agilysys.pms.account.model.MultiplePaymentResponse;
 import com.agilysys.pms.account.model.NextAccountNumberInfo;
 import com.agilysys.pms.account.model.NonInvoiceReport;
 import com.agilysys.pms.account.model.NonInvoicedARDetail;
@@ -87,6 +97,7 @@ import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
+import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.UpdateFolioInvoicesRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
@@ -161,6 +172,8 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_UPDATE_TERMS_PATH = "/updateTerms";
     String LEDGER_BALANCES_PATH = "/ledgerBalances";
     String LODGING_PATH = ACCOUNT_ID_PATH + "/lodging";
+    String MULTIPLE_PAYMENTS = "/multiplePayments";
+    String MULTIPLE_PAYMENTS_ASYNC_PATH = "/multiplePaymentsAsync";
     String NEXT_ACCOUNT_NUMBER_PATH = "/nextAccountNumber";
     String NON_INVOICED_PATH = "/nonInvoicedDetails";
     String PAGE_PATH = "/page";
@@ -168,6 +181,7 @@ public interface AccountServiceInterfaceV1 {
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
+    String DEPOSITS_PATH = "/deposits";
     String PAYOFF_BALANCE_PATH = "/payOffBalance";
     String POS_CHARGE_PATH = "/posCharge";
     String POS_CREDIT_PATH = "/posCredit";
@@ -184,6 +198,7 @@ public interface AccountServiceInterfaceV1 {
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
     String MULTIPLE_REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
+    String RESERVATION_ACCOUNT_AR_PAYMENT_ACCOUNTS = "/reservationAccountWithARPaymentAccounts";
     String REFUND_PATH = "/refund";
     String REFUNDS_PATH = "/refunds";
     String REMAINING_PATH = "/{" + PATH + ":.*}";
@@ -219,9 +234,16 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
-
+    String BATCH_DEPOSIT_COLLECTION_JOB_PATH = "/batchDepositCollectionJob";
+    String BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH = "/batchDepositCollectionJobStatus";
+    String BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH = "/batchDepositCollectionJobCancel";
+    String JOB_ID = "jobId";
+    String DATE = "date";
+    String DATE_PATH = "/{" + DATE + "}";
+    String BULK = "/bulk";
     String PAGE = "page";
     String SIZE = "size";
+    String ALLOWANCE = "/allowance";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -273,6 +295,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountDetail getAccountDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + RESERVATION_ACCOUNT_AR_PAYMENT_ACCOUNTS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, AccountDetail> getReservationAccountWithARAccounts(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String reservationAccountId)
+          throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -488,6 +517,30 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
+    /**
+     * Posts payment to multiple account
+     *
+     * @param tenantId               the Tenant Id to post to
+     * @param propertyId             id of the property where the account exists
+     * @param multiplePaymentRequest Payment request containing payment information for multiple accounts
+     * @return a LineItemView for Display purposes
+     */
+    @POST
+    @Path(MULTIPLE_PAYMENTS)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    MultiplePaymentResponse postMultipleAccountPayment(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, MultiplePayment multiplePaymentRequest,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    /**
+     * Posts a payment to an account async
+     *
+     * @param tenantId  the Tenant Id to post to
+     * @param propertyId id of the property where the account exists
+     * @param accountId  the Account Id to post to
+     * @param payment    Payment object containing payment information
+     * @return a TaskId to track the async process
+     */
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + PAYMENTS_ASYNC_PATH)
@@ -497,6 +550,30 @@ public interface AccountServiceInterfaceV1 {
     String postPaymentAsync(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + DEPOSITS_PATH)
+    @Validated(Payment.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Produces(MediaType.APPLICATION_JSON)
+    List<LineItemView> postDeposit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, DepositPaymentInfo depositPaymentInfo,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(MULTIPLE_PAYMENTS_ASYNC_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    MultipleAccountPaymentRequestAsyncJobId postMultipleAccountPaymentAsync(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth,
+          MultiplePayment multiplePaymentRequest) throws RGuestException;
+
+    @GET
+    @Path(MULTIPLE_PAYMENTS_ASYNC_PATH + TASK_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    MultiplePaymentResponse getMultiplePaymentResponse(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId);
 
     @GET
     @Path(ACCOUNT_ID_PATH + TASK_ID_PATH)
@@ -807,6 +884,14 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("isEmail") boolean isEmail) throws RGuestException;
 
+    @PUT
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_SET_INVOICE_SENT + BULK)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIdSet,
+          @QueryParam("isEmail") boolean isEmail) throws RGuestException;
+
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_PAYMENTS)
@@ -1025,4 +1110,33 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_PATH)
+    BatchDepositCollectionResponse postBatchDepositCollectionJob(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchDepositCollectionRequest batchDepositCollectionRequest)
+          throws RGuestException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH)
+    BatchStatusResponse batchDepositCollectionStatus(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(JOB_ID) String jobId) throws RGuestException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH)
+    void cancelBatchDepositCollection(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          CancelBatchRequest request) throws RGuestException;
+    @GET
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + ALLOWANCE + DATE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(FOLIO_ID) String packageFolioId, @PathParam(DATE) LocalDate date)
+          throws RGuestException;
+
+    @POST
+    @Path("/transactionItem" + ALLOWANCE)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    TransactionItem createAllowanceTransactionItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 }
