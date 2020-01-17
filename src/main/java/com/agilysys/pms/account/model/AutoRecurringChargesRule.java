@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class AutoRecurringChargesRule {
 
+    private String id;
     private String tenantId;
     private String propertyId;
     private String ruleName;
@@ -21,6 +22,14 @@ public class AutoRecurringChargesRule {
     private Set<String> buildings;
     private Set<String> guestTypes;
     private Set<String> marketSegments;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTenantId() {
         return tenantId;

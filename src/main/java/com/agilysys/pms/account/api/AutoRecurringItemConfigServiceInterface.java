@@ -21,6 +21,7 @@ import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.pms.account.model.AutoRecurringChargesRule;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -37,6 +38,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String START_DATE = "startDate";
     String END_DATE = "endDate";
     String ACTIVE_ITEM = "/active";
+    String RULE = "/rule";
 
     @GET
     @Path(ITEM_ID_PATH)
@@ -77,4 +79,25 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteAutoRecurringItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException;
+
+    @GET
+    @Path(RULE)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    List<AutoRecurringChargesRule> getAutoRecurringChargeRules(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
+
+    @POST
+    @Path(RULE)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    void createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesRule rule) throws RGuestException;
+
+    @PUT
+    @Path(RULE)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    void updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesRule rule) throws RGuestException;
 }
