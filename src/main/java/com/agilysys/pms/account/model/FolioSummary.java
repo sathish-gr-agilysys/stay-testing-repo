@@ -21,8 +21,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
       "formattedTotalBalance" })
 public class FolioSummary {
     private String id;
-
     private boolean defaultFolio;
+    private FolioType folioType;
 
     @MaxLengthRestriction(50)
     @JsonProperty(required = true)
@@ -30,7 +30,18 @@ public class FolioSummary {
 
     private String paymentSettingId;
 
+<<<<<<< HEAD
     private FolioType folioType;
+=======
+    public FolioSummary() {}
+
+    public FolioSummary(boolean defaultFolio, FolioType folioType, String name, String paymentSettingId) {
+        this.defaultFolio = defaultFolio;
+        this.folioType = folioType;
+        this.name = name;
+        this.paymentSettingId = paymentSettingId;
+    }
+>>>>>>> 4d817081ea96b5cdf342b0cabc5dd078c9de5e68
 
     public String getId() {
         return id;
@@ -56,6 +67,14 @@ public class FolioSummary {
      */
     public void setDefaultFolio(boolean defaultFolio) {
         this.defaultFolio = defaultFolio;
+    }
+
+    public FolioType getFolioType() {
+        return folioType;
+    }
+
+    public void setFolioType(FolioType folioType) {
+        this.folioType = folioType;
     }
 
     /**
