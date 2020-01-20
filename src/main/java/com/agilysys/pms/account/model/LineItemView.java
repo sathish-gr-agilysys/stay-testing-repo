@@ -92,15 +92,12 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal reverseTaxTotalChargeAmount;
     private List<PantryItemDetails> pantryItemDetails;
     private Boolean pantryItem;
-<<<<<<< HEAD
     private TransactionType compType;
     private String folioType;
     private String authorizerId;
     private CompPostingTaxType taxPostingType;
     private boolean reverseRedemptionComp;
-=======
     private Boolean excludeTax;
->>>>>>> 4d817081ea96b5cdf342b0cabc5dd078c9de5e68
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -892,7 +889,6 @@ public class LineItemView implements Comparable<LineItemView> {
         this.pantryItem = pantryItem;
     }
 
-<<<<<<< HEAD
     public TransactionType getCompType() {
         return compType;
     }
@@ -939,14 +935,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setReverseRedemptionComp(boolean reverseRedemptionComp) {
         this.reverseRedemptionComp = reverseRedemptionComp;
-=======
+    }
+
     public Boolean getExcludeTax() {
         return excludeTax;
     }
 
     public void setExcludeTax(Boolean excludeTax) {
         this.excludeTax = excludeTax;
->>>>>>> 4d817081ea96b5cdf342b0cabc5dd078c9de5e68
     }
 
     @Override
