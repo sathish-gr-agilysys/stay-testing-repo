@@ -56,6 +56,7 @@ public class AccountSummary {
     protected String houseAccountCategoryId;
 
     private Map<String, Date> taxFacts = new HashMap<>();
+    protected CompAccountingRedeemDetails compAccountingRedeemDetails;
 
     public String getId() {
         return id;
@@ -175,5 +176,13 @@ public class AccountSummary {
 
     public void setTaxFacts(Map<String, Date> taxFacts) {
         this.taxFacts = taxFacts;
+    }
+
+    public CompAccountingRedeemDetails getCompAccountingRedeemDetails() {
+        return compAccountingRedeemDetails;
+    }
+
+    public void setCompAccountingRedeemDetails(CompAccountingRedeemDetails compAccountingRedeemDetails) {
+        this.compAccountingRedeemDetails = compAccountingRedeemDetails;
     }
 }
