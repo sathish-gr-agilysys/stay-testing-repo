@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 public enum FolioType {
     GUEST(true, false),
     PACKAGE(false, false),
+    PLAYER(true, false),
     THIRD_PARTY(false, false);
 
     private boolean guestFolio;
