@@ -12,6 +12,7 @@ public class AccountConstants {
     public static final String AUTO_TRANSFER = "Auto transfer";
     public static final String BALANCE_TRANSFER = "balance transfer";
     public static final String CHARGE_TRANSFERRED = "Charge transferred";
+    public static final String COMP_FOLIO = "Comp Folio";
     public static final String COMPANY = "COMPANY";
     public static final String CORRECTED = "(Corrected)";
     public static final String CORRECTED_BY = "correctedBy";
