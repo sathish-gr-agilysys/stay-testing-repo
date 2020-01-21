@@ -99,6 +99,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private CompPostingTaxType taxPostingType;
     private boolean reverseRedemptionComp;
     private CompType compTransactionType;
+    private Boolean excludeTax;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -769,7 +770,7 @@ public class LineItemView implements Comparable<LineItemView> {
     public BigDecimal getTaxAmount() {
         BigDecimal taxAmount = BigDecimal.ZERO;
         for (LineItemView tax : getTaxLineItems()) {
-            if (tax.isReverseTax() && tax.getReverseTaxTotalChargeAmount() != null) {
+            if (tax.isReverseTax() && tax.getReverseTaxTotalChargeAmount() != null && !Boolean.TRUE.equals(tax.getExcludeTax())) {
                 taxAmount = taxAmount.add(tax.getReverseTaxTotalChargeAmount());
             } else if (!tax.isReverseTax()) {
                 taxAmount = taxAmount.add(tax.getUnitAmount().multiply(new BigDecimal(tax.getQuantity())));
@@ -782,7 +783,7 @@ public class LineItemView implements Comparable<LineItemView> {
      * @return the totalAmount
      */
     public BigDecimal getTotalAmount() {
-        if (isReverseTax()) {
+        if (isReverseTax() && !Boolean.TRUE.equals(getExcludeTax())) {
             return reverseTaxTotalChargeAmount != null ? reverseTaxTotalChargeAmount : BigDecimal.ZERO;
         }
         return unitAmount.multiply(new BigDecimal(quantity));
@@ -944,6 +945,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public CompType getCompTransactionType() {
         return compTransactionType;
+    }
+
+    public Boolean getExcludeTax() {
+        return excludeTax;
+    }
+
+    public void setExcludeTax(Boolean excludeTax) {
+        this.excludeTax = excludeTax;
     }
 
     @Override

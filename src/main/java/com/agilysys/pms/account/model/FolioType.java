@@ -4,11 +4,10 @@
 package com.agilysys.pms.account.model;
 
 public enum FolioType {
-    CHARGE(false, false),
     GUEST(true, false),
-    THIRD_PARTY(false, false),
+    PACKAGE(false, false),
     PLAYER(true, false),
-    PACKAGE(false, false);
+    THIRD_PARTY(false, false);
 
     private boolean guestFolio;
     private boolean restrictive;
