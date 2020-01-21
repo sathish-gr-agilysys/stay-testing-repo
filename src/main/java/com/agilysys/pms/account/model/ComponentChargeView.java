@@ -6,7 +6,10 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import com.agilysys.common.model.rate.AllowanceCombination;
+import com.agilysys.common.model.rate.AllowanceFrequencyType;
 import com.agilysys.common.model.rate.ComponentRateSnapshot;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
@@ -39,6 +42,13 @@ public class ComponentChargeView {
     private boolean reverseTax;
 
     private BigDecimal reverseTaxTotalChargeAmount;
+    private ComponentType allowanceComponentType;
+    private BigDecimal allowanceAmount;
+    private AllowanceFrequencyType allowanceFrequencyType;
+    private List<AllowanceCombination> allowanceCombinations;
+    private String allowanceName;
+    private int allowanceTotalQuantity;
+    private String breakageId;
 
     public ComponentChargeView() {
     }
@@ -56,6 +66,13 @@ public class ComponentChargeView {
         roomChargePostingType = componentChargeView.getRoomChargePostingType();
         transactionItemType = componentChargeView.getTransactionItemType();
         estimatedTaxInfo = componentChargeView.getEstimatedTaxInfo();
+        allowanceAmount = componentChargeView.getAllowanceAmount();
+        allowanceCombinations = componentChargeView.getAllowanceCombinations();
+        allowanceComponentType = componentChargeView.getAllowanceComponentType();
+        allowanceFrequencyType = componentChargeView.getAllowanceFrequencyType();
+        allowanceName = componentChargeView.getAllowanceName();
+        breakageId = componentChargeView.getBreakageId();
+        allowanceTotalQuantity = componentChargeView.getAllowanceTotalQuantity();
     }
 
     public String getComponentBundleId() {
@@ -171,6 +188,62 @@ public class ComponentChargeView {
         this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
     }
 
+    public ComponentType getAllowanceComponentType() {
+        return allowanceComponentType;
+    }
+
+    public void setAllowanceComponentType(ComponentType allowanceComponentType) {
+        this.allowanceComponentType = allowanceComponentType;
+    }
+
+    public BigDecimal getAllowanceAmount() {
+        return allowanceAmount;
+    }
+
+    public void setAllowanceAmount(BigDecimal allowanceAmount) {
+        this.allowanceAmount = allowanceAmount;
+    }
+
+    public AllowanceFrequencyType getAllowanceFrequencyType() {
+        return allowanceFrequencyType;
+    }
+
+    public void setAllowanceFrequencyType(AllowanceFrequencyType allowanceFrequencyType) {
+        this.allowanceFrequencyType = allowanceFrequencyType;
+    }
+
+    public List<AllowanceCombination> getAllowanceCombinations() {
+        return allowanceCombinations;
+    }
+
+    public void setAllowanceCombinations(List<AllowanceCombination> allowanceCombinations) {
+        this.allowanceCombinations = allowanceCombinations;
+    }
+
+    public String getAllowanceName() {
+        return allowanceName;
+    }
+
+    public void setAllowanceName(String allowanceName) {
+        this.allowanceName = allowanceName;
+    }
+
+    public int getAllowanceTotalQuantity() {
+        return allowanceTotalQuantity;
+    }
+
+    public void setAllowanceTotalQuantity(int allowanceTotalQuantity) {
+        this.allowanceTotalQuantity = allowanceTotalQuantity;
+    }
+
+    public String getBreakageId() {
+        return breakageId;
+    }
+
+    public void setBreakageId(String breakageId) {
+        this.breakageId = breakageId;
+    }
+
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
@@ -182,6 +255,13 @@ public class ComponentChargeView {
         componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
+        componentChargeView.setAllowanceComponentType(componentRateSnapshot.getAllowanceComponentType());
+        componentChargeView.setAllowanceAmount(componentRateSnapshot.getAllowanceAmount());
+        componentChargeView.setAllowanceCombinations(componentRateSnapshot.getAllowanceCombinations());
+        componentChargeView.setAllowanceFrequencyType(componentRateSnapshot.getAllowanceFrequencyType());
+        componentChargeView.setAllowanceName(componentRateSnapshot.getAllowanceName());
+        componentChargeView.setAllowanceTotalQuantity(componentRateSnapshot.getAllowanceTotalQuantity());
+        componentChargeView.setBreakageId(componentRateSnapshot.getBreakageId());
 
         return componentChargeView;
     }
@@ -192,6 +272,15 @@ public class ComponentChargeView {
         componentRateSnapshots.stream().forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
 
+        return componentChargeViews;
+    }
+
+    public static List<ComponentChargeView> getComponentRateSnapshotsByAllowanceFrequencyType(
+          List<ComponentRateSnapshot> componentRateSnapshots, Set<AllowanceFrequencyType> allowanceFrequencyTypes) {
+        List<ComponentChargeView> componentChargeViews = new ArrayList<>();
+        componentRateSnapshots.stream().filter(componentRateSnapshot -> allowanceFrequencyTypes
+              .contains(componentRateSnapshot.getAllowanceFrequencyType())).forEach(
+              componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
         return componentChargeViews;
     }
 }
