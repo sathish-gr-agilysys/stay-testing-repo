@@ -13,6 +13,10 @@ public class AutoRecurringChargesPriority extends AccountingObjectBase {
 
     public AutoRecurringChargesPriority() {}
 
+    public AutoRecurringChargesPriority(Map<Integer, AutoRecurringChargeRuleType> priorityOrder) {
+        this.priorityOrder = priorityOrder;
+    }
+
     public Map<Integer, AutoRecurringChargeRuleType> getPriorityOrder() {
         return priorityOrder;
     }
