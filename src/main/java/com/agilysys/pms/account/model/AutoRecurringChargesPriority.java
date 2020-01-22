@@ -5,42 +5,13 @@ package com.agilysys.pms.account.model;
 
 import java.util.Map;
 
-public class AutoRecurringChargesPriority {
-    private String tenantId;
-    private String propertyId;
+public class AutoRecurringChargesPriority extends AccountingObjectBase {
+
+    private static final String DISPLAY_NAME = "Auto-Recurring-charge rule priority";
+
     private Map<Integer, AutoRecurringChargeRuleType> priorityOrder;
 
     public AutoRecurringChargesPriority() {}
-
-    public AutoRecurringChargesPriority(String tenantId, String propertyId, AutoRecurringChargeRuleType firstPriority,
-          AutoRecurringChargeRuleType secondPriority, AutoRecurringChargeRuleType thirdPriority,
-          AutoRecurringChargeRuleType fourthPriority, AutoRecurringChargeRuleType fifthPriority,
-          AutoRecurringChargeRuleType sixthPriority) {
-        this.tenantId = tenantId;
-        this.propertyId = propertyId;
-        this.priorityOrder.put(1, firstPriority);
-        this.priorityOrder.put(2, secondPriority);
-        this.priorityOrder.put(3, thirdPriority);
-        this.priorityOrder.put(4, fourthPriority);
-        this.priorityOrder.put(5, fifthPriority);
-        this.priorityOrder.put(6, sixthPriority);
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public String getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(String propertyId) {
-        this.propertyId = propertyId;
-    }
 
     public Map<Integer, AutoRecurringChargeRuleType> getPriorityOrder() {
         return priorityOrder;
@@ -50,4 +21,8 @@ public class AutoRecurringChargesPriority {
         this.priorityOrder = priorityOrder;
     }
 
+    @Override
+    public String getDisplayName() {
+        return DISPLAY_NAME;
+    }
 }
