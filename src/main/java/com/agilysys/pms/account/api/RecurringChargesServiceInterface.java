@@ -20,6 +20,8 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.EnhancementRequest;
+import com.agilysys.common.model.EnhancementResponse;
 import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
@@ -51,6 +53,7 @@ public interface RecurringChargesServiceInterface {
     String TERMINAL_ID = "terminalId";
 
     String RECURRING_CHARGES_PATH = "/recurringCharges";
+    String ENHANCEMENT_VALIDITY_PATH = "/enhancements";
     String RECURRING_CHARGE_ID = "recurringChargeId";
     String RECURRING_CHARGE_ID_PATH = "/{recurringChargeId}";
     String RECURRING_CHARGE_OVERRIDE = "/override";
@@ -326,6 +329,21 @@ public interface RecurringChargesServiceInterface {
     RecurringChargesValidityResponse getRecurringChargesValidityForCreate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, RecurringChargesValidityRequest recurringChargesValidityRequest)
           throws RGuestException;
+
+    /**
+     * Retrieves the details of Items for Rbook
+     * 1. Do not dependent on reservation dates
+     * 2. Violates inventory max per reservation restriction
+     * 3. Violates inventory room type restriction
+     * 4. Required quantity not available
+     */
+    @POST
+    @Path(ENHANCEMENT_VALIDITY_PATH + VALIDITY)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    EnhancementResponse getValidEnhancementItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, EnhancementRequest enhancementRequest)
+          throws RGuestException;
+
 
     @POST
     @Path(RECURRING_CHARGES_PATH + VALIDITY + BULK)
