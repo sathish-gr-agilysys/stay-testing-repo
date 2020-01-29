@@ -13,6 +13,8 @@ import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
+import com.agilysys.pms.common.model.RateCalculationBaseType;
+import com.agilysys.pms.common.model.ValueType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @AuditEntity(EntityTypes.AUTO_RECURRING_ITEM)
@@ -20,7 +22,13 @@ public class AutoRecurringItem extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "Auto-Recurring item";
 
     @JsonProperty(required = true)
-    private BigDecimal defaultPrice;
+    private BigDecimal value;
+
+    @JsonProperty(required = true)
+    ValueType valueType = ValueType.AMOUNT;
+
+    @JsonProperty(required = true)
+    RateCalculationBaseType basedOn = RateCalculationBaseType.NIGHTLY_ROOM_CHARGE;
 
     @JsonProperty(required = true)
     @AuditField(name = "defaultSource", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
@@ -46,12 +54,28 @@ public class AutoRecurringItem extends AccountingObjectBase {
         this.status = CanonicalId.INACTIVE;
     }
 
-    public BigDecimal getDefaultPrice() {
-        return defaultPrice;
+    public ValueType getValueType() {
+        return valueType;
     }
 
-    public void setDefaultPrice(BigDecimal defaultPrice) {
-        this.defaultPrice = defaultPrice;
+    public void setValueType(ValueType valueType) {
+        this.valueType = valueType;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    public RateCalculationBaseType getBasedOn() {
+        return basedOn;
+    }
+
+    public void setBasedOn(RateCalculationBaseType basedOn) {
+        this.basedOn = basedOn;
     }
 
     public String getDefaultSourceId() {
