@@ -80,17 +80,19 @@ public class TransactionCategory extends AccountingObjectBase {
         this.htngDescription = htngDescription;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
     }
 
