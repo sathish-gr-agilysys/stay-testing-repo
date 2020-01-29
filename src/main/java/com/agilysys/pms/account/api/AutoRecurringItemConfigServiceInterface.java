@@ -21,6 +21,7 @@ import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
 import com.agilysys.pms.account.model.AutoRecurringChargesRule;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
@@ -39,6 +40,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String END_DATE = "endDate";
     String ACTIVE_ITEM = "/active";
     String RULE = "/rule";
+    String PRIORITIZE_ORDER = "/priorityOrder";
 
     @GET
     @Path(ITEM_ID_PATH)
@@ -100,4 +102,19 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesRule rule) throws RGuestException;
+
+    @GET
+    @Path(RULE + PRIORITIZE_ORDER)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    AutoRecurringChargesPriority getAutoRecurringChargesPriority(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
+
+
+    @PUT
+    @Path(RULE + PRIORITIZE_ORDER)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    AutoRecurringChargesPriority updateAutoRecurringChargesPriority(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPriority priority) throws RGuestException;
 }
