@@ -11,6 +11,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.rate.AllowanceCombination;
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
@@ -33,6 +34,7 @@ public abstract class Transaction {
     protected CompInfo compInfo;
     protected RoomChargePostingType roomChargePostingType;
     protected ComponentType componentType;
+    protected String descriptionOverride;
     protected String folioId;
     protected BigDecimal freeAllowanceAmount = BigDecimal.ZERO;
     protected Boolean ignoreRules = true;
@@ -58,6 +60,7 @@ public abstract class Transaction {
     protected GatewayType gatewayType;
     protected boolean giftCard;
     protected String giftCardNumber;
+    protected boolean excludeTax;
 
     public String getAccountId() {
         return accountId;
@@ -97,6 +100,14 @@ public abstract class Transaction {
 
     public void setComponentType(ComponentType componentType) {
         this.componentType = componentType;
+    }
+
+    public String getDescriptionOverride() {
+        return descriptionOverride;
+    }
+
+    public void setDescriptionOverride(String descriptionOverride) {
+        this.descriptionOverride = descriptionOverride;
     }
 
     public String getFolioId() {
@@ -266,11 +277,20 @@ public abstract class Transaction {
         this.pantryItem = pantryItem;
     }
 
+    public boolean isExcludeTax() {
+        return excludeTax;
+    }
+
+    public void setExcludeTax(boolean excludeTax) {
+        this.excludeTax = excludeTax;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
               .append(postingDate).append(displayDate).append(reason).append(reference).append(sourceId)
-              .append(terminalId).append(gatewayType).append(giftCardNumber).append(giftCard).toHashCode();
+              .append(terminalId).append(gatewayType).append(giftCardNumber).append(giftCard).append(excludeTax)
+              .toHashCode();
     }
 
     @Override
@@ -291,6 +311,16 @@ public abstract class Transaction {
               .append(postingDate, other.postingDate).append(reason, other.reason).append(reference, other.reference)
               .append(sourceId, other.sourceId).append(terminalId, other.terminalId)
               .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType)
-              .append(giftCardNumber, other.giftCardNumber).append(giftCard, other.giftCard).isEquals();
+              .append(giftCardNumber, other.giftCardNumber).append(giftCard, other.giftCard)
+              .append(descriptionOverride, other.getDescriptionOverride()).append(excludeTax, other.isExcludeTax())
+              .isEquals();
+    }
+
+    public AllowanceCombination toAllowanceCombination() {
+        return null;
+    }
+
+    public boolean checkPosCharge() {
+        return false;
     }
 }
