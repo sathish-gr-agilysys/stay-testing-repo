@@ -12,9 +12,9 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.CompInfo;
-import com.agilysys.pms.payment.model.GatewayType;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
+import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -56,6 +56,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String ledgerTransactionHistoryId;
     private String mealPeriodId;
     private String name;
+    private Integer order;
     private String parentId;
     private String petDisplayName;
     private DateTime postingCalendarDateTime;
@@ -63,6 +64,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private int quantity;
     private String rateChangeComment;
     private List<LineItemView> refundLineItems;
+    private List<LineItemView> compLineItems;
     private String reason;
     private String transferMessage;
     private String receiptTextImage;
@@ -90,6 +92,12 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal reverseTaxTotalChargeAmount;
     private List<PantryItemDetails> pantryItemDetails;
     private Boolean pantryItem;
+    private TransactionType compType;
+    private String folioType;
+    private String authorizerId;
+    private CompPostingTaxType taxPostingType;
+    private boolean reverseRedemptionComp;
+    private Boolean excludeTax;
     private String roomId;
 
     public LineItemView() {
@@ -98,6 +106,7 @@ public class LineItemView implements Comparable<LineItemView> {
         groupedTaxLineItems = new ArrayList<>();
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
+        compLineItems = new ArrayList<>();
     }
 
     /**
@@ -461,6 +470,14 @@ public class LineItemView implements Comparable<LineItemView> {
         this.refundLineItems = refundLineItems;
     }
 
+    public List<LineItemView> getCompLineItems() {
+        return compLineItems;
+    }
+
+    public void setCompLineItems(List<LineItemView> compLineItems) {
+        this.compLineItems = compLineItems;
+    }
+
     /**
      * @return the sourceId
      */
@@ -622,6 +639,10 @@ public class LineItemView implements Comparable<LineItemView> {
         return getAdjustmentsTotalAmount().add(getAdjustmentsTaxAmount());
     }
 
+    public BigDecimal getCompGrandTotalAmount() {
+        return getCompTotalAmount().add(getCompTaxAmount());
+    }
+
     /**
      * @return amount of adjustment tax
      */
@@ -644,6 +665,24 @@ public class LineItemView implements Comparable<LineItemView> {
         }
 
         return adjustmentsTotalAmount;
+    }
+
+    public BigDecimal getCompTotalAmount() {
+        BigDecimal compTotalAmount = BigDecimal.ZERO;
+        for (LineItemView compLine : getCompLineItems()) {
+            compTotalAmount = compTotalAmount.add(compLine.getTotalAmount());
+        }
+
+        return compTotalAmount;
+    }
+
+    public BigDecimal getCompTaxAmount() {
+        BigDecimal compTaxAmount = BigDecimal.ZERO;
+        for (LineItemView compLine : getCompLineItems()) {
+            compTaxAmount = compTaxAmount.add(compLine.getTaxAmount());
+        }
+
+        return compTaxAmount;
     }
 
     /**
@@ -692,7 +731,7 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemBalance() {
         return getGrandTotalAmount().add(getAdjustmentsGrandTotalAmount()).add(getTransferGrandTotalAmount())
-              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount()));
+              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount())).add(getCompGrandTotalAmount());
     }
 
     /**
@@ -700,7 +739,7 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemChargesBalance() {
         return getTotalAmount().add(getAdjustmentsTotalAmount()).add(getTransferTotalAmount())
-              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount());
+              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount()).add(getCompTotalAmount());
     }
 
     /**
@@ -708,7 +747,8 @@ public class LineItemView implements Comparable<LineItemView> {
      * {@link LineItemView}
      */
     public BigDecimal getLineItemTaxBalance() {
-        return getTaxAmount().add(getAdjustmentsTaxAmount()).add(getTransferTaxAmount()).add(getCorrectionTaxAmount());
+        return getTaxAmount().add(getAdjustmentsTaxAmount()).add(getTransferTaxAmount()).add(getCorrectionTaxAmount())
+              .add(getCompTaxAmount());
     }
 
     /**
@@ -729,7 +769,7 @@ public class LineItemView implements Comparable<LineItemView> {
     public BigDecimal getTaxAmount() {
         BigDecimal taxAmount = BigDecimal.ZERO;
         for (LineItemView tax : getTaxLineItems()) {
-            if (tax.isReverseTax() && tax.getReverseTaxTotalChargeAmount() != null) {
+            if (tax.isReverseTax() && tax.getReverseTaxTotalChargeAmount() != null && !Boolean.TRUE.equals(tax.getExcludeTax())) {
                 taxAmount = taxAmount.add(tax.getReverseTaxTotalChargeAmount());
             } else if (!tax.isReverseTax()) {
                 taxAmount = taxAmount.add(tax.getUnitAmount().multiply(new BigDecimal(tax.getQuantity())));
@@ -742,7 +782,7 @@ public class LineItemView implements Comparable<LineItemView> {
      * @return the totalAmount
      */
     public BigDecimal getTotalAmount() {
-        if (isReverseTax()) {
+        if (isReverseTax() && !Boolean.TRUE.equals(getExcludeTax())) {
             return reverseTaxTotalChargeAmount != null ? reverseTaxTotalChargeAmount : BigDecimal.ZERO;
         }
         return unitAmount.multiply(new BigDecimal(quantity));
@@ -848,6 +888,62 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setPantryItem(Boolean pantryItem) {
         this.pantryItem = pantryItem;
+    }
+
+    public TransactionType getCompType() {
+        return compType;
+    }
+
+    public void setCompType(TransactionType compType) {
+        this.compType = compType;
+    }
+
+    public String getFolioType() {
+        return folioType;
+    }
+
+    public void setFolioType(String folioType) {
+        this.folioType = folioType;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public String getAuthorizerId() {
+        return authorizerId;
+    }
+
+    public void setAuthorizerId(String authorizerId) {
+        this.authorizerId = authorizerId;
+    }
+
+    public CompPostingTaxType getTaxPostingType() {
+        return taxPostingType;
+    }
+
+    public void setTaxPostingType(CompPostingTaxType taxPostingType) {
+        this.taxPostingType = taxPostingType;
+    }
+
+    public boolean isReverseRedemptionComp() {
+        return reverseRedemptionComp;
+    }
+
+    public void setReverseRedemptionComp(boolean reverseRedemptionComp) {
+        this.reverseRedemptionComp = reverseRedemptionComp;
+    }
+
+    public Boolean getExcludeTax() {
+        return excludeTax;
+    }
+
+    public void setExcludeTax(Boolean excludeTax) {
+        this.excludeTax = excludeTax;
     }
 
     public String getRoomId() {
