@@ -20,6 +20,18 @@ public class AutoRecurringChargesPriority extends AccountingObjectBase {
         this.priorityOrder = priorityOrder;
     }
 
+    public AutoRecurringChargesPriority(AutoRecurringChargeRuleType firstPriority,
+          AutoRecurringChargeRuleType secondPriority, AutoRecurringChargeRuleType thirdPriority,
+          AutoRecurringChargeRuleType fourthPriority, AutoRecurringChargeRuleType fifthPriority,
+          AutoRecurringChargeRuleType sixthPriority) {
+        this.priorityOrder.put(1, firstPriority);
+        this.priorityOrder.put(2, secondPriority);
+        this.priorityOrder.put(3, thirdPriority);
+        this.priorityOrder.put(4, fourthPriority);
+        this.priorityOrder.put(5, fifthPriority);
+        this.priorityOrder.put(6, sixthPriority);
+    }
+
     public Map<Integer, AutoRecurringChargeRuleType> getPriorityOrder() {
         return priorityOrder;
     }

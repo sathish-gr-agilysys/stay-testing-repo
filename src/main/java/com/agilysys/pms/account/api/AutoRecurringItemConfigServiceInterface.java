@@ -21,6 +21,8 @@ import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.pms.account.model.AutoRecurringChargeRuleRequest;
+import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
 import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
 import com.agilysys.pms.account.model.AutoRecurringChargesRule;
 import com.agilysys.pms.account.model.AutoRecurringItem;
@@ -38,7 +40,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String ITEM_ID_PATH = "{" + ITEM_ID + "}";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
-    String ACTIVE_ITEM = "/active";
+    String APPLICABLE_ARC_RULE = "/applicableArcRule";
     String RULE = "/rule";
     String PRIORITIZE_ORDER = "/priorityOrder";
 
@@ -70,11 +72,11 @@ public interface AutoRecurringItemConfigServiceInterface {
           throws RGuestException;
 
     @GET
-    @Path(ACTIVE_ITEM)
+    @Path(APPLICABLE_ARC_RULE)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    SortedMap<LocalDate, List<AutoRecurringItem>> getValidAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
+    AutoRecurringChargeRuleResponse getApplicableArcRule(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRuleRequest autoRecurringChargeRuleRequest)
+          throws RGuestException;
 
     @DELETE
     @Path(ITEM_ID_PATH)
