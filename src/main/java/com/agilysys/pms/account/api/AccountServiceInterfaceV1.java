@@ -24,6 +24,8 @@ import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.BatchStatusResponse;
+import com.agilysys.common.model.CancelBatchRequest;
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
@@ -40,14 +42,19 @@ import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
 import com.agilysys.pms.account.model.AmountTransfer;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
+import com.agilysys.pms.account.model.BatchDepositCollectionRequest;
+import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
 import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
 import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
 import com.agilysys.pms.account.model.CheckAllowanceResponse;
+import com.agilysys.pms.account.model.CompTransaction;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
+import com.agilysys.pms.account.model.DepositPaymentInfo;
+import com.agilysys.pms.account.model.EligibleFolioLineItems;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
@@ -88,6 +95,7 @@ import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
+import com.agilysys.pms.account.model.ReverseRedemptionRequest;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -102,7 +110,7 @@ import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
-import com.agilysys.pms.common.model.SearchPage;
+import com.agilysys.pms.common.model.DeserializablePage;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 
@@ -175,6 +183,7 @@ public interface AccountServiceInterfaceV1 {
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
+    String DEPOSITS_PATH = "/deposits";
     String PAYOFF_BALANCE_PATH = "/payOffBalance";
     String POS_CHARGE_PATH = "/posCharge";
     String POS_CREDIT_PATH = "/posCredit";
@@ -227,6 +236,15 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String AUTHORIZER_CODE = "authorizerCode";
+    String CODE = "/{" + AUTHORIZER_CODE + "}";
+    String AUTHORIZERD_FOLIO_ITEMS = "/authorizedFolioItems" + CODE;
+    String REDEEM_FOLIO_CHARGE = "/redeemFolio";
+    String REVERSE_REDEEM_CHARGE = "/reverseRedeemFolio";
+    String BATCH_DEPOSIT_COLLECTION_JOB_PATH = "/batchDepositCollectionJob";
+    String BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH = "/batchDepositCollectionJobStatus";
+    String BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH = "/batchDepositCollectionJobCancel";
+    String JOB_ID = "jobId";
     String DATE = "date";
     String DATE_PATH = "/{" + DATE + "}";
     String BULK = "/bulk";
@@ -298,6 +316,12 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     AccountDetail createAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           CreateAccountSummary account) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + AUTHORIZERD_FOLIO_ITEMS)
+    EligibleFolioLineItems getEligibleFolioItemsByAuthorizerDetails(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(AUTHORIZER_CODE) String authorizerCode) throws RGuestException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNT_STATUS_PATH)
@@ -542,6 +566,16 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + DEPOSITS_PATH)
+    @Validated(Payment.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Produces(MediaType.APPLICATION_JSON)
+    List<LineItemView> postDeposit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, DepositPaymentInfo depositPaymentInfo,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
     @Path(MULTIPLE_PAYMENTS_ASYNC_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     MultipleAccountPaymentRequestAsyncJobId postMultipleAccountPaymentAsync(@PathParam(TENANT_ID) String tenantId,
@@ -735,7 +769,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + PAGE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    SearchPage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
+    DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
           @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) Integer page,
           @QueryParam(SIZE) Integer size) throws RGuestException;
@@ -1090,6 +1124,34 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException;
 
+    @POST
+    @Path(ACCOUNT_ID_PATH + REDEEM_FOLIO_CHARGE)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<String> redeemPlayerFolioItemsCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          CompTransaction compTransaction) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + REVERSE_REDEEM_CHARGE)
+    List<String> completeReverseRedemption(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, ReverseRedemptionRequest reverseRedemptionRequest)
+          throws RGuestException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_PATH)
+    BatchDepositCollectionResponse postBatchDepositCollectionJob(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchDepositCollectionRequest batchDepositCollectionRequest)
+          throws RGuestException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH)
+    BatchStatusResponse batchDepositCollectionStatus(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(JOB_ID) String jobId) throws RGuestException;
+
+    @POST
+    @Path(BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH)
+    void cancelBatchDepositCollection(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          CancelBatchRequest request) throws RGuestException;
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + ALLOWANCE + DATE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
