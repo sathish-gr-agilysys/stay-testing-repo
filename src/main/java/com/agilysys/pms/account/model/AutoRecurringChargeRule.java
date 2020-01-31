@@ -6,11 +6,9 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Set;
 
-public class AutoRecurringChargesRule {
+public class AutoRecurringChargeRule {
 
     private String id;
-    private String tenantId;
-    private String propertyId;
     private String ruleName;
     private String ruleCode;
     private boolean active;
@@ -22,6 +20,7 @@ public class AutoRecurringChargesRule {
     private Set<String> buildings;
     private Set<String> guestTypes;
     private Set<String> marketSegments;
+    private boolean applyToDefiniteGroups;
 
     public String getId() {
         return id;
@@ -29,22 +28,6 @@ public class AutoRecurringChargesRule {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public String getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(String propertyId) {
-        this.propertyId = propertyId;
     }
 
     public String getRuleName() {
@@ -133,5 +116,13 @@ public class AutoRecurringChargesRule {
 
     public void setMarketSegments(Set<String> marketSegments) {
         this.marketSegments = marketSegments;
+    }
+
+    public boolean isApplyToDefiniteGroups() {
+        return applyToDefiniteGroups;
+    }
+
+    public void setApplyToDefiniteGroups(boolean applyToDefiniteGroups) {
+        this.applyToDefiniteGroups = applyToDefiniteGroups;
     }
 }

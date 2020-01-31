@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -6,8 +6,9 @@ package com.agilysys.pms.account.model;
 public enum AutoRecurringChargeRuleType {
     RATE_PLAN,
     PACKAGES,
-    ROOM_TYPE,
-    BUILDING,
+    GROUP,
     GUEST_TYPE,
-    MARKET_SEGMENT
+    MARKET_SEGMENT,
+    BUILDING,
+    ROOM_TYPE;
 }
