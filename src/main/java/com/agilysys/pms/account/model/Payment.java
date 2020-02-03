@@ -23,6 +23,7 @@ public class Payment {
     private String invoiceNumber;
     private boolean distributed;
     private String name;
+    private boolean includeDispute;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -109,5 +110,13 @@ public class Payment {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isIncludeDispute() {
+        return includeDispute;
+    }
+
+    public void setIncludeDispute(boolean includeDispute) {
+        this.includeDispute = includeDispute;
     }
 }
