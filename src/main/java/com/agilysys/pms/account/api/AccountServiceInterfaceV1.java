@@ -242,7 +242,6 @@ public interface AccountServiceInterfaceV1 {
     String REDEEM_FOLIO_CHARGE = "/redeemFolio";
     String REVERSE_REDEEM_CHARGE = "/reverseRedeemFolio";
     String BULK = "/bulk";
-
     String BATCH_DEPOSIT_COLLECTION_JOB_PATH = "/batchDepositCollectionJob";
     String BATCH_DEPOSIT_COLLECTION_JOB_STATUS_PATH = "/batchDepositCollectionJobStatus";
     String BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH = "/batchDepositCollectionJobCancel";
