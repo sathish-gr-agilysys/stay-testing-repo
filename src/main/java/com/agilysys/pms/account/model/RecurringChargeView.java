@@ -65,6 +65,7 @@ public class RecurringChargeView {
     private LocalDate endDate;
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
+    private String packageFolioId;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
@@ -312,5 +313,13 @@ public class RecurringChargeView {
 
     public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
         this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
+    }
+
+    public String getPackageFolioId() {
+        return packageFolioId;
+    }
+
+    public void setPackageFolioId(String packageFolioId) {
+        this.packageFolioId = packageFolioId;
     }
 }
