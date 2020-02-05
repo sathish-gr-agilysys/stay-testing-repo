@@ -97,7 +97,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
-          AutoRecurringChargesRule rule) throws RGuestException;
+          AutoRecurringChargeRule rule) throws RGuestException;
 
 
     @PUT
@@ -106,7 +106,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
-          AutoRecurringChargesRule rule) throws RGuestException;
+          AutoRecurringChargeRule rule) throws RGuestException;
 
     @GET
     @Path(RULE + PRIORITIZE_ORDER)
