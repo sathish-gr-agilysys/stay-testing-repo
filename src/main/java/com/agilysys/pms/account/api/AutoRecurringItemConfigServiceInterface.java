@@ -95,27 +95,18 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-<<<<<<< HEAD
     void createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
           AutoRecurringChargesRule rule) throws RGuestException;
-=======
-    AutoRecurringChargeRule createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRule rule) throws RGuestException;
->>>>>>> c0103321f3ce58295788a322d0438060b2015f23
+
 
     @PUT
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-<<<<<<< HEAD
     void updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
           AutoRecurringChargesRule rule) throws RGuestException;
-=======
-    AutoRecurringChargeRule updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRule rule) throws RGuestException;
->>>>>>> c0103321f3ce58295788a322d0438060b2015f23
 
     @GET
     @Path(RULE + PRIORITIZE_ORDER)
