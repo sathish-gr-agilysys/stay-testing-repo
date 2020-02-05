@@ -24,7 +24,7 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleRequest;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
 import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
-import com.agilysys.pms.account.model.AutoRecurringChargesRule;
+import com.agilysys.pms.account.model.AutoRecurringChargeRule;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -88,22 +88,34 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    List<AutoRecurringChargesRule> getAutoRecurringChargeRules(@PathParam(TENANT_ID) String tenantId,
+    List<AutoRecurringChargeRule> getAutoRecurringChargeRules(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @POST
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    void createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesRule rule) throws RGuestException;
+<<<<<<< HEAD
+    void createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
+          AutoRecurringChargesRule rule) throws RGuestException;
+=======
+    AutoRecurringChargeRule createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRule rule) throws RGuestException;
+>>>>>>> c0103321f3ce58295788a322d0438060b2015f23
 
     @PUT
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    void updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesRule rule) throws RGuestException;
+<<<<<<< HEAD
+    void updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
+          AutoRecurringChargesRule rule) throws RGuestException;
+=======
+    AutoRecurringChargeRule updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRule rule) throws RGuestException;
+>>>>>>> c0103321f3ce58295788a322d0438060b2015f23
 
     @GET
     @Path(RULE + PRIORITIZE_ORDER)

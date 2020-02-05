@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.common.model.AutoRecurringChargeRuleType;
+
 public class AutoRecurringChargeRuleResponse {
     private Map<LocalDate, List<AutoRecurringItem>> activeAutoRecurringItemsByDate;
     private String autoRecurringRuleId;
