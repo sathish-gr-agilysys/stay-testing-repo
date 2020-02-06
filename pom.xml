@@ -37,6 +37,11 @@
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
+            <artifactId>integration-interface</artifactId>
+            <version>74.1149.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
             <version>74.1138-VCTRS-72005-SNAPSHOT</version>
         </dependency>
