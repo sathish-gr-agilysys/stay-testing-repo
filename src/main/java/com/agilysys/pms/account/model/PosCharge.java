@@ -15,4 +15,9 @@ public class PosCharge extends Charge implements PosTransaction {
     public void setReceiptTextImage(String receiptTextImage) {
         this.receiptTextImage = receiptTextImage;
     }
+
+    @Override
+    public boolean checkPosCharge() {
+        return true;
+    }
 }
