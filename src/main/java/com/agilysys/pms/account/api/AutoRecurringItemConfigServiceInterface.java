@@ -95,15 +95,18 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    AutoRecurringChargeRule createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRule rule) throws RGuestException;
+    void createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
+          AutoRecurringChargeRule rule) throws RGuestException;
+
 
     @PUT
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    AutoRecurringChargeRule updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRule rule) throws RGuestException;
+    void updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
+          AutoRecurringChargeRule rule) throws RGuestException;
 
     @GET
     @Path(RULE + "/associatedToGroup")
