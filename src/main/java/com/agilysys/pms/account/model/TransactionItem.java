@@ -46,6 +46,8 @@ public class TransactionItem extends AccountingItem {
 
     protected String glCode;
 
+    protected boolean allowComp;
+
     protected String plu;
 
     @JsonProperty(required = true)
@@ -59,8 +61,8 @@ public class TransactionItem extends AccountingItem {
 
     @DataPortReference(name = "taxClassNames", type = TaxClass.class, multiple = true)
     @AuditField(inline = true)
-    protected List<String> taxClasses;   
-    
+    protected List<String> taxClasses;
+
     public TransactionItem() {
         super();
 
@@ -78,6 +80,7 @@ public class TransactionItem extends AccountingItem {
         sourceMealPeriods = transactionItem.getSourceMealPeriods();
         status = transactionItem.getStatus();
         taxClasses = transactionItem.getTaxClasses();
+        allowComp = transactionItem.isAllowComp();
     }
 
     public String getAltSystemId() {
@@ -146,6 +149,14 @@ public class TransactionItem extends AccountingItem {
 
     public TransactionItemType getType() {
         return TransactionItemType.TRANSACTION;
+    }
+
+    public boolean isAllowComp() {
+        return allowComp;
+    }
+
+    public void setAllowComp(boolean allowComp) {
+        this.allowComp = allowComp;
     }
 
     @JsonIgnore
