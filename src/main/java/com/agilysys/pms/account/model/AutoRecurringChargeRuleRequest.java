@@ -11,6 +11,9 @@ public class AutoRecurringChargeRuleRequest {
     private String marketSegmentId;
     private String arrivalDateRatePlanId;
     private String arrivalDateRoomTypeId;
+    private String groupId;
+
+    public AutoRecurringChargeRuleRequest() {}
 
     public AutoRecurringChargeRuleRequest(int noOfAdults, int noOfChildren, LocalDate arrivalDate,
           LocalDate departureDate, String guestTypeId, String marketSegmentId, String arrivalDateRatePlanId,
@@ -87,6 +90,14 @@ public class AutoRecurringChargeRuleRequest {
 
     public void setArrivalDateRoomTypeId(String arrivalDateRoomTypeId) {
         this.arrivalDateRoomTypeId = arrivalDateRoomTypeId;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 }
 
