@@ -24,6 +24,7 @@ public class Payment {
     private boolean distributed;
     private String name;
     private boolean includeDispute;
+    private String disputeComment;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -118,5 +119,13 @@ public class Payment {
 
     public void setIncludeDispute(boolean includeDispute) {
         this.includeDispute = includeDispute;
+    }
+
+    public String getDisputeComment() {
+        return disputeComment;
+    }
+
+    public void setDisputeComment(String disputeComment) {
+        this.disputeComment = disputeComment;
     }
 }
