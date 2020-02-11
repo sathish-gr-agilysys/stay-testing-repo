@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.agilysys.common.model.AutoRecurringChargeRuleType;
+
 public class AutoRecurringChargesPriority extends AccountingObjectBase {
 
     private static final String DISPLAY_NAME = "Auto-Recurring-charge rule priority";
