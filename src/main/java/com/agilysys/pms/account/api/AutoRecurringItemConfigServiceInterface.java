@@ -17,16 +17,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.agilysys.pms.account.model.*;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.AutoRecurringChargeRuleRequest;
-import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
-import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
-import com.agilysys.pms.account.model.AutoRecurringChargeRule;
-import com.agilysys.pms.account.model.AutoRecurringItem;
-import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
 @Path(AutoRecurringItemConfigServiceInterface.BASE_PATH)
@@ -43,6 +38,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String APPLICABLE_ARC_RULE = "/applicableArcRule";
     String RULE = "/rule";
     String PRIORITIZE_ORDER = "/priorityOrder";
+    String PRINT_OR_EMAIL = "/printOrEmailConfig";
 
     @GET
     @Path(ITEM_ID_PATH)
@@ -119,4 +115,17 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     AutoRecurringChargesPriority updateAutoRecurringChargesPriority(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPriority priority) throws RGuestException;
+
+
+    @GET
+    @Path(RULE + PRINT_OR_EMAIL)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    AutoRecurringChargesPrintOrEmail getPrintEmailConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId);
+
+    @PUT
+    @Path(RULE + PRINT_OR_EMAIL)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    AutoRecurringChargesPrintOrEmail updatePrintEmailConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPrintOrEmail printOrEmail);
 }
