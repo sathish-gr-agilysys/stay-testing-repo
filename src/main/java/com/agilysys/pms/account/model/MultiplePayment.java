@@ -9,6 +9,7 @@ import java.util.Map;
 public class MultiplePayment {
     private Map<String, String> reservationAccountIdMap;
     private BigDecimal amount;
+    private String paymentMethodId;
 
     public MultiplePayment() {}
 
@@ -33,4 +34,11 @@ public class MultiplePayment {
         this.amount = amount;
     }
 
+    public String getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    public void setPaymentMethodId(String paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
 }
