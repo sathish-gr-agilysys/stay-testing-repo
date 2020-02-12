@@ -18,16 +18,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.agilysys.pms.account.model.*;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+<<<<<<< HEAD
 import com.agilysys.pms.account.model.AutoRecurringChargeRule;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleRequest;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
 import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
+=======
+>>>>>>> 274632171c1ac098f9787eedd2265c6e42958e01
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.reservation.model.ReservationArcRuleInfo;
 
@@ -45,6 +49,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String APPLICABLE_ARC_RULE = "/applicableArcRule";
     String RULE = "/rule";
     String PRIORITIZE_ORDER = "/priorityOrder";
+    String PRINT_OR_EMAIL = "/printOrEmailConfig";
 
     @GET
     @Path(ITEM_ID_PATH)
@@ -73,7 +78,7 @@ public interface AutoRecurringItemConfigServiceInterface {
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, AutoRecurringItem item)
           throws RGuestException;
 
-    @GET
+    @POST
     @Path(APPLICABLE_ARC_RULE)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     AutoRecurringChargeRuleResponse getApplicableArcRule(@PathParam(TENANT_ID) String tenantId,
@@ -117,6 +122,13 @@ public interface AutoRecurringItemConfigServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, LocalDate propertyDate, String ruleId, Set<String> accountIds) throws RGuestException;
 
     @GET
+    @Path(RULE + "/associatedToGroup")
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    AutoRecurringChargeRule getArcRuleAssociatedToGroup(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
+
+    @GET
     @Path(RULE + PRIORITIZE_ORDER)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
@@ -130,4 +142,15 @@ public interface AutoRecurringItemConfigServiceInterface {
     AutoRecurringChargesPriority updateAutoRecurringChargesPriority(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPriority priority) throws RGuestException;
 
-    }
+    @GET
+    @Path(RULE + PRINT_OR_EMAIL)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    AutoRecurringChargesPrintOrEmail getPrintEmailConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId);
+
+    @PUT
+    @Path(RULE + PRINT_OR_EMAIL)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    AutoRecurringChargesPrintOrEmail updatePrintEmailConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPrintOrEmail printOrEmail);
+}

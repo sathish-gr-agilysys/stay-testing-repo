@@ -13,6 +13,8 @@ public class AutoRecurringChargeRuleRequest {
     private String arrivalDateRoomTypeId;
     private String groupId;
 
+    public AutoRecurringChargeRuleRequest() {}
+
     public AutoRecurringChargeRuleRequest(int noOfAdults, int noOfChildren, LocalDate arrivalDate,
           LocalDate departureDate, String guestTypeId, String marketSegmentId, String arrivalDateRatePlanId,
           String arrivalDateRoomTypeId, String groupId) {
