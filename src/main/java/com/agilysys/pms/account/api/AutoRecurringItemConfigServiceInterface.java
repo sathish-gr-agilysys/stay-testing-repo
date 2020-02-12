@@ -71,7 +71,7 @@ public interface AutoRecurringItemConfigServiceInterface {
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, AutoRecurringItem item)
           throws RGuestException;
 
-    @GET
+    @POST
     @Path(APPLICABLE_ARC_RULE)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     AutoRecurringChargeRuleResponse getApplicableArcRule(@PathParam(TENANT_ID) String tenantId,
