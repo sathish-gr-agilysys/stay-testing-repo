@@ -4,7 +4,8 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
-import java.util.SortedMap;
+import java.util.Map;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -21,13 +22,14 @@ import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.pms.account.model.AutoRecurringChargeRule;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleRequest;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
 import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
-import com.agilysys.pms.account.model.AutoRecurringChargeRule;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.reservation.model.ReservationArcRuleInfo;
 
 @Path(AutoRecurringItemConfigServiceInterface.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -99,7 +101,6 @@ public interface AutoRecurringItemConfigServiceInterface {
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
           AutoRecurringChargeRule rule) throws RGuestException;
 
-
     @PUT
     @Path(RULE)
     @CreatedOnSuccess
@@ -108,6 +109,13 @@ public interface AutoRecurringItemConfigServiceInterface {
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
           AutoRecurringChargeRule rule) throws RGuestException;
 
+    @PUT
+    @Path(RULE)
+    @CreatedOnSuccess
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    void updateAutoRecurringChargeRuleForGroup(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, LocalDate propertyDate, String ruleId, Set<String> accountIds) throws RGuestException;
+
     @GET
     @Path(RULE + PRIORITIZE_ORDER)
     @CreatedOnSuccess
@@ -115,11 +123,11 @@ public interface AutoRecurringItemConfigServiceInterface {
     AutoRecurringChargesPriority getAutoRecurringChargesPriority(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
-
     @PUT
     @Path(RULE + PRIORITIZE_ORDER)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     AutoRecurringChargesPriority updateAutoRecurringChargesPriority(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPriority priority) throws RGuestException;
-}
+
+    }
