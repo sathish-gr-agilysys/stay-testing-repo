@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.Consumes;
@@ -18,22 +17,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.agilysys.pms.account.model.*;
 import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-<<<<<<< HEAD
 import com.agilysys.pms.account.model.AutoRecurringChargeRule;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleRequest;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
+import com.agilysys.pms.account.model.AutoRecurringChargesPrintOrEmail;
 import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
-=======
->>>>>>> 274632171c1ac098f9787eedd2265c6e42958e01
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
-import com.agilysys.pms.reservation.model.ReservationArcRuleInfo;
 
 @Path(AutoRecurringItemConfigServiceInterface.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
