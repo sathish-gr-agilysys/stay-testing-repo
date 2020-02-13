@@ -113,7 +113,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    void updateAutoRecurringChargeRuleForGroup(@PathParam(TENANT_ID) String tenantId,
+    void updateAutoRecurringRuleForAccountsIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, LocalDate propertyDate, String ruleId, Set<String> accountIds) throws RGuestException;
 
     @GET
