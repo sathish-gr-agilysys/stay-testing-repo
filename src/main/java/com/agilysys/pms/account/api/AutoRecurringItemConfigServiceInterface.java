@@ -114,7 +114,8 @@ public interface AutoRecurringItemConfigServiceInterface {
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void updateAutoRecurringRuleForAccountsIds(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, LocalDate propertyDate, String ruleId, Set<String> accountIds) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, LocalDate propertyDate, String ruleId, Set<String> accountIds)
+          throws RGuestException;
 
     @GET
     @Path(RULE + "/associatedToGroup")
@@ -141,11 +142,13 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE + PRINT_OR_EMAIL)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    AutoRecurringChargesPrintOrEmail getPrintEmailConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId);
+    AutoRecurringChargesPrintOrEmail getPrintEmailConfig(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId);
 
     @PUT
     @Path(RULE + PRINT_OR_EMAIL)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    AutoRecurringChargesPrintOrEmail updatePrintEmailConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPrintOrEmail printOrEmail);
+    AutoRecurringChargesPrintOrEmail updatePrintEmailConfig(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPrintOrEmail printOrEmail);
 }
