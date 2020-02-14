@@ -7,25 +7,25 @@ import com.agilysys.pms.comment.model.Comment;
 
 public class DisputedARLedgerTransaction {
 
-    private String itemId;
+    private String ledgerTransactionId;
     private boolean dispute;
     private Comment comment;
     private String id;
 
     public DisputedARLedgerTransaction() { }
 
-    public DisputedARLedgerTransaction(String itemId, boolean dispute, Comment comment) {
-        this.itemId = itemId;
+    public DisputedARLedgerTransaction(String ledgerTransactionId, boolean dispute, Comment comment) {
+        this.ledgerTransactionId = ledgerTransactionId;
         this.dispute = dispute;
         this.comment = comment;
     }
 
-    public String getItemId() {
-        return itemId;
+    public String getLedgerTransactionId() {
+        return ledgerTransactionId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public void setLedgerTransactionId(String ledgerTransactionId) {
+        this.ledgerTransactionId = ledgerTransactionId;
     }
 
     public boolean isDispute() {
