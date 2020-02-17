@@ -99,7 +99,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    void createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+    AutoRecurringChargeRule createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
           AutoRecurringChargeRule rule) throws RGuestException;
 
@@ -107,7 +107,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    void updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+    AutoRecurringChargeRule updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
           AutoRecurringChargeRule rule) throws RGuestException;
 
