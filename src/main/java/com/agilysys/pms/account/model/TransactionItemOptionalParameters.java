@@ -10,6 +10,14 @@ public class TransactionItemOptionalParameters {
     private boolean applyToInHouseReservations;
     private boolean applyToPantryItems;
 
+    public TransactionItemOptionalParameters() {
+    }
+
+    public TransactionItemOptionalParameters(boolean applyToFutureReservations, boolean applyToInHouseReservations) {
+        this.applyToFutureReservations = applyToFutureReservations;
+        this.applyToInHouseReservations = applyToInHouseReservations;
+    }
+
     public boolean isApplyStatusToAutoRecurringItems() {
         return applyStatusToAutoRecurringItems;
     }

@@ -115,8 +115,8 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE + RULE_ID_PATH)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    void updateAutoRecurringRuleForAccountsIds(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(RULE_ID)String ruleId, Set<String> accountIds)
+    void updateArcRuleForGroupAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          Set<String> accountIds)
           throws RGuestException;
 
     @GET
@@ -130,15 +130,16 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE + PRIORITIZE_ORDER)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    AutoRecurringChargesPriority getAutoRecurringChargesPriority(@PathParam(TENANT_ID) String tenantId,
+    AutoRecurringChargesPriority getArcRulePriority(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @PUT
     @Path(RULE + PRIORITIZE_ORDER)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    AutoRecurringChargesPriority updateAutoRecurringChargesPriority(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPriority priority) throws RGuestException;
+    AutoRecurringChargesPriority updateArcRulePriority(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPriority priority,
+          TransactionItemOptionalParameters optionalParameters) throws RGuestException;
 
     @GET
     @Path(RULE + PRINT_OR_EMAIL)
