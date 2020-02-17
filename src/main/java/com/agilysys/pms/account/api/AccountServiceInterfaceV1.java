@@ -28,7 +28,7 @@ import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
-import com.agilysys.pms.account.BulkCredits;
+import com.agilysys.pms.account.model.BatchPostCredit;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -100,6 +100,7 @@ import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
+import com.agilysys.pms.common.batchdistributor.domain.BatchDistributorResult;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.SearchPage;
 import com.agilysys.pms.payment.model.LodgingInformation;
@@ -491,8 +492,8 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(BULK_CREDIT_PATH)
     @PreAuthorize("hasPermission('Required', 'AllowCredits')")
-    void bulkPostCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-           BulkCredits bulkCredits) throws RGuestException;
+    BatchDistributorResult bulkPostCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+           BatchPostCredit batchPostCredit) throws RGuestException;
 
     @POST
     @CreatedOnSuccess

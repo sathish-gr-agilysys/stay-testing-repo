@@ -1,10 +1,12 @@
-package com.agilysys.pms.account;
+/*
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
+package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
-public class BulkCredits {
-
+public class BatchPostCredit {
     protected BigDecimal amount;
 
     protected String itemId;
