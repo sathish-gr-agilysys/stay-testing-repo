@@ -138,8 +138,9 @@ public interface AutoRecurringItemConfigServiceInterface {
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     AutoRecurringChargesPriority updateArcRulePriority(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPriority priority,
-          TransactionItemOptionalParameters optionalParameters) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam("") TransactionItemOptionalParameters optionalParameters, AutoRecurringChargesPriority priority)
+          throws RGuestException;
 
     @GET
     @Path(RULE + PRINT_OR_EMAIL)
