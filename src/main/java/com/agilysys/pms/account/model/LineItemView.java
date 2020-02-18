@@ -15,6 +15,7 @@ import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.pms.payment.model.GatewayType;
+import com.agilysys.pms.property.model.compaccounting.CompDetail.CompType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -99,7 +100,9 @@ public class LineItemView implements Comparable<LineItemView> {
     private String authorizerId;
     private CompPostingTaxType taxPostingType;
     private boolean reverseRedemptionComp;
+    private CompType compTransactionType;
     private Boolean excludeTax;
+    private String roomId;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -955,12 +958,28 @@ public class LineItemView implements Comparable<LineItemView> {
         this.reverseRedemptionComp = reverseRedemptionComp;
     }
 
+    public void setCompTransactionType(CompType compTransactionType) {
+        this.compTransactionType = compTransactionType;
+    }
+
+    public CompType getCompTransactionType() {
+        return compTransactionType;
+    }
+
     public Boolean getExcludeTax() {
         return excludeTax;
     }
 
     public void setExcludeTax(Boolean excludeTax) {
         this.excludeTax = excludeTax;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
     @Override
