@@ -32,7 +32,7 @@ public class AutoRecurringChargesPriority extends AccountingObjectBase {
         this.priorityOrder.put(4, fourthPriority);
         this.priorityOrder.put(5, fifthPriority);
         this.priorityOrder.put(6, sixthPriority);
-        this.priorityOrder.put(7, sixthPriority);
+        this.priorityOrder.put(7, seventhPriority);
     }
 
     public Map<Integer, AutoRecurringChargeRuleType> getPriorityOrder() {
