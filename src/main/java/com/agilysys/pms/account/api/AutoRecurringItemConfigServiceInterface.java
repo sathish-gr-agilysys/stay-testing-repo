@@ -43,8 +43,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String END_DATE = "endDate";
     String APPLICABLE_ARC_RULE = "/applicableArcRule";
     String RULE = "/rule";
-    String RULE_ID = "ruleId";
-    String RULE_ID_PATH = "/{" + RULE_ID + "}";
+    String RULE_BY_ACCOUNTS = "/ruleBYAccounts";
     String PRIORITIZE_ORDER = "/priorityOrder";
     String PRINT_OR_EMAIL = "/printOrEmailConfig";
 
@@ -112,7 +111,7 @@ public interface AutoRecurringItemConfigServiceInterface {
           AutoRecurringChargeRule rule) throws RGuestException;
 
     @PUT
-    @Path(RULE + RULE_ID_PATH)
+    @Path(RULE_BY_ACCOUNTS)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void updateArcRuleForGroupAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
