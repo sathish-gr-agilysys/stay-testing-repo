@@ -9,6 +9,7 @@ public enum AccountWarehouseType implements WarehouseType {
     ACCOUNTS,
     CATEGORIES,
     LEDGER_TRANSACTIONS,
+    PAYMENT_METHODS,
     RECURRING_CHARGES,
     REVENUE,
     SUBCATEGORIES;
