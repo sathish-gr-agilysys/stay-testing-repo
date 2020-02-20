@@ -219,6 +219,8 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String FOLIO_LINE_ITEM_ID = "folioLineItemId";
+    String FOLIO_LINE_ITEM = "/folioLineItem/{" + FOLIO_LINE_ITEM_ID + "}";
 
     String PAGE = "page";
     String SIZE = "size";
@@ -1025,4 +1027,9 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException;
+
+    @GET
+    @Path(FOLIO_LINE_ITEM)
+    LineItemView getFolioLineItemById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId) throws RGuestException;
 }

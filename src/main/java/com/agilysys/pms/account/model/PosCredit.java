@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 public class PosCredit extends Credit implements PosTransaction {
     private String receiptTextImage;
     private Long checkNumber;
+    private String closeTime;
 
     @Override
     public String getReceiptTextImage() {
@@ -25,5 +26,13 @@ public class PosCredit extends Credit implements PosTransaction {
     @Override
     public void setCheckNumber(Long checkNumber) {
         this.checkNumber = checkNumber;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
     }
 }

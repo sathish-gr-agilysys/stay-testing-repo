@@ -90,6 +90,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal reverseTaxTotalChargeAmount;
     private List<PantryItemDetails> pantryItemDetails;
     private Boolean pantryItem;
+    private Long checkNumber;
+    private String closeTime;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -847,6 +849,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setPantryItem(Boolean pantryItem) {
         this.pantryItem = pantryItem;
+    }
+
+    public Long getCheckNumber() {
+        return checkNumber;
+    }
+
+    public void setCheckNumber(Long checkNumber) {
+        this.checkNumber = checkNumber;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
     }
 
     @Override
