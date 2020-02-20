@@ -92,7 +92,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<AutoRecurringChargeRule> getAutoRecurringChargeRules(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("includeInactive") Boolean includeInactive) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("active") Boolean active) throws RGuestException;
 
     @POST
     @Path(RULE)
