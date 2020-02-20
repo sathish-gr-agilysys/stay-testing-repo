@@ -38,6 +38,9 @@ public interface PosTransaction {
     String getReceiptTextImage();
     void setReceiptTextImage(String receiptTextImage);
 
+    Long getCheckNumber();
+    void setCheckNumber(Long checkNumber);
+
     String getReference();
     void setReference(String reference);
 
