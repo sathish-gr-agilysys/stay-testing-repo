@@ -5,16 +5,16 @@ package com.agilysys.pms.account.model;
 
 import com.agilysys.pms.common.batchdistributor.model.BatchDistributorResultBase;
 
-public class PostCreditBatchResult extends BatchDistributorResultBase {
+public class PostCCBatchResult extends BatchDistributorResultBase {
     private String tenantId;
     private String propertyId;
     private String reservationId;
 
-    public PostCreditBatchResult(){
+    public PostCCBatchResult(){
 
     }
 
-    public PostCreditBatchResult(String tenantId, String propertyId, String reservationId){
+    public PostCCBatchResult(String tenantId, String propertyId, String reservationId){
         this.tenantId = tenantId;
         this.propertyId = propertyId;
         this.reservationId = reservationId;

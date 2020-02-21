@@ -6,7 +6,7 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.Set;
 
-public class BatchPostCredit {
+public class BatchPostCC {
     protected BigDecimal amount;
 
     protected String itemId;

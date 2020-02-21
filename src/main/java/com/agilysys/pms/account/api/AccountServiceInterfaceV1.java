@@ -28,7 +28,7 @@ import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
-import com.agilysys.pms.account.model.BatchPostCredit;
+import com.agilysys.pms.account.model.BatchPostCC;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -227,7 +227,7 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
-    String BULK_CREDIT_PATH = "/bulkCredit";
+    String BATCH_CREDITS_PATH = "/batchCredits";
     String BULK = "/bulk";
 
     String PAGE = "page";
@@ -490,10 +490,20 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @CreatedOnSuccess
-    @Path(BULK_CREDIT_PATH)
-    @PreAuthorize("hasPermission('Required', 'AllowCredits')")
-    BatchDistributorResult bulkPostCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-           BatchPostCredit batchPostCredit) throws RGuestException;
+    @Path(BATCH_CREDITS_PATH)
+    @PreAuthorize("hasPermission('Required', 'BatchPostingCredits')")
+    BatchDistributorResult bulkPostCredit(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          BatchPostCC batchPostCC) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(BATCH_CHARGES_PATH)
+    @PreAuthorize(
+          "hasPermission('Required', 'BatchPostingCharges') and hasPermission('Required', 'ForceChargeAcceptance')")
+    BatchDistributorResult bulkPostCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          BatchPostCC batchPostCC) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
