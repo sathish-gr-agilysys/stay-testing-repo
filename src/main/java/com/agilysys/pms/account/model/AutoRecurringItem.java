@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
@@ -36,6 +37,8 @@ public class AutoRecurringItem extends AccountingObjectBase {
 
     @JsonProperty(required = true)
     private FrequencyType frequencyType;
+
+    private Set<Integer> occurrenceDays;
 
     @JsonProperty(required = true)
     @AuditField(name = "parentTransactionItem", references = EntityTypes.TRANSACTION_ITEM)
@@ -145,6 +148,14 @@ public class AutoRecurringItem extends AccountingObjectBase {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Integer> getOccurrenceDays() {
+        return occurrenceDays;
+    }
+
+    public void setOccurrenceDays(Set<Integer> occurrenceDays) {
+        this.occurrenceDays = occurrenceDays;
     }
 
     @Override
