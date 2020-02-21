@@ -17,7 +17,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.joda.time.LocalDate;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
@@ -117,8 +116,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void updateArcRuleForGroupAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          Set<String> accountIds)
-          throws RGuestException;
+          Set<String> accountIds) throws RGuestException;
 
     @GET
     @Path(RULE + "/associatedToGroup")
