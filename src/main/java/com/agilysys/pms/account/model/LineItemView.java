@@ -100,6 +100,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean reverseRedemptionComp;
     private CompType compTransactionType;
     private Boolean excludeTax;
+    private ARPaymentStatus arPaymentStatus;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -953,6 +954,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setExcludeTax(Boolean excludeTax) {
         this.excludeTax = excludeTax;
+    }
+
+    public ARPaymentStatus getArPaymentStatus() {
+        return arPaymentStatus;
+    }
+
+    public void setArPaymentStatus(ARPaymentStatus arPaymentStatus) {
+        this.arPaymentStatus = arPaymentStatus;
     }
 
     @Override

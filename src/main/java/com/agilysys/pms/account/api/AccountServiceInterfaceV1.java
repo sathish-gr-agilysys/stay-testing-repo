@@ -145,6 +145,7 @@ public interface AccountServiceInterfaceV1 {
     String CLOSABLE_INFO = "/closableInfo";
     String CORRECTION_PATH = "/correction";
     String CREDIT_PATH = "/credit";
+    String DEPOSIT_FOLIO_PATH = "/depositFolio";
     String END_DATE = "endDate";
     String END_DATE_TIME = "endDateTime";
     String FILTERED = "/filtered";
@@ -350,6 +351,13 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
+          throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + DEPOSIT_FOLIO_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    FolioDetail getDepositFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
 
