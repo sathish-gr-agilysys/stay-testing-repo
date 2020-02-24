@@ -21,6 +21,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AutoRecurringChargeRule;
+import com.agilysys.pms.account.model.AutoRecurringChargeRuleParameters;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleRequest;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
 import com.agilysys.pms.account.model.AutoRecurringChargesPrintOrEmail;
@@ -115,8 +116,8 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(RULE_BY_ACCOUNTS)
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    void updateArcRuleForGroupAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          Set<String> accountIds) throws RGuestException;
+    void updateArcRuleByAccountIds(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          AutoRecurringChargeRuleParameters autoRecurringChargeRuleParameters) throws RGuestException;
 
     @GET
     @Path(RULE + "/associatedToGroup")
