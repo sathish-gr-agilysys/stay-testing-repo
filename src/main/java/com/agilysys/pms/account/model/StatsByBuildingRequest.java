@@ -13,7 +13,7 @@ public class StatsByBuildingRequest {
     private Set<String> buildingIds;
     private boolean byBuilding;
     private boolean includeNonBeddedRoomType;
-    private boolean roomRevenue;
+    private Boolean roomRevenue;
     private boolean embed;
     private boolean showReservationWithoutRooms;
 
@@ -57,11 +57,11 @@ public class StatsByBuildingRequest {
         this.includeNonBeddedRoomType = includeNonBeddedRoomType;
     }
 
-    public boolean isRoomRevenue() {
+    public Boolean isRoomRevenue() {
         return roomRevenue;
     }
 
-    public void setRoomRevenue(boolean roomRevenue) {
+    public void setRoomRevenue(Boolean roomRevenue) {
         this.roomRevenue = roomRevenue;
     }
 
