@@ -11,6 +11,8 @@ public class DisputedARLedgerTransaction {
     private boolean dispute;
     private Comment comment;
     private String id;
+    private String itemId;
+    private String invoiceNumber;
 
     public DisputedARLedgerTransaction() { }
 
@@ -18,6 +20,15 @@ public class DisputedARLedgerTransaction {
         this.ledgerTransactionId = ledgerTransactionId;
         this.dispute = dispute;
         this.comment = comment;
+    }
+
+    public DisputedARLedgerTransaction(String ledgerTransactionId, boolean dispute, Comment comment, String itemId,
+          String invoiceNumber) {
+        this.ledgerTransactionId = ledgerTransactionId;
+        this.dispute = dispute;
+        this.comment = comment;
+        this.itemId = itemId;
+        this.invoiceNumber = invoiceNumber;
     }
 
     public String getLedgerTransactionId() {
@@ -50,5 +61,21 @@ public class DisputedARLedgerTransaction {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public void setInvoiceNumber(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
     }
 }
