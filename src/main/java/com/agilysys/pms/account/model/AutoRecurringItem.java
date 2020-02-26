@@ -28,7 +28,6 @@ public class AutoRecurringItem extends AccountingObjectBase {
     @JsonProperty(required = true)
     ValueType valueType = ValueType.AMOUNT;
 
-    @JsonProperty(required = true)
     RateCalculationBaseType basedOn = RateCalculationBaseType.NIGHTLY_ROOM_CHARGE;
 
     @JsonProperty(required = true)
