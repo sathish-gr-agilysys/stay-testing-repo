@@ -10,9 +10,7 @@ public class PostCCBatchResult extends BatchDistributorResultBase {
     private String propertyId;
     private String reservationId;
 
-    public PostCCBatchResult(){
-
-    }
+    public PostCCBatchResult(){}
 
     public PostCCBatchResult(String tenantId, String propertyId, String reservationId){
         this.tenantId = tenantId;

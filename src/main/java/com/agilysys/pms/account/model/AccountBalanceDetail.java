@@ -9,7 +9,7 @@ public class AccountBalanceDetail extends AccountSummary {
 
     private Map<String, FolioBalance> folioBalances;
 
-    private boolean hasPostingRule;
+    private boolean postingRule;
 
     /**
      * Get accountBalance
@@ -55,11 +55,11 @@ public class AccountBalanceDetail extends AccountSummary {
         this.folioBalances = folioBalances;
     }
 
-    public boolean isHasPostingRule() {
-        return hasPostingRule;
+    public boolean isPostingRule() {
+        return postingRule;
     }
 
-    public void setHasPostingRule(boolean hasPostingRule) {
-        this.hasPostingRule = hasPostingRule;
+    public void setPostingRule(boolean postingRule) {
+        this.postingRule = postingRule;
     }
 }
