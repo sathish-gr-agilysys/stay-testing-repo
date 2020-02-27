@@ -10,5 +10,6 @@ public enum PaymentClass {
     CASH,
     CREDIT_CARD,
     ACCOUNT,
-    GIFT_CARD
+    GIFT_CARD,
+    CREDIT_CARD_NON_INTEGRATED
 }

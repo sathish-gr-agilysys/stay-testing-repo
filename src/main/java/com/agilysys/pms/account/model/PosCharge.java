@@ -17,7 +17,6 @@ public class PosCharge extends Charge implements PosTransaction {
     public void setReceiptTextImage(String receiptTextImage) {
         this.receiptTextImage = receiptTextImage;
     }
-
     public Long getCheckNumber() {
         return checkNumber;
     }
@@ -32,5 +31,10 @@ public class PosCharge extends Charge implements PosTransaction {
 
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
+    }
+
+    @Override
+    public boolean checkPosCharge() {
+        return true;
     }
 }
