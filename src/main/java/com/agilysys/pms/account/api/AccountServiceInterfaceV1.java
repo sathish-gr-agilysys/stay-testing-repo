@@ -519,7 +519,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @CreatedOnSuccess
     @Path(BATCH_CREDITS_PATH)
-    @PreAuthorize("hasPermission('Required', 'BatchPostingCredits')")
+    @PreAuthorize("hasPermission('Required', 'BatchPostCredits')")
     BatchDistributorResult batchPostCredit(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           BatchPostCC batchPostCC) throws RGuestException;
@@ -528,7 +528,7 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(BATCH_CHARGES_PATH)
     @PreAuthorize(
-          "hasPermission('Required', 'BatchPostingCharges') and hasPermission('Required', 'ForceChargeAcceptance')")
+          "hasPermission('Required', 'BatchPostCharges') and hasPermission('Required', 'ForceChargeAcceptance')")
     BatchDistributorResult batchPostCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           BatchPostCC batchPostCC) throws RGuestException;
