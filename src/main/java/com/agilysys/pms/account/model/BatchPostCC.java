@@ -6,6 +6,8 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import org.joda.time.LocalDate;
+
 public class BatchPostCC {
     protected BigDecimal amount;
 
@@ -16,6 +18,8 @@ public class BatchPostCC {
     protected String sourceId;
 
     private Set<String> reservationIds;
+
+    private LocalDate postingDate;
 
     public BigDecimal getAmount() {
         return amount;
@@ -55,5 +59,13 @@ public class BatchPostCC {
 
     public void setReservationIds(Set<String> reservationIds) {
         this.reservationIds = reservationIds;
+    }
+
+    public LocalDate getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(LocalDate postingDate) {
+        this.postingDate = postingDate;
     }
 }
