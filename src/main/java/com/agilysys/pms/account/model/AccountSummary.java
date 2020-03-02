@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.agilysys.common.model.PaymentSetting;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
@@ -57,6 +58,7 @@ public class AccountSummary {
 
     private Map<String, Date> taxFacts = new HashMap<>();
     protected CompAccountingRedeemDetails compAccountingRedeemDetails;
+    private Set<String> disputedLedgerTransactionIds;
 
     public String getId() {
         return id;
@@ -184,5 +186,13 @@ public class AccountSummary {
 
     public void setCompAccountingRedeemDetails(CompAccountingRedeemDetails compAccountingRedeemDetails) {
         this.compAccountingRedeemDetails = compAccountingRedeemDetails;
+    }
+
+    public Set<String> getDisputedLedgerTransactionIds() {
+        return disputedLedgerTransactionIds;
+    }
+
+    public void setDisputedLedgerTransactionIds(Set<String> disputedLedgerTransactionIds) {
+        this.disputedLedgerTransactionIds = disputedLedgerTransactionIds;
     }
 }
