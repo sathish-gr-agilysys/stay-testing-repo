@@ -41,6 +41,7 @@ import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
 import com.agilysys.pms.account.model.AmountTransfer;
+import com.agilysys.pms.account.model.ApplyInvoiceDepositPaymentRequest;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.BatchDepositCollectionRequest;
 import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
@@ -132,6 +133,7 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
     String ADJUSTMENT_PATH = "/adjustment";
+    String APPLY_DEPOSIT_PAYMENTS = "/applyDepositPayments";
     String APPLY_PAYMENTS = "/applyPayments";
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
@@ -922,6 +924,16 @@ public interface AccountServiceInterfaceV1 {
     List<InvoiceView> applyInvoicePayments(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           ApplyInvoicePaymentRequest applyInvoicePaymentRequest) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_DEPOSIT_PAYMENTS)
+    @Validated(ApplyInvoiceDepositPaymentRequest.class)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    List<InvoiceView> applyInvoiceDepositPayments(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          ApplyInvoiceDepositPaymentRequest applyInvoiceDepositPaymentRequest) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
