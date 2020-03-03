@@ -118,6 +118,7 @@ import com.agilysys.pms.common.document.model.DocumentDetails;
 import com.agilysys.pms.common.document.model.DocumentRequest;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.DeserializablePage;
+import com.agilysys.pms.common.model.ReceiptImageResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 
@@ -263,6 +264,7 @@ public interface AccountServiceInterfaceV1 {
     String PAGE = "page";
     String SIZE = "size";
     String ALLOWANCE = "/allowance";
+    String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -1138,8 +1140,16 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(FOLIO_LINE_ITEM)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     LineItemView getFolioLineItemById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId) throws RGuestException;
+
+    @PUT
+    @Path(RECEIPT_IMAGE_RESPOME)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateReceiptImageFolioLineItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId,
+          ReceiptImageResponse receiptImageResponse) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + REDEEM_FOLIO_CHARGE)
