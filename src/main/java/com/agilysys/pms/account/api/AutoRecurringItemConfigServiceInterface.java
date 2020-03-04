@@ -60,7 +60,7 @@ public interface AutoRecurringItemConfigServiceInterface {
 
     @POST
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
     List<AutoRecurringItem> createAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
@@ -68,7 +68,7 @@ public interface AutoRecurringItemConfigServiceInterface {
 
     @PUT
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
     AutoRecurringItem updateAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, AutoRecurringItem item)
@@ -97,7 +97,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @POST
     @Path(RULE)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @PreAuthorize("hasPermission('Required', 'AutoRecurringChargeRules')")
     AutoRecurringChargeRule createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
@@ -106,7 +106,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PUT
     @Path(RULE)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @PreAuthorize("hasPermission('Required', 'AutoRecurringChargeRules')")
     AutoRecurringChargeRule updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
@@ -122,7 +122,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @GET
     @Path(RULE + "/associatedToGroup")
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     AutoRecurringChargeRule getArcRuleAssociatedToGroup(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
