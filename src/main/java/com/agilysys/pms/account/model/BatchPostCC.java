@@ -21,6 +21,8 @@ public class BatchPostCC {
 
     private LocalDate postingDate;
 
+    private int quantity = 1;
+
     public BigDecimal getAmount() {
         return amount;
     }
@@ -67,5 +69,13 @@ public class BatchPostCC {
 
     public void setPostingDate(LocalDate postingDate) {
         this.postingDate = postingDate;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
