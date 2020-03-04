@@ -10,6 +10,7 @@ import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Transient;
 
 import com.agilysys.common.model.FrequencyType;
+import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
@@ -51,6 +52,8 @@ public class AutoRecurringItem extends AccountingObjectBase {
 
     private LocalDate endDate;
     private String description;
+
+    private ComponentType applicableFor;
 
     public AutoRecurringItem(){
         this.status = CanonicalId.INACTIVE;
@@ -155,6 +158,14 @@ public class AutoRecurringItem extends AccountingObjectBase {
 
     public void setOccurrenceDays(Set<Integer> occurrenceDays) {
         this.occurrenceDays = occurrenceDays;
+    }
+
+    public ComponentType getApplicableFor() {
+        return applicableFor;
+    }
+
+    public void setApplicableFor(ComponentType applicableFor) {
+        this.applicableFor = applicableFor;
     }
 
     @Override

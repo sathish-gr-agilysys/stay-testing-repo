@@ -55,6 +55,7 @@ public class RecurringChargeView {
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
     private String autoRecurringItemId;
+    private String autoRecurringRuleId;
     private boolean addQuantityToAllocation;
 
     //Set 1 for recurring charges which does not have quantity
@@ -289,6 +290,14 @@ public class RecurringChargeView {
 
     public void setAutoRecurringItemId(String autoRecurringItemId) {
         this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public String getAutoRecurringRuleId() {
+        return autoRecurringRuleId;
+    }
+
+    public void setAutoRecurringRuleId(String autoRecurringRuleId) {
+        this.autoRecurringRuleId = autoRecurringRuleId;
     }
 
     public boolean isAddQuantityToAllocation() {
