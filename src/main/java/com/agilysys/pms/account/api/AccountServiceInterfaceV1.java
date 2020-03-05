@@ -135,6 +135,7 @@ public interface AccountServiceInterfaceV1 {
     String ADJUSTMENT_PATH = "/adjustment";
     String APPLY_DEPOSIT_PAYMENTS = "/applyDepositPayments";
     String APPLY_PAYMENTS = "/applyPayments";
+    String AR_DEPOSIT_BALANCE = "/arDepositBalance";
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
     String BATCH_FOLIO_EMAIL = "/batchFolioEmail";
@@ -949,6 +950,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, BigDecimal> getLedgerBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, LedgerBalancesInfo ledgerBalancesInfo) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + AR_DEPOSIT_BALANCE)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    BigDecimal getARDepositBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
 
     @GET
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_PATH)
