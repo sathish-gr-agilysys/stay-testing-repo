@@ -24,9 +24,7 @@ public class DisputedARLedgerTransaction {
 
     public DisputedARLedgerTransaction(String ledgerTransactionId, boolean dispute, Comment comment, String itemId,
           String invoiceNumber) {
-        this.ledgerTransactionId = ledgerTransactionId;
-        this.dispute = dispute;
-        this.comment = comment;
+        this(ledgerTransactionId, dispute, comment);
         this.itemId = itemId;
         this.invoiceNumber = invoiceNumber;
     }
