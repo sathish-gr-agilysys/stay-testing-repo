@@ -11,7 +11,6 @@ public class CompTransaction {
     private String departmentId;
     private String compPoints;
     private String playerPoints;
-    private String pin;
     private String playerOrCardId;
     private String authorizerCode;
     private List<CompRedeemRequest> compRedeemRequests;
@@ -54,14 +53,6 @@ public class CompTransaction {
 
     public void setPlayerPoints(String playerPoints) {
         this.playerPoints = playerPoints;
-    }
-
-    public String getPin() {
-        return pin;
-    }
-
-    public void setPin(String pin) {
-        this.pin = pin;
     }
 
     public String getPlayerOrCardId() {
