@@ -24,6 +24,7 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.Cashier;
+import com.agilysys.pms.account.model.DepositCollectionStatusEmailRequest;
 import com.agilysys.pms.account.model.GLCodeTemplate;
 import com.agilysys.pms.account.model.GLCodeTemplateRequest;
 import com.agilysys.pms.account.model.GroupRevenueReportItem;
@@ -76,6 +77,8 @@ public interface ReportingServiceInterface {
     String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
     String GROUPS_REVENUE_PATH = "/groupsRevenue";
     String STAY_DATE_SUMMARY = "stayDateSummary";
+    String SEND_DEPOSIT_COLLECTION_STATUS_EMAIL = "sendDepositCollectionStatus";
+    String SEND_BATCH_DEPOSIT_DUE_NOTIFICATION = "sendBatchDepositDueNotification";
 
 
     /**
@@ -366,4 +369,17 @@ public interface ReportingServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     Map<String, List<GroupRevenueReportItem>>  getRevenueDetailsForGroups(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(DATE) LocalDate date, Set<String> groupIds);
+
+    @POST
+    @Path(SEND_DEPOSIT_COLLECTION_STATUS_EMAIL)
+    void sendDepositCollectionStatusEmail(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, DepositCollectionStatusEmailRequest request)
+        throws RGuestException;
+
+    @POST
+    @Path(SEND_BATCH_DEPOSIT_DUE_NOTIFICATION)
+    void sendBatchDepositDueNotification(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId)
+          throws RGuestException;
+
 }
