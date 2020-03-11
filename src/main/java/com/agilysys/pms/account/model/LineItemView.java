@@ -102,6 +102,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private Boolean excludeTax;
     private ARPaymentStatus arPaymentStatus;
     private BigDecimal amountUsed;
+    private BigDecimal lineItemDepositBalance;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -971,6 +972,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setAmountUsed(BigDecimal amountUsed) {
         this.amountUsed = amountUsed;
+    }
+
+    public BigDecimal getLineItemDepositBalance() {
+        return lineItemDepositBalance;
+    }
+
+    public void setLineItemDepositBalance(BigDecimal lineItemDepositBalance) {
+        this.lineItemDepositBalance = lineItemDepositBalance;
     }
 
     @Override

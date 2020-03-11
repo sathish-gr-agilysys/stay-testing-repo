@@ -8,6 +8,7 @@ public class AccountBalanceDetail extends AccountSummary {
     private BigDecimal accountTaxBalance;
 
     private Map<String, FolioBalance> folioBalances;
+    private BigDecimal depositBalance;
 
     /**
      * Get accountBalance
@@ -51,5 +52,13 @@ public class AccountBalanceDetail extends AccountSummary {
      */
     public void setFolioBalances(Map<String, FolioBalance> folioBalances) {
         this.folioBalances = folioBalances;
+    }
+
+    public BigDecimal getDepositBalance() {
+        return depositBalance;
+    }
+
+    public void setDepositBalance(BigDecimal depositBalance) {
+        this.depositBalance = depositBalance;
     }
 }
