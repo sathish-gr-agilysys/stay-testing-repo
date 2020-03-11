@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.Consumes;
@@ -27,6 +28,7 @@ import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
 import com.agilysys.pms.account.model.AutoRecurringChargesPrintOrEmail;
 import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
 import com.agilysys.pms.account.model.AutoRecurringItem;
+import com.agilysys.pms.account.model.BulkAutoRecurringRuleRequest;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -42,6 +44,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String START_DATE = "startDate";
     String END_DATE = "endDate";
     String APPLICABLE_ARC_RULE = "/applicableArcRule";
+    String APPLICABLE_ARC_RULE_BULK = "/applicableArcRuleBulk";
     String RULE = "/rule";
     String RULE_BY_ACCOUNTS = "/ruleBYAccounts";
     String PRIORITIZE_ORDER = "/priorityOrder";
@@ -80,6 +83,13 @@ public interface AutoRecurringItemConfigServiceInterface {
     AutoRecurringChargeRuleResponse getApplicableArcRule(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRuleRequest autoRecurringChargeRuleRequest)
           throws RGuestException;
+
+    @POST
+    @Path(APPLICABLE_ARC_RULE_BULK)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    Map<String, AutoRecurringChargeRuleResponse> getApplicableArcRuleForRatesAndRooms(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          BulkAutoRecurringRuleRequest bulkAutoRecurringRuleRequest) throws RGuestException;
 
     @DELETE
     @Path(ITEM_ID_PATH)
