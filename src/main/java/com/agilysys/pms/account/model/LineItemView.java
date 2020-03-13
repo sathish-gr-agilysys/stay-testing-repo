@@ -113,6 +113,17 @@ public class LineItemView implements Comparable<LineItemView> {
         compLineItems = new ArrayList<>();
     }
 
+    public LineItemView(String id, String description, String itemId, DateTime postingCalendarDateTime,
+          LocalDate postingPropertyDate, String reason, BigDecimal amountUsed) {
+        this.id = id;
+        this.description = description;
+        this.itemId = itemId;
+        this.postingCalendarDateTime = postingCalendarDateTime;
+        this.postingPropertyDate = postingPropertyDate;
+        this.reason = reason;
+        this.amountUsed = amountUsed;
+    }
+
     /**
      * @return the ID of the LineItem
      */
