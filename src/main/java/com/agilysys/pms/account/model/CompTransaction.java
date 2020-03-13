@@ -19,8 +19,24 @@ public class CompTransaction {
     public CompTransaction() {}
 
     public enum RedemptionType {
-        PLAYER_POINT,
-        COMP_POINT;
+        PLAYER_POINT("PLAYER", "PLAYER POINTS"),
+        COMP_POINT("CMP", "COMP POINTS");
+
+        String desc;
+        String shortDesc;
+
+        RedemptionType(String shortDesc, String desc) {
+            this.shortDesc = shortDesc;
+            this.desc = desc;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public String getShortDesc() {
+            return shortDesc;
+        }
     }
 
     public String getAuthorizerId() {
