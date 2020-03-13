@@ -142,6 +142,7 @@ public interface AccountServiceInterfaceV1 {
     String APPLY_PAYMENTS = "/applyPayments";
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
+    String MULTIPLE_CHARGES = "/multipleCharges";
     String BATCH_FOLIO_EMAIL = "/batchFolioEmail";
     String BATCH_FOLIO_PATH = "/batchFolios";
     String BATCH_FOLIO_PRINT = "/batchPrintFolio";
@@ -504,6 +505,14 @@ public interface AccountServiceInterfaceV1 {
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
           @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges) throws RGuestException;
+
+    @POST
+    @Path(MULTIPLE_CHARGES)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<PostChargesResponse> postMultipleCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("ignoreAuth") boolean ignoreAuth,
+          @QueryParam(GROUPED) boolean grouped, Map<String, PostChargesRequest> accountChargesMap)
+          throws RGuestException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are
