@@ -18,6 +18,9 @@ public class Charge extends Transaction {
     private String autoRecurringItemId;
     private boolean notGrouped;
 
+    //charge + tax should match this expectedGrossAmount
+    private BigDecimal expectedGrossAmount;
+
     public Charge() {}
 
     public Charge(BigDecimal amount, String descriptionOverride, String folioId, int quantity, boolean notGrouped,
@@ -70,6 +73,14 @@ public class Charge extends Transaction {
         this.notGrouped = notGrouped;
     }
 
+    public BigDecimal getExpectedGrossAmount() {
+        return expectedGrossAmount;
+    }
+
+    public void setExpectedGrossAmount(BigDecimal expectedGrossAmount) {
+        this.expectedGrossAmount = expectedGrossAmount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -88,7 +99,8 @@ public class Charge extends Transaction {
               Objects.equal(recurringChargeId, that.recurringChargeId) &&
               Objects.equal(transactionItemType, that.transactionItemType) &&
               Objects.equal(autoRecurringItemId, that.autoRecurringItemId) &&
-              Objects.equal(notGrouped, that.notGrouped);
+              Objects.equal(notGrouped, that.notGrouped) &&
+              Objects.equal(expectedGrossAmount, that.expectedGrossAmount);
     }
 
     @Override
