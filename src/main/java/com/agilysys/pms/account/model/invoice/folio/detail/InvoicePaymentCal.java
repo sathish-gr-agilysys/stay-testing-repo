@@ -4,11 +4,13 @@
 package com.agilysys.pms.account.model.invoice.folio;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-public class InvoicePaymentBalance {
+public class InvoicePaymentCal {
 
     private String id;
     private String accountId;
@@ -23,12 +25,38 @@ public class InvoicePaymentBalance {
     private LocalDate appliedOnPropertyDate;
     private DateTime appliedOnSystemDateTime;
     private String userId;
-    private Boolean fullAmountApplied;
-    private Boolean unAppliedAmountUsed;
-    private BigDecimal subTotal;
-    private BigDecimal total;
 
-    public InvoicePaymentBalance() {
+    public boolean isFullAmountApplied() {
+        return fullAmountApplied;
+    }
+
+    public void setFullAmountApplied(boolean fullAmountApplied) {
+        this.fullAmountApplied = fullAmountApplied;
+    }
+
+    private boolean fullAmountApplied;
+    private Boolean unAppliedAmountUsed;
+    private List<InvoicePaymentCal> refunds;
+
+    public InvoiceBalance getBalance() {
+        return balance;
+    }
+
+    public void setBalance(InvoiceBalance balance) {
+        this.balance = balance;
+    }
+
+    private InvoiceBalance balance;
+
+    public InvoicePaymentCal() {
+    }
+
+    public List<InvoicePaymentCal> getRefunds() {
+        return refunds;
+    }
+
+    public void setRefunds(List<InvoicePaymentCal> refunds) {
+        this.refunds = refunds;
     }
 
     public String getAccountId() {
@@ -61,14 +89,6 @@ public class InvoicePaymentBalance {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
     }
 
     public String getId() {
@@ -143,13 +163,6 @@ public class InvoicePaymentBalance {
         this.userId = userId;
     }
 
-    public Boolean getFullAmountApplied() {
-        return fullAmountApplied;
-    }
-
-    public void setFullAmountApplied(boolean fullAmountApplied) {
-        this.fullAmountApplied = fullAmountApplied;
-    }
 
     public Boolean getUnAppliedAmountUsed() {
         return unAppliedAmountUsed;
@@ -159,15 +172,7 @@ public class InvoicePaymentBalance {
         this.unAppliedAmountUsed = unAppliedAmountUsed;
     }
 
-    public BigDecimal getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(BigDecimal subTotal) {
-        this.subTotal = subTotal;
-    }
-
-    public InvoicePaymentBalance(InvoicePaymentBalance invoicePaymentBalance, BigDecimal amount) {
+    public InvoicePaymentCal(InvoicePaymentBalance invoicePaymentBalance, BigDecimal amount) {
         this.id = invoicePaymentBalance.getId();
         this.accountId = invoicePaymentBalance.getAccountId();
         this.invoiceNumber = invoicePaymentBalance.getInvoiceNumber();
@@ -182,9 +187,37 @@ public class InvoicePaymentBalance {
         this.userId = invoicePaymentBalance.getUserId();
         this.fullAmountApplied = invoicePaymentBalance.getFullAmountApplied();
         this.unAppliedAmountUsed = invoicePaymentBalance.getUnAppliedAmountUsed();
-        this.subTotal = invoicePaymentBalance.getSubTotal();
-        this.total = invoicePaymentBalance.getTotal();
+
 
     }
 
+    public static class InvoiceBalance {
+        public static final String SUBTOTAL_FIELD = "st";
+        public static final String TOTAL_FIELD = "t";
+        @Field(SUBTOTAL_FIELD)
+        private BigDecimal subtotal;
+        @Field(TOTAL_FIELD)
+        private BigDecimal total;
+
+        public InvoiceBalance(BigDecimal subtotal, BigDecimal total) {
+            this.subtotal = subtotal;
+            this.total = total;
+        }
+
+        public BigDecimal getSubtotal() {
+            return subtotal;
+        }
+
+        public void setSubtotal(BigDecimal subtotal) {
+            this.subtotal = subtotal;
+        }
+
+        public BigDecimal getTotal() {
+            return total;
+        }
+
+        public void setTotal(BigDecimal total) {
+            this.total = total;
+        }
+    }
 }
