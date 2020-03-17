@@ -109,6 +109,7 @@ import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
 import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
+import com.agilysys.pms.account.model.invoice.folio.InvoicePaymentBalance;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
@@ -833,6 +834,19 @@ public interface AccountServiceInterfaceV1 {
     InvoiceView getInvoiceById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("") InvoiceOptionalParams optionalParams) throws RGuestException;
+
+    @POST
+    @Path("/invoiceBalance")
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoicePaymentBalance> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, Set<String> accountIds) throws RGuestException;
+
+    @GET
+    @Path("/findByUnAppliedAmountUsed")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> findAccountsByUnAppliedAmountUsed(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
