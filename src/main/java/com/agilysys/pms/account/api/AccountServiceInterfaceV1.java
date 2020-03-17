@@ -53,6 +53,7 @@ import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
 import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.CompTransaction;
+import com.agilysys.pms.account.model.CompanyInfo;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
@@ -845,7 +846,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path("/findByUnAppliedAmountUsed")
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountSummary> findAccountsByUnAppliedAmountUsed(@PathParam(TENANT_ID) String tenantId,
+    List<CompanyInfo> findAccountsByUnAppliedAmountUsed(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @GET
