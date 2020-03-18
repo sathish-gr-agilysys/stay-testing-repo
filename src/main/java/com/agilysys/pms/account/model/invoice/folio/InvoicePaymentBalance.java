@@ -25,8 +25,8 @@ public class InvoicePaymentBalance {
     private String userId;
     private Boolean fullAmountApplied;
     private Boolean unAppliedAmountUsed;
-    private BigDecimal subTotal;
-    private BigDecimal total;
+    private BigDecimal invoiceTotal;
+    private BigDecimal invoiceBalance;
 
     public InvoicePaymentBalance() {
     }
@@ -151,20 +151,20 @@ public class InvoicePaymentBalance {
         this.unAppliedAmountUsed = unAppliedAmountUsed;
     }
 
-    public BigDecimal getSubTotal() {
-        return subTotal;
+    public BigDecimal getInvoiceTotal() {
+        return invoiceTotal;
     }
 
-    public void setSubTotal(BigDecimal subTotal) {
-        this.subTotal = subTotal;
+    public void setInvoiceTotal(BigDecimal invoiceTotal) {
+        this.invoiceTotal = invoiceTotal;
     }
 
-    public BigDecimal getTotal() {
-        return total;
+    public BigDecimal getInvoiceBalance() {
+        return invoiceBalance;
     }
 
-    public void setTotal(BigDecimal total) {
-        this.total = total;
+    public void setInvoiceBalance(BigDecimal invoiceBalance) {
+        this.invoiceBalance = invoiceBalance;
     }
 
     public InvoicePaymentBalance(InvoicePaymentBalance invoicePaymentBalance, BigDecimal amount) {
@@ -182,8 +182,8 @@ public class InvoicePaymentBalance {
         this.userId = invoicePaymentBalance.getUserId();
         this.fullAmountApplied = invoicePaymentBalance.getFullAmountApplied();
         this.unAppliedAmountUsed = invoicePaymentBalance.getUnAppliedAmountUsed();
-        this.subTotal = invoicePaymentBalance.getSubTotal();
-        this.total = invoicePaymentBalance.getTotal();
+        this.invoiceTotal = invoicePaymentBalance.getInvoiceTotal();
+        this.invoiceBalance = invoicePaymentBalance.getInvoiceBalance();
 
     }
 }
