@@ -38,6 +38,7 @@ import com.agilysys.pms.account.model.AccountDetail;
 import com.agilysys.pms.account.model.AccountSearchResult;
 import com.agilysys.pms.account.model.AccountStatementResponse;
 import com.agilysys.pms.account.model.AccountStatementsRequest;
+import com.agilysys.pms.account.model.AccountStatus;
 import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
@@ -847,7 +848,8 @@ public interface AccountServiceInterfaceV1 {
     @Path("/findByUnAppliedAmountUsed")
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<CompanyInfo> findAccountsByUnAppliedAmountUsed(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("accountStatus") AccountStatus accountStatus)
+          throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)

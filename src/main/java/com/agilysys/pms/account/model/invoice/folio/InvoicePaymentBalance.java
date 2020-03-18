@@ -31,6 +31,14 @@ public class InvoicePaymentBalance {
     public InvoicePaymentBalance() {
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getAccountId() {
         return accountId;
     }
@@ -61,22 +69,6 @@ public class InvoicePaymentBalance {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getFolioLineItemId() {
@@ -147,7 +139,7 @@ public class InvoicePaymentBalance {
         return fullAmountApplied;
     }
 
-    public void setFullAmountApplied(boolean fullAmountApplied) {
+    public void setFullAmountApplied(Boolean fullAmountApplied) {
         this.fullAmountApplied = fullAmountApplied;
     }
 
@@ -165,6 +157,14 @@ public class InvoicePaymentBalance {
 
     public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public InvoicePaymentBalance(InvoicePaymentBalance invoicePaymentBalance, BigDecimal amount) {
@@ -186,5 +186,4 @@ public class InvoicePaymentBalance {
         this.total = invoicePaymentBalance.getTotal();
 
     }
-
 }

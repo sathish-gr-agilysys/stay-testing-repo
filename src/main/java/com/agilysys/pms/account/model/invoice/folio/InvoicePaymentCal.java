@@ -25,38 +25,48 @@ public class InvoicePaymentCal {
     private LocalDate appliedOnPropertyDate;
     private DateTime appliedOnSystemDateTime;
     private String userId;
-
-    public boolean isFullAmountApplied() {
-        return fullAmountApplied;
-    }
-
-    public void setFullAmountApplied(boolean fullAmountApplied) {
-        this.fullAmountApplied = fullAmountApplied;
-    }
-
     private boolean fullAmountApplied;
     private Boolean unAppliedAmountUsed;
     private List<InvoicePaymentCal> refunds;
-
-    public InvoiceBalance getBalance() {
-        return balance;
-    }
-
-    public void setBalance(InvoiceBalance balance) {
-        this.balance = balance;
-    }
-
     private InvoiceBalance balance;
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    private String total;
 
     public InvoicePaymentCal() {
     }
 
-    public List<InvoicePaymentCal> getRefunds() {
-        return refunds;
+    public InvoicePaymentCal(InvoicePaymentBalance invoicePaymentBalance, BigDecimal amount) {
+        this.id = invoicePaymentBalance.getId();
+        this.accountId = invoicePaymentBalance.getAccountId();
+        this.invoiceNumber = invoicePaymentBalance.getInvoiceNumber();
+        this.invoiceDate = invoicePaymentBalance.getInvoiceDate();
+        this.folioLineItemId = invoicePaymentBalance.getFolioLineItemId();
+        this.paymentMethodId = invoicePaymentBalance.getPaymentMethodId();
+        this.paymentMethodName = invoicePaymentBalance.getPaymentMethodName();
+        this.lineItemPostingDate = invoicePaymentBalance.getLineItemPostingDate();
+        this.lineItemPostingSystemDateTime = invoicePaymentBalance.getLineItemPostingSystemDateTime();
+        this.appliedOnPropertyDate = invoicePaymentBalance.getAppliedOnPropertyDate();
+        this.appliedOnSystemDateTime = invoicePaymentBalance.getAppliedOnSystemDateTime();
+        this.userId = invoicePaymentBalance.getUserId();
+        this.fullAmountApplied = invoicePaymentBalance.getFullAmountApplied();
+        this.unAppliedAmountUsed = invoicePaymentBalance.getUnAppliedAmountUsed();
+
     }
 
-    public void setRefunds(List<InvoicePaymentCal> refunds) {
-        this.refunds = refunds;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAccountId() {
@@ -89,14 +99,6 @@ public class InvoicePaymentCal {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getFolioLineItemId() {
@@ -163,6 +165,13 @@ public class InvoicePaymentCal {
         this.userId = userId;
     }
 
+    public boolean isFullAmountApplied() {
+        return fullAmountApplied;
+    }
+
+    public void setFullAmountApplied(boolean fullAmountApplied) {
+        this.fullAmountApplied = fullAmountApplied;
+    }
 
     public Boolean getUnAppliedAmountUsed() {
         return unAppliedAmountUsed;
@@ -172,23 +181,20 @@ public class InvoicePaymentCal {
         this.unAppliedAmountUsed = unAppliedAmountUsed;
     }
 
-    public InvoicePaymentCal(InvoicePaymentBalance invoicePaymentBalance, BigDecimal amount) {
-        this.id = invoicePaymentBalance.getId();
-        this.accountId = invoicePaymentBalance.getAccountId();
-        this.invoiceNumber = invoicePaymentBalance.getInvoiceNumber();
-        this.invoiceDate = invoicePaymentBalance.getInvoiceDate();
-        this.folioLineItemId = invoicePaymentBalance.getFolioLineItemId();
-        this.paymentMethodId = invoicePaymentBalance.getPaymentMethodId();
-        this.paymentMethodName = invoicePaymentBalance.getPaymentMethodName();
-        this.lineItemPostingDate = invoicePaymentBalance.getLineItemPostingDate();
-        this.lineItemPostingSystemDateTime = invoicePaymentBalance.getLineItemPostingSystemDateTime();
-        this.appliedOnPropertyDate = invoicePaymentBalance.getAppliedOnPropertyDate();
-        this.appliedOnSystemDateTime = invoicePaymentBalance.getAppliedOnSystemDateTime();
-        this.userId = invoicePaymentBalance.getUserId();
-        this.fullAmountApplied = invoicePaymentBalance.getFullAmountApplied();
-        this.unAppliedAmountUsed = invoicePaymentBalance.getUnAppliedAmountUsed();
+    public List<InvoicePaymentCal> getRefunds() {
+        return refunds;
+    }
 
+    public void setRefunds(List<InvoicePaymentCal> refunds) {
+        this.refunds = refunds;
+    }
 
+    public InvoiceBalance getBalance() {
+        return balance;
+    }
+
+    public void setBalance(InvoiceBalance balance) {
+        this.balance = balance;
     }
 
     public static class InvoiceBalance {
