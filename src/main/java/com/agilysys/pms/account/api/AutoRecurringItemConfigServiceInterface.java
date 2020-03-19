@@ -5,7 +5,6 @@ package com.agilysys.pms.account.api;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -49,6 +48,8 @@ public interface AutoRecurringItemConfigServiceInterface {
     String RULE_BY_ACCOUNTS = "/ruleBYAccounts";
     String PRIORITIZE_ORDER = "/priorityOrder";
     String PRINT_OR_EMAIL = "/printOrEmailConfig";
+    String SHARE_ID = "shareId";
+    String SHARE_PATH = "/share/{" + SHARE_ID + "}";
 
     @GET
     @Path(ITEM_ID_PATH)
@@ -165,4 +166,10 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     AutoRecurringChargesPrintOrEmail updatePrintEmailConfig(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPrintOrEmail printOrEmail);
+
+    @PUT
+    @Path(SHARE_PATH)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    public void updateArcItemsForSharedReservations(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(SHARE_ID) String shareId);
 }
