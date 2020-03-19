@@ -1,14 +1,14 @@
 /**
  * (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
-package com.agilysys.pms.account.model.invoice.folio;
+package com.agilysys.pms.account.model.invoice;
 
 import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-public class InvoicePaymentBalance {
+public class InvoicePaymentReport {
 
     private String id;
     private String accountId;
@@ -28,7 +28,7 @@ public class InvoicePaymentBalance {
     private BigDecimal invoiceTotal;
     private BigDecimal invoiceBalance;
 
-    public InvoicePaymentBalance() {
+    public InvoicePaymentReport() {
     }
 
     public String getId() {
@@ -167,7 +167,7 @@ public class InvoicePaymentBalance {
         this.invoiceBalance = invoiceBalance;
     }
 
-    public InvoicePaymentBalance(InvoicePaymentBalance invoicePaymentBalance, BigDecimal amount) {
+    public InvoicePaymentReport(InvoicePaymentReport invoicePaymentBalance, BigDecimal amount) {
         this.id = invoicePaymentBalance.getId();
         this.accountId = invoicePaymentBalance.getAccountId();
         this.invoiceNumber = invoicePaymentBalance.getInvoiceNumber();

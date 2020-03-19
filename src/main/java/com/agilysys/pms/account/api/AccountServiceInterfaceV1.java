@@ -109,9 +109,9 @@ import com.agilysys.pms.account.model.UpdateFolioInvoicesRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
+import com.agilysys.pms.account.model.invoice.InvoicePaymentReport;
 import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
-import com.agilysys.pms.account.model.invoice.folio.InvoicePaymentBalance;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
 import com.agilysys.pms.common.model.CollectionResponse;
@@ -840,7 +840,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path("/invoiceBalance")
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    List<InvoicePaymentBalance> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
+    Map<String, Map<String, List<InvoicePaymentReport>>> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> accountIds) throws RGuestException;
 
