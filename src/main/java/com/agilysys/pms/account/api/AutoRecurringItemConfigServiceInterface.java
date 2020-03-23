@@ -170,6 +170,6 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PUT
     @Path(SHARE_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public void updateArcItemsForSharedReservations(@PathParam(TENANT_ID) String tenantId,
+    public void updateArcPerRoomItemsByShareId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SHARE_ID) String shareId);
 }
