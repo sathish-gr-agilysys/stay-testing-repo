@@ -32,6 +32,7 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
+import com.agilysys.pms.account.api.params.InvoicePaymentRequest;
 import com.agilysys.pms.account.model.ARDepositView;
 import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
@@ -842,7 +843,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     Map<String, Map<String, List<InvoicePaymentReport>>> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate, Set<String> accountIds) throws RGuestException;
+          @QueryParam(END_DATE) LocalDate endDate, InvoicePaymentRequest invoicePaymentRequest) throws RGuestException;
 
     @GET
     @Path("/findByUnAppliedAmountUsed")
