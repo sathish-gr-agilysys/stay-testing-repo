@@ -15,7 +15,7 @@ public class CompTransaction {
     private String playerOrCardId;
     private String authorizerCode;
     private List<CompRedeemRequest> compRedeemRequests;
-    private RedemptionType redemptionType;
+    private String redemptionType;
 
     public CompTransaction() {}
 
@@ -88,11 +88,11 @@ public class CompTransaction {
         this.compRedeemRequests = compRedeemRequests;
     }
 
-    public RedemptionType getRedemptionType() {
+    public String getRedemptionType() {
         return redemptionType;
     }
 
-    public void setRedemptionType(RedemptionType redemptionType) {
+    public void setRedemptionType(String redemptionType) {
         this.redemptionType = redemptionType;
     }
 }
