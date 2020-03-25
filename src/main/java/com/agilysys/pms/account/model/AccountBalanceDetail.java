@@ -10,6 +10,8 @@ public class AccountBalanceDetail extends AccountSummary {
     private Map<String, FolioBalance> folioBalances;
     private BigDecimal depositBalance;
 
+    private boolean postingRule;
+
     /**
      * Get accountBalance
      *
@@ -60,5 +62,13 @@ public class AccountBalanceDetail extends AccountSummary {
 
     public void setDepositBalance(BigDecimal depositBalance) {
         this.depositBalance = depositBalance;
+    }
+
+    public boolean isPostingRule() {
+        return postingRule;
+    }
+
+    public void setPostingRule(boolean postingRule) {
+        this.postingRule = postingRule;
     }
 }
