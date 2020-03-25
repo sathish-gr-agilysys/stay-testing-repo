@@ -100,6 +100,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean reverseRedemptionComp;
     private CompType compTransactionType;
     private Boolean excludeTax;
+    private String roomId;
     private ARPaymentStatus arPaymentStatus;
     private BigDecimal amountUsed;
     private BigDecimal lineItemDepositBalance;
@@ -967,6 +968,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setExcludeTax(Boolean excludeTax) {
         this.excludeTax = excludeTax;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
     public ARPaymentStatus getArPaymentStatus() {
