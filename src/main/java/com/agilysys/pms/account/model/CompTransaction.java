@@ -19,15 +19,20 @@ public class CompTransaction {
     public CompTransaction() {}
 
     public enum RedemptionType {
-        PNT("PATRON", "PATRON POINTS"),
-        CMP("COMP", "CASINO COMP");
+        PLAYER_POINT("PNT", "PLAYER", "PLAYER POINTS"),
+        COMP_POINT("CMP", "COMP", "COMP POINTS");
 
+        String bankCode;
         String desc;
         String shortDesc;
 
-        RedemptionType(String shortDesc, String desc) {
+        RedemptionType(String bankCode, String shortDesc, String desc) {
             this.shortDesc = shortDesc;
             this.desc = desc;
+        }
+
+        public String getBankCode() {
+            return bankCode;
         }
 
         public String getDesc() {
