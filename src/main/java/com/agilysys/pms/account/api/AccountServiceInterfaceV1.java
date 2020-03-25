@@ -841,7 +841,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path("/invoiceBalance")
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
-    Map<String, Map<String, List<InvoicePaymentReport>>> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
+    List<InvoicePaymentReport> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, InvoicePaymentRequest invoicePaymentRequest) throws RGuestException;
 
