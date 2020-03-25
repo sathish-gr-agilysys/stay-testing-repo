@@ -54,6 +54,7 @@ public class AutoRecurringItem extends AccountingObjectBase {
     private String description;
 
     private ComponentType applicableFor;
+    public static final String APPLICABLE_FOR_FIELD = "applicableFor";
 
     public AutoRecurringItem(){
         this.status = CanonicalId.INACTIVE;

@@ -55,6 +55,7 @@ public class RecurringChargeView {
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
     private String autoRecurringItemId;
+    private AutoRecurringItem autoRecurringItemSnapshot;
     private String autoRecurringRuleId;
     private boolean addQuantityToAllocation;
 
@@ -290,6 +291,14 @@ public class RecurringChargeView {
 
     public void setAutoRecurringItemId(String autoRecurringItemId) {
         this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public AutoRecurringItem getAutoRecurringItemSnapshot() {
+        return autoRecurringItemSnapshot;
+    }
+
+    public void setAutoRecurringItemSnapshot(AutoRecurringItem autoRecurringItemSnapshot) {
+        this.autoRecurringItemSnapshot = autoRecurringItemSnapshot;
     }
 
     public String getAutoRecurringRuleId() {
