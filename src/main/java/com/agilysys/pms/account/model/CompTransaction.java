@@ -27,6 +27,7 @@ public class CompTransaction {
         String shortDesc;
 
         RedemptionType(String bankCode, String shortDesc, String desc) {
+            this.bankCode = bankCode;
             this.shortDesc = shortDesc;
             this.desc = desc;
         }
