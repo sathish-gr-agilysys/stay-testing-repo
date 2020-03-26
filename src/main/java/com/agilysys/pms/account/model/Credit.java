@@ -10,7 +10,7 @@ package com.agilysys.pms.account.model;
  * href="http://confluence.bellevue.ad.local/display/VICTRIAL/Charge+Object">Confluence:
  * Credit Object</a>
  */
-public class Credit extends Transaction {
+public class Credit extends TaxableTransaction {
     private TransactionItemType transactionItemType;
 
     public TransactionItemType getTransactionItemType() {
