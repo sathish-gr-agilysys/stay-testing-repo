@@ -10,7 +10,6 @@ import org.joda.time.LocalDate;
 
 public class InvoicePaymentReport {
 
-    private String id;
     private String accountId;
     private String invoiceNumber;
     private LocalDate invoiceDate;
@@ -38,13 +37,12 @@ public class InvoicePaymentReport {
     public InvoicePaymentReport() {
     }
 
-    public InvoicePaymentReport(String id, String accountId, String invoiceNumber, LocalDate invoiceDate,
-          BigDecimal amount, String folioLineItemId, BigDecimal lineItemAmount, String paymentMethodId,
-          String paymentMethodName, LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime,
-          LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime, String reason, String userId,
-          Boolean fullAmountApplied, Boolean unAppliedAmountUsed, BigDecimal invoiceTotal, BigDecimal invoiceBalance,
-          String companyId, String companyName, BigDecimal creditLimit, String accountNumber, String contactId) {
-        this.id = id;
+    public InvoicePaymentReport(String accountId, String invoiceNumber, LocalDate invoiceDate, BigDecimal amount,
+          String folioLineItemId, BigDecimal lineItemAmount, String paymentMethodId, String paymentMethodName,
+          LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
+          DateTime appliedOnSystemDateTime, String reason, String userId, Boolean fullAmountApplied,
+          Boolean unAppliedAmountUsed, BigDecimal invoiceTotal, BigDecimal invoiceBalance, String companyId,
+          String companyName, BigDecimal creditLimit, String accountNumber, String contactId) {
         this.accountId = accountId;
         this.invoiceNumber = invoiceNumber;
         this.invoiceDate = invoiceDate;
@@ -68,14 +66,6 @@ public class InvoicePaymentReport {
         this.creditLimit = creditLimit;
         this.accountNumber = accountNumber;
         this.contactId = contactId;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getAccountId() {
