@@ -3,13 +3,16 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.agilysys.common.template.TemplateData;
 import org.joda.time.LocalDate;
 
 import com.agilysys.platform.user.model.Property;
 
-public class FolioInvoiceResponse {
+public class FolioInvoiceResponse implements TemplateData {
 
     private FolioInvoiceReservation folioInvoiceReservation;
     private FolioInvoiceAllocation folioInvoiceAllocation;
@@ -19,8 +22,8 @@ public class FolioInvoiceResponse {
     private String companyId;
     private String companyName;
     private String vatNumber;
-    private String taxPoint;
-    private String taxDate;
+    private LocalDate taxPoint;
+    private LocalDate taxDate;
     private List<FolioInvoiceSummary> folioInvoiceSummaries;
     private String accountType;
     private boolean showGuestInfo;
@@ -93,19 +96,19 @@ public class FolioInvoiceResponse {
         this.vatNumber = vatNumber;
     }
 
-    public String getTaxPoint() {
+    public LocalDate getTaxPoint() {
         return taxPoint;
     }
 
-    public void setTaxPoint(String taxPoint) {
+    public void setTaxPoint(LocalDate taxPoint) {
         this.taxPoint = taxPoint;
     }
 
-    public String getTaxDate() {
+    public LocalDate getTaxDate() {
         return taxDate;
     }
 
-    public void setTaxDate(String taxDate) {
+    public void setTaxDate(LocalDate taxDate) {
         this.taxDate = taxDate;
     }
 
@@ -235,5 +238,21 @@ public class FolioInvoiceResponse {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    @Override
+    public Map<String, Object> rawFields() {
+        Map<String, Object> rawFieldMap = new HashMap<>(3);
+        if (taxDate != null) {
+            rawFieldMap.put(TemplateData.rawField("taxDate"), taxDate);
+        }
+        if (taxPoint != null) {
+            rawFieldMap.put(TemplateData.rawField("taxPoint"), taxPoint);
+        }
+        if (reportDate != null) {
+            rawFieldMap.put(TemplateData.rawField("reportDate"), reportDate);
+        }
+
+        return rawFieldMap;
     }
 }
