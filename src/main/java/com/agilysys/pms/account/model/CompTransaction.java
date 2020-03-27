@@ -19,8 +19,8 @@ public class CompTransaction {
     public CompTransaction() {}
 
     public enum RedemptionType {
-        PLAYER_POINT("PNT", "PLAYER", "PLAYER POINTS"),
-        COMP_POINT("CMP", "COMP", "COMP POINTS");
+        PLAYER_POINT("PNT", "PLAYER", "PLAYER BALANCE"),
+        COMP_POINT("CMP", "COMP", "COMP BALANCE");
 
         String bankCode;
         String desc;
