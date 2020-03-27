@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
+
 /**
  * A Credit posted to an account
  *
@@ -19,5 +21,15 @@ public class Credit extends TaxableTransaction {
 
     public void setTransactionItemType(TransactionItemType transactionItemType) {
         this.transactionItemType = transactionItemType;
+    }
+
+    @Override
+    public BigDecimal getExpectedGrossAmount() {
+        BigDecimal expectedGrossAmount = super.getExpectedGrossAmount();
+        if (expectedGrossAmount != null) {
+            return expectedGrossAmount.negate();
+        }
+
+        return expectedGrossAmount;
     }
 }
