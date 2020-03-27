@@ -26,7 +26,7 @@ public class Credit extends TaxableTransaction {
     @Override
     public BigDecimal getExpectedGrossAmount() {
         BigDecimal expectedGrossAmount = super.getExpectedGrossAmount();
-        if (expectedGrossAmount != null) {
+        if (expectedGrossAmount != null && expectedGrossAmount.compareTo(BigDecimal.ZERO) > 0) {
             return expectedGrossAmount.negate();
         }
 
