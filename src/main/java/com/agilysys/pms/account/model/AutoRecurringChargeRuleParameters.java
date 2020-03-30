@@ -8,6 +8,7 @@ import java.util.Set;
 public class AutoRecurringChargeRuleParameters {
 
     private Set<String> accountIds;
+    private String modifySharedArc;
     private String overriddenRuleId;
 
     public AutoRecurringChargeRuleParameters() {}
@@ -23,6 +24,14 @@ public class AutoRecurringChargeRuleParameters {
 
     public void setAccountIds(Set<String> accountIds) {
         this.accountIds = accountIds;
+    }
+
+    public String getModifySharedArc() {
+        return modifySharedArc;
+    }
+
+    public void setModifySharedArc(String modifySharedArc) {
+        this.modifySharedArc = modifySharedArc;
     }
 
     public String getOverriddenRuleId() {
