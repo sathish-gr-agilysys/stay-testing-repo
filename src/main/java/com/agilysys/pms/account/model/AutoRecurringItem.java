@@ -21,39 +21,39 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @AuditEntity(EntityTypes.AUTO_RECURRING_ITEM)
 public class AutoRecurringItem extends AccountingObjectBase {
-    private static final String DISPLAY_NAME = "Auto-Recurring item";
+    protected static final String DISPLAY_NAME = "Auto-Recurring item";
 
     @JsonProperty(required = true)
-    private BigDecimal value;
+    protected BigDecimal value;
 
     @JsonProperty(required = true)
-    ValueType valueType = ValueType.AMOUNT;
+    protected ValueType valueType = ValueType.AMOUNT;
 
-    RateCalculationBaseType basedOn = RateCalculationBaseType.NIGHTLY_ROOM_CHARGE;
+    protected RateCalculationBaseType basedOn = RateCalculationBaseType.NIGHTLY_ROOM_CHARGE;
 
     @JsonProperty(required = true)
     @AuditField(name = "defaultSource", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
-    private String defaultSourceId;
+    protected String defaultSourceId;
 
     @JsonProperty(required = true)
-    private FrequencyType frequencyType;
+    protected FrequencyType frequencyType;
 
-    private Set<Integer> occurrenceDays;
+    protected Set<Integer> occurrenceDays;
 
     @JsonProperty(required = true)
     @AuditField(name = "parentTransactionItem", references = EntityTypes.TRANSACTION_ITEM)
-    private String parentTransactionItemId;
+    protected String parentTransactionItemId;
 
-    private CanonicalId status;
-    private int nNights;
+    protected CanonicalId status;
+    protected int nNights;
 
     @JsonProperty(required = true)
-    private LocalDate startDate;
+    protected LocalDate startDate;
 
-    private LocalDate endDate;
-    private String description;
+    protected LocalDate endDate;
+    protected String description;
 
-    private ComponentType applicableFor;
+    protected ComponentType applicableFor;
     public static final String APPLICABLE_FOR_FIELD = "applicableFor";
 
     public AutoRecurringItem(){
