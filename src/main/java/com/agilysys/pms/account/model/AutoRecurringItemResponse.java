@@ -7,6 +7,7 @@ public class AutoRecurringItemResponse extends AutoRecurringItem {
     }
 
     public AutoRecurringItemResponse(AutoRecurringItem autoRecurringItem) {
+        this();
         this.id = autoRecurringItem.getId();
         this.value = autoRecurringItem.getValue();
         this.valueType = autoRecurringItem.getValueType();
