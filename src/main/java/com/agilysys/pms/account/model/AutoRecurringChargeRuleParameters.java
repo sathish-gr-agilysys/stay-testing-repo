@@ -8,14 +8,18 @@ import java.util.Set;
 public class AutoRecurringChargeRuleParameters {
 
     private Set<String> accountIds;
-    private String recalculateSharedArc;
     private String overriddenRuleId;
+    private boolean reCalculateShare;
+    private Set<String> shareIds;
 
     public AutoRecurringChargeRuleParameters() {}
 
-    public AutoRecurringChargeRuleParameters(Set<String> accountIds, String overriddenRuleId) {
+    public AutoRecurringChargeRuleParameters(Set<String> accountIds, String overriddenRuleId, Set<String> shareIds,
+          boolean reCalculateShare) {
         this.accountIds = accountIds;
         this.overriddenRuleId = overriddenRuleId;
+        this.shareIds = shareIds;
+        this.reCalculateShare = reCalculateShare;
     }
 
     public Set<String> getAccountIds() {
@@ -26,19 +30,27 @@ public class AutoRecurringChargeRuleParameters {
         this.accountIds = accountIds;
     }
 
-    public String getRecalculateSharedArc() {
-        return recalculateSharedArc;
-    }
-
-    public void setRecalculateSharedArc(String recalculateSharedArc) {
-        this.recalculateSharedArc = recalculateSharedArc;
-    }
-
     public String getOverriddenRuleId() {
         return overriddenRuleId;
     }
 
     public void setOverriddenRuleId(String overriddenRuleId) {
         this.overriddenRuleId = overriddenRuleId;
+    }
+
+    public boolean isReCalculateShare() {
+        return reCalculateShare;
+    }
+
+    public void setReCalculateShare(boolean reCalculateShare) {
+        this.reCalculateShare = reCalculateShare;
+    }
+
+    public Set<String> getShareIds() {
+        return shareIds;
+    }
+
+    public void setShareIds(Set<String> shareIds) {
+        this.shareIds = shareIds;
     }
 }
