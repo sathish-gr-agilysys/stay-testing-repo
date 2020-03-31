@@ -9,7 +9,7 @@ import org.joda.time.LocalDate;
 import com.agilysys.common.model.AutoRecurringChargeRuleType;
 
 public class AutoRecurringChargeRuleResponse {
-    private Map<LocalDate, List<AutoRecurringItem>> activeAutoRecurringItemsByDate;
+    private Map<LocalDate, List<AutoRecurringItemResponse>> activeAutoRecurringItemsByDate;
     private String autoRecurringRuleId;
     private AutoRecurringChargeRuleType autoRecurringRulePriority;
 
@@ -17,12 +17,12 @@ public class AutoRecurringChargeRuleResponse {
         activeAutoRecurringItemsByDate = new HashMap<>();
     }
 
-    public Map<LocalDate, List<AutoRecurringItem>> getActiveAutoRecurringItemsByDate() {
+    public Map<LocalDate, List<AutoRecurringItemResponse>> getActiveAutoRecurringItemsByDate() {
         return activeAutoRecurringItemsByDate;
     }
 
     public void setActiveAutoRecurringItemsByDate(
-          Map<LocalDate, List<AutoRecurringItem>> activeAutoRecurringItemsByDate) {
+          Map<LocalDate, List<AutoRecurringItemResponse>> activeAutoRecurringItemsByDate) {
         this.activeAutoRecurringItemsByDate = activeAutoRecurringItemsByDate;
     }
 
