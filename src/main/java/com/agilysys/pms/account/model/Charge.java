@@ -11,7 +11,7 @@ import com.google.common.base.Objects;
 /**
  * A Charge posted to an account.
  */
-public class Charge extends Transaction {
+public class Charge extends TaxableTransaction {
     private String mealPeriodId;
     private String recurringChargeId;
     private TransactionItemType transactionItemType;
