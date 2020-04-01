@@ -3,12 +3,14 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.common.template.TemplateData;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class FolioInvoiceLineItemView extends FolioViewLineItem {
+public class FolioInvoiceLineItemView extends FolioViewLineItem implements TemplateData {
 
-    private String formattedDisplayDate;
-    private String formattedTotalAmount;
     private String originalBalance;
     private String newBalance;
     private String adjustmentMessage;
@@ -20,7 +22,6 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
     private String creditMessage;
     private String balanceTransferMessage;
     private String transferInMessage;
-    private String formattedUnitAmount;
     private boolean showReason;
     private List<FolioInvoiceLineItemView> adjustmentFolioLineItems;
     private List<FolioInvoiceLineItemView> groupedFolioTaxLineItems;
@@ -28,22 +29,6 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
     private List<FolioInvoiceLineItemView> taxFolioLineItems;
     private FolioInvoiceLineItemView correctionFolioLineItem;
     private FolioInvoiceLineItemView transferFolioLineItem;
-
-    public String getFormattedDisplayDate() {
-        return formattedDisplayDate;
-    }
-
-    public void setFormattedDisplayDate(String formattedDisplayDate) {
-        this.formattedDisplayDate = formattedDisplayDate;
-    }
-
-    public String getFormattedTotalAmount() {
-        return formattedTotalAmount;
-    }
-
-    public void setFormattedTotalAmount(String formattedTotalAmount) {
-        this.formattedTotalAmount = formattedTotalAmount;
-    }
 
     public String getOriginalBalance() {
         return originalBalance;
@@ -133,14 +118,6 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
         this.transferInMessage = transferInMessage;
     }
 
-    public String getFormattedUnitAmount() {
-        return formattedUnitAmount;
-    }
-
-    public void setFormattedUnitAmount(String formattedUnitAmount) {
-        this.formattedUnitAmount = formattedUnitAmount;
-    }
-
     public List<FolioInvoiceLineItemView> getAdjustmentFolioLineItems() {
         return adjustmentFolioLineItems;
     }
@@ -195,5 +172,21 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem {
 
     public void setShowReason(boolean showReason) {
         this.showReason = showReason;
+    }
+
+    @Override
+    public Map<String, Object> rawFields() {
+        Map<String, Object> rawFieldMap = new HashMap<>(3);
+        if (getTotalAmount() != null) {
+            rawFieldMap.put(TemplateData.rawField("totalAmount"), getTotalAmount());
+        }
+        if (getUnitAmount() != null) {
+            rawFieldMap.put(TemplateData.rawField("unitAmount"), getUnitAmount());
+        }
+        if (getDisplayDate() != null) {
+            rawFieldMap.put(TemplateData.rawField("displayDate"), getDisplayDate());
+        }
+
+        return rawFieldMap;
     }
 }
