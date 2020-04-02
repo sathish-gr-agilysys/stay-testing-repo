@@ -16,6 +16,7 @@ public class Charge extends Transaction {
     private String recurringChargeId;
     private TransactionItemType transactionItemType;
     private String autoRecurringItemId;
+    private String autoRecurringRuleId;
     private boolean notGrouped;
 
     public Charge() {}
@@ -54,6 +55,14 @@ public class Charge extends Transaction {
         this.autoRecurringItemId = autoRecurringItemId;
     }
 
+    public String getAutoRecurringRuleId() {
+        return autoRecurringRuleId;
+    }
+
+    public void setAutoRecurringRuleId(String autoRecurringRuleId) {
+        this.autoRecurringRuleId = autoRecurringRuleId;
+    }
+
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
     }
@@ -88,13 +97,14 @@ public class Charge extends Transaction {
               Objects.equal(recurringChargeId, that.recurringChargeId) &&
               Objects.equal(transactionItemType, that.transactionItemType) &&
               Objects.equal(autoRecurringItemId, that.autoRecurringItemId) &&
+              Objects.equal(autoRecurringRuleId, that.autoRecurringRuleId) &&
               Objects.equal(notGrouped, that.notGrouped);
     }
 
     @Override
     public int hashCode() {
         return Objects.hashCode(super.hashCode(), mealPeriodId, quantity, recurringChargeId, transactionItemType,
-              autoRecurringItemId, notGrouped);
+              autoRecurringItemId, autoRecurringRuleId, notGrouped);
     }
 
     @Override

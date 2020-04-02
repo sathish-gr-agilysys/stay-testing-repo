@@ -87,6 +87,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private String autoRecurringRuleId;
     private boolean giftCard;
     private GatewayType gatewayType;
     private boolean reverseTax;
@@ -624,6 +625,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setAutoRecurringItemId(String autoRecurringItemId) {
         this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public String getAutoRecurringRuleId() {
+        return autoRecurringRuleId;
+    }
+
+    public void setAutoRecurringRuleId(String autoRecurringRuleId) {
+        this.autoRecurringRuleId = autoRecurringRuleId;
     }
 
     public String getTransferMessage() {
