@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.common.model.AutoRecurringChargeRulePrintEmailType;
+
 public class AutoRecurringChargesPrintOrEmail extends AccountingObjectBase {
 
     private static final String DISPLAY_NAME = "Auto-Recurring-charge rule priority";
