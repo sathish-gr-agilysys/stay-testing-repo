@@ -45,7 +45,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String APPLICABLE_ARC_RULE = "/applicableArcRule";
     String APPLICABLE_ARC_RULE_BULK = "/applicableArcRuleBulk";
     String RULE = "/rule";
-    String RULE_BY_ACCOUNTS = "/ruleBYAccounts";
+    String RULE_BY_ACCOUNTS = "/ruleByAccounts";
     String PRIORITIZE_ORDER = "/priorityOrder";
     String PRINT_OR_EMAIL = "/printOrEmailConfig";
     String SHARE_ID = "shareId";
