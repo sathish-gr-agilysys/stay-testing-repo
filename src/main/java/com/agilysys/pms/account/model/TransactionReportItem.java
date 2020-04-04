@@ -38,6 +38,7 @@ public class TransactionReportItem {
     private String reason;
     private boolean isRoomRevenue;
     private String autoRecurringItemId;
+    private String autoRecurringRuleId;
     private String sourceId;
     private String mealPeriodId;
     private List<PantryItemDetails> pantryItemDetails;
@@ -249,6 +250,14 @@ public class TransactionReportItem {
 
     public void setAutoRecurringItemId(String autoRecurringItemId) {
         this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public String getAutoRecurringRuleId() {
+        return autoRecurringRuleId;
+    }
+
+    public void setAutoRecurringRuleId(String autoRecurringRuleId) {
+        this.autoRecurringRuleId = autoRecurringRuleId;
     }
 
     public List<PantryItemDetails> getPantryItemDetails() {
