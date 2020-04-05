@@ -16,14 +16,6 @@ public class AutoRecurringChargeRuleParameters {
     public AutoRecurringChargeRuleParameters() {}
 
     public AutoRecurringChargeRuleParameters(Set<String> accountIds, String overriddenRuleId, Set<String> shareIds,
-          boolean reCalculateShare) {
-        this.accountIds = accountIds;
-        this.overriddenRuleId = overriddenRuleId;
-        this.shareIds = shareIds;
-        this.reCalculateShare = reCalculateShare;
-    }
-
-    public AutoRecurringChargeRuleParameters(Set<String> accountIds, String overriddenRuleId, Set<String> shareIds,
           boolean reCalculateShare, boolean assignDefaultArcItem) {
         this.accountIds = accountIds;
         this.overriddenRuleId = overriddenRuleId;
