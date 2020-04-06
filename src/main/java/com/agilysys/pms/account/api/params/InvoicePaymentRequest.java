@@ -21,5 +21,4 @@ public class InvoicePaymentRequest {
     public void setAccountIds(Set<String> accountIds) {
         this.accountIds = accountIds;
     }
-
 }
