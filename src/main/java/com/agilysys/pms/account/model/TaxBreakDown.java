@@ -3,16 +3,17 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.math.BigDecimal;
+import com.agilysys.common.template.TemplateData;
 
-public class TaxBreakDown {
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+
+public class TaxBreakDown implements TemplateData {
     private String taxRule;
     private BigDecimal net;
     private BigDecimal vat;
     private BigDecimal gross;
-    private String formattedNet;
-    private String formattedVat;
-    private String formattedGross;
 
     public TaxBreakDown() {}
 
@@ -55,27 +56,19 @@ public class TaxBreakDown {
         this.gross = gross;
     }
 
-    public String getFormattedNet() {
-        return formattedNet;
-    }
+    @Override
+    public Map<String, Object> rawFields() {
+        Map<String, Object> rawFieldMap = new HashMap<>(3);
+        if (net != null) {
+            rawFieldMap.put(TemplateData.rawField("net"), net);
+        }
+        if (vat != null) {
+            rawFieldMap.put(TemplateData.rawField("vat"), vat);
+        }
+        if (gross != null) {
+            rawFieldMap.put(TemplateData.rawField("gross"), gross);
+        }
 
-    public void setFormattedNet(String formattedNet) {
-        this.formattedNet = formattedNet;
-    }
-
-    public String getFormattedVat() {
-        return formattedVat;
-    }
-
-    public void setFormattedVat(String formattedVat) {
-        this.formattedVat = formattedVat;
-    }
-
-    public String getFormattedGross() {
-        return formattedGross;
-    }
-
-    public void setFormattedGross(String formattedGross) {
-        this.formattedGross = formattedGross;
+        return rawFieldMap;
     }
 }
