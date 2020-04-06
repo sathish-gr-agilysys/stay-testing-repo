@@ -21,6 +21,8 @@ public class ApplyInvoicePaymentRequest {
     private String paymentInstrumentId;
     private String terminalId;
     private String invoiceNumber;
+    private boolean includeDisputes;
+    private String disputeComment;
 
     public void setInvoicePayments(List<InvoicePaymentRequest> invoicePayments) {
         this.invoicePayments = invoicePayments;
@@ -60,5 +62,21 @@ public class ApplyInvoicePaymentRequest {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
+    }
+
+    public boolean isIncludeDisputes() {
+        return includeDisputes;
+    }
+
+    public void setIncludeDisputes(boolean includeDisputes) {
+        this.includeDisputes = includeDisputes;
+    }
+
+    public String getDisputeComment() {
+        return disputeComment;
+    }
+
+    public void setDisputeComment(String disputeComment) {
+        this.disputeComment = disputeComment;
     }
 }

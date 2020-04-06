@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
-        <version>74.1141.0</version>
+        <version>74.1221.0</version>
     </parent>
     <properties>
     </properties>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>payment-interface</artifactId>
-            <version>74.1136.0</version>
+            <version>74.1209.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.1136.0</version>
+            <version>74.1209.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -79,6 +79,12 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms.common</groupId>
+            <artifactId>document-toolkit</artifactId>
+            <version>74.1221.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>

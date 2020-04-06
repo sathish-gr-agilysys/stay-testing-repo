@@ -3,10 +3,14 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.math.BigDecimal;
-import java.util.List;
+import com.agilysys.common.template.TemplateData;
 
-public class FolioInvoiceSummary {
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class FolioInvoiceSummary implements TemplateData {
 
     private String accountId;
     private String folioName;
@@ -19,11 +23,6 @@ public class FolioInvoiceSummary {
     private BigDecimal totalChargesAndTaxesCurrency;
     private BigDecimal totalPaymentsCurrency;
     private BigDecimal totalBalanceCurrency;
-    private String formattedTotalChargesCurrency;
-    private String formattedTotalTaxCurrency;
-    private String formattedTotalChargesAndTaxesCurrency;
-    private String formattedTotalPaymentsCurrency;
-    private String formattedTotalBalanceCurrency;
     private String pageBreakAfter;
     private VATTotalBreakDown vatTotalBreakDown;
     private String folioInvoiceNumber;
@@ -124,46 +123,6 @@ public class FolioInvoiceSummary {
         this.pageBreakAfter = pageBreakAfter;
     }
 
-    public String getFormattedTotalChargesCurrency() {
-        return formattedTotalChargesCurrency;
-    }
-
-    public void setFormattedTotalChargesCurrency(String formattedTotalChargesCurrency) {
-        this.formattedTotalChargesCurrency = formattedTotalChargesCurrency;
-    }
-
-    public String getFormattedTotalTaxCurrency() {
-        return formattedTotalTaxCurrency;
-    }
-
-    public void setFormattedTotalTaxCurrency(String formattedTotalTaxCurrency) {
-        this.formattedTotalTaxCurrency = formattedTotalTaxCurrency;
-    }
-
-    public String getFormattedTotalChargesAndTaxesCurrency() {
-        return formattedTotalChargesAndTaxesCurrency;
-    }
-
-    public void setFormattedTotalChargesAndTaxesCurrency(String formattedTotalChargesAndTaxesCurrency) {
-        this.formattedTotalChargesAndTaxesCurrency = formattedTotalChargesAndTaxesCurrency;
-    }
-
-    public String getFormattedTotalPaymentsCurrency() {
-        return formattedTotalPaymentsCurrency;
-    }
-
-    public void setFormattedTotalPaymentsCurrency(String formattedTotalPaymentsCurrency) {
-        this.formattedTotalPaymentsCurrency = formattedTotalPaymentsCurrency;
-    }
-
-    public String getFormattedTotalBalanceCurrency() {
-        return formattedTotalBalanceCurrency;
-    }
-
-    public void setFormattedTotalBalanceCurrency(String formattedTotalBalanceCurrency) {
-        this.formattedTotalBalanceCurrency = formattedTotalBalanceCurrency;
-    }
-
     public VATTotalBreakDown getVatTotalBreakDown() {
         return vatTotalBreakDown;
     }
@@ -178,5 +137,21 @@ public class FolioInvoiceSummary {
 
     public void setFolioInvoiceNumber(String folioInvoiceNumber) {
         this.folioInvoiceNumber = folioInvoiceNumber;
+    }
+
+    @Override
+    public Map<String, Object> rawFields() {
+        Map<String, Object> rawFieldMap = new HashMap<>(3);
+        if (totalChargesAndTaxesCurrency != null) {
+            rawFieldMap.put(TemplateData.rawField("totalChargesAndTaxesCurrency"), totalChargesAndTaxesCurrency);
+        }
+        if (totalPaymentsCurrency != null) {
+            rawFieldMap.put(TemplateData.rawField("totalPaymentsCurrency"), totalPaymentsCurrency);
+        }
+        if (totalBalanceCurrency != null) {
+            rawFieldMap.put(TemplateData.rawField("totalBalanceCurrency"), totalBalanceCurrency);
+        }
+
+        return rawFieldMap;
     }
 }

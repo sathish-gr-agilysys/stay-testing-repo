@@ -3,12 +3,18 @@
  */
 package com.agilysys.pms.account.model;
 
-public class FolioInvoiceReservation {
+import com.agilysys.common.template.TemplateData;
+import org.joda.time.LocalDate;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class FolioInvoiceReservation implements TemplateData {
 
     private String reservationId;
     private String confirmationCode;
-    private String arrivalDate;
-    private String departureDate;
+    private LocalDate arrivalDate;
+    private LocalDate departureDate;
     private int totalAdults;
     private int totalChildren;
     private int totalAgeCategory1;
@@ -39,19 +45,19 @@ public class FolioInvoiceReservation {
         this.confirmationCode = confirmationCode;
     }
 
-    public String getArrivalDate() {
+    public LocalDate getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(String arrivalDate) {
+    public void setArrivalDate(LocalDate arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public String getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(String departureDate) {
+    public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
 
@@ -157,5 +163,18 @@ public class FolioInvoiceReservation {
 
     public void setReservationAlias(String reservationAlias) {
         this.reservationAlias = reservationAlias;
+    }
+
+    @Override
+    public Map<String, Object> rawFields() {
+        Map<String, Object> rawFieldMap = new HashMap<>(2);
+        if (arrivalDate != null) {
+            rawFieldMap.put(TemplateData.rawField("arrivalDate"), arrivalDate);
+        }
+        if (departureDate != null) {
+            rawFieldMap.put(TemplateData.rawField("departureDate"), departureDate);
+        }
+
+        return rawFieldMap;
     }
 }
