@@ -15,12 +15,4 @@ public class PaymentMethodServiceClient extends StayServiceClient<PaymentMethodI
     public PaymentMethodServiceClient(String uri, ApiKeyAuthHandler apiKeyAuthHandler) {
         super(PaymentMethodInterface.class, uri, apiKeyAuthHandler);
     }
-
-    public PaymentMethodServiceClient(String uri, int limit) {
-        super(PaymentMethodInterface.class, uri, limit);
-    }
-
-    public PaymentMethodServiceClient(String uri, ApiKeyAuthHandler apiKeyAuthHandler, int limit) {
-        super(PaymentMethodInterface.class, uri, apiKeyAuthHandler, limit);
-    }
 }

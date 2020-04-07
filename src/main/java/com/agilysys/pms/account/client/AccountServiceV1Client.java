@@ -15,12 +15,4 @@ public class AccountServiceV1Client extends StayServiceClient<AccountServiceInte
     public AccountServiceV1Client(String uri, ApiKeyAuthHandler apiKeyAuthHandler) {
         super(AccountServiceInterfaceV1.class, uri, apiKeyAuthHandler);
     }
-
-    public AccountServiceV1Client(String uri, int limit) {
-        super(AccountServiceInterfaceV1.class, uri, limit);
-    }
-
-    public AccountServiceV1Client(String uri, ApiKeyAuthHandler apiKeyAuthHandler, int limit) {
-        super(AccountServiceInterfaceV1.class, uri, apiKeyAuthHandler, limit);
-    }
 }
