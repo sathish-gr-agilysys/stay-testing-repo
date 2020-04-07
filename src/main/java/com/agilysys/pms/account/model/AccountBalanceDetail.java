@@ -9,6 +9,8 @@ public class AccountBalanceDetail extends AccountSummary {
 
     private Map<String, FolioBalance> folioBalances;
 
+    private boolean postingRule;
+
     /**
      * Get accountBalance
      *
@@ -51,5 +53,13 @@ public class AccountBalanceDetail extends AccountSummary {
      */
     public void setFolioBalances(Map<String, FolioBalance> folioBalances) {
         this.folioBalances = folioBalances;
+    }
+
+    public boolean isPostingRule() {
+        return postingRule;
+    }
+
+    public void setPostingRule(boolean postingRule) {
+        this.postingRule = postingRule;
     }
 }
