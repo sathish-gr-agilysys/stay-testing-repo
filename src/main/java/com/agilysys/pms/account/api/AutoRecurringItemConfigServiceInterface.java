@@ -49,7 +49,9 @@ public interface AutoRecurringItemConfigServiceInterface {
     String PRIORITIZE_ORDER = "/priorityOrder";
     String PRINT_OR_EMAIL = "/printOrEmailConfig";
     String SHARE_ID = "shareId";
+    String ACCOUNT_ID = "accountId";
     String SHARE_PATH = "/share/{" + SHARE_ID + "}";
+    String VALIDATE_RULE_CHANGES = "/validateRuleChanges/{" + ACCOUNT_ID + "}";
 
     @GET
     @Path(ITEM_ID_PATH)
@@ -84,6 +86,13 @@ public interface AutoRecurringItemConfigServiceInterface {
     AutoRecurringChargeRuleResponse getApplicableArcRule(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRuleRequest autoRecurringChargeRuleRequest)
           throws RGuestException;
+
+    @POST
+    @Path(VALIDATE_RULE_CHANGES)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    AutoRecurringChargeRuleResponse validateRuleChanges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          AutoRecurringChargeRuleRequest autoRecurringChargeRuleRequest) throws RGuestException;
 
     @POST
     @Path(APPLICABLE_ARC_RULE_BULK)

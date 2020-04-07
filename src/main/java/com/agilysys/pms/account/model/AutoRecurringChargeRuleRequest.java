@@ -6,8 +6,8 @@ package com.agilysys.pms.account.model;
 import org.joda.time.LocalDate;
 
 public class AutoRecurringChargeRuleRequest {
-    private int noOfAdults;
-    private int noOfChildren;
+    private Integer noOfAdults;
+    private Integer noOfChildren;
     private LocalDate arrivalDate;
     private LocalDate departureDate;
     private String guestTypeId;
@@ -34,19 +34,19 @@ public class AutoRecurringChargeRuleRequest {
         this.groupId = groupId;
     }
 
-    public int getNoOfAdults() {
+    public Integer getNoOfAdults() {
         return noOfAdults;
     }
 
-    public void setNoOfAdults(int noOfAdults) {
+    public void setNoOfAdults(Integer noOfAdults) {
         this.noOfAdults = noOfAdults;
     }
 
-    public int getNoOfChildren() {
+    public Integer getNoOfChildren() {
         return noOfChildren;
     }
 
-    public void setNoOfChildren(int noOfChildren) {
+    public void setNoOfChildren(Integer noOfChildren) {
         this.noOfChildren = noOfChildren;
     }
 
