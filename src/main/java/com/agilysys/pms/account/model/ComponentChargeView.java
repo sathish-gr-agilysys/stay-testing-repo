@@ -49,6 +49,7 @@ public class ComponentChargeView {
     private String allowanceName;
     private int allowanceTotalQuantity;
     private String breakageId;
+    private boolean addOn;
 
     public ComponentChargeView() {
     }
@@ -73,6 +74,7 @@ public class ComponentChargeView {
         allowanceName = componentChargeView.getAllowanceName();
         breakageId = componentChargeView.getBreakageId();
         allowanceTotalQuantity = componentChargeView.getAllowanceTotalQuantity();
+        addOn = componentChargeView.isAddOn();
     }
 
     public String getComponentBundleId() {
@@ -244,6 +246,14 @@ public class ComponentChargeView {
         this.breakageId = breakageId;
     }
 
+    public boolean isAddOn() {
+        return addOn;
+    }
+
+    public void setAddOn(boolean addOn) {
+        this.addOn = addOn;
+    }
+
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
@@ -262,6 +272,7 @@ public class ComponentChargeView {
         componentChargeView.setAllowanceName(componentRateSnapshot.getAllowanceName());
         componentChargeView.setAllowanceTotalQuantity(componentRateSnapshot.getAllowanceTotalQuantity());
         componentChargeView.setBreakageId(componentRateSnapshot.getBreakageId());
+        componentChargeView.setAddOn(componentRateSnapshot.isAddOn());
 
         return componentChargeView;
     }
