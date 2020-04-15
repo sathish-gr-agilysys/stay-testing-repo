@@ -4,11 +4,13 @@
 package com.agilysys.pms.account.model;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class RecurringChargeDetail {
     private String recurringChargeId;
     private String itemId;
     private int quantity;
+    private Set<String> restrictedRoomTypeIds;
 
     public String getRecurringChargeId() {
         return recurringChargeId;
@@ -32,6 +34,14 @@ public class RecurringChargeDetail {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Set<String> getRestrictedRoomTypeIds() {
+        return restrictedRoomTypeIds;
+    }
+
+    public void setRestrictedRoomTypeIds(Set<String> restrictedRoomTypeIds) {
+        this.restrictedRoomTypeIds = restrictedRoomTypeIds;
     }
 
     @Override
