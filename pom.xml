@@ -83,7 +83,7 @@
         <dependency>
             <groupId>com.agilysys.pms.common</groupId>
             <artifactId>document-toolkit</artifactId>
-            <version>74.1221.0</version>
+            <version>74.1100-VCTRS-67962-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
