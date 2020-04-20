@@ -95,6 +95,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private Boolean pantryItem;
     private Long checkNumber;
     private String closeTime;
+    private boolean dispute;
+    private String arDisputeId;
     private TransactionType compType;
     private String folioType;
     private String authorizerId;
@@ -909,6 +911,23 @@ public class LineItemView implements Comparable<LineItemView> {
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
+
+    public boolean isDispute() {
+        return dispute;
+    }
+
+    public void setDispute(boolean dispute) {
+        this.dispute = dispute;
+    }
+
+    public String getArDisputeId() {
+        return arDisputeId;
+    }
+
+    public void setArDisputeId(String arDisputeId) {
+        this.arDisputeId = arDisputeId;
+    }
+
     public TransactionType getCompType() {
         return compType;
     }

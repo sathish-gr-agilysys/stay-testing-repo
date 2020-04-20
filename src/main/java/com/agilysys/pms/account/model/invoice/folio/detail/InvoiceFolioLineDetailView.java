@@ -43,6 +43,8 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
     private String transferMessage;
     private BigDecimal unitAmount;
     private String userId;
+    private boolean dispute;
+    private String arDisputeId;
 
     @JsonIgnore
     private boolean reverseTax;
@@ -288,5 +290,21 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
 
     public void setReverseTaxTotalChargeAmount(BigDecimal reverseTaxTotalChargeAmount) {
         this.reverseTaxTotalChargeAmount = reverseTaxTotalChargeAmount;
+    }
+
+    public boolean isDispute() {
+        return dispute;
+    }
+
+    public void setDispute(boolean dispute) {
+        this.dispute = dispute;
+    }
+
+    public String getArDisputeId() {
+        return arDisputeId;
+    }
+
+    public void setArDisputeId(String arDisputeId) {
+        this.arDisputeId = arDisputeId;
     }
 }
