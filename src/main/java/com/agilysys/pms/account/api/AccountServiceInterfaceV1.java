@@ -121,6 +121,7 @@ import com.agilysys.pms.common.document.model.DocumentDetails;
 import com.agilysys.pms.common.document.model.DocumentRequest;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.DeserializablePage;
+import com.agilysys.pms.common.model.ReceiptImageResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 
@@ -246,6 +247,8 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String FOLIO_LINE_ITEM_ID = "folioLineItemId";
+    String FOLIO_LINE_ITEM = "/folioLineItem/{" + FOLIO_LINE_ITEM_ID + "}";
     String UPLOAD_COMPANY_AR_DOCUMENTS = "/document/uploadCompanyARDocuments/{accountId}";
     String DELETE_COMPANY_AR_DOCUMENTS = "/document/deleteCompanyARDocuments";
 
@@ -265,6 +268,7 @@ public interface AccountServiceInterfaceV1 {
     String PAGE = "page";
     String SIZE = "size";
     String ALLOWANCE = "/allowance";
+    String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
     String BATCH_CREDITS_PATH = "/batchCredits";
 
     @GET
@@ -1163,6 +1167,19 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException;
 
+    @GET
+    @Path(FOLIO_LINE_ITEM)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    LineItemView getFolioLineItemById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId) throws RGuestException;
+
+    @PUT
+    @Path(RECEIPT_IMAGE_RESPOME)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateReceiptImageFolioLineItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId,
+          ReceiptImageResponse receiptImageResponse) throws RGuestException;
+
     @POST
     @Path(ACCOUNT_ID_PATH + REDEEM_FOLIO_CHARGE)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
@@ -1220,4 +1237,5 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'DeleteCompanyARDocument')")
     void deleteCompanyARDocuments(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           DocumentRequest documentRequest) throws RGuestException;
+
 }
