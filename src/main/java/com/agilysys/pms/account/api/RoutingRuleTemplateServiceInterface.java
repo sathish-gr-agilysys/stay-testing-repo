@@ -18,13 +18,13 @@ import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.RoutingRuleTemplate;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
-@Path(RoutingRuleTemplateConfigServiceInterface.BASE_PATH)
+@Path(RoutingRuleTemplateServiceInterface.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface RoutingRuleTemplateConfigServiceInterface {
+public interface RoutingRuleTemplateServiceInterface {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
-    String BASE_PATH = "/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/config/routingRuleTemplates";
+    String BASE_PATH = "/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/routingRuleTemplates";
     String TEMPLATE_ID = "id";
     String TEMPLATE_ID_PATH = "{" + TEMPLATE_ID + "}";
 
