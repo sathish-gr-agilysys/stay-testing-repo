@@ -36,7 +36,7 @@ public class RoutingRuleTemplate {
 
     private Boolean comp;
 
-    private List<String> departments;
+    private String departmentId;
 
     private List<String> authorizers;
 
@@ -141,12 +141,12 @@ public class RoutingRuleTemplate {
         this.comp = comp;
     }
 
-    public List<String> getDepartments() {
-        return departments;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartments(List<String> departments) {
-        this.departments = departments;
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
     }
 
     public List<String> getAuthorizers() {
