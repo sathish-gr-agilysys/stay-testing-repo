@@ -49,4 +49,5 @@ public class AccountConstants {
     public static final String TRANSFER_TO_RESERVED_GUEST_ACCOUNT_MESSAGE = " to %s with Reservation #%s.";
     public static final String VAT_INVOICES = "VATInvoices";
     public static final String VAT_SETTINGS = "VAT_SETTINGS";
+    public static final String AR_DISPUTED_CHARGES = "AR_DISPUTED_CHARGES";
 }

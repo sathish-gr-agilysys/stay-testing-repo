@@ -93,6 +93,10 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal reverseTaxTotalChargeAmount;
     private List<PantryItemDetails> pantryItemDetails;
     private Boolean pantryItem;
+    private Long checkNumber;
+    private String closeTime;
+    private boolean dispute;
+    private String arDisputeId;
     private TransactionType compType;
     private String folioType;
     private String authorizerId;
@@ -890,6 +894,38 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setPantryItem(Boolean pantryItem) {
         this.pantryItem = pantryItem;
+    }
+
+    public Long getCheckNumber() {
+        return checkNumber;
+    }
+
+    public void setCheckNumber(Long checkNumber) {
+        this.checkNumber = checkNumber;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
+    }
+
+    public boolean isDispute() {
+        return dispute;
+    }
+
+    public void setDispute(boolean dispute) {
+        this.dispute = dispute;
+    }
+
+    public String getArDisputeId() {
+        return arDisputeId;
+    }
+
+    public void setArDisputeId(String arDisputeId) {
+        this.arDisputeId = arDisputeId;
     }
 
     public TransactionType getCompType() {
