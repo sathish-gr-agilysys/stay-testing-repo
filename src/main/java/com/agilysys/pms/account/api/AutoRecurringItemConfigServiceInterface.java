@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.agilysys.common.model.MergeMarketingDetailRequest;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AutoRecurringChargeRule;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleParameters;
@@ -52,6 +53,8 @@ public interface AutoRecurringItemConfigServiceInterface {
     String ACCOUNT_ID = "accountId";
     String SHARE_PATH = "/share/{" + SHARE_ID + "}";
     String VALIDATE_RULE_CHANGES = "/validateRuleChanges/{" + ACCOUNT_ID + "}";
+    String MERGE_MARKETING_DETAILS = "/mergeMarketingDetails";
+
 
     @GET
     @Path(ITEM_ID_PATH)
@@ -181,4 +184,9 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     public void updateArcPerRoomItemsByShareId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SHARE_ID) String shareId);
+
+    @PUT
+    @Path(MERGE_MARKETING_DETAILS)
+    String mergeMarketingDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          MergeMarketingDetailRequest request) throws RGuestException;
 }
