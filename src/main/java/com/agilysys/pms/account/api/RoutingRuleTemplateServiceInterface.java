@@ -42,8 +42,8 @@ public interface RoutingRuleTemplateServiceInterface {
     @POST
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    List<RoutingRuleTemplate> createRoutingRuleTemplate(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, List<RoutingRuleTemplate> routingRuleTemplates)
+    RoutingRuleTemplate createRoutingRuleTemplate(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, RoutingRuleTemplate routingRuleTemplates)
           throws RGuestException;
 
     @PUT
