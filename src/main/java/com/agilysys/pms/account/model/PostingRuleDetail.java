@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -60,6 +61,24 @@ public class PostingRuleDetail {
 
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
+
+    private List<LocalDate> validOn;
+
+    private Boolean comp;
+
+    private String departmentId;
+
+    private String authorizerCode;
+
+    private Boolean compingTax;
+
+    private Map<LocalDate, Long> authorizedAmountByDate;
+
+    private OffSetRule offSetRule;
+
+    private PostingRuleChargeType postingRuleChargeType;
+
+    private Boolean carryUnusedBalance;
 
     public PostingRuleDetail() { }
 
@@ -201,5 +220,77 @@ public class PostingRuleDetail {
 
     public void setIncludedAccountIds(Set<String> includedAccountIds) {
         this.includedAccountIds = includedAccountIds;
+    }
+
+    public List<LocalDate> getValidOn() {
+        return validOn;
+    }
+
+    public void setValidOn(List<LocalDate> validOn) {
+        this.validOn = validOn;
+    }
+
+    public Boolean getComp() {
+        return comp;
+    }
+
+    public void setComp(Boolean comp) {
+        this.comp = comp;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getAuthorizerCode() {
+        return authorizerCode;
+    }
+
+    public void setAuthorizerCode(String authorizerCode) {
+        this.authorizerCode = authorizerCode;
+    }
+
+    public Boolean getCompingTax() {
+        return compingTax;
+    }
+
+    public void setCompingTax(Boolean compingTax) {
+        this.compingTax = compingTax;
+    }
+
+    public Map<LocalDate, Long> getAuthorizedAmountByDate() {
+        return authorizedAmountByDate;
+    }
+
+    public void setAuthorizedAmountByDate(Map<LocalDate, Long> authorizedAmountByDate) {
+        this.authorizedAmountByDate = authorizedAmountByDate;
+    }
+
+    public OffSetRule getOffSetRule() {
+        return offSetRule;
+    }
+
+    public void setOffSetRule(OffSetRule offSetRule) {
+        this.offSetRule = offSetRule;
+    }
+
+    public PostingRuleChargeType getPostingRuleChargeType() {
+        return postingRuleChargeType;
+    }
+
+    public void setPostingRuleChargeType(PostingRuleChargeType postingRuleChargeType) {
+        this.postingRuleChargeType = postingRuleChargeType;
+    }
+
+    public Boolean getCarryUnusedBalance() {
+        return carryUnusedBalance;
+    }
+
+    public void setCarryUnusedBalance(Boolean carryUnusedBalance) {
+        this.carryUnusedBalance = carryUnusedBalance;
     }
 }

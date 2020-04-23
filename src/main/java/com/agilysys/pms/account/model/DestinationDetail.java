@@ -8,7 +8,8 @@ public class DestinationDetail {
     private String folioId;
     private String value;
     private Integer transactionLimit;
-    private Integer priority;
+    private int transactionsMade;
+    private int priority;
 
     public DestinationDetail(String accountId, String folioId) {
         this.accountId = accountId;
@@ -20,9 +21,10 @@ public class DestinationDetail {
         this.value = value;
     }
 
-    public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit, Integer priority) {
+    public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit, int transactionsMade, int priority) {
         this(accountId, folioId, value);
         this.transactionLimit = transactionLimit;
+        this.transactionsMade = transactionsMade;
         this.priority = priority;
     }
 
@@ -48,11 +50,19 @@ public class DestinationDetail {
         this.transactionLimit = transactionLimit;
     }
 
-    public Integer getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(Integer priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public int getTransactionsMade() {
+        return transactionsMade;
+    }
+
+    public void setTransactionsMade(int transactionsMade) {
+        this.transactionsMade = transactionsMade;
     }
 }
