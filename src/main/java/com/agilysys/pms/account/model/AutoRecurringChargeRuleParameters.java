@@ -11,17 +11,17 @@ public class AutoRecurringChargeRuleParameters {
     private String overriddenRuleId;
     private Set<String> shareIds;
     private boolean reCalculateShare;
-    private boolean assignDefaultArcItem;
+    private boolean markAsOverridden;
 
     public AutoRecurringChargeRuleParameters() {}
 
     public AutoRecurringChargeRuleParameters(Set<String> accountIds, String overriddenRuleId, Set<String> shareIds,
-          boolean reCalculateShare, boolean assignDefaultArcItem) {
+          boolean reCalculateShare, boolean markAsOverridden) {
         this.accountIds = accountIds;
         this.overriddenRuleId = overriddenRuleId;
         this.reCalculateShare = reCalculateShare;
         this.shareIds = shareIds;
-        this.assignDefaultArcItem = assignDefaultArcItem;
+        this.markAsOverridden = markAsOverridden;
     }
 
     public Set<String> getAccountIds() {
@@ -56,11 +56,11 @@ public class AutoRecurringChargeRuleParameters {
         this.shareIds = shareIds;
     }
 
-    public boolean isAssignDefaultArcItem() {
-        return assignDefaultArcItem;
+    public boolean isMarkAsOverridden() {
+        return markAsOverridden;
     }
 
-    public void setAssignDefaultArcItem(boolean assignDefaultArcItem) {
-        this.assignDefaultArcItem = assignDefaultArcItem;
+    public void setMarkAsOverridden(boolean markAsOverridden) {
+        this.markAsOverridden = markAsOverridden;
     }
 }
