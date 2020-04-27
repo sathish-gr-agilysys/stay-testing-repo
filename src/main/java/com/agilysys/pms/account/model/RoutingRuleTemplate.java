@@ -18,14 +18,14 @@ public class RoutingRuleTemplate {
     @NotNull
     private String ruleName;
 
+    @JsonProperty(required = true)
+    @NotNull
     private String description;
 
     @JsonProperty(required = true)
     @NotNull
     private LocalDate startDate;
 
-    @JsonProperty(required = true)
-    @NotNull
     private LocalDate endDate;
 
     private Boolean includeArrivalDate;
@@ -36,16 +36,28 @@ public class RoutingRuleTemplate {
 
     private Boolean comp;
 
+    @JsonProperty(required = true)
+    @NotNull
     private String departmentId;
 
+    @JsonProperty(required = true)
+    @NotNull
     private List<String> authorizers;
 
+    @JsonProperty(required = true)
+    @NotNull
     private OffSetRule offsetRule;
 
+    @JsonProperty(required = true)
+    @NotNull
     private Boolean pinRequired;
 
+    @JsonProperty(required = true)
+    @NotNull
     private Boolean compingTax;
 
+    @JsonProperty(required = true)
+    @NotNull
     private String sourceId;
 
     private Set<String> categoryIds;
@@ -54,6 +66,8 @@ public class RoutingRuleTemplate {
 
     private PostingRuleSplitBy postingRuleSplitBy;
 
+    @JsonProperty(required = true)
+    @NotNull
     private PostingRuleChargeType postingRuleChargeType;
 
     private List<DestinationDetail> destinationDetails;

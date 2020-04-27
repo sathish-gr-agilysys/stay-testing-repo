@@ -3,11 +3,18 @@
  */
 package com.agilysys.pms.account.model;
 
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class DestinationDetail {
     private String accountId;
     private String folioId;
     private String value;
+    @JsonProperty(required = true)
+    @NotNull
     private Integer transactionLimit;
+    private Integer transactionMade;
     private Integer priority;
 
     public DestinationDetail(String accountId, String folioId) {
@@ -20,9 +27,11 @@ public class DestinationDetail {
         this.value = value;
     }
 
-    public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit, Integer priority) {
+    public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit, Integer priority,
+          Integer transactionMade) {
         this(accountId, folioId, value);
         this.transactionLimit = transactionLimit;
+        this.transactionMade = transactionMade;
         this.priority = priority;
     }
 
@@ -54,5 +63,13 @@ public class DestinationDetail {
 
     public void setPriority(Integer priority) {
         this.priority = priority;
+    }
+
+    public Integer getTransactionMade() {
+        return transactionMade;
+    }
+
+    public void setTransactionMade(Integer transactionMade) {
+        this.transactionMade = transactionMade;
     }
 }
