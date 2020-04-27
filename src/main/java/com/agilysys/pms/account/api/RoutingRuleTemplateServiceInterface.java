@@ -1,3 +1,6 @@
+/*
+ * (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.api;
 
 import java.util.List;
@@ -14,7 +17,6 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.RoutingRuleTemplate;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -42,14 +44,14 @@ public interface RoutingRuleTemplateServiceInterface {
     @POST
     @CreatedOnSuccess
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    List<RoutingRuleTemplate> createRoutingRuleTemplate(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, List<RoutingRuleTemplate> routingRuleTemplates)
+    RoutingRuleTemplate createRoutingRuleTemplate(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, RoutingRuleTemplate routingRuleTemplates)
           throws RGuestException;
 
     @PUT
     @Path(TEMPLATE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
-    AutoRecurringItem updateAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
+    RoutingRuleTemplate updateRoutingRuleTemplate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TEMPLATE_ID) String id,
           RoutingRuleTemplate routingRuleTemplate) throws RGuestException;
 }

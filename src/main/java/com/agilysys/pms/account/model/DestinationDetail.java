@@ -14,8 +14,9 @@ public class DestinationDetail {
     @JsonProperty(required = true)
     @NotNull
     private Integer transactionLimit;
-    private Integer transactionMade;
+    private Integer transactionsMade;
     private Integer priority;
+
 
     public DestinationDetail(String accountId, String folioId) {
         this.accountId = accountId;
@@ -27,11 +28,11 @@ public class DestinationDetail {
         this.value = value;
     }
 
-    public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit, Integer priority,
-          Integer transactionMade) {
+    public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit,
+          Integer transactionsMade, int priority) {
         this(accountId, folioId, value);
         this.transactionLimit = transactionLimit;
-        this.transactionMade = transactionMade;
+        this.transactionsMade = transactionsMade;
         this.priority = priority;
     }
 
@@ -57,11 +58,11 @@ public class DestinationDetail {
         this.transactionLimit = transactionLimit;
     }
 
-    public Integer getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(Integer priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
