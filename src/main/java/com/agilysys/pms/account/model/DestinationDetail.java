@@ -15,7 +15,7 @@ public class DestinationDetail {
     @NotNull
     private Integer transactionLimit;
     private Integer transactionsMade;
-    private Integer priority;
+    private int priority;
 
 
     public DestinationDetail(String accountId, String folioId) {
@@ -58,19 +58,19 @@ public class DestinationDetail {
         this.transactionLimit = transactionLimit;
     }
 
+    public Integer getTransactionsMade() {
+        return transactionsMade;
+    }
+
+    public void setTransactionsMade(Integer transactionsMade) {
+        this.transactionsMade = transactionsMade;
+    }
+
     public int getPriority() {
         return priority;
     }
 
     public void setPriority(int priority) {
         this.priority = priority;
-    }
-
-    public Integer getTransactionMade() {
-        return transactionMade;
-    }
-
-    public void setTransactionMade(Integer transactionMade) {
-        this.transactionMade = transactionMade;
     }
 }
