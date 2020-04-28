@@ -39,6 +39,8 @@ public class TransactionItem extends AccountingItem {
     @JsonProperty(required = true)
     protected BigDecimal defaultPrice;
 
+    private BigDecimal thresholdTransactionItemPrice;
+
     /**
      * An optional mapping that is used to map charges made by comtrol to transaction items.
      */
@@ -81,6 +83,7 @@ public class TransactionItem extends AccountingItem {
         status = transactionItem.getStatus();
         taxClasses = transactionItem.getTaxClasses();
         allowComp = transactionItem.isAllowComp();
+        thresholdTransactionItemPrice = transactionItem.getThresholdTransactionItemPrice();
     }
 
     public String getAltSystemId() {
@@ -157,6 +160,14 @@ public class TransactionItem extends AccountingItem {
 
     public void setAllowComp(boolean allowComp) {
         this.allowComp = allowComp;
+    }
+
+    public BigDecimal getThresholdTransactionItemPrice() {
+        return thresholdTransactionItemPrice;
+    }
+
+    public void setThresholdTransactionItemPrice(BigDecimal thresholdTransactionItemPrice) {
+        this.thresholdTransactionItemPrice = thresholdTransactionItemPrice;
     }
 
     @JsonIgnore

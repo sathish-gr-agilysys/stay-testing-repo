@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -66,6 +67,8 @@ public class PaymentMethod extends AccountingItem {
 
     private PermissionType restrictivePermission;
 
+    private BigDecimal thresholdPaymentMethodPrice;
+
     public Set<String> getSourceIds() {
         return sourceIds;
     }
@@ -120,6 +123,14 @@ public class PaymentMethod extends AccountingItem {
 
     public void setRestrictivePermission(PermissionType restrictivePermission) {
         this.restrictivePermission = restrictivePermission;
+    }
+
+    public BigDecimal getThresholdPaymentMethodPrice() {
+        return thresholdPaymentMethodPrice;
+    }
+
+    public void setThresholdPaymentMethodPrice(BigDecimal thresholdPaymentMethodPrice) {
+        this.thresholdPaymentMethodPrice = thresholdPaymentMethodPrice;
     }
 
     /** {@inheritDoc} */
