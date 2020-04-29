@@ -4,13 +4,15 @@
 package com.agilysys.pms.account.client;
 
 import com.agilysys.pms.account.api.PantryServiceInterface;
+import com.agilysys.pms.common.auth.ApiKeyAuthHandler;
 import com.agilysys.pms.common.client.StayServiceClient;
 
-/**
- * Client proxy for {@link com.agilysys.pms.account.api.PantryServiceInterface}
- */
 public class PantryServiceClient extends StayServiceClient<PantryServiceInterface> {
     public PantryServiceClient(String uri) {
         super(PantryServiceInterface.class, uri);
+    }
+
+    public PantryServiceClient(String uri, ApiKeyAuthHandler apiKeyAuthHandler) {
+        super(PantryServiceInterface.class, uri, apiKeyAuthHandler);
     }
 }

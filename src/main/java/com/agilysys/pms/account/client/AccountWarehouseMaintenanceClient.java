@@ -4,11 +4,16 @@
 package com.agilysys.pms.account.client;
 
 import com.agilysys.pms.account.api.AccountWarehouseMaintenanceInterface;
+import com.agilysys.pms.common.auth.ApiKeyAuthHandler;
 import com.agilysys.pms.common.client.export.WarehouseMaintenanceClient;
 
 public class AccountWarehouseMaintenanceClient
       extends WarehouseMaintenanceClient<AccountWarehouseMaintenanceInterface> {
     public AccountWarehouseMaintenanceClient(String uri) {
         super(AccountWarehouseMaintenanceInterface.class, uri);
+    }
+
+    public AccountWarehouseMaintenanceClient(String uri, ApiKeyAuthHandler apiKeyAuthHandler) {
+        super(AccountWarehouseMaintenanceInterface.class, uri, apiKeyAuthHandler);
     }
 }
