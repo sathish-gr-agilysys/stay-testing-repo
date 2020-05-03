@@ -45,7 +45,7 @@ public class RoutingRuleTemplate {
 
     @JsonProperty(required = true)
     @NotNull
-    private List<String> authorizers;
+    private List<String> authorizerIds;
 
     @JsonProperty(required = true)
     @NotNull
@@ -166,12 +166,12 @@ public class RoutingRuleTemplate {
         this.departmentId = departmentId;
     }
 
-    public List<String> getAuthorizers() {
-        return authorizers;
+    public List<String> getAuthorizerIds() {
+        return authorizerIds;
     }
 
-    public void setAuthorizers(List<String> authorizers) {
-        this.authorizers = authorizers;
+    public void setAuthorizerIds(List<String> authorizerIds) {
+        this.authorizerIds = authorizerIds;
     }
 
     public OffSetRule getOffsetRule() {
