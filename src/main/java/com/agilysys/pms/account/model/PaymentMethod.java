@@ -67,7 +67,7 @@ public class PaymentMethod extends AccountingItem {
 
     private PermissionType restrictivePermission;
 
-    private BigDecimal thresholdPaymentMethodPrice;
+    private BigDecimal thresholdAmount;
 
     public Set<String> getSourceIds() {
         return sourceIds;
@@ -125,12 +125,12 @@ public class PaymentMethod extends AccountingItem {
         this.restrictivePermission = restrictivePermission;
     }
 
-    public BigDecimal getThresholdPaymentMethodPrice() {
-        return thresholdPaymentMethodPrice;
+    public BigDecimal getThresholdAmount() {
+        return thresholdAmount;
     }
 
-    public void setThresholdPaymentMethodPrice(BigDecimal thresholdPaymentMethodPrice) {
-        this.thresholdPaymentMethodPrice = thresholdPaymentMethodPrice;
+    public void setThresholdAmount(BigDecimal thresholdAmount) {
+        this.thresholdAmount = thresholdAmount;
     }
 
     /** {@inheritDoc} */

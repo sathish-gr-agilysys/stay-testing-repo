@@ -21,7 +21,7 @@ import com.agilysys.pms.account.model.PaymentMethod;
 import com.agilysys.pms.account.model.ThresholdAmount;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
-@Path("/tenants/{tenantId}/properties/{propertyId}/config/amountConfiguration")
+@Path("/tenants/{tenantId}/properties/{propertyId}/config/thresholdAmount")
 public interface ThresholdAmountInterface {
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
@@ -41,7 +41,6 @@ public interface ThresholdAmountInterface {
     @CreatedOnSuccess
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    //@PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     ThresholdAmount createThresholdAmount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, ThresholdAmount thresholdAmount) throws RGuestException;
 
@@ -56,7 +55,6 @@ public interface ThresholdAmountInterface {
     @GET
     @Path(THRESHOLD_METHOD_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    //@PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     ThresholdAmount getThresholdAmount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(THRESHOLD_AMOUNT_ID) String thresholdAmountId) throws RGuestException;
 
@@ -69,7 +67,6 @@ public interface ThresholdAmountInterface {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    //@PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<ThresholdAmount> getAllThresholdAmount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
@@ -86,7 +83,6 @@ public interface ThresholdAmountInterface {
     @Path(THRESHOLD_METHOD_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    //@PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     ThresholdAmount updateThresholdAmount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(THRESHOLD_AMOUNT_ID) String thresholdAmountId,
           ThresholdAmount thresholdAmount) throws RGuestException;
