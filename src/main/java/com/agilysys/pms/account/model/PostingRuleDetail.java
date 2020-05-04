@@ -68,11 +68,11 @@ public class PostingRuleDetail {
 
     private String departmentId;
 
-    private String authorizerCode;
+    private String authorizerId;
 
     private Boolean compingTax;
 
-    private Map<LocalDate, Long> authorizedAmountByDate;
+    Map<String, Map<LocalDate, Long>> dayWiseCompAmountByDestination;
 
     private OffSetRule offSetRule;
 
@@ -246,12 +246,12 @@ public class PostingRuleDetail {
         this.departmentId = departmentId;
     }
 
-    public String getAuthorizerCode() {
-        return authorizerCode;
+    public String getAuthorizerId() {
+        return authorizerId;
     }
 
-    public void setAuthorizerCode(String authorizerCode) {
-        this.authorizerCode = authorizerCode;
+    public void setAuthorizerId(String authorizerId) {
+        this.authorizerId = authorizerId;
     }
 
     public Boolean getCompingTax() {
@@ -262,12 +262,12 @@ public class PostingRuleDetail {
         this.compingTax = compingTax;
     }
 
-    public Map<LocalDate, Long> getAuthorizedAmountByDate() {
-        return authorizedAmountByDate;
+    public Map<String, Map<LocalDate, Long>> getDayWiseCompAmountByDestination() {
+        return dayWiseCompAmountByDestination;
     }
 
-    public void setAuthorizedAmountByDate(Map<LocalDate, Long> authorizedAmountByDate) {
-        this.authorizedAmountByDate = authorizedAmountByDate;
+    public void setDayWiseCompAmountByDestination(Map<String, Map<LocalDate, Long>> dayWiseCompAmountByDestination) {
+        this.dayWiseCompAmountByDestination = dayWiseCompAmountByDestination;
     }
 
     public OffSetRule getOffSetRule() {
