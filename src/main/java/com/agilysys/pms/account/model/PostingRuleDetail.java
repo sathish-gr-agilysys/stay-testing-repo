@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -72,7 +73,7 @@ public class PostingRuleDetail {
 
     private Boolean compingTax;
 
-    Map<String, Map<LocalDate, Long>> dayWiseCompAmountByDestination;
+    Map<String, Map<LocalDate, BigDecimal>> dayWiseTransactedAmountByDestination;
 
     private OffSetRule offSetRule;
 
@@ -262,12 +263,12 @@ public class PostingRuleDetail {
         this.compingTax = compingTax;
     }
 
-    public Map<String, Map<LocalDate, Long>> getDayWiseCompAmountByDestination() {
-        return dayWiseCompAmountByDestination;
+    public Map<String, Map<LocalDate, BigDecimal>> getDayWiseTransactedAmountByDestination() {
+        return dayWiseTransactedAmountByDestination;
     }
 
-    public void setDayWiseCompAmountByDestination(Map<String, Map<LocalDate, Long>> dayWiseCompAmountByDestination) {
-        this.dayWiseCompAmountByDestination = dayWiseCompAmountByDestination;
+    public void setDayWiseTransactedAmountByDestination(Map<String, Map<LocalDate, BigDecimal>> dayWiseTransactedAmountByDestination) {
+        this.dayWiseTransactedAmountByDestination = dayWiseTransactedAmountByDestination;
     }
 
     public OffSetRule getOffSetRule() {
