@@ -1,3 +1,6 @@
+/*
+ * (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.util.List;
@@ -18,14 +21,14 @@ public class RoutingRuleTemplate {
     @NotNull
     private String ruleName;
 
+    @JsonProperty(required = true)
+    @NotNull
     private String description;
 
     @JsonProperty(required = true)
     @NotNull
     private LocalDate startDate;
 
-    @JsonProperty(required = true)
-    @NotNull
     private LocalDate endDate;
 
     private Boolean includeArrivalDate;
@@ -36,16 +39,28 @@ public class RoutingRuleTemplate {
 
     private Boolean comp;
 
+    @JsonProperty(required = true)
+    @NotNull
     private String departmentId;
 
-    private List<String> authorizers;
+    @JsonProperty(required = true)
+    @NotNull
+    private List<String> authorizerIds;
 
+    @JsonProperty(required = true)
+    @NotNull
     private OffSetRule offsetRule;
 
+    @JsonProperty(required = true)
+    @NotNull
     private Boolean pinRequired;
 
+    @JsonProperty(required = true)
+    @NotNull
     private Boolean compingTax;
 
+    @JsonProperty(required = true)
+    @NotNull
     private String sourceId;
 
     private Set<String> categoryIds;
@@ -54,6 +69,8 @@ public class RoutingRuleTemplate {
 
     private PostingRuleSplitBy postingRuleSplitBy;
 
+    @JsonProperty(required = true)
+    @NotNull
     private PostingRuleChargeType postingRuleChargeType;
 
     private List<DestinationDetail> destinationDetails;
@@ -149,12 +166,12 @@ public class RoutingRuleTemplate {
         this.departmentId = departmentId;
     }
 
-    public List<String> getAuthorizers() {
-        return authorizers;
+    public List<String> getAuthorizerIds() {
+        return authorizerIds;
     }
 
-    public void setAuthorizers(List<String> authorizers) {
-        this.authorizers = authorizers;
+    public void setAuthorizerIds(List<String> authorizerIds) {
+        this.authorizerIds = authorizerIds;
     }
 
     public OffSetRule getOffsetRule() {

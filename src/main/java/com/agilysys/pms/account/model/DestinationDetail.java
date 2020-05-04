@@ -51,19 +51,19 @@ public class DestinationDetail {
         this.transactionLimit = transactionLimit;
     }
 
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
     public int getTransactionMade() {
         return transactionMade;
     }
 
     public void setTransactionMade(int transactionMade) {
         this.transactionMade = transactionMade;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }
