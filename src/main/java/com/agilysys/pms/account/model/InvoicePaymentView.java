@@ -20,6 +20,7 @@ public class InvoicePaymentView {
     private List<InvoicePaymentView> refunds;
     // Needed so a client can reference a payment folio line item to refund against
     private String folioLineItemId;
+    private Boolean unAppliedAmountUsed;
 
     public String getId() {
         return id;
@@ -107,6 +108,14 @@ public class InvoicePaymentView {
 
     public void setFolioLineItemId(String folioLineItemId) {
         this.folioLineItemId = folioLineItemId;
+    }
+
+    public Boolean getUnAppliedAmountUsed() {
+        return unAppliedAmountUsed;
+    }
+
+    public void setUnAppliedAmountUsed(Boolean unAppliedAmountUsed) {
+        this.unAppliedAmountUsed = unAppliedAmountUsed;
     }
 
     public BigDecimal getRefundTotal() {
