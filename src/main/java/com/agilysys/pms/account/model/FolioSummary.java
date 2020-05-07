@@ -30,6 +30,8 @@ public class FolioSummary {
 
     private String paymentSettingId;
 
+    private Boolean depositFolio;
+
     public FolioSummary() {}
 
     public FolioSummary(boolean defaultFolio, FolioType folioType, String name, String paymentSettingId) {
@@ -107,5 +109,13 @@ public class FolioSummary {
      */
     public void setPaymentSettingId(String paymentSettingId) {
         this.paymentSettingId = paymentSettingId;
+    }
+
+    public Boolean getDepositFolio() {
+        return depositFolio;
+    }
+
+    public void setDepositFolio(Boolean depositFolio) {
+        this.depositFolio = depositFolio;
     }
 }
