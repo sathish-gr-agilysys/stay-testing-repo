@@ -26,6 +26,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private LocalDate appliedOnPropertyDate;
     private DateTime appliedOnSystemDateTime;
     private boolean isFullAmountApplied;
+    private Boolean unAppliedAmountUsed;
 
     public InvoicePaymentEvent() {
     }
@@ -130,6 +131,14 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
 
     public void setFullAmountApplied(boolean isFullAmountApplied) {
         this.isFullAmountApplied = isFullAmountApplied;
+    }
+
+    public Boolean getUnAppliedAmountUsed() {
+        return unAppliedAmountUsed;
+    }
+
+    public void setUnAppliedAmountUsed(Boolean unAppliedAmountUsed) {
+        this.unAppliedAmountUsed = unAppliedAmountUsed;
     }
 
     @Override
