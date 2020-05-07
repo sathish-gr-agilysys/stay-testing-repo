@@ -61,6 +61,7 @@ public abstract class Transaction {
     protected boolean giftCard;
     protected String giftCardNumber;
     protected boolean excludeTax;
+    protected boolean arDeposit;
 
     public String getAccountId() {
         return accountId;
@@ -283,6 +284,14 @@ public abstract class Transaction {
 
     public void setExcludeTax(boolean excludeTax) {
         this.excludeTax = excludeTax;
+    }
+
+    public boolean isArDeposit() {
+        return arDeposit;
+    }
+
+    public void setArDeposit(boolean arDeposit) {
+        this.arDeposit = arDeposit;
     }
 
     @Override
