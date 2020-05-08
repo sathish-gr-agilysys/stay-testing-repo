@@ -3,12 +3,18 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
+import org.joda.time.LocalDate;
+
 public class DestinationDetail {
     private String accountId;
     private String folioId;
     private String value;
     private Integer transactionLimit;
     private int transactionMade;
+    private Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount;
     private int priority;
 
     public DestinationDetail(String accountId, String folioId) {
@@ -22,8 +28,9 @@ public class DestinationDetail {
     }
 
     public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit,
-          int transactionMade, int priority) {
+          int transactionMade, int priority, Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount) {
         this(accountId, folioId, value);
+        this.dayWiseTotalTransactedAmount = dayWiseTotalTransactedAmount;
         this.transactionLimit = transactionLimit;
         this.transactionMade = transactionMade;
         this.priority = priority;
@@ -65,5 +72,13 @@ public class DestinationDetail {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public Map<LocalDate, BigDecimal> getDayWiseTotalTransactedAmount() {
+        return dayWiseTotalTransactedAmount;
+    }
+
+    public void setDayWiseTotalTransactedAmount(Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount) {
+        this.dayWiseTotalTransactedAmount = dayWiseTotalTransactedAmount;
     }
 }

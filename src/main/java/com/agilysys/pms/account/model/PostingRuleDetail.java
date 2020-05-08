@@ -3,9 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -72,8 +70,6 @@ public class PostingRuleDetail {
     private String authorizerId;
 
     private Boolean compingTax;
-
-    Map<String, Map<LocalDate, BigDecimal>> dayWiseTransactedAmountByDestination;
 
     private OffSetRule offSetRule;
 
@@ -261,14 +257,6 @@ public class PostingRuleDetail {
 
     public void setCompingTax(Boolean compingTax) {
         this.compingTax = compingTax;
-    }
-
-    public Map<String, Map<LocalDate, BigDecimal>> getDayWiseTransactedAmountByDestination() {
-        return dayWiseTransactedAmountByDestination;
-    }
-
-    public void setDayWiseTransactedAmountByDestination(Map<String, Map<LocalDate, BigDecimal>> dayWiseTransactedAmountByDestination) {
-        this.dayWiseTransactedAmountByDestination = dayWiseTransactedAmountByDestination;
     }
 
     public OffSetRule getOffSetRule() {
