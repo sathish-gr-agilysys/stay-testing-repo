@@ -9,6 +9,7 @@ public class AccountBalancesInfo {
 
     private BigDecimal grandTotal = BigDecimal.ZERO;
     private BigDecimal grandTaxTotal = BigDecimal.ZERO;
+    private BigDecimal grandDepositTotal;
 
     public Map<String, AccountBalanceDetail> getAccountBalances() {
         return accountBalances;
@@ -32,5 +33,13 @@ public class AccountBalancesInfo {
 
     public void setGrandTaxTotal(BigDecimal grandTaxTotal) {
         this.grandTaxTotal = grandTaxTotal;
+    }
+
+    public BigDecimal getGrandDepositTotal() {
+        return grandDepositTotal;
+    }
+
+    public void setGrandDepositTotal(BigDecimal grandDepositTotal) {
+        this.grandDepositTotal = grandDepositTotal;
     }
 }

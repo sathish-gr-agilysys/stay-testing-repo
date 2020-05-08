@@ -21,8 +21,9 @@ public class PropertyBalanceInfo {
 
     private Collection<BigDecimal> invoiceTotalsByAging; //invoiceTotalByAgeGroup
     private BigDecimal invoicedTotal; // invoiceTotal = sum(invoiceTotalsByAgeGroups)
-    private BigDecimal unInvoicedTotal; // sum(unInvoicedCharges)
+    private BigDecimal unInvoicedTotal; // sum(unInvoicedCharges - depositBalance)
     private BigDecimal balance; // balance = subTotal + unInvoicedTotal
+    private BigDecimal depositBalance;
 
     public PropertyBalanceInfo() { }
 
@@ -113,5 +114,13 @@ public class PropertyBalanceInfo {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public BigDecimal getDepositBalance() {
+        return depositBalance;
+    }
+
+    public void setDepositBalance(BigDecimal depositBalance) {
+        this.depositBalance = depositBalance;
     }
 }
