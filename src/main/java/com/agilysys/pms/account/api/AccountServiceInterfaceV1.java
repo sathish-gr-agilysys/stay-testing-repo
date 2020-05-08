@@ -38,15 +38,19 @@ import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
 import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
+import com.agilysys.pms.account.api.params.InvoicePaymentRequest;
+import com.agilysys.pms.account.model.ARDepositView;
 import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
 import com.agilysys.pms.account.model.AccountSearchResult;
 import com.agilysys.pms.account.model.AccountStatementResponse;
 import com.agilysys.pms.account.model.AccountStatementsRequest;
+import com.agilysys.pms.account.model.AccountStatus;
 import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
 import com.agilysys.pms.account.model.AmountTransfer;
+import com.agilysys.pms.account.model.ApplyInvoiceDepositPaymentRequest;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.BatchDepositCollectionRequest;
 import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
@@ -58,6 +62,7 @@ import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
 import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.CompTransaction;
+import com.agilysys.pms.account.model.CompanyInfo;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
@@ -112,6 +117,7 @@ import com.agilysys.pms.account.model.UpdateFolioInvoicesRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
+import com.agilysys.pms.account.model.invoice.InvoicePaymentReport;
 import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -143,7 +149,9 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
     String ADJUSTMENT_PATH = "/adjustment";
+    String APPLY_DEPOSIT_PAYMENTS = "/applyDepositPayments";
     String APPLY_PAYMENTS = "/applyPayments";
+    String AR_DEPOSIT_BALANCE = "/arDepositBalance";
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
     String BATCH_FOLIO_EMAIL = "/batchFolioEmail";
@@ -156,6 +164,7 @@ public interface AccountServiceInterfaceV1 {
     String CLOSABLE_INFO = "/closableInfo";
     String CORRECTION_PATH = "/correction";
     String CREDIT_PATH = "/credit";
+    String DEPOSIT_FOLIO_PATH = "/depositFolio";
     String END_DATE = "endDate";
     String END_DATE_TIME = "endDateTime";
     String FILTERED = "/filtered";
@@ -369,6 +378,13 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
+          throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + DEPOSIT_FOLIO_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    FolioDetail getDepositFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
 
@@ -865,6 +881,20 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("") InvoiceOptionalParams optionalParams) throws RGuestException;
 
+    @POST
+    @Path("/invoiceBalance")
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoicePaymentReport> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, InvoicePaymentRequest invoicePaymentRequest) throws RGuestException;
+
+    @GET
+    @Path("/findByUnAppliedAmountUsed")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<CompanyInfo> findAccountsByUnAppliedAmountUsed(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("accountStatus") AccountStatus accountStatus)
+          throws RGuestException;
+
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     @OkOnEmpty
@@ -960,6 +990,16 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_DEPOSIT_PAYMENTS)
+    @Validated(ApplyInvoiceDepositPaymentRequest.class)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    List<InvoiceView> applyInvoiceDepositPayments(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          ApplyInvoiceDepositPaymentRequest applyInvoiceDepositPaymentRequest) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + REFUND_PATH)
     @Validated(InvoicePaymentRefund.class)
     @PreAuthorize("hasPermission('Required', 'AllowRefunds')")
@@ -972,6 +1012,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, BigDecimal> getLedgerBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, LedgerBalancesInfo ledgerBalancesInfo) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + AR_DEPOSIT_BALANCE)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    ARDepositView getARDepositBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
 
     @GET
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_PATH)
