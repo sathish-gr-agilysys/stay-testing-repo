@@ -11,7 +11,6 @@ public class CompTransaction {
     private String departmentId;
     private String compPoints;
     private String playerPoints;
-    private String pin;
     private String playerOrCardId;
     private String authorizerCode;
     private List<CompRedeemRequest> compRedeemRequests;
@@ -21,8 +20,30 @@ public class CompTransaction {
     public CompTransaction() {}
 
     public enum RedemptionType {
-        PLAYER_POINT,
-        COMP_POINT;
+        PLAYER_POINT("PNT", "PLAYER", "PLAYER BALANCE"),
+        COMP_POINT("CMP", "COMP", "COMP BALANCE");
+
+        String bankCode;
+        String desc;
+        String shortDesc;
+
+        RedemptionType(String bankCode, String shortDesc, String desc) {
+            this.bankCode = bankCode;
+            this.shortDesc = shortDesc;
+            this.desc = desc;
+        }
+
+        public String getBankCode() {
+            return bankCode;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public String getShortDesc() {
+            return shortDesc;
+        }
     }
 
     public String getAuthorizerId() {
@@ -55,14 +76,6 @@ public class CompTransaction {
 
     public void setPlayerPoints(String playerPoints) {
         this.playerPoints = playerPoints;
-    }
-
-    public String getPin() {
-        return pin;
-    }
-
-    public void setPin(String pin) {
-        this.pin = pin;
     }
 
     public String getPlayerOrCardId() {
