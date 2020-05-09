@@ -51,6 +51,7 @@ public class ComponentChargeView {
     private String breakageId;
 
     public ComponentChargeView() {
+        estimatedTaxInfo = new ChargeTaxAmountInfo();
     }
 
     public ComponentChargeView(ComponentChargeView componentChargeView) {
