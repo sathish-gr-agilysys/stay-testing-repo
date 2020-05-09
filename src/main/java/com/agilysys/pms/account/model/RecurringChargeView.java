@@ -67,6 +67,10 @@ public class RecurringChargeView {
     private BigDecimal reverseTaxTotalChargeAmount;
     private String packageFolioId;
 
+    public RecurringChargeView() {
+        estimatedTaxInfo = new ChargeTaxAmountInfo();
+    }
+
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
     }
