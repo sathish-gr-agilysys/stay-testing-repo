@@ -4,10 +4,15 @@
 package com.agilysys.pms.account.client;
 
 import com.agilysys.pms.account.api.MaintenanceInterface;
+import com.agilysys.pms.common.auth.ApiKeyAuthHandler;
 import com.agilysys.pms.common.client.StayServiceClient;
 
 public class MaintenanceClient extends StayServiceClient<MaintenanceInterface> {
     public MaintenanceClient(String uri) {
         super(MaintenanceInterface.class, uri);
+    }
+
+    public MaintenanceClient(String uri, ApiKeyAuthHandler apiKeyAuthHandler) {
+        super(MaintenanceInterface.class, uri, apiKeyAuthHandler);
     }
 }
