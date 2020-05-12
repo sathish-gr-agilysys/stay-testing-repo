@@ -35,28 +35,18 @@ public class RoutingRuleTemplate {
 
     private Boolean includeDepartureDate;
 
-    private DaysOfWeek daysOfWeek;
+    private List<DaysOfWeek> daysOfWeek;
 
     private Boolean comp;
 
-    @JsonProperty(required = true)
-    @NotNull
     private String departmentId;
 
-    @JsonProperty(required = true)
-    @NotNull
     private List<String> authorizerIds;
 
-    @JsonProperty(required = true)
-    @NotNull
     private OffSetRule offsetRule;
 
-    @JsonProperty(required = true)
-    @NotNull
     private Boolean pinRequired;
 
-    @JsonProperty(required = true)
-    @NotNull
     private Boolean compingTax;
 
     @JsonProperty(required = true)
@@ -142,11 +132,11 @@ public class RoutingRuleTemplate {
         this.includeDepartureDate = includeDepartureDate;
     }
 
-    public DaysOfWeek getDaysOfWeek() {
+    public List<DaysOfWeek> getDaysOfWeek() {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(DaysOfWeek daysOfWeek) {
+    public void setDaysOfWeek(List<DaysOfWeek> daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
 

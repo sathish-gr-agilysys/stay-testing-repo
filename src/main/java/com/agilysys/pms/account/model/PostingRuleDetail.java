@@ -62,7 +62,7 @@ public class PostingRuleDetail {
 
     private Boolean includeDepartureDate;
 
-    private DaysOfWeek daysOfWeek;
+    private List<DaysOfWeek> daysOfWeek;
 
     private Boolean comp;
 
@@ -312,11 +312,11 @@ public class PostingRuleDetail {
         this.includeDepartureDate = includeDepartureDate;
     }
 
-    public DaysOfWeek getDaysOfWeek() {
+    public List<DaysOfWeek> getDaysOfWeek() {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(DaysOfWeek daysOfWeek) {
+    public void setDaysOfWeek(List<DaysOfWeek> daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
 
