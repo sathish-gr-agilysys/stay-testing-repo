@@ -40,12 +40,7 @@ public class PostingRuleDetail {
     private String destinationAccountId;
     private List<DestinationDetail> destinations;
 
-    @JsonProperty(required = true)
-    @NotNull
     private LocalDate startDate;
-
-    @JsonProperty(required = true)
-    @NotNull
     private LocalDate endDate;
 
     private Boolean applyToAllPostedCharges;
