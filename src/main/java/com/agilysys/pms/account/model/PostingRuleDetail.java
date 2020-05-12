@@ -73,7 +73,7 @@ public class PostingRuleDetail {
 
     private String departmentId;
 
-    private String authorizerId;
+    private String authorizerCode;
 
     private Boolean compingTax;
 
@@ -84,6 +84,8 @@ public class PostingRuleDetail {
     private PostingRuleChargeType postingRuleChargeType;
 
     private Boolean carryUnusedBalance;
+
+    private List<String> authorizerIds;
 
     public PostingRuleDetail() { }
 
@@ -251,12 +253,12 @@ public class PostingRuleDetail {
         this.departmentId = departmentId;
     }
 
-    public String getAuthorizerId() {
-        return authorizerId;
+    public String getAuthorizerCode() {
+        return authorizerCode;
     }
 
-    public void setAuthorizerId(String authorizerId) {
-        this.authorizerId = authorizerId;
+    public void setAuthorizerCode(String authorizerCode) {
+        this.authorizerCode = authorizerCode;
     }
 
     public Boolean getCompingTax() {
@@ -322,4 +324,13 @@ public class PostingRuleDetail {
     public void setDaysOfWeek(DaysOfWeek daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
+
+    public List<String> getAuthorizerIds() {
+        return authorizerIds;
+    }
+
+    public void setAuthorizerIds(List<String> authorizerIds) {
+        this.authorizerIds = authorizerIds;
+    }
+
 }
