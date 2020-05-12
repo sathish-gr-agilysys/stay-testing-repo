@@ -63,6 +63,12 @@ public class PostingRuleDetail {
 
     private List<LocalDate> validOn;
 
+    private Boolean includeArrivalDate;
+
+    private Boolean includeDepartureDate;
+
+    private DaysOfWeek daysOfWeek;
+
     private Boolean comp;
 
     private String departmentId;
@@ -72,6 +78,8 @@ public class PostingRuleDetail {
     private Boolean compingTax;
 
     private OffSetRule offSetRule;
+
+    private Boolean pinRequired;
 
     private PostingRuleChargeType postingRuleChargeType;
 
@@ -267,6 +275,14 @@ public class PostingRuleDetail {
         this.offSetRule = offSetRule;
     }
 
+    public Boolean getPinRequired() {
+        return pinRequired;
+    }
+
+    public void setPinRequired(Boolean pinRequired) {
+        this.pinRequired = pinRequired;
+    }
+
     public PostingRuleChargeType getPostingRuleChargeType() {
         return postingRuleChargeType;
     }
@@ -281,5 +297,29 @@ public class PostingRuleDetail {
 
     public void setCarryUnusedBalance(Boolean carryUnusedBalance) {
         this.carryUnusedBalance = carryUnusedBalance;
+    }
+
+    public Boolean getIncludeArrivalDate() {
+        return includeArrivalDate;
+    }
+
+    public void setIncludeArrivalDate(Boolean includeArrivalDate) {
+        this.includeArrivalDate = includeArrivalDate;
+    }
+
+    public Boolean getIncludeDepartureDate() {
+        return includeDepartureDate;
+    }
+
+    public void setIncludeDepartureDate(Boolean includeDepartureDate) {
+        this.includeDepartureDate = includeDepartureDate;
+    }
+
+    public DaysOfWeek getDaysOfWeek() {
+        return daysOfWeek;
+    }
+
+    public void setDaysOfWeek(DaysOfWeek daysOfWeek) {
+        this.daysOfWeek = daysOfWeek;
     }
 }
