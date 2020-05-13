@@ -53,7 +53,7 @@ public class AutoRecurringItem extends AccountingObjectBase {
     protected LocalDate endDate;
     protected String description;
 
-    protected ComponentType applicableFor;
+    protected ComponentType applicableFor = ComponentType.PER_ROOM;
     public static final String APPLICABLE_FOR_FIELD = "applicableFor";
 
     public AutoRecurringItem(){
