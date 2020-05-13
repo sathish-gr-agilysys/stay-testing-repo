@@ -76,7 +76,7 @@ public class PostingRuleDetail {
 
     private Boolean pinRequired;
 
-    private PostingRuleChargeType postingRuleChargeType;
+    private String postingRuleChargeType;
 
     private Boolean carryUnusedBalance;
 
@@ -280,11 +280,11 @@ public class PostingRuleDetail {
         this.pinRequired = pinRequired;
     }
 
-    public PostingRuleChargeType getPostingRuleChargeType() {
+    public String getPostingRuleChargeType() {
         return postingRuleChargeType;
     }
 
-    public void setPostingRuleChargeType(PostingRuleChargeType postingRuleChargeType) {
+    public void setPostingRuleChargeType(String postingRuleChargeType) {
         this.postingRuleChargeType = postingRuleChargeType;
     }
 
