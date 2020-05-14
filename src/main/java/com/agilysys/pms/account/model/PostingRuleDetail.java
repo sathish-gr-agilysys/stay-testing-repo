@@ -80,8 +80,6 @@ public class PostingRuleDetail {
 
     private Boolean carryUnusedBalance;
 
-    private List<String> qualifiedAuthorizerIds;
-
     private String authorizerId;
 
     public PostingRuleDetail() { }
@@ -320,14 +318,6 @@ public class PostingRuleDetail {
 
     public void setDaysOfWeek(List<DaysOfWeek> daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
-    }
-
-    public List<String> getQualifiedAuthorizerIds() {
-        return qualifiedAuthorizerIds;
-    }
-
-    public void setQualifiedAuthorizerIds(List<String> qualifiedAuthorizerIds) {
-        this.qualifiedAuthorizerIds = qualifiedAuthorizerIds;
     }
 
     public String getAuthorizerId() {
