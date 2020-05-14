@@ -199,11 +199,12 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getAllowanceAmount() {
-        return allowanceAmount.setScale(2, RoundingMode.HALF_UP);
+        return allowanceAmount != null ? allowanceAmount.setScale(2, RoundingMode.HALF_UP) : allowanceAmount;
     }
 
     public void setAllowanceAmount(BigDecimal allowanceAmount) {
-        this.allowanceAmount = allowanceAmount.setScale(2, RoundingMode.HALF_UP);
+        this.allowanceAmount =
+              allowanceAmount != null ? allowanceAmount.setScale(2, RoundingMode.HALF_UP) : allowanceAmount;
     }
 
     public AllowanceFrequencyType getAllowanceFrequencyType() {
