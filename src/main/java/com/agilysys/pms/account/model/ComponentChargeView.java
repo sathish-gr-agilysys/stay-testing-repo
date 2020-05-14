@@ -102,11 +102,11 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getAmount() {
-        return amount.setScale(2, RoundingMode.HALF_UP);
+        return amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public void setAmount(BigDecimal amount) {
-        this.amount = amount.setScale(2, RoundingMode.HALF_UP);
+        this.amount = amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public int getQuantity() {
@@ -134,11 +134,11 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getTotalAmount() {
-        return totalAmount.setScale(2, RoundingMode.HALF_UP);
+        return totalAmount != null ? totalAmount.setScale(2, RoundingMode.HALF_UP) : totalAmount;
     }
 
     public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount.setScale(2, RoundingMode.HALF_UP);
+        this.totalAmount = totalAmount != null ? totalAmount.setScale(2, RoundingMode.HALF_UP) : totalAmount;
     }
 
     public int getTotalQuantity() {
