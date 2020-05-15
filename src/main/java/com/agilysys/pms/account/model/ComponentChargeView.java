@@ -53,6 +53,7 @@ public class ComponentChargeView {
     private String addOnBundleId;
 
     public ComponentChargeView() {
+        estimatedTaxInfo = new ChargeTaxAmountInfo();
     }
 
     public ComponentChargeView(ComponentChargeView componentChargeView) {
