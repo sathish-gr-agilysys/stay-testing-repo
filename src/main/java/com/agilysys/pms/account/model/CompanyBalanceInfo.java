@@ -20,6 +20,7 @@ public class CompanyBalanceInfo {
     private BigDecimal invoicedTotal; //  sum(invoiceTotalsByAgeGroups)
     private BigDecimal unInvoicedTotal;
     private BigDecimal balance; // subTotal + unInvoicedTotal
+    private BigDecimal depositBalanceTotal;
 
     private List<PropertyBalanceInfo> properties;
 
@@ -94,5 +95,13 @@ public class CompanyBalanceInfo {
 
     public void setProperties(List<PropertyBalanceInfo> properties) {
         this.properties = properties;
+    }
+
+    public BigDecimal getDepositBalanceTotal() {
+        return depositBalanceTotal;
+    }
+
+    public void setDepositBalanceTotal(BigDecimal depositBalanceTotal) {
+        this.depositBalanceTotal = depositBalanceTotal;
     }
 }

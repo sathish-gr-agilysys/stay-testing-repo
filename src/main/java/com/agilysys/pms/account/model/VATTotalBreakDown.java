@@ -4,19 +4,19 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.agilysys.common.template.TemplateData;
 import com.agilysys.pms.account.model.TaxBreakDown;
 
-public class VATTotalBreakDown {
+public class VATTotalBreakDown implements TemplateData {
 
     private List<TaxBreakDown> taxBreakDowns;
     private BigDecimal totalNet;
     private BigDecimal totalVat;
     private BigDecimal totalGross;
-    private String formattedTotalNet;
-    private String formattedTotalVat;
-    private String formattedTotalGross;
 
     public List<TaxBreakDown> getTaxBreakDowns() {
         return taxBreakDowns;
@@ -50,27 +50,19 @@ public class VATTotalBreakDown {
         this.totalGross = totalGross;
     }
 
-    public String getFormattedTotalNet() {
-        return formattedTotalNet;
-    }
+    @Override
+    public Map<String, Object> rawFields() {
+        Map<String, Object> rawFieldMap = new HashMap<>(3);
+        if (totalNet != null) {
+            rawFieldMap.put(TemplateData.rawField("totalNet"), totalNet);
+        }
+        if (totalVat != null) {
+            rawFieldMap.put(TemplateData.rawField("totalVat"), totalVat);
+        }
+        if (totalGross != null) {
+            rawFieldMap.put(TemplateData.rawField("totalGross"), totalGross);
+        }
 
-    public void setFormattedTotalNet(String formattedTotalNet) {
-        this.formattedTotalNet = formattedTotalNet;
-    }
-
-    public String getFormattedTotalVat() {
-        return formattedTotalVat;
-    }
-
-    public void setFormattedTotalVat(String formattedTotalVat) {
-        this.formattedTotalVat = formattedTotalVat;
-    }
-
-    public String getFormattedTotalGross() {
-        return formattedTotalGross;
-    }
-
-    public void setFormattedTotalGross(String formattedTotalGross) {
-        this.formattedTotalGross = formattedTotalGross;
+        return rawFieldMap;
     }
 }

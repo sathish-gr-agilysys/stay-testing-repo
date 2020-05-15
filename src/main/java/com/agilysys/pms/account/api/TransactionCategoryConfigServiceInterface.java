@@ -1,3 +1,6 @@
+/*
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.api;
 
 import java.util.List;
@@ -16,7 +19,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.TransactionCategory;
@@ -44,8 +46,7 @@ public interface TransactionCategoryConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<TransactionCategory> getTransactionCategories(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
-          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
-          throws RGuestException, ServiceException;
+          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws RGuestException;
 
     /**
      * Retrieve a specific TransactionCategory
@@ -58,8 +59,7 @@ public interface TransactionCategoryConfigServiceInterface {
     @Path(CATEGORY_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     TransactionCategory getTransactionCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId) throws RGuestException;
 
     /**
      * Create a new TransactionCategory
@@ -74,8 +74,7 @@ public interface TransactionCategoryConfigServiceInterface {
     @Validated(TransactionCategory.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionCategory createTransactionCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionCategory category)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, TransactionCategory category) throws RGuestException;
 
     /**
      * Modify an existing TransactionCategory
@@ -92,7 +91,7 @@ public interface TransactionCategoryConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionCategory updateTransactionCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId,
-          TransactionCategory category) throws RGuestException, ServiceException;
+          TransactionCategory category) throws RGuestException;
 
     /**
      * Delete an existing TransactionCategory
@@ -104,5 +103,5 @@ public interface TransactionCategoryConfigServiceInterface {
     @Path(CATEGORY_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteTransactionCategory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(CATEGORY_ID) String categoryId) throws RGuestException, ServiceException;
+          @PathParam(CATEGORY_ID) String categoryId) throws RGuestException;
 }

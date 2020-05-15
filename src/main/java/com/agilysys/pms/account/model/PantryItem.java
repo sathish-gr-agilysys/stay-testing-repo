@@ -11,6 +11,7 @@ import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
+import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @AuditEntity(EntityTypes.PANTRY_ITEM)
@@ -22,6 +23,7 @@ public class PantryItem extends AccountingObjectBase {
 
     @JsonProperty(required = true)
     @AuditField(name = "transactionItem", references = EntityTypes.TRANSACTION_ITEM)
+    @DataPortReference(name = "transactionItemCode", type = { TransactionItem.class })
     private String transactionItemId;
 
     private CanonicalId status;

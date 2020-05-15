@@ -1,7 +1,6 @@
-/**
+/*
  * (C) 2014 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
-
 package com.agilysys.pms.account.api;
 
 import java.util.List;
@@ -18,7 +17,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.CompThreshold;
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 
@@ -45,7 +43,7 @@ public interface CompReasonInterface {
     @Path("/compReasons")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
     List<CompInfo> getCompReasons(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     /**
      * Retrieve a comp reason by id
@@ -59,21 +57,21 @@ public interface CompReasonInterface {
     @Path("/compReasons/{id}")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
     CompInfo getCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id) throws RGuestException;
 
     /**
      * Retrieve a comp reason by id
      *
      * @param tenantId   the tenantId to retrieve comp reasons for
      * @param propertyId the propertyId to retrieve comp reasons for
-     * @param code         the id of the reason to retrieve
+     * @param code       the id of the reason to retrieve
      * @return List of CompReason
      */
     @GET
     @Path("/compReasons/code/{code}")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
     CompInfo getCompReasonByCode(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(CODE) String code) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(CODE) String code) throws RGuestException;
 
     /**
      * Add a CompReason
@@ -88,7 +86,7 @@ public interface CompReasonInterface {
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
     @Validated(CompInfo.class)
     CompInfo addCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, CompInfo compInfo) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, CompInfo compInfo) throws RGuestException;
 
     /**
      * Modify a CompReason
@@ -105,7 +103,7 @@ public interface CompReasonInterface {
     @Validated(CompInfo.class)
     CompInfo updateCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, CompInfo compInfo)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     /**
      * Set the comp threshold
@@ -118,7 +116,7 @@ public interface CompReasonInterface {
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
     @Validated(CompThreshold.class)
     void setCompThreshold(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, CompThreshold threshold) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, CompThreshold threshold) throws RGuestException;
 
     /**
      * Get the comp threshold
@@ -130,6 +128,6 @@ public interface CompReasonInterface {
     @Path("/compThreshold")
     @PreAuthorize("hasPermission('Required', 'ReadCompReasons')")
     CompThreshold getCompThreshold(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
 }

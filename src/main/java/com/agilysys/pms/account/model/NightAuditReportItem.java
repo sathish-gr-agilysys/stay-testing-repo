@@ -13,11 +13,13 @@ import org.joda.time.LocalDate;
  */
 public class NightAuditReportItem {
     private String ledgerTransactionId;
+    private String mealPeriodId;
     private String transactionItemId;
     private String itemName;
     private BigDecimal amount;
     private NightAuditTransactionType transactionType;
     private String ledger;
+    private String sourceId;
     private String sourceLedger;
     private String destinationLedger;
     private LocalDate postingPropertyDate;
@@ -33,6 +35,14 @@ public class NightAuditReportItem {
 
     public void setLedgerTransactionId(String ledgerTransactionId) {
         this.ledgerTransactionId = ledgerTransactionId;
+    }
+
+    public String getMealPeriodId() {
+        return mealPeriodId;
+    }
+
+    public void setMealPeriodId(String mealPeriodId) {
+        this.mealPeriodId = mealPeriodId;
     }
 
     /**
@@ -101,6 +111,14 @@ public class NightAuditReportItem {
 
     public void setDestinationLedger(String destinationLedger) {
         this.destinationLedger = destinationLedger;
+    }
+
+    public String getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
     }
 
     public String getSourceLedger() {

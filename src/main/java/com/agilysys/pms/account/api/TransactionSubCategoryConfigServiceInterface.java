@@ -1,3 +1,6 @@
+/*
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.api;
 
 import java.util.List;
@@ -16,7 +19,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.TransactionSubCategory;
@@ -44,8 +46,7 @@ public interface TransactionSubCategoryConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<TransactionSubCategory> getTransactionSubCategories(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
-          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
-          throws RGuestException, ServiceException;
+          @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws RGuestException;
 
     /**
      * Retrieve a specific TransactionSubCategory
@@ -60,7 +61,7 @@ public interface TransactionSubCategoryConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     TransactionSubCategory getTransactionSubCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SUB_CATEGORY_ID) String subcategoryId)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 
     /**
      * Create a new TransactionSubCategory
@@ -76,8 +77,7 @@ public interface TransactionSubCategoryConfigServiceInterface {
     @Validated(TransactionSubCategory.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionSubCategory createTransactionSubCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionSubCategory subcategory)
-          throws RGuestException, ServiceException;
+          @PathParam(PROPERTY_ID) String propertyId, TransactionSubCategory subcategory) throws RGuestException;
 
     /**
      * Modify an existing TransactionSubCategory
@@ -95,7 +95,7 @@ public interface TransactionSubCategoryConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionSubCategory updateTransactionSubCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SUB_CATEGORY_ID) String subcategoryId,
-          TransactionSubCategory subcategory) throws RGuestException, ServiceException;
+          TransactionSubCategory subcategory) throws RGuestException;
 
     /**
      * Delete an existing TransactionSubCategory
@@ -108,5 +108,5 @@ public interface TransactionSubCategoryConfigServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     void deleteTransactionSubCategory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(SUB_CATEGORY_ID) String subcategoryId) throws RGuestException, ServiceException;
+          @PathParam(SUB_CATEGORY_ID) String subcategoryId) throws RGuestException;
 }

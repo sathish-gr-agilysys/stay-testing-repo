@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.api.params;
@@ -37,8 +37,7 @@ public class InvoiceOptionalParams {
         try {
             return Long.parseLong(expectedVersion);
         } catch (Exception e) {
-            throw accountException(AccountErrorCode.NUMBER_PARSE_FAILED).put(VALUE, expectedVersion).cause(e)
-                  .buildCompatible();
+            throw accountException(AccountErrorCode.NUMBER_PARSE_FAILED).put(VALUE, expectedVersion).cause(e).build();
         }
     }
 
@@ -48,7 +47,7 @@ public class InvoiceOptionalParams {
         try {
             return ISODateTimeFormat.dateTime().parseDateTime(asOf);
         } catch (Exception e) {
-            throw accountException(AccountErrorCode.DATE_PARSE_FAILED).put(VALUE, asOf).cause(e).buildCompatible();
+            throw accountException(AccountErrorCode.DATE_PARSE_FAILED).put(VALUE, asOf).cause(e).build();
         }
     }
 

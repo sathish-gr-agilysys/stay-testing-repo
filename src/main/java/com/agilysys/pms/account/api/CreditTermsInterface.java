@@ -1,3 +1,6 @@
+/*
+ * (C) 2019 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.api;
 
 import java.util.List;
@@ -10,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.agilysys.platform.common.exception.ServiceException;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 
 /**
@@ -29,5 +31,5 @@ public interface CreditTermsInterface {
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     List<Integer> getCreditTerms(@PathParam("tenantId") String tenantId, @PathParam("propertyId") String propertyId)
-          throws RGuestException, ServiceException;
+          throws RGuestException;
 }

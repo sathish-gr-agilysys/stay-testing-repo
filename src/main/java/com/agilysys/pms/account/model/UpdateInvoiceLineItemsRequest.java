@@ -13,11 +13,21 @@ public class UpdateInvoiceLineItemsRequest {
     @MinLengthRestriction(1)
     private List<String> lineItemIds;
 
+    private String disputeComment;
+
     public List<String> getLineItemIds() {
         return lineItemIds;
     }
 
     public void setLineItemIds(List<String> lineItemIds) {
         this.lineItemIds = lineItemIds;
+    }
+
+    public String getDisputeComment() {
+        return disputeComment;
+    }
+
+    public void setDisputeComment(String disputeComment) {
+        this.disputeComment = disputeComment;
     }
 }

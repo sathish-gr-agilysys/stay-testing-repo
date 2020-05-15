@@ -33,6 +33,8 @@ public class LineItemTransfer {
     private Map<String, String> transactionMessageAttributes;
     private LocalDate postingDate;
 
+    private String disputeComment;
+
     public String getDestinationAccountId() {
         return destinationAccountId;
     }
@@ -96,5 +98,13 @@ public class LineItemTransfer {
      */
     public void setPostingDate(LocalDate postingDate) {
         this.postingDate = postingDate;
+    }
+
+    public String getDisputeComment() {
+        return disputeComment;
+    }
+
+    public void setDisputeComment(String disputeComment) {
+        this.disputeComment = disputeComment;
     }
 }

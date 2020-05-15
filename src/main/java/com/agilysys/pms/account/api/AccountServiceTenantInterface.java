@@ -1,7 +1,9 @@
-/**
+/*
  * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.api;
+
+import static com.agilysys.pms.account.api.HouseAccountCategoryInterface.PROPERTY_ID;
 
 import java.util.List;
 import java.util.Map;
@@ -18,13 +20,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.agilysys.platform.common.exception.ServiceException;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.ARBalanceInfo;
 import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.CentralARRequest;
 import com.agilysys.pms.account.model.CentralARView;
 import com.agilysys.pms.account.model.InvoiceBalanceResponse;
+import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.TenantStatementRequest;
 import com.agilysys.pms.account.model.TenantStatementResponse;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -48,35 +53,33 @@ public interface AccountServiceTenantInterface {
     @GET
     @Path(AR_BALANCES_PATH)
     ARBalanceInfo getARAccountBalance(@PathParam(TENANT_ID) String tenantId,
-          @DefaultValue("AGE_BY_PROPERTY_DATE") @QueryParam("type") String type)
-          throws RGuestException, ServiceException;
+          @DefaultValue("AGE_BY_PROPERTY_DATE") @QueryParam("type") String type) throws RGuestException;
 
     @PUT
     @Path(INVOICES_PATH + CALCULATE_INVOICE_BALANCE)
     List<InvoiceBalanceResponse> updateInvoiceBalanceByInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
-          Set<String> invoiceNumbers)
-          throws RGuestException, ServiceException;
+          Set<String> invoiceNumbers) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(INVOICES_PATH)
-    List<CentralARView> createInvoices(@PathParam(TENANT_ID) String tenantId,
-          CentralARRequest centralARRequest) throws RGuestException, ServiceException;
+    List<CentralARView> createInvoices(@PathParam(TENANT_ID) String tenantId, CentralARRequest centralARRequest)
+          throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(AR_STATEMENTS_PATH)
     TenantStatementResponse createStatements(@PathParam(TENANT_ID) String tenantId,
-          TenantStatementRequest tenantStatementRequest) throws RGuestException, ServiceException;
+          TenantStatementRequest tenantStatementRequest) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(PREFERRED_COMMUNICATION)
     List<CentralARView> getPreferredCommunication(@PathParam(TENANT_ID) String tenantId,
-          CentralARRequest centralARRequest) throws RGuestException, ServiceException;
+          CentralARRequest centralARRequest) throws RGuestException;
 
     @POST
     @Path(OPEN_AR_ACCOUNT)
     Map<String, List<AccountSummary>> getOpenARAccountsByReferenceIds(@PathParam(TENANT_ID) String tenantId,
-          Set<String> referenceIds) throws RGuestException, ServiceException;
+          Set<String> referenceIds) throws RGuestException;
 }
