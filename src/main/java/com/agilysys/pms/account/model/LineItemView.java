@@ -93,6 +93,10 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal reverseTaxTotalChargeAmount;
     private List<PantryItemDetails> pantryItemDetails;
     private Boolean pantryItem;
+    private Long checkNumber;
+    private String closeTime;
+    private boolean dispute;
+    private String arDisputeId;
     private TransactionType compType;
     private String folioType;
     private String authorizerId;
@@ -101,6 +105,9 @@ public class LineItemView implements Comparable<LineItemView> {
     private CompType compTransactionType;
     private Boolean excludeTax;
     private String roomId;
+    private ARPaymentStatus arPaymentStatus;
+    private BigDecimal amountUsed;
+    private BigDecimal lineItemDepositBalance;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -109,6 +116,17 @@ public class LineItemView implements Comparable<LineItemView> {
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
         compLineItems = new ArrayList<>();
+    }
+
+    public LineItemView(String id, String description, String itemId, DateTime postingCalendarDateTime,
+          LocalDate postingPropertyDate, String reason, BigDecimal amountUsed) {
+        this.id = id;
+        this.description = description;
+        this.itemId = itemId;
+        this.postingCalendarDateTime = postingCalendarDateTime;
+        this.postingPropertyDate = postingPropertyDate;
+        this.reason = reason;
+        this.amountUsed = amountUsed;
     }
 
     /**
@@ -892,6 +910,38 @@ public class LineItemView implements Comparable<LineItemView> {
         this.pantryItem = pantryItem;
     }
 
+    public Long getCheckNumber() {
+        return checkNumber;
+    }
+
+    public void setCheckNumber(Long checkNumber) {
+        this.checkNumber = checkNumber;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
+    }
+
+    public boolean isDispute() {
+        return dispute;
+    }
+
+    public void setDispute(boolean dispute) {
+        this.dispute = dispute;
+    }
+
+    public String getArDisputeId() {
+        return arDisputeId;
+    }
+
+    public void setArDisputeId(String arDisputeId) {
+        this.arDisputeId = arDisputeId;
+    }
+
     public TransactionType getCompType() {
         return compType;
     }
@@ -962,6 +1012,30 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
+    }
+
+    public ARPaymentStatus getArPaymentStatus() {
+        return arPaymentStatus;
+    }
+
+    public void setArPaymentStatus(ARPaymentStatus arPaymentStatus) {
+        this.arPaymentStatus = arPaymentStatus;
+    }
+
+    public BigDecimal getAmountUsed() {
+        return amountUsed;
+    }
+
+    public void setAmountUsed(BigDecimal amountUsed) {
+        this.amountUsed = amountUsed;
+    }
+
+    public BigDecimal getLineItemDepositBalance() {
+        return lineItemDepositBalance;
+    }
+
+    public void setLineItemDepositBalance(BigDecimal lineItemDepositBalance) {
+        this.lineItemDepositBalance = lineItemDepositBalance;
     }
 
     @Override

@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -67,6 +68,10 @@ public class RecurringChargeView {
     private BigDecimal reverseTaxTotalChargeAmount;
     private String packageFolioId;
 
+    public RecurringChargeView() {
+        estimatedTaxInfo = new ChargeTaxAmountInfo();
+    }
+
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
     }
@@ -100,11 +105,11 @@ public class RecurringChargeView {
     }
 
     public BigDecimal getAmount() {
-        return amount;
+        return amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+        this.amount = amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public String getItemId() {
