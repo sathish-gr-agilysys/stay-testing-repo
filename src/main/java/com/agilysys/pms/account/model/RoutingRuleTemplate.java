@@ -35,7 +35,7 @@ public class RoutingRuleTemplate {
 
     private Boolean includeDepartureDate;
 
-    private List<DaysOfWeek> daysOfWeek;
+    private List<Integer> occurrenceDays;
 
     private Boolean comp;
 
@@ -63,7 +63,7 @@ public class RoutingRuleTemplate {
     @NotNull
     private PostingRuleChargeType postingRuleChargeType;
 
-    private List<DestinationDetail> destinationDetails;
+    private List<DestinationDetail> destinations;
 
     @MaxLengthRestriction(250)
     @Size(max = 250)
@@ -132,12 +132,12 @@ public class RoutingRuleTemplate {
         this.includeDepartureDate = includeDepartureDate;
     }
 
-    public List<DaysOfWeek> getDaysOfWeek() {
-        return daysOfWeek;
+    public List<Integer> getOccuranceDays() {
+        return occurrenceDays;
     }
 
-    public void setDaysOfWeek(List<DaysOfWeek> daysOfWeek) {
-        this.daysOfWeek = daysOfWeek;
+    public void setOccuranceDays(List<Integer> occuranceDays) {
+        this.occurrenceDays = occuranceDays;
     }
 
     public Boolean getComp() {
@@ -228,12 +228,12 @@ public class RoutingRuleTemplate {
         this.postingRuleChargeType = postingRuleChargeType;
     }
 
-    public List<DestinationDetail> getDestinationDetails() {
-        return destinationDetails;
+    public List<DestinationDetail> getDestinations() {
+        return destinations;
     }
 
-    public void setDestinationDetails(List<DestinationDetail> destinationDetails) {
-        this.destinationDetails = destinationDetails;
+    public void setDestinations(List<DestinationDetail> destinations) {
+        this.destinations = destinations;
     }
 
     public String getReasons() {

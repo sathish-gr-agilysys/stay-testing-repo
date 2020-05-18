@@ -51,7 +51,7 @@ public class PostingRuleDetail {
     private String reason;
 
     private String description;
-    private Integer priority;
+    private java.lang.Integer priority;
 
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
@@ -62,7 +62,7 @@ public class PostingRuleDetail {
 
     private Boolean includeDepartureDate;
 
-    private List<DaysOfWeek> daysOfWeek;
+    private List<Integer> occurrenceDays;
 
     private Boolean comp;
 
@@ -208,11 +208,11 @@ public class PostingRuleDetail {
         this.id = id;
     }
 
-    public Integer getPriority() {
+    public java.lang.Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(Integer priority) {
+    public void setPriority(java.lang.Integer priority) {
         this.priority = priority;
     }
 
@@ -312,12 +312,12 @@ public class PostingRuleDetail {
         this.includeDepartureDate = includeDepartureDate;
     }
 
-    public List<DaysOfWeek> getDaysOfWeek() {
-        return daysOfWeek;
+    public List<Integer> getOccurrenceDays() {
+        return occurrenceDays;
     }
 
-    public void setDaysOfWeek(List<DaysOfWeek> daysOfWeek) {
-        this.daysOfWeek = daysOfWeek;
+    public void setOccurrenceDays(List<Integer> occurrenceDays) {
+        this.occurrenceDays = occurrenceDays;
     }
 
     public String getAuthorizerId() {
