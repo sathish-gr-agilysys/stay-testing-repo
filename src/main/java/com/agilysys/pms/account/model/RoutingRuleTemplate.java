@@ -57,7 +57,7 @@ public class RoutingRuleTemplate {
 
     private Set<String> itemIds;
 
-    private PostingRuleSplitBy postingRuleSplitBy;
+    private PostingRuleSplitBy splitBy;
 
     @JsonProperty(required = true)
     @NotNull
@@ -212,12 +212,12 @@ public class RoutingRuleTemplate {
         this.itemIds = itemIds;
     }
 
-    public PostingRuleSplitBy getPostingRuleSplitBy() {
-        return postingRuleSplitBy;
+    public PostingRuleSplitBy getSplitBy() {
+        return splitBy;
     }
 
-    public void setPostingRuleSplitBy(PostingRuleSplitBy postingRuleSplitBy) {
-        this.postingRuleSplitBy = postingRuleSplitBy;
+    public void setSplitBy(PostingRuleSplitBy splitBy) {
+        this.splitBy = splitBy;
     }
 
     public PostingRuleChargeType getPostingRuleChargeType() {
