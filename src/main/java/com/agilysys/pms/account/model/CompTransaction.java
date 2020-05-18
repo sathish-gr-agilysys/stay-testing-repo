@@ -16,6 +16,9 @@ public class CompTransaction {
     private String authorizerCode;
     private List<CompRedeemRequest> compRedeemRequests;
     private RedemptionType redemptionType;
+    private Boolean isEnhancedRoutingRule;
+    private OffSetRule offSetRule;
+    private Boolean tax;
 
     public CompTransaction() {}
 
@@ -94,5 +97,29 @@ public class CompTransaction {
 
     public void setRedemptionType(RedemptionType redemptionType) {
         this.redemptionType = redemptionType;
+    }
+
+    public Boolean getEnhancedRoutingRule() {
+        return isEnhancedRoutingRule;
+    }
+
+    public void setEnhancedRoutingRule(Boolean enhancedRoutingRule) {
+        isEnhancedRoutingRule = enhancedRoutingRule;
+    }
+
+    public OffSetRule getOffSetRule() {
+        return offSetRule;
+    }
+
+    public void setOffSetRule(OffSetRule offSetRule) {
+        this.offSetRule = offSetRule;
+    }
+
+    public Boolean getTax() {
+        return tax;
+    }
+
+    public void setTax(Boolean tax) {
+        this.tax = tax;
     }
 }
