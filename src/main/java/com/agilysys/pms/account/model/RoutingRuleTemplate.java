@@ -132,12 +132,12 @@ public class RoutingRuleTemplate {
         this.includeDepartureDate = includeDepartureDate;
     }
 
-    public List<Integer> getOccuranceDays() {
+    public List<Integer> getOccurrenceDays() {
         return occurrenceDays;
     }
 
-    public void setOccuranceDays(List<Integer> occuranceDays) {
-        this.occurrenceDays = occuranceDays;
+    public void setOccurrenceDays(List<Integer> occurrenceDays) {
+        this.occurrenceDays = occurrenceDays;
     }
 
     public Boolean getComp() {
