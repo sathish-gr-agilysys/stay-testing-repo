@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class CheckAllowanceResponse {
     private BigDecimal remainingAllowance;
@@ -32,7 +33,7 @@ public class CheckAllowanceResponse {
     }
 
     public BigDecimal getRemainingAllowance() {
-        return remainingAllowance;
+        return remainingAllowance != null ? remainingAllowance.setScale(2, RoundingMode.HALF_UP) : remainingAllowance;
     }
 
     public void setRemainingAllowance(BigDecimal remainingAllowance) {
@@ -40,7 +41,7 @@ public class CheckAllowanceResponse {
     }
 
     public BigDecimal getBreakage() {
-        return breakage;
+        return breakage != null ? breakage.setScale(2, RoundingMode.HALF_UP) : breakage;
     }
 
     public void setBreakage(BigDecimal breakage) {
@@ -48,7 +49,7 @@ public class CheckAllowanceResponse {
     }
 
     public BigDecimal getUsedAllowance() {
-        return usedAllowance;
+        return usedAllowance != null ? usedAllowance.setScale(2, RoundingMode.HALF_UP) : usedAllowance;
     }
 
     public void setUsedAllowance(BigDecimal usedAllowance) {
