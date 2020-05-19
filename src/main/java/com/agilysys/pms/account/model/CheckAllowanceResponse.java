@@ -17,9 +17,10 @@ public class CheckAllowanceResponse {
     public CheckAllowanceResponse() {}
 
     public CheckAllowanceResponse(BigDecimal remainingAllowance, BigDecimal breakage, BigDecimal usedAllowance) {
-        this.breakage = breakage;
-        this.remainingAllowance = remainingAllowance;
-        this.usedAllowance = usedAllowance;
+        this.breakage = breakage != null ? breakage.setScale(2, RoundingMode.HALF_UP) : breakage;
+        this.remainingAllowance =
+              remainingAllowance != null ? remainingAllowance.setScale(2, RoundingMode.HALF_UP) : remainingAllowance;
+        this.usedAllowance = usedAllowance != null ? usedAllowance.setScale(2, RoundingMode.HALF_UP) : usedAllowance;
     }
 
     public CheckAllowanceResponse(boolean allowanceComponent, boolean applicable) {
