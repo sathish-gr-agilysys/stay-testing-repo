@@ -8,11 +8,13 @@ import com.agilysys.pms.common.model.export.WarehouseType;
 public enum AccountWarehouseType implements WarehouseType {
     ACCOUNTS,
     CATEGORIES,
+    INVENTORY_ITEMS,
     LEDGER_TRANSACTIONS,
     PAYMENT_METHODS,
     RECURRING_CHARGES,
     REVENUE,
-    SUBCATEGORIES;
+    SUBCATEGORIES,
+    TRANSACTION_ITEMS;
 
     // This is implicitly used by Jersey when converting @PathParam/@QueryParam
     public static AccountWarehouseType fromString(String s) {
