@@ -19,33 +19,6 @@ public class CompTransaction {
 
     public CompTransaction() {}
 
-    public enum RedemptionType {
-        PLAYER_POINT("PNT", "POINT", "POINT BALANCE"),
-        COMP_POINT("CMP", "COMP", "COMP BALANCE");
-
-        String bankCode;
-        String desc;
-        String shortDesc;
-
-        RedemptionType(String bankCode, String shortDesc, String desc) {
-            this.bankCode = bankCode;
-            this.shortDesc = shortDesc;
-            this.desc = desc;
-        }
-
-        public String getBankCode() {
-            return bankCode;
-        }
-
-        public String getDesc() {
-            return desc;
-        }
-
-        public String getShortDesc() {
-            return shortDesc;
-        }
-    }
-
     public String getAuthorizerId() {
         return authorizerId;
     }
