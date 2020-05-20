@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.payagent.model.events;
@@ -21,9 +21,7 @@ public class PayAgentTransactionCreatedEvent extends PayAgentTransactionEvent {
     private PayAgentBaseRequest payAgentPayLoad;
     private String callbackUrl;
 
-    public PayAgentTransactionCreatedEvent() {
-        super();
-    }
+    public PayAgentTransactionCreatedEvent() {}
 
     public PayAgentTransactionCreatedEvent(PropertyLevelIdentifier id, PayTransactionRequest payTransactionRequest) {
         super();
@@ -47,11 +45,6 @@ public class PayAgentTransactionCreatedEvent extends PayAgentTransactionEvent {
      */
     public void setPayTransactionRequest(PayTransactionRequest payTransactionRequest) {
         this.payTransactionRequest = payTransactionRequest;
-    }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
     }
 
     @Transient

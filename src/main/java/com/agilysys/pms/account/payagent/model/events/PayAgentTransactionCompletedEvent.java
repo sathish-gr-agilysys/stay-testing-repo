@@ -1,3 +1,6 @@
+/*
+ * (C) 2016 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.payagent.model.events;
 
 import java.util.List;
@@ -15,9 +18,7 @@ public class PayAgentTransactionCompletedEvent extends PayAgentTransactionEvent 
     private PropertyLevelIdentifier id;
     private PayAgentBaseResponse response;
 
-    public PayAgentTransactionCompletedEvent() {
-        super();
-    }
+    public PayAgentTransactionCompletedEvent() {}
 
     public PayAgentTransactionCompletedEvent(PropertyLevelIdentifier identifier, PayAgentBaseResponse response) {
         super();
@@ -43,10 +44,4 @@ public class PayAgentTransactionCompletedEvent extends PayAgentTransactionEvent 
     public List<String> getHistoryMessages() {
         return Lists.newArrayList();
     }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-
 }

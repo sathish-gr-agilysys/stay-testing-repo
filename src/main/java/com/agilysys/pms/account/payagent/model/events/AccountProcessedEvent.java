@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.payagent.model.events;
@@ -96,13 +96,4 @@ public class AccountProcessedEvent extends PayAgentTransactionEvent {
     public String getDisplayName() {
         return "Account Processed";
     }
-
-    /* (non-Javadoc)
-     * @see com.agilysys.platform.persistence.eventsourcing.DomainEvent#getEventVersion()
-     */
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-
 }
