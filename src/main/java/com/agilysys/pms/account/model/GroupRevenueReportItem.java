@@ -30,7 +30,8 @@ public class GroupRevenueReportItem extends RevenueReportItem {
         this.transactionItemCode = transactionItemCode;
     }
 
-    public String getTransactionItemName() { return transactionItemName;
+    public String getTransactionItemName() {
+        return transactionItemName;
     }
 
     public void setTransactionItemName(String transactionItemName) {

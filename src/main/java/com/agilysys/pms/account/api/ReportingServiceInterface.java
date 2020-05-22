@@ -80,7 +80,6 @@ public interface ReportingServiceInterface {
     String SEND_DEPOSIT_COLLECTION_STATUS_EMAIL = "sendDepositCollectionStatus";
     String SEND_BATCH_DEPOSIT_DUE_NOTIFICATION = "sendBatchDepositDueNotification";
 
-
     /**
      * get the ledger report
      *
@@ -367,7 +366,7 @@ public interface ReportingServiceInterface {
     @Path(GROUPS_REVENUE_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
-    Map<String, List<GroupRevenueReportItem>>  getRevenueDetailsForGroups(@PathParam(TENANT_ID) String tenantId,
+    Map<String, List<GroupRevenueReportItem>> getRevenueDetailsForGroups(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(DATE) LocalDate date, Set<String> groupIds);
 
     @POST
