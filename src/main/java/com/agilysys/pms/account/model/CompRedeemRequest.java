@@ -4,9 +4,12 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class CompRedeemRequest {
     private String lineItemId;
+    private String itemId;
+    private List<String> taxClasses;
     private BigDecimal amount;
 
     public String getLineItemId() {
@@ -25,4 +28,19 @@ public class CompRedeemRequest {
         this.amount = amount;
     }
 
+    public List<String> getTaxClasses() {
+        return taxClasses;
+    }
+
+    public void setTaxClasses(List<String> taxClasses) {
+        this.taxClasses = taxClasses;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
 }

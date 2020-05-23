@@ -5,6 +5,8 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
+import org.apache.xpath.operations.Bool;
+
 public class CompTransaction {
 
     private String authorizerId;
@@ -101,6 +103,10 @@ public class CompTransaction {
 
     public Boolean getEnhancedRoutingRule() {
         return isEnhancedRoutingRule;
+    }
+
+    public boolean isEnhancedRoutingRule() {
+        return Boolean.TRUE.equals(isEnhancedRoutingRule);
     }
 
     public void setEnhancedRoutingRule(Boolean enhancedRoutingRule) {
