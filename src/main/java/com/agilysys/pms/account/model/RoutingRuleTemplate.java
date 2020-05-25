@@ -69,7 +69,7 @@ public class RoutingRuleTemplate {
     @Size(max = 250)
     private String reasons;
 
-    private Boolean ignoreDestinationRule;
+    private Boolean ignoreDestinationRules;
 
     private Boolean carryForwardBalance;
 
@@ -244,12 +244,12 @@ public class RoutingRuleTemplate {
         this.reasons = reasons;
     }
 
-    public Boolean getIgnoreDestinationRule() {
-        return ignoreDestinationRule;
+    public Boolean getIgnoreDestinationRules() {
+        return ignoreDestinationRules;
     }
 
-    public void setIgnoreDestinationRule(Boolean ignoreDestinationRule) {
-        this.ignoreDestinationRule = ignoreDestinationRule;
+    public void setIgnoreDestinationRules(Boolean ignoreDestinationRules) {
+        this.ignoreDestinationRules = ignoreDestinationRules;
     }
 
     public Boolean getCarryForwardBalance() {
