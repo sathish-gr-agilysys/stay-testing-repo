@@ -67,7 +67,7 @@ public class RoutingRuleTemplate {
 
     @MaxLengthRestriction(250)
     @Size(max = 250)
-    private String reasons;
+    private String reason;
 
     private Boolean ignoreDestinationRules;
 
@@ -236,12 +236,12 @@ public class RoutingRuleTemplate {
         this.destinations = destinations;
     }
 
-    public String getReasons() {
-        return reasons;
+    public String getReason() {
+        return reason;
     }
 
-    public void setReasons(String reasons) {
-        this.reasons = reasons;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public Boolean getIgnoreDestinationRules() {
