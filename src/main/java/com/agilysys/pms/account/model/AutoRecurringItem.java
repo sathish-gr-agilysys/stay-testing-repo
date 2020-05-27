@@ -38,7 +38,8 @@ public class AutoRecurringItem extends AccountingObjectBase {
     private FrequencyType frequencyType;
 
     @JsonProperty(required = true)
-    @AuditField(name = "parentTransactionItem", references = EntityTypes.TRANSACTION_ITEM)
+    @AuditField(name = "parentTransactionItem",
+          references = { EntityTypes.TRANSACTION_ITEM, EntityTypes.INVENTORY_ITEM })
     private String parentTransactionItemId;
 
     private CanonicalId status;

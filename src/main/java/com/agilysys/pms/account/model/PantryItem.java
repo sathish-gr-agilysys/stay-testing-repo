@@ -22,7 +22,7 @@ public class PantryItem extends AccountingObjectBase {
     private BigDecimal price;
 
     @JsonProperty(required = true)
-    @AuditField(name = "transactionItem", references = EntityTypes.TRANSACTION_ITEM)
+    @AuditField(name = "transactionItem", references = { EntityTypes.TRANSACTION_ITEM, EntityTypes.INVENTORY_ITEM })
     @DataPortReference(name = "transactionItemCode", type = { TransactionItem.class })
     private String transactionItemId;
 
