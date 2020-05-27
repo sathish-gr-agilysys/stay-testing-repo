@@ -24,6 +24,16 @@ public class CompTransaction {
 
     public CompTransaction() {}
 
+    public CompTransaction(String authorizerId, String departmentId, List<CompRedeemRequest> compRedeemRequests,
+          Boolean isEnhancedRoutingRule, OffSetRule offSetRule, Boolean tax) {
+        this.authorizerId = authorizerId;
+        this.departmentId = departmentId;
+        this.compRedeemRequests = compRedeemRequests;
+        this.isEnhancedRoutingRule = isEnhancedRoutingRule;
+        this.offSetRule = offSetRule;
+        this.tax = tax;
+    }
+
     public enum RedemptionType {
         PLAYER_POINT,
         COMP_POINT;

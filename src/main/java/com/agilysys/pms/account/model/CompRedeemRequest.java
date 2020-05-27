@@ -12,6 +12,16 @@ public class CompRedeemRequest {
     private List<String> taxClasses;
     private BigDecimal amount;
 
+    public CompRedeemRequest() {
+    }
+
+    public CompRedeemRequest(String lineItemId, String itemId, List<String> taxClasses, BigDecimal amount) {
+        this.lineItemId = lineItemId;
+        this.itemId = itemId;
+        this.taxClasses = taxClasses;
+        this.amount = amount;
+    }
+
     public String getLineItemId() {
         return lineItemId;
     }
