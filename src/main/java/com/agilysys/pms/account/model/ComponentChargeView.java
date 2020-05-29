@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -105,11 +106,11 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getAmount() {
-        return amount;
+        return amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+        this.amount = amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public int getQuantity() {
@@ -137,11 +138,11 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getTotalAmount() {
-        return totalAmount;
+        return totalAmount != null ? totalAmount.setScale(2, RoundingMode.HALF_UP) : totalAmount;
     }
 
     public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
+        this.totalAmount = totalAmount != null ? totalAmount.setScale(2, RoundingMode.HALF_UP) : totalAmount;
     }
 
     public int getTotalQuantity() {
@@ -202,11 +203,12 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getAllowanceAmount() {
-        return allowanceAmount;
+        return allowanceAmount != null ? allowanceAmount.setScale(2, RoundingMode.HALF_UP) : allowanceAmount;
     }
 
     public void setAllowanceAmount(BigDecimal allowanceAmount) {
-        this.allowanceAmount = allowanceAmount;
+        this.allowanceAmount =
+              allowanceAmount != null ? allowanceAmount.setScale(2, RoundingMode.HALF_UP) : allowanceAmount;
     }
 
     public AllowanceFrequencyType getAllowanceFrequencyType() {
@@ -271,9 +273,10 @@ public class ComponentChargeView {
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
         componentChargeView.setComponentBundleId(componentRateSnapshot.getComponentBundleId());
         componentChargeView.setComponentId(componentRateSnapshot.getComponentId());
-        componentChargeView.setAmount(componentRateSnapshot.getAmount());
+        componentChargeView.setAmount(componentRateSnapshot.getAmount().setScale(2, RoundingMode.HALF_UP));
         componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
-        componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
+        componentChargeView
+              .setTotalAmount(componentRateSnapshot.getRealizedTotalAmount().setScale(2, RoundingMode.HALF_UP));
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
         componentChargeView.setAllowanceComponentType(componentRateSnapshot.getAllowanceComponentType());
