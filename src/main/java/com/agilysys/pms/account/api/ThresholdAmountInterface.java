@@ -28,15 +28,6 @@ public interface ThresholdAmountInterface {
     String THRESHOLD_AMOUNT_ID = "id";
     String THRESHOLD_METHOD_ID_PATH = "{id}";
 
-
-    /**
-     * Create a new ThresholdAmount
-     *
-     * @param tenantId      the tenantId to create a ThresholdAmount for
-     * @param propertyId    the propertyId to create a ThresholdAmount for
-     * @param thresholdAmount the new ThresholdAmount to persist
-     * @return the newly create ThresholdAmount with auto-generated ID
-     */
     @POST
     @CreatedOnSuccess
     @Produces(MediaType.APPLICATION_JSON)
@@ -44,41 +35,17 @@ public interface ThresholdAmountInterface {
     ThresholdAmount createThresholdAmount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, ThresholdAmount thresholdAmount) throws RGuestException;
 
-    /**
-     * Retrieve a specific ThresholdAmount
-     *
-     * @param tenantId          the tenantId to retrieve the ThresholdAmount for
-     * @param propertyId        the propertyId to retrieve ThresholdAmount for
-     * @param thresholdAmountId the ID of the ThresholdAmount to retrieve
-     * @return the ThresholdAmount identified by itemId
-     */
     @GET
     @Path(THRESHOLD_METHOD_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     ThresholdAmount getThresholdAmount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(THRESHOLD_AMOUNT_ID) String thresholdAmountId) throws RGuestException;
 
-    /**
-     * Retrieve all PaymentMethods
-     *
-     * @param tenantId   the tenantId to retrieve ThresholdAmount for
-     * @param propertyId the propertyId to retrieve ThresholdAmount for
-     * @return List of ThresholdAmount
-     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     List<ThresholdAmount> getAllThresholdAmount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
-    /**
-     * Modify an existing ThresholdAmount
-     *
-     * @param tenantId          the tenantId to modify the ThresholdAmount for
-     * @param propertyId        the propertyId to modify ThresholdAmount for
-     * @param thresholdAmountId the ID of the ThresholdAmount to modify
-     * @param thresholdAmount   the modified ThresholdAmount to persist
-     * @return the modified ThresholdAmount
-     */
     @PUT
     @Path(THRESHOLD_METHOD_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
