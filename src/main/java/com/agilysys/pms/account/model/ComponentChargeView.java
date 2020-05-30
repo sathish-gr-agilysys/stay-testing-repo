@@ -50,6 +50,8 @@ public class ComponentChargeView {
     private String allowanceName;
     private int allowanceTotalQuantity;
     private String breakageId;
+    private boolean addOn;
+    private String addOnBundleId;
 
     public ComponentChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -75,6 +77,8 @@ public class ComponentChargeView {
         allowanceName = componentChargeView.getAllowanceName();
         breakageId = componentChargeView.getBreakageId();
         allowanceTotalQuantity = componentChargeView.getAllowanceTotalQuantity();
+        addOn = componentChargeView.isAddOn();
+        addOnBundleId = componentChargeView.getAddOnBundleId();
     }
 
     public String getComponentBundleId() {
@@ -247,6 +251,22 @@ public class ComponentChargeView {
         this.breakageId = breakageId;
     }
 
+    public boolean isAddOn() {
+        return addOn;
+    }
+
+    public void setAddOn(boolean addOn) {
+        this.addOn = addOn;
+    }
+
+    public String getAddOnBundleId() {
+        return addOnBundleId;
+    }
+
+    public void setAddOnBundleId(String addOnBundleId) {
+        this.addOnBundleId = addOnBundleId;
+    }
+
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
@@ -266,6 +286,8 @@ public class ComponentChargeView {
         componentChargeView.setAllowanceName(componentRateSnapshot.getAllowanceName());
         componentChargeView.setAllowanceTotalQuantity(componentRateSnapshot.getAllowanceTotalQuantity());
         componentChargeView.setBreakageId(componentRateSnapshot.getBreakageId());
+        componentChargeView.setAddOn(componentRateSnapshot.isAddOn());
+        componentChargeView.setAddOnBundleId(componentRateSnapshot.getAddOnBundleId());
 
         return componentChargeView;
     }
