@@ -13,7 +13,6 @@ import javax.ws.rs.core.Response.Status;
 import com.agilysys.pms.account.exception.ServiceError;
 import com.agilysys.pms.account.model.PaymentTransaction;
 import com.agilysys.pms.common.exceptions.account.AccountErrorCode;
-import com.agilysys.pms.payment.model.GatewayType;
 
 /**
  * This is the generic request coming up from browser to request the payload
@@ -256,7 +255,6 @@ public class PayTransactionRequest {
 
     private void isValidRequest() {
         if (deviceGuid == null || (accountId == null && profileId == null && payActionType != PayActionType.BOOK) ||
-              (GatewayType.getGatewayTypeFromId(deviceHandlerId).isTerminalIdSupported() && terminalId == null) ||
               payActionType == null || payAgentCode == null || payAgentUrl == null) {
             throwException();
         }
