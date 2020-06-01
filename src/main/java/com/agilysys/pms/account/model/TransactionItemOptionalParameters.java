@@ -9,6 +9,15 @@ public class TransactionItemOptionalParameters {
     private boolean applyToFutureReservations;
     private boolean applyToInHouseReservations;
     private boolean applyToPantryItems;
+    private boolean applyDefaultAutoRecurringItems;
+
+    public TransactionItemOptionalParameters() {
+    }
+
+    public TransactionItemOptionalParameters(boolean applyToFutureReservations, boolean applyToInHouseReservations) {
+        this.applyToFutureReservations = applyToFutureReservations;
+        this.applyToInHouseReservations = applyToInHouseReservations;
+    }
 
     public boolean isApplyStatusToAutoRecurringItems() {
         return applyStatusToAutoRecurringItems;
@@ -48,5 +57,13 @@ public class TransactionItemOptionalParameters {
 
     public void setApplyToPantryItems(boolean applyToPantryItems) {
         this.applyToPantryItems = applyToPantryItems;
+    }
+
+    public boolean isApplyDefaultAutoRecurringItems() {
+        return applyDefaultAutoRecurringItems;
+    }
+
+    public void setApplyDefaultAutoRecurringItems(boolean applyDefaultAutoRecurringItems) {
+        this.applyDefaultAutoRecurringItems = applyDefaultAutoRecurringItems;
     }
 }
