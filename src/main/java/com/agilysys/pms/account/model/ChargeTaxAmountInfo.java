@@ -4,12 +4,18 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 public class ChargeTaxAmountInfo {
     private BigDecimal totalTaxAmount;
 
     private List<TaxAmountInfo> taxAmountInfoList;
+
+    public ChargeTaxAmountInfo() {
+        taxAmountInfoList = Collections.EMPTY_LIST;
+        totalTaxAmount = BigDecimal.ZERO;
+    }
 
     /**
      * the sum of all tax amounts
