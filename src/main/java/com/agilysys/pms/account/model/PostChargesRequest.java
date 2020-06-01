@@ -16,7 +16,8 @@ public class PostChargesRequest {
     private String name;
     private LocalDate postingDate;
     private boolean postRecurringCharge;
-
+    private String componentBundleId;
+    private boolean addOn;
 
     public List<Charge> getCharges() {
         return charges;
@@ -71,6 +72,22 @@ public class PostChargesRequest {
 
     public void setPostRecurringCharge(boolean postRecurringCharge) {
         this.postRecurringCharge = postRecurringCharge;
+    }
+
+    public String getComponentBundleId() {
+        return componentBundleId;
+    }
+
+    public void setComponentBundleId(String componentBundleId) {
+        this.componentBundleId = componentBundleId;
+    }
+
+    public boolean isAddOn() {
+        return addOn;
+    }
+
+    public void setAddOn(boolean addOn) {
+        this.addOn = addOn;
     }
 }
 
