@@ -60,6 +60,7 @@ public interface ReportingServiceInterface {
     String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
+    String INVENTORY_ITEMS_PATH = "/inventoryItemsCharges";
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
     String PROPERTY_DATE = "propertyDate";
