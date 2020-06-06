@@ -142,6 +142,7 @@ public interface AccountServiceInterfaceV1 {
 
     String ACCOUNT_BALANCES_PATH = "/balances";
     String ACCOUNT_ID = "accountId";
+    String GROUP_ID = "groupId";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
@@ -279,7 +280,7 @@ public interface AccountServiceInterfaceV1 {
     String ALLOWANCE = "/allowance";
     String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
     String BATCH_CREDITS_PATH = "/batchCredits";
-    String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
+    String RELEASE_ALL_AUTH = GROUP_ID + "/{" + GROUP_ID + "}" + "/releaseAllAuthorizations";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -1290,6 +1291,6 @@ public interface AccountServiceInterfaceV1 {
     @Path(RELEASE_ALL_AUTH)
     @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
     void releaseAllAuthorizations(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          String groupId) throws RGuestException;
+          @PathParam(GROUP_ID) String groupId) throws RGuestException;
 
 }
