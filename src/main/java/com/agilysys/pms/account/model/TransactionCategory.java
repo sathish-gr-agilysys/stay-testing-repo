@@ -15,6 +15,7 @@ import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.Outlet;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -38,6 +39,10 @@ public class TransactionCategory extends AccountingObjectBase {
     @AuditField(name = "defaultSource", references = { EntityTypes.BUILDING, EntityTypes.OUTLET })
     private String defaultSourceId;
 
+    private String htngCode;
+
+    private String htngDescription;
+
     /**
      * @return the sourceIds
      */
@@ -60,6 +65,22 @@ public class TransactionCategory extends AccountingObjectBase {
         this.defaultSourceId = defaultSourceId;
     }
 
+    public String getHtngCode() {
+        return htngCode;
+    }
+
+    public void setHtngCode(String htngCode) {
+        this.htngCode = htngCode;
+    }
+
+    public String getHtngDescription() {
+        return htngDescription;
+    }
+
+    public void setHtngDescription(String htngDescription) {
+        this.htngDescription = htngDescription;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -77,6 +98,7 @@ public class TransactionCategory extends AccountingObjectBase {
     }
 
     @Override
+    @JsonIgnore
     public String getDisplayName() {
         return DISPLAY_NAME;
     }
