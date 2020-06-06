@@ -15,6 +15,7 @@ import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.Outlet;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -97,6 +98,7 @@ public class TransactionCategory extends AccountingObjectBase {
     }
 
     @Override
+    @JsonIgnore
     public String getDisplayName() {
         return DISPLAY_NAME;
     }
