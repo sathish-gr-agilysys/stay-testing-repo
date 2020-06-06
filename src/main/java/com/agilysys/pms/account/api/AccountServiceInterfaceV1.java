@@ -279,6 +279,7 @@ public interface AccountServiceInterfaceV1 {
     String ALLOWANCE = "/allowance";
     String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
     String BATCH_CREDITS_PATH = "/batchCredits";
+    String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -1284,5 +1285,11 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'DeleteCompanyARDocument')")
     void deleteCompanyARDocuments(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           DocumentRequest documentRequest) throws RGuestException;
+
+    @POST
+    @Path(RELEASE_ALL_AUTH)
+    @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
+    void releaseAllAuthorizations(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          String groupId) throws RGuestException;
 
 }
