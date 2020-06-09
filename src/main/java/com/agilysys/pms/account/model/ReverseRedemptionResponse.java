@@ -6,6 +6,8 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Map;
 
+import com.agilysys.pms.account.exception.ReverseRedemptionError;
+
 public class ReverseRedemptionResponse {
     private String id;
     private String propertyId;
