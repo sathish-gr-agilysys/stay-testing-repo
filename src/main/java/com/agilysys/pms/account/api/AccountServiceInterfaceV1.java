@@ -37,7 +37,6 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
-import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.api.params.InvoicePaymentRequest;
 import com.agilysys.pms.account.model.ARDepositView;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -63,9 +62,11 @@ import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
 import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.CompTransaction;
 import com.agilysys.pms.account.model.CompanyInfo;
+import com.agilysys.pms.account.model.CompleteReverseRedemptionRequestAyncJobId;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
+import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.model.EligibleFolioLineItems;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
@@ -108,6 +109,7 @@ import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
+import com.agilysys.pms.account.model.ReverseRedemptionResponse;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -1236,9 +1238,14 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(ACCOUNT_ID_PATH + REVERSE_REDEEM_CHARGE)
-    List<String> completeReverseRedemption(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, ReverseRedemptionRequest reverseRedemptionRequest)
-          throws RGuestException;
+    CompleteReverseRedemptionRequestAyncJobId completeReverseRedemption(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          ReverseRedemptionRequest reverseRedemptionRequest) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + REVERSE_REDEEM_CHARGE + "/{id}")
+    ReverseRedemptionResponse getReverseRedemptionResponse(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String id) throws RGuestException;
 
     @POST
     @Path(BATCH_DEPOSIT_COLLECTION_JOB_PATH)
