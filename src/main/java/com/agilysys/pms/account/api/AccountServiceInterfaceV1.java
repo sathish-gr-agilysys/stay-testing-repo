@@ -1243,7 +1243,7 @@ public interface AccountServiceInterfaceV1 {
           ReverseRedemptionRequest reverseRedemptionRequest) throws RGuestException;
 
     @GET
-    @Path(ACCOUNT_ID_PATH + REVERSE_REDEEM_CHARGE + "/{id}")
+    @Path(REVERSE_REDEEM_CHARGE + "/{id}")
     ReverseRedemptionResponse getReverseRedemptionResponse(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String id) throws RGuestException;
 
