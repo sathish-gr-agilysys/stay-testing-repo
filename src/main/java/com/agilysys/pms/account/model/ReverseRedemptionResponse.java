@@ -15,7 +15,7 @@ public class ReverseRedemptionResponse {
     private String reverseRedemptionStatus;
     private List<String> transferredLedgerTransactionsIds;
     private List<ReverseRedemptionError> reverseRedemptionErrors;
-    Map<String, ReverseRedemptionError> failedTransactionIdWithError;
+    private Map<String, ReverseRedemptionError> failedTransactionIdWithError;
     private List<String> transactionIds;
 
     public ReverseRedemptionResponse() {
