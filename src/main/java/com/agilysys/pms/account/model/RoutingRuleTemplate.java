@@ -164,11 +164,11 @@ public class RoutingRuleTemplate {
         this.authorizerIds = authorizerIds;
     }
 
-    public OffSetRule getOffsetRule() {
+    public OffSetRule getOffSetRule() {
         return offSetRule;
     }
 
-    public void setOffsetRule(OffSetRule offSetRule) {
+    public void setOffSetRule(OffSetRule offSetRule) {
         this.offSetRule = offSetRule;
     }
 
