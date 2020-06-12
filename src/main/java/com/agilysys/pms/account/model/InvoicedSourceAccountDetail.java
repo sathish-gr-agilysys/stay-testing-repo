@@ -32,6 +32,7 @@ public class InvoicedSourceAccountDetail {
     protected RoomInfo roomInfo;
     protected String reservationAlias;
     protected Set<ThirdPartyConfirmation> thirdPartyConfirmation;
+    private String referenceNumber;
 
     public String getConfirmationCode() {
         return confirmationCode;
@@ -175,5 +176,13 @@ public class InvoicedSourceAccountDetail {
 
     public void setThirdPartyConfirmation(Set<ThirdPartyConfirmation> thirdPartyConfirmation) {
         this.thirdPartyConfirmation = thirdPartyConfirmation;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 }
