@@ -43,7 +43,7 @@ public class RoutingRuleTemplate {
 
     private List<String> authorizerIds;
 
-    private OffSetRule offsetRule;
+    private OffSetRule offSetRule;
 
     private Boolean pinRequired;
 
@@ -165,11 +165,11 @@ public class RoutingRuleTemplate {
     }
 
     public OffSetRule getOffsetRule() {
-        return offsetRule;
+        return offSetRule;
     }
 
-    public void setOffsetRule(OffSetRule offsetRule) {
-        this.offsetRule = offsetRule;
+    public void setOffsetRule(OffSetRule offSetRule) {
+        this.offSetRule = offSetRule;
     }
 
     public Boolean getPinRequired() {
