@@ -16,7 +16,7 @@ public class StatsByBuildingRequest {
     private Boolean roomRevenue;
     private boolean embed;
     private boolean showReservationWithoutRooms;
-    private boolean exludeOOORooms;
+    private boolean excludeOOORooms;
 
     public LocalDate getStartDate() {
         return startDate;
@@ -82,11 +82,11 @@ public class StatsByBuildingRequest {
         this.showReservationWithoutRooms = showReservationWithoutRooms;
     }
 
-    public boolean isExludeOOORooms() {
-        return exludeOOORooms;
+    public boolean isExcludeOOORooms() {
+        return excludeOOORooms;
     }
 
-    public void setExludeOOORooms(boolean exludeOOORooms) {
-        this.exludeOOORooms = exludeOOORooms;
+    public void setExcludeOOORooms(boolean excludeOOORooms) {
+        this.excludeOOORooms = excludeOOORooms;
     }
 }
