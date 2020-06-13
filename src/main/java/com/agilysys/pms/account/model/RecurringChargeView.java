@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -55,6 +56,8 @@ public class RecurringChargeView {
     // Convention per ISO standard DateTimeConstants in org.joda.time; Monday 1 .... Sunday 7
     private Set<Integer> occurrenceDays = new HashSet<>();
     private String autoRecurringItemId;
+    private AutoRecurringItem autoRecurringItemSnapshot;
+    private String autoRecurringRuleId;
     private boolean addQuantityToAllocation;
 
     //Set 1 for recurring charges which does not have quantity
@@ -104,11 +107,11 @@ public class RecurringChargeView {
     }
 
     public BigDecimal getAmount() {
-        return amount;
+        return amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+        this.amount = amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public String getItemId() {
@@ -293,6 +296,22 @@ public class RecurringChargeView {
 
     public void setAutoRecurringItemId(String autoRecurringItemId) {
         this.autoRecurringItemId = autoRecurringItemId;
+    }
+
+    public AutoRecurringItem getAutoRecurringItemSnapshot() {
+        return autoRecurringItemSnapshot;
+    }
+
+    public void setAutoRecurringItemSnapshot(AutoRecurringItem autoRecurringItemSnapshot) {
+        this.autoRecurringItemSnapshot = autoRecurringItemSnapshot;
+    }
+
+    public String getAutoRecurringRuleId() {
+        return autoRecurringRuleId;
+    }
+
+    public void setAutoRecurringRuleId(String autoRecurringRuleId) {
+        this.autoRecurringRuleId = autoRecurringRuleId;
     }
 
     public boolean isAddQuantityToAllocation() {

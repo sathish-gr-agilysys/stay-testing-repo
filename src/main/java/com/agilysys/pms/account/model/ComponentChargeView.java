@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -49,6 +50,8 @@ public class ComponentChargeView {
     private String allowanceName;
     private int allowanceTotalQuantity;
     private String breakageId;
+    private boolean addOn;
+    private String addOnBundleId;
 
     public ComponentChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -74,6 +77,8 @@ public class ComponentChargeView {
         allowanceName = componentChargeView.getAllowanceName();
         breakageId = componentChargeView.getBreakageId();
         allowanceTotalQuantity = componentChargeView.getAllowanceTotalQuantity();
+        addOn = componentChargeView.isAddOn();
+        addOnBundleId = componentChargeView.getAddOnBundleId();
     }
 
     public String getComponentBundleId() {
@@ -101,11 +106,11 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getAmount() {
-        return amount;
+        return amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+        this.amount = amount != null ? amount.setScale(2, RoundingMode.HALF_UP) : amount;
     }
 
     public int getQuantity() {
@@ -133,11 +138,11 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getTotalAmount() {
-        return totalAmount;
+        return totalAmount != null ? totalAmount.setScale(2, RoundingMode.HALF_UP) : totalAmount;
     }
 
     public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
+        this.totalAmount = totalAmount != null ? totalAmount.setScale(2, RoundingMode.HALF_UP) : totalAmount;
     }
 
     public int getTotalQuantity() {
@@ -198,11 +203,12 @@ public class ComponentChargeView {
     }
 
     public BigDecimal getAllowanceAmount() {
-        return allowanceAmount;
+        return allowanceAmount != null ? allowanceAmount.setScale(2, RoundingMode.HALF_UP) : allowanceAmount;
     }
 
     public void setAllowanceAmount(BigDecimal allowanceAmount) {
-        this.allowanceAmount = allowanceAmount;
+        this.allowanceAmount =
+              allowanceAmount != null ? allowanceAmount.setScale(2, RoundingMode.HALF_UP) : allowanceAmount;
     }
 
     public AllowanceFrequencyType getAllowanceFrequencyType() {
@@ -245,15 +251,32 @@ public class ComponentChargeView {
         this.breakageId = breakageId;
     }
 
+    public boolean isAddOn() {
+        return addOn;
+    }
+
+    public void setAddOn(boolean addOn) {
+        this.addOn = addOn;
+    }
+
+    public String getAddOnBundleId() {
+        return addOnBundleId;
+    }
+
+    public void setAddOnBundleId(String addOnBundleId) {
+        this.addOnBundleId = addOnBundleId;
+    }
+
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
         ComponentChargeView componentChargeView = new ComponentChargeView();
         componentChargeView.setQuantity(componentRateSnapshot.getQuantity());
         componentChargeView.setTransactionItemId(componentRateSnapshot.getTransactionItemId());
         componentChargeView.setComponentBundleId(componentRateSnapshot.getComponentBundleId());
         componentChargeView.setComponentId(componentRateSnapshot.getComponentId());
-        componentChargeView.setAmount(componentRateSnapshot.getAmount());
+        componentChargeView.setAmount(componentRateSnapshot.getAmount().setScale(2, RoundingMode.HALF_UP));
         componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
-        componentChargeView.setTotalAmount(componentRateSnapshot.getRealizedTotalAmount());
+        componentChargeView
+              .setTotalAmount(componentRateSnapshot.getRealizedTotalAmount().setScale(2, RoundingMode.HALF_UP));
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
         componentChargeView.setAllowanceComponentType(componentRateSnapshot.getAllowanceComponentType());
@@ -263,6 +286,8 @@ public class ComponentChargeView {
         componentChargeView.setAllowanceName(componentRateSnapshot.getAllowanceName());
         componentChargeView.setAllowanceTotalQuantity(componentRateSnapshot.getAllowanceTotalQuantity());
         componentChargeView.setBreakageId(componentRateSnapshot.getBreakageId());
+        componentChargeView.setAddOn(componentRateSnapshot.isAddOn());
+        componentChargeView.setAddOnBundleId(componentRateSnapshot.getAddOnBundleId());
 
         return componentChargeView;
     }
