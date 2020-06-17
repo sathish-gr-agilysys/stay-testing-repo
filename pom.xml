@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>74.1313.1-SNAPSHOT</version>
+    <version>74.1313-VCTRS-72920-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
-        <version>74.1292.0</version>
+        <version>74.1186-VCTRS-72920-SNAPSHOT</version>
     </parent>
     <properties>
     </properties>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.1303.0</version>
+            <version>74.1191-VCTRS-72920-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.1303.0</version>
+            <version>74.1191-VCTRS-72920-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -43,12 +43,12 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.1303.0</version>
+            <version>74.1186-VCTRS-72920-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.1285.0</version>
+            <version>74.1244-VCTRS-72920-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -83,7 +83,7 @@
         <dependency>
             <groupId>com.agilysys.pms.common</groupId>
             <artifactId>document-toolkit</artifactId>
-            <version>74.1303.0</version>
+            <version>74.1191-VCTRS-72920-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
