@@ -1,3 +1,6 @@
+/*
+ *  (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.payagent.model.events;
 
 import java.util.List;
@@ -16,12 +19,9 @@ public class PayAgentTransactionFailedEvent extends PayAgentTransactionEvent {
     private String errorCode;
     private String errorDescription;
 
-    public PayAgentTransactionFailedEvent() {
-        super();
-    }
+    public PayAgentTransactionFailedEvent() {}
 
     public PayAgentTransactionFailedEvent(PropertyLevelIdentifier identifier, PayAgentBaseResponse response) {
-        super();
         this.id = identifier;
         this.response = response;
     }
@@ -34,30 +34,18 @@ public class PayAgentTransactionFailedEvent extends PayAgentTransactionEvent {
         return response;
     }
 
-    /**
-     * @return the errorCode
-     */
     public String getErrorCode() {
         return errorCode;
     }
 
-    /**
-     * @param errorCode the errorCode to set
-     */
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
     }
 
-    /**
-     * @return the errorDescription
-     */
     public String getErrorDescription() {
         return errorDescription;
     }
 
-    /**
-     * @param errorDescription the errorDescription to set
-     */
     public void setErrorDescription(String errorDescription) {
         this.errorDescription = errorDescription;
     }
@@ -72,10 +60,4 @@ public class PayAgentTransactionFailedEvent extends PayAgentTransactionEvent {
     public List<String> getHistoryMessages() {
         return null;
     }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-
 }

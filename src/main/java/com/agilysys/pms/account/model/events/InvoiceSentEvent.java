@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model.events;
@@ -13,6 +13,8 @@ public class InvoiceSentEvent extends InvoiceEvent {
     private boolean isEmail;
     private String userId;
     private DateTime deliveryDateTime;
+
+    public InvoiceSentEvent() {}
 
     public InvoiceSentEvent(boolean isEmail, String userId, DateTime deliveryDateTime) {
         this.isEmail = isEmail;
@@ -34,11 +36,6 @@ public class InvoiceSentEvent extends InvoiceEvent {
 
     public DateTime getDeliveryDateTime() {
         return deliveryDateTime;
-    }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
     }
 
     @Transient
