@@ -5,8 +5,6 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
-import org.apache.xpath.operations.Bool;
-
 public class CompTransaction {
 
     private String authorizerId;
