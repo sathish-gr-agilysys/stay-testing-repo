@@ -191,7 +191,7 @@ public class InvoiceView {
 
     /**
      * @return amount of payments and refunds made on invoice
-     */
+   /*  *//*
     public BigDecimal getPaymentAmount() {
         BigDecimal balance = BigDecimal.ZERO;
         if (payments != null) {
@@ -200,6 +200,26 @@ public class InvoiceView {
         }
 
         return BigDecimal.ZERO;
+    }*/
+
+    public BigDecimal getPaymentAmount() {
+        BigDecimal balance = BigDecimal.ZERO;
+        if (payments != null) {
+            balance= payments.stream().map(paymentView -> paymentView.getPaymentBalance())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add);
+        }
+
+        if (nonGroupInvoiceDetails != null) {
+            balance = nonGroupInvoiceDetails.stream().map(invoicedSourceAccount -> invoicedSourceAccount.getPayment())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add);
+        }
+        if(groupInvoiceDetails != null){
+            balance = balance.add(groupInvoiceDetails.stream()
+                  .map(groupNonInvoicedDetail -> groupNonInvoicedDetail.getPayment())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add));
+        }
+
+        return balance;
     }
 
     /**

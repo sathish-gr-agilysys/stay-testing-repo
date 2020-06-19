@@ -28,6 +28,7 @@ public class InvoicedSourceAccountDetail {
     protected BigDecimal chargesBalance = BigDecimal.ZERO;
     protected BigDecimal taxBalance = BigDecimal.ZERO;
     protected BigDecimal totalBalance = BigDecimal.ZERO;
+    protected BigDecimal payment = BigDecimal.ZERO;
     protected List<String> additionalGuestDetails;
     protected RoomInfo roomInfo;
     protected String reservationAlias;
@@ -175,5 +176,13 @@ public class InvoicedSourceAccountDetail {
 
     public void setThirdPartyConfirmation(Set<ThirdPartyConfirmation> thirdPartyConfirmation) {
         this.thirdPartyConfirmation = thirdPartyConfirmation;
+    }
+
+    public BigDecimal getPayment() {
+        return payment;
+    }
+
+    public void setPayment(BigDecimal payment) {
+        this.payment = payment;
     }
 }
