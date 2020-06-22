@@ -84,9 +84,10 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
 
         BigDecimal chargesBalance = BigDecimal.ZERO;
         for (T invoicedChargeItem : invoicedCharges) {
-            if (invoicedChargeItem.getFolioTransactionType() == null ||
-                  (invoicedChargeItem.getFolioTransactionType() != null && !invoicedChargeItem.getFolioTransactionType()
-                        .equalsIgnoreCase(TransactionType.PAYMENT.toString()))) {
+            String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
+            if (folioTransactionType == null ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) ||
+                        !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
                 chargesBalance = chargesBalance.add(invoicedChargeItem.getLineItemChargesBalance());
             }
         }
@@ -101,9 +102,10 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
 
         BigDecimal taxBalance = BigDecimal.ZERO;
         for (T invoicedChargeItem : invoicedCharges) {
-            if (invoicedChargeItem.getFolioTransactionType() == null ||
-                  (invoicedChargeItem.getFolioTransactionType() != null && !invoicedChargeItem.getFolioTransactionType()
-                        .equalsIgnoreCase(TransactionType.PAYMENT.toString()))) {
+            String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
+            if (folioTransactionType == null ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) ||
+                        !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
                 taxBalance = taxBalance.add(invoicedChargeItem.getLineItemTaxBalance());
             }
         }
@@ -118,9 +120,10 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
 
         BigDecimal lineItemBalance = BigDecimal.ZERO;
         for (T invoicedChargeItem : invoicedCharges) {
-            if (invoicedChargeItem.getFolioTransactionType() == null ||
-                  (invoicedChargeItem.getFolioTransactionType() != null && !invoicedChargeItem.getFolioTransactionType()
-                        .equalsIgnoreCase(TransactionType.PAYMENT.toString()))) {
+            String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
+            if (folioTransactionType == null ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) ||
+                        !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
                 lineItemBalance = lineItemBalance.add(invoicedChargeItem.getLineItemBalance());
             }
         }

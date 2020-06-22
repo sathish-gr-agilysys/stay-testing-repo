@@ -193,13 +193,12 @@ public class InvoiceView {
      * @return amount of payments and refunds made on invoice
      */
     public BigDecimal getPaymentAmount() {
-        BigDecimal balance = BigDecimal.ZERO;
+        BigDecimal balance = getTransferredPaymentAmount();
         if (payments != null) {
-            balance = payments.stream().map(paymentView -> paymentView.getPaymentBalance())
-                  .reduce(BigDecimal.ZERO, BigDecimal::add);
-            return balance.add(getTransferredPaymentAmount());
+            return balance.add(payments.stream().map(paymentView -> paymentView.getPaymentBalance())
+                  .reduce(BigDecimal.ZERO, BigDecimal::add));
         }
-        return getTransferredPaymentAmount();
+        return balance;
     }
 
     public BigDecimal getTransferredPaymentAmount() {
