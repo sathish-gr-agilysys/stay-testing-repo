@@ -195,11 +195,11 @@ public class InvoiceView {
     public BigDecimal getPaymentAmount() {
         BigDecimal balance = BigDecimal.ZERO;
         if (payments != null) {
-            return payments.stream().map(paymentView -> paymentView.getPaymentBalance())
+            balance = payments.stream().map(paymentView -> paymentView.getPaymentBalance())
                   .reduce(BigDecimal.ZERO, BigDecimal::add);
+            return balance.add(getTransferredPaymentAmount());
         }
-
-        return BigDecimal.ZERO;
+        return getTransferredPaymentAmount();
     }
 
     public BigDecimal getTransferredPaymentAmount() {
@@ -221,7 +221,7 @@ public class InvoiceView {
      * @return balance of invoice (amount + payment)
      */
     public BigDecimal getInvoiceBalance() {
-        return getInvoiceTotalAmount().add(getPaymentAmount()).add(getTransferredPaymentAmount());
+        return getInvoiceTotalAmount().add(getPaymentAmount());
     }
 
     public LocalDate getInvoiceDueDate() {
