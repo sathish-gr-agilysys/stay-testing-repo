@@ -86,7 +86,7 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
         for (T invoicedChargeItem : invoicedCharges) {
             String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
             if (folioTransactionType == null ||
-                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) &&
                         !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
                 chargesBalance = chargesBalance.add(invoicedChargeItem.getLineItemChargesBalance());
             }
@@ -104,7 +104,7 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
         for (T invoicedChargeItem : invoicedCharges) {
             String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
             if (folioTransactionType == null ||
-                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) &&
                         !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
                 taxBalance = taxBalance.add(invoicedChargeItem.getLineItemTaxBalance());
             }
@@ -122,7 +122,7 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
         for (T invoicedChargeItem : invoicedCharges) {
             String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
             if (folioTransactionType == null ||
-                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) &&
                         !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
                 lineItemBalance = lineItemBalance.add(invoicedChargeItem.getLineItemBalance());
             }
