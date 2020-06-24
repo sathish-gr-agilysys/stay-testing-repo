@@ -14,7 +14,6 @@ import org.joda.time.LocalDate;
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
-import com.agilysys.pms.payment.model.GatewayType;
 import com.agilysys.pms.property.model.compaccounting.CompDetail.CompType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -87,8 +86,9 @@ public class LineItemView implements Comparable<LineItemView> {
     private BigDecimal unitAmount;
     private String userId;
     private String autoRecurringItemId;
+    private String autoRecurringRuleId;
     private boolean giftCard;
-    private GatewayType gatewayType;
+    private String gatewayType;
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
     private List<PantryItemDetails> pantryItemDetails;
@@ -644,6 +644,14 @@ public class LineItemView implements Comparable<LineItemView> {
         this.autoRecurringItemId = autoRecurringItemId;
     }
 
+    public String getAutoRecurringRuleId() {
+        return autoRecurringRuleId;
+    }
+
+    public void setAutoRecurringRuleId(String autoRecurringRuleId) {
+        this.autoRecurringRuleId = autoRecurringRuleId;
+    }
+
     public String getTransferMessage() {
         return transferMessage;
     }
@@ -862,11 +870,11 @@ public class LineItemView implements Comparable<LineItemView> {
         this.callType = callType;
     }
 
-    public GatewayType getGatewayType() {
+    public String getGatewayType() {
         return gatewayType;
     }
 
-    public void setGatewayType(GatewayType gatewayType) {
+    public void setGatewayType(String gatewayType) {
         this.gatewayType = gatewayType;
     }
 
