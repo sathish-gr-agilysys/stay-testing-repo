@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
-import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -27,7 +26,7 @@ public class PaymentRefund {
     private String invoiceNumber;
     private String reference;
     private Map<String, String> transactionMessageAttributes;
-    private GatewayType gatewayType;
+    private String gatewayType;
     private String giftCardNumber;
 
     public String getFolioLineItemId() {
@@ -92,11 +91,11 @@ public class PaymentRefund {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public GatewayType getGatewayType() {
+    public String getGatewayType() {
         return gatewayType;
     }
 
-    public void setGatewayType(GatewayType gatewayType) {
+    public void setGatewayType(String gatewayType) {
         this.gatewayType = gatewayType;
     }
 
