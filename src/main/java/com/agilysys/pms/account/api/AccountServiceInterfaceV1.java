@@ -574,14 +574,12 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId,
           List<BatchPostCC> batchPostCCs) throws RGuestException;
 
-
     @POST
     @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + BATCH_PRE_AUTH)
-    @Validated(Payment.class)
+    @Path(BATCH_PRE_AUTH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    BatchDistributorResult batchPreAuth(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          BatchPreAuthRequest batchPreAuthRequest) throws RGuestException;
+    BatchDistributorResult batchPreAuth(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchPreAuthRequest batchPreAuthRequest) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
