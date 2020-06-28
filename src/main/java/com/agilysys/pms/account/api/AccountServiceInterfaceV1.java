@@ -128,6 +128,7 @@ import com.agilysys.pms.common.document.model.DocumentRequest;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.DeserializablePage;
 import com.agilysys.pms.common.model.ReceiptImageResponse;
+import com.agilysys.pms.payment.model.BatchPreAuthRequest;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 
@@ -572,6 +573,15 @@ public interface AccountServiceInterfaceV1 {
     BatchDistributorResult batchPostCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           List<BatchPostCC> batchPostCCs) throws RGuestException;
+
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + BATCH_PRE_AUTH)
+    @Validated(Payment.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    BatchDistributorResult batchPreAuth(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          BatchPreAuthRequest batchPreAuthRequest) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
