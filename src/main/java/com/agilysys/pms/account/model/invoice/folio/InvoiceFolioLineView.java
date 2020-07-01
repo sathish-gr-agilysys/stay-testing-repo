@@ -27,6 +27,9 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
     private Map<String, String> transactionMessageAttributes;
     private String transactionType;
 
+    private String folioTransactionType;
+    private BigDecimal payment;
+
     public String getAccountId() {
         return accountId;
     }
@@ -244,5 +247,21 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
 
     private BigDecimal add(BigDecimal amount, BigDecimal amountToAdd) {
         return amountToAdd != null ? amount.add(amountToAdd) : amount;
+    }
+
+    public BigDecimal getPayment() {
+        return payment;
+    }
+
+    public void setPayment(BigDecimal payment) {
+        this.payment = payment;
+    }
+
+    public String getFolioTransactionType() {
+        return folioTransactionType;
+    }
+
+    public void setFolioTransactionType(String folioTransactionType) {
+        this.folioTransactionType = folioTransactionType;
     }
 }
