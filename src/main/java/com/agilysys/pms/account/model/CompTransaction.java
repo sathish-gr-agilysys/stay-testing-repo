@@ -14,7 +14,8 @@ public class CompTransaction {
     private String playerOrCardId;
     private String authorizerCode;
     private List<CompRedeemRequest> compRedeemRequests;
-    private RedemptionType redemptionType;
+    private String redemptionId;
+    private String redemptionType;
     private Boolean isEnhancedRoutingRule;
     private OffSetRule offSetRule;
     private Boolean tax;
@@ -29,33 +30,6 @@ public class CompTransaction {
         this.isEnhancedRoutingRule = isEnhancedRoutingRule;
         this.offSetRule = offSetRule;
         this.tax = tax;
-    }
-
-    public enum RedemptionType {
-        PLAYER_POINT("PNT", "PLAYER", "PLAYER BALANCE"),
-        COMP_POINT("CMP", "COMP", "COMP BALANCE");
-
-        String bankCode;
-        String desc;
-        String shortDesc;
-
-        RedemptionType(String bankCode, String shortDesc, String desc) {
-            this.bankCode = bankCode;
-            this.shortDesc = shortDesc;
-            this.desc = desc;
-        }
-
-        public String getBankCode() {
-            return bankCode;
-        }
-
-        public String getDesc() {
-            return desc;
-        }
-
-        public String getShortDesc() {
-            return shortDesc;
-        }
     }
 
     public String getAuthorizerId() {
@@ -114,11 +88,15 @@ public class CompTransaction {
         this.compRedeemRequests = compRedeemRequests;
     }
 
-    public RedemptionType getRedemptionType() {
+    public String getRedemptionId() { return redemptionId; }
+
+    public void setRedemptionId(String redemptionId) { this.redemptionId = redemptionId; }
+
+    public String getRedemptionType() {
         return redemptionType;
     }
 
-    public void setRedemptionType(RedemptionType redemptionType) {
+    public void setRedemptionType(String redemptionType) {
         this.redemptionType = redemptionType;
     }
 
