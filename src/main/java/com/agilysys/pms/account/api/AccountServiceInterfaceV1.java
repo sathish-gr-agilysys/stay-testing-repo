@@ -577,7 +577,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @CreatedOnSuccess
     @Path(BATCH_PRE_AUTH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'PreauthCreditCard')")
     BatchDistributorResult batchPreAuth(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchPreAuthRequest batchPreAuthRequest) throws RGuestException;
 
