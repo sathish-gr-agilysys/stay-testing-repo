@@ -56,6 +56,7 @@ import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
 import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
 import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.BatchPostCC;
+import com.agilysys.pms.account.model.BatchPreAuthRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
@@ -128,7 +129,6 @@ import com.agilysys.pms.common.document.model.DocumentRequest;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.DeserializablePage;
 import com.agilysys.pms.common.model.ReceiptImageResponse;
-import com.agilysys.pms.payment.model.BatchPreAuthRequest;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 
@@ -396,12 +396,6 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
-
-    @POST
-    @Path(ACCOUNTS_BY_RESERVATIONS)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountSummary> getAccountsByReservations(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Set<String> reservationIds) throws RGuestException;
 
     @POST
     @Path(TOTAL_SPENT_PATH)
