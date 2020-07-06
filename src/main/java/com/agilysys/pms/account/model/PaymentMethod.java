@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
