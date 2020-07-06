@@ -25,6 +25,7 @@ public class Payment {
     private String name;
     private boolean includeDispute;
     private String disputeComment;
+    private boolean reAuthBeforeCheckin;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -127,5 +128,13 @@ public class Payment {
 
     public void setDisputeComment(String disputeComment) {
         this.disputeComment = disputeComment;
+    }
+
+    public boolean isReAuthBeforeCheckin() {
+        return reAuthBeforeCheckin;
+    }
+
+    public void setReAuthBeforeCheckin(boolean reAuthBeforeCheckin) {
+        this.reAuthBeforeCheckin = reAuthBeforeCheckin;
     }
 }

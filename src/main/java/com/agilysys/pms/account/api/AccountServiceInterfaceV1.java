@@ -144,6 +144,7 @@ public interface AccountServiceInterfaceV1 {
 
     String ACCOUNT_BALANCES_PATH = "/balances";
     String ACCOUNT_ID = "accountId";
+    String GROUP_ID = "groupId";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
@@ -244,6 +245,7 @@ public interface AccountServiceInterfaceV1 {
     String LEDGER_TRANSACTION_ID = "/ledgerTransactionIds";
     String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
+    String FOLIO_EMAIL_LAST_SENT = "folioEmailLastSent";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
@@ -281,6 +283,7 @@ public interface AccountServiceInterfaceV1 {
     String ALLOWANCE = "/allowance";
     String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
     String BATCH_CREDITS_PATH = "/batchCredits";
+    String RELEASE_ALL_AUTH = GROUP_ID + "/{" + GROUP_ID + "}" + "/releaseAllAuthorizations";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -457,6 +460,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void deleteFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId) throws RGuestException;
+
+    @PUT
+    @Path(FOLIO_EMAIL_LAST_SENT)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    Map<String, List<FolioSummary>> updateFolioEmailLastSent(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Map<String, List<String>> accountIdToFolios)
+          throws RGuestException;
 
     @POST
     @Path(TRANSFER_HISTORY)
@@ -1291,5 +1301,11 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'DeleteCompanyARDocument')")
     void deleteCompanyARDocuments(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           DocumentRequest documentRequest) throws RGuestException;
+
+    @POST
+    @Path(RELEASE_ALL_AUTH)
+    @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
+    void releaseAllAuthorizations(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(GROUP_ID) String groupId) throws RGuestException;
 
 }
