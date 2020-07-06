@@ -171,7 +171,6 @@ public interface AccountServiceInterfaceV1 {
     String END_DATE_TIME = "endDateTime";
     String FILTERED = "/filtered";
     String FOLIO_PATH = "/folios";
-    String ACCOUNTS_BY_RESERVATIONS = "/getAccountsByReservations";
     String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
     String FOLIO_EMAIL = "/folioEmail";
@@ -246,6 +245,7 @@ public interface AccountServiceInterfaceV1 {
     String LEDGER_TRANSACTION_ID = "/ledgerTransactionIds";
     String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
+    String ACCOUNTS_BY_IDS = "accountsByIds";
     String FOLIO_EMAIL_LAST_SENT = "folioEmailLastSent";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
@@ -324,6 +324,12 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<String> getAccountTypes(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
+
+    @GET
+    @Path(ACCOUNTS_BY_IDS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountsByIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     @GET
     @Path(STATUSES_PATH)
