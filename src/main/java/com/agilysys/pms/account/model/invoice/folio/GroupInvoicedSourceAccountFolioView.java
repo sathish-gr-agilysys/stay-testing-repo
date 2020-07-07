@@ -66,4 +66,19 @@ public abstract class GroupInvoicedSourceAccountFolioView<FOLIO_LINE_VIEW extend
 
         return totalBalance;
     }
+
+    @Override
+    public BigDecimal getPayment() {
+        BigDecimal payment = super.getPayment();
+        if (CollectionUtils.isEmpty(invoicedSourceAccountViews)) {
+            return payment;
+        }
+
+        payment = payment != null ? payment : BigDecimal.ZERO;
+        for (SOURCE_VIEW sourceView : invoicedSourceAccountViews) {
+            payment = payment.add(sourceView.getPayment());
+        }
+
+        return payment;
+    }
 }
