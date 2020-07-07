@@ -245,7 +245,6 @@ public interface AccountServiceInterfaceV1 {
     String LEDGER_TRANSACTION_ID = "/ledgerTransactionIds";
     String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
-    String ACCOUNTS_BY_IDS = "accountsByIds";
     String FOLIO_EMAIL_LAST_SENT = "folioEmailLastSent";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
@@ -285,6 +284,7 @@ public interface AccountServiceInterfaceV1 {
     String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
     String BATCH_CREDITS_PATH = "/batchCredits";
     String RELEASE_ALL_AUTH = GROUP_ID + "/{" + GROUP_ID + "}" + "/releaseAllAuthorizations";
+    String ACCOUNTS_BY_IDS = "/accountsByIds";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
