@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import org.joda.time.DateTime;
+
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,6 +31,10 @@ public class FolioSummary {
     private String name;
 
     private String paymentSettingId;
+
+    private Boolean depositFolio;
+
+    private DateTime emailLastSent;
 
     public FolioSummary() {}
 
@@ -107,5 +113,21 @@ public class FolioSummary {
      */
     public void setPaymentSettingId(String paymentSettingId) {
         this.paymentSettingId = paymentSettingId;
+    }
+
+    public Boolean getDepositFolio() {
+        return depositFolio;
+    }
+
+    public void setDepositFolio(Boolean depositFolio) {
+        this.depositFolio = depositFolio;
+    }
+
+    public DateTime getEmailLastSent() {
+        return emailLastSent;
+    }
+
+    public void setEmailLastSent(DateTime emailLastSent) {
+        this.emailLastSent = emailLastSent;
     }
 }

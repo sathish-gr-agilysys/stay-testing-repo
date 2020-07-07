@@ -11,18 +11,13 @@ public class CompTransaction {
     private String departmentId;
     private String compPoints;
     private String playerPoints;
-    private String pin;
     private String playerOrCardId;
     private String authorizerCode;
     private List<CompRedeemRequest> compRedeemRequests;
-    private RedemptionType redemptionType;
+    private String redemptionId;
+    private String redemptionType;
 
     public CompTransaction() {}
-
-    public enum RedemptionType {
-        PLAYER_POINT,
-        COMP_POINT;
-    }
 
     public String getAuthorizerId() {
         return authorizerId;
@@ -56,14 +51,6 @@ public class CompTransaction {
         this.playerPoints = playerPoints;
     }
 
-    public String getPin() {
-        return pin;
-    }
-
-    public void setPin(String pin) {
-        this.pin = pin;
-    }
-
     public String getPlayerOrCardId() {
         return playerOrCardId;
     }
@@ -88,11 +75,15 @@ public class CompTransaction {
         this.compRedeemRequests = compRedeemRequests;
     }
 
-    public RedemptionType getRedemptionType() {
+    public String getRedemptionId() { return redemptionId; }
+
+    public void setRedemptionId(String redemptionId) { this.redemptionId = redemptionId; }
+
+    public String getRedemptionType() {
         return redemptionType;
     }
 
-    public void setRedemptionType(RedemptionType redemptionType) {
+    public void setRedemptionType(String redemptionType) {
         this.redemptionType = redemptionType;
     }
 }

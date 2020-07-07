@@ -37,6 +37,9 @@ public class InvoiceBaseView {
     private BigDecimal invoiceChargesAmount;
     private BigDecimal invoiceTotalAmount;
     private BigDecimal paymentAmount;
+    private boolean dispute;
+    private BigDecimal disputedChargesAmount;
+    private BigDecimal payment;
 
     public String getId() {
         return id;
@@ -158,5 +161,29 @@ public class InvoiceBaseView {
 
     public String getType() {
         return InvoiceViewType.BASE.name();
+    }
+
+    public boolean isDispute() {
+        return dispute;
+    }
+
+    public void setDispute(boolean dispute) {
+        this.dispute = dispute;
+    }
+
+    public BigDecimal getDisputedChargesAmount() {
+        return disputedChargesAmount;
+    }
+
+    public void setDisputedChargesAmount(BigDecimal disputedChargesAmount) {
+        this.disputedChargesAmount = disputedChargesAmount;
+    }
+
+    public BigDecimal getPayment() {
+        return payment;
+    }
+
+    public void setPayment(BigDecimal payment) {
+        this.payment = payment;
     }
 }

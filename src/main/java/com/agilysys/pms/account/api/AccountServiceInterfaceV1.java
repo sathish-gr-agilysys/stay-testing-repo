@@ -37,25 +37,32 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
+import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
+import com.agilysys.pms.account.api.params.InvoicePaymentRequest;
+import com.agilysys.pms.account.model.ARDepositView;
 import com.agilysys.pms.account.model.AccountClosableInfo;
 import com.agilysys.pms.account.model.AccountDetail;
 import com.agilysys.pms.account.model.AccountSearchResult;
 import com.agilysys.pms.account.model.AccountStatementResponse;
 import com.agilysys.pms.account.model.AccountStatementsRequest;
+import com.agilysys.pms.account.model.AccountStatus;
 import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.AccountsCollectionRequest;
 import com.agilysys.pms.account.model.AccountsReceivableSettings;
 import com.agilysys.pms.account.model.AmountTransfer;
+import com.agilysys.pms.account.model.ApplyInvoiceDepositPaymentRequest;
 import com.agilysys.pms.account.model.ApplyInvoicePaymentRequest;
 import com.agilysys.pms.account.model.BatchDepositCollectionRequest;
 import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
 import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
 import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
+import com.agilysys.pms.account.model.BatchPostCC;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
 import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.CompTransaction;
+import com.agilysys.pms.account.model.CompanyInfo;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
@@ -110,14 +117,17 @@ import com.agilysys.pms.account.model.UpdateFolioInvoicesRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceLineItemsRequest;
 import com.agilysys.pms.account.model.UpdateInvoiceTermsRequest;
 import com.agilysys.pms.account.model.ViewFolioRequest;
+import com.agilysys.pms.account.model.invoice.InvoicePaymentReport;
 import com.agilysys.pms.account.model.invoice.InvoiceViewType;
 import com.agilysys.pms.account.model.invoice.base.InvoiceBaseView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.api.annotation.OkOnEmpty;
+import com.agilysys.pms.common.batchdistributor.domain.BatchDistributorResult;
 import com.agilysys.pms.common.document.model.DocumentDetails;
 import com.agilysys.pms.common.document.model.DocumentRequest;
 import com.agilysys.pms.common.model.CollectionResponse;
 import com.agilysys.pms.common.model.DeserializablePage;
+import com.agilysys.pms.common.model.ReceiptImageResponse;
 import com.agilysys.pms.payment.model.LodgingInformation;
 import com.agilysys.pms.payment.model.PaymentInstrumentSetting;
 
@@ -132,6 +142,7 @@ public interface AccountServiceInterfaceV1 {
 
     String ACCOUNT_BALANCES_PATH = "/balances";
     String ACCOUNT_ID = "accountId";
+    String GROUP_ID = "groupId";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
     String ACCOUNT_STATUS = "accountStatus";
@@ -139,7 +150,9 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNT_STATUS_PATH = "/status/{" + ACCOUNT_STATUS + "}";
     String ACCOUNTS_RECEIVABLE_SETTINGS_PATH = "/accountsReceivableSettings";
     String ADJUSTMENT_PATH = "/adjustment";
+    String APPLY_DEPOSIT_PAYMENTS = "/applyDepositPayments";
     String APPLY_PAYMENTS = "/applyPayments";
+    String AR_DEPOSIT_BALANCE = "/arDepositBalance";
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
     String MULTIPLE_CHARGES = "/multipleCharges";
@@ -154,6 +167,7 @@ public interface AccountServiceInterfaceV1 {
     String CLOSABLE_INFO = "/closableInfo";
     String CORRECTION_PATH = "/correction";
     String CREDIT_PATH = "/credit";
+    String DEPOSIT_FOLIO_PATH = "/depositFolio";
     String END_DATE = "endDate";
     String END_DATE_TIME = "endDateTime";
     String FILTERED = "/filtered";
@@ -231,6 +245,7 @@ public interface AccountServiceInterfaceV1 {
     String LEDGER_TRANSACTION_ID = "/ledgerTransactionIds";
     String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
+    String FOLIO_EMAIL_LAST_SENT = "folioEmailLastSent";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
@@ -245,6 +260,8 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_INVOICE_BY_PROFILE_ID = FOLIO_PATH + PROFILES_PATH + INVOICES_PATH;
     String FOLIO_INVOICE_BY_FOLIO_ID = ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + INVOICES_PATH;
     String PANTRY_ITEMS_CHARGE = "/pantryItemsCharge";
+    String FOLIO_LINE_ITEM_ID = "folioLineItemId";
+    String FOLIO_LINE_ITEM = "/folioLineItem/{" + FOLIO_LINE_ITEM_ID + "}";
     String UPLOAD_COMPANY_AR_DOCUMENTS = "/document/uploadCompanyARDocuments/{accountId}";
     String DELETE_COMPANY_AR_DOCUMENTS = "/document/deleteCompanyARDocuments";
 
@@ -260,9 +277,13 @@ public interface AccountServiceInterfaceV1 {
     String JOB_ID = "jobId";
     String DATE = "date";
     String DATE_PATH = "/{" + DATE + "}";
+    String AR_DISPUTE_PATH = "/arDisputedLedgerTransaction";
     String PAGE = "page";
     String SIZE = "size";
     String ALLOWANCE = "/allowance";
+    String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
+    String BATCH_CREDITS_PATH = "/batchCredits";
+    String RELEASE_ALL_AUTH = GROUP_ID + "/{" + GROUP_ID + "}" + "/releaseAllAuthorizations";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -365,6 +386,13 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
 
+    @GET
+    @Path(ACCOUNT_ID_PATH + DEPOSIT_FOLIO_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    FolioDetail getDepositFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
+          throws RGuestException;
+
     @POST
     @Path(FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -432,6 +460,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void deleteFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId) throws RGuestException;
+
+    @PUT
+    @Path(FOLIO_EMAIL_LAST_SENT)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    Map<String, List<FolioSummary>> updateFolioEmailLastSent(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Map<String, List<String>> accountIdToFolios)
+          throws RGuestException;
 
     @POST
     @Path(TRANSFER_HISTORY)
@@ -532,6 +567,23 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'AllowCredits')")
     LineItemView postCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Credit credit) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(BATCH_CREDITS_PATH)
+    @PreAuthorize("hasPermission('Required', 'BatchPostCredits')")
+    BatchDistributorResult batchPostCredit(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          List<BatchPostCC> batchPostCCs) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(BATCH_CHARGES_PATH)
+    @PreAuthorize(
+          "hasPermission('Required', 'BatchPostCharges') and hasPermission('Required', 'ForceChargeAcceptance')")
+    BatchDistributorResult batchPostCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          List<BatchPostCC> batchPostCCs) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -808,6 +860,13 @@ public interface AccountServiceInterfaceV1 {
     NonInvoicedARDetail getNonInvoicedARDetail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
+    @PUT
+    @Path(ACCOUNT_ID_PATH + AR_DISPUTE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    void setARDisputeDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, DisputedARLedgerTransaction disputedARLedgerTransaction)
+          throws RGuestException;
+
     /**
      * Retrieves the non-invoiced details of a COMPANY account based on the Transaction Ids
      *
@@ -849,6 +908,20 @@ public interface AccountServiceInterfaceV1 {
     InvoiceView getInvoiceById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("") InvoiceOptionalParams optionalParams) throws RGuestException;
+
+    @POST
+    @Path("/invoiceBalance")
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoicePaymentReport> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
+          @QueryParam(END_DATE) LocalDate endDate, InvoicePaymentRequest invoicePaymentRequest) throws RGuestException;
+
+    @GET
+    @Path("/findByUnAppliedAmountUsed")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<CompanyInfo> findAccountsByUnAppliedAmountUsed(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("accountStatus") AccountStatus accountStatus)
+          throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
@@ -945,6 +1018,16 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_DEPOSIT_PAYMENTS)
+    @Validated(ApplyInvoiceDepositPaymentRequest.class)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    List<InvoiceView> applyInvoiceDepositPayments(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          ApplyInvoiceDepositPaymentRequest applyInvoiceDepositPaymentRequest) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + REFUND_PATH)
     @Validated(InvoicePaymentRefund.class)
     @PreAuthorize("hasPermission('Required', 'AllowRefunds')")
@@ -957,6 +1040,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, BigDecimal> getLedgerBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, LedgerBalancesInfo ledgerBalancesInfo) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + AR_DEPOSIT_BALANCE)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    ARDepositView getARDepositBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
 
     @GET
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_PATH)
@@ -1152,6 +1242,19 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
           @QueryParam(GROUPED) boolean grouped, PantryCharge pantryCharge) throws RGuestException;
 
+    @GET
+    @Path(FOLIO_LINE_ITEM)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    LineItemView getFolioLineItemById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId) throws RGuestException;
+
+    @PUT
+    @Path(RECEIPT_IMAGE_RESPOME)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateReceiptImageFolioLineItem(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId,
+          ReceiptImageResponse receiptImageResponse) throws RGuestException;
+
     @POST
     @Path(ACCOUNT_ID_PATH + REDEEM_FOLIO_CHARGE)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
@@ -1209,4 +1312,11 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'DeleteCompanyARDocument')")
     void deleteCompanyARDocuments(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           DocumentRequest documentRequest) throws RGuestException;
+
+    @POST
+    @Path(RELEASE_ALL_AUTH)
+    @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
+    void releaseAllAuthorizations(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(GROUP_ID) String groupId) throws RGuestException;
+
 }

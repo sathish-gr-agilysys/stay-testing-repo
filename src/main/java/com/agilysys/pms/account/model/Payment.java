@@ -23,6 +23,9 @@ public class Payment {
     private String invoiceNumber;
     private boolean distributed;
     private String name;
+    private boolean includeDispute;
+    private String disputeComment;
+    private boolean reAuthBeforeCheckin;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -109,5 +112,29 @@ public class Payment {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isIncludeDispute() {
+        return includeDispute;
+    }
+
+    public void setIncludeDispute(boolean includeDispute) {
+        this.includeDispute = includeDispute;
+    }
+
+    public String getDisputeComment() {
+        return disputeComment;
+    }
+
+    public void setDisputeComment(String disputeComment) {
+        this.disputeComment = disputeComment;
+    }
+
+    public boolean isReAuthBeforeCheckin() {
+        return reAuthBeforeCheckin;
+    }
+
+    public void setReAuthBeforeCheckin(boolean reAuthBeforeCheckin) {
+        this.reAuthBeforeCheckin = reAuthBeforeCheckin;
     }
 }

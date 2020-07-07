@@ -17,7 +17,6 @@ import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinValueRestriction;
-import com.agilysys.pms.payment.model.GatewayType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -57,10 +56,11 @@ public abstract class Transaction {
     protected String reference;
     protected String sourceId;
     protected String terminalId;
-    protected GatewayType gatewayType;
+    protected String gatewayType;
     protected boolean giftCard;
     protected String giftCardNumber;
     protected boolean excludeTax;
+    protected boolean arDeposit;
 
     public String getAccountId() {
         return accountId;
@@ -237,11 +237,11 @@ public abstract class Transaction {
 
     public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
 
-    public GatewayType getGatewayType() {
+    public String getGatewayType() {
         return gatewayType;
     }
 
-    public void setGatewayType(GatewayType gatewayType) {
+    public void setGatewayType(String gatewayType) {
         this.gatewayType = gatewayType;
     }
 
@@ -283,6 +283,14 @@ public abstract class Transaction {
 
     public void setExcludeTax(boolean excludeTax) {
         this.excludeTax = excludeTax;
+    }
+
+    public boolean isArDeposit() {
+        return arDeposit;
+    }
+
+    public void setArDeposit(boolean arDeposit) {
+        this.arDeposit = arDeposit;
     }
 
     @Override
