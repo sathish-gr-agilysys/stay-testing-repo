@@ -325,7 +325,7 @@ public interface AccountServiceInterfaceV1 {
     List<String> getAccountTypes(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
 
-    @GET
+    @POST
     @Path(ACCOUNTS_BY_IDS)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccountsByIds(@PathParam(TENANT_ID) String tenantId,
