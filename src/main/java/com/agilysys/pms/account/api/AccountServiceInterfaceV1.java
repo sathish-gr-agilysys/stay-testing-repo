@@ -104,6 +104,7 @@ import com.agilysys.pms.account.model.PosCharge;
 import com.agilysys.pms.account.model.PosCredit;
 import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
+import com.agilysys.pms.account.model.PostPosChargesRequest;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
@@ -539,6 +540,13 @@ public interface AccountServiceInterfaceV1 {
     PostChargesResponse postCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
           @QueryParam(GROUPED) boolean grouped, PostChargesRequest charges) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + "/batchPosCharges")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    PostChargesResponse postPosCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
+          @QueryParam(GROUPED) boolean grouped, PostPosChargesRequest charges) throws RGuestException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are

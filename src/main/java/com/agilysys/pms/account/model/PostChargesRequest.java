@@ -19,6 +19,16 @@ public class PostChargesRequest {
     private String componentBundleId;
     private boolean addOn;
 
+    public PostChargesRequest() {
+    }
+
+    public PostChargesRequest(boolean distributed, String name, List<Charge> charges, LocalDate postingDate) {
+        this.distributed = distributed;
+        this.name = name;
+        this.charges = charges;
+        this.postingDate = postingDate;
+    }
+
     public List<Charge> getCharges() {
         return charges;
     }
