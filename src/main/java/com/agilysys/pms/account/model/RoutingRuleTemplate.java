@@ -71,7 +71,7 @@ public class RoutingRuleTemplate {
 
     private Boolean ignoreDestinationRules;
 
-    private Boolean carryForwardBalance;
+    private Boolean carryUnusedBalance;
 
     public RoutingRuleTemplate() {
     }
@@ -252,11 +252,11 @@ public class RoutingRuleTemplate {
         this.ignoreDestinationRules = ignoreDestinationRules;
     }
 
-    public Boolean getCarryForwardBalance() {
-        return carryForwardBalance;
+    public Boolean getCarryUnusedBalance() {
+        return carryUnusedBalance;
     }
 
-    public void setCarryForwardBalance(Boolean carryForwardBalance) {
-        this.carryForwardBalance = carryForwardBalance;
+    public void setCarryUnusedBalance(Boolean carryUnusedBalance) {
+        this.carryUnusedBalance = carryUnusedBalance;
     }
 }
