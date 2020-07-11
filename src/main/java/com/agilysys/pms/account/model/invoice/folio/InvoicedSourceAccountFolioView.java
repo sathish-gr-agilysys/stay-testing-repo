@@ -10,6 +10,8 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.account.model.TransactionType;
+
 public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineView<T>> {
     private LocalDate arrivalDate;
     private String confirmationCode;
@@ -18,6 +20,7 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
     private List<T> invoicedCharges;
     private String name;
     private String sourceAccountId;
+    private String referenceNumber;
 
     public LocalDate getArrivalDate() {
         return arrivalDate;
@@ -75,6 +78,14 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
         this.sourceAccountId = sourceAccountId;
     }
 
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
+    }
+
     public BigDecimal getChargesBalance() {
         if (CollectionUtils.isEmpty(invoicedCharges)) {
             return null;
@@ -82,7 +93,12 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
 
         BigDecimal chargesBalance = BigDecimal.ZERO;
         for (T invoicedChargeItem : invoicedCharges) {
-            chargesBalance = chargesBalance.add(invoicedChargeItem.getLineItemChargesBalance());
+            String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
+            if (folioTransactionType == null ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) &&
+                        !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
+                chargesBalance = chargesBalance.add(invoicedChargeItem.getLineItemChargesBalance());
+            }
         }
 
         return chargesBalance;
@@ -95,7 +111,12 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
 
         BigDecimal taxBalance = BigDecimal.ZERO;
         for (T invoicedChargeItem : invoicedCharges) {
-            taxBalance = taxBalance.add(invoicedChargeItem.getLineItemTaxBalance());
+            String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
+            if (folioTransactionType == null ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) &&
+                        !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
+                taxBalance = taxBalance.add(invoicedChargeItem.getLineItemTaxBalance());
+            }
         }
 
         return taxBalance;
@@ -108,9 +129,28 @@ public abstract class InvoicedSourceAccountFolioView<T extends InvoiceFolioLineV
 
         BigDecimal lineItemBalance = BigDecimal.ZERO;
         for (T invoicedChargeItem : invoicedCharges) {
-            lineItemBalance = lineItemBalance.add(invoicedChargeItem.getLineItemBalance());
+            String folioTransactionType = invoicedChargeItem.getFolioTransactionType();
+            if (folioTransactionType == null ||
+                  (!folioTransactionType.equalsIgnoreCase(TransactionType.PAYMENT.toString()) &&
+                        !folioTransactionType.equalsIgnoreCase(TransactionType.REFUND.toString()))) {
+                lineItemBalance = lineItemBalance.add(invoicedChargeItem.getLineItemBalance());
+            }
         }
 
         return lineItemBalance;
+    }
+
+    public BigDecimal getPayment() {
+        if (CollectionUtils.isEmpty(invoicedCharges)) {
+            return null;
+        }
+
+        BigDecimal payment = BigDecimal.ZERO;
+        for (T invoicedChargeItem : invoicedCharges) {
+            if (invoicedChargeItem.getPayment() != null) {
+                payment = payment.add(invoicedChargeItem.getPayment());
+            }
+        }
+        return payment;
     }
 }
