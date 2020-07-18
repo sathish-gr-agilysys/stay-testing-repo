@@ -59,9 +59,6 @@ public abstract class Transaction {
     protected String gatewayType;
     protected boolean giftCard;
     protected String giftCardNumber;
-    private String tracke;
-    private String encMode;
-    private Boolean cardPresent;
     protected boolean excludeTax;
     protected boolean arDeposit;
 
@@ -169,8 +166,8 @@ public abstract class Transaction {
     }
 
     /**
-     * Optional - Sets the date to post the transaction to if posting to a previous fiscal day.  Special permissions
-     * are required to set this to a value other than the current property date.
+     * Optional - Sets the date to post the transaction to if posting to a previous fiscal day.  Special permissions are
+     * required to set this to a value other than the current property date.
      */
     public void setPostingDate(LocalDate postingDate) {
         this.postingDate = postingDate;
@@ -238,7 +235,9 @@ public abstract class Transaction {
 
     public BigDecimal getFreeAllowanceAmount() { return freeAllowanceAmount; }
 
-    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
+    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) {
+        this.freeAllowanceAmount = freeAllowanceAmount;
+    }
 
     public String getGatewayType() {
         return gatewayType;
@@ -254,30 +253,6 @@ public abstract class Transaction {
 
     public void setGiftCardNumber(String giftCardNumber) {
         this.giftCardNumber = giftCardNumber;
-    }
-
-    public String getTracke() {
-        return tracke;
-    }
-
-    public void setTracke(String tracke) {
-        this.tracke = tracke;
-    }
-
-    public String getEncMode() {
-        return encMode;
-    }
-
-    public void setEncMode(String encMode) {
-        this.encMode = encMode;
-    }
-
-    public Boolean getCardPresent() {
-        return cardPresent;
-    }
-
-    public void setCardPresent(Boolean cardPresent) {
-        this.cardPresent = cardPresent;
     }
 
     public boolean isGiftCard() {
