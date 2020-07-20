@@ -11,6 +11,8 @@ public class InvoiceFilteringOptionalParams {
     private LocalDate endDate;
     private String invoiceNumber;
     private boolean detailedInfo;
+    private String sortBy;
+    private String sortOrder;
 
     public boolean getIncludeClosed() {
         return includeClosed;
@@ -50,5 +52,21 @@ public class InvoiceFilteringOptionalParams {
 
     public void setDetailedInfo(boolean detailedInfo) {
         this.detailedInfo = detailedInfo;
+    }
+
+    public String getSortBy() {
+        return sortBy;
+    }
+
+    public void setSortBy(String sortBy) {
+        this.sortBy = sortBy;
+    }
+
+    public String getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(String sortOrder) {
+        this.sortOrder = sortOrder;
     }
 }
