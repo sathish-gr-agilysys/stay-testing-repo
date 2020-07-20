@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Transient;
 
 import com.agilysys.pms.account.model.Balance;
 
-public class AddInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
+    public class AddInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     private Set<String> folioLineItemIds;
 
     public AddInvoiceLineItemsEvent() {
@@ -45,11 +45,11 @@ public class AddInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
         List<String> historyMessages = new LinkedList<>();
         historyMetadata.forEach(metadata -> {
             String displayDate = metadata.get("displayDate") != null ? metadata.get("displayDate").toString() : null;
-            String itemName = metadata.get("itemName") != null ? metadata.get("itemName").toString() : null;
+            String itemDesc = metadata.get("itemDesc") != null ? metadata.get("itemDesc").toString() : null;
             String itemBalance =
                   metadata.get("lineItemBalance") != null ? metadata.get("lineItemBalance").toString() : null;
             historyMessages.add(String
-                  .format("Item added to invoice.  [Date: %s, Description: %s, Total: %s]", displayDate, itemName,
+                  .format("Item added to invoice.  [Date: %s, Description: %s, Total: %s]", displayDate, itemDesc,
                         itemBalance));
         });
 
