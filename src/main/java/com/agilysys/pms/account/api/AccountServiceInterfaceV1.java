@@ -109,6 +109,7 @@ import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
+import com.agilysys.pms.account.model.StatementHistoryModel;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -234,6 +235,7 @@ public interface AccountServiceInterfaceV1 {
     String START_DATE = "startDate";
     String START_DATE_TIME = "startDateTime";
     String STATUSES_PATH = "statuses";
+    String STATEMENT_HISTORY = "/statementHistory";
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
@@ -1300,5 +1302,15 @@ public interface AccountServiceInterfaceV1 {
     @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
     void releaseAllAuthorizations(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(GROUP_ID) String groupId) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
+    void createStatementHistory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, StatementHistoryModel statementHistoryModel) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
+    List<StatementHistoryModel> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
 }

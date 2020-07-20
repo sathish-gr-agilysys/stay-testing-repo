@@ -3,12 +3,12 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 public class StatementHistoryModel {
     private String id;
     private String accountId;
-    private DateTime date;
+    private LocalDate date;
     private String user;
     private String description;
     private BigDecimal totalAmount;
@@ -35,11 +35,11 @@ public class StatementHistoryModel {
         this.accountId = accountId;
     }
 
-    public DateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
