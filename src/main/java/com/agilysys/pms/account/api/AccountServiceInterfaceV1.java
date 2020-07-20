@@ -88,6 +88,7 @@ import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
+import com.agilysys.pms.account.model.MailedInvoice;
 import com.agilysys.pms.account.model.MultipleAccountPaymentRequestAsyncJobId;
 import com.agilysys.pms.account.model.MultiplePayment;
 import com.agilysys.pms.account.model.MultiplePaymentResponse;
@@ -985,8 +986,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize(
           "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIdSet,
-          @QueryParam("isEmail") boolean isEmail) throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("isEmail") boolean isEmail, MailedInvoice mailedInvoice) throws RGuestException;
 
     @POST
     @CreatedOnSuccess

@@ -3,18 +3,18 @@
  */
 package com.agilysys.pms.account.model;
 
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 
 public class BaseInvoiceHistory {
     private String eventType;
     private String invoiceNumber;
-    private LocalDate invoiceDate;
+    private DateTime invoiceDate;
     private String userId;
 
     public BaseInvoiceHistory() {
     }
 
-    public BaseInvoiceHistory(String eventType, String invoiceNumber, LocalDate invoiceDate, String userId) {
+    public BaseInvoiceHistory(String eventType, String invoiceNumber, DateTime invoiceDate, String userId) {
         this.eventType = eventType;
         this.invoiceNumber = invoiceNumber;
         this.invoiceDate = invoiceDate;
@@ -37,11 +37,11 @@ public class BaseInvoiceHistory {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public LocalDate getInvoiceDate() {
+    public DateTime getInvoiceDate() {
         return invoiceDate;
     }
 
-    public void setInvoiceDate(LocalDate invoiceDate) {
+    public void setInvoiceDate(DateTime invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
 

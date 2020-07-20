@@ -5,6 +5,7 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 public class InvoicePaymentHistory extends BaseInvoiceHistory {
@@ -16,7 +17,7 @@ public class InvoicePaymentHistory extends BaseInvoiceHistory {
     public InvoicePaymentHistory() {
     }
 
-    public InvoicePaymentHistory(String eventType, String invoiceNumber, LocalDate invoiceDate, String userId,
+    public InvoicePaymentHistory(String eventType, String invoiceNumber, DateTime invoiceDate, String userId,
           String paymentMethod, BigDecimal totalAmount, String reference) {
         super(eventType, invoiceNumber, invoiceDate, userId);
         this.paymentMethod = paymentMethod;
