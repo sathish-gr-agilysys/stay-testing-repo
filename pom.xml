@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
-        <version>74.1340.0</version>
+        <version>74.1340-VCTRS-75515-SNAPSHOT</version>
     </parent>
     <properties>
     </properties>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.1343.0</version>
+            <version>74.1343-VCTRS-75515-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -33,17 +33,17 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.1343.0</version>
+            <version>74.1343-VCTRS-75515-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>integration-interface</artifactId>
-            <version>74.1342.0</version>
+            <version>74.1342-VCTRS-75515-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.1342.0</version>
+            <version>74.1342-VCTRS-75515-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -83,7 +83,7 @@
         <dependency>
             <groupId>com.agilysys.pms.common</groupId>
             <artifactId>document-toolkit</artifactId>
-            <version>74.1343.0</version>
+            <version>74.1343-VCTRS-75515-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
