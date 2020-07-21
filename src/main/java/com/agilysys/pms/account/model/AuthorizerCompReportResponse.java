@@ -13,13 +13,13 @@ public class AuthorizerCompReportResponse {
     private String compType;
     private String departmentId;
     private String departmentName;
-    private BigDecimal compCharges;
+    private Integer compCharges;
 
     public AuthorizerCompReportResponse() {
     }
 
     public AuthorizerCompReportResponse(String authorizerId, String authorizerName, String authorizerCode,
-          BigDecimal compLimit, String compType, String departmentId, String departmentName, BigDecimal compCharges) {
+          BigDecimal compLimit, String compType, String departmentId, String departmentName, Integer compCharges) {
         this.authorizerId = authorizerId;
         this.authorizerName = authorizerName;
         this.authorizerCode = authorizerCode;
@@ -70,11 +70,11 @@ public class AuthorizerCompReportResponse {
         this.departmentName = departmentName;
     }
 
-    public BigDecimal getCompCharges() {
+    public Integer getCompCharges() {
         return compCharges;
     }
 
-    public void setCompCharges(BigDecimal compCharges) {
+    public void setCompCharges(Integer compCharges) {
         this.compCharges = compCharges;
     }
 
