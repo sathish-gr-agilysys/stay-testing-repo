@@ -12,6 +12,7 @@ public class PostPosChargesRequest {
     private boolean distributed;
     private String name;
     private LocalDate postingDate;
+    private String accountId;
 
     public List<Charge> getCharges() {
         return charges;
@@ -43,5 +44,13 @@ public class PostPosChargesRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 }
