@@ -5,12 +5,14 @@ package com.agilysys.pms.account.api;
 
 import java.util.Map;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,11 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.common.api.search.SearchMaintenanceInterface;
 import com.agilysys.pms.maintenance.model.MaintenanceRequest;
 
+@Consumes(MediaType.APPLICATION_JSON)
+@Path(MaintenanceInterface.BASE_PATH)
 public interface MaintenanceInterface extends SearchMaintenanceInterface {
+    String BASE_PATH = "/maintenance";
+
     String ACCOUNTS_PATH = "/accounts";
 
     @GET
