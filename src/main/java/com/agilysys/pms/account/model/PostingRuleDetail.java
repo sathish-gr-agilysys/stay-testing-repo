@@ -51,7 +51,7 @@ public class PostingRuleDetail {
     private String reason;
 
     private String description;
-    private java.lang.Integer priority;
+    private Integer priority;
 
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
@@ -210,11 +210,11 @@ public class PostingRuleDetail {
         this.id = id;
     }
 
-    public java.lang.Integer getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(java.lang.Integer priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
 

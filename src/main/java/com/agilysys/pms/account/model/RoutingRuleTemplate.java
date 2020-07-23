@@ -43,7 +43,7 @@ public class RoutingRuleTemplate {
 
     private List<String> authorizerIds;
 
-    private OffSetRule offsetRule;
+    private OffSetRule offSetRule;
 
     private Boolean pinRequired;
 
@@ -71,7 +71,7 @@ public class RoutingRuleTemplate {
 
     private Boolean ignoreDestinationRules;
 
-    private Boolean carryForwardBalance;
+    private Boolean carryUnusedBalance;
 
     public RoutingRuleTemplate() {
     }
@@ -164,12 +164,12 @@ public class RoutingRuleTemplate {
         this.authorizerIds = authorizerIds;
     }
 
-    public OffSetRule getOffsetRule() {
-        return offsetRule;
+    public OffSetRule getOffSetRule() {
+        return offSetRule;
     }
 
-    public void setOffsetRule(OffSetRule offsetRule) {
-        this.offsetRule = offsetRule;
+    public void setOffSetRule(OffSetRule offSetRule) {
+        this.offSetRule = offSetRule;
     }
 
     public Boolean getPinRequired() {
@@ -252,11 +252,11 @@ public class RoutingRuleTemplate {
         this.ignoreDestinationRules = ignoreDestinationRules;
     }
 
-    public Boolean getCarryForwardBalance() {
-        return carryForwardBalance;
+    public Boolean getCarryUnusedBalance() {
+        return carryUnusedBalance;
     }
 
-    public void setCarryForwardBalance(Boolean carryForwardBalance) {
-        this.carryForwardBalance = carryForwardBalance;
+    public void setCarryUnusedBalance(Boolean carryUnusedBalance) {
+        this.carryUnusedBalance = carryUnusedBalance;
     }
 }

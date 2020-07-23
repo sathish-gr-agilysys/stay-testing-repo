@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class AccountBalanceDetail extends AccountSummary {
     private BigDecimal accountBalance;
+    private BigDecimal compBalance;
     private BigDecimal accountTaxBalance;
 
     private Map<String, FolioBalance> folioBalances;
@@ -70,5 +71,13 @@ public class AccountBalanceDetail extends AccountSummary {
 
     public void setPostingRule(boolean postingRule) {
         this.postingRule = postingRule;
+    }
+
+    public BigDecimal getCompBalance() {
+        return compBalance;
+    }
+
+    public void setCompBalance(BigDecimal compBalance) {
+        this.compBalance = compBalance;
     }
 }
