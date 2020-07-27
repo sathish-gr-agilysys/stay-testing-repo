@@ -43,4 +43,9 @@ public class UpdateInvoiceTermsEvent extends InvoiceEvent {
 
         return Collections.singletonList(termsUpdatedMessage);
     }
+
+    @Override
+    public String getEventType() {
+        return null;
+    }
 }

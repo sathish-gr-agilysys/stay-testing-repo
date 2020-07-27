@@ -149,6 +149,11 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     }
 
     @Override
+    public String getEventType() {
+        return "Payment";
+    }
+
+    @Override
     public long getEventVersion() {
         return 0;
     }

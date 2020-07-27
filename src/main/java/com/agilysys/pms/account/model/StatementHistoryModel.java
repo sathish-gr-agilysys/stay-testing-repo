@@ -2,6 +2,7 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDate;
 
@@ -10,7 +11,8 @@ public class StatementHistoryModel {
     private String accountId;
     private LocalDate date;
     private String user;
-    private String description;
+    private Boolean isEmail;
+    private Set<String> emailAddresses;
     private BigDecimal totalAmount;
     private List<InvoiceDetail> invoiceDetails;
 
@@ -51,14 +53,6 @@ public class StatementHistoryModel {
         this.user = user;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public BigDecimal getTotalAmount() {
         return totalAmount;
     }
@@ -73,5 +67,21 @@ public class StatementHistoryModel {
 
     public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
         this.invoiceDetails = invoiceDetails;
+    }
+
+    public Boolean getEmail() {
+        return isEmail;
+    }
+
+    public void setEmail(Boolean email) {
+        isEmail = email;
+    }
+
+    public Set<String> getEmailAddresses() {
+        return emailAddresses;
+    }
+
+    public void setEmailAddresses(Set<String> emailAddresses) {
+        this.emailAddresses = emailAddresses;
     }
 }

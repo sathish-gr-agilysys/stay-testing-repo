@@ -76,4 +76,14 @@ public class InvoiceSentEvent extends InvoiceEvent {
 
         }
     }
+
+    @Override
+    public String getEventType() {
+        if (isEmail) {
+            return "Invoice email";
+        } else {
+            return "Invoice print";
+
+        }
+    }
 }

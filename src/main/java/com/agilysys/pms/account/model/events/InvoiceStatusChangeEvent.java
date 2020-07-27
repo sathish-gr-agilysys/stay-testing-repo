@@ -41,6 +41,15 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     }
 
     @Override
+    public String getEventType() {
+        if (isClosed()) {
+            return "Invoice close";
+        } else {
+            return "Invoice reopen";
+        }
+    }
+
+    @Override
     public long getEventVersion() {
         return 0;
     }
