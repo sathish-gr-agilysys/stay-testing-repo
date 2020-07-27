@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import com.agilysys.pms.account.api.RoutingRuleTemplateServiceInterface;
 import com.agilysys.pms.common.auth.ApiKeyAuthHandler;
 import com.agilysys.pms.common.client.StayServiceClient;
-import com.agilysys.pms.property.api.CompOfferInterface;
 
 public class RoutingRuleTemplateServiceClient extends StayServiceClient<RoutingRuleTemplateServiceInterface> {
     public RoutingRuleTemplateServiceClient(String uri) {
