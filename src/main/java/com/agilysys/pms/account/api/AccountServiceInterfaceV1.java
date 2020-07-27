@@ -56,6 +56,7 @@ import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
 import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
 import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.BatchPostCC;
+import com.agilysys.pms.account.model.BatchPreAuthRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
@@ -205,6 +206,7 @@ public interface AccountServiceInterfaceV1 {
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
+    String BATCH_PRE_AUTH = "/batchPreAuth";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
     String DEPOSITS_PATH = "/deposits";
     String PAYOFF_BALANCE_PATH = "/payOffBalance";
@@ -284,6 +286,7 @@ public interface AccountServiceInterfaceV1 {
     String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
     String BATCH_CREDITS_PATH = "/batchCredits";
     String RELEASE_ALL_AUTH = GROUP_ID + "/{" + GROUP_ID + "}" + "/releaseAllAuthorizations";
+    String ACCOUNTS_BY_IDS = "/accountsByIds";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -323,6 +326,12 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<String> getAccountTypes(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
+
+    @POST
+    @Path(ACCOUNTS_BY_IDS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountsByIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     @GET
     @Path(STATUSES_PATH)
@@ -576,6 +585,13 @@ public interface AccountServiceInterfaceV1 {
     BatchDistributorResult batchPostCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           List<BatchPostCC> batchPostCCs) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(BATCH_PRE_AUTH)
+    @PreAuthorize("hasPermission('Required', 'PreauthCreditCard')")
+    BatchDistributorResult batchPreAuth(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchPreAuthRequest batchPreAuthRequest) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
