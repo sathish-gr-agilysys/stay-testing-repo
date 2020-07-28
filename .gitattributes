@@ -1,1 +1,4 @@
 pom.xml merge=rbuildmergepom
+
+* text=auto eol=lf
+*.xlsx      -text
