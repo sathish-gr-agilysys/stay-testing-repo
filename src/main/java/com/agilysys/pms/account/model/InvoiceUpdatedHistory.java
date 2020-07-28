@@ -12,6 +12,9 @@ public class InvoiceUpdatedHistory extends BaseInvoiceHistory {
     private List<String> description;
     private List<String> emailAddresses;
 
+    public InvoiceUpdatedHistory() {
+
+    }
     public InvoiceUpdatedHistory(String eventType, String invoiceNumber, DateTime invoiceDate, String userId,
           List<String> description, List<String> emailAddresses) {
         super(eventType, invoiceNumber, invoiceDate, userId);
