@@ -3,22 +3,27 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.LocalDate;
 
 public class PostPosChargesRequest {
-    private List<Charge> charges;
+    private List<PosCharge> charges;
     private boolean distributed;
     private String name;
     private LocalDate postingDate;
     private String accountId;
+    private boolean houseAccount;
+    private BigDecimal totalAmount;
+    private String outletName;
+    private String mealPeriodName;
 
-    public List<Charge> getCharges() {
+    public List<PosCharge> getCharges() {
         return charges;
     }
 
-    public void setCharges(List<Charge> charges) {
+    public void setCharges(List<PosCharge> charges) {
         this.charges = charges;
     }
 
@@ -52,5 +57,37 @@ public class PostPosChargesRequest {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+
+    public boolean isHouseAccount() {
+        return houseAccount;
+    }
+
+    public void setHouseAccount(boolean houseAccount) {
+        this.houseAccount = houseAccount;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public String getMealPeriodName() {
+        return mealPeriodName;
+    }
+
+    public void setMealPeriodName(String mealPeriodName) {
+        this.mealPeriodName = mealPeriodName;
+    }
+
+    public String getOutletName() {
+        return outletName;
+    }
+
+    public void setOutletName(String outletName) {
+        this.outletName = outletName;
     }
 }

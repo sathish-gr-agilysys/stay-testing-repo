@@ -37,7 +37,6 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
-import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.api.params.InvoicePaymentRequest;
 import com.agilysys.pms.account.model.ARDepositView;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -66,6 +65,7 @@ import com.agilysys.pms.account.model.CompanyInfo;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
+import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.model.EligibleFolioLineItems;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
@@ -209,6 +209,7 @@ public interface AccountServiceInterfaceV1 {
     String PAYOFF_BALANCE_PATH = "/payOffBalance";
     String POS_CHARGE_PATH = "/posCharge";
     String POS_CREDIT_PATH = "/posCredit";
+    String POS_CREDITS_PATH = "/posCredits";
     String POSTING_RULE_ID = "postingRulesId";
     String POSTING_RULE_ID_PATH = "/{" + POSTING_RULE_ID + "}";
     String POSTING_RULES_PATH = "/postingRules";
@@ -590,6 +591,14 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'AllowCredits')")
     LineItemView postPosCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, PosCredit posCredit) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + POS_CREDITS_PATH)
+    @PreAuthorize("hasPermission('Required', 'AllowCredits')")
+    LineItemView postPosCredits(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, List<PosCredit> posCredit) throws RGuestException;
+
 
     @POST
     @CreatedOnSuccess
