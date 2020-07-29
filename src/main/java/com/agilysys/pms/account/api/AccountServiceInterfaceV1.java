@@ -109,7 +109,7 @@ import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
-import com.agilysys.pms.account.model.StatementHistoryModel;
+import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -1306,11 +1306,11 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
     void createStatementHistory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, StatementHistoryModel statementHistoryModel) throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, StatementHistory statementHistory) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
-    List<StatementHistoryModel> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+    List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
 }

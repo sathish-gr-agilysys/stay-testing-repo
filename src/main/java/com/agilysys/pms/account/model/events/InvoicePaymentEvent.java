@@ -27,6 +27,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private DateTime appliedOnSystemDateTime;
     private boolean isFullAmountApplied;
     private Boolean unAppliedAmountUsed;
+    private String paymentReferenceId;
 
     public InvoicePaymentEvent() {
     }
@@ -49,7 +50,18 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
         this.isFullAmountApplied = isFullAmountApplied;
     }
 
-    public String getInvoicePaymentId() { return invoicePaymentId; }
+    public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
+          String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
+          DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
+          boolean isFullAmountApplied, Balance balance, String paymentReferenceId) {
+
+        this(invoicePaymentId, amount, folioLineItemId, paymentMethodId, paymentMethodName, reason, lineItemPostingDate,
+              lineItemPostingSystemDateTime, appliedOnPropertyDate, appliedOnSystemDateTime, isFullAmountApplied,
+              balance);
+        this.paymentReferenceId = paymentReferenceId;
+    }
+
+        public String getInvoicePaymentId() { return invoicePaymentId; }
 
     public void setInvoicePaymentId(String invoicePaymentId) { this.invoicePaymentId = invoicePaymentId; }
 
@@ -139,6 +151,14 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
 
     public void setUnAppliedAmountUsed(Boolean unAppliedAmountUsed) {
         this.unAppliedAmountUsed = unAppliedAmountUsed;
+    }
+
+    public String getPaymentReferenceId() {
+        return paymentReferenceId;
+    }
+
+    public void setPaymentReferenceId(String paymentReferenceId) {
+        this.paymentReferenceId = paymentReferenceId;
     }
 
     @Override

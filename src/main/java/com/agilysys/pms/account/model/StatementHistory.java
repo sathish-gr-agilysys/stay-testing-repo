@@ -6,18 +6,18 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
-public class StatementHistoryModel {
+public class StatementHistory {
     private String id;
     private String accountId;
     private LocalDate date;
     private String user;
-    private Boolean isEmail;
+    private boolean isEmail;
     private Set<String> emailAddresses;
     private BigDecimal totalAmount;
     private List<InvoiceDetail> invoiceDetails;
 
 
-    public StatementHistoryModel() {
+    public StatementHistory() {
 
     }
 
@@ -69,11 +69,11 @@ public class StatementHistoryModel {
         this.invoiceDetails = invoiceDetails;
     }
 
-    public Boolean getEmail() {
+    public boolean isEmail() {
         return isEmail;
     }
 
-    public void setEmail(Boolean email) {
+    public void setEmail(boolean email) {
         isEmail = email;
     }
 
