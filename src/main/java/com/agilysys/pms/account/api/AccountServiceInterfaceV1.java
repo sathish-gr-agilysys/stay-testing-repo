@@ -105,6 +105,7 @@ import com.agilysys.pms.account.model.PosCredit;
 import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostPosChargesRequest;
+import com.agilysys.pms.account.model.PostPosCreditRequest;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
@@ -597,7 +598,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + POS_CREDITS_PATH)
     @PreAuthorize("hasPermission('Required', 'AllowCredits')")
     LineItemView postPosCredits(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, List<PosCredit> posCredit) throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, PostPosCreditRequest posCredit) throws RGuestException;
 
 
     @POST
