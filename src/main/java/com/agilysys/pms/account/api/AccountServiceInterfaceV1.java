@@ -37,7 +37,6 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
-import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.api.params.InvoicePaymentRequest;
 import com.agilysys.pms.account.model.ARDepositView;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -66,6 +65,7 @@ import com.agilysys.pms.account.model.CompanyInfo;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
+import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.model.EligibleFolioLineItems;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
@@ -988,7 +988,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize(
           "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("isEmail") boolean isEmail, MailedInvoice mailedInvoice) throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("isEmail") boolean isEmail, MailedInvoice mailedInvoice)
+          throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -1310,7 +1311,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
-    List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+    List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
 }

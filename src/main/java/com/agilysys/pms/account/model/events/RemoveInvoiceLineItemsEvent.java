@@ -45,12 +45,12 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
             historyMetadata.forEach(metadata -> {
                 String displayDate =
                       metadata.get("displayDate") != null ? metadata.get("displayDate").toString() : null;
-                String itemDesc = metadata.get("itemDesc") != null ? metadata.get("itemDesc").toString() : null;
+                String itemName = metadata.get("itemName") != null ? metadata.get("itemName").toString() : null;
                 String itemBalance =
                       metadata.get("lineItemBalance") != null ? metadata.get("lineItemBalance").toString() : null;
                 historyMessages.add(String
                       .format("Item removed from invoice.  [Date: %s, Description: %s, Total: %s]", displayDate,
-                            itemDesc, itemBalance));
+                            itemName, itemBalance));
             });
             return historyMessages;
         }

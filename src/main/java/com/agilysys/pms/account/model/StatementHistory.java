@@ -1,3 +1,6 @@
+/*
+ * (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
@@ -5,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 public class StatementHistory {
     private String id;

@@ -1,3 +1,6 @@
+/*
+ * (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
@@ -9,7 +12,7 @@ public class InvoiceDetail {
     private LocalDate date;
     private BigDecimal invoiceAmount;
 
-    public InvoiceDetail(){
+    public InvoiceDetail() {
 
     }
 

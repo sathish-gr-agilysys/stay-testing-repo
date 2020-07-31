@@ -67,7 +67,6 @@ public interface EventingInterface {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(AR_ACCOUNT_ID) String arAccountId)
           throws RGuestException;
 
-
     @GET
     @Path(INVOICE_BASE + ID + RAW_EVENTS)
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")

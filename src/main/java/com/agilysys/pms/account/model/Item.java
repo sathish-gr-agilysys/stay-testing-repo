@@ -1,3 +1,7 @@
+/*
+ * (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
+
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
@@ -7,7 +11,6 @@ public class Item {
     private BigDecimal amount;
 
     public Item() {
-
     }
 
     public Item(String itemName, BigDecimal amount) {

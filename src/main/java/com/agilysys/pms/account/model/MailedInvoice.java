@@ -1,3 +1,6 @@
+/*
+ * (C) 2020 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.util.List;
@@ -7,8 +10,7 @@ public class MailedInvoice {
     private Set<String> invoiceIdSet;
     private List<String> emailIds;
 
-    public MailedInvoice(){
-
+    public MailedInvoice() {
     }
 
     public Set<String> getInvoiceIdSet() {
