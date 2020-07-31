@@ -80,9 +80,9 @@ public class InvoiceSentEvent extends InvoiceEvent {
     @Override
     public String getEventType() {
         if (isEmail) {
-            return "Invoice email";
+            return "Invoice Email";
         } else {
-            return "Invoice print";
+            return "Invoice Print";
 
         }
     }

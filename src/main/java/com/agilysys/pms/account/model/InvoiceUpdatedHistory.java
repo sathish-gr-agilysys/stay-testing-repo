@@ -10,16 +10,18 @@ import org.joda.time.LocalDate;
 
 public class InvoiceUpdatedHistory extends BaseInvoiceHistory {
     private String description;
+    private Item item;
     private List<String> emailAddresses;
 
     public InvoiceUpdatedHistory() {
 
     }
     public InvoiceUpdatedHistory(String eventType, String invoiceNumber, DateTime invoiceDate, String userId,
-          String description, List<String> emailAddresses) {
+          String description, List<String> emailAddresses, Item item) {
         super(eventType, invoiceNumber, invoiceDate, userId);
         this.description = description;
         this.emailAddresses = emailAddresses;
+        this.item = item;
     }
 
     public String getDescription() {
@@ -36,5 +38,13 @@ public class InvoiceUpdatedHistory extends BaseInvoiceHistory {
 
     public void setEmailAddresses(List<String> emailAddresses) {
         this.emailAddresses = emailAddresses;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

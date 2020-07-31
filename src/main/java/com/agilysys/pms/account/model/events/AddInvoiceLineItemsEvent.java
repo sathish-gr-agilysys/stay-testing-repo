@@ -58,6 +58,6 @@ import com.agilysys.pms.account.model.Balance;
 
         @Override
         public String getEventType() {
-            return "Item add";
+            return "Item Add";
         }
     }

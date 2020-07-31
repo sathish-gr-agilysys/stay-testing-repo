@@ -77,6 +77,6 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
 
     @Override
     public String getEventType() {
-        return "Invoice create";
+        return "Invoice Create";
     }
 }

@@ -4,12 +4,13 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 public class StatementHistory {
     private String id;
     private String accountId;
-    private LocalDate date;
+    private DateTime date;
     private String user;
     private boolean isEmail;
     private Set<String> emailAddresses;
@@ -37,11 +38,11 @@ public class StatementHistory {
         this.accountId = accountId;
     }
 
-    public LocalDate getDate() {
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
