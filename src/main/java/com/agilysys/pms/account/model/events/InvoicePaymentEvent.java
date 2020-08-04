@@ -35,7 +35,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          boolean isFullAmountApplied, Balance balance) {
+          boolean isFullAmountApplied, Balance balance, String paymentReferenceId) {
         super(balance);
         this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;
@@ -48,20 +48,10 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
         this.appliedOnPropertyDate = appliedOnPropertyDate;
         this.appliedOnSystemDateTime = appliedOnSystemDateTime;
         this.isFullAmountApplied = isFullAmountApplied;
-    }
-
-    public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
-          String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
-          DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          boolean isFullAmountApplied, Balance balance, String paymentReferenceId) {
-
-        this(invoicePaymentId, amount, folioLineItemId, paymentMethodId, paymentMethodName, reason, lineItemPostingDate,
-              lineItemPostingSystemDateTime, appliedOnPropertyDate, appliedOnSystemDateTime, isFullAmountApplied,
-              balance);
         this.paymentReferenceId = paymentReferenceId;
     }
 
-        public String getInvoicePaymentId() { return invoicePaymentId; }
+    public String getInvoicePaymentId() { return invoicePaymentId; }
 
     public void setInvoicePaymentId(String invoicePaymentId) { this.invoicePaymentId = invoicePaymentId; }
 
