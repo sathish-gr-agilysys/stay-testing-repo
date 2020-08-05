@@ -135,6 +135,6 @@
     <scm>
         <connection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</connection>
         <developerConnection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 </project>
