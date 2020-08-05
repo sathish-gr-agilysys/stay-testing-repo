@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model.events;
@@ -12,15 +12,13 @@ import org.springframework.data.annotation.Transient;
 import com.agilysys.platform.persistence.eventsourcing.PropertyLevelIdentifier;
 
 public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
-
     private PropertyLevelIdentifier id;
     private String accountId;
     private LocalDate invoiceDate;
     private String invoiceNumber;
     private boolean closed;
 
-    public InvoiceStatusChangeEvent() {
-    }
+    public InvoiceStatusChangeEvent() {}
 
     public InvoiceStatusChangeEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
           String invoiceNumber, boolean closed) {
@@ -38,11 +36,6 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
         } else {
             return Collections.singletonList(String.format("Invoice %s reopened.", invoiceNumber));
         }
-    }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
     }
 
     @Transient
