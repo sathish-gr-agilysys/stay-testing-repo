@@ -29,8 +29,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private Boolean unAppliedAmountUsed;
     private String paymentReferenceId;
 
-    public InvoicePaymentEvent() {
-    }
+    public InvoicePaymentEvent() {}
 
     public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
@@ -154,8 +153,8 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     @Override
     public List<String> getHistoryMessages() {
         return Collections.singletonList(
-                String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
-                        paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
+              String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
+                    paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
     }
 
     @Override

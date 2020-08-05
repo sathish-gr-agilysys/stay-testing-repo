@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model.events;
@@ -21,8 +21,7 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     private int terms;
     private String invoiceNumber;
 
-    public InvoiceCreatedEvent() {
-    }
+    public InvoiceCreatedEvent() {}
 
     public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
           Set<String> folioLineItemIds, int terms, String invoiceNumber, Balance balance) {

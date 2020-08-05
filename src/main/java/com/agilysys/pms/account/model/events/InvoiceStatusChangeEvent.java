@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model.events;
@@ -19,8 +19,7 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
     private String invoiceNumber;
     private boolean closed;
 
-    public InvoiceStatusChangeEvent() {
-    }
+    public InvoiceStatusChangeEvent() {}
 
     public InvoiceStatusChangeEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
           String invoiceNumber, boolean closed) {

@@ -26,8 +26,7 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private String paymentMethodName;
     private String reference;
 
-    public InvoicePaymentRefundEvent() {
-    }
+    public InvoicePaymentRefundEvent() {}
 
     public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId, String reason,
           LocalDate lineItemPostingDate, DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate,
@@ -151,8 +150,8 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     @Override
     public List<String> getHistoryMessages() {
         return Collections.singletonList(
-                String.format("Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
-                        paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
+              String.format("Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
+                    paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
     }
 
     @Override
