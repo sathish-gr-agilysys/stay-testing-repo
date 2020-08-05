@@ -16,8 +16,21 @@ public class CompTransaction {
     private List<CompRedeemRequest> compRedeemRequests;
     private String redemptionId;
     private String redemptionType;
+    private Boolean isEnhancedRoutingRule;
+    private OffSetRule offSetRule;
+    private Boolean tax;
 
     public CompTransaction() {}
+
+    public CompTransaction(String authorizerId, String departmentId, List<CompRedeemRequest> compRedeemRequests,
+          Boolean isEnhancedRoutingRule, OffSetRule offSetRule, Boolean tax) {
+        this.authorizerId = authorizerId;
+        this.departmentId = departmentId;
+        this.compRedeemRequests = compRedeemRequests;
+        this.isEnhancedRoutingRule = isEnhancedRoutingRule;
+        this.offSetRule = offSetRule;
+        this.tax = tax;
+    }
 
     public String getAuthorizerId() {
         return authorizerId;
@@ -85,5 +98,33 @@ public class CompTransaction {
 
     public void setRedemptionType(String redemptionType) {
         this.redemptionType = redemptionType;
+    }
+
+    public Boolean getEnhancedRoutingRule() {
+        return isEnhancedRoutingRule;
+    }
+
+    public boolean isEnhancedRoutingRule() {
+        return Boolean.TRUE.equals(isEnhancedRoutingRule);
+    }
+
+    public void setEnhancedRoutingRule(Boolean enhancedRoutingRule) {
+        isEnhancedRoutingRule = enhancedRoutingRule;
+    }
+
+    public OffSetRule getOffSetRule() {
+        return offSetRule;
+    }
+
+    public void setOffSetRule(OffSetRule offSetRule) {
+        this.offSetRule = offSetRule;
+    }
+
+    public Boolean getTax() {
+        return tax;
+    }
+
+    public void setTax(Boolean tax) {
+        this.tax = tax;
     }
 }
