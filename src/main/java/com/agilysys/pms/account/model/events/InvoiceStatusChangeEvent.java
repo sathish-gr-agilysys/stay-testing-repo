@@ -49,11 +49,6 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
         }
     }
 
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-
     @Transient
     @Override
     public String getDisplayName() {

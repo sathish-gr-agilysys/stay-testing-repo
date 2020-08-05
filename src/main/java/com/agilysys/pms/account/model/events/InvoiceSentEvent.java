@@ -56,11 +56,6 @@ public class InvoiceSentEvent extends InvoiceEvent {
         return deliveryDateTime;
     }
 
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-
     @Transient
     @Override
     public String getDisplayName() {

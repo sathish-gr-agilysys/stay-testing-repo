@@ -163,8 +163,4 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
         return "Payment";
     }
 
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
 }

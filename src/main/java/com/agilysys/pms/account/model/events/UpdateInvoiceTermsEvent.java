@@ -12,6 +12,8 @@ import org.springframework.data.annotation.Transient;
 public class UpdateInvoiceTermsEvent extends InvoiceEvent {
     private int terms;
 
+    public UpdateInvoiceTermsEvent(){}
+
     public UpdateInvoiceTermsEvent(int terms, List<Map<String, Object>> historyMetadata) {
         super(historyMetadata);
 

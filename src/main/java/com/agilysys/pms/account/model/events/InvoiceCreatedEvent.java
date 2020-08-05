@@ -55,11 +55,6 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
         return terms;
     }
 
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-
     @Transient
     @Override
     public String getDisplayName() {

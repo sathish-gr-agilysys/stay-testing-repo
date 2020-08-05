@@ -159,9 +159,4 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     public String getEventType() {
         return "Refund";
     }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-}
+ }

@@ -24,12 +24,6 @@ import com.agilysys.pms.account.model.Balance;
     public Set<String> getFolioLineItemIds() {
         return folioLineItemIds;
     }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-
     @Transient
     @Override
     public String getDisplayName() {
