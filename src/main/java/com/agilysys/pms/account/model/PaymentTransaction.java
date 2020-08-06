@@ -9,13 +9,21 @@ import java.math.BigDecimal;
  * Needed because transaction is abstract
  */
 public class PaymentTransaction extends Transaction {
+    private String receiptTextImage;
+    private Long checkNumber;
+    private String closeTime;
+
     public PaymentTransaction() {
     }
 
-    public PaymentTransaction(String accountId, BigDecimal amount, String itemId) {
+    public PaymentTransaction(String accountId, BigDecimal amount, String itemId, String receiptTextImage,
+          Long checkNumber, String closeTime) {
         this.accountId = accountId;
         this.amount = amount;
         this.itemId = itemId;
+        this.receiptTextImage = receiptTextImage;
+        this.checkNumber = checkNumber;
+        this.closeTime = closeTime;
     }
 
     public void toTransaction(String accountId, String folioId, Boolean pantryItem) {
@@ -24,4 +32,27 @@ public class PaymentTransaction extends Transaction {
         this.pantryItem = pantryItem;
     }
 
+    public String getReceiptTextImage() {
+        return receiptTextImage;
+    }
+
+    public void setReceiptTextImage(String receiptTextImage) {
+        this.receiptTextImage = receiptTextImage;
+    }
+
+    public Long getCheckNumber() {
+        return checkNumber;
+    }
+
+    public void setCheckNumber(Long checkNumber) {
+        this.checkNumber = checkNumber;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
+    }
 }
