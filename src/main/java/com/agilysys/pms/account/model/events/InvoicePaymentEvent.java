@@ -1,7 +1,6 @@
 /*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
-
 package com.agilysys.pms.account.model.events;
 
 import java.math.BigDecimal;
@@ -28,8 +27,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private boolean isFullAmountApplied;
     private Boolean unAppliedAmountUsed;
 
-    public InvoicePaymentEvent() {
-    }
+    public InvoicePaymentEvent() {}
 
     public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
@@ -144,12 +142,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     @Override
     public List<String> getHistoryMessages() {
         return Collections.singletonList(
-                String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
-                        paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
-    }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
+              String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
+                    paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
     }
 }
