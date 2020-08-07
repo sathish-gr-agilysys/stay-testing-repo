@@ -103,4 +103,3 @@ public class PostChargesRequest {
         this.addOn = addOn;
     }
 }
-

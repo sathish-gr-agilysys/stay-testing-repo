@@ -63,5 +63,3 @@ public class PosCredit extends Credit implements PosTransaction {
         return true;
     }
 }
-
-
