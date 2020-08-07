@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class CompRedeemRequest {
     private String lineItemId;
