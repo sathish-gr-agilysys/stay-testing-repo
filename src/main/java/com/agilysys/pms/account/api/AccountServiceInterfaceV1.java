@@ -265,6 +265,8 @@ public interface AccountServiceInterfaceV1 {
     String FOLIO_LINE_ITEM = "/folioLineItem/{" + FOLIO_LINE_ITEM_ID + "}";
     String UPLOAD_COMPANY_AR_DOCUMENTS = "/document/uploadCompanyARDocuments/{accountId}";
     String DELETE_COMPANY_AR_DOCUMENTS = "/document/deleteCompanyARDocuments";
+    String LEDGER_TRANSACTION = "ledgerTransactionId";
+    String LEDGER_TRANSACTION_IDS = "/ledgerTransactionId/{" + LEDGER_TRANSACTION + "}";
 
     String AUTHORIZER_CODE = "authorizerCode";
     String CODE = "/{" + AUTHORIZER_CODE + "}";
@@ -1247,6 +1249,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     LineItemView getFolioLineItemById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId) throws RGuestException;
+
+    @GET
+    @Path(LEDGER_TRANSACTION_IDS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    LineItemView getLineItemViewByLedgerTransactionById(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(LEDGER_TRANSACTION) String LedgerTransactionIds)
+          throws RGuestException;
 
     @PUT
     @Path(RECEIPT_IMAGE_RESPOME)

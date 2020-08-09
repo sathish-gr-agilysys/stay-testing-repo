@@ -17,13 +17,14 @@ public class PaymentTransaction extends Transaction {
     }
 
     public PaymentTransaction(String accountId, BigDecimal amount, String itemId, String receiptTextImage,
-          Long checkNumber, String closeTime) {
+          Long checkNumber, String closeTime, String sourceId) {
         this.accountId = accountId;
         this.amount = amount;
         this.itemId = itemId;
         this.receiptTextImage = receiptTextImage;
         this.checkNumber = checkNumber;
         this.closeTime = closeTime;
+        super.sourceId = sourceId;
     }
 
     public void toTransaction(String accountId, String folioId, Boolean pantryItem) {
@@ -55,4 +56,5 @@ public class PaymentTransaction extends Transaction {
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
+
 }
