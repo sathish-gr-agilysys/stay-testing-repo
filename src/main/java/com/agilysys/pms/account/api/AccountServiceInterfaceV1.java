@@ -286,6 +286,7 @@ public interface AccountServiceInterfaceV1 {
     String SIZE = "size";
     String ALLOWANCE = "/allowance";
     String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
+    String RECEIPT_IMAGE_RESPONCE_GROUP = LEDGER_TRANSACTION_IDS + "/receiptTextImage";
     String BATCH_CREDITS_PATH = "/batchCredits";
     String RELEASE_ALL_AUTH = GROUP_ID + "/{" + GROUP_ID + "}" + "/releaseAllAuthorizations";
 
@@ -1263,6 +1264,13 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void updateReceiptImageFolioLineItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId,
+          ReceiptImageResponse receiptImageResponse) throws RGuestException;
+
+    @PUT
+    @Path(RECEIPT_IMAGE_RESPONCE_GROUP)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateReceiptImageLedgerTransaction(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(LEDGER_TRANSACTION) String ledgerTransactionId,
           ReceiptImageResponse receiptImageResponse) throws RGuestException;
 
     @POST
