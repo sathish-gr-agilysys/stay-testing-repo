@@ -78,6 +78,7 @@ import com.agilysys.pms.account.model.GetFoliosOptionalParameters;
 import com.agilysys.pms.account.model.GiftCardRequest;
 import com.agilysys.pms.account.model.GiftCardResponse;
 import com.agilysys.pms.account.model.GroupCompanyTaxExemptSettings;
+import com.agilysys.pms.account.model.IGTransactionHistoryFields;
 import com.agilysys.pms.account.model.InventoryAllocationDetails;
 import com.agilysys.pms.account.model.InvoicePaymentRefund;
 import com.agilysys.pms.account.model.InvoiceReportProgressView;
@@ -1253,7 +1254,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(LEDGER_TRANSACTION_IDS)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    LineItemView getLineItemViewByLedgerTransactionById(@PathParam(TENANT_ID) String tenantId,
+    IGTransactionHistoryFields getLineItemViewByLedgerTransactionById(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(LEDGER_TRANSACTION) String LedgerTransactionIds)
           throws RGuestException;
 
