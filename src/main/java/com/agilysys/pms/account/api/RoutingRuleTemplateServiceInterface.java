@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -35,6 +36,12 @@ public interface RoutingRuleTemplateServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     RoutingRuleTemplate getRoutingRuleTemplateById(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TEMPLATE_ID) String id) throws RGuestException;
+
+    @POST
+    @Path(TEMPLATE_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    List<RoutingRuleTemplate> getRoutingRuleTemplateByIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> templateIds) throws RGuestException;
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")

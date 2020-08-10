@@ -686,6 +686,13 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           LineItemTransfer transferInfo) throws RGuestException;
 
+    @PUT
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + TRANSFER_FOLIO_LINES)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> transferCompBackToFolio(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(FOLIO_ID) String folioId) throws RGuestException;
+
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_AMOUNT_PATH)
     @Validated(AmountTransfer.class)
