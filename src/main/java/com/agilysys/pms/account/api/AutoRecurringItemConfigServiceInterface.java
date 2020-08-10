@@ -54,6 +54,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String SHARE_PATH = "/share/{" + SHARE_ID + "}";
     String VALIDATE_RULE_CHANGES = "/validateRuleChanges/{" + ACCOUNT_ID + "}";
     String MERGE_MARKETING_DETAILS = "/mergeMarketingDetails";
+    String UPDATE_ARC_FOR_MODIFIED_SNAPSHOT = "/updateArcForModifiedSnapshot";
 
 
     @GET
@@ -182,8 +183,15 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PUT
     @Path(SHARE_PATH)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
-    public void updateArcPerRoomItemsByShareId(@PathParam(TENANT_ID) String tenantId,
+    void updateArcPerRoomItemsByShareId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SHARE_ID) String shareId);
+
+    @PUT
+    @Path(UPDATE_ARC_FOR_MODIFIED_SNAPSHOT)
+    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    void updateAutoRecurringChargesForModifiedRateSnapshot(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          AutoRecurringChargeRuleParameters autoRecurringChargeRuleParameters);
 
     @PUT
     @Path(MERGE_MARKETING_DETAILS)
