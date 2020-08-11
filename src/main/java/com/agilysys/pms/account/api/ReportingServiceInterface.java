@@ -23,6 +23,8 @@ import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
+import com.agilysys.pms.account.model.AuthorizerCompReportRequest;
+import com.agilysys.pms.account.model.AuthorizerCompReportResponse;
 import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.DepositCollectionStatusEmailRequest;
 import com.agilysys.pms.account.model.GLCodeTemplate;
@@ -40,7 +42,6 @@ import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
 import com.agilysys.pms.account.model.TransactionReportResponse;
 import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
-import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
 import com.agilysys.pms.common.model.GeneralAvailabilityResult;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/reports")
@@ -76,6 +77,7 @@ public interface ReportingServiceInterface {
     String STAY_DATE_SUMMARY = "stayDateSummary";
     String SEND_DEPOSIT_COLLECTION_STATUS_EMAIL = "sendDepositCollectionStatus";
     String SEND_BATCH_DEPOSIT_DUE_NOTIFICATION = "sendBatchDepositDueNotification";
+    String COMP_AUTHORIZER_DETAILS = "authorizerListReport";
 
     /**
      * get the ledger report
@@ -364,4 +366,9 @@ public interface ReportingServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
 
+    @POST
+    @Path(COMP_AUTHORIZER_DETAILS)
+    @Produces(MediaType.APPLICATION_JSON)
+    List<AuthorizerCompReportResponse> getAuthorizerCompReport(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AuthorizerCompReportRequest request) throws RGuestException;
 }
