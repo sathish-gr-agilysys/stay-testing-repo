@@ -385,6 +385,14 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException;
 
     @GET
+    @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<FolioDetail> getFoliosDetailList(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("") GetFoliosOptionalParameters optionalParameters) throws RGuestException;
+
+
+    @GET
     @Path(ACCOUNT_ID_PATH + DEPOSIT_FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     FolioDetail getDepositFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
