@@ -40,12 +40,7 @@ public class PostingRuleDetail {
     private String destinationAccountId;
     private List<DestinationDetail> destinations;
 
-    @JsonProperty(required = true)
-    @NotNull
     private LocalDate startDate;
-
-    @JsonProperty(required = true)
-    @NotNull
     private LocalDate endDate;
 
     private Boolean applyToAllPostedCharges;
@@ -60,6 +55,32 @@ public class PostingRuleDetail {
 
     //Used for group accounts to signify who the rule applies to (null means the account itself, empty means everyone)
     private Set<String> includedAccountIds;
+
+    private List<LocalDate> validOn;
+
+    private Boolean includeArrivalDate;
+
+    private Boolean includeDepartureDate;
+
+    private List<Integer> occurrenceDays;
+
+    private Boolean comp;
+
+    private String departmentId;
+
+    private String authorizerCode;
+
+    private Boolean compingTax;
+
+    private OffSetRule offSetRule;
+
+    private Boolean pinRequired;
+
+    private String postingRuleChargeType;
+
+    private Boolean carryUnusedBalance;
+
+    private String authorizerId;
 
     public PostingRuleDetail() { }
 
@@ -201,5 +222,109 @@ public class PostingRuleDetail {
 
     public void setIncludedAccountIds(Set<String> includedAccountIds) {
         this.includedAccountIds = includedAccountIds;
+    }
+
+    public List<LocalDate> getValidOn() {
+        return validOn;
+    }
+
+    public void setValidOn(List<LocalDate> validOn) {
+        this.validOn = validOn;
+    }
+
+    public Boolean getComp() {
+        return comp;
+    }
+
+    public void setComp(Boolean comp) {
+        this.comp = comp;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getAuthorizerCode() {
+        return authorizerCode;
+    }
+
+    public void setAuthorizerCode(String authorizerCode) {
+        this.authorizerCode = authorizerCode;
+    }
+
+    public Boolean getCompingTax() {
+        return compingTax;
+    }
+
+    public void setCompingTax(Boolean compingTax) {
+        this.compingTax = compingTax;
+    }
+
+    public OffSetRule getOffSetRule() {
+        return offSetRule;
+    }
+
+    public void setOffSetRule(OffSetRule offSetRule) {
+        this.offSetRule = offSetRule;
+    }
+
+    public Boolean getPinRequired() {
+        return pinRequired;
+    }
+
+    public void setPinRequired(Boolean pinRequired) {
+        this.pinRequired = pinRequired;
+    }
+
+    public String getPostingRuleChargeType() {
+        return postingRuleChargeType;
+    }
+
+    public void setPostingRuleChargeType(String postingRuleChargeType) {
+        this.postingRuleChargeType = postingRuleChargeType;
+    }
+
+    public Boolean getCarryUnusedBalance() {
+        return carryUnusedBalance;
+    }
+
+    public void setCarryUnusedBalance(Boolean carryUnusedBalance) {
+        this.carryUnusedBalance = carryUnusedBalance;
+    }
+
+    public Boolean getIncludeArrivalDate() {
+        return includeArrivalDate;
+    }
+
+    public void setIncludeArrivalDate(Boolean includeArrivalDate) {
+        this.includeArrivalDate = includeArrivalDate;
+    }
+
+    public Boolean getIncludeDepartureDate() {
+        return includeDepartureDate;
+    }
+
+    public void setIncludeDepartureDate(Boolean includeDepartureDate) {
+        this.includeDepartureDate = includeDepartureDate;
+    }
+
+    public List<Integer> getOccurrenceDays() {
+        return occurrenceDays;
+    }
+
+    public void setOccurrenceDays(List<Integer> occurrenceDays) {
+        this.occurrenceDays = occurrenceDays;
+    }
+
+    public String getAuthorizerId() {
+        return authorizerId;
+    }
+
+    public void setAuthorizerId(String authorizerId) {
+        this.authorizerId = authorizerId;
     }
 }

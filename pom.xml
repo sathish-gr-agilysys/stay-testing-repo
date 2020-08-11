@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
-        <version>74.1351.0</version>
+        <version>74.1368.0</version>
     </parent>
     <properties>
     </properties>
@@ -23,37 +23,37 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.1355.0</version>
+            <version>74.1373.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>payment-interface</artifactId>
-            <version>74.1351.0</version>
+            <version>74.1373.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.1355.0</version>
+            <version>74.1373.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>integration-interface</artifactId>
-            <version>74.1351.0</version>
+            <version>74.1373.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.1351.0</version>
+            <version>74.1373.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.1351.0</version>
+            <version>74.1362.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.1351.0</version>
+            <version>74.1362.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
@@ -83,7 +83,7 @@
         <dependency>
             <groupId>com.agilysys.pms.common</groupId>
             <artifactId>document-toolkit</artifactId>
-            <version>74.1355.0</version>
+            <version>74.1373.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -135,5 +135,6 @@
     <scm>
         <connection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</connection>
         <developerConnection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 </project>
