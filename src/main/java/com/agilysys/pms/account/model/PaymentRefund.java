@@ -28,6 +28,9 @@ public class PaymentRefund {
     private Map<String, String> transactionMessageAttributes;
     private String gatewayType;
     private String giftCardNumber;
+    private String tracke;
+    private String encMode;
+    private Boolean cardPresent;
 
     public String getFolioLineItemId() {
         return folioLineItemId;
@@ -105,5 +108,29 @@ public class PaymentRefund {
 
     public void setGiftCardNumber(String giftCardNumber) {
         this.giftCardNumber = giftCardNumber;
+    }
+
+    public String getTracke() {
+        return tracke;
+    }
+
+    public void setTracke(String tracke) {
+        this.tracke = tracke;
+    }
+
+    public String getEncMode() {
+        return encMode;
+    }
+
+    public void setEncMode(String encMode) {
+        this.encMode = encMode;
+    }
+
+    public Boolean getCardPresent() {
+        return cardPresent;
+    }
+
+    public void setCardPresent(Boolean cardPresent) {
+        this.cardPresent = cardPresent;
     }
 }
