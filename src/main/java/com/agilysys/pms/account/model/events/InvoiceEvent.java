@@ -44,6 +44,8 @@ public abstract class InvoiceEvent extends StayDomainEvent {
 
     public abstract List<String> getHistoryMessages();
 
+    public abstract String getEventType();
+
     @Override
     public String toString() {
         return ReflectionToStringBuilder.toString(this);

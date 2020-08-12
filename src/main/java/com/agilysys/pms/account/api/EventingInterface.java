@@ -16,6 +16,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.ARReportRequest;
+import com.agilysys.pms.account.model.InvoicePaymentHistory;
+import com.agilysys.pms.account.model.InvoiceUpdatedHistory;
 import com.agilysys.pms.account.model.RawEventsResult;
 import com.agilysys.pms.account.model.events.AccountPostEvent;
 import com.agilysys.pms.account.payagent.model.events.PayAgentTransactionEvent;
@@ -27,6 +29,7 @@ import com.agilysys.pms.common.model.HistoryEventsResult;
 public interface EventingInterface {
     String BASE = "/tenants/{tenantId}/properties/{propertyId}";
     String INVOICE_BASE = "/invoices";
+    String PAYMENT_BASE = "/payment";
     String ACCOUNTS = "/accounts";
     String PAYAGENTTRANSACTION = "/payagent_transaction";
     String ID = "/{id}";
@@ -34,6 +37,8 @@ public interface EventingInterface {
     String RAW_EVENTS = "/events";
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
+    String AR_ACCOUNT_ID = "arAccountId";
+    String AR_ACCOUNT_ID_PATH = "/{arAccountId}";
     String AR_NUMBER_BASE = "/arNumber";
 
     @GET
@@ -47,6 +52,20 @@ public interface EventingInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
     List<ARInvoiceEvents> getInvoiceHistoryEventsForARNumber(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, ARReportRequest arReportRequest) throws RGuestException;
+
+    @GET
+    @Path(INVOICE_BASE + HISTORY + AR_ACCOUNT_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoiceUpdatedHistory> getInvoiceHistoryEventsForARAccount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(AR_ACCOUNT_ID) String arAccountId)
+          throws RGuestException;
+
+    @GET
+    @Path(PAYMENT_BASE + HISTORY + AR_ACCOUNT_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    List<InvoicePaymentHistory> getPaymentHistoryEventsForARAccount(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(AR_ACCOUNT_ID) String arAccountId)
+          throws RGuestException;
 
     @GET
     @Path(INVOICE_BASE + ID + RAW_EVENTS)
