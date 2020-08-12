@@ -90,6 +90,7 @@ import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
+import com.agilysys.pms.account.model.MailedInvoice;
 import com.agilysys.pms.account.model.MultipleAccountPaymentRequestAsyncJobId;
 import com.agilysys.pms.account.model.MultiplePayment;
 import com.agilysys.pms.account.model.MultiplePaymentResponse;
@@ -111,6 +112,7 @@ import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReleaseAllAuthRequest;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
+import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.ReverseRedemptionResponse;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
@@ -238,6 +240,7 @@ public interface AccountServiceInterfaceV1 {
     String START_DATE = "startDate";
     String START_DATE_TIME = "startDateTime";
     String STATUSES_PATH = "statuses";
+    String STATEMENT_HISTORY = "/statementHistory";
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
@@ -1004,8 +1007,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize(
           "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIdSet,
-          @QueryParam("isEmail") boolean isEmail) throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("isEmail") boolean isEmail, MailedInvoice mailedInvoice)
+          throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -1324,5 +1327,15 @@ public interface AccountServiceInterfaceV1 {
     @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
     void releaseAllAuthorizations(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           ReleaseAllAuthRequest ReleaseAllAuthRequest) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
+    void createStatementHistory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, StatementHistory statementHistory) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
+    List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
 }
