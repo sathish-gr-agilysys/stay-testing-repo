@@ -50,6 +50,8 @@ public class TransactionItem extends AccountingItem {
 
     protected String plu;
 
+    protected boolean restricted;
+
     @JsonProperty(required = true)
     @DataPortMapReference(name = "sourceCodeToMealPeriodCodes", keyType = {
           Building.class, Outlet.class }, valueType = MealPeriod.class, multipleValues = true)
@@ -81,6 +83,7 @@ public class TransactionItem extends AccountingItem {
         status = transactionItem.getStatus();
         taxClasses = transactionItem.getTaxClasses();
         allowComp = transactionItem.isAllowComp();
+        restricted = transactionItem.isRestricted();
     }
 
     public String getAltSystemId() {
@@ -158,6 +161,10 @@ public class TransactionItem extends AccountingItem {
     public void setAllowComp(boolean allowComp) {
         this.allowComp = allowComp;
     }
+
+    public boolean isRestricted() { return restricted; }
+
+    public void setRestricted(boolean restricted) { this.restricted = restricted; }
 
     @JsonIgnore
     public boolean isActive() {
