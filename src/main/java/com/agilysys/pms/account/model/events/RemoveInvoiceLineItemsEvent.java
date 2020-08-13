@@ -1,9 +1,13 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model.events;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.data.annotation.Transient;
 
@@ -12,8 +16,7 @@ import com.agilysys.pms.account.model.Balance;
 public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     private Set<String> folioLineItemIds;
 
-    public RemoveInvoiceLineItemsEvent() {
-    }
+    public RemoveInvoiceLineItemsEvent() {}
 
     public RemoveInvoiceLineItemsEvent(Set<String> folioLineItemIds, List<Map<String, Object>> historyMetadata,
           Balance balance) {
@@ -23,11 +26,6 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
 
     public Set<String> getFolioLineItemIds() {
         return folioLineItemIds;
-    }
-
-    @Override
-    public long getEventVersion() {
-        return 0;
     }
 
     @Transient
@@ -54,5 +52,10 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
             });
             return historyMessages;
         }
+    }
+
+    @Override
+    public String getEventType() {
+        return "Item Remove";
     }
 }
