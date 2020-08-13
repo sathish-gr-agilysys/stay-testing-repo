@@ -510,12 +510,26 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<PostingRuleDetail> postingRuleDetails) throws RGuestException;
 
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + "/fromTemplate")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateCompOfferRoutingRules(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Map<String, List<LocalDate>> offerAppliedDates)
+          throws RGuestException;
+
     @DELETE
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void deletePostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(POSTING_RULE_ID) String postingRuleId)
           throws RGuestException;
+
+    @DELETE
+    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void deleteCompOfferPostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + CHARGES_PATH)
