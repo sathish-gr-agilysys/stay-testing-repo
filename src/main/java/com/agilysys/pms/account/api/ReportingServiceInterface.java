@@ -29,6 +29,7 @@ import com.agilysys.pms.account.model.Cashier;
 import com.agilysys.pms.account.model.DepositCollectionStatusEmailRequest;
 import com.agilysys.pms.account.model.GLCodeTemplate;
 import com.agilysys.pms.account.model.GLCodeTemplateRequest;
+import com.agilysys.pms.account.model.GroupRevenueReportItem;
 import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
 import com.agilysys.pms.account.model.NightAuditReport;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
@@ -66,6 +67,7 @@ public interface ReportingServiceInterface {
     String PROPERTY_DATE = "propertyDate";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
+    String DATE = "date";
     String ROOM_REVENUE = "roomRevenue";
     String REVENUE_OCCUPANCY = "revenueOccupancy";
     String BY_CASHIER = "byCashier";
@@ -74,6 +76,7 @@ public interface ReportingServiceInterface {
     String PANTRY_TRANSACTION = "/pantryTransaction";
     String DEPARTMENT_REVENUE = "/departmentRevenue";
     String INCLUDE_MTD_TRANSACTIONS = "includeMtdTransactions";
+    String GROUPS_REVENUE_PATH = "/groupsRevenue";
     String STAY_DATE_SUMMARY = "stayDateSummary";
     String SEND_DEPOSIT_COLLECTION_STATUS_EMAIL = "sendDepositCollectionStatus";
     String SEND_BATCH_DEPOSIT_DUE_NOTIFICATION = "sendBatchDepositDueNotification";
@@ -352,7 +355,21 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadReports')")
     TransactionReportResponse getPantryItemTransactions(@PathParam(TENANT_ID) String tenantId,
-    @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws RGuestException;
+
+    /**
+     * Retrieve group revenue detail for the given group identifiers.
+     *
+     * @param tenantId
+     * @param propertyId
+     * @return
+     */
+    @POST
+    @Path(GROUPS_REVENUE_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    Map<String, List<GroupRevenueReportItem>> getRevenueDetailsForGroups(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam(DATE) LocalDate date, Set<String> groupIds);
 
     @POST
     @Path(SEND_DEPOSIT_COLLECTION_STATUS_EMAIL)
