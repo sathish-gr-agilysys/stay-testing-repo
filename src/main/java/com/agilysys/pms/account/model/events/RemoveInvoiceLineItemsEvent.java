@@ -53,4 +53,9 @@ public class RemoveInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
             return historyMessages;
         }
     }
+
+    @Override
+    public String getEventType() {
+        return "Item Remove";
+    }
 }

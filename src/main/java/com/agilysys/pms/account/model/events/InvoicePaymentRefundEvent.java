@@ -24,6 +24,7 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     private LocalDate appliedOnPropertyDate;
     private DateTime appliedOnSystemDateTime;
     private String paymentMethodName;
+    private String reference;
 
     public InvoicePaymentRefundEvent() {}
 
@@ -59,10 +60,11 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
     public InvoicePaymentRefundEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          List<Map<String, Object>> historyMetadata, Balance balance) {
+          List<Map<String, Object>> historyMetadata, Balance balance, String reference) {
         this(invoicePaymentId, amount, folioLineItemId, reason, lineItemPostingDate, lineItemPostingSystemDateTime,
               appliedOnPropertyDate, appliedOnSystemDateTime, historyMetadata, balance);
         this.paymentMethodName = paymentMethodName;
+        this.reference = reference;
     }
 
     public String getInvoicePaymentId() {
@@ -129,10 +131,31 @@ public class InvoicePaymentRefundEvent extends InvoiceBalanceChangeEvent {
         this.appliedOnSystemDateTime = appliedOnSystemDateTime;
     }
 
+    public String getPaymentMethodName() {
+        return paymentMethodName;
+    }
+
+    public void setPaymentMethodName(String paymentMethodName) {
+        this.paymentMethodName = paymentMethodName;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
     @Override
     public List<String> getHistoryMessages() {
         return Collections.singletonList(
               String.format("Refund applied to payment on invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
                     paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
     }
-}
+
+    @Override
+    public String getEventType() {
+        return "Refund";
+    }
+ }

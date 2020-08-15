@@ -24,7 +24,6 @@ public class PayAgentTransactionCreatedEvent extends PayAgentTransactionEvent {
     public PayAgentTransactionCreatedEvent() {}
 
     public PayAgentTransactionCreatedEvent(PropertyLevelIdentifier id, PayTransactionRequest payTransactionRequest) {
-        super();
         this.id = id;
         this.payTransactionRequest = payTransactionRequest;
     }
@@ -33,16 +32,10 @@ public class PayAgentTransactionCreatedEvent extends PayAgentTransactionEvent {
         return id;
     }
 
-    /**
-     * @return the payTransactionRequest
-     */
     public PayTransactionRequest getPayTransactionRequest() {
         return payTransactionRequest;
     }
 
-    /**
-     * @param payTransactionRequest the payTransactionRequest to set
-     */
     public void setPayTransactionRequest(PayTransactionRequest payTransactionRequest) {
         this.payTransactionRequest = payTransactionRequest;
     }
@@ -66,16 +59,10 @@ public class PayAgentTransactionCreatedEvent extends PayAgentTransactionEvent {
         this.callbackUrl = callbackUrl;
     }
 
-    /**
-     * @return the payAgentPayLoad
-     */
     public PayAgentBaseRequest getPayAgentPayLoad() {
         return payAgentPayLoad;
     }
 
-    /**
-     * @param payAgentPayLoad the payAgentPayLoad to set
-     */
     public void setPayAgentPayLoad(PayAgentBaseRequest payAgentPayLoad) {
         this.payAgentPayLoad = payAgentPayLoad;
     }

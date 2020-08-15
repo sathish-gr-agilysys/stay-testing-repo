@@ -21,7 +21,6 @@ public class PayAgentTransactionCompletedEvent extends PayAgentTransactionEvent 
     public PayAgentTransactionCompletedEvent() {}
 
     public PayAgentTransactionCompletedEvent(PropertyLevelIdentifier identifier, PayAgentBaseResponse response) {
-        super();
         this.id = identifier;
         this.response = response;
     }

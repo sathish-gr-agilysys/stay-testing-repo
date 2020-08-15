@@ -38,6 +38,15 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
         }
     }
 
+    @Override
+    public String getEventType() {
+        if (isClosed()) {
+            return "Invoice Close";
+        } else {
+            return "Invoice Reopen";
+        }
+    }
+
     @Transient
     @Override
     public String getDisplayName() {

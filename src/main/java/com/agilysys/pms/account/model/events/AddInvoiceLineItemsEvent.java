@@ -53,4 +53,9 @@ public class AddInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
 
         return historyMessages;
     }
-}
+
+        @Override
+        public String getEventType() {
+            return "Item Add";
+        }
+  }

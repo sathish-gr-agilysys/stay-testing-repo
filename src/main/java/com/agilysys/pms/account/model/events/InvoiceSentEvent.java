@@ -13,11 +13,21 @@ public class InvoiceSentEvent extends InvoiceEvent {
     private boolean isEmail;
     private String userId;
     private DateTime deliveryDateTime;
+    private List<String> emailIds;
+
+    public InvoiceSentEvent() {}
 
     public InvoiceSentEvent(boolean isEmail, String userId, DateTime deliveryDateTime) {
         this.isEmail = isEmail;
         this.userId = userId;
         this.deliveryDateTime = deliveryDateTime;
+    }
+
+    public InvoiceSentEvent(boolean isEmail, String userId, DateTime deliveryDateTime, List<String> emailIds) {
+        this.isEmail = isEmail;
+        this.userId = userId;
+        this.deliveryDateTime = deliveryDateTime;
+        this.emailIds = emailIds;
     }
 
     public boolean isEmail() {
@@ -26,6 +36,14 @@ public class InvoiceSentEvent extends InvoiceEvent {
 
     public boolean isPrinted() {
         return !isEmail;
+    }
+
+    public List<String> getEmailIds() {
+        return emailIds;
+    }
+
+    public void setEmailIds(List<String> emailIds) {
+        this.emailIds = emailIds;
     }
 
     public String getUserId() {
@@ -48,6 +66,16 @@ public class InvoiceSentEvent extends InvoiceEvent {
             return Collections.singletonList("Sent by email.");
         } else {
             return Collections.singletonList("Printed and sent.");
+
+        }
+    }
+
+    @Override
+    public String getEventType() {
+        if (isEmail) {
+            return "Invoice Email";
+        } else {
+            return "Invoice Print";
 
         }
     }

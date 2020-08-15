@@ -68,4 +68,9 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     public List<String> getHistoryMessages() {
         return Collections.singletonList(String.format("Invoice %s created.", invoiceNumber));
     }
+
+    @Override
+    public String getEventType() {
+        return "Invoice Create";
+    }
 }
