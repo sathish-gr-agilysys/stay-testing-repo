@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model.events;
@@ -21,8 +21,7 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     private int terms;
     private String invoiceNumber;
 
-    public InvoiceCreatedEvent() {
-    }
+    public InvoiceCreatedEvent() {}
 
     public InvoiceCreatedEvent(PropertyLevelIdentifier id, String accountId, LocalDate invoiceDate,
           Set<String> folioLineItemIds, int terms, String invoiceNumber, Balance balance) {
@@ -55,11 +54,6 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
         return terms;
     }
 
-    @Override
-    public long getEventVersion() {
-        return 0;
-    }
-
     @Transient
     @Override
     public String getDisplayName() {
@@ -73,5 +67,10 @@ public class InvoiceCreatedEvent extends InvoiceBalanceChangeEvent {
     @Override
     public List<String> getHistoryMessages() {
         return Collections.singletonList(String.format("Invoice %s created.", invoiceNumber));
+    }
+
+    @Override
+    public String getEventType() {
+        return "Invoice Create";
     }
 }

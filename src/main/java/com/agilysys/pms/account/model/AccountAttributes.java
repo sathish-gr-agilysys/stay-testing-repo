@@ -49,6 +49,7 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
     public enum AccountStatus {
         PENDING,
         OPEN,
+        HOLD,
         CLOSED
     }
 
