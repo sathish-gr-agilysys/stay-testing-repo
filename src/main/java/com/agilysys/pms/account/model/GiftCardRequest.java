@@ -3,9 +3,12 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.pms.payment.model.CardInformation;
+
 public class GiftCardRequest {
     private Charge charge;
     private String invoiceNumber;
+    private CardInformation cardInformation;
 
     public Charge getCharge() {
         return charge;
@@ -21,5 +24,13 @@ public class GiftCardRequest {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
+    }
+
+    public CardInformation getCardInformation() {
+        return cardInformation;
+    }
+
+    public void setCardInformation(CardInformation cardInformation) {
+        this.cardInformation = cardInformation;
     }
 }
