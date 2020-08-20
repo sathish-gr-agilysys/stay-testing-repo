@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.Consumes;
@@ -40,7 +41,7 @@ public interface RoutingRuleTemplateServiceInterface {
     @POST
     @Path(TEMPLATE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
-    List<RoutingRuleTemplate> getRoutingRuleTemplateByIds(@PathParam(TENANT_ID) String tenantId,
+    Map<String, RoutingRuleTemplate> getRoutingRuleTemplateByIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> templateIds) throws RGuestException;
 
     @GET
