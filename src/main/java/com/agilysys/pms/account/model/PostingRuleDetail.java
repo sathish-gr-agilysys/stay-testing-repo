@@ -84,6 +84,9 @@ public class PostingRuleDetail {
 
     private Boolean routeChargesAlreadyPosted;
 
+    //This will only be available if routeChargesAlreadyPosted is enabled
+    private PostChargesRequest postChargesRequest;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -336,5 +339,13 @@ public class PostingRuleDetail {
 
     public void setRouteChargesAlreadyPosted(Boolean routeChargesAlreadyPosted) {
         this.routeChargesAlreadyPosted = routeChargesAlreadyPosted;
+    }
+
+    public PostChargesRequest getPostChargesRequest() {
+        return postChargesRequest;
+    }
+
+    public void setPostChargesRequest(PostChargesRequest postChargesRequest) {
+        this.postChargesRequest = postChargesRequest;
     }
 }

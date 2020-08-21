@@ -18,6 +18,7 @@ public class PostChargesRequest {
     private boolean postRecurringCharge;
     private String componentBundleId;
     private boolean addOn;
+    private boolean isRoutingChargesAlreadyPosted;
 
     public List<Charge> getCharges() {
         return charges;
@@ -88,6 +89,14 @@ public class PostChargesRequest {
 
     public void setAddOn(boolean addOn) {
         this.addOn = addOn;
+    }
+
+    public boolean isRoutingChargesAlreadyPosted() {
+        return isRoutingChargesAlreadyPosted;
+    }
+
+    public void setRoutingChargesAlreadyPosted(boolean routingChargesAlreadyPosted) {
+        isRoutingChargesAlreadyPosted = routingChargesAlreadyPosted;
     }
 }
 
