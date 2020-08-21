@@ -27,14 +27,14 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private DateTime appliedOnSystemDateTime;
     private boolean isFullAmountApplied;
     private Boolean unAppliedAmountUsed;
+    private String paymentReferenceId;
 
-    public InvoicePaymentEvent() {
-    }
+    public InvoicePaymentEvent() {}
 
     public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          boolean isFullAmountApplied, Balance balance) {
+          boolean isFullAmountApplied, Balance balance, String paymentReferenceId) {
         super(balance);
         this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;
@@ -47,6 +47,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
         this.appliedOnPropertyDate = appliedOnPropertyDate;
         this.appliedOnSystemDateTime = appliedOnSystemDateTime;
         this.isFullAmountApplied = isFullAmountApplied;
+        this.paymentReferenceId = paymentReferenceId;
     }
 
     public String getInvoicePaymentId() { return invoicePaymentId; }
@@ -141,15 +142,24 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
         this.unAppliedAmountUsed = unAppliedAmountUsed;
     }
 
-    @Override
-    public List<String> getHistoryMessages() {
-        return Collections.singletonList(
-                String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
-                        paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
+    public String getPaymentReferenceId() {
+        return paymentReferenceId;
+    }
+
+    public void setPaymentReferenceId(String paymentReferenceId) {
+        this.paymentReferenceId = paymentReferenceId;
     }
 
     @Override
-    public long getEventVersion() {
-        return 0;
+    public List<String> getHistoryMessages() {
+        return Collections.singletonList(
+              String.format("Payment applied to invoice. [Payment method: %s, Amount: %s, Applied date: %s]",
+                    paymentMethodName, amount, appliedOnPropertyDate.toString(Constants.INVOICE_EVENTS_DATE_FORMAT)));
     }
+
+    @Override
+    public String getEventType() {
+        return "Payment";
+    }
+
 }
