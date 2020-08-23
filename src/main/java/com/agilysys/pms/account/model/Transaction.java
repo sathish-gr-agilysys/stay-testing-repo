@@ -166,8 +166,8 @@ public abstract class Transaction {
     }
 
     /**
-     * Optional - Sets the date to post the transaction to if posting to a previous fiscal day.  Special permissions
-     * are required to set this to a value other than the current property date.
+     * Optional - Sets the date to post the transaction to if posting to a previous fiscal day.  Special permissions are
+     * required to set this to a value other than the current property date.
      */
     public void setPostingDate(LocalDate postingDate) {
         this.postingDate = postingDate;
@@ -235,7 +235,9 @@ public abstract class Transaction {
 
     public BigDecimal getFreeAllowanceAmount() { return freeAllowanceAmount; }
 
-    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) { this.freeAllowanceAmount = freeAllowanceAmount; }
+    public void setFreeAllowanceAmount(BigDecimal freeAllowanceAmount) {
+        this.freeAllowanceAmount = freeAllowanceAmount;
+    }
 
     public String getGatewayType() {
         return gatewayType;

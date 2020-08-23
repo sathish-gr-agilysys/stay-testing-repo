@@ -37,7 +37,6 @@ import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
 import com.agilysys.pms.account.api.params.InvoiceFilteringOptionalParams;
 import com.agilysys.pms.account.api.params.InvoiceOptionalParams;
-import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.api.params.InvoicePaymentRequest;
 import com.agilysys.pms.account.model.ARDepositView;
 import com.agilysys.pms.account.model.AccountClosableInfo;
@@ -57,15 +56,18 @@ import com.agilysys.pms.account.model.BatchDepositCollectionResponse;
 import com.agilysys.pms.account.model.BatchFolioInvoiceRequest;
 import com.agilysys.pms.account.model.BatchFolioInvoiceResponse;
 import com.agilysys.pms.account.model.BatchPostCC;
+import com.agilysys.pms.account.model.BatchPreAuthRequest;
 import com.agilysys.pms.account.model.Charge;
 import com.agilysys.pms.account.model.ChargeTaxAmountInfo;
 import com.agilysys.pms.account.model.ChargeTaxAmountRequest;
 import com.agilysys.pms.account.model.CheckAllowanceResponse;
 import com.agilysys.pms.account.model.CompTransaction;
 import com.agilysys.pms.account.model.CompanyInfo;
+import com.agilysys.pms.account.model.CompleteReverseRedemptionRequestAyncJobId;
 import com.agilysys.pms.account.model.CreateAccountSummary;
 import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
+import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.model.EligibleFolioLineItems;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
@@ -88,6 +90,7 @@ import com.agilysys.pms.account.model.LedgerTransactionTransferDetail;
 import com.agilysys.pms.account.model.LineItemAdjustment;
 import com.agilysys.pms.account.model.LineItemTransfer;
 import com.agilysys.pms.account.model.LineItemView;
+import com.agilysys.pms.account.model.MailedInvoice;
 import com.agilysys.pms.account.model.MultipleAccountPaymentRequestAsyncJobId;
 import com.agilysys.pms.account.model.MultiplePayment;
 import com.agilysys.pms.account.model.MultiplePaymentResponse;
@@ -106,8 +109,11 @@ import com.agilysys.pms.account.model.PostChargesRequest;
 import com.agilysys.pms.account.model.PostChargesResponse;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
+import com.agilysys.pms.account.model.ReleaseAllAuthRequest;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
+import com.agilysys.pms.account.model.StatementHistory;
+import com.agilysys.pms.account.model.ReverseRedemptionResponse;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -204,6 +210,7 @@ public interface AccountServiceInterfaceV1 {
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
+    String BATCH_PRE_AUTH = "/batchPreAuth";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
     String DEPOSITS_PATH = "/deposits";
     String PAYOFF_BALANCE_PATH = "/payOffBalance";
@@ -234,6 +241,7 @@ public interface AccountServiceInterfaceV1 {
     String START_DATE = "startDate";
     String START_DATE_TIME = "startDateTime";
     String STATUSES_PATH = "statuses";
+    String STATEMENT_HISTORY = "/statementHistory";
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
@@ -282,7 +290,8 @@ public interface AccountServiceInterfaceV1 {
     String ALLOWANCE = "/allowance";
     String RECEIPT_IMAGE_RESPOME = FOLIO_LINE_ITEM + "/receiptTextImage";
     String BATCH_CREDITS_PATH = "/batchCredits";
-    String RELEASE_ALL_AUTH = GROUP_ID + "/{" + GROUP_ID + "}" + "/releaseAllAuthorizations";
+    String ACCOUNTS_BY_IDS = "/accountsByIds";
+    String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -322,6 +331,12 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<String> getAccountTypes(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
+
+    @POST
+    @Path(ACCOUNTS_BY_IDS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountsByIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     @GET
     @Path(STATUSES_PATH)
@@ -582,6 +597,13 @@ public interface AccountServiceInterfaceV1 {
     BatchDistributorResult batchPostCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           List<BatchPostCC> batchPostCCs) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(BATCH_PRE_AUTH)
+    @PreAuthorize("hasPermission('Required', 'PreauthCreditCard')")
+    BatchDistributorResult batchPreAuth(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, BatchPreAuthRequest batchPreAuthRequest) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -993,8 +1015,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize(
           "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIdSet,
-          @QueryParam("isEmail") boolean isEmail) throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("isEmail") boolean isEmail, MailedInvoice mailedInvoice)
+          throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -1254,9 +1276,14 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(ACCOUNT_ID_PATH + REVERSE_REDEEM_CHARGE)
-    List<String> completeReverseRedemption(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, ReverseRedemptionRequest reverseRedemptionRequest)
-          throws RGuestException;
+    CompleteReverseRedemptionRequestAyncJobId completeReverseRedemption(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          ReverseRedemptionRequest reverseRedemptionRequest) throws RGuestException;
+
+    @GET
+    @Path(REVERSE_REDEEM_CHARGE + "/{id}")
+    ReverseRedemptionResponse getReverseRedemptionResponse(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String id) throws RGuestException;
 
     @POST
     @Path(BATCH_DEPOSIT_COLLECTION_JOB_PATH)
@@ -1307,6 +1334,16 @@ public interface AccountServiceInterfaceV1 {
     @Path(RELEASE_ALL_AUTH)
     @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
     void releaseAllAuthorizations(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(GROUP_ID) String groupId) throws RGuestException;
+          ReleaseAllAuthRequest ReleaseAllAuthRequest) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
+    void createStatementHistory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, StatementHistory statementHistory) throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
+    List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
 }
