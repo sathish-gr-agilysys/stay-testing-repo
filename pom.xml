@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>74.1356.1-SNAPSHOT</version>
+    <version>74.1357.0-HF8-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
-        <version>74.1351.0</version>
+        <version>74.1357.0-HF8</version>
     </parent>
     <properties>
     </properties>
