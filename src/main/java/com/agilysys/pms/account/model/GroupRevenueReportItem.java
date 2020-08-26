@@ -3,14 +3,20 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
+
 public class GroupRevenueReportItem extends RevenueReportItem {
     private String roomTypeCode;
     private String transactionItemCode;
     private String transactionItemName;
     private String transactionCategoryCode;
     private String transactionCategoryName;
+    private BigDecimal taxAmount;
+    private Boolean reverseTax;
 
-    public GroupRevenueReportItem() {}
+    public GroupRevenueReportItem() {
+        taxAmount = new BigDecimal(0);
+    }
 
     public GroupRevenueReportItem(GroupRevenueReportItem revenueReportItem) {
         super(revenueReportItem);
@@ -49,4 +55,12 @@ public class GroupRevenueReportItem extends RevenueReportItem {
     public void setTransactionCategoryName(String transactionCategoryName) {
         this.transactionCategoryName = transactionCategoryName;
     }
+
+    public BigDecimal getTaxAmount() { return taxAmount; }
+
+    public void setTaxAmount(BigDecimal taxAmount) { this.taxAmount = taxAmount; }
+
+    public Boolean getReverseTax() { return reverseTax; }
+
+    public void setReverseTax(Boolean reverseTax) { this.reverseTax = reverseTax; }
 }
