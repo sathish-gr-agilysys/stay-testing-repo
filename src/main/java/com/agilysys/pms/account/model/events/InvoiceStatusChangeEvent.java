@@ -12,6 +12,7 @@ import org.springframework.data.annotation.Transient;
 import com.agilysys.platform.persistence.eventsourcing.PropertyLevelIdentifier;
 
 public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
+
     private PropertyLevelIdentifier id;
     private String accountId;
     private LocalDate invoiceDate;
@@ -35,6 +36,15 @@ public class InvoiceStatusChangeEvent extends InvoiceBalanceChangeEvent {
             return Collections.singletonList(String.format("Invoice %s closed.", invoiceNumber));
         } else {
             return Collections.singletonList(String.format("Invoice %s reopened.", invoiceNumber));
+        }
+    }
+
+    @Override
+    public String getEventType() {
+        if (isClosed()) {
+            return "Invoice Close";
+        } else {
+            return "Invoice Reopen";
         }
     }
 
