@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import com.agilysys.common.model.rate.AllowanceCombination;
+
 public class PosCredit extends Credit implements PosTransaction {
     private String receiptTextImage;
     private Long checkNumber;
@@ -61,5 +63,13 @@ public class PosCredit extends Credit implements PosTransaction {
     @Override
     public boolean checkPosCharge() {
         return true;
+    }
+
+    @Override
+    public AllowanceCombination toAllowanceCombination() {
+        if (mealPeriodId == null || sourceId == null || itemId == null) {
+            return null;
+        }
+        return new AllowanceCombination(mealPeriodId, sourceId, itemId);
     }
 }

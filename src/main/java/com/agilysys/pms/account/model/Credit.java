@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  */
 public class Credit extends TaxableTransaction {
     private TransactionItemType transactionItemType;
-    private String mealPeriodId;
+    protected String mealPeriodId;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
