@@ -16,11 +16,15 @@ public class PaymentTransaction extends Transaction {
     public PaymentTransaction() {
     }
 
-    public PaymentTransaction(String accountId, BigDecimal amount, String itemId, String receiptTextImage,
-          Long checkNumber, String closeTime, String sourceId) {
+    public PaymentTransaction(String accountId, BigDecimal amount, String itemId) {
         this.accountId = accountId;
         this.amount = amount;
         this.itemId = itemId;
+    }
+
+    public PaymentTransaction(String accountId, BigDecimal amount, String itemId, String receiptTextImage,
+          Long checkNumber, String closeTime, String sourceId) {
+        this(accountId, amount, itemId);
         this.receiptTextImage = receiptTextImage;
         this.checkNumber = checkNumber;
         this.closeTime = closeTime;
