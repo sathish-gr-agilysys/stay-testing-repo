@@ -25,6 +25,7 @@ import com.agilysys.pms.property.model.MealPeriod;
 import com.agilysys.pms.property.model.Outlet;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 
 @AuditEntity(EntityTypes.TRANSACTION_ITEM)
 public class TransactionItem extends AccountingItem {
@@ -50,6 +51,7 @@ public class TransactionItem extends AccountingItem {
 
     protected String plu;
 
+  	@DataPortIgnore
     protected boolean restricted;
 
     @JsonProperty(required = true)
