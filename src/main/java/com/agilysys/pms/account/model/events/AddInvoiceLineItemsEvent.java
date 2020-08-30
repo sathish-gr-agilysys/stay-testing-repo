@@ -27,6 +27,7 @@ public class AddInvoiceLineItemsEvent extends InvoiceBalanceChangeEvent {
     public Set<String> getFolioLineItemIds() {
         return folioLineItemIds;
     }
+
     @Transient
     @Override
     public String getDisplayName() {

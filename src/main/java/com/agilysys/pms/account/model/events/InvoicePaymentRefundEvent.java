@@ -1,7 +1,6 @@
 /*
  * (C) 2015 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
-
 package com.agilysys.pms.account.model.events;
 
 import java.math.BigDecimal;
@@ -11,6 +10,7 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+
 import com.agilysys.common.constants.Constants;
 import com.agilysys.pms.account.model.Balance;
 
