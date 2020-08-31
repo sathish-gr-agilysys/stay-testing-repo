@@ -82,6 +82,8 @@ public class PostingRuleDetail {
 
     private String authorizerId;
 
+    private String compOfferId;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -326,5 +328,13 @@ public class PostingRuleDetail {
 
     public void setAuthorizerId(String authorizerId) {
         this.authorizerId = authorizerId;
+    }
+
+    public String getCompOfferId() {
+        return compOfferId;
+    }
+
+    public void setCompOfferId(String compOfferId) {
+        this.compOfferId = compOfferId;
     }
 }

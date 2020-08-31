@@ -69,6 +69,8 @@ public class RecurringChargeView {
     private boolean reverseTax;
     private BigDecimal reverseTaxTotalChargeAmount;
     private String packageFolioId;
+    private String offerId;
+    private BigDecimal offerAmt;
 
     public RecurringChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -344,5 +346,21 @@ public class RecurringChargeView {
 
     public void setPackageFolioId(String packageFolioId) {
         this.packageFolioId = packageFolioId;
+    }
+
+    public String getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(String offerId) {
+        this.offerId = offerId;
+    }
+
+    public BigDecimal getOfferAmt() {
+        return offerAmt;
+    }
+
+    public void setOfferAmt(BigDecimal offerAmt) {
+        this.offerAmt = offerAmt;
     }
 }
