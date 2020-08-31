@@ -176,6 +176,7 @@ public interface AccountServiceInterfaceV1 {
     String END_DATE_TIME = "endDateTime";
     String FILTERED = "/filtered";
     String FOLIO_PATH = "/folios";
+    String FOLIO_DETAIL_VIEW_PATH = "/folios2";
     String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
     String FOLIO_EMAIL = "/folioEmail";
@@ -425,6 +426,20 @@ public interface AccountServiceInterfaceV1 {
     Page<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId,
           ViewFolioRequest viewfoliosRequest) throws RGuestException;
+
+    /**
+     * For integration-service, a wrapper of Page<FolioViewLineItem> viewFolio(...)
+     * to workaround org.springframework.data.domain.Page<T> deserialization errors.
+     * This is to be consumed by APIs, so returning a Java.util.List instead of
+     * com.agilysys.pms.common.model.DeserializablePage (pmscommon impl of Spring data Page<T>)
+     */
+    @POST
+    @Path(ACCOUNT_ID_PATH + FOLIO_DETAIL_VIEW_PATH + FOLIO_ID_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Validated(ViewFolioRequest.class)
+    List<FolioViewLineItem> getFolioDetailView(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @PathParam(FOLIO_ID) String folioId, ViewFolioRequest viewfoliosRequest) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_BALANCES_PATH)
