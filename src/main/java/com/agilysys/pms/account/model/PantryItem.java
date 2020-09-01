@@ -45,11 +45,7 @@ public class PantryItem extends AccountingObjectBase {
         this.plu = pantryItem.getPlu();
         this.order = pantryItem.getOrder();
         this.transactionItemId = pantryItem.getTransactionItemId();
-        if (pantryItem.getRequireInventory() == null) {
-            this.requireInventory = Boolean.FALSE;
-        } else {
-            this.requireInventory = pantryItem.getRequireInventory();
-        }
+        this.requireInventory = Boolean.TRUE.equals(pantryItem.getRequireInventory());
         this.initialQuantity = pantryItem.getInitialQuantity();
         this.availableQuantity = pantryItem.getAvailableQuantity();
     }
