@@ -45,11 +45,8 @@ public class RecurringChargeView {
     private List<ComponentChargeView> componentCharges = new ArrayList<>();
 
     /**
-     * EVERY = Every Night
-     * FIRST = First Night Only
-     * LAST = Last Night Only
-     * EVERY_N = Every N Nights, nNights must be set > 0
-     * DAYS_OF_WEEK = Specific days of the week, occurrenceDays must be set
+     * EVERY = Every Night FIRST = First Night Only LAST = Last Night Only EVERY_N = Every N Nights, nNights must be set
+     * > 0 DAYS_OF_WEEK = Specific days of the week, occurrenceDays must be set
      */
     private FrequencyType frequencyType;
     private int nNights;
@@ -71,6 +68,7 @@ public class RecurringChargeView {
     private String packageFolioId;
     private String offerId;
     private BigDecimal offerAmt;
+    private BigDecimal offerTaxAmount;
 
     public RecurringChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -362,5 +360,13 @@ public class RecurringChargeView {
 
     public void setOfferAmt(BigDecimal offerAmt) {
         this.offerAmt = offerAmt;
+    }
+
+    public BigDecimal getOfferTaxAmount() {
+        return offerTaxAmount;
+    }
+
+    public void setOfferTaxAmount(BigDecimal offerTaxAmount) {
+        this.offerTaxAmount = offerTaxAmount;
     }
 }

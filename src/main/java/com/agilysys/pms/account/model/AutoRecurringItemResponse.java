@@ -5,6 +5,7 @@ package com.agilysys.pms.account.model;
 
 public class AutoRecurringItemResponse extends AutoRecurringItem {
     private int quantity;
+    private String autoRecurringRuleId;
 
     public AutoRecurringItemResponse() {
     }
@@ -33,5 +34,13 @@ public class AutoRecurringItemResponse extends AutoRecurringItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getAutoRecurringRuleId() {
+        return autoRecurringRuleId;
+    }
+
+    public void setAutoRecurringRuleId(String autoRecurringRuleId) {
+        this.autoRecurringRuleId = autoRecurringRuleId;
     }
 }
