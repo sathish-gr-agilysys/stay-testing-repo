@@ -52,6 +52,8 @@ public class ComponentChargeView {
     private String breakageId;
     private boolean addOn;
     private String addOnBundleId;
+    private String offerId;
+    private BigDecimal offerAmt;
 
     public ComponentChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -265,6 +267,22 @@ public class ComponentChargeView {
 
     public void setAddOnBundleId(String addOnBundleId) {
         this.addOnBundleId = addOnBundleId;
+    }
+
+    public String getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(String offerId) {
+        this.offerId = offerId;
+    }
+
+    public BigDecimal getOfferAmt() {
+        return offerAmt;
+    }
+
+    public void setOfferAmt(BigDecimal offerAmt) {
+        this.offerAmt = offerAmt;
     }
 
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {
