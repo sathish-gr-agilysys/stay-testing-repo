@@ -33,7 +33,7 @@ public class PantryItem extends AccountingObjectBase {
     private String plu;
     private int order;
     private Boolean requireInventory = Boolean.FALSE;
-    private int initialQuantity;
+    private int totalQuantity;
     private int availableQuantity;
 
     public PantryItem() {}
@@ -46,7 +46,7 @@ public class PantryItem extends AccountingObjectBase {
         this.order = pantryItem.getOrder();
         this.transactionItemId = pantryItem.getTransactionItemId();
         this.requireInventory = Boolean.TRUE.equals(pantryItem.getRequireInventory());
-        this.initialQuantity = pantryItem.getInitialQuantity();
+        this.totalQuantity = pantryItem.getTotalQuantity();
         this.availableQuantity = pantryItem.getAvailableQuantity();
     }
 
@@ -98,12 +98,12 @@ public class PantryItem extends AccountingObjectBase {
         this.requireInventory = requireInventory;
     }
 
-    public int getInitialQuantity() {
-        return initialQuantity;
+    public int getTotalQuantity() {
+        return totalQuantity;
     }
 
-    public void setInitialQuantity(int initialQuantity) {
-        this.initialQuantity = initialQuantity;
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 
     public int getAvailableQuantity() {
