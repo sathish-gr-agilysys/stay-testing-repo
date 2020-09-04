@@ -23,6 +23,7 @@ public class RecurringChargesValidityRequest {
     private int ageCategory8;
     private List<ModifyStayDetails> modifyStayDetails;
     private int numberOfReservations;
+    private List<String> roomTypeIds;
 
     public LocalDate getArrivalDate() {
         return arrivalDate;
@@ -142,5 +143,13 @@ public class RecurringChargesValidityRequest {
 
     public void setNumberOfReservations(int numberOfReservations) {
         this.numberOfReservations = numberOfReservations;
+    }
+
+    public List<String> getRoomTypeIds() {
+        return roomTypeIds;
+    }
+
+    public void setRoomTypeIds(List<String> roomTypeIds) {
+        this.roomTypeIds = roomTypeIds;
     }
 }
