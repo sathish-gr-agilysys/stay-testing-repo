@@ -54,6 +54,7 @@ public class TransactionItem extends AccountingItem {
   	@DataPortIgnore
     protected boolean restricted;
 
+    @DataPortIgnore
     protected boolean addToThirdPartyRoutingRule;
 
     @JsonProperty(required = true)
