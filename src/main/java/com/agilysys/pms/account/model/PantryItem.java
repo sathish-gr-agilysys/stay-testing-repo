@@ -32,6 +32,9 @@ public class PantryItem extends AccountingObjectBase {
     @MaxLengthRestriction(5)
     private String plu;
     private int order;
+    private Boolean requireInventory = Boolean.FALSE;
+    private int totalQuantity;
+    private int availableQuantity;
 
     public PantryItem() {}
 
@@ -42,6 +45,9 @@ public class PantryItem extends AccountingObjectBase {
         this.plu = pantryItem.getPlu();
         this.order = pantryItem.getOrder();
         this.transactionItemId = pantryItem.getTransactionItemId();
+        this.requireInventory = Boolean.TRUE.equals(pantryItem.getRequireInventory());
+        this.totalQuantity = pantryItem.getTotalQuantity();
+        this.availableQuantity = pantryItem.getAvailableQuantity();
     }
 
     public BigDecimal getPrice() {
@@ -82,6 +88,30 @@ public class PantryItem extends AccountingObjectBase {
 
     public void setStatus(CanonicalId status) {
         this.status = status;
+    }
+
+    public Boolean getRequireInventory() {
+        return requireInventory;
+    }
+
+    public void setRequireInventory(Boolean requireInventory) {
+        this.requireInventory = requireInventory;
+    }
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public int getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(int availableQuantity) {
+        this.availableQuantity = availableQuantity;
     }
 
     @Override
