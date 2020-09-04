@@ -11,6 +11,7 @@ import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
+import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -32,8 +33,14 @@ public class PantryItem extends AccountingObjectBase {
     @MaxLengthRestriction(5)
     private String plu;
     private int order;
+
+    @DataPortIgnore
     private Boolean requireInventory = Boolean.FALSE;
+
+    @DataPortIgnore
     private int totalQuantity;
+
+    @DataPortIgnore
     private int availableQuantity;
 
     public PantryItem() {}
