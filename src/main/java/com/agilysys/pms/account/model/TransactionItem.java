@@ -54,6 +54,8 @@ public class TransactionItem extends AccountingItem {
   	@DataPortIgnore
     protected boolean restricted;
 
+    protected boolean addToThirdPartyRoutingRule;
+
     @JsonProperty(required = true)
     @DataPortMapReference(name = "sourceCodeToMealPeriodCodes", keyType = {
           Building.class, Outlet.class }, valueType = MealPeriod.class, multipleValues = true)
@@ -86,6 +88,7 @@ public class TransactionItem extends AccountingItem {
         taxClasses = transactionItem.getTaxClasses();
         allowComp = transactionItem.isAllowComp();
         restricted = transactionItem.isRestricted();
+        addToThirdPartyRoutingRule = transactionItem.isAddToThirdPartyRoutingRule();
     }
 
     public String getAltSystemId() {
@@ -176,6 +179,14 @@ public class TransactionItem extends AccountingItem {
     @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
+    }
+
+    public boolean isAddToThirdPartyRoutingRule() {
+        return addToThirdPartyRoutingRule;
+    }
+
+    public void setAddToThirdPartyRoutingRule(boolean addToThirdPartyRoutingRule) {
+        this.addToThirdPartyRoutingRule = addToThirdPartyRoutingRule;
     }
 
     @Override
