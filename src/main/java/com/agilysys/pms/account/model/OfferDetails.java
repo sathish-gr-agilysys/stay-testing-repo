@@ -37,7 +37,7 @@ public class OfferDetails {
         private String transactionItemId;
         private String ratePlanId;
         private BigDecimal roomRate;
-        private List<ComponentRateSnapshot> componentRateSnapshots;
+        private List<ComponentRateSnapshot> componentRates;
         private Set<AutoRecurringItemResponse> autoRecurringCharges;
 
         public LocalDate getDate() {
@@ -72,12 +72,12 @@ public class OfferDetails {
             this.roomRate = roomRate;
         }
 
-        public List<ComponentRateSnapshot> getComponentRateSnapshots() {
-            return componentRateSnapshots;
+        public List<ComponentRateSnapshot> getComponentRates() {
+            return componentRates;
         }
 
-        public void setComponentRateSnapshots(List<ComponentRateSnapshot> componentRateSnapshots) {
-            this.componentRateSnapshots = componentRateSnapshots;
+        public void setComponentRates(List<ComponentRateSnapshot> componentRates) {
+            this.componentRates = componentRates;
         }
 
         public Set<AutoRecurringItemResponse> getAutoRecurringCharges() {
