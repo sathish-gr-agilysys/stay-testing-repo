@@ -10,9 +10,11 @@ import java.util.Map;
 import org.joda.time.LocalDate;
 
 public class EstimatedChargeDetailsForOffers {
-    Map<LocalDate, List<RecurringChargeView>> recurringChargeViewsByDate;
-    Map<String, BigDecimal> offerWiseAmountSplit;
-    Map<String, BigDecimal> offerWiseTaxSplit;
+    private Map<LocalDate, List<RecurringChargeView>> recurringChargeViewsByDate;
+    private Map<String, BigDecimal> offerWiseAmountSplit;
+    private Map<String, BigDecimal> offerWiseTaxSplit;
+    private BigDecimal originalAmount;
+    private BigDecimal originalTaxAmount;
 
     public Map<LocalDate, List<RecurringChargeView>> getRecurringChargeViewsByDate() {
         return recurringChargeViewsByDate;
@@ -36,5 +38,21 @@ public class EstimatedChargeDetailsForOffers {
 
     public void setOfferWiseTaxSplit(Map<String, BigDecimal> offerWiseTaxSplit) {
         this.offerWiseTaxSplit = offerWiseTaxSplit;
+    }
+
+    public BigDecimal getOriginalAmount() {
+        return originalAmount;
+    }
+
+    public void setOriginalAmount(BigDecimal originalAmount) {
+        this.originalAmount = originalAmount;
+    }
+
+    public BigDecimal getOriginalTaxAmount() {
+        return originalTaxAmount;
+    }
+
+    public void setOriginalTaxAmount(BigDecimal originalTaxAmount) {
+        this.originalTaxAmount = originalTaxAmount;
     }
 }
