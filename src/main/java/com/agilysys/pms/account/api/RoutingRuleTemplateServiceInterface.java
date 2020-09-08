@@ -31,6 +31,7 @@ public interface RoutingRuleTemplateServiceInterface {
     String BASE_PATH = "/tenants/{" + TENANT_ID + "}/properties/{" + PROPERTY_ID + "}/routingRuleTemplates";
     String TEMPLATE_ID = "id";
     String TEMPLATE_ID_PATH = "{" + TEMPLATE_ID + "}";
+    String TEMPLATES_BY_IDS_PATH = "/templatesByIds";
 
     @GET
     @Path(TEMPLATE_ID_PATH)
@@ -39,7 +40,7 @@ public interface RoutingRuleTemplateServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TEMPLATE_ID) String id) throws RGuestException;
 
     @POST
-    @Path(TEMPLATE_ID_PATH)
+    @Path(TEMPLATES_BY_IDS_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
     Map<String, RoutingRuleTemplate> getRoutingRuleTemplateByIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> templateIds) throws RGuestException;
