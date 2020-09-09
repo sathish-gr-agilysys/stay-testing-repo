@@ -16,6 +16,8 @@ public class EstimatedChargeDetailsForOffers {
     private BigDecimal originalAmount;
     private BigDecimal originalTaxAmount;
 
+    public EstimatedChargeDetailsForOffers() {}
+
     public EstimatedChargeDetailsForOffers(Map<LocalDate, List<RecurringChargeView>> recurringChargeViewsByDate,
           Map<String, BigDecimal> offerWiseSplit, Map<String, BigDecimal> offerWiseTaxSplit, BigDecimal originalAmount,
           BigDecimal originalTaxAmount) {
