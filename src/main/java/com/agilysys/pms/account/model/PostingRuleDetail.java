@@ -363,7 +363,9 @@ public class PostingRuleDetail {
         this.description = template.getDescription();
         this.postingRuleChargeType = template.getPostingRuleChargeType().name();
         this.occurrenceDays = template.getOccurrenceDays();
-        this.splitBy = template.getSplitBy().name();
+        if (template.getSplitBy() != null) {
+            this.splitBy = template.getSplitBy().name();
+        }
         this.startDate = template.getStartDate().isBefore(propertyDate) ? propertyDate : template.getStartDate();
         if (template.getEndDate() != null) {
             this.endDate = getEndDate();
