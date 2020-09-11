@@ -112,8 +112,8 @@ import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReleaseAllAuthRequest;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
-import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.ReverseRedemptionResponse;
+import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -148,6 +148,7 @@ public interface AccountServiceInterfaceV1 {
 
     String ACCOUNT_BALANCES_PATH = "/balances";
     String ACCOUNT_ID = "accountId";
+    String SPLIT_BY_SOURCE_ACCOUNT = "splitBySourceAccount";
     String GROUP_ID = "groupId";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
@@ -191,6 +192,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
+    String BY_ACCOUNT_PATH = INVOICES_PATH + "/byAccount";
     String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_VIEW_TYPE = "invoiceViewType";
     String INVOICE_REPORT = "/invoice-report";
@@ -905,6 +907,26 @@ public interface AccountServiceInterfaceV1 {
           "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     InvoiceView createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, InvoiceRequest invoice) throws RGuestException;
+
+    /**
+     * Create an invoice for an account
+     *
+     * @param tenantId   id of tenant for the account
+     * @param propertyId id of the property
+     * @param accountId  id of account to save an invoice to
+     * @param splitBySourceAccount create multiple invoice split by source account
+     * @param invoice
+     * @return Created invoice
+     */
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + BY_ACCOUNT_PATH)
+    @Validated(InvoiceRequest.class)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    List<InvoiceView> createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam(SPLIT_BY_SOURCE_ACCOUNT) boolean splitBySourceAccount,
+          InvoiceRequest invoice) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH)
