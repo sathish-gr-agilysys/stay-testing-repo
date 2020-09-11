@@ -192,7 +192,7 @@ public interface AccountServiceInterfaceV1 {
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
-    String BY_ACCOUNT_PATH = INVOICES_PATH + "/by-account";
+    String BY_ACCOUNT_PATH = INVOICES_PATH + "/byAccount";
     String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_VIEW_TYPE = "invoiceViewType";
     String INVOICE_REPORT = "/invoice-report";
