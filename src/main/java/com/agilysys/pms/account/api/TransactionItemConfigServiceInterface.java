@@ -46,6 +46,7 @@ public interface TransactionItemConfigServiceInterface {
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
     String ACTIVE = "/active";
     String MIGRATE_TO_V1_PATH = "/migrateToV1";
+    String UPDATE_ORDER = "/updateOrder";
 
     /**
      * Retrieve all TransactionItems
@@ -152,4 +153,10 @@ public interface TransactionItemConfigServiceInterface {
           @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
           @QueryParam(INCLUDE_INACTIVE) boolean includeInactive,
           @QueryParam(INCLUDE_ALLOW_COMP) boolean includeAllowComp) throws RGuestException;
+
+
+    @PUT
+    @Path(UPDATE_ORDER)
+    void updateOrder(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          List<TransactionItem> inventoryItems) throws RGuestException;
 }

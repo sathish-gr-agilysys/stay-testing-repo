@@ -26,6 +26,8 @@ public class InventoryItem extends TransactionItem {
     @AuditField(references = EntityTypes.ROOM_TYPE, inline = true)
     private Set<String> restrictedRoomTypes;
 
+    private Integer order;
+
     public InventoryItem() {
         super();
 
@@ -39,13 +41,14 @@ public class InventoryItem extends TransactionItem {
     }
 
     public InventoryItem(TransactionItem transactionItem, Integer availableCount, CanonicalId status,
-          Integer maxQuantityPerReservation, Set<String> restrictedRoomTypes) {
+          Integer maxQuantityPerReservation, Set<String> restrictedRoomTypes, Integer order) {
         super(transactionItem);
 
         this.availableCount = availableCount;
         this.maxQuantityPerReservation = maxQuantityPerReservation;
         this.restrictedRoomTypes = restrictedRoomTypes;
         this.status = status;
+        this.order = order;
     }
 
     public TransactionItemType getType() {
@@ -104,4 +107,10 @@ public class InventoryItem extends TransactionItem {
     public boolean isMaxPerReservationRestricted(int quantity) {
         return maxQuantityPerReservation != null && maxQuantityPerReservation < quantity;
     }
+
+    @Override
+    public Integer getOrder() { return order; }
+
+    @Override
+    public void setOrder(Integer order) { this.order = order; }
 }
