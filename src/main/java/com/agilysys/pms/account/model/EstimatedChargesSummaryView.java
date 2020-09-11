@@ -4,8 +4,6 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EstimatedChargesSummaryView {
     /**
@@ -104,9 +102,9 @@ public class EstimatedChargesSummaryView {
     private BigDecimal inclusiveComponentsRoomRevenueTaxTotal = BigDecimal.ZERO;
 
     /**
-     * The offer wise offer details
+     * The offer summary
      */
-    private List<OfferEstimatedSummary> offerSummaries = new ArrayList<>();
+    private OfferChargesSummaryView offerSummary;
 
     /**
      * Gets the estimate payment due at checkout
@@ -326,11 +324,11 @@ public class EstimatedChargesSummaryView {
         this.inclusiveComponentsRoomRevenueTaxTotal = inclusiveComponentsRoomRevenueTaxTotal;
     }
 
-    public List<OfferEstimatedSummary> getOfferSummaries() {
-        return offerSummaries;
+    public OfferChargesSummaryView getOfferSummary() {
+        return offerSummary;
     }
 
-    public void setOfferSummaries(List<OfferEstimatedSummary> offerSummaries) {
-        this.offerSummaries = offerSummaries;
+    public void setOfferSummary(OfferChargesSummaryView offerSummary) {
+        this.offerSummary = offerSummary;
     }
 }
