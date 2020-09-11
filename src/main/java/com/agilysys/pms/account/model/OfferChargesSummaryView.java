@@ -12,6 +12,7 @@ public class OfferChargesSummaryView {
     BigDecimal offerTotalTax;
     BigDecimal estimatedChargesWithOffer;
     BigDecimal estimatedTaxesWithOffer;
+    BigDecimal estimatedRoomChargesWithOffer = BigDecimal.ZERO;
 
     public BigDecimal getOfferTotalAmount() {
         return offerTotalAmount;
@@ -53,5 +54,13 @@ public class OfferChargesSummaryView {
 
     public void setOfferSummaries(List<OfferEstimatedSummary> offerSummaries) {
         this.offerSummaries = offerSummaries;
+    }
+
+    public BigDecimal getEstimatedRoomChargesWithOffer() {
+        return estimatedRoomChargesWithOffer;
+    }
+
+    public void setEstimatedRoomChargesWithOffer(BigDecimal estimatedRoomChargesWithOffer) {
+        this.estimatedRoomChargesWithOffer = estimatedRoomChargesWithOffer;
     }
 }

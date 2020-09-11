@@ -15,6 +15,14 @@ public class OfferEstimatedSummary {
 
     private BigDecimal estimatedTotalOfferAmount;
 
+    private BigDecimal estimatedRoomChargesOfferAmount;
+
+    private BigDecimal originalAmount;
+
+    private BigDecimal originalTax;
+
+    private BigDecimal originalTotal;
+
     public String getOfferId() {
         return offerId;
     }
@@ -45,5 +53,37 @@ public class OfferEstimatedSummary {
 
     public void setEstimatedTotalOfferAmount(BigDecimal estimatedTotalOfferAmount) {
         this.estimatedTotalOfferAmount = estimatedTotalOfferAmount;
+    }
+
+    public BigDecimal getEstimatedRoomChargesOfferAmount() {
+        return estimatedRoomChargesOfferAmount;
+    }
+
+    public void setEstimatedRoomChargesOfferAmount(BigDecimal estimatedRoomChargesOfferAmount) {
+        this.estimatedRoomChargesOfferAmount = estimatedRoomChargesOfferAmount;
+    }
+
+    public BigDecimal getOriginalAmount() {
+        return originalAmount;
+    }
+
+    public void setOriginalAmount(BigDecimal originalAmount) {
+        this.originalAmount = originalAmount;
+    }
+
+    public BigDecimal getOriginalTax() {
+        return originalTax;
+    }
+
+    public void setOriginalTax(BigDecimal originalTax) {
+        this.originalTax = originalTax;
+    }
+
+    public BigDecimal getOriginalTotal() {
+        return originalTotal;
+    }
+
+    public void setOriginalTotal(BigDecimal originalTotal) {
+        this.originalTotal = originalTotal;
     }
 }
