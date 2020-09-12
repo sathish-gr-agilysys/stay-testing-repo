@@ -10,8 +10,6 @@ import java.util.List;
 public class OfferChargesSummaryView {
     BigDecimal offerTotalAmount;
     BigDecimal offerTotalTax;
-    BigDecimal estimatedChargesWithOffer;
-    BigDecimal estimatedTaxesWithOffer;
     BigDecimal estimatedRoomChargesWithOffer = BigDecimal.ZERO;
 
     public BigDecimal getOfferTotalAmount() {
@@ -28,22 +26,6 @@ public class OfferChargesSummaryView {
 
     public void setOfferTotalTax(BigDecimal offerTotalTax) {
         this.offerTotalTax = offerTotalTax;
-    }
-
-    public BigDecimal getEstimatedChargesWithOffer() {
-        return estimatedChargesWithOffer;
-    }
-
-    public void setEstimatedChargesWithOffer(BigDecimal estimatedChargesWithOffer) {
-        this.estimatedChargesWithOffer = estimatedChargesWithOffer;
-    }
-
-    public BigDecimal getEstimatedTaxesWithOffer() {
-        return estimatedTaxesWithOffer;
-    }
-
-    public void setEstimatedTaxesWithOffer(BigDecimal estimatedTaxesWithOffer) {
-        this.estimatedTaxesWithOffer = estimatedTaxesWithOffer;
     }
 
     private List<OfferEstimatedSummary> offerSummaries = new ArrayList<>();
