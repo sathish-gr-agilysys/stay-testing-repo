@@ -54,6 +54,7 @@ public class ComponentChargeView {
     private String addOnBundleId;
     private String offerId;
     private BigDecimal offerAmount;
+    private BigDecimal offerAppliedAmount;
     private BigDecimal offerTaxAmount;
 
     public ComponentChargeView() {
@@ -284,6 +285,14 @@ public class ComponentChargeView {
 
     public void setOfferAmount(BigDecimal offerAmount) {
         this.offerAmount = offerAmount;
+    }
+
+    public BigDecimal getOfferAppliedAmount() {
+        return offerAppliedAmount;
+    }
+
+    public void setOfferAppliedAmount(BigDecimal offerAppliedAmount) {
+        this.offerAppliedAmount = offerAppliedAmount;
     }
 
     public BigDecimal getOfferTaxAmount() {

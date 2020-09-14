@@ -14,6 +14,8 @@ public class ChargeTaxAmountInfo {
 
     private BigDecimal offerAmt;
 
+    private BigDecimal offerAppliedAmt;
+
     public ChargeTaxAmountInfo() {
         taxAmountInfoList = Collections.EMPTY_LIST;
         totalTaxAmount = BigDecimal.ZERO;
@@ -44,5 +46,13 @@ public class ChargeTaxAmountInfo {
 
     public void setOfferAmt(BigDecimal offerAmt) {
         this.offerAmt = offerAmt;
+    }
+
+    public BigDecimal getOfferAppliedAmt() {
+        return offerAppliedAmt;
+    }
+
+    public void setOfferAppliedAmt(BigDecimal offerAppliedAmt) {
+        this.offerAppliedAmt = offerAppliedAmt;
     }
 }
