@@ -72,6 +72,7 @@ public class RecurringChargeView {
     private String offerId;
     private BigDecimal offerAmount;
     private BigDecimal offerTaxAmount;
+    private BigDecimal offerAppliedAmount;
 
     public RecurringChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -371,5 +372,13 @@ public class RecurringChargeView {
 
     public void setOfferTaxAmount(BigDecimal offerTaxAmount) {
         this.offerTaxAmount = offerTaxAmount;
+    }
+
+    public BigDecimal getOfferAppliedAmount() {
+        return offerAppliedAmount;
+    }
+
+    public void setOfferAppliedAmount(BigDecimal offerAppliedAmount) {
+        this.offerAppliedAmount = offerAppliedAmount;
     }
 }
