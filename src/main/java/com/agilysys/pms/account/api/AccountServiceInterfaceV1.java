@@ -32,6 +32,7 @@ import com.agilysys.common.constants.Constants.HTTPRequestConstants;
 import com.agilysys.common.model.BatchStatusResponse;
 import com.agilysys.common.model.CancelBatchRequest;
 import com.agilysys.common.model.PaymentSetting;
+import com.agilysys.common.model.rate.OfferSnapshot;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
@@ -112,8 +113,8 @@ import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReleaseAllAuthRequest;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
-import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.ReverseRedemptionResponse;
+import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -529,9 +530,9 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + "/fromTemplate")
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    void updateCompOfferRoutingRules(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, Map<String, List<LocalDate>> offerAppliedDates)
-          throws RGuestException;
+    void updateCompRoutingRulesAndLineItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          List<OfferSnapshot> offerSnapshots) throws RGuestException;
 
     @DELETE
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
