@@ -22,6 +22,16 @@ import com.agilysys.pms.property.model.AgeCategory;
 public class OfferDetails {
     private List<OfferSnapshot> offerSnapshots;
     private List<RateDetails> rateSnapshots;
+    private int numberOfAdults;
+    private int numberOfChildren;
+    private int numberOfAgeCategory1;
+    private int numberOfAgeCategory2;
+    private int numberOfAgeCategory3;
+    private int numberOfAgeCategory4;
+    private int numberOfAgeCategory5;
+    private int numberOfAgeCategory6;
+    private int numberOfAgeCategory7;
+    private int numberOfAgeCategory8;
 
     public List<OfferSnapshot> getOfferSnapshots() {
         return offerSnapshots;
@@ -39,6 +49,86 @@ public class OfferDetails {
         this.rateSnapshots = rateSnapshots;
     }
 
+    public int getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
+    }
+
+    public int getNumberOfAgeCategory1() {
+        return numberOfAgeCategory1;
+    }
+
+    public void setNumberOfAgeCategory1(int numberOfAgeCategory1) {
+        this.numberOfAgeCategory1 = numberOfAgeCategory1;
+    }
+
+    public int getNumberOfAgeCategory2() {
+        return numberOfAgeCategory2;
+    }
+
+    public void setNumberOfAgeCategory2(int numberOfAgeCategory2) {
+        this.numberOfAgeCategory2 = numberOfAgeCategory2;
+    }
+
+    public int getNumberOfAgeCategory3() {
+        return numberOfAgeCategory3;
+    }
+
+    public void setNumberOfAgeCategory3(int numberOfAgeCategory3) {
+        this.numberOfAgeCategory3 = numberOfAgeCategory3;
+    }
+
+    public int getNumberOfAgeCategory4() {
+        return numberOfAgeCategory4;
+    }
+
+    public void setNumberOfAgeCategory4(int numberOfAgeCategory4) {
+        this.numberOfAgeCategory4 = numberOfAgeCategory4;
+    }
+
+    public int getNumberOfAgeCategory5() {
+        return numberOfAgeCategory5;
+    }
+
+    public void setNumberOfAgeCategory5(int numberOfAgeCategory5) {
+        this.numberOfAgeCategory5 = numberOfAgeCategory5;
+    }
+
+    public int getNumberOfAgeCategory6() {
+        return numberOfAgeCategory6;
+    }
+
+    public void setNumberOfAgeCategory6(int numberOfAgeCategory6) {
+        this.numberOfAgeCategory6 = numberOfAgeCategory6;
+    }
+
+    public int getNumberOfAgeCategory7() {
+        return numberOfAgeCategory7;
+    }
+
+    public void setNumberOfAgeCategory7(int numberOfAgeCategory7) {
+        this.numberOfAgeCategory7 = numberOfAgeCategory7;
+    }
+
+    public int getNumberOfAgeCategory8() {
+        return numberOfAgeCategory8;
+    }
+
+    public void setNumberOfAgeCategory8(int numberOfAgeCategory8) {
+        this.numberOfAgeCategory8 = numberOfAgeCategory8;
+    }
+
     public static Map<LocalDate, List<RecurringChargeView>> getRecurringChargeFromSnapShot(OfferDetails offerDetails,
           List<AgeCategory> ageCategories) {
         Map<LocalDate, List<RecurringChargeView>> recurringChargeViewsByDate = new HashMap<>();
@@ -54,12 +144,12 @@ public class OfferDetails {
                       new ArrayList<>(rateDetails.getComponentRates().size());
                 rateDetails.getComponentRates().stream().forEach(componentRateSnapshot -> {
                     int quantity = ComponentHelper
-                          .getTotalQuantity(componentRateSnapshot.getComponentType(), rateDetails.getAdultsIncluded(),
-                                rateDetails.getChildrenIncluded(), rateDetails.getAgeCategory1Included(),
-                                rateDetails.getAgeCategory2Included(), rateDetails.getAgeCategory3Included(),
-                                rateDetails.getAgeCategory4Included(), rateDetails.getAgeCategory5Included(),
-                                rateDetails.getAgeCategory6Included(), rateDetails.getAgeCategory7Included(),
-                                rateDetails.getAgeCategory8Included(), componentRateSnapshot.getQuantity(),
+                          .getTotalQuantity(componentRateSnapshot.getComponentType(), offerDetails.getNumberOfAdults(),
+                                offerDetails.getNumberOfChildren(), offerDetails.getNumberOfAgeCategory1(),
+                                offerDetails.getNumberOfAgeCategory2(), offerDetails.getNumberOfAgeCategory3(),
+                                offerDetails.getNumberOfAgeCategory4(), offerDetails.getNumberOfAgeCategory5(),
+                                offerDetails.getNumberOfAgeCategory6(), offerDetails.getNumberOfAgeCategory7(),
+                                offerDetails.getNumberOfAgeCategory8(), componentRateSnapshot.getQuantity(),
                                 ageCategories);
                     componentRateSnapshot.setQuantity(quantity);
                     componentRateSnapshot
@@ -110,16 +200,6 @@ public class OfferDetails {
         private BigDecimal roomRate;
         private List<ComponentRateSnapshot> componentRates;
         private Set<AutoRecurringItemResponse> autoRecurringCharges;
-        private int adultsIncluded;
-        private int childrenIncluded;
-        private int ageCategory1Included;
-        private int ageCategory2Included;
-        private int ageCategory3Included;
-        private int ageCategory4Included;
-        private int ageCategory5Included;
-        private int ageCategory6Included;
-        private int ageCategory7Included;
-        private int ageCategory8Included;
 
         public LocalDate getDate() {
             return date;
@@ -167,86 +247,6 @@ public class OfferDetails {
 
         public void setAutoRecurringCharges(Set<AutoRecurringItemResponse> autoRecurringCharges) {
             this.autoRecurringCharges = autoRecurringCharges;
-        }
-
-        public int getAdultsIncluded() {
-            return adultsIncluded;
-        }
-
-        public void setAdultsIncluded(int adultsIncluded) {
-            this.adultsIncluded = adultsIncluded;
-        }
-
-        public int getChildrenIncluded() {
-            return childrenIncluded;
-        }
-
-        public void setChildrenIncluded(int childrenIncluded) {
-            this.childrenIncluded = childrenIncluded;
-        }
-
-        public int getAgeCategory1Included() {
-            return ageCategory1Included;
-        }
-
-        public void setAgeCategory1Included(int ageCategory1Included) {
-            this.ageCategory1Included = ageCategory1Included;
-        }
-
-        public int getAgeCategory2Included() {
-            return ageCategory2Included;
-        }
-
-        public void setAgeCategory2Included(int ageCategory2Included) {
-            this.ageCategory2Included = ageCategory2Included;
-        }
-
-        public int getAgeCategory3Included() {
-            return ageCategory3Included;
-        }
-
-        public void setAgeCategory3Included(int ageCategory3Included) {
-            this.ageCategory3Included = ageCategory3Included;
-        }
-
-        public int getAgeCategory4Included() {
-            return ageCategory4Included;
-        }
-
-        public void setAgeCategory4Included(int ageCategory4Included) {
-            this.ageCategory4Included = ageCategory4Included;
-        }
-
-        public int getAgeCategory5Included() {
-            return ageCategory5Included;
-        }
-
-        public void setAgeCategory5Included(int ageCategory5Included) {
-            this.ageCategory5Included = ageCategory5Included;
-        }
-
-        public int getAgeCategory6Included() {
-            return ageCategory6Included;
-        }
-
-        public void setAgeCategory6Included(int ageCategory6Included) {
-            this.ageCategory6Included = ageCategory6Included;
-        }
-
-        public int getAgeCategory7Included() {
-            return ageCategory7Included;
-        }
-
-        public void setAgeCategory7Included(int ageCategory7Included) {
-            this.ageCategory7Included = ageCategory7Included;
-        }
-
-        public int getAgeCategory8Included() {
-            return ageCategory8Included;
-        }
-
-        public void setAgeCategory8Included(int ageCategory8Included) {
-            this.ageCategory8Included = ageCategory8Included;
         }
     }
 }
