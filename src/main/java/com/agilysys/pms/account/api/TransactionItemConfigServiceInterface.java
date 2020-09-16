@@ -158,5 +158,5 @@ public interface TransactionItemConfigServiceInterface {
     @PUT
     @Path(UPDATE_ORDER)
     void updateOrder(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          List<TransactionItem> inventoryItems) throws RGuestException;
+          List<TransactionItem> transactionItems) throws RGuestException;
 }
