@@ -52,6 +52,8 @@ public class TransactionItem extends AccountingItem {
 
     protected boolean restricted;
 
+    protected Integer order;
+
     @JsonProperty(required = true)
     @DataPortMapReference(name = "sourceCodeToMealPeriodCodes", keyType = {
           Building.class, Outlet.class }, valueType = MealPeriod.class, multipleValues = true)
@@ -185,4 +187,8 @@ public class TransactionItem extends AccountingItem {
     public String getDisplayName() {
         return DISPLAY_NAME;
     }
+
+    public Integer getOrder() { return order; }
+
+    public void setOrder(Integer order) { this.order = order; }
 }
