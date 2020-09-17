@@ -112,8 +112,8 @@ import com.agilysys.pms.account.model.PostingRuleDetailView;
 import com.agilysys.pms.account.model.ReleaseAllAuthRequest;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
-import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.ReverseRedemptionResponse;
+import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
@@ -177,6 +177,7 @@ public interface AccountServiceInterfaceV1 {
     String FILTERED = "/filtered";
     String FOLIO_PATH = "/folios";
     String FOLIO_DETAIL_VIEW_PATH = "/folios2";
+    String FOLIO_DETAIL_PATH = "/foliosDetail";
     String TOTAL_SPENT_PATH = "/totalSpent";
     String FOLIO_BALANCES_PATH = "/folioBalances";
     String FOLIO_EMAIL = "/folioEmail";
@@ -378,7 +379,6 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(ACCOUNT_STATUS) String accountStatus,
           @QueryParam("dissociatePantryHouseAccount") boolean dissociatePantryHouseAccount) throws RGuestException;
 
-
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNTS_RECEIVABLE_SETTINGS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
@@ -399,6 +399,13 @@ public interface AccountServiceInterfaceV1 {
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + FOLIO_DETAIL_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<FolioDetail> getFoliosDetailList(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("") GetFoliosOptionalParameters optionalParameters) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + DEPOSIT_FOLIO_PATH)
@@ -428,10 +435,10 @@ public interface AccountServiceInterfaceV1 {
           ViewFolioRequest viewfoliosRequest) throws RGuestException;
 
     /**
-     * For integration-service, a wrapper of Page<FolioViewLineItem> viewFolio(...)
-     * to workaround org.springframework.data.domain.Page<T> deserialization errors.
-     * This is to be consumed by APIs, so returning a Java.util.List instead of
-     * com.agilysys.pms.common.model.DeserializablePage (pmscommon impl of Spring data Page<T>)
+     * For integration-service, a wrapper of Page<FolioViewLineItem> viewFolio(...) to workaround
+     * org.springframework.data.domain.Page<T> deserialization errors. This is to be consumed by APIs, so returning a
+     * Java.util.List instead of com.agilysys.pms.common.model.DeserializablePage (pmscommon impl of Spring data
+     * Page<T>)
      */
     @POST
     @Path(ACCOUNT_ID_PATH + FOLIO_DETAIL_VIEW_PATH + FOLIO_ID_PATH)
@@ -500,8 +507,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(TRANSFER_HISTORY)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     Map<String, LedgerTransactionTransferDetail> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, List<String> ledgerTransactionHistoryId)
-          throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, List<String> ledgerTransactionHistoryId) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH)
@@ -593,8 +599,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(BATCH_CREDITS_PATH)
     @PreAuthorize("hasPermission('Required', 'BatchPostCredits')")
     BatchDistributorResult batchPostCredit(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          List<BatchPostCC> batchPostCCs) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, List<BatchPostCC> batchPostCCs) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -602,8 +607,7 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize(
           "hasPermission('Required', 'BatchPostCharges') and hasPermission('Required', 'ForceChargeAcceptance')")
     BatchDistributorResult batchPostCharge(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId,
-          List<BatchPostCC> batchPostCCs) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, List<BatchPostCC> batchPostCCs) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -647,7 +651,7 @@ public interface AccountServiceInterfaceV1 {
     /**
      * Posts a payment to an account async
      *
-     * @param tenantId  the Tenant Id to post to
+     * @param tenantId   the Tenant Id to post to
      * @param propertyId id of the property where the account exists
      * @param accountId  the Account Id to post to
      * @param payment    Payment object containing payment information
@@ -1066,7 +1070,6 @@ public interface AccountServiceInterfaceV1 {
     ARDepositView getARDepositBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
-
     @GET
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -1105,8 +1108,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + CLOSABLE_INFO)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     AccountClosableInfo getAccountClosableInfo(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId)
-          throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
@@ -1307,13 +1309,13 @@ public interface AccountServiceInterfaceV1 {
     @Path(BATCH_DEPOSIT_COLLECTION_JOB_CANCEL_PATH)
     void cancelBatchDepositCollection(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           CancelBatchRequest request) throws RGuestException;
+
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + ALLOWANCE + DATE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(FOLIO_ID) String packageFolioId, @PathParam(DATE) LocalDate date)
-          throws RGuestException;
+          @PathParam(FOLIO_ID) String packageFolioId, @PathParam(DATE) LocalDate date) throws RGuestException;
 
     @POST
     @Path("/transactionItem" + ALLOWANCE)
@@ -1352,5 +1354,4 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
     List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
-
 }
