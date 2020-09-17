@@ -188,7 +188,11 @@ public class TransactionItem extends AccountingItem {
         return DISPLAY_NAME;
     }
 
-    public Integer getOrder() { return order; }
+    public Integer getOrder() {
+        return order;
+    }
 
-    public void setOrder(Integer order) { this.order = order; }
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
 }
