@@ -5,10 +5,10 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.joda.time.LocalDate;
 
@@ -131,7 +131,7 @@ public class OfferDetails {
 
     public static Map<LocalDate, List<RecurringChargeView>> getRecurringChargeFromSnapShot(OfferDetails offerDetails,
           List<AgeCategory> ageCategories) {
-        Map<LocalDate, List<RecurringChargeView>> recurringChargeViewsByDate = new HashMap<>();
+        Map<LocalDate, List<RecurringChargeView>> recurringChargeViewsByDate = new TreeMap<>();
         for (RateDetails rateDetails : offerDetails.getRateSnapshots()) {
             List<RecurringChargeView> recurringChargeViews = new ArrayList<>();
             RecurringChargeView recurringChargeView = new RecurringChargeView();
