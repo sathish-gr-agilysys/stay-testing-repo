@@ -343,7 +343,7 @@ public class PostingRuleDetail {
 
     public PostingRuleDetail(RoutingRuleTemplate template, CompOffer compOffer, List<LocalDate> offerAppliedDates,
           LocalDate propertyDate) {
-        this.ruleName = template.getRuleName();
+        this.ruleName = compOffer.getOfferName();
         if (template.getSourceId() != null) {
             this.chargeSourceId = template.getSourceId();
         }
@@ -360,7 +360,7 @@ public class PostingRuleDetail {
         this.carryUnusedBalance = template.getCarryUnusedBalance();
         this.ignoreDestinationRules = template.getIgnoreDestinationRules();
         this.reason = template.getReason();
-        this.description = template.getDescription();
+        this.description = template.getRuleName();
         this.postingRuleChargeType = template.getPostingRuleChargeType().name();
         this.occurrenceDays = template.getOccurrenceDays();
         if (template.getSplitBy() != null) {
