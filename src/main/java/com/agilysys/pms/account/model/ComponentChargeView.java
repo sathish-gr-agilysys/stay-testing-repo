@@ -55,6 +55,7 @@ public class ComponentChargeView {
     private String offerId;
     private BigDecimal offerAmount;
     private BigDecimal originalAmount;
+    private BigDecimal originalAmountPerItem;
     private BigDecimal offerTaxAmount;
 
     public ComponentChargeView() {
@@ -293,6 +294,14 @@ public class ComponentChargeView {
 
     public void setOriginalAmount(BigDecimal originalAmount) {
         this.originalAmount = originalAmount;
+    }
+
+    public BigDecimal getOriginalAmountPerItem() {
+        return originalAmountPerItem;
+    }
+
+    public void setOriginalAmountPerItem(BigDecimal originalAmountPerItem) {
+        this.originalAmountPerItem = originalAmountPerItem;
     }
 
     public BigDecimal getOfferTaxAmount() {
