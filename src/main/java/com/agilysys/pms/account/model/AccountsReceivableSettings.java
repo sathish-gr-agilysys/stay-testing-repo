@@ -12,7 +12,8 @@ public class AccountsReceivableSettings {
     public enum DefaultRoutingRule {
         ALL_CHARGES,
         NO_CHARGES,
-        ROOM_AND_TAX
+        ROOM_AND_TAX,
+        THIRD_PARTY_PAYMENTS
     }
 
     @JsonProperty(required = true)
