@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
+
 import com.agilysys.pms.comment.model.Comment;
 
 public class DisputedARLedgerTransaction {
@@ -13,6 +15,7 @@ public class DisputedARLedgerTransaction {
     private String id;
     private String itemId;
     private String invoiceNumber;
+    private BigDecimal amount;
 
     public DisputedARLedgerTransaction() { }
 
@@ -23,10 +26,11 @@ public class DisputedARLedgerTransaction {
     }
 
     public DisputedARLedgerTransaction(String ledgerTransactionId, boolean dispute, Comment comment, String itemId,
-          String invoiceNumber) {
+          String invoiceNumber, BigDecimal amount) {
         this(ledgerTransactionId, dispute, comment);
         this.itemId = itemId;
         this.invoiceNumber = invoiceNumber;
+        this.amount = amount;
     }
 
     public String getLedgerTransactionId() {
@@ -75,5 +79,13 @@ public class DisputedARLedgerTransaction {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 }
