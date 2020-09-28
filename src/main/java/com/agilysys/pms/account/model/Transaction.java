@@ -61,7 +61,7 @@ public abstract class Transaction {
     protected String giftCardNumber;
     protected boolean excludeTax;
     protected boolean arDeposit;
-    protected boolean isRoutingChargeAlreadyPosted;
+    protected boolean routingChargeAlreadyPosted;
 
     public String getAccountId() {
         return accountId;
@@ -297,11 +297,11 @@ public abstract class Transaction {
     }
 
     public boolean isRoutingChargeAlreadyPosted() {
-        return isRoutingChargeAlreadyPosted;
+        return routingChargeAlreadyPosted;
     }
 
     public void setRoutingChargeAlreadyPosted(boolean routingChargeAlreadyPosted) {
-        isRoutingChargeAlreadyPosted = routingChargeAlreadyPosted;
+        this.routingChargeAlreadyPosted = routingChargeAlreadyPosted;
     }
 
     @Override
