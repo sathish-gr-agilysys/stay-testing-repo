@@ -3,9 +3,7 @@
  */
 package com.agilysys.pms.account.api;
 
-import com.agilysys.pms.account.model.AccountAggregateType;
 import com.agilysys.pms.account.model.AccountWarehouseType;
-import com.agilysys.pms.common.api.export.AggregationWarehouseMaintenanceInterface;
+import com.agilysys.pms.common.api.export.WarehouseMaintenanceInterface;
 
-public interface AccountWarehouseMaintenanceInterface
-      extends AggregationWarehouseMaintenanceInterface<AccountAggregateType, AccountWarehouseType> {}
+public interface AccountWarehouseMaintenanceInterface extends WarehouseMaintenanceInterface<AccountWarehouseType> {}
