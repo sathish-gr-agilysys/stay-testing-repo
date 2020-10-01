@@ -108,6 +108,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private ARPaymentStatus arPaymentStatus;
     private BigDecimal amountUsed;
     private BigDecimal lineItemDepositBalance;
+    private String referenceNumber;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -658,6 +659,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setTransferMessage(String transferMessage) {
         this.transferMessage = transferMessage;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 
     /**

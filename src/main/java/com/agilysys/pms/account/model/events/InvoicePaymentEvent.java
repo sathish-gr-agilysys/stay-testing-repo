@@ -28,13 +28,14 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
     private boolean isFullAmountApplied;
     private Boolean unAppliedAmountUsed;
     private String paymentReferenceId;
+    private String referenceNumber;
 
     public InvoicePaymentEvent() {}
 
     public InvoicePaymentEvent(String invoicePaymentId, BigDecimal amount, String folioLineItemId,
           String paymentMethodId, String paymentMethodName, String reason, LocalDate lineItemPostingDate,
           DateTime lineItemPostingSystemDateTime, LocalDate appliedOnPropertyDate, DateTime appliedOnSystemDateTime,
-          boolean isFullAmountApplied, Balance balance, String paymentReferenceId) {
+          boolean isFullAmountApplied, Balance balance, String paymentReferenceId, String referenceNumber) {
         super(balance);
         this.invoicePaymentId = invoicePaymentId;
         this.amount = amount;
@@ -48,6 +49,7 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
         this.appliedOnSystemDateTime = appliedOnSystemDateTime;
         this.isFullAmountApplied = isFullAmountApplied;
         this.paymentReferenceId = paymentReferenceId;
+        this.referenceNumber = referenceNumber;
     }
 
     public String getInvoicePaymentId() { return invoicePaymentId; }
@@ -148,6 +150,14 @@ public class InvoicePaymentEvent extends InvoiceBalanceChangeEvent {
 
     public void setPaymentReferenceId(String paymentReferenceId) {
         this.paymentReferenceId = paymentReferenceId;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 
     @Override
