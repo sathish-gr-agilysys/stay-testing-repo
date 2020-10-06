@@ -65,7 +65,7 @@ public class PaymentMethod extends AccountingItem {
 
     private String glCode;
 
-    protected boolean includeReferenceNumber;
+    protected Boolean includeReferenceNumber;
 
     private PermissionType restrictivePermission;
 
@@ -117,11 +117,11 @@ public class PaymentMethod extends AccountingItem {
         this.glCode = glCode;
     }
 
-    public boolean isIncludeReferenceNumber() {
+    public Boolean isIncludeReferenceNumber() {
         return includeReferenceNumber;
     }
 
-    public void setIncludeReferenceNumber(boolean includeReferenceNumber) {
+    public void setIncludeReferenceNumber(Boolean includeReferenceNumber) {
         this.includeReferenceNumber = includeReferenceNumber;
     }
 
