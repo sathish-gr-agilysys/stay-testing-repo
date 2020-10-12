@@ -375,7 +375,6 @@ public class PostingRuleDetail {
             this.departmentId = template.getDepartmentId();
             this.authorizerId = compOffer.getAuthorizerId();
             this.compOfferId = compOffer.getId();
-            this.authorizerCode = compOffer.getAuthorizerCode();
         }
         if (isNotEmpty(offerAppliedDates)) {
             this.validOn = offerAppliedDates;
