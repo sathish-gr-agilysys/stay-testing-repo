@@ -14,19 +14,21 @@ public class InvoicePaymentHistory extends BaseInvoiceHistory {
     private String reference;
     private String paymentReferenceId;
     private String paymentMethodId;
+    private String referenceNumber;
 
     public InvoicePaymentHistory() {
     }
 
     public InvoicePaymentHistory(String eventType, String invoiceNumber, DateTime invoiceDate, String userId,
           String paymentMethod, BigDecimal totalAmount, String reference, String paymentReferenceId,
-          String paymentMethodId) {
+          String paymentMethodId, String referenceNumber) {
         super(eventType, invoiceNumber, invoiceDate, userId);
         this.paymentMethod = paymentMethod;
         this.totalAmount = totalAmount;
         this.reference = reference;
         this.paymentReferenceId = paymentReferenceId;
         this.paymentMethodId = paymentMethodId;
+        this.referenceNumber = referenceNumber;
     }
 
     public String getPaymentMethod() {
@@ -67,5 +69,13 @@ public class InvoicePaymentHistory extends BaseInvoiceHistory {
 
     public void setPaymentMethodId(String paymentMethodId) {
         this.paymentMethodId = paymentMethodId;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 }
