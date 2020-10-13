@@ -342,7 +342,7 @@ public class PostingRuleDetail {
     }
 
     public PostingRuleDetail(RoutingRuleTemplate template, CompOffer compOffer, List<LocalDate> offerAppliedDates,
-          LocalDate propertyDate) {
+          LocalDate propertyDate, String authorizerCode) {
         this.ruleName = compOffer.getOfferName();
         if (template.getSourceId() != null) {
             this.chargeSourceId = template.getSourceId();
@@ -375,6 +375,7 @@ public class PostingRuleDetail {
             this.departmentId = template.getDepartmentId();
             this.authorizerId = compOffer.getAuthorizerId();
             this.compOfferId = compOffer.getId();
+            this.authorizerCode = authorizerCode;
         }
         if (isNotEmpty(offerAppliedDates)) {
             this.validOn = offerAppliedDates;
