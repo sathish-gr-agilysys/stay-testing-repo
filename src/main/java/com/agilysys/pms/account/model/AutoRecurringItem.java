@@ -41,7 +41,8 @@ public class AutoRecurringItem extends AccountingObjectBase {
     protected Set<Integer> occurrenceDays;
 
     @JsonProperty(required = true)
-    @AuditField(name = "parentTransactionItem", references = EntityTypes.TRANSACTION_ITEM)
+    @AuditField(name = "parentTransactionItem",
+          references = { EntityTypes.TRANSACTION_ITEM, EntityTypes.INVENTORY_ITEM })
     protected String parentTransactionItemId;
 
     protected CanonicalId status;
