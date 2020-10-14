@@ -11,6 +11,7 @@ import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
+import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,7 +23,7 @@ public class PantryItem extends AccountingObjectBase {
     private BigDecimal price;
 
     @JsonProperty(required = true)
-    @AuditField(name = "transactionItem", references = EntityTypes.TRANSACTION_ITEM)
+    @AuditField(name = "transactionItem", references = { EntityTypes.TRANSACTION_ITEM, EntityTypes.INVENTORY_ITEM })
     @DataPortReference(name = "transactionItemCode", type = { TransactionItem.class })
     private String transactionItemId;
 
@@ -33,6 +34,15 @@ public class PantryItem extends AccountingObjectBase {
     private String plu;
     private int order;
 
+    @DataPortIgnore
+    private Boolean requireInventory = Boolean.FALSE;
+
+    @DataPortIgnore
+    private int totalQuantity;
+
+    @DataPortIgnore
+    private int availableQuantity;
+
     public PantryItem() {}
 
     public PantryItem(PantryItem pantryItem) {
@@ -42,6 +52,9 @@ public class PantryItem extends AccountingObjectBase {
         this.plu = pantryItem.getPlu();
         this.order = pantryItem.getOrder();
         this.transactionItemId = pantryItem.getTransactionItemId();
+        this.requireInventory = Boolean.TRUE.equals(pantryItem.getRequireInventory());
+        this.totalQuantity = pantryItem.getTotalQuantity();
+        this.availableQuantity = pantryItem.getAvailableQuantity();
     }
 
     public BigDecimal getPrice() {
@@ -82,6 +95,30 @@ public class PantryItem extends AccountingObjectBase {
 
     public void setStatus(CanonicalId status) {
         this.status = status;
+    }
+
+    public Boolean getRequireInventory() {
+        return requireInventory;
+    }
+
+    public void setRequireInventory(Boolean requireInventory) {
+        this.requireInventory = requireInventory;
+    }
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public int getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(int availableQuantity) {
+        this.availableQuantity = availableQuantity;
     }
 
     @Override
