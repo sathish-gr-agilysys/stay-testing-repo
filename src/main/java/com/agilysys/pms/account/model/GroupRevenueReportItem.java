@@ -13,6 +13,7 @@ public class GroupRevenueReportItem extends RevenueReportItem {
     private String transactionCategoryName;
     private BigDecimal taxAmount;
     private Boolean reverseTax;
+    private String subcategoryId;
 
     public GroupRevenueReportItem() {
         taxAmount = new BigDecimal(0);
@@ -63,4 +64,12 @@ public class GroupRevenueReportItem extends RevenueReportItem {
     public Boolean getReverseTax() { return reverseTax; }
 
     public void setReverseTax(Boolean reverseTax) { this.reverseTax = reverseTax; }
+
+    public String getSubcategoryId() {
+        return subcategoryId;
+    }
+
+    public void setSubcategoryId(String subcategoryId) {
+        this.subcategoryId = subcategoryId;
+    }
 }
