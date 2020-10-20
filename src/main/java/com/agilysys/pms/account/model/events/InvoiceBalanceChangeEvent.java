@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2017 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model.events;
@@ -11,11 +11,9 @@ import org.joda.time.DateTime;
 import com.agilysys.pms.account.model.Balance;
 
 public abstract class InvoiceBalanceChangeEvent extends InvoiceEvent {
-
     private Balance balance;
 
-    public InvoiceBalanceChangeEvent() {
-    }
+    public InvoiceBalanceChangeEvent() {}
 
     public InvoiceBalanceChangeEvent(List<Map<String, Object>> historyMetadata) {
         super(historyMetadata);
