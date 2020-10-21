@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.intapp.model.PostCharge;
+import com.agilysys.intapp.model.PostPosCharge;
+
 public class PostChargesRequest {
 
     private List<Charge> charges;
@@ -18,6 +21,16 @@ public class PostChargesRequest {
     private boolean postRecurringCharge;
     private String componentBundleId;
     private boolean addOn;
+
+    public PostChargesRequest() {
+    }
+
+    public PostChargesRequest(boolean distributed, String name, List<Charge> charges, LocalDate postingDate) {
+        this.distributed = distributed;
+        this.name = name;
+        this.charges = charges;
+        this.postingDate = postingDate;
+    }
 
     public List<Charge> getCharges() {
         return charges;
@@ -90,4 +103,3 @@ public class PostChargesRequest {
         this.addOn = addOn;
     }
 }
-
