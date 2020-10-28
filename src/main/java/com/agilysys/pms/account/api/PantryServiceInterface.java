@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,6 +20,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.PantryItem;
+import com.agilysys.pms.account.model.TransactionItem;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/pantryItems")
 @Produces(MediaType.APPLICATION_JSON)
@@ -29,6 +31,7 @@ public interface PantryServiceInterface {
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{id}";
     String PANTRY_ITEM_BULK_UPDATE = "/bulkUpdate";
+    String TRANSACTION_ITEMS = "/transactionItems";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
@@ -60,5 +63,11 @@ public interface PantryServiceInterface {
     List<PantryItem> bulkUpdatePantryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<PantryItem> pantryItemList)
           throws RGuestException;
+
+    @GET
+    @Path(TRANSACTION_ITEMS)
+    @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt')")
+    List<TransactionItem> getPantryAssociatedTransactionItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
 }
