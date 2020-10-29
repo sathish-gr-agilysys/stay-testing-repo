@@ -25,6 +25,7 @@ import com.agilysys.pms.property.model.MealPeriod;
 import com.agilysys.pms.property.model.Outlet;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.agilysys.pms.common.model.annotation.DataPortIgnore;
 
 @AuditEntity(EntityTypes.TRANSACTION_ITEM)
 public class TransactionItem extends AccountingItem {
@@ -50,7 +51,11 @@ public class TransactionItem extends AccountingItem {
 
     protected String plu;
 
+  	@DataPortIgnore
     protected boolean restricted;
+
+    @DataPortIgnore
+    protected boolean addToThirdPartyRoutingRule;
 
     @JsonProperty(required = true)
     @DataPortMapReference(name = "sourceCodeToMealPeriodCodes", keyType = {
@@ -84,6 +89,7 @@ public class TransactionItem extends AccountingItem {
         taxClasses = transactionItem.getTaxClasses();
         allowComp = transactionItem.isAllowComp();
         restricted = transactionItem.isRestricted();
+        addToThirdPartyRoutingRule = transactionItem.isAddToThirdPartyRoutingRule();
     }
 
     public String getAltSystemId() {
@@ -174,6 +180,14 @@ public class TransactionItem extends AccountingItem {
     @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
+    }
+
+    public boolean isAddToThirdPartyRoutingRule() {
+        return addToThirdPartyRoutingRule;
+    }
+
+    public void setAddToThirdPartyRoutingRule(boolean addToThirdPartyRoutingRule) {
+        this.addToThirdPartyRoutingRule = addToThirdPartyRoutingRule;
     }
 
     @Override
