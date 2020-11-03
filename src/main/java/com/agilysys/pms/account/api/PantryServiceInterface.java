@@ -31,7 +31,7 @@ public interface PantryServiceInterface {
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{id}";
     String PANTRY_ITEM_BULK_UPDATE = "/bulkUpdate";
-    String TRANSACTION_ITEMS = "/transactionItems";
+    String ACCOUNTING_ITEMS = "/accountingItems";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
@@ -65,9 +65,9 @@ public interface PantryServiceInterface {
           throws RGuestException;
 
     @GET
-    @Path(TRANSACTION_ITEMS)
+    @Path(ACCOUNTING_ITEMS)
     @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt')")
-    List<TransactionItem> getPantryAssociatedTransactionItems(@PathParam(TENANT_ID) String tenantId,
+    List<TransactionItem> getPantryAssociatedAccountingItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
 }
