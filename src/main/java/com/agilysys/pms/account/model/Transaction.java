@@ -61,6 +61,8 @@ public abstract class Transaction {
     protected String giftCardNumber;
     protected boolean excludeTax;
     protected boolean arDeposit;
+    protected boolean routingChargeAlreadyPosted;
+    protected String referenceNumber;
 
     public String getAccountId() {
         return accountId;
@@ -293,6 +295,22 @@ public abstract class Transaction {
 
     public void setArDeposit(boolean arDeposit) {
         this.arDeposit = arDeposit;
+    }
+
+    public boolean isRoutingChargeAlreadyPosted() {
+        return routingChargeAlreadyPosted;
+    }
+
+    public void setRoutingChargeAlreadyPosted(boolean routingChargeAlreadyPosted) {
+        this.routingChargeAlreadyPosted = routingChargeAlreadyPosted;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 
     @Override

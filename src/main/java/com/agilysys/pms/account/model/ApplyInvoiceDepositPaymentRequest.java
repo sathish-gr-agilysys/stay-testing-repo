@@ -5,6 +5,7 @@ package com.agilysys.pms.account.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,6 +15,7 @@ public class ApplyInvoiceDepositPaymentRequest {
     private String invoiceNumber;
     private boolean includeDisputes;
     private String disputeComment;
+    private Set<String> unappliedPaymentIds;
 
     public List<InvoicePaymentRequest> getInvoicePayments() {
         return invoicePayments;
@@ -45,5 +47,13 @@ public class ApplyInvoiceDepositPaymentRequest {
 
     public void setDisputeComment(String disputeComment) {
         this.disputeComment = disputeComment;
+    }
+
+    public Set<String> getUnappliedPaymentIds() {
+        return unappliedPaymentIds;
+    }
+
+    public void setUnappliedPaymentIds(Set<String> unappliedPaymentIds) {
+        this.unappliedPaymentIds = unappliedPaymentIds;
     }
 }
