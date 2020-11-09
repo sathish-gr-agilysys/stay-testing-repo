@@ -39,6 +39,7 @@ public class PayTransactionRequest {
     // Fields for making payment 
     private List<PaymentTransaction> payTransactions = new ArrayList<>();
     private String pantryName;
+    private Boolean manualCardEntry;
 
     public PayTransactionRequest() {
     }
@@ -251,6 +252,14 @@ public class PayTransactionRequest {
 
     public void setPantryName(String pantryName) {
         this.pantryName = pantryName;
+    }
+
+    public Boolean isManualCardEntry() {
+        return manualCardEntry;
+    }
+
+    public void setManualCardEntry(Boolean manualCardEntry) {
+        this.manualCardEntry = manualCardEntry;
     }
 
     private void isValidRequest() {
