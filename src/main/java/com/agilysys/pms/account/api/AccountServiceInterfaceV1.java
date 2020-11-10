@@ -889,8 +889,8 @@ public interface AccountServiceInterfaceV1 {
     @Path(SEARCH_PATH + SEARCH_TERM_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts)
-          throws RGuestException;
+          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
+          @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts) throws RGuestException;
 
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + PAGE_PATH)
