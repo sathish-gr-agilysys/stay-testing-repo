@@ -192,6 +192,7 @@ public interface AccountServiceInterfaceV1 {
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
     String INCLUDE_CLOSED_ACCOUNTS = "includeClosedAccounts";
+    String INCLUDE_HOLD_ACCOUNTS = "includeHoldAccounts";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
@@ -896,7 +897,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
-          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) Integer page,
+          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
+          @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts, @QueryParam(PAGE) Integer page,
           @QueryParam(SIZE) Integer size) throws RGuestException;
 
     @GET
