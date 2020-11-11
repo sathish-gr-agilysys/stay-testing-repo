@@ -102,6 +102,11 @@ public class EstimatedChargesSummaryView {
     private BigDecimal inclusiveComponentsRoomRevenueTaxTotal = BigDecimal.ZERO;
 
     /**
+     * The offer summary
+     */
+    private OfferChargesSummaryView offerSummary;
+
+    /**
      * Gets the estimate payment due at checkout
      */
     public BigDecimal getEstimatedPayment() {
@@ -317,5 +322,13 @@ public class EstimatedChargesSummaryView {
 
     public void setInclusiveComponentsRoomRevenueTaxTotal(BigDecimal inclusiveComponentsRoomRevenueTaxTotal) {
         this.inclusiveComponentsRoomRevenueTaxTotal = inclusiveComponentsRoomRevenueTaxTotal;
+    }
+
+    public OfferChargesSummaryView getOfferSummary() {
+        return offerSummary;
+    }
+
+    public void setOfferSummary(OfferChargesSummaryView offerSummary) {
+        this.offerSummary = offerSummary;
     }
 }
