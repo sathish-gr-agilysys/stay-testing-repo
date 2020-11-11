@@ -164,6 +164,8 @@ public interface AccountServiceInterfaceV1 {
     String AR_DEPOSIT_BALANCE = "/arDepositBalance";
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
+    String MULTIPLE_CHARGES = "/multipleCharges";
+    String POST_MULTIPLE_PAYMENTS = "/postMultiplePayments";
     String BATCH_FOLIO_EMAIL = "/batchFolioEmail";
     String BATCH_FOLIO_PATH = "/batchFolios";
     String BATCH_FOLIO_PRINT = "/batchPrintFolio";
@@ -601,6 +603,14 @@ public interface AccountServiceInterfaceV1 {
           List<Charge> charges, Boolean isRecurring) throws RGuestException;
 
     @POST
+    @Path(MULTIPLE_CHARGES)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<PostChargesResponse> postMultipleCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("ignoreAuth") boolean ignoreAuth,
+          @QueryParam(GROUPED) boolean grouped, Map<String, PostChargesRequest> accountChargesMap)
+          throws RGuestException;
+
+    @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + CREDIT_PATH)
     @Validated(Credit.class)
@@ -653,6 +663,22 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    /**
+     * Posts multiple payments
+     *
+     * @param tenantId               the Tenant Id to post to
+     * @param propertyId             id of the property where the account exists
+     * @param accountPaymentsMap Payment request containing payment information for accounts
+     * @return a List of LineItemView for Display purposes
+     */
+    @POST
+    @CreatedOnSuccess
+    @Path(POST_MULTIPLE_PAYMENTS)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<List<LineItemView>> postMultiplePayments(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Map<String, Payment> accountPaymentsMap,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
     /**
