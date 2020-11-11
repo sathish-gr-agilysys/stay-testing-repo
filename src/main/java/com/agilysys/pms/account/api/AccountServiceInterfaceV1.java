@@ -744,7 +744,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_FOLIO_LINES)
     @Validated(LineItemTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'TransferAmount')")
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           LineItemTransfer transferInfo) throws RGuestException;
