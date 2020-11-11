@@ -165,7 +165,7 @@ public interface AccountServiceInterfaceV1 {
     String AUTH_CARDS_ON_ACCOUNT_PATH = "/authCardsOnAccount";
     String BATCH_CHARGES_PATH = "/batchCharges";
     String MULTIPLE_CHARGES = "/multipleCharges";
-    String POST_MULTIPLE_PAYMENTS = "/postMultiplePayments";
+    String MULTIPLE_PAYMENTS_PATH = "/multiplePaymentsPath";
     String BATCH_FOLIO_EMAIL = "/batchFolioEmail";
     String BATCH_FOLIO_PATH = "/batchFolios";
     String BATCH_FOLIO_PRINT = "/batchPrintFolio";
@@ -675,7 +675,7 @@ public interface AccountServiceInterfaceV1 {
      */
     @POST
     @CreatedOnSuccess
-    @Path(POST_MULTIPLE_PAYMENTS)
+    @Path(MULTIPLE_PAYMENTS_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<List<LineItemView>> postMultiplePayments(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Map<String, Payment> accountPaymentsMap,
