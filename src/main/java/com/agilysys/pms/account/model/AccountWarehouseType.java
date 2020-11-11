@@ -14,7 +14,8 @@ public enum AccountWarehouseType implements WarehouseType {
     RECURRING_CHARGES,
     REVENUE,
     SUBCATEGORIES,
-    TRANSACTION_ITEMS;
+    TRANSACTION_ITEMS,
+    PANTRY_ITEMS;
 
     // This is implicitly used by Jersey when converting @PathParam/@QueryParam
     public static AccountWarehouseType fromString(String s) {

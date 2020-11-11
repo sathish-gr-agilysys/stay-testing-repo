@@ -60,5 +60,4 @@ public interface PantryServiceInterface {
     List<PantryItem> bulkUpdatePantryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<PantryItem> pantryItemList)
           throws RGuestException;
-
 }
