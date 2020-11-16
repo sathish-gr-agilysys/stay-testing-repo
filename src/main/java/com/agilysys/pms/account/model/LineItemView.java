@@ -108,6 +108,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private ARPaymentStatus arPaymentStatus;
     private BigDecimal amountUsed;
     private BigDecimal lineItemDepositBalance;
+    private String compOfferId;
+    private String compOfferName;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -658,6 +660,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setTransferMessage(String transferMessage) {
         this.transferMessage = transferMessage;
+    }
+
+    public String getCompOfferId() {
+        return compOfferId;
+    }
+
+    public void setCompOfferId(String compOfferId) {
+        this.compOfferId = compOfferId;
+    }
+
+    public String getCompOfferName() {
+        return compOfferName;
+    }
+
+    public void setCompOfferName(String compOfferName) {
+        this.compOfferName = compOfferName;
     }
 
     /**

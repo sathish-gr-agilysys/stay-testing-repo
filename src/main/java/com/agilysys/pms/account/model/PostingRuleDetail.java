@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.model;
 
+import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
+
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ import javax.validation.constraints.Size;
 import org.joda.time.LocalDate;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import com.agilysys.pms.property.model.compaccounting.CompOffer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -81,6 +84,8 @@ public class PostingRuleDetail {
     private Boolean carryUnusedBalance;
 
     private String authorizerId;
+
+    private String compOfferId;
 
     public PostingRuleDetail() { }
 
@@ -326,5 +331,57 @@ public class PostingRuleDetail {
 
     public void setAuthorizerId(String authorizerId) {
         this.authorizerId = authorizerId;
+    }
+
+    public String getCompOfferId() {
+        return compOfferId;
+    }
+
+    public void setCompOfferId(String compOfferId) {
+        this.compOfferId = compOfferId;
+    }
+
+    public PostingRuleDetail(RoutingRuleTemplate template, CompOffer compOffer, List<LocalDate> offerAppliedDates,
+          LocalDate propertyDate, String authorizerCode) {
+        this.ruleName = compOffer.getOfferName();
+        if (template.getSourceId() != null) {
+            this.chargeSourceId = template.getSourceId();
+        }
+        if (template.getCategoryIds() != null) {
+            this.categoryIds = template.getCategoryIds();
+        }
+        if (template.getItemIds() != null) {
+            this.itemIds = template.getItemIds();
+        }
+        this.comp = template.getComp();
+        this.compingTax = template.getCompingTax();
+        this.includeArrivalDate = template.getIncludeArrivalDate();
+        this.includeDepartureDate = template.getIncludeDepartureDate();
+        this.carryUnusedBalance = template.getCarryUnusedBalance();
+        this.ignoreDestinationRules = template.getIgnoreDestinationRules();
+        this.reason = template.getReason();
+        this.description = template.getRuleName();
+        this.postingRuleChargeType = template.getPostingRuleChargeType().name();
+        this.occurrenceDays = template.getOccurrenceDays();
+        if (template.getSplitBy() != null) {
+            this.splitBy = template.getSplitBy().name();
+        }
+        this.startDate = template.getStartDate().isBefore(propertyDate) ? propertyDate : template.getStartDate();
+        if (template.getEndDate() != null) {
+            this.endDate = getEndDate();
+        }
+        if (template.getComp()) {
+            this.offSetRule = template.getOffSetRule();
+            this.departmentId = template.getDepartmentId();
+            this.authorizerId = compOffer.getAuthorizerId();
+            this.compOfferId = compOffer.getId();
+            this.authorizerCode = authorizerCode;
+        }
+        if (isNotEmpty(offerAppliedDates)) {
+            this.validOn = offerAppliedDates;
+        }
+        if (isNotEmpty(template.getDestinations())) {
+            this.destinations = template.getDestinations();
+        }
     }
 }
