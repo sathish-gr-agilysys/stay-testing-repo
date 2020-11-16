@@ -1,8 +1,10 @@
 package com.agilysys.pms.account.model;
 
-public class IGLedgertransaction {
+public class LedgertransactionMutable {
 
     private String receiptTextImage;
+
+    public static final String RECEIPT_TEXT_IMAGE = "receiptTextImage";
 
     public String getReceiptTextImage() {
         return receiptTextImage;
