@@ -341,9 +341,9 @@ public class PostingRuleDetail {
         this.compOfferId = compOfferId;
     }
 
-    public PostingRuleDetail(RoutingRuleTemplate template, CompOffer compOffer, List<LocalDate> offerAppliedDates,
-          LocalDate propertyDate, String authorizerCode) {
-        this.ruleName = compOffer.getOfferName();
+    public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, List<LocalDate> offerAppliedDates,
+          LocalDate propertyDate, String authorizerCode, String authorizerId, String compOfferId) {
+        this.ruleName = ruleName;
         if (template.getSourceId() != null) {
             this.chargeSourceId = template.getSourceId();
         }
@@ -373,8 +373,8 @@ public class PostingRuleDetail {
         if (template.getComp()) {
             this.offSetRule = template.getOffSetRule();
             this.departmentId = template.getDepartmentId();
-            this.authorizerId = compOffer.getAuthorizerId();
-            this.compOfferId = compOffer.getId();
+            this.authorizerId = authorizerId;
+            this.compOfferId = compOfferId;
             this.authorizerCode = authorizerCode;
         }
         if (isNotEmpty(offerAppliedDates)) {
