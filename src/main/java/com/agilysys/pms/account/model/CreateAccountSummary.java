@@ -52,7 +52,7 @@ public class CreateAccountSummary extends AccountSummary {
 
     private Map<String, List<LocalDate>> offerAppliedDates;
 
-    private Map<LocalDate, String> ratePlanWithDate;
+    private Map<String, List<LocalDate>> ratePlanDatesMap;
 
     public String getReservationCompanyProfileId() {
         return reservationCompanyProfileId;
@@ -136,11 +136,11 @@ public class CreateAccountSummary extends AccountSummary {
         this.offerAppliedDates = offerAppliedDates;
     }
 
-    public Map<LocalDate, String> getRatePlanWithDate() {
-        return ratePlanWithDate;
+    public Map<String, List<LocalDate>> getRatePlanDatesMap() {
+        return ratePlanDatesMap;
     }
 
-    public void setRatePlanWithDate(Map<LocalDate, String> ratePlanWithDate) {
-        this.ratePlanWithDate = ratePlanWithDate;
+    public void setRatePlanDatesMap(Map<String, List<LocalDate>> ratePlanDatesMap) {
+        this.ratePlanDatesMap = ratePlanDatesMap;
     }
 }
