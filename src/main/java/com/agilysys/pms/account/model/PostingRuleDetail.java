@@ -87,6 +87,8 @@ public class PostingRuleDetail {
 
     private String compOfferId;
 
+    private String ratePlanId;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -339,6 +341,14 @@ public class PostingRuleDetail {
 
     public void setCompOfferId(String compOfferId) {
         this.compOfferId = compOfferId;
+    }
+
+    public String getRatePlanId() {
+        return ratePlanId;
+    }
+
+    public void setRatePlanId(String ratePlanId) {
+        this.ratePlanId = ratePlanId;
     }
 
     public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, List<LocalDate> offerAppliedDates,
