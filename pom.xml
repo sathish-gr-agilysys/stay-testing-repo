@@ -43,7 +43,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.1456.0</version>
+            <version>74.1461.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
