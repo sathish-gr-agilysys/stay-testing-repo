@@ -45,4 +45,5 @@ logs
 .classpath
 .settings/
 .springBeans
+.factorypath
 
