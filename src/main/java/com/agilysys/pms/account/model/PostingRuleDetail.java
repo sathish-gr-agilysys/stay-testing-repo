@@ -368,7 +368,7 @@ public class PostingRuleDetail {
         }
         this.startDate = template.getStartDate().isBefore(propertyDate) ? propertyDate : template.getStartDate();
         if (template.getEndDate() != null) {
-            this.endDate = getEndDate();
+            this.endDate = template.getEndDate();
         }
         if (template.getComp()) {
             this.offSetRule = template.getOffSetRule();
