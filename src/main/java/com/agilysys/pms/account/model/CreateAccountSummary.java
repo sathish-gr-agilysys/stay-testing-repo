@@ -54,6 +54,8 @@ public class CreateAccountSummary extends AccountSummary {
 
     private Map<String, List<LocalDate>> ratePlanDatesMap;
 
+    private List<PostingRuleDetail> postingRuleDetails;
+
     public String getReservationCompanyProfileId() {
         return reservationCompanyProfileId;
     }
@@ -142,5 +144,13 @@ public class CreateAccountSummary extends AccountSummary {
 
     public void setRatePlanDatesMap(Map<String, List<LocalDate>> ratePlanDatesMap) {
         this.ratePlanDatesMap = ratePlanDatesMap;
+    }
+
+    public List<PostingRuleDetail> getPostingRuleDetails() {
+        return postingRuleDetails;
+    }
+
+    public void setPostingRuleDetails(List<PostingRuleDetail> postingRuleDetails) {
+        this.postingRuleDetails = postingRuleDetails;
     }
 }
