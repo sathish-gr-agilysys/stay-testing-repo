@@ -29,6 +29,7 @@ public interface PantryServiceInterface {
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{id}";
     String PANTRY_ITEM_BULK_UPDATE = "/bulkUpdate";
+    String SORT_PANTRY_ITEMS_BY_FIELD = "/{sortByField}";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
@@ -60,4 +61,11 @@ public interface PantryServiceInterface {
     List<PantryItem> bulkUpdatePantryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<PantryItem> pantryItemList)
           throws RGuestException;
+
+    @GET
+    @Path(SORT_PANTRY_ITEMS_BY_FIELD)
+    @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
+    List<PantryItem> getPantryItemsSortByName(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(SORT_PANTRY_ITEMS_BY_FIELD) String sortPantryItemsByField) throws RGuestException;
 }
