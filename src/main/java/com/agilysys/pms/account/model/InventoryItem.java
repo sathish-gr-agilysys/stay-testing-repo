@@ -39,9 +39,9 @@ public class InventoryItem extends TransactionItem {
     }
 
     public InventoryItem(TransactionItem transactionItem, Integer availableCount, CanonicalId status,
-          Integer maxQuantityPerReservation, Set<String> restrictedRoomTypes) {
+          Integer maxQuantityPerReservation, Set<String> restrictedRoomTypes, Integer order) {
         super(transactionItem);
-
+        super.order = order;
         this.availableCount = availableCount;
         this.maxQuantityPerReservation = maxQuantityPerReservation;
         this.restrictedRoomTypes = restrictedRoomTypes;
