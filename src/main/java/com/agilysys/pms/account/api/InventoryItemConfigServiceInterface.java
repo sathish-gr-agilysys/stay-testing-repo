@@ -35,6 +35,7 @@ public interface InventoryItemConfigServiceInterface {
     String INCLUDE_INTERNAL = "includeInternal";
     String CONVERT_PATH = "/convertToInventory";
     String MIGRATE_TO_V1_PATH = "/migrateToV1";
+    String UPDATE_ORDER = "/updateOrder";
 
     /**
      * Retrieve all InventoryItems
@@ -118,4 +119,9 @@ public interface InventoryItemConfigServiceInterface {
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     List<InventoryItem> convertToInventoryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<InventoryItem> items) throws RGuestException;
+
+    @PUT
+    @Path(UPDATE_ORDER)
+    void updateOrder(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          List<InventoryItem> inventoryItems) throws RGuestException;
 }

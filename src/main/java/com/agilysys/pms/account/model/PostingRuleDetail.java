@@ -82,6 +82,8 @@ public class PostingRuleDetail {
 
     private String authorizerId;
 
+    private Boolean routeChargesAlreadyPosted;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -326,5 +328,13 @@ public class PostingRuleDetail {
 
     public void setAuthorizerId(String authorizerId) {
         this.authorizerId = authorizerId;
+    }
+
+    public Boolean getRouteChargesAlreadyPosted() {
+        return routeChargesAlreadyPosted;
+    }
+
+    public void setRouteChargesAlreadyPosted(Boolean routeChargesAlreadyPosted) {
+        this.routeChargesAlreadyPosted = routeChargesAlreadyPosted;
     }
 }
