@@ -35,14 +35,14 @@ public class FolioInvoice {
     private VATTotalBreakDown vatTotalBreakDown;
     private int numberOfAdults;
     private int numberOfChildren;
-    private int numberOfAgeCategory1;
-    private int numberOfAgeCategory2;
-    private int numberOfAgeCategory3;
-    private int numberOfAgeCategory4;
-    private int numberOfAgeCategory5;
-    private int numberOfAgeCategory6;
-    private int numberOfAgeCategory7;
-    private int numberOfAgeCategory8;
+    private Integer numberOfAgeCategory1;
+    private Integer numberOfAgeCategory2;
+    private Integer numberOfAgeCategory3;
+    private Integer numberOfAgeCategory4;
+    private Integer numberOfAgeCategory5;
+    private Integer numberOfAgeCategory6;
+    private Integer numberOfAgeCategory7;
+    private Integer numberOfAgeCategory8;
 
     public String getId() {
         return id;
@@ -244,67 +244,67 @@ public class FolioInvoice {
         this.numberOfChildren = numberOfChildren;
     }
 
-    public int getNumberOfAgeCategory1() {
-        return numberOfAgeCategory1;
+    public Integer getNumberOfAgeCategory1() {
+        return numberOfAgeCategory1 == null ? 0 : numberOfAgeCategory1;
     }
 
-    public void setNumberOfAgeCategory1(int numberOfAgeCategory1) {
+    public void setNumberOfAgeCategory1(Integer numberOfAgeCategory1) {
         this.numberOfAgeCategory1 = numberOfAgeCategory1;
     }
 
-    public int getNumberOfAgeCategory2() {
-        return numberOfAgeCategory2;
+    public Integer getNumberOfAgeCategory2() {
+        return numberOfAgeCategory2 == null ? 0 : numberOfAgeCategory2;
     }
 
-    public void setNumberOfAgeCategory2(int numberOfAgeCategory2) {
+    public void setNumberOfAgeCategory2(Integer numberOfAgeCategory2) {
         this.numberOfAgeCategory2 = numberOfAgeCategory2;
     }
 
-    public int getNumberOfAgeCategory3() {
-        return numberOfAgeCategory3;
+    public Integer getNumberOfAgeCategory3() {
+        return numberOfAgeCategory3 == null ? 0 : numberOfAgeCategory3;
     }
 
-    public void setNumberOfAgeCategory3(int numberOfAgeCategory3) {
+    public void setNumberOfAgeCategory3(Integer numberOfAgeCategory3) {
         this.numberOfAgeCategory3 = numberOfAgeCategory3;
     }
 
-    public int getNumberOfAgeCategory4() {
-        return numberOfAgeCategory4;
+    public Integer getNumberOfAgeCategory4() {
+        return numberOfAgeCategory4 == null ? 0 : numberOfAgeCategory4;
     }
 
-    public void setNumberOfAgeCategory4(int numberOfAgeCategory4) {
+    public void setNumberOfAgeCategory4(Integer numberOfAgeCategory4) {
         this.numberOfAgeCategory4 = numberOfAgeCategory4;
     }
 
-    public int getNumberOfAgeCategory5() {
-        return numberOfAgeCategory5;
+    public Integer getNumberOfAgeCategory5() {
+        return numberOfAgeCategory5 == null ? 0 : numberOfAgeCategory5;
     }
 
-    public void setNumberOfAgeCategory5(int numberOfAgeCategory5) {
+    public void setNumberOfAgeCategory5(Integer numberOfAgeCategory5) {
         this.numberOfAgeCategory5 = numberOfAgeCategory5;
     }
 
-    public int getNumberOfAgeCategory6() {
-        return numberOfAgeCategory6;
+    public Integer getNumberOfAgeCategory6() {
+        return numberOfAgeCategory6 == null ? 0 : numberOfAgeCategory6;
     }
 
-    public void setNumberOfAgeCategory6(int numberOfAgeCategory6) {
+    public void setNumberOfAgeCategory6(Integer numberOfAgeCategory6) {
         this.numberOfAgeCategory6 = numberOfAgeCategory6;
     }
 
-    public int getNumberOfAgeCategory7() {
-        return numberOfAgeCategory7;
+    public Integer getNumberOfAgeCategory7() {
+        return numberOfAgeCategory7 == null ? 0 : numberOfAgeCategory7;
     }
 
-    public void setNumberOfAgeCategory7(int numberOfAgeCategory7) {
+    public void setNumberOfAgeCategory7(Integer numberOfAgeCategory7) {
         this.numberOfAgeCategory7 = numberOfAgeCategory7;
     }
 
-    public int getNumberOfAgeCategory8() {
-        return numberOfAgeCategory8;
+    public Integer getNumberOfAgeCategory8() {
+        return numberOfAgeCategory8 == null ? 0 : numberOfAgeCategory8;
     }
 
-    public void setNumberOfAgeCategory8(int numberOfAgeCategory8) {
+    public void setNumberOfAgeCategory8(Integer numberOfAgeCategory8) {
         this.numberOfAgeCategory8 = numberOfAgeCategory8;
     }
 }
