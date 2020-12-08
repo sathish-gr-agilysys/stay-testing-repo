@@ -29,7 +29,7 @@ public interface PantryServiceInterface {
     String ITEM_ID = "id";
     String ITEM_ID_PATH = "{id}";
     String PANTRY_ITEM_BULK_UPDATE = "/bulkUpdate";
-    String SORT_PANTRY_ITEMS_BY_FIELD = "sortByField/{sortByField}";
+    String SORT_PANTRY_ITEMS_BY_FIELD = "/sortByField/{sortByField}";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
