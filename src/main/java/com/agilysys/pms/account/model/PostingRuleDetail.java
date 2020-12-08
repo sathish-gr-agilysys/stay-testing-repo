@@ -87,6 +87,8 @@ public class PostingRuleDetail {
 
     private String compOfferId;
 
+    private Boolean routeChargesAlreadyPosted;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -383,5 +385,13 @@ public class PostingRuleDetail {
         if (isNotEmpty(template.getDestinations())) {
             this.destinations = template.getDestinations();
         }
+    }
+
+    public Boolean getRouteChargesAlreadyPosted() {
+        return routeChargesAlreadyPosted;
+    }
+
+    public void setRouteChargesAlreadyPosted(Boolean routeChargesAlreadyPosted) {
+        this.routeChargesAlreadyPosted = routeChargesAlreadyPosted;
     }
 }
