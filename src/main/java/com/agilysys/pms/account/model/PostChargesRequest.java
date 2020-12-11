@@ -19,6 +19,7 @@ public class PostChargesRequest {
     private String componentBundleId;
     private boolean addOn;
     private boolean routingChargesAlreadyPosted;
+    private String ruleId;
 
     public PostChargesRequest() {
     }
@@ -107,5 +108,13 @@ public class PostChargesRequest {
 
     public void setRoutingChargesAlreadyPosted(boolean routingChargesAlreadyPosted) {
         this.routingChargesAlreadyPosted = routingChargesAlreadyPosted;
+    }
+
+    public String getRuleId() {
+        return ruleId;
+    }
+
+    public void setRuleId(String ruleId) {
+        this.ruleId = ruleId;
     }
 }
