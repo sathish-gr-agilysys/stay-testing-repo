@@ -120,7 +120,7 @@ public class LineItemView implements Comparable<LineItemView> {
     }
 
     public LineItemView(String id, String description, String itemId, DateTime postingCalendarDateTime,
-          LocalDate postingPropertyDate, String reason, BigDecimal amountUsed) {
+          LocalDate postingPropertyDate, String reason, BigDecimal amountUsed, String referenceNumber) {
         this.id = id;
         this.description = description;
         this.itemId = itemId;
@@ -128,6 +128,7 @@ public class LineItemView implements Comparable<LineItemView> {
         this.postingPropertyDate = postingPropertyDate;
         this.reason = reason;
         this.amountUsed = amountUsed;
+        this.referenceNumber = referenceNumber;
     }
 
     /**
