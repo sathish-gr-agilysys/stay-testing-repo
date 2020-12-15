@@ -193,6 +193,7 @@ public interface AccountServiceInterfaceV1 {
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
     String INCLUDE_CLOSED_ACCOUNTS = "includeClosedAccounts";
+    String INCLUDE_HOLD_ACCOUNTS = "includeHoldAccounts";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
@@ -746,7 +747,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_FOLIO_LINES)
     @Validated(LineItemTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'TransferAmount')")
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           LineItemTransfer transferInfo) throws RGuestException;
@@ -754,7 +755,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_AMOUNT_PATH)
     @Validated(AmountTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'TransferAmount')")
     List<LineItemView> transferAmountToAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AmountTransfer transferInfo) throws RGuestException;
@@ -890,15 +891,16 @@ public interface AccountServiceInterfaceV1 {
     @Path(SEARCH_PATH + SEARCH_TERM_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts)
-          throws RGuestException;
+          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
+          @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts) throws RGuestException;
 
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + PAGE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
-          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) Integer page,
+          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
+          @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts, @QueryParam(PAGE) Integer page,
           @QueryParam(SIZE) Integer size) throws RGuestException;
 
     @GET
