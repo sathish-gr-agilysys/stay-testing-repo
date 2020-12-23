@@ -254,7 +254,7 @@ public interface AccountServiceInterfaceV1 {
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
-    String TRANSFER_AMOUNT_PATH = "/transferAmount";
+    String TRANSFER_PATH = "/transfer";
     String TRANSFER_FOLIO_LINES = "/transferFolioLines";
     String TRANSFER_OFFER_CHARGES = "/transferOfferCharges";
     String TRANSFER_HISTORY = "/transferHistory";
@@ -763,7 +763,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_FOLIO_LINES)
     @Validated(LineItemTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'TransferAmount')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'Transfer')")
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           LineItemTransfer transferInfo) throws RGuestException;
@@ -775,9 +775,9 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, Set<String> offerIds) throws RGuestException;
 
     @POST
-    @Path(ACCOUNT_ID_PATH + TRANSFER_AMOUNT_PATH)
+    @Path(ACCOUNT_ID_PATH + TRANSFER_PATH)
     @Validated(AmountTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'TransferAmount')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'Transfer')")
     List<LineItemView> transferAmountToAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AmountTransfer transferInfo) throws RGuestException;
