@@ -66,10 +66,12 @@ public interface RecurringChargesServiceInterface {
     String ESTIMATED_ROOM_CHARGES_PATH = "/estimatedRoomCharges";
     String ESTIMATED_CHARGES_PATH = "/estimatedCharges";
     String ESTIMATED_CHARGES_BY_PAYMENTSETTING_PATH = "/estimatedChargesByPaymentSetting";
+    String ESTIMATED_CHARGES_FOR_BATCH_PRE_AUTH = "/estimatedChargesForBatchPreAuth";
     String ESTIMATED_CHARGES_BY_RESERVATION_PATH = "/estimatedChargesByReservationIds";
     String ESTIMATED_CHARGES_BY_FOLIO_PATH = "/estimatedChargesByFolio";
     String ESTIMATED_CHARGES_WITH_OFFERS = "/estimatedChargesWithOffers";
     String START_DATE = "startDate";
+    String NO_OF_DAYS = "noOfDays";
     String END_DATE = "endDate";
     String ARRIVAL_DATE = "arrivalDate";
     String DEPARTURE_DATE = "departureDate";
@@ -253,6 +255,13 @@ public interface RecurringChargesServiceInterface {
     Map<String, List<EstimatedChargesView>> getEstimatedChargesByReservationIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_PATH + ESTIMATED_CHARGES_FOR_BATCH_PRE_AUTH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<EstimatedChargesView>> getEstimatedChargesViewForBatchPreAuth(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam(NO_OF_DAYS) int noOfDays, Set<String> reservationIds) throws RGuestException;
 
     /**
      * @param tenantId
