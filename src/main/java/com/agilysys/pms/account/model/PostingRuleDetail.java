@@ -87,8 +87,11 @@ public class PostingRuleDetail {
 
     private String compOfferId;
 
-    private String ratePlanId;
     private Boolean routeChargesAlreadyPosted;
+
+    private String ratePlanId;
+
+    private String routingRuleTemplateId;
 
     public PostingRuleDetail() { }
 
@@ -350,6 +353,14 @@ public class PostingRuleDetail {
 
     public void setRatePlanId(String ratePlanId) {
         this.ratePlanId = ratePlanId;
+    }
+
+    public String getRoutingRuleTemplateId() {
+        return routingRuleTemplateId;
+    }
+
+    public void setRoutingRuleTemplateId(String routingRuleTemplateId) {
+        this.routingRuleTemplateId = routingRuleTemplateId;
     }
 
     public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, List<LocalDate> offerAppliedDates,
