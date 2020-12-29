@@ -12,6 +12,8 @@ public class CompRedeemRequest {
     private List<String> taxClasses;
     private List<String> taxExemptClasses;
     private BigDecimal amount;
+    private String compOfferId;
+    private String compOfferName;
 
     public CompRedeemRequest() {
     }
@@ -63,6 +65,22 @@ public class CompRedeemRequest {
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    public String getCompOfferId() {
+        return compOfferId;
+    }
+
+    public void setCompOfferId(String compOfferId) {
+        this.compOfferId = compOfferId;
+    }
+
+    public String getCompOfferName() {
+        return compOfferName;
+    }
+
+    public void setCompOfferName(String compOfferName) {
+        this.compOfferName = compOfferName;
     }
 
 }
