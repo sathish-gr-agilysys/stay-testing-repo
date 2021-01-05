@@ -32,6 +32,7 @@ import com.agilysys.common.constants.Constants.HTTPRequestConstants;
 import com.agilysys.common.model.BatchStatusResponse;
 import com.agilysys.common.model.CancelBatchRequest;
 import com.agilysys.common.model.PaymentSetting;
+import com.agilysys.common.model.rate.OfferSnapshot;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
@@ -254,6 +255,7 @@ public interface AccountServiceInterfaceV1 {
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
     String TRANSFER_AMOUNT_PATH = "/transferAmount";
     String TRANSFER_FOLIO_LINES = "/transferFolioLines";
+    String TRANSFER_OFFER_CHARGES = "/transferOfferCharges";
     String TRANSFER_HISTORY = "/transferHistory";
     String TRANSFER_HISTORY_ID = "transferHistoryId";
     String LEDGER_TRANSACTION_ID = "/ledgerTransactionIds";
@@ -555,12 +557,26 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<PostingRuleDetail> postingRuleDetails) throws RGuestException;
 
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + "/fromTemplate")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateCompRoutingRulesAndLineItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          List<OfferSnapshot> offerSnapshots) throws RGuestException;
+
     @DELETE
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void deletePostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(POSTING_RULE_ID) String postingRuleId)
           throws RGuestException;
+
+    @DELETE
+    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void deleteCompOfferPostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + CHARGES_PATH)
@@ -750,6 +766,12 @@ public interface AccountServiceInterfaceV1 {
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           LineItemTransfer transferInfo) throws RGuestException;
+
+    @PUT
+    @Path(ACCOUNT_ID_PATH + TRANSFER_OFFER_CHARGES)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void transferCompBackToFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Set<String> offerIds) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_AMOUNT_PATH)
