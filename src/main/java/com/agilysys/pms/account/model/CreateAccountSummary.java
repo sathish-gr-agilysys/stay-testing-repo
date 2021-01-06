@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.List;
 import java.util.Map;
 
 import org.joda.time.LocalDate;
@@ -48,6 +49,8 @@ public class CreateAccountSummary extends AccountSummary {
     //TODO add schema validation to this to make this required once it is required by the reservation service
     @JsonDeserialize(keyUsing = LocalDateJsonKeyDeserializer.class)
     protected Map<LocalDate, AccountRateSnapshot> rateSnapshot;
+
+    private Map<String, List<LocalDate>> offerAppliedDates;
 
     public String getReservationCompanyProfileId() {
         return reservationCompanyProfileId;
@@ -121,5 +124,13 @@ public class CreateAccountSummary extends AccountSummary {
 
     public void setCreatePackageFolio(boolean createPackageFolio) {
         this.createPackageFolio = createPackageFolio;
+    }
+
+    public Map<String, List<LocalDate>> getOfferAppliedDates() {
+        return offerAppliedDates;
+    }
+
+    public void setOfferAppliedDates(Map<String, List<LocalDate>> offerAppliedDates) {
+        this.offerAppliedDates = offerAppliedDates;
     }
 }
