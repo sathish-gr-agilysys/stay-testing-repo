@@ -32,6 +32,7 @@ import com.agilysys.common.constants.Constants.HTTPRequestConstants;
 import com.agilysys.common.model.BatchStatusResponse;
 import com.agilysys.common.model.CancelBatchRequest;
 import com.agilysys.common.model.PaymentSetting;
+import com.agilysys.common.model.rate.OfferSnapshot;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.AccountUpdateResponse;
@@ -193,6 +194,7 @@ public interface AccountServiceInterfaceV1 {
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
     String INCLUDE_CLOSED_ACCOUNTS = "includeClosedAccounts";
+    String INCLUDE_HOLD_ACCOUNTS = "includeHoldAccounts";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
@@ -252,8 +254,9 @@ public interface AccountServiceInterfaceV1 {
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
-    String TRANSFER_AMOUNT_PATH = "/transferAmount";
+    String TRANSFER_PATH = "/transfer";
     String TRANSFER_FOLIO_LINES = "/transferFolioLines";
+    String TRANSFER_OFFER_CHARGES = "/transferOfferCharges";
     String TRANSFER_HISTORY = "/transferHistory";
     String TRANSFER_HISTORY_ID = "transferHistoryId";
     String LEDGER_TRANSACTION_ID = "/ledgerTransactionIds";
@@ -555,12 +558,26 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<PostingRuleDetail> postingRuleDetails) throws RGuestException;
 
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + "/fromTemplate")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateCompRoutingRulesAndLineItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          List<OfferSnapshot> offerSnapshots) throws RGuestException;
+
     @DELETE
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     void deletePostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(POSTING_RULE_ID) String postingRuleId)
           throws RGuestException;
+
+    @DELETE
+    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void deleteCompOfferPostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + CHARGES_PATH)
@@ -746,15 +763,21 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_FOLIO_LINES)
     @Validated(LineItemTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'Transfer')")
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           LineItemTransfer transferInfo) throws RGuestException;
 
-    @POST
-    @Path(ACCOUNT_ID_PATH + TRANSFER_AMOUNT_PATH)
-    @Validated(AmountTransfer.class)
+    @PUT
+    @Path(ACCOUNT_ID_PATH + TRANSFER_OFFER_CHARGES)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void transferCompBackToFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Set<String> offerIds) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + TRANSFER_PATH)
+    @Validated(AmountTransfer.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'Transfer')")
     List<LineItemView> transferAmountToAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AmountTransfer transferInfo) throws RGuestException;
@@ -890,15 +913,16 @@ public interface AccountServiceInterfaceV1 {
     @Path(SEARCH_PATH + SEARCH_TERM_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts)
-          throws RGuestException;
+          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
+          @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts) throws RGuestException;
 
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + PAGE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
-          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) Integer page,
+          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
+          @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts, @QueryParam(PAGE) Integer page,
           @QueryParam(SIZE) Integer size) throws RGuestException;
 
     @GET
