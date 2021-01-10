@@ -108,6 +108,9 @@ public class LineItemView implements Comparable<LineItemView> {
     private ARPaymentStatus arPaymentStatus;
     private BigDecimal amountUsed;
     private BigDecimal lineItemDepositBalance;
+    private String referenceNumber;
+    private String compOfferId;
+    private String compOfferName;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -119,7 +122,7 @@ public class LineItemView implements Comparable<LineItemView> {
     }
 
     public LineItemView(String id, String description, String itemId, DateTime postingCalendarDateTime,
-          LocalDate postingPropertyDate, String reason, BigDecimal amountUsed) {
+          LocalDate postingPropertyDate, String reason, BigDecimal amountUsed, String referenceNumber) {
         this.id = id;
         this.description = description;
         this.itemId = itemId;
@@ -127,6 +130,7 @@ public class LineItemView implements Comparable<LineItemView> {
         this.postingPropertyDate = postingPropertyDate;
         this.reason = reason;
         this.amountUsed = amountUsed;
+        this.referenceNumber = referenceNumber;
     }
 
     /**
@@ -658,6 +662,30 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setTransferMessage(String transferMessage) {
         this.transferMessage = transferMessage;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
+    }
+
+    public String getCompOfferId() {
+        return compOfferId;
+    }
+
+    public void setCompOfferId(String compOfferId) {
+        this.compOfferId = compOfferId;
+    }
+
+    public String getCompOfferName() {
+        return compOfferName;
+    }
+
+    public void setCompOfferName(String compOfferName) {
+        this.compOfferName = compOfferName;
     }
 
     /**
