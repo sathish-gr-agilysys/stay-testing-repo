@@ -575,8 +575,7 @@ public interface AccountServiceInterfaceV1 {
     @Validated(Charge.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> postPosCharge(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, PosCharge posCharge)
-          throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, PosCharge posCharge) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + BATCH_CHARGES_PATH)
@@ -589,8 +588,8 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + "/batchPosCharges")
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     PostChargesResponse postPosCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
-          @QueryParam(GROUPED) boolean grouped, PostPosChargesRequest charges) throws RGuestException;
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam(GROUPED) boolean grouped, PostPosChargesRequest charges)
+          throws RGuestException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are
