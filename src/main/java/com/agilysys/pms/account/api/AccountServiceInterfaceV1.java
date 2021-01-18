@@ -1436,4 +1436,11 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
     List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + "/modifyFromRate")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateRatePlanRoutingRules(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          Map<String, List<LocalDate>> ratePlanDatesMap) throws RGuestException;
 }
