@@ -152,6 +152,7 @@ public interface AccountServiceInterfaceV1 {
 
     String ACCOUNT_BALANCES_PATH = "/balances";
     String ACCOUNT_ID = "accountId";
+    String SPLIT_BY_SOURCE_ACCOUNT = "splitBySourceAccount";
     String GROUP_ID = "groupId";
     String ACCOUNT_ID_PATH = "/{" + ACCOUNT_ID + "}";
     String ACCOUNT_NUMBER = "accountNumber";
@@ -193,10 +194,12 @@ public interface AccountServiceInterfaceV1 {
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
     String INCLUDE_CLOSED_ACCOUNTS = "includeClosedAccounts";
+    String INCLUDE_HOLD_ACCOUNTS = "includeHoldAccounts";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
     String INVOICE_ID = "invoiceId";
     String INVOICE_ID_PATH = "/{" + INVOICE_ID + "}";
     String INVOICES_PATH = "/invoices";
+    String BY_ACCOUNT_PATH = INVOICES_PATH + "/byAccount";
     String INVOICE_REPORT_START = "/invoice-report-start";
     String INVOICE_VIEW_TYPE = "invoiceViewType";
     String INVOICE_REPORT = "/invoice-report";
@@ -251,7 +254,7 @@ public interface AccountServiceInterfaceV1 {
     String TASK_ID = "taskId";
     String TASK_ID_PATH = "/tasks/{" + TASK_ID + "}";
     String TAX_EXEMPT_SETTINGS_BY_DATE_PATH = "/taxExemptSettingsByDate";
-    String TRANSFER_AMOUNT_PATH = "/transferAmount";
+    String TRANSFER_PATH = "/transfer";
     String TRANSFER_FOLIO_LINES = "/transferFolioLines";
     String TRANSFER_OFFER_CHARGES = "/transferOfferCharges";
     String TRANSFER_HISTORY = "/transferHistory";
@@ -760,7 +763,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_FOLIO_LINES)
     @Validated(LineItemTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'Transfer')")
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           LineItemTransfer transferInfo) throws RGuestException;
@@ -772,9 +775,9 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, Set<String> offerIds) throws RGuestException;
 
     @POST
-    @Path(ACCOUNT_ID_PATH + TRANSFER_AMOUNT_PATH)
+    @Path(ACCOUNT_ID_PATH + TRANSFER_PATH)
     @Validated(AmountTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'Transfer')")
     List<LineItemView> transferAmountToAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AmountTransfer transferInfo) throws RGuestException;
@@ -910,15 +913,16 @@ public interface AccountServiceInterfaceV1 {
     @Path(SEARCH_PATH + SEARCH_TERM_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts)
-          throws RGuestException;
+          @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
+          @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts) throws RGuestException;
 
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + PAGE_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
-          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts, @QueryParam(PAGE) Integer page,
+          @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
+          @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts, @QueryParam(PAGE) Integer page,
           @QueryParam(SIZE) Integer size) throws RGuestException;
 
     @GET
@@ -929,7 +933,7 @@ public interface AccountServiceInterfaceV1 {
 
     @PUT
     @Path(ACCOUNT_ID_PATH + AR_DISPUTE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @PreAuthorize("hasPermission('Required', 'ManageInvoiceDisputes')")
     void setARDisputeDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, DisputedARLedgerTransaction disputedARLedgerTransaction)
           throws RGuestException;
@@ -968,6 +972,26 @@ public interface AccountServiceInterfaceV1 {
           "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
     InvoiceView createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, InvoiceRequest invoice) throws RGuestException;
+
+    /**
+     * Create an invoice for an account
+     *
+     * @param tenantId   id of tenant for the account
+     * @param propertyId id of the property
+     * @param accountId  id of account to save an invoice to
+     * @param splitBySourceAccount create multiple invoice split by source account
+     * @param invoice
+     * @return Created invoice
+     */
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + BY_ACCOUNT_PATH)
+    @Validated(InvoiceRequest.class)
+    @PreAuthorize(
+          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    List<InvoiceView> createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam(SPLIT_BY_SOURCE_ACCOUNT) boolean splitBySourceAccount,
+          InvoiceRequest invoice) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH)

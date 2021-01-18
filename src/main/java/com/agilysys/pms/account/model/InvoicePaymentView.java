@@ -13,6 +13,7 @@ public class InvoicePaymentView {
     private String paymentMethodId;
     private String paymentMethodName;
     private String reason;
+    private String referenceNumber;
     private LocalDate postingPropertyDate;
     private DateTime postingSystemDateTime;
     private LocalDate appliedOnPropertyDate;
@@ -130,4 +131,11 @@ public class InvoicePaymentView {
         return amount.add(getRefundTotal());
     }
 
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
+    }
 }
