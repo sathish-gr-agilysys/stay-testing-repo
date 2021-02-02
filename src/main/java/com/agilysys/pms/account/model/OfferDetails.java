@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.rate.ComponentHelper;
@@ -32,6 +33,7 @@ public class OfferDetails {
     private int numberOfAgeCategory6;
     private int numberOfAgeCategory7;
     private int numberOfAgeCategory8;
+    private List<OfferRecurringCharges> recurringCharges;
 
     public List<OfferSnapshot> getOfferSnapshots() {
         return offerSnapshots;
@@ -129,6 +131,14 @@ public class OfferDetails {
         this.numberOfAgeCategory8 = numberOfAgeCategory8;
     }
 
+    public List<OfferRecurringCharges> getRecurringCharges() {
+        return recurringCharges;
+    }
+
+    public void setRecurringCharges(List<OfferRecurringCharges> recurringCharges) {
+        this.recurringCharges = recurringCharges;
+    }
+
     public static Map<LocalDate, List<RecurringChargeView>> getRecurringChargeFromSnapShot(OfferDetails offerDetails,
           List<AgeCategory> ageCategories) {
         Map<LocalDate, List<RecurringChargeView>> recurringChargeViewsByDate = new TreeMap<>();
@@ -190,6 +200,22 @@ public class OfferDetails {
             }
             recurringChargeViewsByDate.put(rateDetails.getDate(), recurringChargeViews);
         }
+
+        if (CollectionUtils.isNotEmpty(offerDetails.getRecurringCharges())) {
+            for (OfferRecurringCharges recurringCharge : offerDetails.getRecurringCharges()) {
+                for (OfferRecurringItem recurringItem :recurringCharge.getItems()) {
+                    RecurringChargeView recurringChargeView = new RecurringChargeView();
+                    recurringChargeView.setChargeDate(recurringCharge.getChargeDate());
+                    recurringChargeView.setAmount(recurringItem.getSubTotal());
+                    recurringChargeView.setItemId(recurringItem.getItemId());
+                    List<RecurringChargeView> views =
+                          recurringChargeViewsByDate.computeIfAbsent(recurringCharge.getChargeDate(), k -> new ArrayList<>());
+                    views.add(recurringChargeView);
+                }
+
+            }
+        }
+
         return recurringChargeViewsByDate;
     }
 
