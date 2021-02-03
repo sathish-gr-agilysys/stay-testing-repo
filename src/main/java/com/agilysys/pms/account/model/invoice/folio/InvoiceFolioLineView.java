@@ -29,6 +29,7 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
 
     private String folioTransactionType;
     private BigDecimal payment;
+    private String referenceNumber;
 
     public String getAccountId() {
         return accountId;
@@ -263,5 +264,13 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
 
     public void setFolioTransactionType(String folioTransactionType) {
         this.folioTransactionType = folioTransactionType;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 }
