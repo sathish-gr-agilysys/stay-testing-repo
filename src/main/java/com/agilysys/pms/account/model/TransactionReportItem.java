@@ -43,6 +43,7 @@ public class TransactionReportItem {
     private String mealPeriodId;
     private List<PantryItemDetails> pantryItemDetails;
     private DateTime createTime;
+    private String referenceNumber;
 
     public String getId() {
         return id;
@@ -274,5 +275,13 @@ public class TransactionReportItem {
 
     public void setCreateTime(DateTime createTime) {
         this.createTime = createTime;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 }
