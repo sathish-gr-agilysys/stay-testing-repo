@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.UUID;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -269,6 +270,9 @@ public class OfferDetails {
                     recurringChargeView
                           .setAmount(recurringItem.getAmount().multiply(new BigDecimal(recurringItem.getQuantity())));
                     recurringChargeView.setItemId(recurringItem.getTransactionItemId());
+                    if (Boolean.TRUE.equals(recurringItem.getPet())) {
+                        recurringChargeView.setPetReferenceId(UUID.randomUUID().toString());
+                    }
                     List<RecurringChargeView> views = recurringChargeViewsByDate
                           .computeIfAbsent(recurringCharge.getChargeDate(), k -> new ArrayList<>());
                     views.add(recurringChargeView);

@@ -15,6 +15,7 @@ public class OfferRecurringItem {
     private String recurringId;
     private BigDecimal amount;
     private Integer quantity;
+    private Boolean isPet;
 
     public LocalDate getChargeDate() {
         return chargeDate;
@@ -62,5 +63,13 @@ public class OfferRecurringItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Boolean getPet() {
+        return isPet;
+    }
+
+    public void setPet(Boolean pet) {
+        isPet = pet;
     }
 }
