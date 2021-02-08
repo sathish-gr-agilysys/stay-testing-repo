@@ -187,19 +187,38 @@ public class OfferDetails {
                 if (addOnComponentChargeViews == null) {
                     addOnComponentChargeViews = new ArrayList<>(addOns.size());
                 }
-                for (Entry<LocalDate, List<ComponentBundle>> entry : addOns.entrySet()) {
-                    for (ComponentBundle componentBundle : entry.getValue()) {
-                        for (Component component : componentBundle.getComponents()) {
+                List<ComponentBundle> addOnsForDate = addOns.get(rateDetails.getDate());
+                for (ComponentBundle componentBundle : addOnsForDate) {
+                    for (Component component : componentBundle.getComponents()) {
+                        ComponentRateSnapshot componentRateSnapshot = new ComponentRateSnapshot();
+                        int quantity = ComponentHelper
+                              .getTotalQuantity(component.getComponentType(), offerDetails.getNumberOfAdults(),
+                                    offerDetails.getNumberOfChildren(), offerDetails.getNumberOfAgeCategory1(),
+                                    offerDetails.getNumberOfAgeCategory2(), offerDetails.getNumberOfAgeCategory3(),
+                                    offerDetails.getNumberOfAgeCategory4(), offerDetails.getNumberOfAgeCategory5(),
+                                    offerDetails.getNumberOfAgeCategory6(), offerDetails.getNumberOfAgeCategory7(),
+                                    offerDetails.getNumberOfAgeCategory8(), component.getQuantity(), ageCategories);
 
-                            int quantity = ComponentHelper
-                                  .getTotalQuantity(component.getComponentType(), offerDetails.getNumberOfAdults(),
-                                        offerDetails.getNumberOfChildren(), offerDetails.getNumberOfAgeCategory1(),
-                                        offerDetails.getNumberOfAgeCategory2(), offerDetails.getNumberOfAgeCategory3(),
-                                        offerDetails.getNumberOfAgeCategory4(), offerDetails.getNumberOfAgeCategory5(),
-                                        offerDetails.getNumberOfAgeCategory6(), offerDetails.getNumberOfAgeCategory7(),
-                                        offerDetails.getNumberOfAgeCategory8(), component.getQuantity(),
-                                        ageCategories);
-                        }
+                        componentRateSnapshot.setQuantity(quantity);
+                        componentRateSnapshot.setAmount(component.getAmount());
+                        componentRateSnapshot
+                              .setTotalAmount(componentRateSnapshot.getAmount().multiply(new BigDecimal(quantity)));
+                        componentRateSnapshot.setTransactionItemId(component.getTransactionItemId());
+                        componentRateSnapshot.setComponentBundleId(componentBundle.getId());
+                        componentRateSnapshot.setComponentId(component.getId());
+                        componentRateSnapshot.setComponentType(component.getComponentType());
+                        componentRateSnapshot.setRoomChargePostingType(component.getRoomChargePostingType());
+                        componentRateSnapshot.setAllowanceComponentType(component.getAllowanceComponentType());
+                        componentRateSnapshot.setAllowanceAmount(component.getAllowanceAmount());
+                        componentRateSnapshot.setAllowanceCombinations(component.getAllowanceCombinations());
+                        componentRateSnapshot.setAllowanceFrequencyType(component.getAllowanceFrequencyType());
+                        componentRateSnapshot.setAllowanceName(component.getAllowanceName());
+                        componentRateSnapshot.setAllowanceTotalQuantity(component.getQuantity());
+                        componentRateSnapshot.setBreakageId(component.getBreakageId());
+                        componentRateSnapshot.setAddOn(component.isAddOn());
+                        componentRateSnapshot.setAddOnBundleId(componentBundle.getAddOnBundleId());
+                        addOnComponentChargeViews
+                              .add(ComponentChargeView.fromComponentRateSnapshot(componentRateSnapshot));
                     }
                 }
             }
@@ -210,8 +229,7 @@ public class OfferDetails {
                     RecurringChargeView autoRecurringChargeView = new RecurringChargeView();
                     autoRecurringChargeView.setChargeDate(rateDetails.getDate());
                     if (autoRecurringItem.getOverriddenCharge() != null) {
-                        autoRecurringChargeView.setAmount(autoRecurringItem.getOverriddenCharge()
-                              .multiply(new BigDecimal(autoRecurringItem.getQuantity())));
+                        autoRecurringChargeView.setAmount(autoRecurringItem.getOverriddenCharge());
                     } else {
                         if (ValueType.PERCENT.equals(autoRecurringItem.getValueType())) {
                             BigDecimal roomRate = rateDetails.getRoomRate();
@@ -246,9 +264,11 @@ public class OfferDetails {
             for (OfferRecurringCharges recurringCharge : offerDetails.getRecurringCharges()) {
                 for (OfferRecurringItem recurringItem : recurringCharge.getItems()) {
                     RecurringChargeView recurringChargeView = new RecurringChargeView();
+                    recurringChargeView.setRecurringChargeId(recurringItem.getRecurringId());
                     recurringChargeView.setChargeDate(recurringCharge.getChargeDate());
-                    recurringChargeView.setAmount(recurringItem.getSubTotal());
-                    recurringChargeView.setItemId(recurringItem.getItemId());
+                    recurringChargeView
+                          .setAmount(recurringItem.getAmount().multiply(new BigDecimal(recurringItem.getQuantity())));
+                    recurringChargeView.setItemId(recurringItem.getTransactionItemId());
                     List<RecurringChargeView> views = recurringChargeViewsByDate
                           .computeIfAbsent(recurringCharge.getChargeDate(), k -> new ArrayList<>());
                     views.add(recurringChargeView);

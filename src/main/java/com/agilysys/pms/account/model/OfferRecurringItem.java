@@ -10,9 +10,11 @@ import org.joda.time.LocalDate;
 public class OfferRecurringItem {
 
     private LocalDate chargeDate;
-    private String itemId;
+    private String transactionItemId;
     private String sourceId;
-    private BigDecimal subTotal;
+    private String recurringId;
+    private BigDecimal amount;
+    private Integer quantity;
 
     public LocalDate getChargeDate() {
         return chargeDate;
@@ -22,12 +24,12 @@ public class OfferRecurringItem {
         this.chargeDate = chargeDate;
     }
 
-    public String getItemId() {
-        return itemId;
+    public String getTransactionItemId() {
+        return transactionItemId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public void setTransactionItemId(String transactionItemId) {
+        this.transactionItemId = transactionItemId;
     }
 
     public String getSourceId() {
@@ -38,11 +40,27 @@ public class OfferRecurringItem {
         this.sourceId = sourceId;
     }
 
-    public BigDecimal getSubTotal() {
-        return subTotal;
+    public String getRecurringId() {
+        return recurringId;
     }
 
-    public void setSubTotal(BigDecimal subTotal) {
-        this.subTotal = subTotal;
+    public void setRecurringId(String recurringId) {
+        this.recurringId = recurringId;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }
