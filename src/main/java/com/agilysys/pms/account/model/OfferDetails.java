@@ -214,7 +214,7 @@ public class OfferDetails {
                         componentRateSnapshot.setAllowanceName(component.getAllowanceName());
                         componentRateSnapshot.setAllowanceTotalQuantity(component.getQuantity());
                         componentRateSnapshot.setBreakageId(component.getBreakageId());
-                        componentRateSnapshot.setAddOn(component.isAddOn());
+                        componentRateSnapshot.setAddOn(componentBundle.getCreatedByUser());
                         componentRateSnapshot.setAddOnBundleId(componentBundle.getAddOnBundleId());
                         addOnComponentChargeViews
                               .add(ComponentChargeView.fromComponentRateSnapshot(componentRateSnapshot));
