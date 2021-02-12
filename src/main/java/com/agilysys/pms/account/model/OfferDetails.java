@@ -189,7 +189,7 @@ public class OfferDetails {
                 List<ComponentBundle> addOnsForDate = addOns.get(rateDetails.getDate());
                 for (ComponentBundle componentBundle : addOnsForDate) {
                     for (Component component : componentBundle.getComponents()) {
-                        ComponentRateSnapshot componentRateSnapshot = new ComponentRateSnapshot();
+
                         int quantity = ComponentHelper
                               .getTotalQuantity(component.getComponentType(), offerDetails.getNumberOfAdults(),
                                     offerDetails.getNumberOfChildren(), offerDetails.getNumberOfAgeCategory1(),
@@ -198,21 +198,16 @@ public class OfferDetails {
                                     offerDetails.getNumberOfAgeCategory6(), offerDetails.getNumberOfAgeCategory7(),
                                     offerDetails.getNumberOfAgeCategory8(), component.getQuantity(), ageCategories);
 
-                        componentRateSnapshot.setQuantity(quantity);
-                        componentRateSnapshot.setAmount(component.getAmount());
-                        componentRateSnapshot
-                              .setTotalAmount(componentRateSnapshot.getAmount().multiply(new BigDecimal(quantity)));
-                        componentRateSnapshot.setTransactionItemId(component.getTransactionItemId());
-                        componentRateSnapshot.setComponentBundleId(componentBundle.getId());
+                        ComponentRateSnapshot componentRateSnapshot =
+                              new ComponentRateSnapshot(component.getAmount(), componentBundle.getId(),
+                                    component.getAmount().multiply(new BigDecimal(quantity)), quantity,
+                                    component.getTransactionItemId(), component.getComponentType(),
+                                    component.getRoomChargePostingType(), component.getAllowanceComponentType(),
+                                    component.getAllowanceAmount(), component.getAllowanceCombinations(),
+                                    component.getAllowanceFrequencyType(), component.getAllowanceName(),
+                                    component.getQuantity());
+
                         componentRateSnapshot.setComponentId(component.getId());
-                        componentRateSnapshot.setComponentType(component.getComponentType());
-                        componentRateSnapshot.setRoomChargePostingType(component.getRoomChargePostingType());
-                        componentRateSnapshot.setAllowanceComponentType(component.getAllowanceComponentType());
-                        componentRateSnapshot.setAllowanceAmount(component.getAllowanceAmount());
-                        componentRateSnapshot.setAllowanceCombinations(component.getAllowanceCombinations());
-                        componentRateSnapshot.setAllowanceFrequencyType(component.getAllowanceFrequencyType());
-                        componentRateSnapshot.setAllowanceName(component.getAllowanceName());
-                        componentRateSnapshot.setAllowanceTotalQuantity(component.getQuantity());
                         componentRateSnapshot.setBreakageId(component.getBreakageId());
                         componentRateSnapshot.setAddOn(componentBundle.getCreatedByUser());
                         componentRateSnapshot.setAddOnBundleId(componentBundle.getAddOnBundleId());
