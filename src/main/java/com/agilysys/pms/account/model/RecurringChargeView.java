@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.agilysys.common.model.rate.RoomChargePostingType;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.FrequencyType;
@@ -73,6 +74,7 @@ public class RecurringChargeView {
     private BigDecimal offerAmount;
     private BigDecimal offerTaxAmount;
     private BigDecimal originalAmount;
+    private RoomChargePostingType roomChargePostingType;
 
     public RecurringChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -380,5 +382,13 @@ public class RecurringChargeView {
 
     public void setOriginalAmount(BigDecimal originalAmount) {
         this.originalAmount = originalAmount;
+    }
+
+    public RoomChargePostingType getRoomChargePostingType() {
+        return roomChargePostingType;
+    }
+
+    public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
+        this.roomChargePostingType = roomChargePostingType;
     }
 }
