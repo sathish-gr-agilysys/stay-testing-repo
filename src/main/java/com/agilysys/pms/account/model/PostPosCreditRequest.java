@@ -8,17 +8,8 @@ import java.util.List;
 
 public class PostPosCreditRequest {
     private List<PosCredit> posCredits;
-    private boolean houseAccount;
     private BigDecimal totalAmount;
     private String name;
-
-    public boolean isHouseAccount() {
-        return houseAccount;
-    }
-
-    public void setHouseAccount(boolean houseAccount) {
-        this.houseAccount = houseAccount;
-    }
 
     public List<PosCredit> getPosCredits() {
         return posCredits;

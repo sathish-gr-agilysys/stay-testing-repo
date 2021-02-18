@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 
 public class PostPosChargesRequest extends PostChargesRequestBase<PosCharge> {
     private String accountId;
-    private boolean houseAccount;
     private BigDecimal totalAmount;
     private String outletName;
     private String mealPeriodName;
@@ -18,14 +17,6 @@ public class PostPosChargesRequest extends PostChargesRequestBase<PosCharge> {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
-    }
-
-    public boolean isHouseAccount() {
-        return houseAccount;
-    }
-
-    public void setHouseAccount(boolean houseAccount) {
-        this.houseAccount = houseAccount;
     }
 
     public BigDecimal getTotalAmount() {
