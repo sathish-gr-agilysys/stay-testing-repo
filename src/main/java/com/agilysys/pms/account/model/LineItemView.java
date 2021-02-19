@@ -111,6 +111,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String referenceNumber;
     private String compOfferId;
     private String compOfferName;
+    private String authCode;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -686,6 +687,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCompOfferName(String compOfferName) {
         this.compOfferName = compOfferName;
+    }
+
+    public String getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
     }
 
     /**

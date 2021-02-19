@@ -63,6 +63,7 @@ public abstract class Transaction {
     protected boolean arDeposit;
     protected boolean routingChargeAlreadyPosted;
     protected String referenceNumber;
+    protected String authCode;
 
     public String getAccountId() {
         return accountId;
@@ -311,6 +312,14 @@ public abstract class Transaction {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public String getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
     }
 
     @Override
