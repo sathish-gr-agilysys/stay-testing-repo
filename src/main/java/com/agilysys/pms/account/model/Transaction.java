@@ -63,6 +63,8 @@ public abstract class Transaction {
     protected boolean arDeposit;
     protected boolean routingChargeAlreadyPosted;
     protected String referenceNumber;
+    protected String paymentInterfaceId;
+    protected String paymentTransactionId;
 
     public String getAccountId() {
         return accountId;
@@ -311,6 +313,22 @@ public abstract class Transaction {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public String getPaymentTransactionId() {
+        return paymentTransactionId;
+    }
+
+    public void setPaymentTransactionId(String paymentTransactionId) {
+        this.paymentTransactionId = paymentTransactionId;
+    }
+
+    public String getPaymentInterfaceId() {
+        return paymentInterfaceId;
+    }
+
+    public void setPaymentInterfaceId(String paymentInterfaceId) {
+        this.paymentInterfaceId = paymentInterfaceId;
     }
 
     @Override

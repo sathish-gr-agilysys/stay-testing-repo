@@ -111,6 +111,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private String referenceNumber;
     private String compOfferId;
     private String compOfferName;
+    private String paymentInterfaceId;
+    private String paymentTransactionId;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -1072,6 +1074,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setLineItemDepositBalance(BigDecimal lineItemDepositBalance) {
         this.lineItemDepositBalance = lineItemDepositBalance;
+    }
+
+    public String getPaymentInterfaceId() {
+        return paymentInterfaceId;
+    }
+
+    public void setPaymentInterfaceId(String paymentInterfaceId) {
+        this.paymentInterfaceId = paymentInterfaceId;
+    }
+
+    public String getPaymentTransactionId() {
+        return paymentTransactionId;
+    }
+
+    public void setPaymentTransactionId(String paymentTransactionId) {
+        this.paymentTransactionId = paymentTransactionId;
     }
 
     @Override
