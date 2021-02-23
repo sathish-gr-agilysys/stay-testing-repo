@@ -39,6 +39,7 @@ public class RecurringChargeView {
     private String ratePlanId;
     private String petReferenceId;
     private String vehicleTypeReferenceId;
+    private String referenceId;
 
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
@@ -285,6 +286,14 @@ public class RecurringChargeView {
 
     public void setVehicleTypeReferenceId(String vehicleTypeReferenceId) {
         this.vehicleTypeReferenceId = vehicleTypeReferenceId;
+    }
+
+    public String getReferenceId() {
+        return referenceId;
+    }
+
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
     }
 
     public LocalDate getStartDate() {
