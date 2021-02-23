@@ -39,6 +39,7 @@ public class RecurringChargeView {
     private String ratePlanName;
     private String ratePlanId;
     private String petReferenceId;
+    private String referenceId;
 
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
@@ -390,5 +391,13 @@ public class RecurringChargeView {
 
     public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
         this.roomChargePostingType = roomChargePostingType;
+    }
+
+    public String getReferenceId() {
+        return referenceId;
+    }
+
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
     }
 }
