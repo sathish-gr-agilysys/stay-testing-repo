@@ -5,10 +5,7 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
-/**
- * Needed because transaction is abstract
- */
-public class PaymentTransaction extends Transaction {
+public class PaymentTransaction extends Transaction implements TrackableTransaction {
     private String receiptTextImage;
     private Long checkNumber;
     private String closeTime;
@@ -37,26 +34,32 @@ public class PaymentTransaction extends Transaction {
         this.pantryItem = pantryItem;
     }
 
+    @Override
     public String getReceiptTextImage() {
         return receiptTextImage;
     }
 
+    @Override
     public void setReceiptTextImage(String receiptTextImage) {
         this.receiptTextImage = receiptTextImage;
     }
 
+    @Override
     public Long getCheckNumber() {
         return checkNumber;
     }
 
+    @Override
     public void setCheckNumber(Long checkNumber) {
         this.checkNumber = checkNumber;
     }
 
+    @Override
     public String getCloseTime() {
         return closeTime;
     }
 
+    @Override
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }

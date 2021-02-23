@@ -5,7 +5,7 @@ package com.agilysys.pms.account.model;
 
 import com.agilysys.common.model.rate.AllowanceCombination;
 
-public class PosCredit extends Credit implements PosTransaction {
+public class PosCredit extends Credit implements PosTransaction, TrackableTransaction {
     private String receiptTextImage;
     private Long checkNumber;
     private String closeTime;
@@ -52,10 +52,12 @@ public class PosCredit extends Credit implements PosTransaction {
         this.checkNumber = checkNumber;
     }
 
+    @Override
     public String getCloseTime() {
         return closeTime;
     }
 
+    @Override
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
