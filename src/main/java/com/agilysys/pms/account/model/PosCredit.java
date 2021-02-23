@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -13,23 +13,23 @@ public class PosCredit extends Credit implements PosTransaction {
     public PosCredit() {}
 
     public PosCredit(PosCredit posCredit) {
-        this.receiptTextImage = posCredit.getReceiptTextImage();
-        this.checkNumber = posCredit.getCheckNumber();
-        this.closeTime = posCredit.getCloseTime();
-        this.setTransactionItemType(posCredit.getTransactionItemType());
-        this.setMealPeriodId(posCredit.getMealPeriodId());
-        this.setExpectedGrossAmount(posCredit.getExpectedGrossAmount());
-        this.setAccountId(posCredit.getAccountId());
-        this.setAmount(posCredit.getAmount());
-        this.setIgnoreRules(posCredit.getIgnoreRules());
-        this.setItemId(posCredit.getItemId());
-        this.setParentId(posCredit.getParentId());
-        this.setPostingDate(posCredit.getPostingDate());
-        this.setQuantity(posCredit.getQuantity());
-        this.setReason(posCredit.getReason());
-        this.setReference(posCredit.getReference());
-        this.setSourceId(posCredit.getSourceId());
-        this.setTerminalId(posCredit.getTerminalId());
+        receiptTextImage = posCredit.getReceiptTextImage();
+        checkNumber = posCredit.getCheckNumber();
+        closeTime = posCredit.getCloseTime();
+        setTransactionItemType(posCredit.getTransactionItemType());
+        setMealPeriodId(posCredit.getMealPeriodId());
+        setExpectedGrossAmount(posCredit.getExpectedGrossAmount());
+        setAccountId(posCredit.getAccountId());
+        setAmount(posCredit.getAmount());
+        setIgnoreRules(posCredit.getIgnoreRules());
+        setItemId(posCredit.getItemId());
+        setParentId(posCredit.getParentId());
+        setPostingDate(posCredit.getPostingDate());
+        setQuantity(posCredit.getQuantity());
+        setReason(posCredit.getReason());
+        setReference(posCredit.getReference());
+        setSourceId(posCredit.getSourceId());
+        setTerminalId(posCredit.getTerminalId());
     }
 
     @Override

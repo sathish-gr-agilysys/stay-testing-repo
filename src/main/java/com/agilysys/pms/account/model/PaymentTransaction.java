@@ -13,8 +13,7 @@ public class PaymentTransaction extends Transaction {
     private Long checkNumber;
     private String closeTime;
 
-    public PaymentTransaction() {
-    }
+    public PaymentTransaction() {}
 
     public PaymentTransaction(String accountId, BigDecimal amount, String itemId) {
         this.accountId = accountId;
@@ -61,5 +60,4 @@ public class PaymentTransaction extends Transaction {
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
-
 }
