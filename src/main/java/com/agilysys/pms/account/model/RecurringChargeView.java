@@ -15,6 +15,7 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.FrequencyType;
 import com.agilysys.common.model.rate.CompInfo;
+import com.agilysys.common.model.rate.ChargeSnapshot.ChargeType;
 
 /**
  * Recurring Charges view object
@@ -40,6 +41,7 @@ public class RecurringChargeView {
     private String ratePlanId;
     private String petReferenceId;
     private String referenceId;
+    private ChargeType chargeType;
 
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
@@ -279,6 +281,14 @@ public class RecurringChargeView {
 
     public void setPetReferenceId(String petReferenceId) {
         this.petReferenceId = petReferenceId;
+    }
+
+    public ChargeType getChargeType() {
+        return chargeType;
+    }
+
+    public void setChargeType(ChargeType chargeType) {
+        this.chargeType = chargeType;
     }
 
     public LocalDate getStartDate() {
