@@ -38,8 +38,9 @@ public class PosCharge extends Charge implements PosTransaction, TrackableTransa
         this.closeTime = closeTime;
     }
 
-    @Override
-    public boolean checkPosCharge() {
-        return true;
-    }
+    //TODO - 23333 verify
+//    @Override
+//    public boolean checkPosCharge() {
+//        return true;
+//    }
 }

@@ -62,10 +62,11 @@ public class PosCredit extends Credit implements PosTransaction, TrackableTransa
         this.closeTime = closeTime;
     }
 
-    @Override
-    public boolean checkPosCharge() {
-        return true;
-    }
+    //TODO-23333 verify
+//    @Override
+//    public boolean checkPosCharge() {
+//        return true;
+//    }
 
     @Override
     public AllowanceCombination toAllowanceCombination() {
