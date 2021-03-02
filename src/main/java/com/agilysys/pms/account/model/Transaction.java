@@ -64,6 +64,7 @@ public abstract class Transaction {
     protected boolean routingChargeAlreadyPosted;
     protected String referenceNumber;
     protected String authCode;
+    protected String cardHolderName;
 
     public String getAccountId() {
         return accountId;
@@ -320,6 +321,14 @@ public abstract class Transaction {
 
     public void setAuthCode(String authCode) {
         this.authCode = authCode;
+    }
+
+    public String getCardHolderName() {
+        return cardHolderName;
+    }
+
+    public void setCardHolderName(String cardHolderName) {
+        this.cardHolderName = cardHolderName;
     }
 
     @Override
