@@ -262,7 +262,7 @@ public class OfferDetails {
                     recurringChargeView.setChargeDate(recurringCharge.getChargeDate());
                     recurringChargeView
                           .setAmount(recurringItem.getAmount().multiply(new BigDecimal(recurringItem.getQuantity())));
-                    recurringChargeView.setItemId(recurringItem.getTransactionItemId());
+                    recurringChargeView.setItemId(recurringItem.getItemId());
                     if (Boolean.TRUE.equals(recurringItem.getIsPet())) {
                         recurringChargeView.setPetReferenceId(recurringItem.getId());
                     }
