@@ -265,6 +265,7 @@ public class OfferDetails {
                     recurringChargeView.setItemId(recurringItem.getItemId());
                     if (Boolean.TRUE.equals(recurringItem.getIsPet())) {
                         recurringChargeView.setPetReferenceId(recurringItem.getId());
+                        recurringChargeView.setItemId(recurringItem.getTransactionItemId());
                     }
                     List<RecurringChargeView> views = recurringChargeViewsByDate
                           .computeIfAbsent(recurringCharge.getChargeDate(), k -> new ArrayList<>());

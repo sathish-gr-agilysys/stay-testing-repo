@@ -17,6 +17,7 @@ public class OfferRecurringItem {
     private Integer quantity;
     private Boolean isPet;
     private String id;
+    private String transactionItemId;
 
     public LocalDate getChargeDate() {
         return chargeDate;
@@ -80,5 +81,13 @@ public class OfferRecurringItem {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTransactionItemId() {
+        return transactionItemId;
+    }
+
+    public void setTransactionItemId(String transactionItemId) {
+        this.transactionItemId = transactionItemId;
     }
 }
