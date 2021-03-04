@@ -220,6 +220,9 @@ public class OfferDetails {
             recurringChargeViews.add(recurringChargeView);
             if (org.apache.commons.collections.CollectionUtils.isNotEmpty(rateDetails.getAutoRecurringCharges())) {
                 for (AutoRecurringItemResponse autoRecurringItem : rateDetails.getAutoRecurringCharges()) {
+                    if (autoRecurringItem.isRemoved()) {
+                        continue;
+                    }
                     RecurringChargeView autoRecurringChargeView = new RecurringChargeView();
                     autoRecurringChargeView.setChargeDate(rateDetails.getDate());
                     if (autoRecurringItem.getOverriddenCharge() != null) {
@@ -265,7 +268,6 @@ public class OfferDetails {
                     recurringChargeView.setItemId(recurringItem.getItemId());
                     if (Boolean.TRUE.equals(recurringItem.getIsPet())) {
                         recurringChargeView.setPetReferenceId(recurringItem.getId());
-                        recurringChargeView.setItemId(recurringItem.getTransactionItemId());
                     }
                     List<RecurringChargeView> views = recurringChargeViewsByDate
                           .computeIfAbsent(recurringCharge.getChargeDate(), k -> new ArrayList<>());
