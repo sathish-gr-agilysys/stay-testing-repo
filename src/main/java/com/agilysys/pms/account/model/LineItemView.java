@@ -111,6 +111,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String referenceNumber;
     private String compOfferId;
     private String compOfferName;
+    private CurrencyExchangeDetails currencyExchangeDetails;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -1072,6 +1073,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setLineItemDepositBalance(BigDecimal lineItemDepositBalance) {
         this.lineItemDepositBalance = lineItemDepositBalance;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 
     @Override

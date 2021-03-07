@@ -11,6 +11,7 @@ public class MultiplePayment {
     private BigDecimal amount;
     private String paymentMethodId;
     private String referenceNumber;
+    private CurrencyExchangeDetails currencyExchangeDetails;
 
     public MultiplePayment() {}
 
@@ -49,5 +50,13 @@ public class MultiplePayment {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 }
