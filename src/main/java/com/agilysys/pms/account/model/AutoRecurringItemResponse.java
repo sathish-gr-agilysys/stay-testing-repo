@@ -9,7 +9,6 @@ public class AutoRecurringItemResponse extends AutoRecurringItem {
     private int quantity;
     private String autoRecurringRuleId;
     private BigDecimal overriddenCharge;
-    private boolean removed;
 
     public AutoRecurringItemResponse() {}
 
@@ -53,13 +52,5 @@ public class AutoRecurringItemResponse extends AutoRecurringItem {
 
     public void setOverriddenCharge(BigDecimal overriddenCharge) {
         this.overriddenCharge = overriddenCharge;
-    }
-
-    public boolean isRemoved() {
-        return removed;
-    }
-
-    public void setRemoved(boolean removed) {
-        this.removed = removed;
     }
 }
