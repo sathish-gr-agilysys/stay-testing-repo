@@ -108,6 +108,8 @@ public class EstimatedChargesSummaryView {
 
     private BigDecimal packageNonRoomRevenueCharges = BigDecimal.ZERO;
 
+    private BigDecimal arcNonRoomRevenueCharges = BigDecimal.ZERO;
+
     /**
      * Gets the estimate payment due at checkout
      */
@@ -340,5 +342,13 @@ public class EstimatedChargesSummaryView {
 
     public void setPackageNonRoomRevenueCharges(BigDecimal packageNonRoomRevenueCharges) {
         this.packageNonRoomRevenueCharges = packageNonRoomRevenueCharges;
+    }
+
+    public BigDecimal getArcNonRoomRevenueCharges() {
+        return arcNonRoomRevenueCharges;
+    }
+
+    public void setArcNonRoomRevenueCharges(BigDecimal arcNonRoomRevenueCharges) {
+        this.arcNonRoomRevenueCharges = arcNonRoomRevenueCharges;
     }
 }
