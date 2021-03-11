@@ -106,6 +106,8 @@ public class EstimatedChargesSummaryView {
      */
     private OfferChargesSummaryView offerSummary;
 
+    private BigDecimal packageNonRoomRevenueCharges = BigDecimal.ZERO;
+
     /**
      * Gets the estimate payment due at checkout
      */
@@ -330,5 +332,13 @@ public class EstimatedChargesSummaryView {
 
     public void setOfferSummary(OfferChargesSummaryView offerSummary) {
         this.offerSummary = offerSummary;
+    }
+
+    public BigDecimal getPackageNonRoomRevenueCharges() {
+        return packageNonRoomRevenueCharges;
+    }
+
+    public void setPackageNonRoomRevenueCharges(BigDecimal packageNonRoomRevenueCharges) {
+        this.packageNonRoomRevenueCharges = packageNonRoomRevenueCharges;
     }
 }
