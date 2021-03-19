@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -42,7 +43,9 @@ public interface AccountServiceTenantInterface {
     String AR_STATEMENTS_PATH = "/ar/statements";
     String CALCULATE_INVOICE_BALANCE = "/calculateBalance";
     String INVOICES_PATH = "/invoices";
+    String ID = "id";
     String PREFERRED_COMMUNICATION = "/preferredCommunication";
+    String REMIT_TO = "/remitTo";
     String OPEN_AR_ACCOUNT = "/openARAccounts";
 
     @GET
@@ -79,11 +82,21 @@ public interface AccountServiceTenantInterface {
           Set<String> referenceIds) throws RGuestException;
 
     @GET
-    @Path(BASE_PATH + "/remitTo/addresses")
+    @Path(REMIT_TO + "/addresses")
     List<TenantDataModel> getRemitToAddresses(@PathParam(TENANT_ID) String tenantId) throws RGuestException;
 
     @POST
-    @Path(BASE_PATH + "/remitTo/address")
+    @Path(REMIT_TO + "/address")
     void addRemitToAddress(@PathParam(TENANT_ID) String tenantId, TenantDataModel tenantDataModel) throws RGuestException;
+
+    @PUT
+    @Path(REMIT_TO + "/address/{" + ID + "}"  )
+    TenantDataModel updateRemitToAddress(@PathParam(TENANT_ID) String tenantId, @PathParam(ID) String id,
+          TenantDataModel tenantDataModel) throws  RGuestException;
+
+    @DELETE
+    @Path(REMIT_TO + "/address/{" + ID + "}"  )
+    void deleteRemitToAddress(@PathParam(TENANT_ID) String tenantId, @PathParam(ID) String id)
+          throws  RGuestException;
 
 }
