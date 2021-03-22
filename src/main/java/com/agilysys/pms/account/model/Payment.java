@@ -26,6 +26,7 @@ public class Payment {
     private boolean includeDispute;
     private String disputeComment;
     private boolean reAuthBeforeCheckin;
+    private PaymentFlowType paymentFlowType;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -136,5 +137,13 @@ public class Payment {
 
     public void setReAuthBeforeCheckin(boolean reAuthBeforeCheckin) {
         this.reAuthBeforeCheckin = reAuthBeforeCheckin;
+    }
+
+    public PaymentFlowType getPaymentFlowType() {
+        return paymentFlowType;
+    }
+
+    public void setPaymentFlowType(PaymentFlowType paymentFlowType) {
+        this.paymentFlowType = paymentFlowType;
     }
 }
