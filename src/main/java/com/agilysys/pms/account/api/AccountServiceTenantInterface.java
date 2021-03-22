@@ -81,22 +81,4 @@ public interface AccountServiceTenantInterface {
     Map<String, List<AccountSummary>> getOpenARAccountsByReferenceIds(@PathParam(TENANT_ID) String tenantId,
           Set<String> referenceIds) throws RGuestException;
 
-    @GET
-    @Path(REMIT_TO + "/addresses")
-    List<TenantDataModel> getRemitToAddresses(@PathParam(TENANT_ID) String tenantId) throws RGuestException;
-
-    @POST
-    @Path(REMIT_TO + "/address")
-    void addRemitToAddress(@PathParam(TENANT_ID) String tenantId, TenantDataModel tenantDataModel) throws RGuestException;
-
-    @PUT
-    @Path(REMIT_TO + "/address/{" + ID + "}"  )
-    TenantDataModel updateRemitToAddress(@PathParam(TENANT_ID) String tenantId, @PathParam(ID) String id,
-          TenantDataModel tenantDataModel) throws  RGuestException;
-
-    @DELETE
-    @Path(REMIT_TO + "/address/{" + ID + "}"  )
-    void deleteRemitToAddress(@PathParam(TENANT_ID) String tenantId, @PathParam(ID) String id)
-          throws  RGuestException;
-
 }

@@ -9,15 +9,17 @@ public class TenantDataModel {
 
     private String id;
     private String tenantId;
+    private String propertyId;
     private Boolean deleted;
     private Address address;
 
     public TenantDataModel() {}
 
-    public TenantDataModel(String tenantId, Boolean deleted, Address address) {
+    public TenantDataModel(String tenantId, String propertyId, Boolean deleted, Address address) {
         this.tenantId = tenantId;
         this.deleted = deleted;
         this.address = address;
+        this.propertyId = propertyId;
     }
 
     public String getTenantId() {
@@ -50,5 +52,13 @@ public class TenantDataModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(String propertyId) {
+        this.propertyId = propertyId;
     }
 }
