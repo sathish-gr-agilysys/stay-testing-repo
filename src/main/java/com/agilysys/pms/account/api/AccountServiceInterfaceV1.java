@@ -120,7 +120,7 @@ import com.agilysys.pms.account.model.ReverseRedemptionResponse;
 import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
-import com.agilysys.pms.account.model.TenantDataModel;
+import com.agilysys.pms.common.tenantData.TenantDataModel;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionReportItem;

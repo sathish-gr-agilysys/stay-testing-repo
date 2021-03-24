@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -25,7 +24,6 @@ import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.CentralARRequest;
 import com.agilysys.pms.account.model.CentralARView;
 import com.agilysys.pms.account.model.InvoiceBalanceResponse;
-import com.agilysys.pms.account.model.TenantDataModel;
 import com.agilysys.pms.account.model.TenantStatementRequest;
 import com.agilysys.pms.account.model.TenantStatementResponse;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
