@@ -345,7 +345,7 @@ public abstract class Transaction {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
               .append(postingDate).append(displayDate).append(reason).append(reference).append(sourceId)
               .append(terminalId).append(gatewayType).append(giftCardNumber).append(giftCard).append(excludeTax)
-              .toHashCode();
+              .append(authCode).toHashCode();
     }
 
     @Override
@@ -368,7 +368,7 @@ public abstract class Transaction {
               .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType)
               .append(giftCardNumber, other.giftCardNumber).append(giftCard, other.giftCard)
               .append(descriptionOverride, other.getDescriptionOverride()).append(excludeTax, other.isExcludeTax())
-              .isEquals();
+              .append(authCode, other.authCode).isEquals();
     }
 
     public AllowanceCombination toAllowanceCombination() {
