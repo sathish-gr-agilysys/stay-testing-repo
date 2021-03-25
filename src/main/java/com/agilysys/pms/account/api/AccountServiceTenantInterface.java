@@ -27,6 +27,7 @@ import com.agilysys.pms.account.model.InvoiceBalanceResponse;
 import com.agilysys.pms.account.model.TenantStatementRequest;
 import com.agilysys.pms.account.model.TenantStatementResponse;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.tenantData.TenantDataModel;
 
 @Path(AccountServiceTenantInterface.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -78,5 +79,10 @@ public interface AccountServiceTenantInterface {
     @Path(OPEN_AR_ACCOUNT)
     Map<String, List<AccountSummary>> getOpenARAccountsByReferenceIds(@PathParam(TENANT_ID) String tenantId,
           Set<String> referenceIds) throws RGuestException;
+
+    @GET
+    @Path(REMIT_TO + "/address/{id}")
+    TenantDataModel getRemitToAddress(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(ID) String id) throws RGuestException;
 
 }
