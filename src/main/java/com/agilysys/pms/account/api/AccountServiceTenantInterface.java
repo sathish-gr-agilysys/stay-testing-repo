@@ -82,7 +82,7 @@ public interface AccountServiceTenantInterface {
 
     @GET
     @Path(REMIT_TO + "/address/{id}")
-    TenantDataModel getRemitToAddress(@PathParam(TENANT_ID) String tenantId,
+    List<TenantDataModel> getRemitToAddress(@PathParam(TENANT_ID) String tenantId,
           @PathParam(ID) String id) throws RGuestException;
 
 }
