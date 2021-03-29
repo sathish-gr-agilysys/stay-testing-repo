@@ -10,8 +10,7 @@ public class AutoRecurringItemResponse extends AutoRecurringItem {
     private String autoRecurringRuleId;
     private BigDecimal overriddenCharge;
 
-    public AutoRecurringItemResponse() {
-    }
+    public AutoRecurringItemResponse() {}
 
     public AutoRecurringItemResponse(AutoRecurringItem autoRecurringItem) {
         this();
