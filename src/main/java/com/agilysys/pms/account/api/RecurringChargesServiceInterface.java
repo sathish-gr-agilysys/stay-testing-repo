@@ -27,9 +27,11 @@ import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AuthDetailResponse;
+import com.agilysys.pms.account.model.EstimatedChargeDetailsForOffers;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.EstimatedRoomChargeView;
+import com.agilysys.pms.account.model.OfferDetails;
 import com.agilysys.pms.account.model.ProgressStatusView;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
@@ -64,9 +66,12 @@ public interface RecurringChargesServiceInterface {
     String ESTIMATED_ROOM_CHARGES_PATH = "/estimatedRoomCharges";
     String ESTIMATED_CHARGES_PATH = "/estimatedCharges";
     String ESTIMATED_CHARGES_BY_PAYMENTSETTING_PATH = "/estimatedChargesByPaymentSetting";
+    String ESTIMATED_CHARGES_FOR_BATCH_PRE_AUTH = "/estimatedChargesForBatchPreAuth";
     String ESTIMATED_CHARGES_BY_RESERVATION_PATH = "/estimatedChargesByReservationIds";
     String ESTIMATED_CHARGES_BY_FOLIO_PATH = "/estimatedChargesByFolio";
+    String ESTIMATED_CHARGES_WITH_OFFERS = "/estimatedChargesWithOffers";
     String START_DATE = "startDate";
+    String NO_OF_DAYS = "noOfDays";
     String END_DATE = "endDate";
     String ARRIVAL_DATE = "arrivalDate";
     String DEPARTURE_DATE = "departureDate";
@@ -251,6 +256,13 @@ public interface RecurringChargesServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException;
 
+    @POST
+    @Path(ACCOUNT_PATH + ESTIMATED_CHARGES_FOR_BATCH_PRE_AUTH)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, List<EstimatedChargesView>> getEstimatedChargesViewForBatchPreAuth(
+          @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam(NO_OF_DAYS) int noOfDays, Set<String> reservationIds) throws RGuestException;
+
     /**
      * @param tenantId
      * @param propertyId
@@ -264,6 +276,12 @@ public interface RecurringChargesServiceInterface {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     EstimatedChargesByFolioResult getEstimatedChargesByFolio(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
+    @POST
+    @Path(ACCOUNT_PATH + ESTIMATED_CHARGES_WITH_OFFERS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    EstimatedChargeDetailsForOffers getEstimatedChargesWithOfferDetails(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, OfferDetails offerDetails) throws RGuestException;
 
     /**
      * Retrieves the amount to be authed on a card for checkin

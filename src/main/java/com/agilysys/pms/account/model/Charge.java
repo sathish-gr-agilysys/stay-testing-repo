@@ -18,6 +18,7 @@ public class Charge extends TaxableTransaction {
     private String autoRecurringItemId;
     private String autoRecurringRuleId;
     private boolean notGrouped;
+    private String lineItemId;
 
     public Charge() {}
 
@@ -77,6 +78,14 @@ public class Charge extends TaxableTransaction {
 
     public void setNotGrouped(boolean notGrouped) {
         this.notGrouped = notGrouped;
+    }
+
+    public String getLineItemId() {
+        return lineItemId;
+    }
+
+    public void setLineItemId(String lineItemId) {
+        this.lineItemId = lineItemId;
     }
 
     @Override

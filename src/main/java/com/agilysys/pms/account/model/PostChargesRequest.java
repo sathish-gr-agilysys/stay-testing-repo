@@ -7,9 +7,6 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
-import com.agilysys.intapp.model.PostCharge;
-import com.agilysys.intapp.model.PostPosCharge;
-
 public class PostChargesRequest {
 
     private List<Charge> charges;
@@ -21,6 +18,8 @@ public class PostChargesRequest {
     private boolean postRecurringCharge;
     private String componentBundleId;
     private boolean addOn;
+    private boolean routingChargesAlreadyPosted;
+    private String ruleId;
 
     public PostChargesRequest() {
     }
@@ -101,5 +100,21 @@ public class PostChargesRequest {
 
     public void setAddOn(boolean addOn) {
         this.addOn = addOn;
+    }
+
+    public boolean isRoutingChargesAlreadyPosted() {
+        return routingChargesAlreadyPosted;
+    }
+
+    public void setRoutingChargesAlreadyPosted(boolean routingChargesAlreadyPosted) {
+        this.routingChargesAlreadyPosted = routingChargesAlreadyPosted;
+    }
+
+    public String getRuleId() {
+        return ruleId;
+    }
+
+    public void setRuleId(String ruleId) {
+        this.ruleId = ruleId;
     }
 }
