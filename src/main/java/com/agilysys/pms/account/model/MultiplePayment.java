@@ -11,6 +11,7 @@ public class MultiplePayment {
     private BigDecimal amount;
     private String paymentMethodId;
     private String referenceNumber;
+    private Boolean depositPaymentAtBooking;
 
     public MultiplePayment() {}
 
@@ -49,5 +50,13 @@ public class MultiplePayment {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public Boolean getDepositPaymentAtBooking() {
+        return depositPaymentAtBooking;
+    }
+
+    public void setDepositPaymentAtBooking(Boolean depositPaymentAtBooking) {
+        this.depositPaymentAtBooking = depositPaymentAtBooking;
     }
 }
