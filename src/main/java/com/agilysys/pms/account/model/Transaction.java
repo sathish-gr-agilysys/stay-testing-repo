@@ -45,6 +45,7 @@ public abstract class Transaction {
     protected List<PantryItemDetails> pantryItems;
     protected String parentId;
     protected String petDisplayName;
+    protected String chargeTypeDisplayName;
     protected LocalDate postingDate;
     protected LocalDate displayDate;
     @MinValueRestriction(1)
@@ -161,6 +162,14 @@ public abstract class Transaction {
 
     public void setPetDisplayName(String petDisplayName) {
         this.petDisplayName = petDisplayName;
+    }
+
+    public String getChargeTypeDisplayName() {
+        return chargeTypeDisplayName;
+    }
+
+    public void setChargeTypeDisplayName(String chargeTypeDisplayName) {
+        this.chargeTypeDisplayName = chargeTypeDisplayName;
     }
 
     /**
