@@ -120,6 +120,7 @@ import com.agilysys.pms.account.model.ReverseRedemptionResponse;
 import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
+import com.agilysys.pms.common.tenantData.TenantData;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionReportItem;
@@ -193,6 +194,7 @@ public interface AccountServiceInterfaceV1 {
     String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
+    String ID = "id";
     String INCLUDE_CLOSED_ACCOUNTS = "includeClosedAccounts";
     String INCLUDE_HOLD_ACCOUNTS = "includeHoldAccounts";
     String INVOICE_ADD_ITEMS_PATH = "/addItems";
@@ -239,6 +241,7 @@ public interface AccountServiceInterfaceV1 {
     String PRESET_PATH = "/presetValue/{" + PRESET + "}";
     String REFERENCE_ID = "referenceId";
     String REFERENCE_ID_PATH = "/reference/{" + REFERENCE_ID + "}";
+    String REMIT_TO = "/remitTo";
     String MULTIPLE_REFERENCES_ID_PATH = "/references/{" + REFERENCE_ID + "}";
     String RESERVATION_ACCOUNT_AR_PAYMENT_ACCOUNTS = "/reservationAccountWithARPaymentAccounts";
     String REFUND_PATH = "/refund";
@@ -1471,4 +1474,15 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + STATEMENT_HISTORY)
     List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
+    @GET
+    @Path(REMIT_TO + "/addresses")
+    List<TenantData> getRemitToAddresses(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
+
+    @PUT
+    @Path(REMIT_TO + "/addresses"  )
+    List<TenantData> updateRemitToAddress(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, List<TenantData> tenantData) throws  RGuestException;
+
 }
