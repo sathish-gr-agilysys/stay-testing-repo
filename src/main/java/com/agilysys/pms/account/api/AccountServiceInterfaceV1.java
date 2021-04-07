@@ -120,7 +120,7 @@ import com.agilysys.pms.account.model.ReverseRedemptionResponse;
 import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
-import com.agilysys.pms.common.tenantData.TenantDataModel;
+import com.agilysys.pms.common.tenantData.TenantData;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionReportItem;
@@ -1477,12 +1477,12 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(REMIT_TO + "/addresses")
-    List<TenantDataModel> getRemitToAddresses(@PathParam(TENANT_ID) String tenantId,
+    List<TenantData> getRemitToAddresses(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @PUT
     @Path(REMIT_TO + "/addresses"  )
-    List<TenantDataModel> updateRemitToAddress(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, List<TenantDataModel> tenantDataModels) throws  RGuestException;
+    List<TenantData> updateRemitToAddress(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, List<TenantData> tenantData) throws  RGuestException;
 
 }
