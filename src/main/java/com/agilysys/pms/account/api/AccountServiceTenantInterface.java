@@ -80,9 +80,4 @@ public interface AccountServiceTenantInterface {
     Map<String, List<AccountSummary>> getOpenARAccountsByReferenceIds(@PathParam(TENANT_ID) String tenantId,
           Set<String> referenceIds) throws RGuestException;
 
-    @GET
-    @Path(REMIT_TO + "/address/{id}")
-    List<TenantData> getRemitToAddress(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ID) String id) throws RGuestException;
-
 }
