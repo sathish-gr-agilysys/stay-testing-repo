@@ -418,7 +418,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + GROUPED_FOLIOS_LINE_ITEMS)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<FolioDetail> getFoliosWithGroupedLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+    List<FolioDetail> getAllFolioLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
 
