@@ -6,7 +6,7 @@ package com.agilysys.pms.account.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.agilysys.common.model.PaymentFlowType;
+import com.agilysys.pms.payment.model.PaymentFlowType;
 import com.agilysys.pms.payment.model.CardInformation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
