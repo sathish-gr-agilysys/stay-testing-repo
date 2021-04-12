@@ -88,7 +88,7 @@ public interface RecurringChargesServiceInterface {
     String CHECK_IF_ROOM_TYPE_ALLOWED = "/CheckIfRoomTypeAllowed";
     String ROOM_TYPE_ID = "roomTypeId";
     String ROOM_TYPE_ID_PATH = "/{roomTypeId}";
-
+    String REFERENCE_IDS = "/referenceIds";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -117,6 +117,21 @@ public interface RecurringChargesServiceInterface {
     List<RecurringChargeView> getRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
+
+    /**
+     * Retrieve recurring charges for an account
+     *
+     * @param tenantId   id of tenant where account exists
+     * @param propertyId id of the property where the account exists
+     * @param accountId  id of account
+     * @return Existing recurringCharges
+     */
+    @POST
+    @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + REFERENCE_IDS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<RecurringChargeView> getRecurringChargesByReferenceIds(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, Set<String> referenceIds)
+          throws RGuestException;
 
     /**
      * Create a recurring charge for an account
