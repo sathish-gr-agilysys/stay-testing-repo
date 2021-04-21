@@ -111,6 +111,9 @@ public class LineItemView implements Comparable<LineItemView> {
     private String referenceNumber;
     private String compOfferId;
     private String compOfferName;
+    private String authCode;
+    private String cardHolderName;
+    private Boolean depositPaymentAtBooking;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -686,6 +689,30 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCompOfferName(String compOfferName) {
         this.compOfferName = compOfferName;
+    }
+
+    public String getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
+    }
+
+    public String getCardHolderName() {
+        return cardHolderName;
+    }
+
+    public void setCardHolderName(String cardHolderName) {
+        this.cardHolderName = cardHolderName;
+    }
+
+    public Boolean getDepositPaymentAtBooking() {
+        return depositPaymentAtBooking;
+    }
+
+    public void setDepositPaymentAtBooking(Boolean depositPaymentAtBooking) {
+        this.depositPaymentAtBooking = depositPaymentAtBooking;
     }
 
     /**
