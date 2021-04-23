@@ -32,6 +32,7 @@ public class AccountConstants {
     public static final String PROPERTY_BCC_EMAIL = "property-bcc-email";
     public static final String PROPERTY_NAME = "\\{\\{property.name\\}\\}";
     public static final String REFUND = "Refund";
+    public static final String REMIT_TO_ADDRESS = "remit-to-address";
     public static final String RESERVATION_ALIAS = "RESERVATION_ALIAS";
     public static final String SOURCE_ACCOUNT_TYPE = "sourceAccountType";
     public static final String SOURCE_NAME = "sourceName";
