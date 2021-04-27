@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
-        <version>74.1515.0</version>
+        <version>74.1567-RGSTAY-30030-SNAPSHOT</version>
     </parent>
     <properties>
     </properties>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>integration-interface</artifactId>
-            <version>74.1537.0</version>
+            <version>74.1537-RGSTAY-30030-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.1554.0</version>
+            <version>74.1579-RGSTAY-30030-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
