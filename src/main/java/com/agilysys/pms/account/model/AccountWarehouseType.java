@@ -16,7 +16,8 @@ public enum AccountWarehouseType implements WarehouseType {
     REVENUE,
     SUBCATEGORIES,
     TRANSACTION_ITEMS,
-    PANTRY_ITEMS;
+    PANTRY_ITEMS,
+    LEDGER_SETTING;
 
     // This is implicitly used by Jersey when converting @PathParam/@QueryParam
     public static AccountWarehouseType fromString(String s) {
