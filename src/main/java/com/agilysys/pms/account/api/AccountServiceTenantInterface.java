@@ -3,8 +3,6 @@
  */
 package com.agilysys.pms.account.api;
 
-import static com.agilysys.pms.account.api.HouseAccountCategoryInterface.PROPERTY_ID;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,19 +18,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.ARBalanceInfo;
 import com.agilysys.pms.account.model.AccountSummary;
 import com.agilysys.pms.account.model.CentralARRequest;
 import com.agilysys.pms.account.model.CentralARView;
 import com.agilysys.pms.account.model.InvoiceBalanceResponse;
-import com.agilysys.pms.account.model.InvoiceRequest;
 import com.agilysys.pms.account.model.TenantStatementRequest;
 import com.agilysys.pms.account.model.TenantStatementResponse;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.tenantData.TenantData;
 
 @Path(AccountServiceTenantInterface.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -47,7 +42,9 @@ public interface AccountServiceTenantInterface {
     String AR_STATEMENTS_PATH = "/ar/statements";
     String CALCULATE_INVOICE_BALANCE = "/calculateBalance";
     String INVOICES_PATH = "/invoices";
+    String ID = "id";
     String PREFERRED_COMMUNICATION = "/preferredCommunication";
+    String REMIT_TO = "/remitTo";
     String OPEN_AR_ACCOUNT = "/openARAccounts";
 
     @GET
@@ -82,4 +79,5 @@ public interface AccountServiceTenantInterface {
     @Path(OPEN_AR_ACCOUNT)
     Map<String, List<AccountSummary>> getOpenARAccountsByReferenceIds(@PathParam(TENANT_ID) String tenantId,
           Set<String> referenceIds) throws RGuestException;
+
 }
