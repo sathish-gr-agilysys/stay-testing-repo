@@ -27,6 +27,9 @@ public class LineItemTransfer {
     private String reason;
     private String reference;
 
+    private String authCode;
+    private String cardHolderName;
+
     @JsonProperty(required = true)
     @MinLengthRestriction(1)
     private List<String> folioLineItemIds;
@@ -106,5 +109,21 @@ public class LineItemTransfer {
 
     public void setDisputeComment(String disputeComment) {
         this.disputeComment = disputeComment;
+    }
+
+    public String getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
+    }
+
+    public String getCardHolderName() {
+        return cardHolderName;
+    }
+
+    public void setCardHolderName(String cardHolderName) {
+        this.cardHolderName = cardHolderName;
     }
 }
