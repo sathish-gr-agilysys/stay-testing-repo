@@ -17,6 +17,8 @@ public class ApplyInvoicePaymentRequest {
     private List<InvoicePaymentRequest> invoicePayments = new ArrayList<>();
     @JsonProperty(required = true)
     private String paymentMethodId;
+    private PaymentSettingRequest paymentSettingRequest;
+    private boolean saveThisCardToAccount;
     // fields that need to be provided when the payment method is of type Credit Card
     private String paymentInstrumentId;
     private String terminalId;
@@ -78,5 +80,21 @@ public class ApplyInvoicePaymentRequest {
 
     public void setDisputeComment(String disputeComment) {
         this.disputeComment = disputeComment;
+    }
+
+    public PaymentSettingRequest getPaymentSettingRequest() {
+        return paymentSettingRequest;
+    }
+
+    public void setPaymentSettingRequest(PaymentSettingRequest paymentSettingRequest) {
+        this.paymentSettingRequest = paymentSettingRequest;
+    }
+
+    public boolean isSaveThisCardToAccount() {
+        return saveThisCardToAccount;
+    }
+
+    public void setSaveThisCardToAccount(boolean saveThisCardToAccount) {
+        this.saveThisCardToAccount = saveThisCardToAccount;
     }
 }
