@@ -41,8 +41,8 @@ public class Payment {
     }
 
     public Payment(ApplyInvoicePaymentRequest applyInvoicePaymentRequest) {
-        paymentInstrumentId = applyInvoicePaymentRequest.getPaymentSettingRequest().getPaymentInstrumentId();
-        paymentMethodId = applyInvoicePaymentRequest.getPaymentSettingRequest().getPaymentMethodId();
+        paymentInstrumentId = applyInvoicePaymentRequest.getPaymentInstrumentId();
+        paymentMethodId = applyInvoicePaymentRequest.getPaymentMethodId();
         terminalId = applyInvoicePaymentRequest.getTerminalId();
         invoiceNumber = applyInvoicePaymentRequest.getInvoiceNumber();
 

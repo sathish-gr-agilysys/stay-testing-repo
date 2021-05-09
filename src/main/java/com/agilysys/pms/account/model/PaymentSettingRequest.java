@@ -6,27 +6,9 @@ package com.agilysys.pms.account.model;
 import com.agilysys.common.model.PaymentMethodSetting;
 
 public class PaymentSettingRequest {
-    private String paymentMethodId;
-    private String paymentInstrumentId;
     private PaymentMethodSetting paymentMethodSetting;
     private String correlationId;
     private String paymentSettingId;
-
-    public String getPaymentMethodId() {
-        return paymentMethodId;
-    }
-
-    public void setPaymentMethodId(String paymentMethodId) {
-        this.paymentMethodId = paymentMethodId;
-    }
-
-    public String getPaymentInstrumentId() {
-        return paymentInstrumentId;
-    }
-
-    public void setPaymentInstrumentId(String paymentInstrumentId) {
-        this.paymentInstrumentId = paymentInstrumentId;
-    }
 
     public PaymentMethodSetting getPaymentMethodSetting() {
         return paymentMethodSetting;
