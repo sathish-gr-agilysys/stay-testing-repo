@@ -16,6 +16,7 @@ public class DestinationDetail {
     private int transactionMade;
     private Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount;
     private int priority;
+    private String folioName;
 
     public DestinationDetail(String accountId, String folioId) {
         this.accountId = accountId;
@@ -28,12 +29,13 @@ public class DestinationDetail {
     }
 
     public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit,
-          int transactionMade, int priority, Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount) {
+          int transactionMade, int priority, Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount, String folioName) {
         this(accountId, folioId, value);
         this.dayWiseTotalTransactedAmount = dayWiseTotalTransactedAmount;
         this.transactionLimit = transactionLimit;
         this.transactionMade = transactionMade;
         this.priority = priority;
+        this.folioName = folioName;
     }
 
     public DestinationDetail() {}
@@ -80,5 +82,13 @@ public class DestinationDetail {
 
     public void setDayWiseTotalTransactedAmount(Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount) {
         this.dayWiseTotalTransactedAmount = dayWiseTotalTransactedAmount;
+    }
+
+    public String getFolioName() {
+        return folioName;
+    }
+
+    public void setFolioName(String folioName) {
+        this.folioName = folioName;
     }
 }
