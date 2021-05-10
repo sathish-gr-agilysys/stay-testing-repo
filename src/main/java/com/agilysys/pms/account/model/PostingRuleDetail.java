@@ -89,6 +89,8 @@ public class PostingRuleDetail {
 
     private Boolean routeChargesAlreadyPosted;
 
+    private String ratePlanId;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -343,9 +345,17 @@ public class PostingRuleDetail {
         this.compOfferId = compOfferId;
     }
 
-    public PostingRuleDetail(RoutingRuleTemplate template, CompOffer compOffer, List<LocalDate> offerAppliedDates,
-          LocalDate propertyDate, String authorizerCode) {
-        this.ruleName = compOffer.getOfferName();
+    public String getRatePlanId() {
+        return ratePlanId;
+    }
+
+    public void setRatePlanId(String ratePlanId) {
+        this.ratePlanId = ratePlanId;
+    }
+
+    public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, List<LocalDate> offerAppliedDates,
+          LocalDate propertyDate, String authorizerCode, String authorizerId, String compOfferId) {
+        this.ruleName = ruleName;
         if (template.getSourceId() != null) {
             this.chargeSourceId = template.getSourceId();
         }
@@ -362,7 +372,7 @@ public class PostingRuleDetail {
         this.carryUnusedBalance = template.getCarryUnusedBalance();
         this.ignoreDestinationRules = template.getIgnoreDestinationRules();
         this.reason = template.getReason();
-        this.description = template.getRuleName();
+        this.description = template.getDescription();
         this.postingRuleChargeType = template.getPostingRuleChargeType().name();
         this.occurrenceDays = template.getOccurrenceDays();
         if (template.getSplitBy() != null) {
@@ -375,8 +385,8 @@ public class PostingRuleDetail {
         if (template.getComp()) {
             this.offSetRule = template.getOffSetRule();
             this.departmentId = template.getDepartmentId();
-            this.authorizerId = compOffer.getAuthorizerId();
-            this.compOfferId = compOffer.getId();
+            this.authorizerId = authorizerId;
+            this.compOfferId = compOfferId;
             this.authorizerCode = authorizerCode;
         }
         if (isNotEmpty(offerAppliedDates)) {
