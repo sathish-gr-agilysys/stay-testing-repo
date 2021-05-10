@@ -3,12 +3,14 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.math.BigDecimal;
+
 public class AutoRecurringItemResponse extends AutoRecurringItem {
     private int quantity;
     private String autoRecurringRuleId;
+    private BigDecimal overriddenCharge;
 
-    public AutoRecurringItemResponse() {
-    }
+    public AutoRecurringItemResponse() {}
 
     public AutoRecurringItemResponse(AutoRecurringItem autoRecurringItem) {
         this();
@@ -42,5 +44,13 @@ public class AutoRecurringItemResponse extends AutoRecurringItem {
 
     public void setAutoRecurringRuleId(String autoRecurringRuleId) {
         this.autoRecurringRuleId = autoRecurringRuleId;
+    }
+
+    public BigDecimal getOverriddenCharge() {
+        return overriddenCharge;
+    }
+
+    public void setOverriddenCharge(BigDecimal overriddenCharge) {
+        this.overriddenCharge = overriddenCharge;
     }
 }
