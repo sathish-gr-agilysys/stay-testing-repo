@@ -31,6 +31,7 @@ public abstract class Transaction {
     protected BigDecimal amount;
     protected String callType;
     protected CompInfo compInfo;
+    protected CurrencyExchangeDetails currencyExchangeDetails;
     protected RoomChargePostingType roomChargePostingType;
     protected ComponentType componentType;
     protected String descriptionOverride;
@@ -45,6 +46,7 @@ public abstract class Transaction {
     protected List<PantryItemDetails> pantryItems;
     protected String parentId;
     protected String petDisplayName;
+    protected String chargeTypeDisplayName;
     protected LocalDate postingDate;
     protected LocalDate displayDate;
     @MinValueRestriction(1)
@@ -161,6 +163,14 @@ public abstract class Transaction {
 
     public void setPetDisplayName(String petDisplayName) {
         this.petDisplayName = petDisplayName;
+    }
+
+    public String getChargeTypeDisplayName() {
+        return chargeTypeDisplayName;
+    }
+
+    public void setChargeTypeDisplayName(String chargeTypeDisplayName) {
+        this.chargeTypeDisplayName = chargeTypeDisplayName;
     }
 
     /**
@@ -314,6 +324,14 @@ public abstract class Transaction {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 
     public String getAuthCode() {

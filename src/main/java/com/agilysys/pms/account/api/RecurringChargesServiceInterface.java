@@ -88,7 +88,7 @@ public interface RecurringChargesServiceInterface {
     String CHECK_IF_ROOM_TYPE_ALLOWED = "/CheckIfRoomTypeAllowed";
     String ROOM_TYPE_ID = "roomTypeId";
     String ROOM_TYPE_ID_PATH = "/{roomTypeId}";
-
+    String VALIDATE_INVENTORY = "validateInventory";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -158,7 +158,7 @@ public interface RecurringChargesServiceInterface {
     List<RecurringChargeView> createRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<CreateRecurringCharge> createRecurringCharges, @QueryParam(START_DATE) LocalDate startDate,
-          @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
+          @QueryParam(END_DATE) LocalDate endDate, @QueryParam(VALIDATE_INVENTORY) Boolean validateInventory) throws RGuestException;
 
     /**
      * Retrieve recurring charge for an account
