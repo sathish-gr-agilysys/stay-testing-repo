@@ -372,7 +372,7 @@ public class PostingRuleDetail {
         this.carryUnusedBalance = template.getCarryUnusedBalance();
         this.ignoreDestinationRules = template.getIgnoreDestinationRules();
         this.reason = template.getReason();
-        this.description = template.getRuleName();
+        this.description = template.getDescription();
         this.postingRuleChargeType = template.getPostingRuleChargeType().name();
         this.occurrenceDays = template.getOccurrenceDays();
         if (template.getSplitBy() != null) {

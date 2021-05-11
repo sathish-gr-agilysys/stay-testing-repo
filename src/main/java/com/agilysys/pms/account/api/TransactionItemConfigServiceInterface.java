@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.api;
 
+import static com.agilysys.pms.common.client.caching.RiskTolerance.MODERATE;
+
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -26,6 +28,8 @@ import com.agilysys.platform.tax.model.TaxRuleData;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.client.caching.CacheOnClient;
+import com.agilysys.pms.common.eons.EonsType;
 
 /**
  * CRUD methods for TransactionItem
@@ -59,6 +63,23 @@ public interface TransactionItemConfigServiceInterface {
     List<TransactionItem> getTransactionItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws RGuestException;
+
+    @GET
+    @Path("/all")
+    @CacheOnClient(type = EonsType.TRANSACTION_ITEM, tenantId = TENANT_ID, propertyId = PROPERTY_ID,
+          riskTolerance = MODERATE)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    List<TransactionItem> getAllTransactionItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
+
+
+    @GET
+    @Path("/nonInternal")
+    @CacheOnClient(type = EonsType.TRANSACTION_ITEM, tenantId = TENANT_ID, propertyId = PROPERTY_ID,
+          riskTolerance = MODERATE)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    List<TransactionItem> getNonInternalTransactionItems(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     /**
      * Retrieve a transaction item comtrol mapping

@@ -44,6 +44,7 @@ public class TransactionReportItem {
     private List<PantryItemDetails> pantryItemDetails;
     private DateTime createTime;
     private String referenceNumber;
+    private String cardReferenceNumber;
 
     public String getId() {
         return id;
@@ -283,5 +284,13 @@ public class TransactionReportItem {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public String getCardReferenceNumber() {
+        return cardReferenceNumber;
+    }
+
+    public void setCardReferenceNumber(String cardReferenceNumber) {
+        this.cardReferenceNumber = cardReferenceNumber;
     }
 }
