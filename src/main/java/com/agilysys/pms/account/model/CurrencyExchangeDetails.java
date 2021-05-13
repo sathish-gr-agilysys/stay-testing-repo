@@ -13,9 +13,7 @@ public class CurrencyExchangeDetails {
     private BigDecimal surcharge;
     private BigDecimal exchangeValue;
 
-    public CurrencyExchangeDetails() {
-
-    }
+    public CurrencyExchangeDetails() { }
 
     public String getCurrency() {
         return currency;
