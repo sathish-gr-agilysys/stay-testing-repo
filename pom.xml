@@ -43,7 +43,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.1535-RGSTAY-23333-SNAPSHOT</version>
+            <version>74.1595.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.1535-RGSTAY-23333-SNAPSHOT</version>
+            <version>74.1595.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
