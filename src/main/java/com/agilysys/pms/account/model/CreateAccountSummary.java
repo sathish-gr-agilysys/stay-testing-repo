@@ -3,6 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +52,10 @@ public class CreateAccountSummary extends AccountSummary {
     protected Map<LocalDate, AccountRateSnapshot> rateSnapshot;
 
     private Map<String, List<LocalDate>> offerAppliedDates;
+
+    private Map<String, List<LocalDate>> ratePlanDatesMap;
+
+    private LinkedList<PostingRuleDetail> postingRuleDetails;
 
     public String getReservationCompanyProfileId() {
         return reservationCompanyProfileId;
@@ -132,5 +137,21 @@ public class CreateAccountSummary extends AccountSummary {
 
     public void setOfferAppliedDates(Map<String, List<LocalDate>> offerAppliedDates) {
         this.offerAppliedDates = offerAppliedDates;
+    }
+
+    public Map<String, List<LocalDate>> getRatePlanDatesMap() {
+        return ratePlanDatesMap;
+    }
+
+    public void setRatePlanDatesMap(Map<String, List<LocalDate>> ratePlanDatesMap) {
+        this.ratePlanDatesMap = ratePlanDatesMap;
+    }
+
+    public LinkedList<PostingRuleDetail> getPostingRuleDetails() {
+        return postingRuleDetails;
+    }
+
+    public void setPostingRuleDetails(LinkedList<PostingRuleDetail> postingRuleDetails) {
+        this.postingRuleDetails = postingRuleDetails;
     }
 }
