@@ -67,7 +67,7 @@ public class PosCredit extends Credit implements PosTransaction {
 
     @Override
     public AllowanceCombination toAllowanceCombination() {
-        if (mealPeriodId == null || sourceId == null || itemId == null) {
+        if (sourceId == null || itemId == null) {
             return null;
         }
         return new AllowanceCombination(mealPeriodId, sourceId, itemId);
