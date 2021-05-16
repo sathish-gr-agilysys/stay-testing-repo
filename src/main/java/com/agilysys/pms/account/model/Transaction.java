@@ -31,6 +31,7 @@ public abstract class Transaction {
     protected BigDecimal amount;
     protected String callType;
     protected CompInfo compInfo;
+    protected CurrencyExchangeDetails currencyExchangeDetails;
     protected RoomChargePostingType roomChargePostingType;
     protected ComponentType componentType;
     protected String descriptionOverride;
@@ -338,6 +339,14 @@ public abstract class Transaction {
 
     public void setDepositPaymentAtBooking(Boolean depositPaymentAtBooking) {
         this.depositPaymentAtBooking = depositPaymentAtBooking;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 
     @Override
