@@ -23,6 +23,8 @@ public class InvoicePaymentView {
     private String folioLineItemId;
     private Boolean unAppliedAmountUsed;
 
+    private CurrencyExchangeDetails currencyExchangeDetails;
+
     public String getId() {
         return id;
     }
@@ -137,5 +139,13 @@ public class InvoicePaymentView {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 }
