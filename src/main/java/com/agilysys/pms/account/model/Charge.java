@@ -118,7 +118,7 @@ public class Charge extends TaxableTransaction {
 
     @Override
     public AllowanceCombination toAllowanceCombination() {
-        if (sourceId == null || itemId == null) {
+        if (itemId == null) {
             return null;
         }
         return new AllowanceCombination(mealPeriodId, sourceId, itemId);
