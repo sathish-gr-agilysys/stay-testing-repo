@@ -23,6 +23,8 @@ import com.agilysys.pms.account.model.events.AccountPostEvent;
 import com.agilysys.pms.account.payagent.model.events.PayAgentTransactionEvent;
 import com.agilysys.pms.common.model.ARInvoiceEvents;
 import com.agilysys.pms.common.model.HistoryEventsResult;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path(EventingInterface.BASE)
 @Produces(MediaType.APPLICATION_JSON)
@@ -87,7 +89,7 @@ public interface EventingInterface {
 
     @POST
     @Path(ACCOUNTS + ID + HISTORY)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Requires(Permission.WRITE_ACCOUNTS)
     HistoryEventsResult createAccountHistoryEvent(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("id") String accountId, AccountPostEvent event)
           throws RGuestException;

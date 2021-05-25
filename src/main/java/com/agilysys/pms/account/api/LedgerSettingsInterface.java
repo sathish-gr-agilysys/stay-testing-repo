@@ -19,6 +19,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.LedgerSettingView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/ledgerSettings")
 public interface LedgerSettingsInterface {
@@ -31,7 +33,7 @@ public interface LedgerSettingsInterface {
     @CreatedOnSuccess
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Requires(Permission.WRITE_ACCOUNTS)
     LedgerSettingView createLedgerSetting(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, LedgerSettingView ledgerSetting) throws RGuestException;
 
@@ -50,7 +52,7 @@ public interface LedgerSettingsInterface {
 
     @PUT
     @Path(LEDGER_SETTING_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Requires(Permission.WRITE_ACCOUNTS)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     LedgerSettingView updateLedgerSetting(@PathParam(TENANT_ID) String tenantId,

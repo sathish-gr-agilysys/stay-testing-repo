@@ -19,6 +19,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.TaxGroupView;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path("/v1/tenants/{tenantId}/properties/{propertyId}/taxGroups")
 public interface TaxGroupsInterface {
@@ -30,10 +32,7 @@ public interface TaxGroupsInterface {
     /**
      * Gets the list of tax groups associated with the given tenant and property.
      *
-     * @param tenantId
-     * @param propertyId
      * @return the list of tax groups
-     * @throws RGuestException
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -46,16 +45,12 @@ public interface TaxGroupsInterface {
     /**
      * Create a new tax group.
      *
-     * @param tenantId
-     * @param propertyId
-     * @param create
      * @return the list of all tax groups associated with the tenant and property
-     * @throws RGuestException
      */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Requires(Permission.WRITE_ACCOUNTS)
     // TODO check this
     TaxGroupView createTaxGroup(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           TaxGroupView create) throws RGuestException;
@@ -63,29 +58,19 @@ public interface TaxGroupsInterface {
     /**
      * Insert a set of tax groups into the list for the given tenant and property.
      *
-     * @param tenantId
-     * @param propertyId
-     * @param create
      * @return the list of all tax groups associated with the tenant and property
-     * @throws RGuestException
      */
     @POST
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Requires(Permission.WRITE_ACCOUNTS)
     // TODO check this
     List<TaxGroupView> insertTaxGroups(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           List<TaxGroupView> create) throws RGuestException;
 
     /**
      * Get the tax group specified by the given tax group name.
-     *
-     * @param tenantId
-     * @param propertyId
-     * @param taxGroupId
-     * @return
-     * @throws RGuestException
      */
     @GET
     @Path(TAX_GROUP_ID_PATH)
@@ -99,53 +84,36 @@ public interface TaxGroupsInterface {
     /**
      * Update TaxGroup the tax group specified by the given tax group name.
      *
-     * @param tenantId
-     * @param propertyId
      * @param taxGroupId, must be unique for the given tenant/property.
-     * @param update
-     * @return
-     * @throws RGuestException
      */
     @PUT
     @Path(TAX_GROUP_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Requires(Permission.WRITE_ACCOUNTS)
     // TODO check this
     TaxGroupView updateTaxGroup(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(TAX_GROUP_ID) String taxGroupId, TaxGroupView update) throws RGuestException;
 
     /**
      * Update a set of tax groups.
-     *
-     * @param tenantId
-     * @param propertyId
-     * @param updates
-     * @return
-     * @throws RGuestException
      */
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Requires(Permission.WRITE_ACCOUNTS)
     // TODO check this
     List<TaxGroupView> updateTaxGroups(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           List<TaxGroupView> updates) throws RGuestException;
 
     /**
      * Delete the tax group with the specified tax group name.
-     *
-     * @param tenantId
-     * @param propertyId
-     * @param taxGroupId
-     * @return
-     * @throws RGuestException
      */
     @DELETE
     @Path(TAX_GROUP_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    @Requires(Permission.WRITE_ACCOUNTS)
     // TODO check this
     TaxGroupView deleteTaxGroup(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(TAX_GROUP_ID) String taxGroupId) throws RGuestException;
