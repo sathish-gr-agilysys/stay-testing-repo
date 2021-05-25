@@ -26,6 +26,7 @@ public class Payment {
     private boolean includeDispute;
     private String disputeComment;
     private boolean reAuthBeforeCheckin;
+    private boolean makePaymentAsDeposit;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -128,6 +129,14 @@ public class Payment {
 
     public void setDisputeComment(String disputeComment) {
         this.disputeComment = disputeComment;
+    }
+
+    public boolean isMakePaymentAsDeposit() {
+        return makePaymentAsDeposit;
+    }
+
+    public void setMakePaymentAsDeposit(boolean makePaymentAsDeposit) {
+        this.makePaymentAsDeposit = makePaymentAsDeposit;
     }
 
     public boolean isReAuthBeforeCheckin() {
