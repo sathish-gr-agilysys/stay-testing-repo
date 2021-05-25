@@ -59,6 +59,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private Integer order;
     private String parentId;
     private String petDisplayName;
+    private String chargeTypeDisplayName;
     private DateTime postingCalendarDateTime;
     private LocalDate postingPropertyDate;
     private int quantity;
@@ -111,6 +112,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String referenceNumber;
     private String compOfferId;
     private String compOfferName;
+    private CurrencyExchangeDetails currencyExchangeDetails;
     private String authCode;
     private String cardHolderName;
     private Boolean depositPaymentAtBooking;
@@ -374,6 +376,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setPetDisplayName(String petDisplayName) {
         this.petDisplayName = petDisplayName;
+    }
+
+    public String getChargeTypeDisplayName() {
+        return chargeTypeDisplayName;
+    }
+
+    public void setChargeTypeDisplayName(String chargeTypeDisplayName) {
+        this.chargeTypeDisplayName = chargeTypeDisplayName;
     }
 
     public DateTime getPostingCalendarDateTime() {
@@ -1099,6 +1109,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setLineItemDepositBalance(BigDecimal lineItemDepositBalance) {
         this.lineItemDepositBalance = lineItemDepositBalance;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 
     @Override
