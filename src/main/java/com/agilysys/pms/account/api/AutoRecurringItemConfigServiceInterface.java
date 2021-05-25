@@ -31,6 +31,8 @@ import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.BulkAutoRecurringRuleRequest;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path(AutoRecurringItemConfigServiceInterface.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -56,7 +58,6 @@ public interface AutoRecurringItemConfigServiceInterface {
     String MERGE_MARKETING_DETAILS = "/mergeMarketingDetails";
     String UPDATE_ARC_FOR_MODIFIED_SNAPSHOT = "/updateArcForModifiedSnapshot";
 
-
     @GET
     @Path(ITEM_ID_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
@@ -70,7 +71,7 @@ public interface AutoRecurringItemConfigServiceInterface {
 
     @POST
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    @Requires(Permission.WRITE_COMPANY_PROFILE_DEFAULTS)
     List<AutoRecurringItem> createAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
@@ -78,7 +79,7 @@ public interface AutoRecurringItemConfigServiceInterface {
 
     @PUT
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    @Requires(Permission.WRITE_COMPANY_PROFILE_DEFAULTS)
     AutoRecurringItem updateAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, AutoRecurringItem item)

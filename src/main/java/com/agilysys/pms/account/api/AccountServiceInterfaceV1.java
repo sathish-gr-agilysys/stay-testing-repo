@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import static com.agilysys.common.constants.Constants.FILE;
+import static com.agilysys.pms.common.security.Operator.OR;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,7 +27,6 @@ import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.constants.Constants.HTTPRequestConstants;
 import com.agilysys.common.model.BatchStatusResponse;
@@ -313,7 +313,7 @@ public interface AccountServiceInterfaceV1 {
     String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
 
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("accountType") String accountTypes, @QueryParam("accountStatus") String accountStatuses)
           throws RGuestException;
@@ -321,57 +321,57 @@ public interface AccountServiceInterfaceV1 {
     @Deprecated
     @GET
     @Path(REFERENCE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     AccountSummary getAccountByReferenceId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(REFERENCE_ID) String referenceId)
           throws RGuestException;
 
     @GET
     @Path(MULTIPLE_REFERENCES_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<AccountSummary> getAccountsByReferenceId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(ACCOUNT_TYPE) String accountType,
           @PathParam(REFERENCE_ID) String referenceId) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     AccountSummary getAccount(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @GET
     @Path(LODGING_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     LodgingInformation getLodgingInformationForAccountById(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @GET
     @Path(TYPES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<String> getAccountTypes(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
 
     @POST
     @Path(ACCOUNTS_BY_IDS)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<AccountSummary> getAccountsByIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     @GET
     @Path(STATUSES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<String> getAccountStatuses(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + "/details")
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     AccountDetail getAccountDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + RESERVATION_ACCOUNT_AR_PAYMENT_ACCOUNTS)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, AccountDetail> getReservationAccountWithARAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String reservationAccountId)
           throws RGuestException;
@@ -406,47 +406,47 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(ACCOUNT_BALANCES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     AccountStatementResponse getAccountBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
           throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_DETAIL_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<FolioDetail> getFoliosDetailList(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("") GetFoliosOptionalParameters optionalParameters) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + DEPOSIT_FOLIO_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     FolioDetail getDepositFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
 
     @POST
     @Path(FOLIO_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, List<FolioDetail>> getFoliosForAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     @POST
     @Path(TOTAL_SPENT_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, BigDecimal> getTotalSpentForAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     @Validated(ViewFolioRequest.class)
     Page<FolioViewLineItem> viewFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId,
@@ -460,7 +460,7 @@ public interface AccountServiceInterfaceV1 {
      */
     @POST
     @Path(ACCOUNT_ID_PATH + FOLIO_DETAIL_VIEW_PATH + FOLIO_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     @Validated(ViewFolioRequest.class)
     List<FolioViewLineItem> getFolioDetailView(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
@@ -468,7 +468,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_BALANCES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<FolioBalance> getFolioBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
@@ -490,7 +490,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     FolioDetail getFolio(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(FOLIO_ID) String folioId) throws RGuestException;
 
@@ -523,13 +523,13 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(TRANSFER_HISTORY)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, LedgerTransactionTransferDetail> getTransactionHistory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<String> ledgerTransactionHistoryId) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     PostingRuleDetailView getPostingRules(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
@@ -544,7 +544,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     PostingRuleDetail getPostingRule(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(POSTING_RULE_ID) String postingRuleId)
           throws RGuestException;
@@ -647,29 +647,28 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + CREDIT_PATH)
     @Validated(Credit.class)
-    @PreAuthorize("hasPermission('Required', 'AllowCredits')")
+    @Requires(Permission.ALLOW_CREDITS)
     LineItemView postCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Credit credit) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(BATCH_CREDITS_PATH)
-    @PreAuthorize("hasPermission('Required', 'BatchPostCredits')")
+    @Requires(Permission.BATCH_POST_CREDITS)
     BatchDistributorResult batchPostCredit(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<BatchPostCC> batchPostCCs) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(BATCH_CHARGES_PATH)
-    @PreAuthorize(
-          "hasPermission('Required', 'BatchPostCharges') and hasPermission('Required', 'ForceChargeAcceptance')")
+    @Requires({ Permission.BATCH_POST_CHARGES, Permission.FORCE_CHARGE_ACCEPTANCE })
     BatchDistributorResult batchPostCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<BatchPostCC> batchPostCCs) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(BATCH_PRE_AUTH)
-    @PreAuthorize("hasPermission('Required', 'PreauthCreditCard')")
+    @Requires(Permission.PREAUTH_CREDIT_CARD)
     BatchDistributorResult batchPreAuth(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchPreAuthRequest batchPreAuthRequest) throws RGuestException;
 
@@ -677,14 +676,14 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + POS_CREDIT_PATH)
     @Validated(Credit.class)
-    @PreAuthorize("hasPermission('Required', 'AllowCredits')")
+    @Requires(Permission.ALLOW_CREDITS)
     LineItemView postPosCredit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, PosCredit posCredit) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + POS_CREDITS_PATH)
-    @PreAuthorize("hasPermission('Required', 'AllowCredits')")
+    @Requires(Permission.ALLOW_CREDITS)
     LineItemView postPosCredits(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, PostPosCreditRequest posCredit) throws RGuestException;
 
@@ -767,7 +766,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(MULTIPLE_PAYMENTS_ASYNC_PATH + TASK_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     MultiplePaymentResponse getMultiplePaymentResponse(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TASK_ID) String taskId);
 
@@ -779,7 +778,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(PAYMENTS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, List<TransactionReportItem>> findPaymentsForAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<String> accountIds) throws RGuestException;
 
@@ -795,14 +794,14 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + REFUNDS_PATH)
     @Validated(Payment.class)
-    @PreAuthorize("hasPermission('Required', 'AllowRefunds')")
+    @Requires(Permission.ALLOW_REFUNDS)
     List<LineItemView> postRefunds(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_FOLIO_LINES)
     @Validated(LineItemTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'Transfer')")
+    @Requires({ Permission.WRITE_ACCOUNTS, Permission.TRANSFER })
     List<LineItemView> transferFolioLines(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           LineItemTransfer transferInfo) throws RGuestException;
@@ -816,7 +815,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + TRANSFER_PATH)
     @Validated(AmountTransfer.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'Transfer')")
+    @Requires({ Permission.WRITE_ACCOUNTS, Permission.TRANSFER })
     List<LineItemView> transferAmountToAccount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AmountTransfer transferInfo) throws RGuestException;
@@ -839,27 +838,27 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + REFUND_PATH)
     @Validated(PaymentRefund.class)
-    @PreAuthorize("hasPermission('Required', 'AllowRefunds')")
+    @Requires(Permission.ALLOW_REFUNDS)
     LineItemView refundPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, PaymentRefund paymentRefund) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_ID_PATH + CHARGE_TAX_AMOUNT_PATH)
     @Validated(ChargeTaxAmountRequest.class)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     ChargeTaxAmountInfo calculateChargeTaxAmount(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           ChargeTaxAmountRequest request) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + PAYMENT_SETTINGS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<PaymentSetting> getPaymentSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @POST
     @Path(PAYMENT_SETTINGS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, List<PaymentInstrumentSetting>> getPaymentSettingsByAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
@@ -873,7 +872,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     TaxExemptSettingsByDate getTaxExemptSettingsByDate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
@@ -887,7 +886,7 @@ public interface AccountServiceInterfaceV1 {
      */
     @POST
     @Path(TAX_EXEMPT_SETTINGS_BY_DATE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, TaxExemptSettingsByDate> getTaxExemptSettingsByDateForAccounts(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
@@ -911,13 +910,13 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     GroupCompanyTaxExemptSettings getGroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH + PRESET_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     GroupCompanyTaxExemptSettings getV1GroupCompanyTaxExemptSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(PRESET) boolean preset) throws RGuestException;
@@ -942,7 +941,7 @@ public interface AccountServiceInterfaceV1 {
     @Deprecated
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + REMAINING_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(SEARCH_TERM) String searchTerm, @PathParam(PATH) String optionalSearchParamsPath)
           throws RGuestException;
@@ -950,14 +949,14 @@ public interface AccountServiceInterfaceV1 {
     @Deprecated
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<AccountSearchResult> search(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(SEARCH_TERM) String searchTerm, @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
           @QueryParam(INCLUDE_HOLD_ACCOUNTS) Boolean includeHoldAccounts) throws RGuestException;
 
     @GET
     @Path(SEARCH_PATH + SEARCH_TERM_PATH + PAGE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     DeserializablePage<AccountSearchResult> searchPage(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SEARCH_TERM) String searchTerm,
           @QueryParam(INCLUDE_CLOSED_ACCOUNTS) Boolean includeClosedAccounts,
@@ -966,13 +965,13 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + NON_INVOICED_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     NonInvoicedARDetail getNonInvoicedARDetail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + AR_DISPUTE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ManageInvoiceDisputes')")
+    @Requires(Permission.MANAGE_INVOICE_DISPUTES)
     void setARDisputeDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, DisputedARLedgerTransaction disputedARLedgerTransaction)
           throws RGuestException;
@@ -989,7 +988,7 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(ACCOUNT_ID_PATH + NON_INVOICED_PATH + LEDGER_TRANSACTION_ID)
     @Validated(NonInvoiceReport.class)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     NonInvoicedARDetail getNonInvoicedARDetailByTransactionIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           NonInvoiceReport nonInvoiceReport) throws RGuestException;
@@ -1007,8 +1006,7 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     @Validated(InvoiceRequest.class)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     InvoiceView createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, InvoiceRequest invoice) throws RGuestException;
 
@@ -1026,29 +1024,28 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + BY_ACCOUNT_PATH)
     @Validated(InvoiceRequest.class)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     List<InvoiceView> createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam(SPLIT_BY_SOURCE_ACCOUNT) boolean splitBySourceAccount,
           InvoiceRequest invoice) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     InvoiceView getInvoiceById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("") InvoiceOptionalParams optionalParams) throws RGuestException;
 
     @POST
     @Path("/invoiceBalance")
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     List<InvoicePaymentReport> getInvoiceBalance(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, InvoicePaymentRequest invoicePaymentRequest) throws RGuestException;
 
     @GET
     @Path("/findByUnAppliedAmountUsed")
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<CompanyInfo> findAccountsByUnAppliedAmountUsed(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam("accountStatus") AccountStatus accountStatus)
           throws RGuestException;
@@ -1056,14 +1053,14 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     @OkOnEmpty
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     List<InvoiceView> findInvoices(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") InvoiceFilteringOptionalParams params)
           throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_TYPE)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(INVOICE_VIEW_TYPE) InvoiceViewType viewType, @QueryParam("includeClosed") boolean includeClosed)
@@ -1071,7 +1068,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT)
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     List<InvoiceBaseView> getInvoiceViews(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId, Set<String> invoiceIds)
           throws RGuestException;
@@ -1079,7 +1076,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_START)
     @OkOnEmpty
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     InvoiceReportProgressView createInvoiceReport(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("tag") String tag, @QueryParam("includeClosed") String includeClosed) throws RGuestException;
@@ -1088,7 +1085,7 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + INVOICE_REPORT_POLL)
     @OkOnEmpty
-    @PreAuthorize("hasPermission('Required', 'ReadAccountsReceivable')")
+    @Requires(Permission.READ_ACCOUNTS_RECEIVABLE)
     InvoiceReportProgressView getInvoiceReportProgress(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("includeClosed") String includeClosed) throws RGuestException;
@@ -1096,8 +1093,7 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_ADD_ITEMS_PATH)
     @Validated(UpdateInvoiceLineItemsRequest.class)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     InvoiceView addInvoiceLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceLineItemsRequest lineItems) throws RGuestException;
@@ -1105,8 +1101,7 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_REMOVE_ITEMS_PATH)
     @Validated(UpdateInvoiceLineItemsRequest.class)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     InvoiceView removeInvoiceLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceLineItemsRequest lineItems) throws RGuestException;
@@ -1114,24 +1109,21 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_UPDATE_TERMS_PATH)
     @Validated(UpdateInvoiceTermsRequest.class)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     InvoiceView updateInvoiceTerms(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceTermsRequest terms) throws RGuestException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_SET_INVOICE_SENT)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     InvoiceView setInvoiceSent(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("isEmail") boolean isEmail) throws RGuestException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_SET_INVOICE_SENT + BULK)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("isEmail") boolean isEmail, MailedInvoice mailedInvoice)
           throws RGuestException;
@@ -1140,8 +1132,7 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_PAYMENTS)
     @Validated(ApplyInvoicePaymentRequest.class)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     List<InvoiceView> applyInvoicePayments(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           ApplyInvoicePaymentRequest applyInvoicePaymentRequest) throws RGuestException;
@@ -1150,8 +1141,7 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_DEPOSIT_PAYMENTS)
     @Validated(ApplyInvoiceDepositPaymentRequest.class)
-    @PreAuthorize(
-          "hasPermission('Required', 'WriteAccountsReceivable') or hasPermission('Required', 'UseAccountsReceivable')")
+    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
     List<InvoiceView> applyInvoiceDepositPayments(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           ApplyInvoiceDepositPaymentRequest applyInvoiceDepositPaymentRequest) throws RGuestException;
@@ -1160,39 +1150,39 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + REFUND_PATH)
     @Validated(InvoicePaymentRefund.class)
-    @PreAuthorize("hasPermission('Required', 'AllowRefunds')")
+    @Requires(Permission.ALLOW_REFUNDS)
     InvoiceView refundInvoicePayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           InvoicePaymentRefund invoicePaymentRefund) throws RGuestException;
 
     @GET
     @Path(LEDGER_BALANCES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, BigDecimal> getLedgerBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, LedgerBalancesInfo ledgerBalancesInfo) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + AR_DEPOSIT_BALANCE)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     ARDepositView getARDepositBalance(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + VERIFY_CHECKOUT_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance,
           @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException;
 
     @GET
     @Path(NEXT_ACCOUNT_NUMBER_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     NextAccountNumberInfo getNextArAccountNumber(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @GET
     @Path(CHECK_ACCOUNT_NUMBER_AVAILABILITY_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Boolean checkAccountNumberAvailability(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_NUMBER) String accountNumber)
           throws RGuestException;
@@ -1213,7 +1203,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + CLOSABLE_INFO)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     AccountClosableInfo getAccountClosableInfo(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
@@ -1226,7 +1216,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(INVENTORY_ALLOCATION)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<LocalDate, Map<String, InventoryAllocationDetails>> findInventoryItemAllocatedDetails(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate, Set<String> itemIds)
@@ -1234,7 +1224,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + FREE_ALLOWANCE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     BigDecimal getFreeAllowanceCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam(CALL_TYPE) String callType,
           @QueryParam(START_DATE_TIME) String startDateTime, @QueryParam(END_DATE_TIME) String endDateTime)
@@ -1242,42 +1232,42 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    @Requires(Permission.WRITE_COMPANY_PROFILE_DEFAULTS)
     TenantDefaultSettingsSummary getTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException;
 
     @POST
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    @Requires(Permission.WRITE_COMPANY_PROFILE_DEFAULTS)
     TenantDefaultSettingsSummary createTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId,
           TenantDefaultSettingsSummary tenantDefaultSettingsSummary) throws RGuestException;
 
     @PUT
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    @Requires(Permission.WRITE_COMPANY_PROFILE_DEFAULTS)
     TenantDefaultSettingsSummary updateTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId,
           TenantDefaultSettingsSummary tenantDefaultSettingsSummary) throws RGuestException;
 
     @GET
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_JOB_STATUS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     AccountUpdateResponse findAccountReceivableJobStatus(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException;
 
     @GET
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_PROPERTY_LISTINGS_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    @Requires(Permission.WRITE_COMPANY_PROFILE_DEFAULTS)
     List<TenantARPropertySettingStatus> getAccountReceivablePropertySettingStatus(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException;
 
     @POST
     @Path(COMPANY_PROFILE_PATH + TENANT_DEFAULT_SETTINGS_APPLY_PATH)
-    @PreAuthorize("hasPermission('Required', 'WriteCompanyProfileDefaults')")
+    @Requires(Permission.WRITE_COMPANY_PROFILE_DEFAULTS)
     AccountUpdateResponse applyTenantDefaultSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMPANY_PROFILE_ID) String companyProfileId)
           throws RGuestException;
@@ -1290,7 +1280,7 @@ public interface AccountServiceInterfaceV1 {
 
     @PUT
     @Path(FOLIO_INVOICE_BY_PROFILE_ID)
-    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    @Requires(Permission.READ_PROPERTIES)
     void updateProfileIdsInMultiFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, UpdateFolioInvoicesRequest updateFolioInvoicesRequest)
           throws RGuestException;
@@ -1298,39 +1288,39 @@ public interface AccountServiceInterfaceV1 {
     @POST
     @Path(INVOICES_PATH + PRINT_FOLIO)
     @Produces(MediaType.TEXT_HTML)
-    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    @Requires(Permission.READ_PROPERTIES)
     String printFolioInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           FolioInvoiceRequest folioInvoiceRequest) throws RGuestException;
 
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_INVOICE_SUMMARY)
-    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    @Requires(Permission.READ_PROPERTIES)
     List<FolioInvoiceDetail> getFolioInvoiceSummary(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @GET
     @Path(FOLIO_INVOICE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    @Requires(Permission.READ_PROPERTIES)
     FolioInvoiceResponse getFolioInvoiceDetailFromFolioInvoiceNumber(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam("folioInvoiceId") String folioInvoiceId)
           throws RGuestException;
 
     @POST
     @Path(INVOICES_PATH + BATCH_FOLIO_PRINT)
-    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    @Requires(Permission.READ_PROPERTIES)
     List<String> printBatchFolioInvoice(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException;
 
     @POST
     @Path(INVOICES_PATH + FOLIO_EMAIL)
-    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    @Requires(Permission.READ_PROPERTIES)
     void sendFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           FolioInvoiceRequest folioInvoiceRequest) throws RGuestException;
 
     @POST
     @Path(INVOICES_PATH + BATCH_FOLIO_EMAIL)
-    @PreAuthorize("hasPermission('Required', 'ReadProperties')")
+    @Requires(Permission.READ_PROPERTIES)
     BatchFolioInvoiceResponse sendBatchFolioInvoiceEmail(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, BatchFolioInvoiceRequest batchFolioInvoiceRequest)
           throws RGuestException;
@@ -1339,7 +1329,7 @@ public interface AccountServiceInterfaceV1 {
     @Path(CANCEL_PAYMENTS)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     ReservationCancellationResponse processCancellation(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountStatementsRequest accountStatementsRequest)
           throws RGuestException;
@@ -1364,8 +1354,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @Path(ACCOUNT_ID_PATH + PANTRY_ITEMS_CHARGE)
-    @Requires()
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts') and hasPermission('Required', 'AddPantry')")
+    @Requires({ Permission.WRITE_ACCOUNTS, Permission.ADD_PANTRY })
     PantryTransactionResponse postPantryCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam("ignoreAuth") boolean ignoreAuth, @QueryParam("reAuth") boolean reAuth,
@@ -1373,13 +1362,13 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(FOLIO_LINE_ITEM)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     LineItemView getFolioLineItemById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(FOLIO_LINE_ITEM_ID) String folioLineItemId) throws RGuestException;
 
     @GET
     @Path(LEDGER_TRANSACTION_IDS)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     IGTransactionHistoryFields getLineItemViewByLedgerTransactionById(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(LEDGER_TRANSACTION) String LedgerTransactionIds)
           throws RGuestException;
@@ -1434,7 +1423,7 @@ public interface AccountServiceInterfaceV1 {
 
     @GET
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH + FOLIO_ID_PATH + ALLOWANCE + DATE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<CheckAllowanceResponse> checkPackageAllowance(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(FOLIO_ID) String packageFolioId, @PathParam(DATE) LocalDate date) throws RGuestException;
@@ -1457,7 +1446,7 @@ public interface AccountServiceInterfaceV1 {
     @DELETE
     @Path(DELETE_COMPANY_AR_DOCUMENTS)
     @Consumes(HTTPRequestConstants.JSON_MEDIA_TYPE)
-    @PreAuthorize("hasPermission('Required', 'DeleteCompanyARDocument')")
+    @Requires(Permission.DELETE_COMPANY_AR_DOCUMENT)
     void deleteCompanyARDocuments(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           DocumentRequest documentRequest) throws RGuestException;
 

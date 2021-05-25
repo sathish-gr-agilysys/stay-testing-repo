@@ -18,7 +18,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.joda.time.LocalDate;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.common.model.EnhancementRequest;
@@ -101,7 +100,7 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(RECURRING_CHARGES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     RecurringChargesPropertyView getPropertyRecurringChargesSummary(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
@@ -115,7 +114,7 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<RecurringChargeView> getRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
@@ -174,7 +173,7 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<RecurringChargeView> getRecurringCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(RECURRING_CHARGE_ID) String recurringChargeId, @QueryParam(START_DATE) LocalDate startDate,
@@ -188,7 +187,7 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(RECURRING_CHARGES_PROCESS_STATUS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     ProgressStatusView getRecurringChargeProgress(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
@@ -244,7 +243,7 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + ESTIMATED_CHARGES_BY_PAYMENTSETTING_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<EstimatedChargesView> getEstimatedChargesByPaymentSetting(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
@@ -253,14 +252,14 @@ public interface RecurringChargesServiceInterface {
 
     @POST
     @Path(ACCOUNT_PATH + ESTIMATED_CHARGES_BY_RESERVATION_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, List<EstimatedChargesView>> getEstimatedChargesByReservationIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate, Set<String> reservationIds) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_PATH + ESTIMATED_CHARGES_FOR_BATCH_PRE_AUTH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     Map<String, List<EstimatedChargesView>> getEstimatedChargesViewForBatchPreAuth(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam(NO_OF_DAYS) int noOfDays, Set<String> reservationIds) throws RGuestException;
@@ -274,13 +273,13 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + ESTIMATED_CHARGES_BY_FOLIO_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     EstimatedChargesByFolioResult getEstimatedChargesByFolio(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @POST
     @Path(ACCOUNT_PATH + ESTIMATED_CHARGES_WITH_OFFERS)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     EstimatedChargeDetailsForOffers getEstimatedChargesWithOfferDetails(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, OfferDetails offerDetails) throws RGuestException;
 
@@ -289,7 +288,7 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + AUTH_DETAILS)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     AuthDetailResponse getAuthDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
@@ -314,7 +313,7 @@ public interface RecurringChargesServiceInterface {
     @Deprecated
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     RecurringChargesValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(ARRIVAL_DATE) LocalDate arrivalDate, @QueryParam(DEPARTURE_DATE) LocalDate departureDate)
@@ -326,7 +325,7 @@ public interface RecurringChargesServiceInterface {
      */
     @POST
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + VALIDITY)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     RecurringChargesValidityResponse getRecurringChargesValidity(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           RecurringChargesValidityRequest recurringChargesValidityRequest) throws RGuestException;
@@ -337,7 +336,7 @@ public interface RecurringChargesServiceInterface {
      */
     @POST
     @Path(RECURRING_CHARGES_PATH + VALIDITY)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     RecurringChargesValidityResponse getRecurringChargesValidityForCreate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, RecurringChargesValidityRequest recurringChargesValidityRequest)
           throws RGuestException;
@@ -348,13 +347,13 @@ public interface RecurringChargesServiceInterface {
      */
     @POST
     @Path(ENHANCEMENT_VALIDITY_PATH + VALIDITY)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     EnhancementResponse getValidEnhancementItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, EnhancementRequest enhancementRequest) throws RGuestException;
 
     @POST
     @Path(RECURRING_CHARGES_PATH + VALIDITY + BULK)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<RecurringChargesValidityResponse> getBulkRecurringChargesValidityForCreate(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           RecurringChargesValidityRequest recurringChargesValidityRequest) throws RGuestException;
@@ -367,7 +366,7 @@ public interface RecurringChargesServiceInterface {
      */
     @GET
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + ESTIMATED_ROOM_CHARGES_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<EstimatedRoomChargeView> getEstimatedRoomCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;

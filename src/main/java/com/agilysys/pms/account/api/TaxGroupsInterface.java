@@ -15,8 +15,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.TaxGroupView;
 import com.agilysys.pms.common.security.Permission;
@@ -37,7 +35,7 @@ public interface TaxGroupsInterface {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     // TODO check this
     List<TaxGroupView> getTaxGroups(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
@@ -76,7 +74,7 @@ public interface TaxGroupsInterface {
     @Path(TAX_GROUP_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     // TODO check this
     TaxGroupView getTaxGroup(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(TAX_GROUP_ID) String taxGroupId) throws RGuestException;

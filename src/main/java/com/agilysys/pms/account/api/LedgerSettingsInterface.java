@@ -14,8 +14,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.LedgerSettingView;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -39,13 +37,13 @@ public interface LedgerSettingsInterface {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     List<LedgerSettingView> getAllLedgerSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @GET
     @Path(LEDGER_SETTING_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     @Produces(MediaType.APPLICATION_JSON)
     LedgerSettingView getLedgerSetting(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(LEDGER_SETTING_ID) String ledgerSettingId) throws RGuestException;
