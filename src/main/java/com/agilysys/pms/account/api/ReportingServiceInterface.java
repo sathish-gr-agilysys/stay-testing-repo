@@ -3,8 +3,6 @@
  */
 package com.agilysys.pms.account.api;
 
-import static com.agilysys.pms.common.security.Operator.OR;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -244,7 +242,7 @@ public interface ReportingServiceInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(AccountBalancesRequest.class)
-    @Requires(permissions = { Permission.READ_ACCOUNTS, Permission.READ_REPORTS }, operator = OR)
+    @Requires(any = { Permission.READ_ACCOUNTS, Permission.READ_REPORTS })
     AccountBalancesInfo getAccountBalances(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AccountBalancesRequest request) throws RGuestException;
 
@@ -252,7 +250,7 @@ public interface ReportingServiceInterface {
     @Path(GENERAL_LEDGER)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Requires(permissions = { Permission.READ_ACCOUNTS, Permission.READ_REPORTS }, operator = OR)
+    @Requires(any = { Permission.READ_ACCOUNTS, Permission.READ_REPORTS })
     List<GLCodeTemplate> getGeneralLedgerTemplates(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, GLCodeTemplateRequest request) throws RGuestException;
 
@@ -264,7 +262,7 @@ public interface ReportingServiceInterface {
     @Path(CASHIERS_LIST_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Requires(permissions = { Permission.READ_ACCOUNTS, Permission.READ_REPORTS }, operator = OR)
+    @Requires(any = { Permission.READ_ACCOUNTS, Permission.READ_REPORTS })
     List<Cashier> getCashiersList(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
 

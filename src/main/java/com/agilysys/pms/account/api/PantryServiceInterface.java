@@ -3,8 +3,6 @@
  */
 package com.agilysys.pms.account.api;
 
-import static com.agilysys.pms.common.security.Operator.OR;
-
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -35,7 +33,7 @@ public interface PantryServiceInterface {
     String SORT_PANTRY_ITEMS_BY_FIELD_PATH = "/" + SORT_PANTRY_ITEMS_BY_FIELD + "/{" + SORT_PANTRY_ITEMS_BY_FIELD + "}";
 
     @GET
-    @Requires(permissions = { Permission.READ_PANTRY_MGMT, Permission.ADD_PANTRY }, operator = OR)
+    @Requires(any = { Permission.READ_PANTRY_MGMT, Permission.ADD_PANTRY })
     List<PantryItem> getPantryItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
 
@@ -66,7 +64,7 @@ public interface PantryServiceInterface {
 
     @GET
     @Path(SORT_PANTRY_ITEMS_BY_FIELD_PATH)
-    @Requires(permissions = { Permission.READ_PANTRY_MGMT, Permission.ADD_PANTRY }, operator = OR)
+    @Requires(any = { Permission.READ_PANTRY_MGMT, Permission.ADD_PANTRY })
     List<PantryItem> getPantryItemsSortByName(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(SORT_PANTRY_ITEMS_BY_FIELD) String sortPantryItemsByField) throws RGuestException;

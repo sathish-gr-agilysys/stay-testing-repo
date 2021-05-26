@@ -4,7 +4,6 @@
 package com.agilysys.pms.account.api;
 
 import static com.agilysys.common.constants.Constants.FILE;
-import static com.agilysys.pms.common.security.Operator.OR;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -1006,7 +1005,7 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH)
     @Validated(InvoiceRequest.class)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     InvoiceView createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, InvoiceRequest invoice) throws RGuestException;
 
@@ -1024,7 +1023,7 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + BY_ACCOUNT_PATH)
     @Validated(InvoiceRequest.class)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     List<InvoiceView> createInvoice(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam(SPLIT_BY_SOURCE_ACCOUNT) boolean splitBySourceAccount,
           InvoiceRequest invoice) throws RGuestException;
@@ -1093,7 +1092,7 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_ADD_ITEMS_PATH)
     @Validated(UpdateInvoiceLineItemsRequest.class)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     InvoiceView addInvoiceLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceLineItemsRequest lineItems) throws RGuestException;
@@ -1101,7 +1100,7 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_REMOVE_ITEMS_PATH)
     @Validated(UpdateInvoiceLineItemsRequest.class)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     InvoiceView removeInvoiceLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceLineItemsRequest lineItems) throws RGuestException;
@@ -1109,21 +1108,21 @@ public interface AccountServiceInterfaceV1 {
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_UPDATE_TERMS_PATH)
     @Validated(UpdateInvoiceTermsRequest.class)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     InvoiceView updateInvoiceTerms(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           UpdateInvoiceTermsRequest terms) throws RGuestException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_ID_PATH + INVOICE_SET_INVOICE_SENT)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     InvoiceView setInvoiceSent(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @PathParam(INVOICE_ID) String invoiceId,
           @QueryParam("isEmail") boolean isEmail) throws RGuestException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + INVOICE_SET_INVOICE_SENT + BULK)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     void setInvoiceSentByBulk(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("isEmail") boolean isEmail, MailedInvoice mailedInvoice)
           throws RGuestException;
@@ -1132,7 +1131,7 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_PAYMENTS)
     @Validated(ApplyInvoicePaymentRequest.class)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     List<InvoiceView> applyInvoicePayments(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           ApplyInvoicePaymentRequest applyInvoicePaymentRequest) throws RGuestException;
@@ -1141,7 +1140,7 @@ public interface AccountServiceInterfaceV1 {
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + INVOICES_PATH + APPLY_DEPOSIT_PAYMENTS)
     @Validated(ApplyInvoiceDepositPaymentRequest.class)
-    @Requires(permissions = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE }, operator = OR)
+    @Requires(any = { Permission.WRITE_ACCOUNTS_RECEIVABLE, Permission.USE_ACCOUNTS_RECEIVABLE })
     List<InvoiceView> applyInvoiceDepositPayments(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           ApplyInvoiceDepositPaymentRequest applyInvoiceDepositPaymentRequest) throws RGuestException;
