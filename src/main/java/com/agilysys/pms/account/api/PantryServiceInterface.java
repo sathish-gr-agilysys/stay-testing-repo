@@ -3,6 +3,8 @@
  */
 package com.agilysys.pms.account.api;
 
+import static com.agilysys.pms.common.security.Operator.OR;
+
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -14,11 +16,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.PantryItem;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/pantryItems")
 @Produces(MediaType.APPLICATION_JSON)
@@ -30,43 +32,41 @@ public interface PantryServiceInterface {
     String ITEM_ID_PATH = "{id}";
     String PANTRY_ITEM_BULK_UPDATE = "/bulkUpdate";
     String SORT_PANTRY_ITEMS_BY_FIELD = "sortByField";
-    String SORT_PANTRY_ITEMS_BY_FIELD_PATH =
-          "/" + SORT_PANTRY_ITEMS_BY_FIELD + "/{" + SORT_PANTRY_ITEMS_BY_FIELD + "}";
+    String SORT_PANTRY_ITEMS_BY_FIELD_PATH = "/" + SORT_PANTRY_ITEMS_BY_FIELD + "/{" + SORT_PANTRY_ITEMS_BY_FIELD + "}";
 
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
+    @Requires(permissions = { Permission.READ_PANTRY_MGMT, Permission.ADD_PANTRY }, operator = OR)
     List<PantryItem> getPantryItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId)
           throws RGuestException;
 
     @GET
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt')")
+    @Requires(Permission.READ_PANTRY_MGMT)
     PantryItem getPantryItemById(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     @POST
     @Validated(PantryItem.class)
-    @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
+    @Requires(Permission.WRITE_PANTRY_MGMT)
     PantryItem createPantryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           PantryItem item) throws RGuestException;
 
     @PUT
     @Path(ITEM_ID_PATH)
     @Validated(PantryItem.class)
-    @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
+    @Requires(Permission.WRITE_PANTRY_MGMT)
     PantryItem updatePantryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId, PantryItem item) throws RGuestException;
 
     @PUT
     @Path(PANTRY_ITEM_BULK_UPDATE)
-    @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
+    @Requires(Permission.WRITE_PANTRY_MGMT)
     List<PantryItem> bulkUpdatePantryItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, List<PantryItem> pantryItemList)
-          throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, List<PantryItem> pantryItemList) throws RGuestException;
 
     @GET
     @Path(SORT_PANTRY_ITEMS_BY_FIELD_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPantryMgmt') or hasPermission('Required', 'AddPantry')")
+    @Requires(permissions = { Permission.READ_PANTRY_MGMT, Permission.ADD_PANTRY }, operator = OR)
     List<PantryItem> getPantryItemsSortByName(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(SORT_PANTRY_ITEMS_BY_FIELD) String sortPantryItemsByField) throws RGuestException;

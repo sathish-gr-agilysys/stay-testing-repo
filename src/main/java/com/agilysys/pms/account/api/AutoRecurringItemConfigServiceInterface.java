@@ -17,8 +17,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.common.model.MergeMarketingDetailRequest;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AutoRecurringChargeRule;
@@ -60,12 +58,12 @@ public interface AutoRecurringItemConfigServiceInterface {
 
     @GET
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     AutoRecurringItem getAutoRecurringItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<AutoRecurringItem> getAutoRecurringItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
@@ -87,42 +85,42 @@ public interface AutoRecurringItemConfigServiceInterface {
 
     @POST
     @Path(APPLICABLE_ARC_RULE)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     AutoRecurringChargeRuleResponse getApplicableArcRule(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRuleRequest autoRecurringChargeRuleRequest)
           throws RGuestException;
 
     @POST
     @Path(VALIDATE_RULE_CHANGES)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     AutoRecurringChargeRuleResponse validateRuleChanges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           AutoRecurringChargeRuleRequest autoRecurringChargeRuleRequest) throws RGuestException;
 
     @POST
     @Path(APPLICABLE_ARC_RULE_BULK)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     Map<String, AutoRecurringChargeRuleResponse> getApplicableArcRuleForRatesAndRooms(
           @PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           BulkAutoRecurringRuleRequest bulkAutoRecurringRuleRequest) throws RGuestException;
 
     @DELETE
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void deleteAutoRecurringItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     @GET
     @Path(RULE)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<AutoRecurringChargeRule> getAutoRecurringChargeRules(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam("active") Boolean active) throws RGuestException;
 
     @POST
     @Path(RULE)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'AutoRecurringChargeRules')")
+    @Requires(Permission.AUTO_RECURRING_CHARGE_RULES)
     AutoRecurringChargeRule createAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
@@ -131,7 +129,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PUT
     @Path(RULE)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'AutoRecurringChargeRules')")
+    @Requires(Permission.AUTO_RECURRING_CHARGE_RULES)
     AutoRecurringChargeRule updateAutoRecurringChargeRule(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
@@ -140,28 +138,28 @@ public interface AutoRecurringItemConfigServiceInterface {
     @PUT
     @Path(RULE_BY_ACCOUNTS)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void updateArcRuleByAccountIds(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           AutoRecurringChargeRuleParameters autoRecurringChargeRuleParameters) throws RGuestException;
 
     @GET
     @Path(RULE + "/associatedToGroup")
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     AutoRecurringChargeRule getArcRuleAssociatedToGroup(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @GET
     @Path(RULE + PRIORITIZE_ORDER)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     AutoRecurringChargesPriority getArcRulePriority(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @PUT
     @Path(RULE + PRIORITIZE_ORDER)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     AutoRecurringChargesPriority updateArcRulePriority(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("") TransactionItemOptionalParameters optionalParameters, AutoRecurringChargesPriority priority)
@@ -170,26 +168,26 @@ public interface AutoRecurringItemConfigServiceInterface {
     @GET
     @Path(RULE + PRINT_OR_EMAIL)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     AutoRecurringChargesPrintOrEmail getPrintEmailConfig(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId);
 
     @PUT
     @Path(RULE + PRINT_OR_EMAIL)
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     AutoRecurringChargesPrintOrEmail updatePrintEmailConfig(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargesPrintOrEmail printOrEmail);
 
     @PUT
     @Path(SHARE_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void updateArcPerRoomItemsByShareId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(SHARE_ID) String shareId);
 
     @PUT
     @Path(UPDATE_ARC_FOR_MODIFIED_SNAPSHOT)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void updateAutoRecurringChargesForModifiedRateSnapshot(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           AutoRecurringChargeRuleParameters autoRecurringChargeRuleParameters);
