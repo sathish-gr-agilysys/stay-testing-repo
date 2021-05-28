@@ -61,6 +61,11 @@ public abstract class Transaction {
     protected String giftCardNumber;
     protected boolean excludeTax;
     protected boolean arDeposit;
+    protected boolean routingChargeAlreadyPosted;
+    protected String referenceNumber;
+    protected String authCode;
+    protected String cardHolderName;
+    protected Boolean depositPaymentAtBooking;
 
     public String getAccountId() {
         return accountId;
@@ -295,12 +300,52 @@ public abstract class Transaction {
         this.arDeposit = arDeposit;
     }
 
+    public boolean isRoutingChargeAlreadyPosted() {
+        return routingChargeAlreadyPosted;
+    }
+
+    public void setRoutingChargeAlreadyPosted(boolean routingChargeAlreadyPosted) {
+        this.routingChargeAlreadyPosted = routingChargeAlreadyPosted;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
+    }
+
+    public String getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
+    }
+
+    public String getCardHolderName() {
+        return cardHolderName;
+    }
+
+    public void setCardHolderName(String cardHolderName) {
+        this.cardHolderName = cardHolderName;
+    }
+
+    public Boolean getDepositPaymentAtBooking() {
+        return depositPaymentAtBooking;
+    }
+
+    public void setDepositPaymentAtBooking(Boolean depositPaymentAtBooking) {
+        this.depositPaymentAtBooking = depositPaymentAtBooking;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(accountId).append(amount).append(folioId).append(ignoreRules).append(itemId)
               .append(postingDate).append(displayDate).append(reason).append(reference).append(sourceId)
               .append(terminalId).append(gatewayType).append(giftCardNumber).append(giftCard).append(excludeTax)
-              .toHashCode();
+              .append(authCode).toHashCode();
     }
 
     @Override
@@ -323,7 +368,7 @@ public abstract class Transaction {
               .append(displayDate, other.displayDate).append(gatewayType, other.gatewayType)
               .append(giftCardNumber, other.giftCardNumber).append(giftCard, other.giftCard)
               .append(descriptionOverride, other.getDescriptionOverride()).append(excludeTax, other.isExcludeTax())
-              .isEquals();
+              .append(authCode, other.authCode).isEquals();
     }
 
     public AllowanceCombination toAllowanceCombination() {

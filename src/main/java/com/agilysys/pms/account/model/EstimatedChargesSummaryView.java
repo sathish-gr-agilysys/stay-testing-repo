@@ -102,6 +102,15 @@ public class EstimatedChargesSummaryView {
     private BigDecimal inclusiveComponentsRoomRevenueTaxTotal = BigDecimal.ZERO;
 
     /**
+     * The offer summary
+     */
+    private OfferChargesSummaryView offerSummary;
+
+    private BigDecimal packageNonRoomRevenueCharges = BigDecimal.ZERO;
+
+    private BigDecimal arcNonRoomRevenueCharges = BigDecimal.ZERO;
+
+    /**
      * Gets the estimate payment due at checkout
      */
     public BigDecimal getEstimatedPayment() {
@@ -317,5 +326,29 @@ public class EstimatedChargesSummaryView {
 
     public void setInclusiveComponentsRoomRevenueTaxTotal(BigDecimal inclusiveComponentsRoomRevenueTaxTotal) {
         this.inclusiveComponentsRoomRevenueTaxTotal = inclusiveComponentsRoomRevenueTaxTotal;
+    }
+
+    public OfferChargesSummaryView getOfferSummary() {
+        return offerSummary;
+    }
+
+    public void setOfferSummary(OfferChargesSummaryView offerSummary) {
+        this.offerSummary = offerSummary;
+    }
+
+    public BigDecimal getPackageNonRoomRevenueCharges() {
+        return packageNonRoomRevenueCharges;
+    }
+
+    public void setPackageNonRoomRevenueCharges(BigDecimal packageNonRoomRevenueCharges) {
+        this.packageNonRoomRevenueCharges = packageNonRoomRevenueCharges;
+    }
+
+    public BigDecimal getArcNonRoomRevenueCharges() {
+        return arcNonRoomRevenueCharges;
+    }
+
+    public void setArcNonRoomRevenueCharges(BigDecimal arcNonRoomRevenueCharges) {
+        this.arcNonRoomRevenueCharges = arcNonRoomRevenueCharges;
     }
 }
