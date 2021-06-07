@@ -40,6 +40,7 @@ public class PayTransactionRequest {
     private List<PaymentTransaction> payTransactions = new ArrayList<>();
     private String pantryName;
     private Boolean manualCardEntry;
+    private String propertyTimeZone;
 
     public PayTransactionRequest() {
     }
@@ -260,6 +261,14 @@ public class PayTransactionRequest {
 
     public void setManualCardEntry(Boolean manualCardEntry) {
         this.manualCardEntry = manualCardEntry;
+    }
+
+    public String getPropertyTimeZone() {
+        return propertyTimeZone;
+    }
+
+    public void setPropertyTimeZone(String propertyTimeZone) {
+        this.propertyTimeZone = propertyTimeZone;
     }
 
     private void isValidRequest() {
