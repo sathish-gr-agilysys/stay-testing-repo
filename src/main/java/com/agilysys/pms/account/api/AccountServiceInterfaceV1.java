@@ -25,6 +25,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -316,6 +317,15 @@ public interface AccountServiceInterfaceV1 {
     List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("accountType") String accountTypes, @QueryParam("accountStatus") String accountStatuses)
           throws RGuestException;
+
+    @GET
+    @Path("/searchByUpdatedDate")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam("accountType") String accountTypes,
+          @QueryParam(START_DATE_TIME) LocalDateTime startDateTime,
+          @QueryParam(END_DATE_TIME) LocalDateTime endDateTime) throws RGuestException;
+
 
     @Deprecated
     @GET
