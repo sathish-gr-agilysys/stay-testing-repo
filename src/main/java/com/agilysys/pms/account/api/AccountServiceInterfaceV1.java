@@ -311,7 +311,8 @@ public interface AccountServiceInterfaceV1 {
     String BATCH_CREDITS_PATH = "/batchCredits";
     String ACCOUNTS_BY_IDS = "/accountsByIds";
     String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
-
+    String ACCOUNT_TYPE_PATH = "/accountType/{"+ACCOUNT_TYPE +"}";
+    String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH+"/searchByUpdatedDate";
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
@@ -319,7 +320,7 @@ public interface AccountServiceInterfaceV1 {
           throws RGuestException;
 
     @GET
-    @Path("/searchByUpdatedDate")
+    @Path(SEARCH_BY_UPDATED_DATE)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("accountType") String accountTypes,
