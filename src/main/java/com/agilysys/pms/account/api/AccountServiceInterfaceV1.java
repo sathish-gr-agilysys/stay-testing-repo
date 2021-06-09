@@ -324,8 +324,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam("accountType") String accountTypes,
-          @QueryParam(START_DATE_TIME) LocalDateTime startDateTime,
-          @QueryParam(END_DATE_TIME) LocalDateTime endDateTime) throws RGuestException;
+          @QueryParam(START_DATE_TIME) String startDateTime,
+          @QueryParam(END_DATE_TIME) String endDateTime) throws RGuestException;
 
 
     @Deprecated
