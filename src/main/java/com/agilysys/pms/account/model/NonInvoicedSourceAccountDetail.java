@@ -30,6 +30,7 @@ public class NonInvoicedSourceAccountDetail {
     protected BigDecimal nonInvoicedChargesTotalBalance = BigDecimal.ZERO;
     protected BigDecimal nonInvoicedPaymentsTotalBalance = BigDecimal.ZERO;
     protected Set<ThirdPartyConfirmation> thirdPartyConfirmation;
+    protected String referenceNumber;
 
     public String getSourceAccountId() {
         return sourceAccountId;
@@ -157,5 +158,13 @@ public class NonInvoicedSourceAccountDetail {
 
     public void setThirdPartyConfirmation(Set<ThirdPartyConfirmation> thirdPartyConfirmation) {
         this.thirdPartyConfirmation = thirdPartyConfirmation;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 }
