@@ -61,4 +61,9 @@ public interface MaintenanceInterface extends SearchMaintenanceInterface {
     @PreAuthorize(WRITE_TENANTS_PERMISSION)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
     Map<String, Long> indexAccounts(MaintenanceRequest request) throws RGuestException;
+
+    @POST
+    @Path("/migrateDailyCashiers")
+    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    void migrateDailyCashiers() throws RGuestException;
 }
