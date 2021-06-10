@@ -194,6 +194,7 @@ public interface AccountServiceInterfaceV1 {
     String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
+    String GROUPED_FOLIOS_LINE_ITEMS = "/groupedFoliosLineItems";
     String ID = "id";
     String INCLUDE_CLOSED_ACCOUNTS = "includeClosedAccounts";
     String INCLUDE_HOLD_ACCOUNTS = "includeHoldAccounts";
@@ -414,6 +415,13 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
+          throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + GROUPED_FOLIOS_LINE_ITEMS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<FolioDetail> getAllFolioLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
 
