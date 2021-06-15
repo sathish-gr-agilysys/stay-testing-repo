@@ -8,15 +8,14 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.payment.model.PaymentFlowType;
+
 public class AccountStatementsRequest {
-
     private Map<String, String> reservationConfirmationCodeByAccountId;
-
     private LocalDate propertyDate;
-
     private Set<String> accountIds;
-
     private Map<String, Charge> accountsChargesMap;
+    private PaymentFlowType paymentFlowType;
 
     public Map<String, String> getReservationConfirmationCodeByAccountId() {
         return reservationConfirmationCodeByAccountId;
@@ -48,5 +47,13 @@ public class AccountStatementsRequest {
 
     public void setAccountsChargesMap(Map<String, Charge> accountsChargesMap) {
         this.accountsChargesMap = accountsChargesMap;
+    }
+
+    public PaymentFlowType getPaymentFlowType() {
+        return paymentFlowType;
+    }
+
+    public void setPaymentFlowType(PaymentFlowType paymentFlowType) {
+        this.paymentFlowType = paymentFlowType;
     }
 }
