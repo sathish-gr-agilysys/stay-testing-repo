@@ -17,6 +17,8 @@ public class AuthDetails {
 
     private String paymentInstrumentId;
 
+    private boolean paymentSettingAssociatedToProfile;
+
     public EstimatedChargesSummaryView getEstimatedCharges() {
         return estimatedCharges;
     }
@@ -71,5 +73,13 @@ public class AuthDetails {
 
     public void setPaymentInstrumentId(String paymentInstrumentId) {
         this.paymentInstrumentId = paymentInstrumentId;
+    }
+
+    public boolean isPaymentSettingAssociatedToProfile() {
+        return paymentSettingAssociatedToProfile;
+    }
+
+    public void setPaymentSettingAssociatedToProfile(boolean paymentSettingAssociatedToProfile) {
+        this.paymentSettingAssociatedToProfile = paymentSettingAssociatedToProfile;
     }
 }
