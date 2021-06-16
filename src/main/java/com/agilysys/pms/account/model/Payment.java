@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.agilysys.pms.payment.model.CardInformation;
+import com.agilysys.pms.payment.model.PaymentFlowType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -27,13 +28,14 @@ public class Payment {
     private String disputeComment;
     private boolean reAuthBeforeCheckin;
     private boolean makePaymentAsDeposit;
+    private PaymentFlowType paymentFlowType;
 
     public Payment() {
         this.transactions = new ArrayList<>();
     }
 
     public Payment(String paymentMethodId, String terminalId, String invoiceNumber, String paymentInstrumentId,
-                   List<PaymentTransaction> transactions) {
+          List<PaymentTransaction> transactions) {
         this.paymentMethodId = paymentMethodId;
         this.terminalId = terminalId;
         this.invoiceNumber = invoiceNumber;
@@ -131,6 +133,14 @@ public class Payment {
         this.disputeComment = disputeComment;
     }
 
+    public boolean isReAuthBeforeCheckin() {
+        return reAuthBeforeCheckin;
+    }
+
+    public void setReAuthBeforeCheckin(boolean reAuthBeforeCheckin) {
+        this.reAuthBeforeCheckin = reAuthBeforeCheckin;
+    }
+
     public boolean isMakePaymentAsDeposit() {
         return makePaymentAsDeposit;
     }
@@ -139,11 +149,11 @@ public class Payment {
         this.makePaymentAsDeposit = makePaymentAsDeposit;
     }
 
-    public boolean isReAuthBeforeCheckin() {
-        return reAuthBeforeCheckin;
+    public PaymentFlowType getPaymentFlowType() {
+        return paymentFlowType;
     }
 
-    public void setReAuthBeforeCheckin(boolean reAuthBeforeCheckin) {
-        this.reAuthBeforeCheckin = reAuthBeforeCheckin;
+    public void setPaymentFlowType(PaymentFlowType paymentFlowType) {
+        this.paymentFlowType = paymentFlowType;
     }
 }

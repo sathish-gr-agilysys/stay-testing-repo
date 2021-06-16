@@ -16,11 +16,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.RoutingRuleTemplate;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path(RoutingRuleTemplateServiceInterface.BASE_PATH)
 @Produces(MediaType.APPLICATION_JSON)
@@ -35,31 +35,30 @@ public interface RoutingRuleTemplateServiceInterface {
 
     @GET
     @Path(TEMPLATE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     RoutingRuleTemplate getRoutingRuleTemplateById(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TEMPLATE_ID) String id) throws RGuestException;
 
     @POST
     @Path(TEMPLATES_BY_IDS_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     Map<String, RoutingRuleTemplate> getRoutingRuleTemplateByIds(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<String> templateIds) throws RGuestException;
 
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<RoutingRuleTemplate> getRoutingRuleTemplates(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @POST
     @CreatedOnSuccess
-    @PreAuthorize("hasPermission('Required', 'CreateRRTemplate')")
+    @Requires(Permission.CREATE_RR_TEMPLATE)
     RoutingRuleTemplate createRoutingRuleTemplate(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, RoutingRuleTemplate routingRuleTemplates)
-          throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, RoutingRuleTemplate routingRuleTemplates) throws RGuestException;
 
     @PUT
     @Path(TEMPLATE_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'CreateRRTemplate')")
+    @Requires(Permission.CREATE_RR_TEMPLATE)
     RoutingRuleTemplate updateRoutingRuleTemplate(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(TEMPLATE_ID) String id,
           RoutingRuleTemplate routingRuleTemplate) throws RGuestException;
