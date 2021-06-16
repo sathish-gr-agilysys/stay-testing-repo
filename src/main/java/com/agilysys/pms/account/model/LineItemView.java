@@ -111,10 +111,10 @@ public class LineItemView implements Comparable<LineItemView> {
     private String referenceNumber;
     private String compOfferId;
     private String compOfferName;
-    private CurrencyExchangeDetails currencyExchangeDetails;
     private String authCode;
     private String cardHolderName;
     private Boolean depositPaymentAtBooking;
+    private CurrencyExchangeDetails currencyExchangeDetails;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
