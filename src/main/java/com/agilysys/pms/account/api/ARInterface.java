@@ -20,7 +20,6 @@ import com.agilysys.pms.common.tenantData.TenantData;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface ARInterface {
-
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
     String REMIT_TO = "/remitTo";
@@ -34,12 +33,12 @@ public interface ARInterface {
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @PUT
-    @Path(REMIT_TO + "/addresses"  )
+    @Path(REMIT_TO + "/addresses")
     List<TenantData> updateRemitToAddress(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, List<TenantData> tenantData) throws  RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, List<TenantData> tenantData) throws RGuestException;
 
     @GET
     @Path(REMIT_TO + "/address/{id}")
-    List<TenantData> getRemitToAddress(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(ID) String id) throws RGuestException;
+    List<TenantData> getRemitToAddress(@PathParam(TENANT_ID) String tenantId, @PathParam(ID) String id)
+          throws RGuestException;
 }
