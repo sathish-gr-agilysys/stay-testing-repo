@@ -19,8 +19,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
@@ -30,6 +28,8 @@ import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 import com.agilysys.pms.common.client.caching.CacheOnClient;
 import com.agilysys.pms.common.eons.EonsType;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 /**
  * CRUD methods for TransactionItem
@@ -59,7 +59,7 @@ public interface TransactionItemConfigServiceInterface {
      * @return List of TransactionItem
      */
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<TransactionItem> getTransactionItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws RGuestException;
@@ -68,16 +68,15 @@ public interface TransactionItemConfigServiceInterface {
     @Path("/all")
     @CacheOnClient(type = EonsType.TRANSACTION_ITEM, tenantId = TENANT_ID, propertyId = PROPERTY_ID,
           riskTolerance = MODERATE)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<TransactionItem> getAllTransactionItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
-
 
     @GET
     @Path("/nonInternal")
     @CacheOnClient(type = EonsType.TRANSACTION_ITEM, tenantId = TENANT_ID, propertyId = PROPERTY_ID,
           riskTolerance = MODERATE)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<TransactionItem> getNonInternalTransactionItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
@@ -91,7 +90,7 @@ public interface TransactionItemConfigServiceInterface {
      */
     @GET
     @Path(COMTROL_VALUE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     TransactionItem getTransactionItemByComtrolValue(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMTROL_VALUE) FolioPostingCodes folioPostingCode)
           throws RGuestException;
@@ -105,7 +104,7 @@ public interface TransactionItemConfigServiceInterface {
      */
     @GET
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     TransactionItem getTransactionItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
@@ -119,7 +118,7 @@ public interface TransactionItemConfigServiceInterface {
     @POST
     @CreatedOnSuccess
     @Validated(TransactionItem.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     TransactionItem createTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionItem item) throws RGuestException;
 
@@ -136,7 +135,7 @@ public interface TransactionItemConfigServiceInterface {
     @PUT
     @Path(ITEM_ID_PATH)
     @Validated(TransactionItem.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, TransactionItem item)
@@ -150,13 +149,13 @@ public interface TransactionItemConfigServiceInterface {
      */
     @DELETE
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void deleteTransactionItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     @GET
     @Path(ITEM_ID_PATH + "/associatedTaxRules")
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<TaxRuleData> getAssociatedTaxRules(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
@@ -168,13 +167,12 @@ public interface TransactionItemConfigServiceInterface {
      */
     @GET
     @Path(ACTIVE)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<TransactionItem> getActiveTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal,
           @QueryParam(INCLUDE_SUB_TRANSACTION_ITEMS) boolean includeSubItems,
           @QueryParam(INCLUDE_INACTIVE) boolean includeInactive,
           @QueryParam(INCLUDE_ALLOW_COMP) boolean includeAllowComp) throws RGuestException;
-
 
     @PUT
     @Path(UPDATE_ORDER)
