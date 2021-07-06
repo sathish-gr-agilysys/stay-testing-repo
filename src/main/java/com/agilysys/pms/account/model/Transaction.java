@@ -68,6 +68,7 @@ public abstract class Transaction {
     protected Boolean depositPaymentAtBooking;
     protected String paymentInterfaceId;
     protected String paymentTransactionId;
+    protected String lastFour;
 
     public String getAccountId() {
         return accountId;
@@ -356,6 +357,14 @@ public abstract class Transaction {
 
     public void setPaymentInterfaceId(String paymentInterfaceId) {
         this.paymentInterfaceId = paymentInterfaceId;
+    }
+
+    public String getLastFour() {
+        return lastFour;
+    }
+
+    public void setLastFour(String lastFour) {
+        this.lastFour = lastFour;
     }
 
     @Override
