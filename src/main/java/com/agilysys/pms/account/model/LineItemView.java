@@ -114,6 +114,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private String authCode;
     private String cardHolderName;
     private Boolean depositPaymentAtBooking;
+    private String mealPeriodName;
+    private String outletName;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -1099,6 +1101,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setLineItemDepositBalance(BigDecimal lineItemDepositBalance) {
         this.lineItemDepositBalance = lineItemDepositBalance;
+    }
+
+    public String getMealPeriodName() {
+        return mealPeriodName;
+    }
+
+    public void setMealPeriodName(String mealPeriodName) {
+        this.mealPeriodName = mealPeriodName;
+    }
+
+    public String getOutletName() {
+        return outletName;
+    }
+
+    public void setOutletName(String outletName) {
+        this.outletName = outletName;
     }
 
     @Override
