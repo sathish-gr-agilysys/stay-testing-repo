@@ -116,6 +116,9 @@ public class LineItemView implements Comparable<LineItemView> {
     private Boolean depositPaymentAtBooking;
     private String mealPeriodName;
     private String outletName;
+    private List<LineItemView> groupedChildLineItems;
+    private boolean hasChildLineItems;
+
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -124,6 +127,8 @@ public class LineItemView implements Comparable<LineItemView> {
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
         compLineItems = new ArrayList<>();
+        groupedChildLineItems = new ArrayList<>();
+        hasChildLineItems = false;
     }
 
     public LineItemView(String id, String description, String itemId, DateTime postingCalendarDateTime,
@@ -1117,6 +1122,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setOutletName(String outletName) {
         this.outletName = outletName;
+    }
+
+    public List<LineItemView> getGroupedChildLineItems() {
+        return groupedChildLineItems;
+    }
+
+    public void setGroupedChildLineItems(List<LineItemView> groupedChildLineItems) {
+        this.groupedChildLineItems = groupedChildLineItems;
+    }
+
+    public boolean isHasChildLineItems() {
+        return hasChildLineItems;
+    }
+
+    public void setHasChildLineItems(boolean hasChildLineItems) {
+        this.hasChildLineItems = hasChildLineItems;
     }
 
     @Override
