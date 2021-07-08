@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>74.1641.0</version>
+    <version>74.1641.1-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
@@ -135,6 +135,6 @@
     <scm>
         <connection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</connection>
         <developerConnection>scm:git:ssh://git@stash.agilysys.local:7999/pms/accountinterface.git</developerConnection>
-        <tag>account-service-interface-74.1641.0</tag>
+        <tag>HEAD</tag>
     </scm>
 </project>
