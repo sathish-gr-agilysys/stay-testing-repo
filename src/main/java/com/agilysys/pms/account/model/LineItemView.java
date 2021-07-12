@@ -117,7 +117,6 @@ public class LineItemView implements Comparable<LineItemView> {
     private String mealPeriodName;
     private String outletName;
     private boolean hasChildLineItems;
-    private boolean enhancedPosEnabled;
     private List<LineItemView> groupedLineItems;
 
     public LineItemView() {
@@ -128,7 +127,6 @@ public class LineItemView implements Comparable<LineItemView> {
         taxLineItems = new ArrayList<>();
         compLineItems = new ArrayList<>();
         hasChildLineItems = false;
-        enhancedPosEnabled = false;
         groupedLineItems = new ArrayList<>();
     }
 
@@ -1131,14 +1129,6 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setHasChildLineItems(boolean hasChildLineItems) {
         this.hasChildLineItems = hasChildLineItems;
-    }
-
-    public boolean isEnhancedPosEnabled() {
-        return enhancedPosEnabled;
-    }
-
-    public void setEnhancedPosEnabled(boolean enhancedPosEnabled) {
-        this.enhancedPosEnabled = enhancedPosEnabled;
     }
 
     public List<LineItemView> getGroupedLineItems() {
