@@ -116,9 +116,9 @@ public class LineItemView implements Comparable<LineItemView> {
     private Boolean depositPaymentAtBooking;
     private String mealPeriodName;
     private String outletName;
-    private List<LineItemView> groupedChildLineItems;
     private boolean hasChildLineItems;
-
+    private boolean enhancedPosEnabled;
+    private List<LineItemView> groupedLineItems;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -127,8 +127,9 @@ public class LineItemView implements Comparable<LineItemView> {
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
         compLineItems = new ArrayList<>();
-        groupedChildLineItems = new ArrayList<>();
         hasChildLineItems = false;
+        enhancedPosEnabled = false;
+        groupedLineItems = new ArrayList<>();
     }
 
     public LineItemView(String id, String description, String itemId, DateTime postingCalendarDateTime,
@@ -1124,20 +1125,28 @@ public class LineItemView implements Comparable<LineItemView> {
         this.outletName = outletName;
     }
 
-    public List<LineItemView> getGroupedChildLineItems() {
-        return groupedChildLineItems;
-    }
-
-    public void setGroupedChildLineItems(List<LineItemView> groupedChildLineItems) {
-        this.groupedChildLineItems = groupedChildLineItems;
-    }
-
     public boolean isHasChildLineItems() {
         return hasChildLineItems;
     }
 
     public void setHasChildLineItems(boolean hasChildLineItems) {
         this.hasChildLineItems = hasChildLineItems;
+    }
+
+    public boolean isEnhancedPosEnabled() {
+        return enhancedPosEnabled;
+    }
+
+    public void setEnhancedPosEnabled(boolean enhancedPosEnabled) {
+        this.enhancedPosEnabled = enhancedPosEnabled;
+    }
+
+    public List<LineItemView> getGroupedLineItems() {
+        return groupedLineItems;
+    }
+
+    public void setGroupedLineItems(List<LineItemView> groupedLineItems) {
+        this.groupedLineItems = groupedLineItems;
     }
 
     @Override
