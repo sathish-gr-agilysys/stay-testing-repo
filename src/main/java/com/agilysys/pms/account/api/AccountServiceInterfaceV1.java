@@ -312,7 +312,8 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNTS_BY_IDS = "/accountsByIds";
     String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
     String ACCOUNT_TYPE_PATH = "/accountType/{"+ACCOUNT_TYPE +"}";
-    String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH+"/searchByUpdatedDate";
+    String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH + "/searchByUpdatedDate";
+    String VALIDATE_FOR_REFERENCE_NUMBER = "/validateForReferenceNumber";
     
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -1493,4 +1494,8 @@ public interface AccountServiceInterfaceV1 {
     List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
+    @GET
+    @Path(ACCOUNT_ID_PATH + VALIDATE_FOR_REFERENCE_NUMBER)
+    void validateForRequiredReferenceNumber(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 }
