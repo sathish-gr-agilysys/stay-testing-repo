@@ -269,6 +269,7 @@ public interface AccountServiceInterfaceV1 {
     String TRANSFER_HISTORY_ID_PATH = "/{" + TRANSFER_HISTORY_ID + "}";
     String TYPES_PATH = "types";
     String FOLIO_EMAIL_LAST_SENT = "folioEmailLastSent";
+    String FOLIO_BALANCE_SETTLED = "folioBalanceSettled";
     String VERIFY_CHECKOUT_PATH = "/verifyCheckout";
     String COMPANY_PROFILE_ID = "companyProfileId";
     String COMPANY_PROFILE_PATH = "/companyProfile/{" + COMPANY_PROFILE_ID + "}";
@@ -537,6 +538,12 @@ public interface AccountServiceInterfaceV1 {
     Map<String, List<FolioSummary>> updateFolioEmailLastSent(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Map<String, List<String>> accountIdToFolios)
           throws RGuestException;
+
+    @PUT
+    @Path(FOLIO_BALANCE_SETTLED)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    void updateFolioBalanceSettled(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @QueryParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @POST
     @Path(TRANSFER_HISTORY)
