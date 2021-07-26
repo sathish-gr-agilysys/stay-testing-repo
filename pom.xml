@@ -1,16 +1,15 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>74.1620.1-devgamma.27-SNAPSHOT</version>
+    <version>74.1620.0-devgamma.31-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
-        <version>74.1620.0-devgamma.26</version>
+        <version>74.1620.0-devgamma.31</version>
     </parent>
-    <properties>
-    </properties>
+    <properties/>
     <dependencies>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
@@ -23,37 +22,37 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.1620.0-devgamma.27</version>
+            <version>74.1620.0-devgamma.31</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>payment-interface</artifactId>
-            <version>74.1620.0-devgamma.26</version>
+            <version>74.1620.0-devgamma.31</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.1620.0-devgamma.27</version>
+            <version>74.1620.0-devgamma.31</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>integration-interface</artifactId>
-            <version>74.1620.0-devgamma.26</version>
+            <version>74.1620.0-devgamma.31</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.1620.0-devgamma.27</version>
+            <version>74.1620.0-devgamma.31</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.1620.0-devgamma.26</version>
+            <version>74.1620.0-devgamma.31</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.1620.0-devgamma.26</version>
+            <version>74.1620.0-devgamma.31</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
@@ -83,7 +82,7 @@
         <dependency>
             <groupId>com.agilysys.pms.common</groupId>
             <artifactId>document-toolkit</artifactId>
-            <version>74.1620.0-devgamma.27</version>
+            <version>74.1620.0-devgamma.31</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
