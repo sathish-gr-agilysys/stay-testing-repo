@@ -6,6 +6,7 @@ package com.agilysys.pms.account.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.agilysys.pms.payment.model.PaymentFlowType;
 import com.agilysys.pms.payment.model.CardInformation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,6 +27,8 @@ public class Payment {
     private boolean includeDispute;
     private String disputeComment;
     private boolean reAuthBeforeCheckin;
+    private PaymentFlowType paymentFlowType;
+    private boolean makePaymentAsDeposit;
     private PaymentSettingRequest paymentSettingRequest;
 
     public Payment() {
@@ -131,12 +134,28 @@ public class Payment {
         this.disputeComment = disputeComment;
     }
 
+    public boolean isMakePaymentAsDeposit() {
+        return makePaymentAsDeposit;
+    }
+
+    public void setMakePaymentAsDeposit(boolean makePaymentAsDeposit) {
+        this.makePaymentAsDeposit = makePaymentAsDeposit;
+    }
+
     public boolean isReAuthBeforeCheckin() {
         return reAuthBeforeCheckin;
     }
 
     public void setReAuthBeforeCheckin(boolean reAuthBeforeCheckin) {
         this.reAuthBeforeCheckin = reAuthBeforeCheckin;
+    }
+
+    public PaymentFlowType getPaymentFlowType() {
+        return paymentFlowType;
+    }
+
+    public void setPaymentFlowType(PaymentFlowType paymentFlowType) {
+        this.paymentFlowType = paymentFlowType;
     }
 
     public PaymentSettingRequest getPaymentSettingRequest() {
