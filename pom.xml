@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>74.1601.1-gamma.45-SNAPSHOT</version>
+    <version>74.1601-gamma.45-RGSTAY-42532-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.1601.0-gamma.36</version>
+            <version>74.1601-gamma.43-RGSTAY-42532-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -33,12 +33,12 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.1601.0-gamma.36</version>
+            <version>74.1601-gamma.43-RGSTAY-42532-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>integration-interface</artifactId>
-            <version>74.1601.0-gamma.27</version>
+            <version>74.1601-gamma.27-RGSTAY-42532-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -83,7 +83,7 @@
         <dependency>
             <groupId>com.agilysys.pms.common</groupId>
             <artifactId>document-toolkit</artifactId>
-            <version>74.1601.0-gamma.36</version>
+            <version>74.1601-gamma.43-RGSTAY-42532-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
