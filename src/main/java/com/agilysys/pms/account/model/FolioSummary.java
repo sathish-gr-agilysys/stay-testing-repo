@@ -35,6 +35,7 @@ public class FolioSummary {
     private Boolean depositFolio;
 
     private DateTime emailLastSent;
+    private boolean balanceSettled;
 
     public FolioSummary() {}
 
@@ -129,5 +130,13 @@ public class FolioSummary {
 
     public void setEmailLastSent(DateTime emailLastSent) {
         this.emailLastSent = emailLastSent;
+    }
+
+    public boolean isBalanceSettled() {
+        return balanceSettled;
+    }
+
+    public void setBalanceSettled(boolean balanceSettled) {
+        this.balanceSettled = balanceSettled;
     }
 }
