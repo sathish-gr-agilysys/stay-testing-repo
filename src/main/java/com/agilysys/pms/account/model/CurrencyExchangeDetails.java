@@ -12,6 +12,7 @@ public class CurrencyExchangeDetails {
     private BigDecimal conversionRate;
     private BigDecimal surcharge;
     private BigDecimal exchangeValue;
+    private String userId;
 
     public CurrencyExchangeDetails() {}
 
@@ -55,12 +56,21 @@ public class CurrencyExchangeDetails {
         this.exchangeValue = exchangeValue;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public CurrencyExchangeDetails(String currency, BigDecimal amount, BigDecimal conversionRate, BigDecimal surcharge,
-          BigDecimal exchangeValue) {
+          BigDecimal exchangeValue, String userId) {
         this.currency = currency;
         this.amount = amount;
         this.conversionRate = conversionRate;
         this.surcharge = surcharge;
         this.exchangeValue = exchangeValue;
+        this.userId = userId;
     }
 }
