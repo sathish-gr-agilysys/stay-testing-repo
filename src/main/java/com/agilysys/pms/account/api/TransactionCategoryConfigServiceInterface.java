@@ -5,6 +5,7 @@ package com.agilysys.pms.account.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -20,7 +21,6 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.TransactionCategory;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -71,10 +71,9 @@ public interface TransactionCategoryConfigServiceInterface {
     @POST
     @CreatedOnSuccess
     @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(TransactionCategory.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionCategory createTransactionCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionCategory category) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, @Valid TransactionCategory category) throws RGuestException;
 
     /**
      * Modify an existing TransactionCategory
@@ -87,11 +86,10 @@ public interface TransactionCategoryConfigServiceInterface {
     @PUT
     @Path(CATEGORY_ID_PATH)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(TransactionCategory.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionCategory updateTransactionCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId,
-          TransactionCategory category) throws RGuestException;
+          @Valid TransactionCategory category) throws RGuestException;
 
     /**
      * Delete an existing TransactionCategory

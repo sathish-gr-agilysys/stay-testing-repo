@@ -12,10 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
 import com.agilysys.common.model.PaymentSetting;
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
-import com.agilysys.platform.common.json.schema.MinLengthRestriction;
-import com.agilysys.platform.common.json.schema.PatternRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -45,13 +46,13 @@ public class AccountSummary {
 
     protected AccountsReceivableSettings accountsReceivableSettings;
 
-    @MinLengthRestriction(4)
-    @MaxLengthRestriction(12)
-    @PatternRestriction(ALPHANUMERIC_HYPHEN_VALIDATION_REGEX)
+    @Min(4)
+    @Max(12)
+    @Pattern(regexp = ALPHANUMERIC_HYPHEN_VALIDATION_REGEX)
     protected String number;
 
-    @MinLengthRestriction(1)
-    @MaxLengthRestriction(64)
+    @Min(1)
+    @Max(64)
     protected String name;
 
     protected String houseAccountCategoryId;

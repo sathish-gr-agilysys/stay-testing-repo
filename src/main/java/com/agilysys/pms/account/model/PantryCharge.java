@@ -6,7 +6,8 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import javax.validation.constraints.Max;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PantryCharge {
@@ -20,7 +21,7 @@ public class PantryCharge {
     private Boolean ignoreRules;
     private Payment payment;
 
-    @MaxLengthRestriction(250)
+    @Max(250)
     private String reason;
     private String reference;
     private String terminalId;

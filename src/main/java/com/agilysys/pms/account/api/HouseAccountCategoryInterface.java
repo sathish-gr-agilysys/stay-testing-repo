@@ -5,6 +5,7 @@ package com.agilysys.pms.account.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -20,7 +21,6 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.HouseAccountCategory;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
 
@@ -56,11 +56,11 @@ public interface HouseAccountCategoryInterface {
      */
     @POST
     @CreatedOnSuccess
-    @Validated(HouseAccountCategory.class)
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     HouseAccountCategory createHouseAccountCategory(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, HouseAccountCategory houseAccountCategory) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, @Valid HouseAccountCategory houseAccountCategory)
+          throws RGuestException;
 
     /**
      * Retrieve a House account category
@@ -89,11 +89,10 @@ public interface HouseAccountCategoryInterface {
     @PUT
     @Path(ID_PATH)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Validated(HouseAccountCategory.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     HouseAccountCategory updateHouseAccountCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(RESOURCE_ID) String id,
-          HouseAccountCategory houseAccountCategory) throws RGuestException;
+          @Valid HouseAccountCategory houseAccountCategory) throws RGuestException;
 
     /**
      * Deletes a House account category

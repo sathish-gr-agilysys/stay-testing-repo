@@ -5,6 +5,7 @@ package com.agilysys.pms.account.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,7 +20,6 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.InventoryItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
@@ -72,10 +72,9 @@ public interface InventoryItemConfigServiceInterface {
      */
     @POST
     @CreatedOnSuccess
-    @Validated(InventoryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     InventoryItem createInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          InventoryItem item) throws RGuestException;
+          @Valid InventoryItem item) throws RGuestException;
 
     /**
      * Modify an existing InventoryItem
@@ -89,12 +88,11 @@ public interface InventoryItemConfigServiceInterface {
      */
     @PUT
     @Path(ITEM_ID_PATH)
-    @Validated(InventoryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     InventoryItem updateInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId,
-          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, InventoryItem item)
-          throws RGuestException;
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,
+          @Valid InventoryItem item) throws RGuestException;
 
     /**
      * Delete an existing InventoryItem

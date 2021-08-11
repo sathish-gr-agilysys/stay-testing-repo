@@ -3,9 +3,10 @@
  */
 package com.agilysys.pms.account.model;
 
+import javax.validation.constraints.Max;
+
 import org.joda.time.DateTime;
 
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,7 +27,7 @@ public class FolioSummary {
     private boolean defaultFolio;
     private FolioType folioType;
 
-    @MaxLengthRestriction(50)
+    @Max(50)
     @JsonProperty(required = true)
     private String name;
 

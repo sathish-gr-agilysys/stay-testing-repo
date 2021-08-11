@@ -6,7 +6,8 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.Map;
 
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
+import javax.validation.constraints.Max;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -19,7 +20,7 @@ public class PaymentRefund {
     @JsonProperty(required = true)
     private BigDecimal refundAmount;
 
-    @MaxLengthRestriction(250)
+    @Max(250)
     private String reason;
 
     private String terminalId;

@@ -6,12 +6,12 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.joda.time.LocalDate;
 
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RoutingRuleTemplate {
@@ -65,7 +65,7 @@ public class RoutingRuleTemplate {
 
     private List<DestinationDetail> destinations;
 
-    @MaxLengthRestriction(250)
+    @Max(250)
     @Size(max = 250)
     private String reason;
 

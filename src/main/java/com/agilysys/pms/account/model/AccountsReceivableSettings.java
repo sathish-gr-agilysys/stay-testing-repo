@@ -1,12 +1,14 @@
 package com.agilysys.pms.account.model;
 
+import static com.agilysys.common.utils.Utils.ALPHANUMERIC_HYPHEN_VALIDATION_REGEX;
+
 import java.math.BigDecimal;
 
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
-import com.agilysys.platform.common.json.schema.MinLengthRestriction;
-import com.agilysys.platform.common.json.schema.PatternRestriction;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import static com.agilysys.common.utils.Utils.ALPHANUMERIC_HYPHEN_VALIDATION_REGEX;
 
 public class AccountsReceivableSettings {
     public enum DefaultRoutingRule {
@@ -23,9 +25,9 @@ public class AccountsReceivableSettings {
     private boolean emailPreferred;
     private DefaultRoutingRule defaultRoutingRule;
     @Deprecated
-    @MinLengthRestriction(4)
-    @MaxLengthRestriction(12)
-    @PatternRestriction(ALPHANUMERIC_HYPHEN_VALIDATION_REGEX)
+    @Min(4)
+    @Max(12)
+    @Pattern(regexp = ALPHANUMERIC_HYPHEN_VALIDATION_REGEX)
     private String accountNumber;
 
     private boolean requiredReferenceNumber;

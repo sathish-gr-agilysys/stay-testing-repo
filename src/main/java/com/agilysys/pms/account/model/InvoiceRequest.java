@@ -5,14 +5,15 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
+
 import org.joda.time.LocalDate;
 
-import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InvoiceRequest {
     @JsonProperty(required = true)
-    @MinLengthRestriction(1)
+    @Min(1)
     private List<String> folioLineItemIds;
 
     private Integer terms;

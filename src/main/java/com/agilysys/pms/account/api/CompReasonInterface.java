@@ -5,6 +5,7 @@ package com.agilysys.pms.account.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -18,7 +19,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.CompThreshold;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 
 /**
  * CRUD methods for CompReason
@@ -84,9 +84,8 @@ public interface CompReasonInterface {
     @POST
     @Path("/compReasons")
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
-    @Validated(CompInfo.class)
     CompInfo addCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, CompInfo compInfo) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, @Valid CompInfo compInfo) throws RGuestException;
 
     /**
      * Modify a CompReason
@@ -100,9 +99,8 @@ public interface CompReasonInterface {
     @PUT
     @Path("/compReasons/{id}")
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
-    @Validated(CompInfo.class)
     CompInfo updateCompReason(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, CompInfo compInfo)
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, @Valid CompInfo compInfo)
           throws RGuestException;
 
     /**
@@ -114,9 +112,8 @@ public interface CompReasonInterface {
     @PUT
     @Path("/compThreshold")
     @PreAuthorize("hasPermission('Required', 'WriteCompReasons')")
-    @Validated(CompThreshold.class)
     void setCompThreshold(@PathParam(AccountServiceInterfaceV1.TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, CompThreshold threshold) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, @Valid CompThreshold threshold) throws RGuestException;
 
     /**
      * Get the comp threshold

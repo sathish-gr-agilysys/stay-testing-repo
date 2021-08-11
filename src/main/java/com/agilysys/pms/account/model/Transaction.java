@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.LocalDate;
@@ -15,8 +18,6 @@ import com.agilysys.common.model.rate.AllowanceCombination;
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
-import com.agilysys.platform.common.json.schema.MinValueRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -47,11 +48,11 @@ public abstract class Transaction {
     protected String petDisplayName;
     protected LocalDate postingDate;
     protected LocalDate displayDate;
-    @MinValueRestriction(1)
+    @Min(1)
     protected int quantity = 1;
-    @MaxLengthRestriction(250)
+    @Max(250)
     protected String rateChangeComment;
-    @MaxLengthRestriction(250)
+    @Max(250)
     protected String reason;
     protected String reference;
     protected String sourceId;

@@ -5,6 +5,7 @@ package com.agilysys.pms.account.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,7 +18,6 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.PantryItem;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/pantryItems")
@@ -45,17 +45,15 @@ public interface PantryServiceInterface {
           @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
     @POST
-    @Validated(PantryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
     PantryItem createPantryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          PantryItem item) throws RGuestException;
+          @Valid PantryItem item) throws RGuestException;
 
     @PUT
     @Path(ITEM_ID_PATH)
-    @Validated(PantryItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePantryMgmt')")
     PantryItem updatePantryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ITEM_ID) String itemId, PantryItem item) throws RGuestException;
+          @PathParam(ITEM_ID) String itemId, @Valid PantryItem item) throws RGuestException;
 
     @PUT
     @Path(PANTRY_ITEM_BULK_UPDATE)

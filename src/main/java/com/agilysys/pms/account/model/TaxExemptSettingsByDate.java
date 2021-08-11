@@ -6,10 +6,11 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.Min;
+
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.json.serialize.LocalDateJsonKeyDeserializer;
-import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  */
 public class TaxExemptSettingsByDate extends TaxExemptSettings {
     @JsonProperty(required = true)
-    @MinLengthRestriction(1)
+    @Min(1)
     @JsonDeserialize(keyUsing = LocalDateJsonKeyDeserializer.class)
     private Map<LocalDate, List<String>> exemptions;
 

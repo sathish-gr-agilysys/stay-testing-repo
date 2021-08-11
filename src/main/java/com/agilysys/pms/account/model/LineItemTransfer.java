@@ -6,10 +6,11 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import org.joda.time.LocalDate;
 
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
-import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,7 +24,7 @@ public class LineItemTransfer {
 
     private String destinationFolioId;
 
-    @MaxLengthRestriction(250)
+    @Max(250)
     private String reason;
     private String reference;
 
@@ -31,7 +32,7 @@ public class LineItemTransfer {
     private String cardHolderName;
 
     @JsonProperty(required = true)
-    @MinLengthRestriction(1)
+    @Min(1)
     private List<String> folioLineItemIds;
     private Map<String, String> transactionMessageAttributes;
     private LocalDate postingDate;

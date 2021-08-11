@@ -7,6 +7,7 @@ import static com.agilysys.pms.common.client.caching.RiskTolerance.MODERATE;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -23,7 +24,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.agilysys.intapp.model.FolioPostingCodes;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 import com.agilysys.platform.tax.model.TaxRuleData;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
@@ -118,10 +118,9 @@ public interface TransactionItemConfigServiceInterface {
      */
     @POST
     @CreatedOnSuccess
-    @Validated(TransactionItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionItem createTransactionItem(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, TransactionItem item) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId,@Valid TransactionItem item) throws RGuestException;
 
     /**
      * Modify an existing TransactionItem
@@ -135,11 +134,10 @@ public interface TransactionItemConfigServiceInterface {
      */
     @PUT
     @Path(ITEM_ID_PATH)
-    @Validated(TransactionItem.class)
     @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
     TransactionItem updateTransactionItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ITEM_ID) String itemId,
-          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, TransactionItem item)
+          @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters,@Valid TransactionItem item)
           throws RGuestException;
 
     /**

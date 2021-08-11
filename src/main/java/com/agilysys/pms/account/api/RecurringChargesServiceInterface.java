@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -25,7 +26,6 @@ import com.agilysys.common.model.EnhancementResponse;
 import com.agilysys.common.model.CreateRecurringCharge;
 import com.agilysys.common.model.rate.CreateRecurringChargeOverride;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.AuthDetailResponse;
 import com.agilysys.pms.account.model.EstimatedChargeDetailsForOffers;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
@@ -134,11 +134,10 @@ public interface RecurringChargesServiceInterface {
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH)
-    @Validated(CreateRecurringCharge.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<RecurringChargeView> createRecurringCharge(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          CreateRecurringCharge createRecurringCharge, @QueryParam(START_DATE) LocalDate startDate,
+          @Valid CreateRecurringCharge createRecurringCharge, @QueryParam(START_DATE) LocalDate startDate,
           @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
 
     /**
@@ -221,13 +220,12 @@ public interface RecurringChargesServiceInterface {
     @PUT
     @Path(ACCOUNT_PATH + ACCOUNT_ID_PATH + RECURRING_CHARGES_PATH + RECURRING_CHARGE_ID_PATH +
           RECURRING_CHARGE_OVERRIDE_ID_PATH)
-    @Validated(CreateRecurringChargeOverride.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     RecurringChargeView updateRecurringChargeOverride(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           @PathParam(RECURRING_CHARGE_ID) String recurringChargeId,
           @PathParam(RECURRING_CHARGE_OVERRIDE_ID) LocalDate overrideDate,
-          CreateRecurringChargeOverride recurringChargeOverride) throws RGuestException;
+          @Valid CreateRecurringChargeOverride recurringChargeOverride) throws RGuestException;
 
     /* Estimated Charges */
 

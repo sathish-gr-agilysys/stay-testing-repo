@@ -6,9 +6,10 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.Map;
 
+import javax.validation.constraints.Max;
+
 import org.joda.time.LocalDate;
 
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -32,7 +33,7 @@ public class LineItemAdjustment {
     private BigDecimal amount;
 
     @JsonProperty(required = true)
-    @MaxLengthRestriction(250)
+    @Max(250)
     private String reason;
 
     private String terminalId;

@@ -3,11 +3,12 @@
  */
 package com.agilysys.pms.account.model;
 
+import javax.validation.constraints.Max;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.validation.annotation.Validated;
 
-import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,10 +18,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HouseAccountCategory extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "House account category";
 
-    @MaxLengthRestriction(3)
+    @Max(3)
     private String prefix;
 
-    @MaxLengthRestriction(3)
+    @Max(3)
     private String suffix;
 
     @JsonProperty(required = true)
