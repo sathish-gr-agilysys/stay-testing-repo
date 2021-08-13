@@ -298,7 +298,8 @@ public interface ReportingServiceInterface {
     @Consumes(MediaType.APPLICATION_JSON)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts') or hasPermission('Required', 'ReadReports')")
     List<Cashier> getCashiersList(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate) throws RGuestException;
+          @QueryParam(START_DATE) LocalDate startDate, @QueryParam(END_DATE) LocalDate endDate,
+          @Deprecated @QueryParam("useMigrated") Boolean useMigrated) throws RGuestException;
 
     /**
      * retrieve inventory recurring charge detail information for the given date range
