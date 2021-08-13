@@ -714,6 +714,8 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
+    // Account tax facts are modified to exclude residency tax during cancellation.
+    // DO NOT use this for normal charge posting
     @POST
     @CreatedOnSuccess
     @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH + CANCELLATION)
