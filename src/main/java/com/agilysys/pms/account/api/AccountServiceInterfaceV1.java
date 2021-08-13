@@ -312,6 +312,7 @@ public interface AccountServiceInterfaceV1 {
     String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
     String ACCOUNT_TYPE_PATH = "/accountType/{"+ACCOUNT_TYPE +"}";
     String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH+"/searchByUpdatedDate";
+    String CANCELLATION = "/cancellation";
     
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
@@ -710,6 +711,15 @@ public interface AccountServiceInterfaceV1 {
     @Validated(Payment.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Payment payment,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH + CANCELLATION)
+    @Validated(Payment.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> postCancellationPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
