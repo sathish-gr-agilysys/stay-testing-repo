@@ -38,6 +38,8 @@ public class LineItemTransfer {
 
     private String disputeComment;
 
+    private boolean transferAsDeposit;
+
     public String getDestinationAccountId() {
         return destinationAccountId;
     }
@@ -109,6 +111,14 @@ public class LineItemTransfer {
 
     public void setDisputeComment(String disputeComment) {
         this.disputeComment = disputeComment;
+    }
+
+    public boolean isTransferAsDeposit() {
+        return transferAsDeposit;
+    }
+
+    public void setTransferAsDeposit(boolean transferAsDeposit) {
+        this.transferAsDeposit = transferAsDeposit;
     }
 
     public String getAuthCode() {
