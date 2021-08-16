@@ -610,6 +610,16 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge)
           throws RGuestException;
 
+    // Account tax facts are modified to exclude residency tax during cancellation.
+    // DO NOT use this for normal charge posting
+    @POST
+    @Path(ACCOUNT_ID_PATH + CHARGES_PATH + CANCELLATION)
+    @Validated(Charge.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> postCancellationCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge) throws RGuestException;
+
     @POST
     @Path(ACCOUNT_ID_PATH + POS_CHARGE_PATH)
     @Validated(Charge.class)
@@ -711,17 +721,6 @@ public interface AccountServiceInterfaceV1 {
     @Validated(Payment.class)
     @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
     List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, Payment payment,
-          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
-
-    // Account tax facts are modified to exclude residency tax during cancellation.
-    // DO NOT use this for normal charge posting
-    @POST
-    @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH + CANCELLATION)
-    @Validated(Payment.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    List<LineItemView> postCancellationPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
