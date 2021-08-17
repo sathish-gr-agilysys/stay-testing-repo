@@ -5,13 +5,13 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateInvoiceLineItemsRequest {
     @JsonProperty(required = true)
-    @Min(1)
+    @Size(min = 1)
     private List<String> lineItemIds;
 
     private String disputeComment;

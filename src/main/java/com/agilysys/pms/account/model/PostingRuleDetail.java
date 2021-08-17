@@ -8,13 +8,11 @@ import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.joda.time.LocalDate;
 
-import com.agilysys.pms.property.model.compaccounting.CompOffer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -49,7 +47,6 @@ public class PostingRuleDetail {
     private Boolean applyToAllPostedCharges;
     private Boolean ignoreDestinationRules;
 
-    @Max(250)
     @Size(max = 250)
     private String reason;
 

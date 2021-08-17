@@ -6,7 +6,7 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.Map;
 
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 import org.joda.time.LocalDate;
 
@@ -26,7 +26,7 @@ public class AmountTransfer {
     @JsonProperty(required = true)
     private BigDecimal amount;
 
-    @Max(250)
+    @Size(max = 250)
     private String reason;
 
     private String reference;

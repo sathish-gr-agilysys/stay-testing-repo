@@ -3,8 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.audit.annotation.AuditIgnoreDefault;
@@ -22,8 +21,7 @@ public abstract class AccountingObjectBase {
     @JsonProperty(required = true)
     protected String name;
 
-    @Min(2)
-    @Max(25)
+    @Size(min = 2, max = 25)
     @JsonProperty(required = true)
     @DataPortKey
     @AuditLabel

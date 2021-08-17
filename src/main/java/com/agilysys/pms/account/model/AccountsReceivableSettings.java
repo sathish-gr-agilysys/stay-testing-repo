@@ -4,9 +4,8 @@ import static com.agilysys.common.utils.Utils.ALPHANUMERIC_HYPHEN_VALIDATION_REG
 
 import java.math.BigDecimal;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -25,8 +24,7 @@ public class AccountsReceivableSettings {
     private boolean emailPreferred;
     private DefaultRoutingRule defaultRoutingRule;
     @Deprecated
-    @Min(4)
-    @Max(12)
+    @Size(min = 4, max = 12)
     @Pattern(regexp = ALPHANUMERIC_HYPHEN_VALIDATION_REGEX)
     private String accountNumber;
 

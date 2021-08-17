@@ -5,7 +5,7 @@ package com.agilysys.pms.account.model;
 
 import java.util.List;
 
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -27,7 +27,7 @@ public class TransactionSubCategory extends AccountingObjectBase {
     public static final String TAX_SUBCATEGORY_ID = "4de2420a-80cb-440f-999b-f6908325ffde";
 
     @JsonProperty(required = true)
-    @Min(1)
+    @Size(min = 1)
     @DataPortReference(name = "categoryCodes", type = TransactionCategory.class, multiple = true)
     @AuditField(name = "categories", references = EntityTypes.TRANSACTION_CATEGORY, inline = true)
     private List<String> categoryIds;

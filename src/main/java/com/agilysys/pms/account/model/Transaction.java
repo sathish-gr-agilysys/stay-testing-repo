@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -50,9 +50,9 @@ public abstract class Transaction {
     protected LocalDate displayDate;
     @Min(1)
     protected int quantity = 1;
-    @Max(250)
+    @Size(max = 250)
     protected String rateChangeComment;
-    @Max(250)
+    @Size(max = 250)
     protected String reason;
     protected String reference;
     protected String sourceId;

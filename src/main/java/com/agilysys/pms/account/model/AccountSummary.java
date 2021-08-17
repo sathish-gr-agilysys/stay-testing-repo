@@ -12,9 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.agilysys.common.model.PaymentSetting;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -46,13 +45,11 @@ public class AccountSummary {
 
     protected AccountsReceivableSettings accountsReceivableSettings;
 
-    @Min(4)
-    @Max(12)
+    @Size(min = 4, max = 12)
     @Pattern(regexp = ALPHANUMERIC_HYPHEN_VALIDATION_REGEX)
     protected String number;
 
-    @Min(1)
-    @Max(64)
+    @Size(min = 1, max = 64)
     protected String name;
 
     protected String houseAccountCategoryId;

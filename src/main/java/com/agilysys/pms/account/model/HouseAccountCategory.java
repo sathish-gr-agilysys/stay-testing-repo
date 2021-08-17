@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -18,10 +18,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HouseAccountCategory extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "House account category";
 
-    @Max(3)
+    @Size(max = 3)
     private String prefix;
 
-    @Max(3)
+    @Size(max = 3)
     private String suffix;
 
     @JsonProperty(required = true)

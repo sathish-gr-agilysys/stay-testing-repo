@@ -6,7 +6,6 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -65,7 +64,6 @@ public class RoutingRuleTemplate {
 
     private List<DestinationDetail> destinations;
 
-    @Max(250)
     @Size(max = 250)
     private String reason;
 

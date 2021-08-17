@@ -5,8 +5,7 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import com.agilysys.common.model.statuses.PropertyConfigItemStatus.CanonicalId;
 import com.agilysys.pms.common.audit.EntityTypes;
@@ -30,8 +29,7 @@ public class PantryItem extends AccountingObjectBase {
 
     private CanonicalId status;
 
-    @Min(4)
-    @Max(5)
+    @Size(min = 4, max = 5)
     private String plu;
     private int order;
 

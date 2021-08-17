@@ -3,7 +3,7 @@
  */
 package com.agilysys.pms.account.model;
 
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 import org.joda.time.DateTime;
 
@@ -27,7 +27,7 @@ public class FolioSummary {
     private boolean defaultFolio;
     private FolioType folioType;
 
-    @Max(50)
+    @Size(max = 50)
     @JsonProperty(required = true)
     private String name;
 
