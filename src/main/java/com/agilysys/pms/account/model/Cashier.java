@@ -4,7 +4,7 @@ public class Cashier {
     private String username;
     private String firstName;
     private String lastName;
-    private boolean active;
+    private boolean active = true;
 
     public Cashier() {
     }
