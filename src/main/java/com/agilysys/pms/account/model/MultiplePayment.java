@@ -11,8 +11,8 @@ public class MultiplePayment {
     private BigDecimal amount;
     private String paymentMethodId;
     private String referenceNumber;
-    private CurrencyExchangeDetails currencyExchangeDetails;
     private Boolean depositPaymentAtBooking;
+    private CurrencyExchangeDetails currencyExchangeDetails;
 
     public MultiplePayment() {}
 
@@ -53,19 +53,19 @@ public class MultiplePayment {
         this.referenceNumber = referenceNumber;
     }
 
-    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
-        return currencyExchangeDetails;
-    }
-
-    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
-        this.currencyExchangeDetails = currencyExchangeDetails;
-    }
-
     public Boolean getDepositPaymentAtBooking() {
         return depositPaymentAtBooking;
     }
 
     public void setDepositPaymentAtBooking(Boolean depositPaymentAtBooking) {
         this.depositPaymentAtBooking = depositPaymentAtBooking;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 }

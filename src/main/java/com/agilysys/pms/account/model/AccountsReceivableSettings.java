@@ -28,6 +28,8 @@ public class AccountsReceivableSettings {
     @PatternRestriction(ALPHANUMERIC_HYPHEN_VALIDATION_REGEX)
     private String accountNumber;
 
+    private boolean requiredReferenceNumber;
+
     public BigDecimal getCreditLimit() {
         return creditLimit;
     }
@@ -66,5 +68,13 @@ public class AccountsReceivableSettings {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public boolean isRequiredReferenceNumber() {
+        return requiredReferenceNumber;
+    }
+
+    public void setRequiredReferenceNumber(boolean requiredReferenceNumber) {
+        this.requiredReferenceNumber = requiredReferenceNumber;
     }
 }
