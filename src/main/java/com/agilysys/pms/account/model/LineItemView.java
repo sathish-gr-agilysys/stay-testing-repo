@@ -118,6 +118,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String outletName;
     private boolean hasChildLineItems;
     private List<LineItemView> groupedLineItems;
+    private CurrencyExchangeDetails currencyExchangeDetails;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -1137,6 +1138,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setGroupedLineItems(List<LineItemView> groupedLineItems) {
         this.groupedLineItems = groupedLineItems;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 
     @Override
