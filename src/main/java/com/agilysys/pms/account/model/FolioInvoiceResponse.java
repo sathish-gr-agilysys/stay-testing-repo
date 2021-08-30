@@ -39,6 +39,16 @@ public class FolioInvoiceResponse implements TemplateData {
     private String accountId;
     private LocalDate reportDate;
     private String userName;
+    private boolean posCheckDetailsPrintEnabled;
+
+    public boolean isPosCheckDetailsPrintEnabled() {
+        return posCheckDetailsPrintEnabled;
+    }
+
+    public void setPosCheckDetailsPrintEnabled(boolean posCheckDetailsPrintEnabled) {
+        this.posCheckDetailsPrintEnabled = posCheckDetailsPrintEnabled;
+    }
+    private String enhancedPosEnabled;
 
     public FolioInvoiceReservation getFolioInvoiceReservation() {
         return folioInvoiceReservation;
@@ -238,6 +248,14 @@ public class FolioInvoiceResponse implements TemplateData {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getEnhancedPosEnabled() {
+        return enhancedPosEnabled;
+    }
+
+    public void setEnhancedPosEnabled(String enhancedPosEnabled) {
+        this.enhancedPosEnabled = enhancedPosEnabled;
     }
 
     @Override
