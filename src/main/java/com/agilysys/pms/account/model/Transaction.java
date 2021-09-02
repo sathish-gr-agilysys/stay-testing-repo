@@ -31,6 +31,7 @@ public abstract class Transaction {
     protected BigDecimal amount;
     protected String callType;
     protected CompInfo compInfo;
+    protected CurrencyExchangeDetails currencyExchangeDetails;
     protected RoomChargePostingType roomChargePostingType;
     protected ComponentType componentType;
     protected String descriptionOverride;
@@ -317,6 +318,14 @@ public abstract class Transaction {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 
     public String getAuthCode() {

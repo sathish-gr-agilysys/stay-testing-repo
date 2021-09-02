@@ -114,6 +114,11 @@ public class LineItemView implements Comparable<LineItemView> {
     private String authCode;
     private String cardHolderName;
     private Boolean depositPaymentAtBooking;
+    private String mealPeriodName;
+    private String outletName;
+    private boolean hasChildLineItems;
+    private List<LineItemView> groupedLineItems;
+    private CurrencyExchangeDetails currencyExchangeDetails;
     private String paymentInterfaceId;
     private String paymentTransactionId;
 
@@ -124,6 +129,8 @@ public class LineItemView implements Comparable<LineItemView> {
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
         compLineItems = new ArrayList<>();
+        hasChildLineItems = false;
+        groupedLineItems = new ArrayList<>();
     }
 
     public LineItemView(String id, String description, String itemId, DateTime postingCalendarDateTime,
@@ -1101,6 +1108,46 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setLineItemDepositBalance(BigDecimal lineItemDepositBalance) {
         this.lineItemDepositBalance = lineItemDepositBalance;
+    }
+
+    public String getMealPeriodName() {
+        return mealPeriodName;
+    }
+
+    public void setMealPeriodName(String mealPeriodName) {
+        this.mealPeriodName = mealPeriodName;
+    }
+
+    public String getOutletName() {
+        return outletName;
+    }
+
+    public void setOutletName(String outletName) {
+        this.outletName = outletName;
+    }
+
+    public boolean isHasChildLineItems() {
+        return hasChildLineItems;
+    }
+
+    public void setHasChildLineItems(boolean hasChildLineItems) {
+        this.hasChildLineItems = hasChildLineItems;
+    }
+
+    public List<LineItemView> getGroupedLineItems() {
+        return groupedLineItems;
+    }
+
+    public void setGroupedLineItems(List<LineItemView> groupedLineItems) {
+        this.groupedLineItems = groupedLineItems;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 
     public String getPaymentInterfaceId() {
