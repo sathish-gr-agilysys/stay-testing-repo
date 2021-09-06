@@ -62,4 +62,10 @@ public interface MaintenanceInterface extends SearchMaintenanceInterface {
     @Requires(Permission.WRITE_TENANTS)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
     Map<String, Long> indexAccounts(MaintenanceRequest request) throws RGuestException;
+
+    @POST
+    @Path("/migrateDailyCashiers")
+    @Requires(Permission.WRITE_TENANTS)
+    void migrateDailyCashiers() throws RGuestException;
 }
+
