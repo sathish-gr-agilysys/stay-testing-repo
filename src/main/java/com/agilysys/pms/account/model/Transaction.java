@@ -67,6 +67,9 @@ public abstract class Transaction {
     protected String authCode;
     protected String cardHolderName;
     protected Boolean depositPaymentAtBooking;
+    protected String paymentInterfaceId;
+    protected String paymentTransactionId;
+    protected String lastFour;
 
     public String getAccountId() {
         return accountId;
@@ -347,6 +350,30 @@ public abstract class Transaction {
 
     public void setDepositPaymentAtBooking(Boolean depositPaymentAtBooking) {
         this.depositPaymentAtBooking = depositPaymentAtBooking;
+    }
+
+    public String getPaymentTransactionId() {
+        return paymentTransactionId;
+    }
+
+    public void setPaymentTransactionId(String paymentTransactionId) {
+        this.paymentTransactionId = paymentTransactionId;
+    }
+
+    public String getPaymentInterfaceId() {
+        return paymentInterfaceId;
+    }
+
+    public void setPaymentInterfaceId(String paymentInterfaceId) {
+        this.paymentInterfaceId = paymentInterfaceId;
+    }
+
+    public String getLastFour() {
+        return lastFour;
+    }
+
+    public void setLastFour(String lastFour) {
+        this.lastFour = lastFour;
     }
 
     @Override

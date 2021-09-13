@@ -119,6 +119,8 @@ public class LineItemView implements Comparable<LineItemView> {
     private boolean hasChildLineItems;
     private List<LineItemView> groupedLineItems;
     private CurrencyExchangeDetails currencyExchangeDetails;
+    private String paymentInterfaceId;
+    private String paymentTransactionId;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -1146,6 +1148,22 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
         this.currencyExchangeDetails = currencyExchangeDetails;
+    }
+
+    public String getPaymentInterfaceId() {
+        return paymentInterfaceId;
+    }
+
+    public void setPaymentInterfaceId(String paymentInterfaceId) {
+        this.paymentInterfaceId = paymentInterfaceId;
+    }
+
+    public String getPaymentTransactionId() {
+        return paymentTransactionId;
+    }
+
+    public void setPaymentTransactionId(String paymentTransactionId) {
+        this.paymentTransactionId = paymentTransactionId;
     }
 
     @Override
