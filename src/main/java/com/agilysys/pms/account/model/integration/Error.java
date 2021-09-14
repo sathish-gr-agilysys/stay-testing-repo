@@ -9,6 +9,13 @@ public class Error {
     private ErrorCode type;
     private String message;
 
+    public Error() {}
+
+    public Error(ErrorCode type, String message) {
+        this.type = type;
+        this.message = message;
+    }
+
     public ErrorCode getType() {
         return type;
     }
@@ -25,10 +32,4 @@ public class Error {
         this.message = message;
     }
 
-    public Error() {}
-
-    public Error(ErrorCode type, String message) {
-        this.type = type;
-        this.message = message;
-    }
 }
