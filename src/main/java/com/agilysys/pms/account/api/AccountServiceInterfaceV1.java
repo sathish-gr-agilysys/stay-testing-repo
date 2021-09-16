@@ -311,9 +311,10 @@ public interface AccountServiceInterfaceV1 {
     String ACCOUNTS_BY_IDS = "/accountsByIds";
     String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
     String ACCOUNT_TYPE_PATH = "/accountType/{"+ACCOUNT_TYPE +"}";
-    String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH+"/searchByUpdatedDate";
+    String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH + "/searchByUpdatedDate";
+    String VALIDATE_FOR_REFERENCE_NUMBER = "/validateForReferenceNumber";
     String CANCELLATION = "/cancellation";
-    
+
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
@@ -641,6 +642,13 @@ public interface AccountServiceInterfaceV1 {
     PostChargesResponse postPosCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
           @QueryParam(GROUPED) boolean grouped, PostPosChargesRequest charges) throws RGuestException;
+
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + "/authValidationCashPayment")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public boolean authValidationForCashPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId)throws RGuestException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are
@@ -1503,4 +1511,8 @@ public interface AccountServiceInterfaceV1 {
     List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
+    @GET
+    @Path(ACCOUNT_ID_PATH + VALIDATE_FOR_REFERENCE_NUMBER)
+    void validateForRequiredReferenceNumber(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 }
