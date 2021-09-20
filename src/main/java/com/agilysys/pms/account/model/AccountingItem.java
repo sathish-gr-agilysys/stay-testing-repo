@@ -18,8 +18,6 @@ public abstract class AccountingItem extends AccountingObjectBase {
     @AuditIgnoreDefault
     protected boolean roomRevenue;
 
-    protected boolean nonBeddedRoomRevenue;
-
     @JsonProperty(required = true)
     @DataPortReference(name = "subcategoryCode", type = TransactionSubCategory.class)
     @AuditField(name = "subcategory", references = EntityTypes.TRANSACTION_SUBCATEGORY)
@@ -59,13 +57,5 @@ public abstract class AccountingItem extends AccountingObjectBase {
 
     public void setRoomRevenue(boolean roomRevenue) {
         this.roomRevenue = roomRevenue;
-    }
-
-    public boolean isNonBeddedRoomRevenue() {
-        return nonBeddedRoomRevenue;
-    }
-
-    public void setNonBeddedRoomRevenue(boolean nonBeddedRoomRevenue) {
-        this.nonBeddedRoomRevenue = nonBeddedRoomRevenue;
     }
 }
