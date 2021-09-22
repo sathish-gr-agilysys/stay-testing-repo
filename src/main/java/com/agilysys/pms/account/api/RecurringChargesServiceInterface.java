@@ -90,7 +90,6 @@ public interface RecurringChargesServiceInterface {
     String ROOM_TYPE_ID_PATH = "/{roomTypeId}";
     String VALIDATE_INVENTORY = "validateInventory";
 
-
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
      *
