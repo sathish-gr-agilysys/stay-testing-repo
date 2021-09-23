@@ -5,7 +5,7 @@ package com.agilysys.pms.account.model;
 
 public class ReleaseAllAuthRequest {
     private String referenceId;
-    private String accountType;
+    private AccountType accountType;
 
     public String getReferenceId() {
         return referenceId;
@@ -15,11 +15,11 @@ public class ReleaseAllAuthRequest {
         this.referenceId = referenceId;
     }
 
-    public String getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
 }

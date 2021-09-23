@@ -29,6 +29,7 @@ public class Payment {
     private boolean reAuthBeforeCheckin;
     private boolean makePaymentAsDeposit;
     private PaymentFlowType paymentFlowType;
+    private PaymentSettingRequest paymentSettingRequest;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -155,5 +156,13 @@ public class Payment {
 
     public void setPaymentFlowType(PaymentFlowType paymentFlowType) {
         this.paymentFlowType = paymentFlowType;
+    }
+
+    public PaymentSettingRequest getPaymentSettingRequest() {
+        return paymentSettingRequest;
+    }
+
+    public void setPaymentSettingRequest(PaymentSettingRequest paymentSettingRequest) {
+        this.paymentSettingRequest = paymentSettingRequest;
     }
 }
