@@ -29,6 +29,7 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
     private String name;
     private String parentId;
     private String petDisplayName;
+    private String chargeTypeDisplayName;
     private DateTime postingCalendarDateTime;
     private int quantity;
     private String rateChangeComment;
@@ -162,6 +163,14 @@ public class InvoiceFolioLineDetailView extends InvoiceFolioLineView<InvoiceFoli
 
     public void setPetDisplayName(String petDisplayName) {
         this.petDisplayName = petDisplayName;
+    }
+
+    public String getChargeTypeDisplayName() {
+        return chargeTypeDisplayName;
+    }
+
+    public void setChargeTypeDisplayName(String chargeTypeDisplayName) {
+        this.chargeTypeDisplayName = chargeTypeDisplayName;
     }
 
     public DateTime getPostingCalendarDateTime() {
