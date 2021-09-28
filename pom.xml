@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
-        <version>74.1620.0-devgamma.52</version>
+        <version>74.1620.0-devgamma.53</version>
     </parent>
     <properties/>
     <dependencies>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>payment-interface</artifactId>
-            <version>74.1620.0-devgamma.52</version>
+            <version>74.1620.0-devgamma.53</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -42,17 +42,17 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.1620.0-devgamma.52</version>
+            <version>74.1620.0-devgamma.53</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rguestpayshim-interface</artifactId>
-            <version>74.1620.0-devgamma.52</version>
+            <version>74.1620.0-devgamma.53</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.1620.0-devgamma.52</version>
+            <version>74.1620.0-devgamma.53</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
