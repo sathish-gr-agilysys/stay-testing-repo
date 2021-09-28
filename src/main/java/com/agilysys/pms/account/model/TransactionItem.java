@@ -72,6 +72,7 @@ public class TransactionItem extends AccountingItem {
     @AuditField(inline = true)
     protected List<String> taxClasses;
 
+    @DataPortIgnore
     protected boolean nonBeddedRoomRevenue;
 
     public TransactionItem() {
