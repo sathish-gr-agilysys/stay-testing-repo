@@ -19,6 +19,7 @@ public class Charge extends TaxableTransaction {
     private String autoRecurringRuleId;
     private boolean notGrouped;
     private String lineItemId;
+    private long paymentMethodId;
 
     public Charge() {}
 
@@ -86,6 +87,14 @@ public class Charge extends TaxableTransaction {
 
     public void setLineItemId(String lineItemId) {
         this.lineItemId = lineItemId;
+    }
+
+    public long getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    public void setPaymentMethodId(long paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
     }
 
     @Override
