@@ -17,6 +17,7 @@ public class RevenueReportItem {
     private LocalDate postingPropertyDate;
     private boolean roomRevenue;
     private boolean posted;
+    private String originAccountId;
 
     public RevenueReportItem() {
     }
@@ -103,6 +104,14 @@ public class RevenueReportItem {
 
     public void setPosted(boolean posted) {
         this.posted = posted;
+    }
+
+    public String getOriginAccountId() {
+        return originAccountId;
+    }
+
+    public void setOriginAccountId(String originAccountId) {
+        this.originAccountId = originAccountId;
     }
 }
 
