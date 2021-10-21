@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 import com.agilysys.common.model.rate.AllowanceCombination;
+import com.agilysys.common.model.rate.AllowanceFrequencyCustomOptions;
+import com.agilysys.common.model.rate.AllowanceFrequencyOption;
 import com.agilysys.common.model.rate.AllowanceFrequencyType;
 import com.agilysys.common.model.rate.ComponentRateSnapshot;
 import com.agilysys.common.model.rate.ComponentType;
@@ -46,6 +48,8 @@ public class ComponentChargeView {
     private ComponentType allowanceComponentType;
     private BigDecimal allowanceAmount;
     private AllowanceFrequencyType allowanceFrequencyType;
+    private AllowanceFrequencyOption allowanceFrequencyOption;
+    private List<AllowanceFrequencyCustomOptions> allowanceFrequencyCustomOptions;
     private List<AllowanceCombination> allowanceCombinations;
     private String allowanceName;
     private int allowanceTotalQuantity;
@@ -224,6 +228,22 @@ public class ComponentChargeView {
         this.allowanceFrequencyType = allowanceFrequencyType;
     }
 
+    public AllowanceFrequencyOption getAllowanceFrequencyOption() {
+        return allowanceFrequencyOption;
+    }
+
+    public void setAllowanceFrequencyOption(AllowanceFrequencyOption allowanceFrequencyOption) {
+        this.allowanceFrequencyOption = allowanceFrequencyOption;
+    }
+
+    public List<AllowanceFrequencyCustomOptions> getAllowanceFrequencyCustomOptions() {
+        return allowanceFrequencyCustomOptions;
+    }
+
+    public void setAllowanceFrequencyCustomOptions(List<AllowanceFrequencyCustomOptions> allowanceFrequencyCustomOptions) {
+        this.allowanceFrequencyCustomOptions = allowanceFrequencyCustomOptions;
+    }
+
     public List<AllowanceCombination> getAllowanceCombinations() {
         return allowanceCombinations;
     }
@@ -327,7 +347,8 @@ public class ComponentChargeView {
         componentChargeView.setAllowanceComponentType(componentRateSnapshot.getAllowanceComponentType());
         componentChargeView.setAllowanceAmount(componentRateSnapshot.getAllowanceAmount());
         componentChargeView.setAllowanceCombinations(componentRateSnapshot.getAllowanceCombinations());
-        componentChargeView.setAllowanceFrequencyType(componentRateSnapshot.getAllowanceFrequencyType());
+        componentChargeView.setAllowanceFrequencyOption(componentRateSnapshot.getAllowanceFrequencyOption());
+        componentChargeView.setAllowanceFrequencyCustomOptions(componentRateSnapshot.getAllowanceFrequencyCustomOptions());
         componentChargeView.setAllowanceName(componentRateSnapshot.getAllowanceName());
         componentChargeView.setAllowanceTotalQuantity(componentRateSnapshot.getAllowanceTotalQuantity());
         componentChargeView.setBreakageId(componentRateSnapshot.getBreakageId());
