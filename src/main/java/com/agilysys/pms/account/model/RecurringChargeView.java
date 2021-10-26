@@ -13,6 +13,9 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.FrequencyType;
+import com.agilysys.common.model.rate.AllowanceFrequencyCustomOptions;
+import com.agilysys.common.model.rate.AllowanceFrequencyOption;
+import com.agilysys.common.model.rate.AllowanceFrequencyType;
 import com.agilysys.common.model.rate.CompInfo;
 
 /**
@@ -231,6 +234,11 @@ public class RecurringChargeView {
     }
 
     public List<ComponentChargeView> getComponentCharges() {
+        for(ComponentChargeView componentChargeView: componentCharges){
+            if (componentChargeView.getAllowanceFrequencyType() != null) {
+                packageAllowanceSettingConversion(componentChargeView, this.frequencyType);
+            }
+        }
         return componentCharges;
     }
 
@@ -380,5 +388,75 @@ public class RecurringChargeView {
 
     public void setOriginalAmount(BigDecimal originalAmount) {
         this.originalAmount = originalAmount;
+    }
+
+    private static void packageAllowanceSettingConversion(ComponentChargeView componentChargeView, FrequencyType frequencyType) {
+        List<AllowanceFrequencyCustomOptions> allowanceFrequencyCustomOptions = new ArrayList<>();
+        if (frequencyType == FrequencyType.FIRST &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.DAY) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.CUSTOM);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.FIRST);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if (frequencyType == FrequencyType.FIRST &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.DAY_PLUS_ONE) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.CUSTOM);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.SECOND);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if ((frequencyType == FrequencyType.FIRST &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.ANY_DAY) ||
+              (frequencyType == FrequencyType.EVERY &&
+                    componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.ANY_DAY)) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.PER_STAY);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.FIRST);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.DPT_DAY);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if ((frequencyType == FrequencyType.FIRST &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.ANY_DAY_BUT_DEPARTURE) ||
+              (frequencyType == FrequencyType.EVERY &&
+                    componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.ANY_DAY_BUT_DEPARTURE)) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.PER_STAY);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.FIRST);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if (frequencyType == FrequencyType.EVERY &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.DAY) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.PER_NIGHT);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.FIRST);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if (frequencyType == FrequencyType.EVERY &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.DAY_PLUS_ONE) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.PER_NIGHT);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.DPT_DAY);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if (frequencyType == FrequencyType.LAST &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.DAY) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.CUSTOM);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.LAST);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if (frequencyType == FrequencyType.LAST &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.DAY_PLUS_ONE) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.CUSTOM);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.DPT_DAY);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if (frequencyType == FrequencyType.LAST &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.ANY_DAY) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.CUSTOM);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.LAST);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.DPT_DAY);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
+        if (frequencyType == FrequencyType.LAST &&
+              componentChargeView.getAllowanceFrequencyType() == AllowanceFrequencyType.ANY_DAY_BUT_DEPARTURE) {
+            componentChargeView.setAllowanceFrequencyOption(AllowanceFrequencyOption.CUSTOM);
+            allowanceFrequencyCustomOptions.add(AllowanceFrequencyCustomOptions.LAST);
+            componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptions);
+        }
     }
 }

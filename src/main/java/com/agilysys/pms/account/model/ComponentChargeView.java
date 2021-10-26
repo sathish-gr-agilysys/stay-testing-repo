@@ -347,6 +347,7 @@ public class ComponentChargeView {
         componentChargeView.setAllowanceComponentType(componentRateSnapshot.getAllowanceComponentType());
         componentChargeView.setAllowanceAmount(componentRateSnapshot.getAllowanceAmount());
         componentChargeView.setAllowanceCombinations(componentRateSnapshot.getAllowanceCombinations());
+        componentChargeView.setAllowanceFrequencyType(componentRateSnapshot.getAllowanceFrequencyType());
         componentChargeView.setAllowanceFrequencyOption(componentRateSnapshot.getAllowanceFrequencyOption());
         componentChargeView.setAllowanceFrequencyCustomOptions(componentRateSnapshot.getAllowanceFrequencyCustomOptions());
         componentChargeView.setAllowanceName(componentRateSnapshot.getAllowanceName());
