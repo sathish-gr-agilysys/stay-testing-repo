@@ -9,7 +9,7 @@
         <artifactId>stay-root-pom</artifactId>
         <version>74.1605.1-beta.33</version>
     </parent>
-    <properties />
+    <properties/>
     <dependencies>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
