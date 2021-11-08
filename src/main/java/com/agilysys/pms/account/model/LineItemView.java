@@ -59,12 +59,14 @@ public class LineItemView implements Comparable<LineItemView> {
     private Integer order;
     private String parentId;
     private String petDisplayName;
+    private String chargeTypeDisplayName;
     private DateTime postingCalendarDateTime;
     private LocalDate postingPropertyDate;
     private int quantity;
     private String rateChangeComment;
     private List<LineItemView> refundLineItems;
     private List<LineItemView> compLineItems;
+    private List<LineItemView> routedLineItems;
     private String reason;
     private String transferMessage;
     private String receiptTextImage;
@@ -127,6 +129,7 @@ public class LineItemView implements Comparable<LineItemView> {
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
         compLineItems = new ArrayList<>();
+        routedLineItems = new ArrayList<>();
         hasChildLineItems = false;
         groupedLineItems = new ArrayList<>();
     }
@@ -383,6 +386,14 @@ public class LineItemView implements Comparable<LineItemView> {
         this.petDisplayName = petDisplayName;
     }
 
+    public String getChargeTypeDisplayName() {
+        return chargeTypeDisplayName;
+    }
+
+    public void setChargeTypeDisplayName(String chargeTypeDisplayName) {
+        this.chargeTypeDisplayName = chargeTypeDisplayName;
+    }
+
     public DateTime getPostingCalendarDateTime() {
         return postingCalendarDateTime;
     }
@@ -510,6 +521,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCompLineItems(List<LineItemView> compLineItems) {
         this.compLineItems = compLineItems;
+    }
+
+    public List<LineItemView> getRoutedLineItems() {
+        return routedLineItems;
+    }
+
+    public void setRoutedLineItems(List<LineItemView> routedLineItems) {
+        this.routedLineItems = routedLineItems;
     }
 
     /**
@@ -775,6 +794,28 @@ public class LineItemView implements Comparable<LineItemView> {
         return compTaxAmount;
     }
 
+    public BigDecimal getRoutedTotalAmount() {
+        BigDecimal routedTotalAmount = BigDecimal.ZERO;
+        for (LineItemView routedLine : getRoutedLineItems()) {
+            routedTotalAmount = routedTotalAmount.add(routedLine.getTotalAmount());
+        }
+
+        return routedTotalAmount;
+    }
+
+    public BigDecimal getRoutedTaxAmount() {
+        BigDecimal routedTaxAmount = BigDecimal.ZERO;
+        for (LineItemView routedLine : getRoutedLineItems()) {
+            routedTaxAmount = routedTaxAmount.add(routedLine.getTaxAmount());
+        }
+
+        return routedTaxAmount;
+    }
+
+    public BigDecimal getRoutedGrandTotalAmount() {
+        return getRoutedTotalAmount().add(getRoutedTaxAmount());
+    }
+
     /**
      * @return total + taxes of an associated correction line item
      */
@@ -821,7 +862,8 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemBalance() {
         return getGrandTotalAmount().add(getAdjustmentsGrandTotalAmount()).add(getTransferGrandTotalAmount())
-              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount())).add(getCompGrandTotalAmount());
+              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount())).add(getCompGrandTotalAmount())
+              .add(getRoutedGrandTotalAmount());
     }
 
     /**
@@ -829,7 +871,8 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemChargesBalance() {
         return getTotalAmount().add(getAdjustmentsTotalAmount()).add(getTransferTotalAmount())
-              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount()).add(getCompTotalAmount());
+              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount()).add(getCompTotalAmount())
+              .add(getRoutedTotalAmount());
     }
 
     /**
@@ -838,7 +881,7 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemTaxBalance() {
         return getTaxAmount().add(getAdjustmentsTaxAmount()).add(getTransferTaxAmount()).add(getCorrectionTaxAmount())
-              .add(getCompTaxAmount());
+              .add(getCompTaxAmount()).add(getRoutedTaxAmount());
     }
 
     /**
