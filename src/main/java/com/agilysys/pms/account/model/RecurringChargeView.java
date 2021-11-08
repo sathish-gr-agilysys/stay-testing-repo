@@ -13,10 +13,9 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.FrequencyType;
-import com.agilysys.common.model.rate.AllowanceFrequencyCustomOptions;
-import com.agilysys.common.model.rate.AllowanceFrequencyOption;
 import com.agilysys.common.model.rate.CompInfo;
 import com.agilysys.pms.common.allowance.conversion.PackageAllowanceSettingConversion;
+import com.agilysys.pms.reservation.model.AllowanceFrequencySetting;
 
 /**
  * Recurring Charges view object
@@ -236,7 +235,7 @@ public class RecurringChargeView {
     public List<ComponentChargeView> getComponentCharges() {
         for (ComponentChargeView componentChargeView : componentCharges) {
             if (componentChargeView.getAllowanceFrequencyType() != null) {
-                setNewPackageAllowanceSetting(componentChargeView);
+                setAllowanceSetting(componentChargeView);
             }
         }
         return componentCharges;
@@ -390,12 +389,12 @@ public class RecurringChargeView {
         this.originalAmount = originalAmount;
     }
 
-    private void setNewPackageAllowanceSetting(ComponentChargeView componentChargeView) {
-        AllowanceFrequencyOption allowanceFrequencyOptionResult = null;
-        List<AllowanceFrequencyCustomOptions> allowanceFrequencyCustomOptionsResultList = new ArrayList<>();
-        PackageAllowanceSettingConversion.getNewPackageAllowanceSetting(componentChargeView.getAllowanceFrequencyType(),
-              this.frequencyType, allowanceFrequencyOptionResult, allowanceFrequencyCustomOptionsResultList);
-        componentChargeView.setAllowanceFrequencyOption(allowanceFrequencyOptionResult);
-        componentChargeView.setAllowanceFrequencyCustomOptions(allowanceFrequencyCustomOptionsResultList);
+    private void setAllowanceSetting(ComponentChargeView componentChargeView) {
+        AllowanceFrequencySetting allowanceFrequencySetting =
+              PackageAllowanceSettingConversion.getNewPackageAllowanceSetting(
+                    componentChargeView.getAllowanceFrequencyType(), this.frequencyType);
+        componentChargeView.setAllowanceFrequencyOption(allowanceFrequencySetting.getAllowanceFrequencyOption());
+        componentChargeView.setAllowanceFrequencyCustomOptions(
+              allowanceFrequencySetting.getAllowanceFrequencyCustomOptions());
     }
 }
