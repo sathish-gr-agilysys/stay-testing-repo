@@ -4,29 +4,11 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public class PostPosCreditRequest {
-    private List<PosCredit> posCredits;
-    private boolean houseAccount;
+public class PostPosCreditRequest extends PostCreditsRequestBase<PosCredit>{
     private BigDecimal totalAmount;
     private String name;
-
-    public boolean isHouseAccount() {
-        return houseAccount;
-    }
-
-    public void setHouseAccount(boolean houseAccount) {
-        this.houseAccount = houseAccount;
-    }
-
-    public List<PosCredit> getPosCredits() {
-        return posCredits;
-    }
-
-    public void setPosCredits(List<PosCredit> posCredits) {
-        this.posCredits = posCredits;
-    }
+    private String outletId;
 
     public BigDecimal getTotalAmount() {
         return totalAmount;
@@ -42,5 +24,13 @@ public class PostPosCreditRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOutletId() {
+        return outletId;
+    }
+
+    public void setOutletId(String outletId) {
+        this.outletId = outletId;
     }
 }
