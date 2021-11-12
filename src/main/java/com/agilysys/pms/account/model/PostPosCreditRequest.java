@@ -9,6 +9,7 @@ import java.util.List;
 public class PostPosCreditRequest extends PostCreditsRequestBase<PosCredit>{
     private BigDecimal totalAmount;
     private String name;
+    private boolean houseAccountPOS;
 
     public BigDecimal getTotalAmount() {
         return totalAmount;
@@ -24,5 +25,13 @@ public class PostPosCreditRequest extends PostCreditsRequestBase<PosCredit>{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isHouseAccountPOS() {
+        return houseAccountPOS;
+    }
+
+    public void setHouseAccountPOS(boolean houseAccountPOS) {
+        this.houseAccountPOS = houseAccountPOS;
     }
 }
