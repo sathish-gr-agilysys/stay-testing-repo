@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 public class PostPosCreditRequest extends PostCreditsRequestBase<PosCredit>{
     private BigDecimal totalAmount;
     private String name;
+    private boolean houseAccountPOS;
     private String outletId;
 
     public BigDecimal getTotalAmount() {
@@ -32,5 +33,13 @@ public class PostPosCreditRequest extends PostCreditsRequestBase<PosCredit>{
 
     public void setOutletId(String outletId) {
         this.outletId = outletId;
+    }
+
+    public boolean isHouseAccountPOS() {
+        return houseAccountPOS;
+    }
+
+    public void setHouseAccountPOS(boolean houseAccountPOS) {
+        this.houseAccountPOS = houseAccountPOS;
     }
 }
