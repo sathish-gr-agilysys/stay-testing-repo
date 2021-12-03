@@ -4,52 +4,13 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import org.joda.time.LocalDate;
-
-public class PostPosChargesRequest {
-    private List<PosCharge> charges;
-    private boolean distributed;
-    private String name;
-    private LocalDate postingDate;
+public class PostPosChargesRequest extends PostChargesRequestBase<PosCharge> {
     private String accountId;
-    private boolean houseAccount;
     private BigDecimal totalAmount;
     private String outletName;
     private String mealPeriodName;
-
-    public List<PosCharge> getCharges() {
-        return charges;
-    }
-
-    public void setCharges(List<PosCharge> charges) {
-        this.charges = charges;
-    }
-
-    public boolean isDistributed() {
-        return distributed;
-    }
-
-    public void setDistributed(boolean distributed) {
-        this.distributed = distributed;
-    }
-
-    public LocalDate getPostingDate() {
-        return postingDate;
-    }
-
-    public void setPostingDate(LocalDate postingDate) {
-        this.postingDate = postingDate;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private boolean houseAccountPOS;
 
     public String getAccountId() {
         return accountId;
@@ -57,14 +18,6 @@ public class PostPosChargesRequest {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
-    }
-
-    public boolean isHouseAccount() {
-        return houseAccount;
-    }
-
-    public void setHouseAccount(boolean houseAccount) {
-        this.houseAccount = houseAccount;
     }
 
     public BigDecimal getTotalAmount() {
@@ -89,5 +42,13 @@ public class PostPosChargesRequest {
 
     public void setOutletName(String outletName) {
         this.outletName = outletName;
+    }
+
+    public boolean isHouseAccountPOS() {
+        return houseAccountPOS;
+    }
+
+    public void setHouseAccountPOS(boolean houseAccountPOS) {
+        this.houseAccountPOS = houseAccountPOS;
     }
 }
