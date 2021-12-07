@@ -59,6 +59,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private Integer order;
     private String parentId;
     private String petDisplayName;
+    private String chargeTypeDisplayName;
     private DateTime postingCalendarDateTime;
     private LocalDate postingPropertyDate;
     private int quantity;
@@ -384,6 +385,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setPetDisplayName(String petDisplayName) {
         this.petDisplayName = petDisplayName;
+    }
+
+    public String getChargeTypeDisplayName() {
+        return chargeTypeDisplayName;
+    }
+
+    public void setChargeTypeDisplayName(String chargeTypeDisplayName) {
+        this.chargeTypeDisplayName = chargeTypeDisplayName;
     }
 
     public DateTime getPostingCalendarDateTime() {
