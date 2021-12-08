@@ -16,6 +16,9 @@ public class ApplyInvoiceDepositPaymentRequest {
     private boolean includeDisputes;
     private String disputeComment;
     private Set<String> unappliedPaymentIds;
+    private PaymentSettingRequest paymentSettingRequest;
+    private String paymentMethodId;
+    private String paymentInstrumentId;
 
     public List<InvoicePaymentRequest> getInvoicePayments() {
         return invoicePayments;
@@ -55,5 +58,29 @@ public class ApplyInvoiceDepositPaymentRequest {
 
     public void setUnappliedPaymentIds(Set<String> unappliedPaymentIds) {
         this.unappliedPaymentIds = unappliedPaymentIds;
+    }
+
+    public PaymentSettingRequest getPaymentSettingRequest() {
+        return paymentSettingRequest;
+    }
+
+    public void setPaymentSettingRequest(PaymentSettingRequest paymentSettingRequest) {
+        this.paymentSettingRequest = paymentSettingRequest;
+    }
+
+    public String getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    public void setPaymentMethodId(String paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
+
+    public String getPaymentInstrumentId() {
+        return paymentInstrumentId;
+    }
+
+    public void setPaymentInstrumentId(String paymentInstrumentId) {
+        this.paymentInstrumentId = paymentInstrumentId;
     }
 }
