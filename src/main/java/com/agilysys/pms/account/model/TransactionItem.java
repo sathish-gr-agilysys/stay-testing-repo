@@ -51,7 +51,6 @@ public class TransactionItem extends AccountingItem {
 
     protected String plu;
 
-  	@DataPortIgnore
     protected boolean restricted;
 
     @DataPortIgnore
