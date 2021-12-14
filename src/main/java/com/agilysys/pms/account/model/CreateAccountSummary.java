@@ -59,6 +59,8 @@ public class CreateAccountSummary extends AccountSummary {
 
     private String ratePlanId;
 
+    private String sourceInterfaceId;
+
     public String getReservationCompanyProfileId() {
         return reservationCompanyProfileId;
     }
@@ -164,4 +166,13 @@ public class CreateAccountSummary extends AccountSummary {
     public void setRatePlanId(String ratePlanId) {
         this.ratePlanId = ratePlanId;
     }
+
+    public String getSourceInterfaceId() {
+        return sourceInterfaceId;
+    }
+
+    public void setSourceInterfaceId(String sourceInterfaceId) {
+        this.sourceInterfaceId = sourceInterfaceId;
+    }
+
 }
