@@ -30,6 +30,8 @@ public class PostingRuleDetail {
     @NotNull
     private String ruleName;
 
+    private String ratePlanName;
+
     private String chargeSourceId;
     private Set<String> categoryIds;
     private String subcategoryId;
@@ -121,6 +123,14 @@ public class PostingRuleDetail {
 
     public void setRuleName(String ruleName) {
         this.ruleName = ruleName;
+    }
+
+    public String getRatePlanName() {
+        return ratePlanName;
+    }
+
+    public void setRatePlanName(String ratePlanName) {
+        this.ratePlanName = ratePlanName;
     }
 
     public String getChargeSourceId() {
@@ -361,6 +371,13 @@ public class PostingRuleDetail {
 
     public void setDepositDestinationDetail(DepositDestinationDetail depositDestinationDetail) {
         this.depositDestinationDetail = depositDestinationDetail;
+    }
+
+    public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, String ratePlanName,
+          List<LocalDate> offerAppliedDates, LocalDate propertyDate, String authorizerCode, String authorizerId,
+          String compOfferId) {
+        this(template, ruleName, offerAppliedDates, propertyDate, authorizerCode, authorizerId, compOfferId);
+        this.ratePlanName = ratePlanName;
     }
 
     public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, List<LocalDate> offerAppliedDates,
