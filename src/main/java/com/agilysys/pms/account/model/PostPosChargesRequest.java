@@ -10,6 +10,7 @@ public class PostPosChargesRequest extends PostChargesRequestBase<PosCharge> {
     private BigDecimal totalAmount;
     private String outletName;
     private String mealPeriodName;
+    private String outletId;
     private boolean houseAccountPOS;
 
     public String getAccountId() {
@@ -42,6 +43,14 @@ public class PostPosChargesRequest extends PostChargesRequestBase<PosCharge> {
 
     public void setOutletName(String outletName) {
         this.outletName = outletName;
+    }
+
+    public String getOutletId() {
+        return outletId;
+    }
+
+    public void setOutletId(String outletId) {
+        this.outletId = outletId;
     }
 
     public boolean isHouseAccountPOS() {
