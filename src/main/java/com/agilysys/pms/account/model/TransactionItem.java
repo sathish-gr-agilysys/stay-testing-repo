@@ -71,6 +71,8 @@ public class TransactionItem extends AccountingItem {
     @AuditField(inline = true)
     protected List<String> taxClasses;
 
+    protected boolean nonBeddedRoomRevenue;
+
     public TransactionItem() {
         super();
 
@@ -176,6 +178,14 @@ public class TransactionItem extends AccountingItem {
     @JsonIgnore
     public boolean isActive() {
         return this.status == CanonicalId.ACTIVE;
+    }
+
+    public boolean isNonBeddedRoomRevenue() {
+        return nonBeddedRoomRevenue;
+    }
+
+    public void setNonBeddedRoomRevenue(boolean nonBeddedRoomRevenue) {
+        this.nonBeddedRoomRevenue = nonBeddedRoomRevenue;
     }
 
     @Override
