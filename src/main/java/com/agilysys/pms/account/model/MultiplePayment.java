@@ -12,6 +12,7 @@ public class MultiplePayment {
     private String paymentMethodId;
     private String referenceNumber;
     private Boolean depositPaymentAtBooking;
+    private CurrencyExchangeDetails currencyExchangeDetails;
 
     public MultiplePayment() {}
 
@@ -58,5 +59,13 @@ public class MultiplePayment {
 
     public void setDepositPaymentAtBooking(Boolean depositPaymentAtBooking) {
         this.depositPaymentAtBooking = depositPaymentAtBooking;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 }

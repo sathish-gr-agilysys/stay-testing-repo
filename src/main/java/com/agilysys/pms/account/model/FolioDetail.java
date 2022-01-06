@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
       "formattedTotalBalance" })
 public class FolioDetail extends FolioSummary {
     private List<LineItemView> lineItems;
+    private List<FolioViewLineItem> folioViewLineItemList;
 
     /**
      * Get line item views
@@ -40,5 +41,13 @@ public class FolioDetail extends FolioSummary {
      */
     public void setLineItems(List<LineItemView> lineItems) {
         this.lineItems = lineItems;
+    }
+
+    public List<FolioViewLineItem> getFolioViewLineItemList() {
+        return folioViewLineItemList;
+    }
+
+    public void setFolioViewLineItemList(List<FolioViewLineItem> folioViewLineItemList) {
+        this.folioViewLineItemList = folioViewLineItemList;
     }
 }

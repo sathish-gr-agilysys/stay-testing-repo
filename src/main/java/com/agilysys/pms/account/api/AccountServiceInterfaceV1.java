@@ -120,7 +120,6 @@ import com.agilysys.pms.account.model.ReverseRedemptionResponse;
 import com.agilysys.pms.account.model.StatementHistory;
 import com.agilysys.pms.account.model.TaxExemptSettingsByDate;
 import com.agilysys.pms.account.model.TenantARPropertySettingStatus;
-import com.agilysys.pms.common.tenantData.TenantData;
 import com.agilysys.pms.account.model.TenantDefaultSettingsSummary;
 import com.agilysys.pms.account.model.TransactionItem;
 import com.agilysys.pms.account.model.TransactionReportItem;
@@ -194,6 +193,7 @@ public interface AccountServiceInterfaceV1 {
     String FREE_ALLOWANCE_PATH = "/freeAllowanceCharges";
     String GROUP_COMPANY_TAX_EXEMPT_SETTINGS_PATH = "/groupCompanyTaxExemptSettings";
     String GROUPED = "grouped";
+    String GROUPED_FOLIOS_LINE_ITEMS = "/groupedFoliosLineItems";
     String ID = "id";
     String INCLUDE_CLOSED_ACCOUNTS = "includeClosedAccounts";
     String INCLUDE_HOLD_ACCOUNTS = "includeHoldAccounts";
@@ -310,12 +310,24 @@ public interface AccountServiceInterfaceV1 {
     String BATCH_CREDITS_PATH = "/batchCredits";
     String ACCOUNTS_BY_IDS = "/accountsByIds";
     String RELEASE_ALL_AUTH = "/releaseAllAuthorizations";
+    String ACCOUNT_TYPE_PATH = "/accountType/{"+ACCOUNT_TYPE +"}";
+    String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH + "/searchByUpdatedDate";
+    String VALIDATE_FOR_REFERENCE_NUMBER = "/validateForReferenceNumber";
+    String CANCELLATION = "/cancellation";
 
     @GET
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<AccountSummary> getAccounts(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @QueryParam("accountType") String accountTypes, @QueryParam("accountStatus") String accountStatuses)
           throws RGuestException;
+
+    @GET
+    @Path(SEARCH_BY_UPDATED_DATE)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam("accountType") String accountTypes,
+          @QueryParam(START_DATE_TIME) String startDateTime,
+          @QueryParam(END_DATE_TIME) String endDateTime) throws RGuestException;
 
     @Deprecated
     @GET
@@ -414,6 +426,13 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + FOLIO_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     List<FolioDetail> getFolios(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
+          throws RGuestException;
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + GROUPED_FOLIOS_LINE_ITEMS)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    List<FolioDetail> getAllFolioLineItems(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("") GetFoliosOptionalParameters optionalParameters)
           throws RGuestException;
 
@@ -592,6 +611,16 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge)
           throws RGuestException;
 
+    // Account tax facts are modified to exclude residency tax during cancellation.
+    // DO NOT use this for normal charge posting
+    @POST
+    @Path(ACCOUNT_ID_PATH + CHARGES_PATH + CANCELLATION)
+    @Validated(Charge.class)
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    List<LineItemView> postCancellationCharge(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
+          @QueryParam("ignoreAuth") boolean ignoreAuth, Charge charge) throws RGuestException;
+
     @POST
     @Path(ACCOUNT_ID_PATH + POS_CHARGE_PATH)
     @Validated(Charge.class)
@@ -613,6 +642,13 @@ public interface AccountServiceInterfaceV1 {
     PostChargesResponse postPosCharges(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("ignoreAuth") boolean ignoreAuth,
           @QueryParam(GROUPED) boolean grouped, PostPosChargesRequest charges) throws RGuestException;
+
+
+    @GET
+    @Path(ACCOUNT_ID_PATH + "/authValidationCashPayment")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    public boolean authValidationForCashPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId)throws RGuestException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are
@@ -1475,4 +1511,8 @@ public interface AccountServiceInterfaceV1 {
     List<StatementHistory> getStatementHistoryByAccountId(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
+    @GET
+    @Path(ACCOUNT_ID_PATH + VALIDATE_FOR_REFERENCE_NUMBER)
+    void validateForRequiredReferenceNumber(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 }
