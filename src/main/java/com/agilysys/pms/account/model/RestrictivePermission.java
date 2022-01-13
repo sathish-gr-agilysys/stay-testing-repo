@@ -11,14 +11,14 @@ import com.agilysys.pms.common.security.Permission;
 public class RestrictivePermission extends AccountingObjectBase {
     private static final String DISPLAY_NAME = "Restrictive Permission";
 
-    private Permission restrictivePermission;
+    private String restrictivePermission;
 
     public Permission getRestrictivePermission() {
-        return restrictivePermission;
+        return Permission.fromValue(restrictivePermission);
     }
 
     public void setRestrictivePermission(Permission restrictivePermission) {
-        this.restrictivePermission = restrictivePermission;
+        this.restrictivePermission = restrictivePermission.value();
     }
 
     @Override
