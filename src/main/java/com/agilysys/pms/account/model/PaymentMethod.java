@@ -65,7 +65,7 @@ public class PaymentMethod extends AccountingItem {
 
     protected Boolean includeReferenceNumber;
 
-    private Permission restrictivePermission;
+    private String restrictivePermission;
 
     public Set<String> getSourceIds() {
         return sourceIds;
@@ -124,11 +124,11 @@ public class PaymentMethod extends AccountingItem {
     }
 
     public Permission getRestrictivePermission() {
-        return restrictivePermission;
+        return Permission.fromValue(restrictivePermission);
     }
 
     public void setRestrictivePermission(Permission restrictivePermission) {
-        this.restrictivePermission = restrictivePermission;
+        this.restrictivePermission = restrictivePermission.value();
     }
 
     /**
