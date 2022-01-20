@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 public class Credit extends TaxableTransaction {
     private TransactionItemType transactionItemType;
     protected String mealPeriodId;
+    private long paymentMethodId;
 
     public TransactionItemType getTransactionItemType() {
         return transactionItemType;
@@ -40,5 +41,13 @@ public class Credit extends TaxableTransaction {
         }
 
         return expectedGrossAmount;
+    }
+
+    public long getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    public void setPaymentMethodId(long paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
     }
 }
