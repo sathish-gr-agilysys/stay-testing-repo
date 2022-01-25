@@ -10,6 +10,8 @@ import java.util.Map;
 import org.apache.commons.collections.CollectionUtils;
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.account.model.CurrencyExchangeDetails;
+
 public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
     private String accountId;
     private String description;
@@ -30,6 +32,7 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
     private String folioTransactionType;
     private BigDecimal payment;
     private String referenceNumber;
+    private CurrencyExchangeDetails currencyExchangeDetails;
 
     public String getAccountId() {
         return accountId;
@@ -272,5 +275,13 @@ public abstract class InvoiceFolioLineView<T extends InvoiceFolioLineView<T>> {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
     }
 }

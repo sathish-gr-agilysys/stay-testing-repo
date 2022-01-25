@@ -59,12 +59,14 @@ public class LineItemView implements Comparable<LineItemView> {
     private Integer order;
     private String parentId;
     private String petDisplayName;
+    private String chargeTypeDisplayName;
     private DateTime postingCalendarDateTime;
     private LocalDate postingPropertyDate;
     private int quantity;
     private String rateChangeComment;
     private List<LineItemView> refundLineItems;
     private List<LineItemView> compLineItems;
+    private List<LineItemView> routedLineItems;
     private String reason;
     private String transferMessage;
     private String receiptTextImage;
@@ -114,6 +116,12 @@ public class LineItemView implements Comparable<LineItemView> {
     private String authCode;
     private String cardHolderName;
     private Boolean depositPaymentAtBooking;
+    private String mealPeriodName;
+    private String outletName;
+    private boolean hasChildLineItems;
+    private List<LineItemView> groupedLineItems;
+    private CurrencyExchangeDetails currencyExchangeDetails;
+    private List<String> taxClasses;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -122,6 +130,9 @@ public class LineItemView implements Comparable<LineItemView> {
         refundLineItems = new ArrayList<>();
         taxLineItems = new ArrayList<>();
         compLineItems = new ArrayList<>();
+        routedLineItems = new ArrayList<>();
+        hasChildLineItems = false;
+        groupedLineItems = new ArrayList<>();
     }
 
     public LineItemView(String id, String description, String itemId, DateTime postingCalendarDateTime,
@@ -376,6 +387,14 @@ public class LineItemView implements Comparable<LineItemView> {
         this.petDisplayName = petDisplayName;
     }
 
+    public String getChargeTypeDisplayName() {
+        return chargeTypeDisplayName;
+    }
+
+    public void setChargeTypeDisplayName(String chargeTypeDisplayName) {
+        this.chargeTypeDisplayName = chargeTypeDisplayName;
+    }
+
     public DateTime getPostingCalendarDateTime() {
         return postingCalendarDateTime;
     }
@@ -503,6 +522,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCompLineItems(List<LineItemView> compLineItems) {
         this.compLineItems = compLineItems;
+    }
+
+    public List<LineItemView> getRoutedLineItems() {
+        return routedLineItems;
+    }
+
+    public void setRoutedLineItems(List<LineItemView> routedLineItems) {
+        this.routedLineItems = routedLineItems;
     }
 
     /**
@@ -768,6 +795,28 @@ public class LineItemView implements Comparable<LineItemView> {
         return compTaxAmount;
     }
 
+    public BigDecimal getRoutedTotalAmount() {
+        BigDecimal routedTotalAmount = BigDecimal.ZERO;
+        for (LineItemView routedLine : getRoutedLineItems()) {
+            routedTotalAmount = routedTotalAmount.add(routedLine.getTotalAmount());
+        }
+
+        return routedTotalAmount;
+    }
+
+    public BigDecimal getRoutedTaxAmount() {
+        BigDecimal routedTaxAmount = BigDecimal.ZERO;
+        for (LineItemView routedLine : getRoutedLineItems()) {
+            routedTaxAmount = routedTaxAmount.add(routedLine.getTaxAmount());
+        }
+
+        return routedTaxAmount;
+    }
+
+    public BigDecimal getRoutedGrandTotalAmount() {
+        return getRoutedTotalAmount().add(getRoutedTaxAmount());
+    }
+
     /**
      * @return total + taxes of an associated correction line item
      */
@@ -814,7 +863,8 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemBalance() {
         return getGrandTotalAmount().add(getAdjustmentsGrandTotalAmount()).add(getTransferGrandTotalAmount())
-              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount())).add(getCompGrandTotalAmount());
+              .add(getCorrectionGrandTotalAmount().add(getRefundGrantTotalAmount())).add(getCompGrandTotalAmount())
+              .add(getRoutedGrandTotalAmount());
     }
 
     /**
@@ -822,7 +872,8 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemChargesBalance() {
         return getTotalAmount().add(getAdjustmentsTotalAmount()).add(getTransferTotalAmount())
-              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount()).add(getCompTotalAmount());
+              .add(getCorrectionTotalAmount()).add(getRefundGrantTotalAmount()).add(getCompTotalAmount())
+              .add(getRoutedTotalAmount());
     }
 
     /**
@@ -831,7 +882,7 @@ public class LineItemView implements Comparable<LineItemView> {
      */
     public BigDecimal getLineItemTaxBalance() {
         return getTaxAmount().add(getAdjustmentsTaxAmount()).add(getTransferTaxAmount()).add(getCorrectionTaxAmount())
-              .add(getCompTaxAmount());
+              .add(getCompTaxAmount()).add(getRoutedTaxAmount());
     }
 
     /**
@@ -1099,6 +1150,54 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setLineItemDepositBalance(BigDecimal lineItemDepositBalance) {
         this.lineItemDepositBalance = lineItemDepositBalance;
+    }
+
+    public String getMealPeriodName() {
+        return mealPeriodName;
+    }
+
+    public void setMealPeriodName(String mealPeriodName) {
+        this.mealPeriodName = mealPeriodName;
+    }
+
+    public String getOutletName() {
+        return outletName;
+    }
+
+    public void setOutletName(String outletName) {
+        this.outletName = outletName;
+    }
+
+    public boolean isHasChildLineItems() {
+        return hasChildLineItems;
+    }
+
+    public void setHasChildLineItems(boolean hasChildLineItems) {
+        this.hasChildLineItems = hasChildLineItems;
+    }
+
+    public List<LineItemView> getGroupedLineItems() {
+        return groupedLineItems;
+    }
+
+    public void setGroupedLineItems(List<LineItemView> groupedLineItems) {
+        this.groupedLineItems = groupedLineItems;
+    }
+
+    public CurrencyExchangeDetails getCurrencyExchangeDetails() {
+        return currencyExchangeDetails;
+    }
+
+    public void setCurrencyExchangeDetails(CurrencyExchangeDetails currencyExchangeDetails) {
+        this.currencyExchangeDetails = currencyExchangeDetails;
+    }
+
+    public List<String> getTaxClasses() {
+        return taxClasses;
+    }
+
+    public void setTaxClasses(List<String> taxClasses) {
+        this.taxClasses = taxClasses;
     }
 
     @Override
