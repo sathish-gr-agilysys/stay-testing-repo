@@ -68,6 +68,7 @@ public abstract class Transaction {
     protected String authCode;
     protected String cardHolderName;
     protected Boolean depositPaymentAtBooking;
+    protected String lineItemId;
 
     public String getAccountId() {
         return accountId;
@@ -356,6 +357,14 @@ public abstract class Transaction {
 
     public void setDepositPaymentAtBooking(Boolean depositPaymentAtBooking) {
         this.depositPaymentAtBooking = depositPaymentAtBooking;
+    }
+
+    public String getLineItemId() {
+        return lineItemId;
+    }
+
+    public void setLineItemId(String lineItemId) {
+        this.lineItemId = lineItemId;
     }
 
     @Override
