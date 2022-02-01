@@ -13,11 +13,6 @@ import java.util.Set;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import com.agilysys.common.model.TravelAgent;
-import com.agilysys.pms.profile.model.AgentSummary;
-import com.agilysys.pms.profile.model.v1.AgentProfile;
-import com.agilysys.pms.profile.model.v1.Profile;
-
 public class InvoiceView {
     private String id;
     private String tenantId;
