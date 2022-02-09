@@ -104,6 +104,9 @@ public class FolioSummary {
      * @return the payment setting id
      */
     public String getPaymentSettingId() {
+        if (this.getFolioType() == FolioType.PLAYER) {
+            return null;
+        }
         return paymentSettingId;
     }
 

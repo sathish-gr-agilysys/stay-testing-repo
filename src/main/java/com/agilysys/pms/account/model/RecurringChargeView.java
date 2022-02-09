@@ -15,6 +15,8 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.FrequencyType;
 import com.agilysys.common.model.rate.CompInfo;
+import com.agilysys.pms.common.allowance.conversion.PackageAllowanceSettingConversion;
+import com.agilysys.pms.reservation.model.AllowanceFrequencySetting;
 import com.agilysys.common.model.rate.ChargeSnapshot.ChargeType;
 
 /**
@@ -236,6 +238,11 @@ public class RecurringChargeView {
     }
 
     public List<ComponentChargeView> getComponentCharges() {
+        for (ComponentChargeView componentChargeView : componentCharges) {
+            if (componentChargeView.getAllowanceFrequencyType() != null) {
+                setAllowanceSetting(componentChargeView);
+            }
+        }
         return componentCharges;
     }
 
@@ -409,5 +416,14 @@ public class RecurringChargeView {
 
     public void setReferenceId(String referenceId) {
         this.referenceId = referenceId;
+    }
+
+    private void setAllowanceSetting(ComponentChargeView componentChargeView) {
+        AllowanceFrequencySetting allowanceFrequencySetting =
+              PackageAllowanceSettingConversion.getNewPackageAllowanceSetting(
+                    componentChargeView.getAllowanceFrequencyType(), this.frequencyType);
+        componentChargeView.setAllowanceFrequencyOption(allowanceFrequencySetting.getAllowanceFrequencyOption());
+        componentChargeView.setAllowanceFrequencyCustomOptions(
+              allowanceFrequencySetting.getAllowanceFrequencyCustomOptions());
     }
 }
