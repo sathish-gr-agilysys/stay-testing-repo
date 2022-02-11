@@ -18,7 +18,7 @@ public class RestrictivePermission extends AccountingObjectBase {
     }
 
     public void setRestrictivePermission(Permission restrictivePermission) {
-        this.restrictivePermission = restrictivePermission.value();
+        this.restrictivePermission = restrictivePermission != null ? restrictivePermission.value() : null;
     }
 
     @Override
