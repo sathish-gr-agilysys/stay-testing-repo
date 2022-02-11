@@ -225,7 +225,6 @@ public interface AccountServiceInterfaceV1 {
     String BATCH_PRE_AUTH = "/batchPreAuth";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
     String DEPOSITS_PATH = "/deposits";
-    String AUTO_DEPOSITS_PATH = "/autoCollectDeposits";
     String PAYOFF_BALANCE_PATH = "/payOffBalance";
     String POS_CHARGE_PATH = "/posCharge";
     String POS_CREDIT_PATH = "/posCredit";
@@ -792,17 +791,6 @@ public interface AccountServiceInterfaceV1 {
     List<LineItemView> postDeposit(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, DepositPaymentInfo depositPaymentInfo,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
-
-    @POST
-    @CreatedOnSuccess
-    @Path(AUTO_DEPOSITS_PATH)
-    @Validated(Payment.class)
-    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
-    @Produces(MediaType.APPLICATION_JSON)
-    List<LineItemView> postDepositsOnAutoCollect(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, Map<String, List<DepositPaymentInfo>> paymentByAccountId,
-          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
-
 
     @POST
     @CreatedOnSuccess
