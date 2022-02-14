@@ -43,4 +43,7 @@ public interface PosTransaction extends TrackableTransaction {
 
     String getTerminalId();
     void setTerminalId(String terminalId);
+
+    long getPaymentMethodId();
+    void setPaymentMethodId(long paymentMethodId);
 }

@@ -73,6 +73,8 @@ public class RoutingRuleTemplate {
 
     private Boolean carryUnusedBalance;
 
+    private DepositDestinationDetail depositDestinationDetail;
+
     public RoutingRuleTemplate() {
     }
 
@@ -258,5 +260,13 @@ public class RoutingRuleTemplate {
 
     public void setCarryUnusedBalance(Boolean carryUnusedBalance) {
         this.carryUnusedBalance = carryUnusedBalance;
+    }
+
+    public DepositDestinationDetail getDepositDestinationDetail() {
+        return depositDestinationDetail;
+    }
+
+    public void setDepositDestinationDetail(DepositDestinationDetail depositDestinationDetail) {
+        this.depositDestinationDetail = depositDestinationDetail;
     }
 }
