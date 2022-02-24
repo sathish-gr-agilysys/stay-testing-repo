@@ -11,6 +11,8 @@ public class DepositDestinationDetail {
 
     private boolean routeDeposit;
 
+    private String folioName;
+
     public DepositDestinationDetail() {}
 
     public DepositDestinationDetail(String accountId, String folioId) {
@@ -18,9 +20,10 @@ public class DepositDestinationDetail {
         this.folioId = folioId;
     }
 
-    public DepositDestinationDetail(String accountId, String folioId, boolean routeDeposit) {
+    public DepositDestinationDetail(String accountId, String folioId, boolean routeDeposit, String folioName) {
         this(accountId, folioId);
         this.routeDeposit = routeDeposit;
+        this.folioName = folioName;
     }
 
     public String getAccountId() {
@@ -46,4 +49,8 @@ public class DepositDestinationDetail {
     public void setRouteDeposit(boolean routeDeposit) {
         this.routeDeposit = routeDeposit;
     }
+
+    public String getFolioName() { return folioName; }
+
+    public void setFolioName(String folioName) { this.folioName = folioName; }
 }
