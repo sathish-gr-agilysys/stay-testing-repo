@@ -247,6 +247,7 @@ public interface AccountServiceInterfaceV1 {
     String REFUND_PATH = "/refund";
     String REFUNDS_PATH = "/refunds";
     String REMAINING_PATH = "/{" + PATH + ":.*}";
+    String RESERVATION_IDS_TO_EXCLUDE = "reservationIdsToExclude";
     String PAYMENT_METHOD_ID = "paymentMethodId";
     String REQUEST_TYPE = "requestType";
     String SEARCH_PATH = "/search";
@@ -324,10 +325,10 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(SEARCH_BY_UPDATED_DATE)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam("accountType") String accountTypes,
-          @QueryParam(START_DATE_TIME) String startDateTime,
-          @QueryParam(END_DATE_TIME) String endDateTime) throws RGuestException;
+    List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("accountType") String accountTypes,
+          @QueryParam(START_DATE_TIME) String startDateTime, @QueryParam(END_DATE_TIME) String endDateTime,
+          @QueryParam(RESERVATION_IDS_TO_EXCLUDE) Set<String> reservationIdsToExclude) throws RGuestException;
 
     @Deprecated
     @GET
