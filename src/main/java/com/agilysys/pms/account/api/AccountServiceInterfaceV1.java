@@ -1221,6 +1221,11 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException;
 
     @GET
+    @Path(ACCOUNT_ID_PATH + CANCELLATION)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    void verifyCancellation(@PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
+    @GET
     @Path(NEXT_ACCOUNT_NUMBER_PATH)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     NextAccountNumberInfo getNextArAccountNumber(@PathParam(TENANT_ID) String tenantId,
