@@ -1223,7 +1223,8 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + CANCELLATION)
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    void verifyCancellation(@PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+    void verifyCancellation(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+                            @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
     @GET
     @Path(NEXT_ACCOUNT_NUMBER_PATH)
