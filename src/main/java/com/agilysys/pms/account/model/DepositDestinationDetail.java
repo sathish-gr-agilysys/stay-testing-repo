@@ -50,7 +50,11 @@ public class DepositDestinationDetail {
         this.routeDeposit = routeDeposit;
     }
 
-    public String getFolioName() { return folioName; }
+    public String getFolioName() {
+        return folioName;
+    }
 
-    public void setFolioName(String folioName) { this.folioName = folioName; }
+    public void setFolioName(String folioName) {
+        this.folioName = folioName;
+    }
 }
