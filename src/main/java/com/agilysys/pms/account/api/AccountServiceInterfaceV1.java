@@ -1218,13 +1218,8 @@ public interface AccountServiceInterfaceV1 {
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
     void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance,
-          @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException;
-
-    @GET
-    @Path(ACCOUNT_ID_PATH + CANCELLATION)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    void verifyCancellation(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-                            @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+          @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId,
+          @QueryParam("isVerifyCancellation") boolean isVerifyCancellation) throws RGuestException;
 
     @GET
     @Path(NEXT_ACCOUNT_NUMBER_PATH)
