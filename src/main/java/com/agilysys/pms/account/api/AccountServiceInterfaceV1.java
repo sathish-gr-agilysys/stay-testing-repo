@@ -1219,7 +1219,7 @@ public interface AccountServiceInterfaceV1 {
     void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance,
           @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId,
-          @QueryParam("isVerifyCancellation") boolean isCancellation) throws RGuestException;
+          @QueryParam("isCancellation") boolean isCancellation) throws RGuestException;
 
     @GET
     @Path(NEXT_ACCOUNT_NUMBER_PATH)
