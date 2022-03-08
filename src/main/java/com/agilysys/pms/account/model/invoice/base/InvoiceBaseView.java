@@ -5,6 +5,7 @@ package com.agilysys.pms.account.model.invoice.base;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -40,6 +41,7 @@ public class InvoiceBaseView {
     private boolean dispute;
     private BigDecimal disputedChargesAmount;
     private BigDecimal payment;
+    private Set<String> accountNames;
 
     public String getId() {
         return id;
@@ -185,5 +187,13 @@ public class InvoiceBaseView {
 
     public void setPayment(BigDecimal payment) {
         this.payment = payment;
+    }
+
+    public Set<String> getAccountNames() {
+        return accountNames;
+    }
+
+    public void setAccountNames(Set<String> accountNames) {
+        this.accountNames = accountNames;
     }
 }
