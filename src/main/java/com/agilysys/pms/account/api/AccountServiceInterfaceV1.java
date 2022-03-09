@@ -647,8 +647,14 @@ public interface AccountServiceInterfaceV1 {
     @GET
     @Path(ACCOUNT_ID_PATH + "/authValidationCashPayment")
     @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
-    public boolean authValidationForCashPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId)throws RGuestException;
+    boolean authValidationForCashPayment(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
+
+    @POST
+    @Path("/authValidationCashPayment")
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, Boolean> authValidationForCashPayments(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<String> accountIds) throws RGuestException;
 
     // This doesn't get exposed as an endpoint yet.
     // It exists on the interface because we are
