@@ -24,12 +24,12 @@ public interface TaxSummaryConfigInterface {
     List<TaxSummaryConfig> getTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @POST
-    @Path("/create")
+    @Path("/taxSummaryConfig")
     void postTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId, TaxSummaryConfig taxSummaryConfig) throws RGuestException;
 
     @PUT
     @Path("/taxSummaryConfig/{id}")
-    TaxSummaryConfig updateTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,@PathParam(ID) String id, TaxSummaryConfig taxSummaryConfig) throws RGuestException;
+    TaxSummaryConfig updateTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, TaxSummaryConfig taxSummaryConfig) throws RGuestException;
 
 
 }
