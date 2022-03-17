@@ -6,6 +6,7 @@ package com.agilysys.pms.account.api;
 import static com.agilysys.pms.common.client.caching.RiskTolerance.MODERATE;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -48,8 +49,8 @@ public interface TransactionItemConfigServiceInterface {
     String INCLUDE_ALLOW_COMP = "includeAllowComp";
     String COMTROL_VALUE = "comtrolValue";
     String COMTROL_VALUE_PATH = COMTROL_VALUE + "/{comtrolValue}";
+    String FOLIO_POSTING_CODE_PATH = "/folioPostingCode";
     String ACTIVE = "/active";
-    String MIGRATE_TO_V1_PATH = "/migrateToV1";
     String UPDATE_ORDER = "/updateOrder";
 
     /**
@@ -94,6 +95,12 @@ public interface TransactionItemConfigServiceInterface {
     TransactionItem getTransactionItemByComtrolValue(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(COMTROL_VALUE) FolioPostingCodes folioPostingCode)
           throws RGuestException;
+
+    @POST
+    @Path(FOLIO_POSTING_CODE_PATH)
+    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    List<TransactionItem> getTransactionItemsByFolioPostingCodes(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, Set<FolioPostingCodes> folioPostingCodes) throws RGuestException;
 
     /**
      * Retrieve a specific TransactionItem
