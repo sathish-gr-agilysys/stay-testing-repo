@@ -98,7 +98,7 @@ public interface TransactionItemConfigServiceInterface {
 
     @POST
     @Path(FOLIO_POSTING_CODE_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<TransactionItem> getTransactionItemsByFolioPostingCodes(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, Set<FolioPostingCodes> folioPostingCodes) throws RGuestException;
 
