@@ -20,7 +20,7 @@ public interface TaxSummaryConfigInterface {
     String TENANT_TEMPLATE = "{" + TENANT_ID + "}";
     String PROPERTY_TEMPLATE = "{" + PROPERTY_ID + "}";
     String BASE = "/tenants/" + TENANT_TEMPLATE + "/properties/" + PROPERTY_TEMPLATE;
-    String TAX_SUMMARY_CONFIG_PATH = "/setup/accounts/taxSummaryConfigSettings";
+    String TAX_SUMMARY_CONFIG_PATH = "setup/accounts/taxSummaryConfigSettings";
     String TAX_SUMMARY_CONFIG = "/taxSummaryConfigSettings";
 
     @GET
