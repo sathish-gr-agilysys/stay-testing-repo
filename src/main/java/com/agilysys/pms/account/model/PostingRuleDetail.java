@@ -93,6 +93,8 @@ public class PostingRuleDetail {
 
     private String ratePlanId;
 
+    private DepositDestinationDetail depositDestinationDetail;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -363,6 +365,14 @@ public class PostingRuleDetail {
         this.ratePlanId = ratePlanId;
     }
 
+    public DepositDestinationDetail getDepositDestinationDetail() {
+        return depositDestinationDetail;
+    }
+
+    public void setDepositDestinationDetail(DepositDestinationDetail depositDestinationDetail) {
+        this.depositDestinationDetail = depositDestinationDetail;
+    }
+
     public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, String ratePlanName,
           List<LocalDate> offerAppliedDates, LocalDate propertyDate, String authorizerCode, String authorizerId,
           String compOfferId) {
@@ -411,6 +421,9 @@ public class PostingRuleDetail {
         }
         if (isNotEmpty(template.getDestinations())) {
             this.destinations = template.getDestinations();
+        }
+        if(template.getDepositDestinationDetail() != null){
+            this.depositDestinationDetail = template.getDepositDestinationDetail();
         }
     }
 
