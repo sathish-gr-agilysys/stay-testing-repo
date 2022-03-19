@@ -26,9 +26,6 @@ public interface PosTransaction extends TrackableTransaction {
     String getParentId();
     void setParentId(String parentId);
 
-    long getPaymentMethodId();
-    void setPaymentMethodId(long paymentMethodId);
-
     LocalDate getPostingDate();
     void setPostingDate(LocalDate postingDate);
 
@@ -46,4 +43,7 @@ public interface PosTransaction extends TrackableTransaction {
 
     String getTerminalId();
     void setTerminalId(String terminalId);
+
+    long getPaymentMethodId();
+    void setPaymentMethodId(long paymentMethodId);
 }
