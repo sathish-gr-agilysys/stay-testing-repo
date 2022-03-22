@@ -1,3 +1,6 @@
+/*
+ * (C) 2022 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ */
 package com.agilysys.pms.account.model;
 
 import java.util.List;
@@ -10,20 +13,6 @@ public class TaxSummaryConfiguration {
     private String description;
     private boolean active;
     private Map<String, List<String>> mappings;
-
-
-    public TaxSummaryConfiguration() {
-    }
-
-    public TaxSummaryConfiguration(String tenantId, String propertyId, String description, boolean active, Map<String, List<String>> mappings) {
-        this.tenantId = tenantId;
-        this.propertyId = propertyId;
-        this.description = description;
-        this.active = active;
-        this.mappings = mappings;
-    }
-
-    public TaxSummaryConfiguration(String tenantId, String propertyId, String description, boolean active) {}
 
     public String getTenantId() {
         return tenantId;
