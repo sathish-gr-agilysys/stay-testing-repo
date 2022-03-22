@@ -5,6 +5,8 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 
+import org.joda.time.LocalDate;
+
 public class PaymentTransaction extends Transaction implements TrackableTransaction {
     private String receiptTextImage;
     private Long checkNumber;
@@ -27,6 +29,16 @@ public class PaymentTransaction extends Transaction implements TrackableTransact
         this.closeTime = closeTime;
         super.sourceId = sourceId;
         super.reason = reason;
+    }
+
+    public PaymentTransaction(String accountId, BigDecimal amount, String folioId, boolean ignoreRules, String itemId,
+          LocalDate postingDate, String reason, String referenceNumber) {
+        this(accountId, amount, itemId);
+        this.folioId = folioId;
+        this.ignoreRules = ignoreRules;
+        this.postingDate = postingDate;
+        this.reason = reason;
+        this.referenceNumber = referenceNumber;
     }
 
     public void toTransaction(String accountId, String folioId, Boolean pantryItem) {
