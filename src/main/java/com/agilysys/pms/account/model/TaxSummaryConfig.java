@@ -23,6 +23,8 @@ public class TaxSummaryConfig {
         this.mappings = mappings;
     }
 
+    public TaxSummaryConfig(String tenantId, String propertyId, String description, boolean active) {}
+
     public String getTenantId() {
         return tenantId;
     }

@@ -41,7 +41,7 @@ public interface TaxSummaryConfigInterface {
 
     @GET
     @Path(TAX_SUMMARY_CONFIG)
-    TaxSummaryConfigSettings getTaxSummaryConfigSettings(@PathParam(TENANT_ID) String tenantId,
+    List<TaxSummaryConfigSettings> getTaxSummaryConfigSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
     
     @PUT
