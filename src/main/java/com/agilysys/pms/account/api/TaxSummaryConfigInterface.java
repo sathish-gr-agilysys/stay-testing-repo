@@ -1,14 +1,13 @@
 package com.agilysys.pms.account.api;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.TaxSummaryConfig;
+import com.agilysys.pms.account.model.TaxSummaryConfiguration;
 import com.agilysys.pms.account.model.TaxSummaryConfigSettings;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import java.util.List;
-import java.util.Map;
 
 @Path(TaxSummaryConfigInterface.BASE)
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,18 +24,18 @@ public interface TaxSummaryConfigInterface {
 
     @GET
     @Path("/taxSummaryConfig")
-    List<TaxSummaryConfig> getTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId,
+    List<TaxSummaryConfiguration> getTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @POST
     @Path("/taxSummaryConfig")
     void postTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          TaxSummaryConfig taxSummaryConfig) throws RGuestException;
+          TaxSummaryConfiguration taxSummaryConfig) throws RGuestException;
 
     @PUT
     @Path("/taxSummaryConfig/{id}")
-    TaxSummaryConfig updateTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, TaxSummaryConfig taxSummaryConfig)
+    TaxSummaryConfiguration updateTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, TaxSummaryConfiguration taxSummaryConfig)
           throws RGuestException;
 
     @GET

@@ -3,7 +3,7 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Map;
 
-public class TaxSummaryConfig {
+public class TaxSummaryConfiguration {
     private String id;
     private String tenantId;
     private String propertyId;
@@ -12,10 +12,10 @@ public class TaxSummaryConfig {
     private Map<String, List<String>> mappings;
 
 
-    public TaxSummaryConfig() {
+    public TaxSummaryConfiguration() {
     }
 
-    public TaxSummaryConfig(String tenantId, String propertyId, String description, boolean active, Map<String, List<String>> mappings) {
+    public TaxSummaryConfiguration(String tenantId, String propertyId, String description, boolean active, Map<String, List<String>> mappings) {
         this.tenantId = tenantId;
         this.propertyId = propertyId;
         this.description = description;
@@ -23,7 +23,7 @@ public class TaxSummaryConfig {
         this.mappings = mappings;
     }
 
-    public TaxSummaryConfig(String tenantId, String propertyId, String description, boolean active) {}
+    public TaxSummaryConfiguration(String tenantId, String propertyId, String description, boolean active) {}
 
     public String getTenantId() {
         return tenantId;
