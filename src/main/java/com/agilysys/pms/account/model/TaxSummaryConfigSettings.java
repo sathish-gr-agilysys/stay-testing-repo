@@ -3,28 +3,24 @@
  */
 package com.agilysys.pms.account.model;
 
-import java.util.Map;
+import java.util.List;
 
 import com.agilysys.pms.common.model.ObjectBase;
 
 public class TaxSummaryConfigSettings extends ObjectBase {
-    private Map<String, String> fields;
+    private List<TaxSummaryConfigurationMappings> fields;
     private String totalFieldName;
 
     public TaxSummaryConfigSettings() {
     }
 
-    public TaxSummaryConfigSettings(Map<String, String> fields, String totalFieldName) {
+    public TaxSummaryConfigSettings(String id) {
+        super(id);
+    }
+
+    public TaxSummaryConfigSettings(List<TaxSummaryConfigurationMappings> fields, String totalFieldName) {
         this.fields = fields;
         this.totalFieldName = totalFieldName;
-    }
-
-    public Map<String, String> getFields() {
-        return fields;
-    }
-
-    public void setFields(Map<String, String> fields) {
-        this.fields = fields;
     }
 
     public String getTotalFieldName() {
@@ -33,5 +29,11 @@ public class TaxSummaryConfigSettings extends ObjectBase {
 
     public void setTotalFieldName(String totalFieldName) {
         this.totalFieldName = totalFieldName;
+    }
+
+    public List<TaxSummaryConfigurationMappings> getFields() {return fields;}
+
+    public void setFields(List<TaxSummaryConfigurationMappings> fields) {
+        this.fields = fields;
     }
 }
