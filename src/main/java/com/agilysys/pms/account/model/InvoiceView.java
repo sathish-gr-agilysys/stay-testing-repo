@@ -29,6 +29,7 @@ public class InvoiceView {
     private VATTotalBreakDown vatTotalBreakDown;
     private boolean reverseTax;
     private String vatNumber;
+    private FolioInvoiceTaxSummary folioInvoiceTaxSummary;
 
     public String getId() {
         return id;
@@ -257,5 +258,11 @@ public class InvoiceView {
 
     public void setVatNumber(String vatNumber) {
         this.vatNumber = vatNumber;
+    }
+
+    public FolioInvoiceTaxSummary getFolioInvoiceTaxSummary() { return folioInvoiceTaxSummary; }
+
+    public void setFolioInvoiceTaxSummary(FolioInvoiceTaxSummary folioInvoiceTaxSummary) {
+        this.folioInvoiceTaxSummary = folioInvoiceTaxSummary;
     }
 }

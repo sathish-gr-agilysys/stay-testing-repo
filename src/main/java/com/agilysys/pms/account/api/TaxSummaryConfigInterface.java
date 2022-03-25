@@ -15,8 +15,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
-import com.agilysys.pms.account.model.TaxSummaryConfigSettings;
-import com.agilysys.pms.account.model.TaxSummaryConfiguration;
+import com.agilysys.pms.account.model.TaxSummaryConfigurationSettings;
+import com.agilysys.pms.account.model.TaxSummaryConfigurationDetails;
 
 @Path(TaxSummaryConfigInterface.BASE)
 @Produces(MediaType.APPLICATION_JSON)
@@ -34,29 +34,29 @@ public interface TaxSummaryConfigInterface {
 
     @GET
     @Path(TAX_SUMMARY_CONFIG)
-    List<TaxSummaryConfiguration> getTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId,
+    List<TaxSummaryConfigurationDetails> getTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @POST
     @Path(TAX_SUMMARY_CONFIG)
     void postTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          TaxSummaryConfiguration taxSummaryConfig) throws RGuestException;
+          TaxSummaryConfigurationDetails taxSummaryConfig) throws RGuestException;
 
     @PUT
     @Path(TAX_SUMMARY_CONFIG + "/{id}")
-    TaxSummaryConfiguration updateTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, TaxSummaryConfiguration taxSummaryConfig)
+    TaxSummaryConfigurationDetails updateTaxSummaryConfig(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id, TaxSummaryConfigurationDetails taxSummaryConfig)
           throws RGuestException;
 
     @GET
     @Path(TAX_SUMMARY_CONFIG_SETTINGS)
-    List<TaxSummaryConfigSettings> getTaxSummaryConfigSettings(@PathParam(TENANT_ID) String tenantId,
+    List<TaxSummaryConfigurationSettings> getTaxSummaryConfigSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
     @PUT
     @Path(TAX_SUMMARY_CONFIG_SETTINGS + "/{id}")
-    TaxSummaryConfigSettings updateTaxSummaryConfigSettings(@PathParam(TENANT_ID) String tenantId,
+    TaxSummaryConfigurationSettings updateTaxSummaryConfigSettings(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ID) String id,
-          TaxSummaryConfigSettings taxSummaryConfigSettings) throws RGuestException;
+          TaxSummaryConfigurationSettings taxSummaryConfigSettings) throws RGuestException;
 
 }

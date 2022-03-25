@@ -6,7 +6,7 @@ package com.agilysys.pms.account.model;
 import java.util.List;
 import java.util.Map;
 
-public class TaxSummaryConfiguration {
+public class TaxSummaryConfigurationDetails {
     private String id;
     private String tenantId;
     private String propertyId;

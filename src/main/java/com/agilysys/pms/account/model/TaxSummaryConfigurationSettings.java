@@ -7,18 +7,18 @@ import java.util.List;
 
 import com.agilysys.pms.common.model.ObjectBase;
 
-public class TaxSummaryConfigSettings extends ObjectBase {
+public class TaxSummaryConfigurationSettings extends ObjectBase {
     private List<TaxSummaryConfigurationMappings> fields;
     private String totalFieldName;
 
-    public TaxSummaryConfigSettings() {
+    public TaxSummaryConfigurationSettings() {
     }
 
-    public TaxSummaryConfigSettings(String id) {
+    public TaxSummaryConfigurationSettings(String id) {
         super(id);
     }
 
-    public TaxSummaryConfigSettings(List<TaxSummaryConfigurationMappings> fields, String totalFieldName) {
+    public TaxSummaryConfigurationSettings(List<TaxSummaryConfigurationMappings> fields, String totalFieldName) {
         this.fields = fields;
         this.totalFieldName = totalFieldName;
     }
