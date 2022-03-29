@@ -9,6 +9,7 @@ public class PosCredit extends Credit implements PosTransaction, TrackableTransa
     private String receiptTextImage;
     private Long checkNumber;
     private String closeTime;
+    private long paymentMethodId;
 
     public PosCredit() {}
 
@@ -60,6 +61,16 @@ public class PosCredit extends Credit implements PosTransaction, TrackableTransa
     @Override
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
+    }
+
+    @Override
+    public long getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    @Override
+    public void setPaymentMethodId(long paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
     }
 
     //TODO-23333 verify

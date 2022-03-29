@@ -9,6 +9,7 @@ public class PaymentTransaction extends Transaction implements TrackableTransact
     private String receiptTextImage;
     private Long checkNumber;
     private String closeTime;
+    private String lineItemId;
 
     public PaymentTransaction() {}
 
@@ -62,5 +63,13 @@ public class PaymentTransaction extends Transaction implements TrackableTransact
     @Override
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
+    }
+
+    public String getLineItemId() {
+        return lineItemId;
+    }
+
+    public void setLineItemId(String lineItemId) {
+        this.lineItemId = lineItemId;
     }
 }

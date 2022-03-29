@@ -13,6 +13,7 @@ public class InvoiceFilteringOptionalParams {
     private boolean detailedInfo;
     private String sortBy;
     private String sortOrder;
+    private boolean arAgingReport;
 
     public boolean getIncludeClosed() {
         return includeClosed;
@@ -68,5 +69,13 @@ public class InvoiceFilteringOptionalParams {
 
     public void setSortOrder(String sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public boolean isArAgingReport() {
+        return arAgingReport;
+    }
+
+    public void setArAgingReport(boolean arAgingReport) {
+        this.arAgingReport = arAgingReport;
     }
 }
