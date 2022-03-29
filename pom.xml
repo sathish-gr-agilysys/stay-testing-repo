@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>common-interface</artifactId>
-            <version>74.1783.0</version>
+            <version>74.1785-RGSTAY-141259-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>pms-common</artifactId>
-            <version>74.1783.0</version>
+            <version>74.1785-RGSTAY-141259-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>com.agilysys.pms.common</groupId>
             <artifactId>document-toolkit</artifactId>
-            <version>74.1783.0</version>
+            <version>74.1785-RGSTAY-141259-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
