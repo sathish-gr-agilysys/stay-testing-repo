@@ -1,21 +1,21 @@
-/**
+/*
  * (C) 2013 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.agilysys.common.model.PaymentMethodSetting;
-import com.agilysys.common.permission.PermissionType;
 import com.agilysys.pms.common.audit.EntityTypes;
 import com.agilysys.pms.common.audit.annotation.AuditEntity;
 import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortInline;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.util.FieldUtils;
 import com.agilysys.pms.payment.model.Issuer;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.Outlet;
@@ -26,7 +26,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @AuditEntity(EntityTypes.PAYMENT_METHOD)
 public class PaymentMethod extends AccountingItem {
-
     private static final String DISPLAY_NAME = "Payment method";
 
     //CC is the code for Credit Card in bootstrap data
@@ -35,7 +34,7 @@ public class PaymentMethod extends AccountingItem {
     public static String DIRECT_BILL_CODE = "DB";
     //CASH is the code for cash in bootstrap data, it is the default for groups
     public static String CASH_CODE = "CASH";
-    
+
     private boolean promptForChange;
 
     public boolean isPromptForChange() {
@@ -67,7 +66,7 @@ public class PaymentMethod extends AccountingItem {
 
     protected Boolean includeReferenceNumber;
 
-    private PermissionType restrictivePermission;
+    private String restrictivePermission;
 
     public Set<String> getSourceIds() {
         return sourceIds;
@@ -125,25 +124,27 @@ public class PaymentMethod extends AccountingItem {
         this.includeReferenceNumber = includeReferenceNumber;
     }
 
-    public PermissionType getRestrictivePermission() {
-        return restrictivePermission;
+    public Permission getRestrictivePermission() {
+        return Permission.fromValue(restrictivePermission);
     }
 
-    public void setRestrictivePermission(PermissionType restrictivePermission) {
-        this.restrictivePermission = restrictivePermission;
+    public void setRestrictivePermission(Permission restrictivePermission) {
+        this.restrictivePermission = restrictivePermission != null ? restrictivePermission.value() : null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj, Boolean.FALSE);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this, Boolean.FALSE);
     }
 
@@ -152,4 +153,3 @@ public class PaymentMethod extends AccountingItem {
         return DISPLAY_NAME;
     }
 }
-
