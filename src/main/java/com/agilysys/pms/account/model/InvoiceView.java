@@ -260,7 +260,9 @@ public class InvoiceView {
         this.vatNumber = vatNumber;
     }
 
-    public FolioInvoiceTaxSummary getFolioInvoiceTaxSummary() { return folioInvoiceTaxSummary; }
+    public FolioInvoiceTaxSummary getFolioInvoiceTaxSummary() {
+        return folioInvoiceTaxSummary;
+    }
 
     public void setFolioInvoiceTaxSummary(FolioInvoiceTaxSummary folioInvoiceTaxSummary) {
         this.folioInvoiceTaxSummary = folioInvoiceTaxSummary;
