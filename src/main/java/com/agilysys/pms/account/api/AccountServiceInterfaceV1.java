@@ -398,7 +398,8 @@ public interface AccountServiceInterfaceV1 {
     @Path(ACCOUNT_ID_PATH + AUTHORIZERD_FOLIO_ITEMS)
     EligibleFolioLineItems getEligibleFolioItemsByAuthorizerDetails(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
-          @PathParam(AUTHORIZER_CODE) String authorizerCode) throws RGuestException;
+          @PathParam(AUTHORIZER_CODE) String authorizerCode, @QueryParam("maxFolioLineItems") Integer maxFolioLineItems)
+          throws RGuestException;
 
     @PUT
     @Path(ACCOUNT_ID_PATH + ACCOUNT_STATUS_PATH)
