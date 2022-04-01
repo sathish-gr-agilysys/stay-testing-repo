@@ -32,7 +32,7 @@ public class InvoiceView {
     private boolean reverseTax;
     private String vatNumber;
     private Set<String> agents = new HashSet<>();
-
+    private FolioInvoiceTaxSummary folioInvoiceTaxSummary;
 
     public String getId() {
         return id;
@@ -269,5 +269,13 @@ public class InvoiceView {
 
     public void setAgents(Set<String> agents) {
         this.agents = agents;
+    }
+
+    public FolioInvoiceTaxSummary getFolioInvoiceTaxSummary() {
+        return folioInvoiceTaxSummary;
+    }
+
+    public void setFolioInvoiceTaxSummary(FolioInvoiceTaxSummary folioInvoiceTaxSummary) {
+        this.folioInvoiceTaxSummary = folioInvoiceTaxSummary;
     }
 }
