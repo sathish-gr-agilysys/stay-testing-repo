@@ -7,6 +7,7 @@ public class PosCharge extends Charge implements PosTransaction, TrackableTransa
     private String receiptTextImage;
     private Long checkNumber;
     private String closeTime;
+    private long paymentMethodId;
 
     @Override
     public String getReceiptTextImage() {
@@ -37,6 +38,17 @@ public class PosCharge extends Charge implements PosTransaction, TrackableTransa
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
+
+    @Override
+    public long getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    @Override
+    public void setPaymentMethodId(long paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
+
 
     //TODO - 23333 verify
 //    @Override
