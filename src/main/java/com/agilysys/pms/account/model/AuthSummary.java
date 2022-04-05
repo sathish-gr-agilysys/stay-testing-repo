@@ -35,6 +35,11 @@ public class AuthSummary {
      */
     private BigDecimal propertyAuthPerAdultPerDay = BigDecimal.ZERO;
 
+    /**
+     * Incidental Authorization
+     */
+    private BigDecimal incidentalAuth = BigDecimal.ZERO;
+
     public BigDecimal getTotalAvailableCredit() {
         return totalAvailableCredit;
     }
@@ -81,5 +86,13 @@ public class AuthSummary {
 
     public void setPropertyAuthPerAdultPerDay(BigDecimal propertyAuthPerAdultPerDay) {
         this.propertyAuthPerAdultPerDay = propertyAuthPerAdultPerDay;
+    }
+
+    public BigDecimal getIncidentalAuth() {
+        return incidentalAuth;
+    }
+
+    public void setIncidentalAuth(BigDecimal incidentalAuth) {
+        this.incidentalAuth = incidentalAuth;
     }
 }
