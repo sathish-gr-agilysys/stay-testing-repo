@@ -20,6 +20,7 @@ import org.joda.time.LocalDate;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
+
 import com.agilysys.pms.account.model.AccountBalancesInfo;
 import com.agilysys.pms.account.model.AccountBalancesRequest;
 import com.agilysys.pms.account.model.AuthorizerCompReportRequest;
@@ -31,6 +32,7 @@ import com.agilysys.pms.account.model.GLCodeTemplateRequest;
 import com.agilysys.pms.account.model.GeneralAvailabilityStatsResult;
 import com.agilysys.pms.account.model.GroupRevenueReportItem;
 import com.agilysys.pms.account.model.NightAuditReport;
+import com.agilysys.pms.account.model.RecurringChargesMarketSegmentType;
 import com.agilysys.pms.account.model.RecurringChargesReportResult;
 import com.agilysys.pms.account.model.ReservationRevenueReportItem;
 import com.agilysys.pms.account.model.RevenueDetailReportRequest;
@@ -42,6 +44,11 @@ import com.agilysys.pms.account.model.TransactionReportItem;
 import com.agilysys.pms.account.model.TransactionReportRequest;
 import com.agilysys.pms.account.model.TransactionReportResponse;
 import com.agilysys.pms.account.model.TransactionToDateTotalsResult;
+import org.joda.time.LocalDate;
+import org.springframework.security.access.prepost.PreAuthorize;
+
+import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.common.model.GeneralAvailabilityResult;
 import com.agilysys.pms.common.security.Permission;
 import com.agilysys.pms.common.security.Requires;
@@ -62,6 +69,7 @@ public interface ReportingServiceInterface {
     String REVENUE_PATH_BY_BUILDING = "/revenueDetailsByBuilding";
     String REVENUE_PATH_BY_ROOM = "/revenueDetailsByRoom";
     String RECURRING_CHARGES_PATH = "/recurringCharges";
+    String RECURRING_CHARGES_MARKET_SEGMENT_PATH = "/recurringChargesMarketSegment";
     String INVENTORY_RECURRING_CHARGES_PATH = "/inventoryRecurringCharges";
     String TENANT_ID = "tenantId";
     String PROPERTY_ID = "propertyId";
@@ -156,6 +164,25 @@ public interface ReportingServiceInterface {
     @Requires(Permission.READ_REPORTS)
     TransactionReportResponse getTransactions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionReportRequest request) throws RGuestException;
+
+    /**
+     * This endpoint is to fetch all the recurring charges grouped by their market segment
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param startDate
+     * @param endDate
+     * @return List of RecurringChargesMarketSegmentType Objects which holds details like charges,
+     *          taxes, room count, and Market Segment code
+     * @throws RGuestException
+     */
+    @GET
+    @Path(RECURRING_CHARGES_MARKET_SEGMENT_PATH)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    List<RecurringChargesMarketSegmentType> getRecurringChargesForMarketSegment(@PathParam(TENANT_ID) String tenantId,
+                                                                                @PathParam(PROPERTY_ID) String propertyId, @QueryParam("startDate") LocalDate startDate,
+                                                                                @QueryParam("endDate") LocalDate endDate) throws RGuestException;
 
     /**
      * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
