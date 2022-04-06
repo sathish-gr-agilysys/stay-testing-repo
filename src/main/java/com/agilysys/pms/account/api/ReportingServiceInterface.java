@@ -168,21 +168,16 @@ public interface ReportingServiceInterface {
     /**
      * This endpoint is to fetch all the recurring charges grouped by their market segment
      *
-     * @param tenantId
-     * @param propertyId
-     * @param startDate
-     * @param endDate
      * @return List of RecurringChargesMarketSegmentType Objects which holds details like charges,
      *          taxes, room count, and Market Segment code
-     * @throws RGuestException
      */
     @GET
     @Path(RECURRING_CHARGES_MARKET_SEGMENT_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadReports')")
+    @Requires(Permission.READ_REPORTS)
     List<RecurringChargesMarketSegmentType> getRecurringChargesForMarketSegment(@PathParam(TENANT_ID) String tenantId,
-                                                                                @PathParam(PROPERTY_ID) String propertyId, @QueryParam("startDate") LocalDate startDate,
-                                                                                @QueryParam("endDate") LocalDate endDate) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("startDate") LocalDate startDate,
+          @QueryParam("endDate") LocalDate endDate) throws RGuestException;
 
     /**
      * Retrieves MTD/YTD transaction totals broken down by item ID. Optionally, includes a further breakdown by
