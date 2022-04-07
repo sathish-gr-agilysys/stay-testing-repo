@@ -43,6 +43,7 @@ public class FolioInvoice {
     private Integer numberOfAgeCategory6;
     private Integer numberOfAgeCategory7;
     private Integer numberOfAgeCategory8;
+    private FolioInvoiceTaxSummary folioInvoiceTaxSummary;
 
     public String getId() {
         return id;
@@ -306,5 +307,13 @@ public class FolioInvoice {
 
     public void setNumberOfAgeCategory8(Integer numberOfAgeCategory8) {
         this.numberOfAgeCategory8 = numberOfAgeCategory8;
+    }
+
+    public FolioInvoiceTaxSummary getFolioInvoiceTaxSummary() {
+        return folioInvoiceTaxSummary;
+    }
+
+    public void setFolioInvoiceTaxSummary(FolioInvoiceTaxSummary folioInvoiceTaxSummary) {
+        this.folioInvoiceTaxSummary = folioInvoiceTaxSummary;
     }
 }
