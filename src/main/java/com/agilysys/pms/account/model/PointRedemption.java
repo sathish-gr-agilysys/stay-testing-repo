@@ -18,24 +18,23 @@ public class PointRedemption extends ObjectBase {
 
     @DataPortKey
     @AuditLabel
-    private String code;
+    private String description;
 
-    public PointRedemption() {
-    }
+    public PointRedemption() {}
 
-    public PointRedemption(String id, String code, String name) {
+    public PointRedemption(String id, String description, String name) {
         super();
         setId(id);
-        this.code = code;
+        this.description = description;
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
@@ -54,5 +53,11 @@ public class PointRedemption extends ObjectBase {
     @Override
     public String toString() {
         return ReflectionToStringBuilder.toString(this);
+    }
+
+    public enum RedemptionFlowType {
+        MOBILE_CHECK_IN,
+        CHECK_OUT,
+        MANUAL
     }
 }
