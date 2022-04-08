@@ -1,5 +1,5 @@
 /*
- * (C) 2016 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
+ * (C) 2022 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
@@ -37,7 +37,6 @@ public class AccountAttributesTest {
         existingSettings.add(newTestObject4);
 
         Assert.assertTrue(accountAttributes.compareSelectedThirdPartyConfirmations(defaultSettings, existingSettings));
-
     }
 
     @Test
@@ -58,6 +57,5 @@ public class AccountAttributesTest {
         existingSettings.add(newTestObject4);
 
         Assert.assertFalse(accountAttributes.compareSelectedThirdPartyConfirmations(defaultSettings, existingSettings));
-
     }
 }
