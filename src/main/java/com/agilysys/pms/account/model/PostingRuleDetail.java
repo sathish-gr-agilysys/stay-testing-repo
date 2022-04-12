@@ -30,6 +30,8 @@ public class PostingRuleDetail {
     @NotNull
     private String ruleName;
 
+    private String ratePlanName;
+
     private String chargeSourceId;
     private Set<String> categoryIds;
     private String subcategoryId;
@@ -91,6 +93,8 @@ public class PostingRuleDetail {
 
     private String ratePlanId;
 
+    private DepositDestinationDetail depositDestinationDetail;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -119,6 +123,14 @@ public class PostingRuleDetail {
 
     public void setRuleName(String ruleName) {
         this.ruleName = ruleName;
+    }
+
+    public String getRatePlanName() {
+        return ratePlanName;
+    }
+
+    public void setRatePlanName(String ratePlanName) {
+        this.ratePlanName = ratePlanName;
     }
 
     public String getChargeSourceId() {
@@ -353,6 +365,21 @@ public class PostingRuleDetail {
         this.ratePlanId = ratePlanId;
     }
 
+    public DepositDestinationDetail getDepositDestinationDetail() {
+        return depositDestinationDetail;
+    }
+
+    public void setDepositDestinationDetail(DepositDestinationDetail depositDestinationDetail) {
+        this.depositDestinationDetail = depositDestinationDetail;
+    }
+
+    public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, String ratePlanName,
+          List<LocalDate> offerAppliedDates, LocalDate propertyDate, String authorizerCode, String authorizerId,
+          String compOfferId) {
+        this(template, ruleName, offerAppliedDates, propertyDate, authorizerCode, authorizerId, compOfferId);
+        this.ratePlanName = ratePlanName;
+    }
+
     public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, List<LocalDate> offerAppliedDates,
           LocalDate propertyDate, String authorizerCode, String authorizerId, String compOfferId) {
         this.ruleName = ruleName;
@@ -394,6 +421,9 @@ public class PostingRuleDetail {
         }
         if (isNotEmpty(template.getDestinations())) {
             this.destinations = template.getDestinations();
+        }
+        if(template.getDepositDestinationDetail() != null){
+            this.depositDestinationDetail = template.getDepositDestinationDetail();
         }
     }
 
