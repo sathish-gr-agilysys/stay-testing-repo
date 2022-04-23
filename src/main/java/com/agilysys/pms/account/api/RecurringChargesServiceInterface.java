@@ -205,6 +205,23 @@ public interface RecurringChargesServiceInterface {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(PROPERTY_DATE) LocalDate propertyDate,
           @QueryParam(TERMINAL_ID) String terminalId, @QueryParam("tag") String tag) throws RGuestException;
 
+    /**
+     * Runs recurring charges for a given date, the date must be equal to or before the current property date
+     *
+     * @param tenantId
+     * @param propertyId
+     * @param dateToPostCharge
+     * @param terminalId
+     * @param accountIds
+     * @return Results from posting the charges
+     */
+    @POST
+    @Path(RECURRING_CHARGES_PATH + "/{dateToPostCharge}" + "/accountsLevelPosting")
+    @PreAuthorize("hasPermission('Required', 'WriteAccounts')")
+    RecurringChargesPostingResult postRecurringCharges(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @PathParam("dateToPostCharge") LocalDate dateToPostCharge,
+          @QueryParam(TERMINAL_ID) String terminalId, @QueryParam("tag") String tag, List<String> accountIds) throws RGuestException;
+
     /* Overrides */
 
     /**
