@@ -15,6 +15,7 @@ import com.agilysys.pms.common.audit.annotation.AuditField;
 import com.agilysys.pms.common.model.annotation.DataPortInline;
 import com.agilysys.pms.common.model.annotation.DataPortReference;
 import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.util.FieldUtils;
 import com.agilysys.pms.payment.model.Issuer;
 import com.agilysys.pms.property.model.Building;
 import com.agilysys.pms.property.model.Outlet;
@@ -65,7 +66,7 @@ public class PaymentMethod extends AccountingItem {
 
     protected Boolean includeReferenceNumber;
 
-    private Permission restrictivePermission;
+    private String restrictivePermission;
 
     public Set<String> getSourceIds() {
         return sourceIds;
@@ -124,11 +125,11 @@ public class PaymentMethod extends AccountingItem {
     }
 
     public Permission getRestrictivePermission() {
-        return restrictivePermission;
+        return Permission.fromValue(restrictivePermission);
     }
 
     public void setRestrictivePermission(Permission restrictivePermission) {
-        this.restrictivePermission = restrictivePermission;
+        this.restrictivePermission = restrictivePermission != null ? restrictivePermission.value() : null;
     }
 
     /**
