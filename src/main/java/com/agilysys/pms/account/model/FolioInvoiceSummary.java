@@ -26,6 +26,7 @@ public class FolioInvoiceSummary implements TemplateData {
     private String pageBreakAfter;
     private VATTotalBreakDown vatTotalBreakDown;
     private String folioInvoiceNumber;
+    private FolioInvoiceTaxSummary folioInvoiceTaxSummary;
 
     public String getAccountId() {
         return accountId;
@@ -137,6 +138,14 @@ public class FolioInvoiceSummary implements TemplateData {
 
     public void setFolioInvoiceNumber(String folioInvoiceNumber) {
         this.folioInvoiceNumber = folioInvoiceNumber;
+    }
+
+    public FolioInvoiceTaxSummary getFolioInvoiceTaxSummary() {
+        return folioInvoiceTaxSummary;
+    }
+
+    public void setFolioInvoiceTaxSummary(FolioInvoiceTaxSummary folioInvoiceTaxSummary) {
+        this.folioInvoiceTaxSummary = folioInvoiceTaxSummary;
     }
 
     @Override
