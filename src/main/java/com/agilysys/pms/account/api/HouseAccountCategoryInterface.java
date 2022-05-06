@@ -17,12 +17,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.HouseAccountCategory;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/houseAccountCategories")
 @Produces(MediaType.APPLICATION_JSON)
@@ -41,7 +41,7 @@ public interface HouseAccountCategoryInterface {
      * @return Existing House account categories for the tenant & property
      **/
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<HouseAccountCategory> findHouseAccountCategories(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws RGuestException;
@@ -58,7 +58,7 @@ public interface HouseAccountCategoryInterface {
     @CreatedOnSuccess
     @Validated(HouseAccountCategory.class)
     @Consumes(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     HouseAccountCategory createHouseAccountCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, HouseAccountCategory houseAccountCategory) throws RGuestException;
 
@@ -71,7 +71,7 @@ public interface HouseAccountCategoryInterface {
      * @return Existing HouseAccountCategory for the tenant & property
      */
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     @Path(ID_PATH)
     HouseAccountCategory getHouseAccountCategoryById(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(RESOURCE_ID) String id) throws RGuestException;
@@ -84,13 +84,12 @@ public interface HouseAccountCategoryInterface {
      * @param id                   House account category id to update
      * @param houseAccountCategory House account category payload to update
      * @return Updated House account category
-     * @throws RGuestException
      */
     @PUT
     @Path(ID_PATH)
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(HouseAccountCategory.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     HouseAccountCategory updateHouseAccountCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(RESOURCE_ID) String id,
           HouseAccountCategory houseAccountCategory) throws RGuestException;
@@ -101,12 +100,10 @@ public interface HouseAccountCategoryInterface {
      * @param tenantId   id of tenant where the house account category exists
      * @param propertyId id of the property where the house account category exists
      * @param id         House account category id to delete
-     * @throws RGuestException
      */
     @DELETE
     @Path(ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void deleteHouseAccountCategory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(RESOURCE_ID) String id) throws RGuestException;
-
 }
