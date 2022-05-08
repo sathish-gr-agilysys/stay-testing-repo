@@ -16,13 +16,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.InventoryItem;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/config/inventoryItems")
 @Produces(MediaType.APPLICATION_JSON)
@@ -45,7 +45,7 @@ public interface InventoryItemConfigServiceInterface {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<InventoryItem> getInventoryItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @QueryParam(INCLUDE_INTERNAL) boolean includeInternal)
           throws RGuestException;
@@ -59,7 +59,7 @@ public interface InventoryItemConfigServiceInterface {
      */
     @GET
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     InventoryItem getInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
@@ -73,7 +73,7 @@ public interface InventoryItemConfigServiceInterface {
     @POST
     @CreatedOnSuccess
     @Validated(InventoryItem.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     InventoryItem createInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           InventoryItem item) throws RGuestException;
 
@@ -82,15 +82,15 @@ public interface InventoryItemConfigServiceInterface {
      *
      * @param tenantId                          the tenantId to modify the Inventory Item for
      * @param itemId                            the ID of the Inventory to modify
-     * @param transactionItemOptionalParameters decides whether to update the values of Auto recurring items
-     *                                          created from the inventory item
+     * @param transactionItemOptionalParameters decides whether to update the values of Auto recurring items created
+     *                                          from the inventory item
      * @param item                              the modified InventoryItem to persist
      * @return the modified InventoryItem
      */
     @PUT
     @Path(ITEM_ID_PATH)
     @Validated(InventoryItem.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     InventoryItem updateInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId,
           @QueryParam("") TransactionItemOptionalParameters transactionItemOptionalParameters, InventoryItem item)
@@ -104,7 +104,7 @@ public interface InventoryItemConfigServiceInterface {
      */
     @DELETE
     @Path(ITEM_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void deleteInventoryItem(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ITEM_ID) String itemId) throws RGuestException;
 
@@ -116,7 +116,7 @@ public interface InventoryItemConfigServiceInterface {
      */
     @POST
     @Path(CONVERT_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     List<InventoryItem> convertToInventoryItem(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, List<InventoryItem> items) throws RGuestException;
 
