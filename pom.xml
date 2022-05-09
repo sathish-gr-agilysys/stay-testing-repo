@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>integration-interface</artifactId>
-            <version>74.1620.0-devgamma.168</version>
+            <version>74.1620-devgamma.168-RGSTAY-148560-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
