@@ -30,6 +30,7 @@ public class Payment {
     private boolean makePaymentAsDeposit;
     private PaymentFlowType paymentFlowType;
     private PaymentSettingRequest paymentSettingRequest;
+    private boolean routingChargesAlreadyPosted;
 
     public Payment() {
         this.transactions = new ArrayList<>();
@@ -164,5 +165,13 @@ public class Payment {
 
     public void setPaymentSettingRequest(PaymentSettingRequest paymentSettingRequest) {
         this.paymentSettingRequest = paymentSettingRequest;
+    }
+
+    public boolean isRoutingChargesAlreadyPosted() {
+        return routingChargesAlreadyPosted;
+    }
+
+    public void setRoutingChargesAlreadyPosted(boolean routingChargesAlreadyPosted) {
+        this.routingChargesAlreadyPosted = routingChargesAlreadyPosted;
     }
 }

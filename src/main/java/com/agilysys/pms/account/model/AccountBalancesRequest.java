@@ -1,10 +1,10 @@
-/**
+/*
  * (C) 2014 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
-
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Set;
 
 public class AccountBalancesRequest {
@@ -72,6 +72,25 @@ public class AccountBalancesRequest {
         this.ignoreZeroBalance = ignoreZeroBalance;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        AccountBalancesRequest that = (AccountBalancesRequest) o;
+        return Objects.equals(accountIds, that.accountIds) && Objects.equals(accountTypes, that.accountTypes) &&
+              Objects.equals(accountStatuses, that.accountStatuses) &&
+              Objects.equals(paymentMethodIds, that.paymentMethodIds) && Objects.equals(minBalance, that.minBalance) &&
+              Objects.equals(maxBalance, that.maxBalance) && Objects.equals(ignoreZeroBalance, that.ignoreZeroBalance);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountIds, accountTypes, accountStatuses, paymentMethodIds, minBalance, maxBalance,
+              ignoreZeroBalance);
+    }
+
     public static class IgnoreZeroBalance {
         private Boolean excludeCompanyAccounts;
         private Boolean excludeHouseAccounts;
@@ -90,6 +109,22 @@ public class AccountBalancesRequest {
 
         public void setExcludeHouseAccounts(Boolean excludeHouseAccounts) {
             this.excludeHouseAccounts = excludeHouseAccounts;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass())
+                return false;
+            IgnoreZeroBalance that = (IgnoreZeroBalance) o;
+            return Objects.equals(excludeCompanyAccounts, that.excludeCompanyAccounts) &&
+                  Objects.equals(excludeHouseAccounts, that.excludeHouseAccounts);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(excludeCompanyAccounts, excludeHouseAccounts);
         }
     }
 }
