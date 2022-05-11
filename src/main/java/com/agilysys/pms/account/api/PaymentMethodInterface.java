@@ -15,13 +15,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.PaymentMethod;
 import com.agilysys.pms.account.model.RestrictivePermission;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 /**
  * CRUD Methods for PaymentMethod
@@ -43,7 +43,7 @@ public interface PaymentMethodInterface {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<PaymentMethod> getPaymentMethods(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 
@@ -58,7 +58,7 @@ public interface PaymentMethodInterface {
     @GET
     @Path(PAYMENT_METHOD_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     PaymentMethod getPaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException;
 
@@ -75,7 +75,7 @@ public interface PaymentMethodInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(PaymentMethod.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     PaymentMethod createPaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           PaymentMethod paymentMethod) throws RGuestException;
 
@@ -93,7 +93,7 @@ public interface PaymentMethodInterface {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(PaymentMethod.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     PaymentMethod updatePaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(PAYMENT_METHOD_ID) String paymentMethodId, PaymentMethod paymentMethod) throws RGuestException;
 
@@ -107,14 +107,14 @@ public interface PaymentMethodInterface {
     @DELETE
     @Path(PAYMENT_METHOD_ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void deletePaymentMethod(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException;
 
     @GET
     @Path(PERMISSIONS_PATH)
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<RestrictivePermission> getRestrictivePermissions(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId) throws RGuestException;
 }
