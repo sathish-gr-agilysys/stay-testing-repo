@@ -3,11 +3,21 @@
  */
 package com.agilysys.pms.account.model;
 
+import java.util.List;
+
 public class DepositPaymentInfo extends Payment {
     String scheduleDepositId;
     String splitId;
 
     public DepositPaymentInfo() {
+    }
+
+    public DepositPaymentInfo(String scheduleDepositId, String splitId, String invoiceNumber,
+          String paymentInstrumentId, String paymentMethodId, String terminalId,
+          List<PaymentTransaction> transactions) {
+        super(paymentMethodId, terminalId, invoiceNumber, paymentInstrumentId, transactions);
+        this.scheduleDepositId = scheduleDepositId;
+        this.splitId = splitId;
     }
 
     public String getScheduleDepositId() {
