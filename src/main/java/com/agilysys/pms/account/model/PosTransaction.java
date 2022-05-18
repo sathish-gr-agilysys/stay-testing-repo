@@ -1,4 +1,4 @@
-/**
+/*
  * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 import org.joda.time.LocalDate;
 
-public interface PosTransaction {
+public interface PosTransaction extends TrackableTransaction {
     String getAccountId();
     void setAccountId(String accountId);
 
@@ -35,15 +35,6 @@ public interface PosTransaction {
     String getReason();
     void setReason(String reason);
 
-    String getReceiptTextImage();
-    void setReceiptTextImage(String receiptTextImage);
-
-    String getCloseTime();
-    void setCloseTime(String closeTime);
-
-    Long getCheckNumber();
-    void setCheckNumber(Long checkNumber);
-
     String getReference();
     void setReference(String reference);
 
@@ -52,4 +43,7 @@ public interface PosTransaction {
 
     String getTerminalId();
     void setTerminalId(String terminalId);
+
+    long getPaymentMethodId();
+    void setPaymentMethodId(long paymentMethodId);
 }

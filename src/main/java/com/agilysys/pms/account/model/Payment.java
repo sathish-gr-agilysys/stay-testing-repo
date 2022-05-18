@@ -6,8 +6,8 @@ package com.agilysys.pms.account.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.agilysys.pms.payment.model.PaymentFlowType;
 import com.agilysys.pms.payment.model.CardInformation;
+import com.agilysys.pms.payment.model.PaymentFlowType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -27,14 +27,17 @@ public class Payment {
     private boolean includeDispute;
     private String disputeComment;
     private boolean reAuthBeforeCheckin;
+    private boolean makePaymentAsDeposit;
     private PaymentFlowType paymentFlowType;
+    private PaymentSettingRequest paymentSettingRequest;
+    private boolean routingChargesAlreadyPosted;
 
     public Payment() {
         this.transactions = new ArrayList<>();
     }
 
     public Payment(String paymentMethodId, String terminalId, String invoiceNumber, String paymentInstrumentId,
-                   List<PaymentTransaction> transactions) {
+          List<PaymentTransaction> transactions) {
         this.paymentMethodId = paymentMethodId;
         this.terminalId = terminalId;
         this.invoiceNumber = invoiceNumber;
@@ -140,11 +143,35 @@ public class Payment {
         this.reAuthBeforeCheckin = reAuthBeforeCheckin;
     }
 
+    public boolean isMakePaymentAsDeposit() {
+        return makePaymentAsDeposit;
+    }
+
+    public void setMakePaymentAsDeposit(boolean makePaymentAsDeposit) {
+        this.makePaymentAsDeposit = makePaymentAsDeposit;
+    }
+
     public PaymentFlowType getPaymentFlowType() {
         return paymentFlowType;
     }
 
     public void setPaymentFlowType(PaymentFlowType paymentFlowType) {
         this.paymentFlowType = paymentFlowType;
+    }
+
+    public PaymentSettingRequest getPaymentSettingRequest() {
+        return paymentSettingRequest;
+    }
+
+    public void setPaymentSettingRequest(PaymentSettingRequest paymentSettingRequest) {
+        this.paymentSettingRequest = paymentSettingRequest;
+    }
+
+    public boolean isRoutingChargesAlreadyPosted() {
+        return routingChargesAlreadyPosted;
+    }
+
+    public void setRoutingChargesAlreadyPosted(boolean routingChargesAlreadyPosted) {
+        this.routingChargesAlreadyPosted = routingChargesAlreadyPosted;
     }
 }

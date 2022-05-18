@@ -16,6 +16,7 @@ public class BulkAutoRecurringRuleRequest {
     private int noOfChildren;
     private String guestTypeId;
     private String marketSegmentId;
+    private String groupId;
 
     public Map<String, Set<String>> getRoomTypeIdByRatePlanId() {
         return roomTypeIdByRatePlanId;
@@ -71,5 +72,13 @@ public class BulkAutoRecurringRuleRequest {
 
     public void setMarketSegmentId(String marketSegmentId) {
         this.marketSegmentId = marketSegmentId;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 }

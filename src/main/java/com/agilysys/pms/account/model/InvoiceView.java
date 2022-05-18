@@ -6,7 +6,9 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -29,6 +31,8 @@ public class InvoiceView {
     private VATTotalBreakDown vatTotalBreakDown;
     private boolean reverseTax;
     private String vatNumber;
+    private Set<String> agents = new HashSet<>();
+    private FolioInvoiceTaxSummary folioInvoiceTaxSummary;
 
     public String getId() {
         return id;
@@ -257,5 +261,21 @@ public class InvoiceView {
 
     public void setVatNumber(String vatNumber) {
         this.vatNumber = vatNumber;
+    }
+
+    public Set<String> getAgents() {
+        return agents;
+    }
+
+    public void setAgents(Set<String> agents) {
+        this.agents = agents;
+    }
+
+    public FolioInvoiceTaxSummary getFolioInvoiceTaxSummary() {
+        return folioInvoiceTaxSummary;
+    }
+
+    public void setFolioInvoiceTaxSummary(FolioInvoiceTaxSummary folioInvoiceTaxSummary) {
+        this.folioInvoiceTaxSummary = folioInvoiceTaxSummary;
     }
 }

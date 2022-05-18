@@ -1,35 +1,36 @@
-/**
+/*
  * (C) 2018 Agilysys NV, LLC.  All Rights Reserved.  Confidential Information of Agilysys NV, LLC.
  */
 package com.agilysys.pms.account.model;
 
 import com.agilysys.common.model.rate.AllowanceCombination;
 
-public class PosCredit extends Credit implements PosTransaction {
+public class PosCredit extends Credit implements PosTransaction, TrackableTransaction {
     private String receiptTextImage;
     private Long checkNumber;
     private String closeTime;
+    private long paymentMethodId;
 
     public PosCredit() {}
 
     public PosCredit(PosCredit posCredit) {
-        this.receiptTextImage = posCredit.getReceiptTextImage();
-        this.checkNumber = posCredit.getCheckNumber();
-        this.closeTime = posCredit.getCloseTime();
-        this.setTransactionItemType(posCredit.getTransactionItemType());
-        this.setMealPeriodId(posCredit.getMealPeriodId());
-        this.setExpectedGrossAmount(posCredit.getExpectedGrossAmount());
-        this.setAccountId(posCredit.getAccountId());
-        this.setAmount(posCredit.getAmount());
-        this.setIgnoreRules(posCredit.getIgnoreRules());
-        this.setItemId(posCredit.getItemId());
-        this.setParentId(posCredit.getParentId());
-        this.setPostingDate(posCredit.getPostingDate());
-        this.setQuantity(posCredit.getQuantity());
-        this.setReason(posCredit.getReason());
-        this.setReference(posCredit.getReference());
-        this.setSourceId(posCredit.getSourceId());
-        this.setTerminalId(posCredit.getTerminalId());
+        receiptTextImage = posCredit.getReceiptTextImage();
+        checkNumber = posCredit.getCheckNumber();
+        closeTime = posCredit.getCloseTime();
+        setTransactionItemType(posCredit.getTransactionItemType());
+        setMealPeriodId(posCredit.getMealPeriodId());
+        setExpectedGrossAmount(posCredit.getExpectedGrossAmount());
+        setAccountId(posCredit.getAccountId());
+        setAmount(posCredit.getAmount());
+        setIgnoreRules(posCredit.getIgnoreRules());
+        setItemId(posCredit.getItemId());
+        setParentId(posCredit.getParentId());
+        setPostingDate(posCredit.getPostingDate());
+        setQuantity(posCredit.getQuantity());
+        setReason(posCredit.getReason());
+        setReference(posCredit.getReference());
+        setSourceId(posCredit.getSourceId());
+        setTerminalId(posCredit.getTerminalId());
     }
 
     @Override
@@ -52,18 +53,31 @@ public class PosCredit extends Credit implements PosTransaction {
         this.checkNumber = checkNumber;
     }
 
+    @Override
     public String getCloseTime() {
         return closeTime;
     }
 
+    @Override
     public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
 
     @Override
-    public boolean checkPosCharge() {
-        return true;
+    public long getPaymentMethodId() {
+        return paymentMethodId;
     }
+
+    @Override
+    public void setPaymentMethodId(long paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
+
+    //TODO-23333 verify
+//    @Override
+//    public boolean checkPosCharge() {
+//        return true;
+//    }
 
     @Override
     public AllowanceCombination toAllowanceCombination() {

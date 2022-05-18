@@ -10,10 +10,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.agilysys.common.model.rate.RoomChargePostingType;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.FrequencyType;
 import com.agilysys.common.model.rate.CompInfo;
+import com.agilysys.pms.common.allowance.conversion.PackageAllowanceSettingConversion;
+import com.agilysys.pms.reservation.model.AllowanceFrequencySetting;
+import com.agilysys.common.model.rate.ChargeSnapshot.ChargeType;
 
 /**
  * Recurring Charges view object
@@ -38,6 +42,8 @@ public class RecurringChargeView {
     private String ratePlanName;
     private String ratePlanId;
     private String petReferenceId;
+    private String referenceId;
+    private ChargeType chargeType;
 
     // For a package, this will be the estimated tax for the room charge
     private ChargeTaxAmountInfo estimatedTaxInfo;
@@ -73,6 +79,7 @@ public class RecurringChargeView {
     private BigDecimal offerAmount;
     private BigDecimal offerTaxAmount;
     private BigDecimal originalAmount;
+    private RoomChargePostingType roomChargePostingType;
 
     public RecurringChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -231,6 +238,11 @@ public class RecurringChargeView {
     }
 
     public List<ComponentChargeView> getComponentCharges() {
+        for (ComponentChargeView componentChargeView : componentCharges) {
+            if (componentChargeView.getAllowanceFrequencyType() != null) {
+                setAllowanceSetting(componentChargeView);
+            }
+        }
         return componentCharges;
     }
 
@@ -276,6 +288,14 @@ public class RecurringChargeView {
 
     public void setPetReferenceId(String petReferenceId) {
         this.petReferenceId = petReferenceId;
+    }
+
+    public ChargeType getChargeType() {
+        return chargeType;
+    }
+
+    public void setChargeType(ChargeType chargeType) {
+        this.chargeType = chargeType;
     }
 
     public LocalDate getStartDate() {
@@ -380,5 +400,30 @@ public class RecurringChargeView {
 
     public void setOriginalAmount(BigDecimal originalAmount) {
         this.originalAmount = originalAmount;
+    }
+
+    public RoomChargePostingType getRoomChargePostingType() {
+        return roomChargePostingType;
+    }
+
+    public void setRoomChargePostingType(RoomChargePostingType roomChargePostingType) {
+        this.roomChargePostingType = roomChargePostingType;
+    }
+
+    public String getReferenceId() {
+        return referenceId;
+    }
+
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
+    }
+
+    private void setAllowanceSetting(ComponentChargeView componentChargeView) {
+        AllowanceFrequencySetting allowanceFrequencySetting =
+              PackageAllowanceSettingConversion.getNewPackageAllowanceSetting(
+                    componentChargeView.getAllowanceFrequencyType(), this.frequencyType);
+        componentChargeView.setAllowanceFrequencyOption(allowanceFrequencySetting.getAllowanceFrequencyOption());
+        componentChargeView.setAllowanceFrequencyCustomOptions(
+              allowanceFrequencySetting.getAllowanceFrequencyCustomOptions());
     }
 }
