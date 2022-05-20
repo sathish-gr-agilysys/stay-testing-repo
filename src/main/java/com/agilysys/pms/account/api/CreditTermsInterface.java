@@ -11,9 +11,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 /**
  * CRUD methods for credit terms
@@ -29,7 +29,7 @@ public interface CreditTermsInterface {
      * @return List of Integer
      */
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<Integer> getCreditTerms(@PathParam("tenantId") String tenantId, @PathParam("propertyId") String propertyId)
           throws RGuestException;
 }
