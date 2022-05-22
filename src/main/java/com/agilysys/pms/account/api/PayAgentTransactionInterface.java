@@ -12,12 +12,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.payagent.PayAgentTransactionView;
 import com.agilysys.pms.account.model.payagent.PayTransactionRequest;
 import com.agilysys.pms.account.model.payagent.PayTransactionUpdateRequest;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 @Path("/tenants/{tenantId}/properties/{propertyId}/payTransactions")
 public interface PayAgentTransactionInterface {
@@ -32,69 +32,53 @@ public interface PayAgentTransactionInterface {
      * @param propertyId       id of property where the account exists
      * @param payTransactionId reference id of the account to retrieve
      * @return an account for the tenant and referenceId
-     * @throws RGuestException
      */
     @GET
     @Path("/{payTransactionId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     PayAgentTransactionView getPayTransaction(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId)
           throws RGuestException;
 
     /**
-     * Post a request for a captureId and accompanying
-     * payload to be sent to an rGuest Pay Agent
+     * Post a request for a captureId and accompanying payload to be sent to an rGuest Pay Agent
      *
      * @param tenantId   id of tenant where the account exists
      * @param propertyId id of property where the account exists
-     * @param request    request object with account id and type of payload requested
-     *                   (auth, sale, token, etc) based on the rGuest Pay
-     *                   endpoint that will be called
+     * @param request    request object with account id and type of payload requested (auth, sale, token, etc) based on
+     *                   the rGuest Pay endpoint that will be called
      * @return a PayTransactionResponse object with the required payload, account id, and reference id
-     * @throws RGuestException
      */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     PayAgentTransactionView createPayTransaction(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, PayTransactionRequest request) throws RGuestException;
 
     /**
-     * Completes an existing pay transaction with the supplied response
-     * from the Pay Agent
+     * Completes an existing pay transaction with the supplied response from the Pay Agent
      *
-     * @param tenantId
-     * @param propertyId
-     * @param payTransactionId
-     * @param request
      * @return the updated PayTransactionResponse
-     * @throws RGuestException
      */
     @PUT
     @Path("/{payTransactionId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     PayAgentTransactionView completePayTransaction(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId,
           PayTransactionUpdateRequest request) throws RGuestException;
 
     /**
-     * Indicates that the identified pay agent transaction is
-     * complete and should be queried from the Pay Event
-     * Service for processing
+     * Indicates that the identified pay agent transaction is complete and should be queried from the Pay Event Service
+     * for processing
      *
-     * @param tenantId
-     * @param propertyId
-     * @param payTransactionId
-     * @param id
      * @return the updated PayTransactionResponse
-     * @throws RGuestException
      */
     @POST
     @Path("/{payTransactionId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     PayAgentTransactionView reportRemotePayTransaction(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId, String id)
           throws RGuestException;
@@ -102,18 +86,13 @@ public interface PayAgentTransactionInterface {
     /**
      * Cancels an existing pay transaction
      *
-     * @param tenantId
-     * @param propertyId
-     * @param payTransactionId
      * @return the updated PayTransactionResponse
-     * @throws RGuestException
      */
     @DELETE
     @Path("/{payTransactionId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    @Requires(Permission.READ_ACCOUNTS)
     PayAgentTransactionView cancelPayTransaction(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(PAY_TRANSACTION_ID) String payTransactionId)
           throws RGuestException;
-
 }

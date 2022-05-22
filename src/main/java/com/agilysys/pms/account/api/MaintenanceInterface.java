@@ -14,12 +14,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.common.api.search.SearchMaintenanceInterface;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 import com.agilysys.pms.maintenance.model.MaintenanceRequest;
 
 @Consumes(MediaType.APPLICATION_JSON)
@@ -52,18 +53,19 @@ public interface MaintenanceInterface extends SearchMaintenanceInterface {
     long deleteAccountDocuments(@PathParam(TENANT_ID) String tenantId) throws RGuestException;
 
     @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Requires(Permission.WRITE_TENANTS)
     @Path(INDEX_PATH + ACCOUNTS_PATH + "/" + TENANT_ID_TEMPLATE)
     long indexAccounts(@PathParam(TENANT_ID) String tenantId, @QueryParam(UPDATED_SINCE) String updatedSince,
           @QueryParam(UPDATED_UNTIL) String updatedUntil) throws RGuestException;
 
     @POST
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Requires(Permission.WRITE_TENANTS)
     @Path(INDEX_PATH + ACCOUNTS_PATH)
     Map<String, Long> indexAccounts(MaintenanceRequest request) throws RGuestException;
 
     @POST
     @Path("/migrateDailyCashiers")
-    @PreAuthorize(WRITE_TENANTS_PERMISSION)
+    @Requires(Permission.WRITE_TENANTS)
     void migrateDailyCashiers() throws RGuestException;
 }
+
