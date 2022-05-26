@@ -17,12 +17,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.platform.schema.Validated;
 import com.agilysys.pms.account.model.TransactionCategory;
 import com.agilysys.pms.common.api.annotation.CreatedOnSuccess;
+import com.agilysys.pms.common.security.Permission;
+import com.agilysys.pms.common.security.Requires;
 
 /**
  * CRUD methods for TransactionCategory
@@ -43,7 +43,7 @@ public interface TransactionCategoryConfigServiceInterface {
      * @return List of TransactionCategory
      */
     @GET
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     List<TransactionCategory> getTransactionCategories(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId,
           @DefaultValue("false") @QueryParam(INCLUDE_INTERNAL) boolean includeInternal) throws RGuestException;
@@ -57,7 +57,7 @@ public interface TransactionCategoryConfigServiceInterface {
      */
     @GET
     @Path(CATEGORY_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'ReadPropertyConfig')")
+    @Requires(Permission.READ_PROPERTY_CONFIG)
     TransactionCategory getTransactionCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId) throws RGuestException;
 
@@ -72,7 +72,7 @@ public interface TransactionCategoryConfigServiceInterface {
     @CreatedOnSuccess
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(TransactionCategory.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     TransactionCategory createTransactionCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, TransactionCategory category) throws RGuestException;
 
@@ -88,7 +88,7 @@ public interface TransactionCategoryConfigServiceInterface {
     @Path(CATEGORY_ID_PATH)
     @Consumes(MediaType.APPLICATION_JSON)
     @Validated(TransactionCategory.class)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     TransactionCategory updateTransactionCategory(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(CATEGORY_ID) String categoryId,
           TransactionCategory category) throws RGuestException;
@@ -101,7 +101,7 @@ public interface TransactionCategoryConfigServiceInterface {
      */
     @DELETE
     @Path(CATEGORY_ID_PATH)
-    @PreAuthorize("hasPermission('Required', 'WritePropertyConfig')")
+    @Requires(Permission.WRITE_PROPERTY_CONFIG)
     void deleteTransactionCategory(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(CATEGORY_ID) String categoryId) throws RGuestException;
 }
