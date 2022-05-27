@@ -6,7 +6,15 @@ package com.agilysys.pms.account.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.agilysys.intapp.model.GuestReservation;
+
 public final class AccountDeviceTransformHelper {
+    public static void initGuestReservation(GuestReservation guestReservation,
+          List<EstimatedChargesView> estimatedChargesViews) {
+        BigDecimal chargeAmount = toChargeAmount(estimatedChargesViews);
+        guestReservation.setChargeAmount(chargeAmount);
+    }
+
     public static BigDecimal toChargeAmount(List<EstimatedChargesView> estimatedChargesViews) {
         if (estimatedChargesViews == null) {
             return null;
