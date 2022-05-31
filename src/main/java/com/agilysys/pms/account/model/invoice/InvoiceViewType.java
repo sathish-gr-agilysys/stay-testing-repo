@@ -5,6 +5,5 @@ package com.agilysys.pms.account.model.invoice;
 
 public enum InvoiceViewType {
     BASE,
-    SEARCH,
     DETAIL
 }
