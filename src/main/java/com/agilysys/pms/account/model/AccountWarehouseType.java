@@ -21,7 +21,7 @@ public enum AccountWarehouseType implements WarehouseType {
     INVENTORY_ITEM_ALLOCATIONS,
     AR_DEPOSITS,
     DISPUTED_AR_TRANSACTIONS,
-    PLAYER_RETAIL_RATING;
+    PLAYER_RETAIL_RATINGS;
 
     // This is implicitly used by Jersey when converting @PathParam/@QueryParam
     public static AccountWarehouseType fromString(String s) {
