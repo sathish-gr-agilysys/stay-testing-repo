@@ -11,25 +11,38 @@ import com.agilysys.intapp.model.GuestReservation;
 public final class AccountDeviceTransformHelper {
     public static void initGuestReservation(GuestReservation guestReservation,
           List<EstimatedChargesView> estimatedChargesViews) {
-        BigDecimal chargeAmount = toChargeAmount(estimatedChargesViews);
+        BigDecimal chargeAmount = toChargeAmountForRecurringCharges(estimatedChargesViews);
         guestReservation.setChargeAmount(chargeAmount);
     }
 
-    public static BigDecimal toChargeAmount(List<EstimatedChargesView> estimatedChargesViews) {
+    public static void initGuestReservationForRecurringCharges(GuestReservation guestReservation,
+          List<RecurringChargeView> recurringCharges) {
+        BigDecimal chargeAmount = toChargeAmount(recurringCharges);
+        guestReservation.setChargeAmount(chargeAmount);
+    }
+
+    public static BigDecimal toChargeAmount(List<RecurringChargeView> recurringCharges) {
+        if (recurringCharges == null) {
+            return null;
+        }
+
+        BigDecimal chargeAmount = BigDecimal.ZERO;
+        for (RecurringChargeView recurringCharge : recurringCharges) {
+            BigDecimal normalizedAmount =
+                  recurringCharge.getAmount().multiply(new BigDecimal(recurringCharge.getQuantity()));
+            chargeAmount = chargeAmount.add(normalizedAmount);
+        }
+        return chargeAmount;
+    }
+
+    public static BigDecimal toChargeAmountForRecurringCharges(List<EstimatedChargesView> estimatedChargesViews) {
         if (estimatedChargesViews == null) {
             return null;
         }
 
         BigDecimal chargeAmount = BigDecimal.ZERO;
         for (EstimatedChargesView estimatedChargesView : estimatedChargesViews) {
-            List<RecurringChargeView> recurringCharges = estimatedChargesView.getRecurringCharges();
-            if (recurringCharges != null) {
-                for (RecurringChargeView recurringCharge : recurringCharges) {
-                    BigDecimal normalizedAmount =
-                          recurringCharge.getAmount().multiply(new BigDecimal(recurringCharge.getQuantity()));
-                    chargeAmount = chargeAmount.add(normalizedAmount);
-                }
-            }
+            chargeAmount = toChargeAmount(estimatedChargesView.getRecurringCharges());
         }
         return chargeAmount;
     }
