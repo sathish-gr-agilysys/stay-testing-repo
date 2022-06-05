@@ -11,17 +11,17 @@ import com.agilysys.intapp.model.GuestReservation;
 public final class AccountDeviceTransformHelper {
     public static void initGuestReservation(GuestReservation guestReservation,
           List<EstimatedChargesView> estimatedChargesViews) {
-        BigDecimal chargeAmount = toChargeAmountForRecurringCharges(estimatedChargesViews);
+        BigDecimal chargeAmount = toChargeAmount(estimatedChargesViews);
         guestReservation.setChargeAmount(chargeAmount);
     }
 
     public static void initGuestReservationForRecurringCharges(GuestReservation guestReservation,
           List<RecurringChargeView> recurringCharges) {
-        BigDecimal chargeAmount = toChargeAmount(recurringCharges);
+        BigDecimal chargeAmount = toChargeAmountForRecurringCharges(recurringCharges);
         guestReservation.setChargeAmount(chargeAmount);
     }
 
-    public static BigDecimal toChargeAmount(List<RecurringChargeView> recurringCharges) {
+    public static BigDecimal toChargeAmountForRecurringCharges(List<RecurringChargeView> recurringCharges) {
         if (recurringCharges == null) {
             return null;
         }
@@ -35,14 +35,14 @@ public final class AccountDeviceTransformHelper {
         return chargeAmount;
     }
 
-    public static BigDecimal toChargeAmountForRecurringCharges(List<EstimatedChargesView> estimatedChargesViews) {
+    public static BigDecimal toChargeAmount(List<EstimatedChargesView> estimatedChargesViews) {
         if (estimatedChargesViews == null) {
             return null;
         }
 
         BigDecimal chargeAmount = BigDecimal.ZERO;
         for (EstimatedChargesView estimatedChargesView : estimatedChargesViews) {
-            chargeAmount = toChargeAmount(estimatedChargesView.getRecurringCharges());
+            chargeAmount = toChargeAmountForRecurringCharges(estimatedChargesView.getRecurringCharges());
         }
         return chargeAmount;
     }
