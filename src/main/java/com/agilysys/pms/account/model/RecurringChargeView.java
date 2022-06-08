@@ -80,6 +80,7 @@ public class RecurringChargeView {
     private BigDecimal offerTaxAmount;
     private BigDecimal originalAmount;
     private RoomChargePostingType roomChargePostingType;
+    private Boolean compRule;
 
     public RecurringChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -416,6 +417,14 @@ public class RecurringChargeView {
 
     public void setReferenceId(String referenceId) {
         this.referenceId = referenceId;
+    }
+
+    public Boolean getCompRule() {
+        return compRule;
+    }
+
+    public void setCompRule(Boolean compRule) {
+        this.compRule = compRule;
     }
 
     private void setAllowanceSetting(ComponentChargeView componentChargeView) {
