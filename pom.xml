@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <name>AccountServiceInterface</name>
     <artifactId>account-service-interface</artifactId>
-    <version>74.1601.1-gamma.258-SNAPSHOT</version>
+    <version>74.1601-gamma.258-RGSTAY-151202-SNAPSHOT</version>
     <parent>
         <groupId>com.agilysys.pms</groupId>
         <artifactId>stay-root-pom</artifactId>
         <version>74.1601.0-gamma.258</version>
     </parent>
-    <properties />
+    <properties/>
     <dependencies>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
