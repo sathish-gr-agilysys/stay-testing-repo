@@ -315,6 +315,7 @@ public interface AccountServiceInterfaceV1 {
     String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH + "/searchByUpdatedDate";
     String VALIDATE_FOR_REFERENCE_NUMBER = "/validateForReferenceNumber";
     String CANCELLATION = "/cancellation";
+    String RESERVATION_IDS_TO_EXCLUDE = "reservationIdsToExclude";
 
     @GET
     @Requires(Permission.READ_ACCOUNTS)
@@ -328,7 +329,8 @@ public interface AccountServiceInterfaceV1 {
     List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam("accountType") String accountTypes,
           @QueryParam(START_DATE_TIME) String startDateTime,
-          @QueryParam(END_DATE_TIME) String endDateTime) throws RGuestException;
+          @QueryParam(END_DATE_TIME) String endDateTime,
+          @QueryParam(RESERVATION_IDS_TO_EXCLUDE) Set<String> reservationIdsToExclude) throws RGuestException;
 
     @Deprecated
     @GET
@@ -1215,7 +1217,8 @@ public interface AccountServiceInterfaceV1 {
     @Requires(Permission.READ_ACCOUNTS)
     void verifyCheckout(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, @QueryParam("allowBalance") boolean allowBalance,
-          @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId) throws RGuestException;
+          @QueryParam(PAYMENT_METHOD_ID) String paymentMethodId,
+          @QueryParam("isCancellation") boolean isCancellation) throws RGuestException;
 
     @GET
     @Path(NEXT_ACCOUNT_NUMBER_PATH)
