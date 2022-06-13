@@ -88,7 +88,7 @@ public class AccountsReceivableSettings {
         return showSelectedThirdPartyConfirmation;
     }
 
-    public void setShowSelectedThirdPartyConfirmation(boolean showSelectedThirdPartyConfirmation) {
+    public void setShowSelectedThirdPartyConfirmation(Boolean showSelectedThirdPartyConfirmation) {
         this.showSelectedThirdPartyConfirmation = showSelectedThirdPartyConfirmation;
     }
 
