@@ -315,7 +315,6 @@ public interface AccountServiceInterfaceV1 {
     String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH + "/searchByUpdatedDate";
     String VALIDATE_FOR_REFERENCE_NUMBER = "/validateForReferenceNumber";
     String CANCELLATION = "/cancellation";
-    String RESERVATION_IDS_TO_EXCLUDE = "reservationIdsToExclude";
 
     @GET
     @Requires(Permission.READ_ACCOUNTS)
@@ -323,14 +322,14 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam("accountType") String accountTypes, @QueryParam("accountStatus") String accountStatuses)
           throws RGuestException;
 
-    @GET
+    @POST
     @Path(SEARCH_BY_UPDATED_DATE)
     @Requires(Permission.READ_ACCOUNTS)
     List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam("accountType") String accountTypes,
           @QueryParam(START_DATE_TIME) String startDateTime,
           @QueryParam(END_DATE_TIME) String endDateTime,
-          @QueryParam(RESERVATION_IDS_TO_EXCLUDE) Set<String> reservationIdsToExclude) throws RGuestException;
+          Set<String> reservationIdsToExclude) throws RGuestException;
 
     @Deprecated
     @GET
