@@ -52,7 +52,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.1620.0-devgamma.176</version>
+            <version>74.1620-devgamma.177-RGSTAY-148422-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
