@@ -740,6 +740,15 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH)
+    @Validated(Payment.class)
+    @Requires(Permission.WRITE_ACCOUNTS)
+    List<LineItemView> postPaymentForCancellation(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Payment payment,
+          @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
     /**
      * Posts multiple payments
      *
