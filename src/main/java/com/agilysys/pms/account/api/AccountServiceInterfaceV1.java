@@ -223,6 +223,7 @@ public interface AccountServiceInterfaceV1 {
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
+    String POST_PAYMENT_CANCELLATION = "/postPaymentForCancellation";
     String BATCH_PRE_AUTH = "/batchPreAuth";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
     String DEPOSITS_PATH = "/deposits";
@@ -742,7 +743,7 @@ public interface AccountServiceInterfaceV1 {
 
     @POST
     @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + PAYMENTS_PATH)
+    @Path(ACCOUNT_ID_PATH + POST_PAYMENT_CANCELLATION)
     @Validated(Payment.class)
     @Requires(Permission.WRITE_ACCOUNTS)
     List<LineItemView> postPaymentForCancellation(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
