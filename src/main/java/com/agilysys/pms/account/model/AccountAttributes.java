@@ -27,7 +27,7 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
     private int terms;
     private DefaultRoutingRule routingRule;
     private TenantARTaxExemptSettings taxExemptSettings;
-    private boolean showSelectedThirdPartyConfirmation;
+    private Boolean showSelectedThirdPartyConfirmation;
     private Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations;
 
     public AccountAttributes() {
@@ -35,7 +35,7 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
 
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
           AccountStatus status, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
-          TenantARTaxExemptSettings taxExemptSettings, boolean showSelectedThirdPartyConfirmation,
+          TenantARTaxExemptSettings taxExemptSettings, Boolean showSelectedThirdPartyConfirmation,
           Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations) {
         this(accountContactId, preferredCommunication, status, null, creditLimit, terms, routingRule, taxExemptSettings,
               showSelectedThirdPartyConfirmation, selectedThirdPartyConfirmations);
@@ -43,7 +43,7 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
 
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
           AccountStatus status, String comment, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
-          TenantARTaxExemptSettings taxExemptSettings, boolean showSelectedThirdPartyConfirmation,
+          TenantARTaxExemptSettings taxExemptSettings, Boolean showSelectedThirdPartyConfirmation,
           Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations) {
         this.accountContactId = accountContactId;
         this.preferredCommunication = preferredCommunication;
@@ -140,11 +140,11 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
         this.taxExemptSettings = taxExemptSettings;
     }
 
-    public boolean isShowSelectedThirdPartyConfirmation() {
+    public Boolean isShowSelectedThirdPartyConfirmation() {
         return showSelectedThirdPartyConfirmation;
     }
 
-    public void setShowSelectedThirdPartyConfirmation(boolean showSelectedThirdPartyConfirmation) {
+    public void setShowSelectedThirdPartyConfirmation(Boolean showSelectedThirdPartyConfirmation) {
         this.showSelectedThirdPartyConfirmation = showSelectedThirdPartyConfirmation;
     }
 
