@@ -1,11 +1,14 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import com.agilysys.platform.common.json.schema.MaxLengthRestriction;
 import com.agilysys.platform.common.json.schema.MinLengthRestriction;
 import com.agilysys.platform.common.json.schema.PatternRestriction;
+import com.agilysys.pms.common.model.ThirdPartyConfirmation;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import static com.agilysys.common.utils.Utils.ALPHANUMERIC_HYPHEN_VALIDATION_REGEX;
 
 public class AccountsReceivableSettings {
@@ -29,6 +32,9 @@ public class AccountsReceivableSettings {
     private String accountNumber;
 
     private boolean requiredReferenceNumber;
+
+    private Boolean showSelectedThirdPartyConfirmation;
+    private Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations;
 
     public BigDecimal getCreditLimit() {
         return creditLimit;
@@ -74,7 +80,23 @@ public class AccountsReceivableSettings {
         return requiredReferenceNumber;
     }
 
-    public void setRequiredReferenceNumber(boolean requiredReferenceNumber) {
+    public void setRequiredReferenceNumber(Boolean requiredReferenceNumber) {
         this.requiredReferenceNumber = requiredReferenceNumber;
+    }
+
+    public Boolean isShowSelectedThirdPartyConfirmation() {
+        return showSelectedThirdPartyConfirmation;
+    }
+
+    public void setShowSelectedThirdPartyConfirmation(Boolean showSelectedThirdPartyConfirmation) {
+        this.showSelectedThirdPartyConfirmation = showSelectedThirdPartyConfirmation;
+    }
+
+    public Set<ThirdPartyConfirmation> getSelectedThirdPartyConfirmations() {
+        return selectedThirdPartyConfirmations;
+    }
+
+    public void setSelectedThirdPartyConfirmations(Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations) {
+        this.selectedThirdPartyConfirmations = selectedThirdPartyConfirmations;
     }
 }
