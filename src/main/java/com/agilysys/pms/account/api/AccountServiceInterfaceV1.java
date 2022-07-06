@@ -322,13 +322,14 @@ public interface AccountServiceInterfaceV1 {
           @QueryParam("accountType") String accountTypes, @QueryParam("accountStatus") String accountStatuses)
           throws RGuestException;
 
-    @GET
+    @POST
     @Path(SEARCH_BY_UPDATED_DATE)
     @Requires(Permission.READ_ACCOUNTS)
     List<AccountSummary> getAccountsByUpdatedTimeRange(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam("accountType") String accountTypes,
           @QueryParam(START_DATE_TIME) String startDateTime,
-          @QueryParam(END_DATE_TIME) String endDateTime) throws RGuestException;
+          @QueryParam(END_DATE_TIME) String endDateTime,
+          Set<String> reservationIdsToExclude) throws RGuestException;
 
     @Deprecated
     @GET
