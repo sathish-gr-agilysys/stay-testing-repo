@@ -42,7 +42,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>property-interface</artifactId>
-            <version>74.1620.0-devgamma.188</version>
+            <version>74.1620-devgamma.189-RGSTAY-158040-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
