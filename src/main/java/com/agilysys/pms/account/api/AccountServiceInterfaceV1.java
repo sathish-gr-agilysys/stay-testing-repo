@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.api;
 
 import static com.agilysys.common.constants.Constants.FILE;
+import static com.agilysys.pms.account.api.AccountServiceTenantInterface.PROPERTY_DATE;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -593,6 +594,14 @@ public interface AccountServiceInterfaceV1 {
     void updateCompRoutingRulesAndLineItems(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<OfferSnapshot> offerSnapshots) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + "/updateTemplate")
+    @Requires(Permission.WRITE_ACCOUNTS)
+    void updateCompRatePostingRules(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, Map<String, List<LocalDate>> compRateDetails) throws RGuestException;
+
 
     @DELETE
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
