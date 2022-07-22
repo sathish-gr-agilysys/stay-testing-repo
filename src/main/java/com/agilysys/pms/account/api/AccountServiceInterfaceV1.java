@@ -595,14 +595,6 @@ public interface AccountServiceInterfaceV1 {
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId,
           List<OfferSnapshot> offerSnapshots) throws RGuestException;
 
-    @POST
-    @CreatedOnSuccess
-    @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + "/updateTemplate")
-    @Requires(Permission.WRITE_ACCOUNTS)
-    void updateCompRatePostingRules(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          @PathParam(ACCOUNT_ID) String accountId, Map<String, List<LocalDate>> compRateDetails) throws RGuestException;
-
-
     @DELETE
     @Path(ACCOUNT_ID_PATH + POSTING_RULES_PATH + POSTING_RULE_ID_PATH)
     @Requires(Permission.WRITE_ACCOUNTS)
