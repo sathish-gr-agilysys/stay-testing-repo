@@ -18,6 +18,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.ARBalanceInfo;
 import com.agilysys.pms.account.model.AccountSummary;
@@ -46,6 +48,7 @@ public interface AccountServiceTenantInterface {
     String PREFERRED_COMMUNICATION = "/preferredCommunication";
     String REMIT_TO = "/remitTo";
     String OPEN_AR_ACCOUNT = "/openARAccounts";
+    String OPEN_GROUP_ACCOUNT = "/openGroupAccounts";
 
     @GET
     @Path(AR_BALANCES_PATH)
@@ -80,4 +83,9 @@ public interface AccountServiceTenantInterface {
     Map<String, List<AccountSummary>> getOpenARAccountsByReferenceIds(@PathParam(TENANT_ID) String tenantId,
           Set<String> referenceIds) throws RGuestException;
 
+    @POST
+    @Path(OPEN_GROUP_ACCOUNT)
+    @PreAuthorize("hasPermission('Required', 'ReadAccounts')")
+    Map<String, String> getOpenPendingGroupAccountIds(@PathParam(TENANT_ID) String tenantId,
+          Set<String> groupIds) throws RGuestException;
 }
