@@ -11,6 +11,7 @@ import java.util.Set;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.account.model.AccountDetails;
 import com.agilysys.pms.account.model.InvoicePaymentView;
 import com.agilysys.pms.account.model.InvoiceStatus;
 import com.agilysys.pms.account.model.invoice.InvoiceViewType;
@@ -40,7 +41,7 @@ public class InvoiceBaseView {
     private boolean dispute;
     private BigDecimal disputedChargesAmount;
     private BigDecimal payment;
-    private Map<String, Set<String>> accountDetails;
+    private AccountDetails accountDetails;
 
     public String getId() {
         return id;
@@ -188,11 +189,11 @@ public class InvoiceBaseView {
         this.payment = payment;
     }
 
-    public Map<String, Set<String>> getAccountDetails() {
+    public AccountDetails getAccountDetails() {
         return accountDetails;
     }
 
-    public void setAccountDetails(Map<String, Set<String>> accountDetails) {
+    public void setAccountDetails(AccountDetails accountDetails) {
         this.accountDetails = accountDetails;
     }
 }
