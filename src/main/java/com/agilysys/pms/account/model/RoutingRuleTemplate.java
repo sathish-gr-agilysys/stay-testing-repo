@@ -75,6 +75,8 @@ public class RoutingRuleTemplate {
 
     private DepositDestinationDetail depositDestinationDetail;
 
+    private Boolean routeChargesAlreadyPosted;
+
     public RoutingRuleTemplate() {
     }
 
@@ -268,5 +270,13 @@ public class RoutingRuleTemplate {
 
     public void setDepositDestinationDetail(DepositDestinationDetail depositDestinationDetail) {
         this.depositDestinationDetail = depositDestinationDetail;
+    }
+
+    public Boolean getRouteChargesAlreadyPosted() {
+        return routeChargesAlreadyPosted;
+    }
+
+    public void setRouteChargesAlreadyPosted(Boolean routeChargesAlreadyPosted) {
+        this.routeChargesAlreadyPosted = routeChargesAlreadyPosted;
     }
 }
