@@ -29,6 +29,9 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem implements Templ
     private List<FolioInvoiceLineItemView> taxFolioLineItems;
     private FolioInvoiceLineItemView correctionFolioLineItem;
     private FolioInvoiceLineItemView transferFolioLineItem;
+    private List<FolioInvoiceLineItemView> transferFolioLineItems;
+    private List<FolioInvoiceLineItemView> correctionFolioLineItems;
+    private List<String> associatedPackageLineItems;
 
     public String getOriginalBalance() {
         return originalBalance;
@@ -164,6 +167,30 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem implements Templ
 
     public void setTransferFolioLineItem(FolioInvoiceLineItemView transferFolioLineItem) {
         this.transferFolioLineItem = transferFolioLineItem;
+    }
+
+    public List<FolioInvoiceLineItemView> getTransferFolioLineItems() {
+        return transferFolioLineItems;
+    }
+
+    public void setTransferFolioLineItems(List<FolioInvoiceLineItemView> transferFolioLineItems) {
+        this.transferFolioLineItems = transferFolioLineItems;
+    }
+
+    public List<FolioInvoiceLineItemView> getCorrectionFolioLineItems() {
+        return correctionFolioLineItems;
+    }
+
+    public void setCorrectionFolioLineItems(List<FolioInvoiceLineItemView> correctionFolioLineItems) {
+        this.correctionFolioLineItems = correctionFolioLineItems;
+    }
+
+    public List<String> getAssociatedPackageLineItems() {
+        return associatedPackageLineItems;
+    }
+
+    public void setAssociatedPackageLineItems(List<String> associatedPackageLineItems) {
+        this.associatedPackageLineItems = associatedPackageLineItems;
     }
 
     public boolean getShowReason() {

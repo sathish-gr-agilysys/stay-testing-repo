@@ -7,6 +7,11 @@ import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.agilysys.pms.common.model.ThirdPartyConfirmation;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,20 +27,24 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
     private int terms;
     private DefaultRoutingRule routingRule;
     private TenantARTaxExemptSettings taxExemptSettings;
+    private Boolean showSelectedThirdPartyConfirmation;
+    private Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations;
 
     public AccountAttributes() {
     }
 
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
           AccountStatus status, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
-          TenantARTaxExemptSettings taxExemptSettings) {
-        this(accountContactId, preferredCommunication, status, null, creditLimit, terms, routingRule,
-              taxExemptSettings);
+          TenantARTaxExemptSettings taxExemptSettings, Boolean showSelectedThirdPartyConfirmation,
+          Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations) {
+        this(accountContactId, preferredCommunication, status, null, creditLimit, terms, routingRule, taxExemptSettings,
+              showSelectedThirdPartyConfirmation, selectedThirdPartyConfirmations);
     }
 
     public AccountAttributes(String accountContactId, PreferredCommunication preferredCommunication,
           AccountStatus status, String comment, BigDecimal creditLimit, int terms, DefaultRoutingRule routingRule,
-          TenantARTaxExemptSettings taxExemptSettings) {
+          TenantARTaxExemptSettings taxExemptSettings, Boolean showSelectedThirdPartyConfirmation,
+          Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations) {
         this.accountContactId = accountContactId;
         this.preferredCommunication = preferredCommunication;
         this.status = status;
@@ -44,6 +53,8 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
         this.terms = terms;
         this.routingRule = routingRule;
         this.taxExemptSettings = taxExemptSettings;
+        this.showSelectedThirdPartyConfirmation = showSelectedThirdPartyConfirmation;
+        this.selectedThirdPartyConfirmations = selectedThirdPartyConfirmations;
     }
 
     public enum AccountStatus {
@@ -129,6 +140,22 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
         this.taxExemptSettings = taxExemptSettings;
     }
 
+    public Boolean isShowSelectedThirdPartyConfirmation() {
+        return showSelectedThirdPartyConfirmation;
+    }
+
+    public void setShowSelectedThirdPartyConfirmation(Boolean showSelectedThirdPartyConfirmation) {
+        this.showSelectedThirdPartyConfirmation = showSelectedThirdPartyConfirmation;
+    }
+
+    public Set<ThirdPartyConfirmation> getSelectedThirdPartyConfirmations() {
+        return selectedThirdPartyConfirmations;
+    }
+
+    public void setSelectedThirdPartyConfirmations(Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations) {
+        this.selectedThirdPartyConfirmations = selectedThirdPartyConfirmations;
+    }
+
     @Override
     public int compareTo(AccountAttributes that) {
         boolean isEqual =
@@ -138,11 +165,16 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
                     .equals(this.getPreferredCommunication().name(), that.getPreferredCommunication().name()) &&
                     this.getCreditLimit().compareTo(that.getCreditLimit()) == 0 && this.getTerms() == that.getTerms() &&
                     compareRoutingRule(this.getRoutingRule(), that.getRoutingRule()) &&
-                    compareTaxExemptSettings(this.getTaxExemptSettings(), that.getTaxExemptSettings());
-        if (isEqual)
+                    compareTaxExemptSettings(this.getTaxExemptSettings(), that.getTaxExemptSettings()) &&
+                    this.isShowSelectedThirdPartyConfirmation() == that.isShowSelectedThirdPartyConfirmation() &&
+                    compareSelectedThirdPartyConfirmations(this.getSelectedThirdPartyConfirmations(),
+                          that.getSelectedThirdPartyConfirmations());
+        if (isEqual) {
             return 0;
-        else
+        }
+        else {
             return 1;
+        }
     }
 
     private boolean compareRoutingRule(DefaultRoutingRule defaultSettings, DefaultRoutingRule existingSettings) {
@@ -158,5 +190,29 @@ public class AccountAttributes implements Comparable<AccountAttributes> {
             return true;
         }
         return equalsIgnoreCase(defaultSettings.getTaxId(), trimToEmpty(existingSettings.getTaxId()));
+    }
+
+    public boolean compareSelectedThirdPartyConfirmations(Set<ThirdPartyConfirmation> defaultSettings,
+          Set<ThirdPartyConfirmation> existingSettings) {
+        if (defaultSettings == null && existingSettings == null) {
+            return true;
+        }
+
+        if (defaultSettings.size() != existingSettings.size()) {
+            return false;
+        }
+
+        Set<String> existingSettingsConfirmationNames = new HashSet<String>();
+
+        for (ThirdPartyConfirmation existingSetting : existingSettings) {
+            existingSettingsConfirmationNames.add(existingSetting.getConfirmationName());
+        }
+
+        for (ThirdPartyConfirmation defaultSetting : defaultSettings) {
+            if (!existingSettingsConfirmationNames.contains(defaultSetting.getConfirmationName())){
+                return false;
+            } 
+        }
+        return true;
     }
 }
