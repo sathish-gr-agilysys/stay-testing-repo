@@ -223,6 +223,7 @@ public interface AccountServiceInterfaceV1 {
     String PATH = "path";
     String PAYMENT_SETTINGS_PATH = "/paymentSettings";
     String PAYMENTS_PATH = "/payments";
+    String POST_PAYMENT_CANCELLATION = "/postPaymentForCancellation";
     String BATCH_PRE_AUTH = "/batchPreAuth";
     String PAYMENTS_ASYNC_PATH = "/paymentsAsync";
     String DEPOSITS_PATH = "/deposits";
@@ -739,6 +740,15 @@ public interface AccountServiceInterfaceV1 {
     List<LineItemView> postPayment(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           @PathParam(ACCOUNT_ID) String accountId, Payment payment,
           @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
+
+    @POST
+    @CreatedOnSuccess
+    @Path(ACCOUNT_ID_PATH + POST_PAYMENT_CANCELLATION)
+    @Validated(Payment.class)
+    @Requires(Permission.WRITE_ACCOUNTS)
+    List<LineItemView> postPaymentForCancellation(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+                                                  @PathParam(ACCOUNT_ID) String accountId, Payment payment,
+                                                  @DefaultValue("true") @QueryParam("reAuth") Boolean reAuth) throws RGuestException;
 
     /**
      * Posts multiple payments
