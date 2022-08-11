@@ -165,7 +165,7 @@ public class FolioInvoiceLineItemView extends FolioViewLineItem implements Templ
         return transferFolioLineItem;
     }
 
-    public void setTransferFolioLineItem(FolioInvoiceLineItemView transferFolioLineItem) {
+     public void setTransferFolioLineItem(FolioInvoiceLineItemView transferFolioLineItem) {
         this.transferFolioLineItem = transferFolioLineItem;
     }
 
