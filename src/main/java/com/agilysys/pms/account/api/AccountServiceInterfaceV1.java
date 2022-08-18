@@ -69,7 +69,6 @@ import com.agilysys.pms.account.model.Credit;
 import com.agilysys.pms.account.model.DepositPaymentInfo;
 import com.agilysys.pms.account.model.DisputedARLedgerTransaction;
 import com.agilysys.pms.account.model.EligibleFolioLineItems;
-import com.agilysys.pms.account.model.EstimatedChargesWrapper;
 import com.agilysys.pms.account.model.FolioBalance;
 import com.agilysys.pms.account.model.FolioDetail;
 import com.agilysys.pms.account.model.FolioInvoiceDetail;
@@ -113,7 +112,6 @@ import com.agilysys.pms.account.model.PostPosChargesRequest;
 import com.agilysys.pms.account.model.PostPosCreditRequest;
 import com.agilysys.pms.account.model.PostingRuleDetail;
 import com.agilysys.pms.account.model.PostingRuleDetailView;
-import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.ReleaseAllAuthRequest;
 import com.agilysys.pms.account.model.ReservationCancellationResponse;
 import com.agilysys.pms.account.model.ReverseRedemptionRequest;
@@ -318,7 +316,6 @@ public interface AccountServiceInterfaceV1 {
     String SEARCH_BY_UPDATED_DATE = ACCOUNT_TYPE_PATH + "/searchByUpdatedDate";
     String VALIDATE_FOR_REFERENCE_NUMBER = "/validateForReferenceNumber";
     String CANCELLATION = "/cancellation";
-    String ESTIMATE_CHARGE_AMOUNT_FOR_DEPOSIT_POLICY = "/estimateChargeAmountForDepositCalculation";
 
     @GET
     @Requires(Permission.READ_ACCOUNTS)
@@ -1529,8 +1526,4 @@ public interface AccountServiceInterfaceV1 {
     void validateForRequiredReferenceNumber(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) String accountId) throws RGuestException;
 
-    @POST
-    @Path(ESTIMATE_CHARGE_AMOUNT_FOR_DEPOSIT_POLICY)
-    List<RecurringChargeView> getEstimateChargeAmountForDepositCalculation(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, EstimatedChargesWrapper wrapper) throws RGuestException;
 }
