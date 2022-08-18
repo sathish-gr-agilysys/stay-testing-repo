@@ -9,15 +9,15 @@ import java.util.Set;
 
 import com.agilysys.common.DepositChargeDetails;
 
-public class UpdateArcWrapper {
+public class UpdateDepositAmount {
 
     private Set<String> reservationIds;
     private Map<String, DepositChargeDetails> depositChargeDetails;
     private Map<String, BigDecimal> totalDues;
 
-    public UpdateArcWrapper() {}
+    public UpdateDepositAmount() {}
 
-    public UpdateArcWrapper(Set<String> reservationIds, Map<String, DepositChargeDetails> depositChargeDetails,
+    public UpdateDepositAmount(Set<String> reservationIds, Map<String, DepositChargeDetails> depositChargeDetails,
           Map<String, BigDecimal> totalDues) {
         this.reservationIds = reservationIds;
         this.depositChargeDetails = depositChargeDetails;
