@@ -14,6 +14,7 @@ public class CompRedeemRequest {
     private BigDecimal amount;
     private String compOfferId;
     private String compOfferName;
+    private boolean compRule;
 
     public CompRedeemRequest() {
     }
@@ -83,4 +84,11 @@ public class CompRedeemRequest {
         this.compOfferName = compOfferName;
     }
 
+    public boolean isCompRule() {
+        return compRule;
+    }
+
+    public void setCompRule(boolean compRule) {
+        this.compRule = compRule;
+    }
 }
