@@ -33,7 +33,7 @@ public class AccountsReceivableSettings {
 
     private boolean requiredReferenceNumber;
 
-    private boolean showSelectedThirdPartyConfirmation;
+    private Boolean showSelectedThirdPartyConfirmation;
     private Set<ThirdPartyConfirmation> selectedThirdPartyConfirmations;
 
     public BigDecimal getCreditLimit() {
@@ -80,15 +80,15 @@ public class AccountsReceivableSettings {
         return requiredReferenceNumber;
     }
 
-    public void setRequiredReferenceNumber(boolean requiredReferenceNumber) {
+    public void setRequiredReferenceNumber(Boolean requiredReferenceNumber) {
         this.requiredReferenceNumber = requiredReferenceNumber;
     }
 
-    public boolean isShowSelectedThirdPartyConfirmation() {
+    public Boolean isShowSelectedThirdPartyConfirmation() {
         return showSelectedThirdPartyConfirmation;
     }
 
-    public void setShowSelectedThirdPartyConfirmation(boolean showSelectedThirdPartyConfirmation) {
+    public void setShowSelectedThirdPartyConfirmation(Boolean showSelectedThirdPartyConfirmation) {
         this.showSelectedThirdPartyConfirmation = showSelectedThirdPartyConfirmation;
     }
 
