@@ -79,7 +79,7 @@ public class LineItemAdjustment {
     }
 
     public void setAmount(BigDecimal amount) {
-        this.amount = amount.setScale(2, RoundingMode.HALF_UP);;
+        this.amount = amount == null ? null : amount.setScale(2, RoundingMode.HALF_UP);
     }
 
     public Map<String, String> getTransactionMessageAttributes() {
