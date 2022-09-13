@@ -10,14 +10,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.agilysys.common.model.rate.RoomChargePostingType;
 import org.joda.time.LocalDate;
 
 import com.agilysys.common.model.FrequencyType;
+import com.agilysys.common.model.rate.ChargeSnapshot.ChargeType;
 import com.agilysys.common.model.rate.CompInfo;
+import com.agilysys.common.model.rate.RoomChargePostingType;
 import com.agilysys.pms.common.allowance.conversion.PackageAllowanceSettingConversion;
 import com.agilysys.pms.reservation.model.AllowanceFrequencySetting;
-import com.agilysys.common.model.rate.ChargeSnapshot.ChargeType;
 
 /**
  * Recurring Charges view object
@@ -80,6 +80,8 @@ public class RecurringChargeView {
     private BigDecimal offerTaxAmount;
     private BigDecimal originalAmount;
     private RoomChargePostingType roomChargePostingType;
+    private Boolean compRule;
+    private String ruleName;
 
     public RecurringChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -416,6 +418,22 @@ public class RecurringChargeView {
 
     public void setReferenceId(String referenceId) {
         this.referenceId = referenceId;
+    }
+
+    public Boolean getCompRule() {
+        return compRule;
+    }
+
+    public void setCompRule(Boolean compRule) {
+        this.compRule = compRule;
+    }
+
+    public String getRuleName() {
+        return ruleName;
+    }
+
+    public void setRuleName(String ruleName) {
+        this.ruleName = ruleName;
     }
 
     private void setAllowanceSetting(ComponentChargeView componentChargeView) {
