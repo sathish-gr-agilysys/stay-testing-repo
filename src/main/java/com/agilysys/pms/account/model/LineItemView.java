@@ -113,6 +113,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String referenceNumber;
     private String compOfferId;
     private String compOfferName;
+    private boolean compRule;
     private String authCode;
     private String cardHolderName;
     private Boolean depositPaymentAtBooking;
@@ -718,6 +719,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setCompOfferName(String compOfferName) {
         this.compOfferName = compOfferName;
+    }
+
+    public boolean isCompRule() {
+        return compRule;
+    }
+
+    public void setCompRule(boolean compRule) {
+        this.compRule = compRule;
     }
 
     public String getAuthCode() {
