@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 
 import org.joda.time.LocalDate;
@@ -78,7 +79,7 @@ public class LineItemAdjustment {
     }
 
     public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+        this.amount = amount.setScale(2, RoundingMode.HALF_UP);;
     }
 
     public Map<String, String> getTransactionMessageAttributes() {
