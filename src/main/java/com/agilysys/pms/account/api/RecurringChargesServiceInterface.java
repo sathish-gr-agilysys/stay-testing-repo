@@ -90,7 +90,7 @@ public interface RecurringChargesServiceInterface {
     String ROOM_TYPE_ID = "roomTypeId";
     String ROOM_TYPE_ID_PATH = "/{roomTypeId}";
     String VALIDATE_INVENTORY = "validateInventory";
-    String UPDATE_DEPOSIT_POLICY_FOR_ARC = "/updateDepositPolicyForArc";
+    String UPDATE_ARC_DEPOSIT_POLICY = "/updateArcDepositPolicy";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -379,7 +379,7 @@ public interface RecurringChargesServiceInterface {
           @PathParam(ROOM_TYPE_ID) String roomTypeId);
 
     @POST
-    @Path(UPDATE_DEPOSIT_POLICY_FOR_ARC)
-    void updateDepositPolicyForArc(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+    @Path(UPDATE_ARC_DEPOSIT_POLICY)
+    void updateArcDepositPolicy(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           Set<String> accountIds);
 }
