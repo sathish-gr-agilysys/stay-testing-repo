@@ -90,7 +90,6 @@ public interface RecurringChargesServiceInterface {
     String ROOM_TYPE_ID = "roomTypeId";
     String ROOM_TYPE_ID_PATH = "/{roomTypeId}";
     String VALIDATE_INVENTORY = "validateInventory";
-    String UPDATE_ARC_DEPOSIT_POLICY = "/updateArcDepositPolicy";
 
     /**
      * Retrieve all recurring charges for a property for the current propertyDate
@@ -377,9 +376,4 @@ public interface RecurringChargesServiceInterface {
     Boolean checkIfRoomTypeChangeAllowedForRecurringCharges(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, @PathParam(ACCOUNT_ID) Set<String> accountId,
           @PathParam(ROOM_TYPE_ID) String roomTypeId);
-
-    @POST
-    @Path(UPDATE_ARC_DEPOSIT_POLICY)
-    void updateArcDepositPolicy(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
-          Set<String> accountIds);
 }
