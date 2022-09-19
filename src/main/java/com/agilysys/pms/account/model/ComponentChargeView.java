@@ -61,6 +61,8 @@ public class ComponentChargeView {
     private BigDecimal originalAmount;
     private BigDecimal originalAmountPerItem;
     private BigDecimal offerTaxAmount;
+    private Boolean compRule;
+    private String ruleName;
 
     public ComponentChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -88,6 +90,8 @@ public class ComponentChargeView {
         allowanceTotalQuantity = componentChargeView.getAllowanceTotalQuantity();
         addOn = componentChargeView.isAddOn();
         addOnBundleId = componentChargeView.getAddOnBundleId();
+        compRule = componentChargeView.getCompRule();
+        ruleName = componentChargeView.getRuleName();
     }
 
     public String getComponentBundleId() {
@@ -330,6 +334,22 @@ public class ComponentChargeView {
 
     public void setOfferTaxAmount(BigDecimal offerTaxAmount) {
         this.offerTaxAmount = offerTaxAmount;
+    }
+
+    public Boolean getCompRule() {
+        return compRule;
+    }
+
+    public void setCompRule(Boolean compRule) {
+        this.compRule = compRule;
+    }
+
+    public String getRuleName() {
+        return ruleName;
+    }
+
+    public void setRuleName(String ruleName) {
+        this.ruleName = ruleName;
     }
 
     public static ComponentChargeView fromComponentRateSnapshot(ComponentRateSnapshot componentRateSnapshot) {

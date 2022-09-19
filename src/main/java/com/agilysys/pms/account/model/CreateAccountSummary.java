@@ -61,6 +61,8 @@ public class CreateAccountSummary extends AccountSummary {
 
     private String sourceInterfaceId;
 
+    private Map<String, List<LocalDate>> compRateInfo;
+
     public String getReservationCompanyProfileId() {
         return reservationCompanyProfileId;
     }
@@ -175,4 +177,11 @@ public class CreateAccountSummary extends AccountSummary {
         this.sourceInterfaceId = sourceInterfaceId;
     }
 
+    public Map<String, List<LocalDate>> getCompRateInfo() {
+        return compRateInfo;
+    }
+
+    public void setCompRateInfo(Map<String, List<LocalDate>> compRateInfo) {
+        this.compRateInfo = compRateInfo;
+    }
 }
