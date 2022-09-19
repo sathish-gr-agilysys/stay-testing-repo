@@ -52,7 +52,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>rate-service-interface</artifactId>
-            <version>74.1861.0</version>
+            <version>74.1866.0</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.platform</groupId>
