@@ -23,7 +23,7 @@ import com.agilysys.pms.property.model.AgeCategory;
 import com.agilysys.pms.rates.model.Component;
 import com.agilysys.pms.rates.model.ComponentBundle;
 
-public class OfferDetails {
+public class BookingEstimatedChargesRequest {
     private List<OfferSnapshot> offerSnapshots;
     private List<RateDetails> rateSnapshots;
     private int numberOfAdults;
@@ -38,6 +38,7 @@ public class OfferDetails {
     private int numberOfAgeCategory8;
     private List<OfferRecurringCharges> recurringCharges;
     private Map<LocalDate, List<ComponentBundle>> addOns;
+    private CompRoutingRuleDetails compRoutingRuleDetails;
 
     public List<OfferSnapshot> getOfferSnapshots() {
         return offerSnapshots;
@@ -151,7 +152,16 @@ public class OfferDetails {
         this.addOns = addOns;
     }
 
-    public static Map<LocalDate, List<RecurringChargeView>> getRecurringChargeFromSnapShot(OfferDetails offerDetails,
+    public CompRoutingRuleDetails getCompRoutingRuleDetails() {
+        return compRoutingRuleDetails;
+    }
+
+    public void setCompRoutingRuleDetails(CompRoutingRuleDetails compRoutingRuleDetails) {
+        this.compRoutingRuleDetails = compRoutingRuleDetails;
+    }
+
+    public static Map<LocalDate, List<RecurringChargeView>> getRecurringChargeFromSnapShot(
+          BookingEstimatedChargesRequest offerDetails,
           List<AgeCategory> ageCategories) {
         Map<LocalDate, List<RecurringChargeView>> recurringChargeViewsByDate = new TreeMap<>();
         Map<LocalDate, List<ComponentBundle>> addOns = offerDetails.getAddOns();
