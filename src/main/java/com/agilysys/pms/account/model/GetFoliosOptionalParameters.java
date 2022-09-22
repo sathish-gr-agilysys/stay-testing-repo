@@ -4,7 +4,7 @@ public class GetFoliosOptionalParameters {
     private boolean groupTaxLineItems = false;
     private String transactionIds;
     private boolean includePackageFolio;
-    private boolean includeThirdPartyFolio;
+    private boolean excludeThirdPartyFolio;
 
     public boolean isGroupTaxLineItems() {
         return groupTaxLineItems;
@@ -30,11 +30,11 @@ public class GetFoliosOptionalParameters {
         this.includePackageFolio = includePackageFolio;
     }
 
-    public boolean isIncludeThirdPartyFolio() {
-        return includeThirdPartyFolio;
+    public boolean isExcludeThirdPartyFolio() {
+        return excludeThirdPartyFolio;
     }
 
-    public void setIncludeThirdPartyFolio(boolean includeThirdPartyFolio) {
-        this.includeThirdPartyFolio = includeThirdPartyFolio;
+    public void setExcludeThirdPartyFolio(boolean excludeThirdPartyFolio) {
+        this.excludeThirdPartyFolio = excludeThirdPartyFolio;
     }
 }
