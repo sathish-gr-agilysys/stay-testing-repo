@@ -71,6 +71,7 @@ public abstract class Transaction {
     protected String paymentInterfaceId;
     protected String paymentTransactionId;
     protected String lastFour;
+    protected boolean isTaxApplicable;
 
     public String getAccountId() {
         return accountId;
@@ -174,6 +175,14 @@ public abstract class Transaction {
 
     public void setChargeTypeDisplayName(String chargeTypeDisplayName) {
         this.chargeTypeDisplayName = chargeTypeDisplayName;
+    }
+
+    public boolean isTaxApplicable() {
+        return isTaxApplicable;
+    }
+
+    public void setTaxApplicable(boolean taxApplicable) {
+        isTaxApplicable = taxApplicable;
     }
 
     /**
