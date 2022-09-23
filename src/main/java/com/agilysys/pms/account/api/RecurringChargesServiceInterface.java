@@ -30,7 +30,7 @@ import com.agilysys.pms.account.model.EstimatedChargeDetailsForOffers;
 import com.agilysys.pms.account.model.EstimatedChargesByFolioResult;
 import com.agilysys.pms.account.model.EstimatedChargesView;
 import com.agilysys.pms.account.model.EstimatedRoomChargeView;
-import com.agilysys.pms.account.model.OfferDetails;
+import com.agilysys.pms.account.model.BookingEstimatedChargesRequest;
 import com.agilysys.pms.account.model.ProgressStatusView;
 import com.agilysys.pms.account.model.RecurringChargeView;
 import com.agilysys.pms.account.model.RecurringChargesPostingResult;
@@ -281,7 +281,7 @@ public interface RecurringChargesServiceInterface {
     @Path(ACCOUNT_PATH + ESTIMATED_CHARGES_WITH_OFFERS)
     @Requires(Permission.READ_ACCOUNTS)
     EstimatedChargeDetailsForOffers getEstimatedChargesWithOfferDetails(@PathParam(TENANT_ID) String tenantId,
-          @PathParam(PROPERTY_ID) String propertyId, OfferDetails offerDetails) throws RGuestException;
+          @PathParam(PROPERTY_ID) String propertyId, BookingEstimatedChargesRequest offerDetails) throws RGuestException;
 
     /**
      * Retrieves the amount to be authed on a card for checkin
