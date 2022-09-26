@@ -95,6 +95,8 @@ public class PostingRuleDetail {
 
     private DepositDestinationDetail depositDestinationDetail;
 
+    private Boolean compRule;
+
     public PostingRuleDetail() { }
 
     @Deprecated
@@ -371,6 +373,14 @@ public class PostingRuleDetail {
 
     public void setDepositDestinationDetail(DepositDestinationDetail depositDestinationDetail) {
         this.depositDestinationDetail = depositDestinationDetail;
+    }
+
+    public Boolean getCompRule() {
+        return compRule;
+    }
+
+    public void setCompRule(Boolean compRule) {
+        this.compRule = compRule;
     }
 
     public PostingRuleDetail(RoutingRuleTemplate template, String ruleName, String ratePlanName,

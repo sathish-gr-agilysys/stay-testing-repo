@@ -5,11 +5,13 @@ package com.agilysys.pms.account.model.invoice.base;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.agilysys.pms.account.model.AccountDetails;
 import com.agilysys.pms.account.model.InvoicePaymentView;
 import com.agilysys.pms.account.model.InvoiceStatus;
 import com.agilysys.pms.account.model.invoice.InvoiceViewType;
@@ -39,7 +41,7 @@ public class InvoiceBaseView {
     private boolean dispute;
     private BigDecimal disputedChargesAmount;
     private BigDecimal payment;
-    private Set<String> accountNames;
+    private AccountDetails accountDetails;
 
     public String getId() {
         return id;
@@ -187,11 +189,11 @@ public class InvoiceBaseView {
         this.payment = payment;
     }
 
-    public Set<String> getAccountNames() {
-        return accountNames;
+    public AccountDetails getAccountDetails() {
+        return accountDetails;
     }
 
-    public void setAccountNames(Set<String> accountNames) {
-        this.accountNames = accountNames;
+    public void setAccountDetails(AccountDetails accountDetails) {
+        this.accountDetails = accountDetails;
     }
 }
