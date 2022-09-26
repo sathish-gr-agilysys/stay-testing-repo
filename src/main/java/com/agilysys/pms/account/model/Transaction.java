@@ -72,6 +72,7 @@ public abstract class Transaction {
     protected String paymentTransactionId;
     protected String lastFour;
     protected boolean isTaxApplicable;
+    protected BigDecimal totalTaxAmount;
 
     public String getAccountId() {
         return accountId;
@@ -183,6 +184,14 @@ public abstract class Transaction {
 
     public void setTaxApplicable(boolean taxApplicable) {
         isTaxApplicable = taxApplicable;
+    }
+
+    public BigDecimal getTotalTaxAmount() {
+        return totalTaxAmount;
+    }
+
+    public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
+        this.totalTaxAmount = totalTaxAmount;
     }
 
     /**
