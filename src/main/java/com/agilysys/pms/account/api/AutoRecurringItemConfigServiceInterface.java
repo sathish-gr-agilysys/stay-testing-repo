@@ -5,6 +5,7 @@ package com.agilysys.pms.account.api;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -55,6 +56,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String VALIDATE_RULE_CHANGES = "/validateRuleChanges/{" + ACCOUNT_ID + "}";
     String MERGE_MARKETING_DETAILS = "/mergeMarketingDetails";
     String UPDATE_ARC_FOR_MODIFIED_SNAPSHOT = "/updateArcForModifiedSnapshot";
+    String UPDATE_ARC_DEPOSIT_POLICY = "/updateArcDepositPolicy";
 
     @GET
     @Path(ITEM_ID_PATH)
@@ -196,4 +198,9 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(MERGE_MARKETING_DETAILS)
     String mergeMarketingDetails(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           MergeMarketingDetailRequest request) throws RGuestException;
+
+    @POST
+    @Path(UPDATE_ARC_DEPOSIT_POLICY)
+    void updateArcDepositPolicy(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          Set<String> accountIds);
 }
