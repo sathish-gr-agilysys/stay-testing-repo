@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.agilysys.pms</groupId>
             <artifactId>payment-interface</artifactId>
-            <version>74.1620.0-devgamma.211</version>
+            <version>74.1620-devgamma.211-RGSTAY-166722-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.agilysys.pms</groupId>
