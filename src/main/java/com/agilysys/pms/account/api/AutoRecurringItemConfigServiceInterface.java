@@ -26,6 +26,7 @@ import com.agilysys.pms.account.model.AutoRecurringChargeRuleRequest;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleResponse;
 import com.agilysys.pms.account.model.AutoRecurringChargesPrintOrEmail;
 import com.agilysys.pms.account.model.AutoRecurringChargesPriority;
+import com.agilysys.pms.account.model.AutoRecurringFeeRuleRequest;
 import com.agilysys.pms.account.model.AutoRecurringItem;
 import com.agilysys.pms.account.model.BulkAutoRecurringRuleRequest;
 import com.agilysys.pms.account.model.TransactionItemOptionalParameters;
@@ -44,7 +45,9 @@ public interface AutoRecurringItemConfigServiceInterface {
     String ITEM_ID_PATH = "{" + ITEM_ID + "}";
     String START_DATE = "startDate";
     String END_DATE = "endDate";
+    String FEES = "/fees";
     String APPLICABLE_ARC_RULE = "/applicableArcRule";
+    String APPLICABLE_ARF_RULES = "/apllicableArfRules";
     String APPLICABLE_ARC_RULE_BULK = "/applicableArcRuleBulk";
     String RULE = "/rule";
     String RULE_BY_ACCOUNTS = "/ruleByAccounts";
@@ -203,4 +206,32 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Path(UPDATE_ARC_DEPOSIT_POLICY)
     void updateArcDepositPolicy(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
           Set<String> accountIds);
+
+    @GET
+    @Path(FEES)
+    @CreatedOnSuccess
+    @Requires(Permission.READ_PROPERTY_CONFIG)
+    List<AutoRecurringChargeRule> getAutoRecurringFeesRules(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, @QueryParam("active") Boolean active) throws RGuestException;
+
+    @POST
+    @Path(FEES)
+    @CreatedOnSuccess
+    @Requires(Permission.AUTO_RECURRING_CHARGE_RULES)
+    AutoRecurringChargeRule createAutoRecurringFeesRule(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRule rule) throws RGuestException;
+
+    @PUT
+    @Path(FEES)
+    @CreatedOnSuccess
+    @Requires(Permission.AUTO_RECURRING_CHARGE_RULES)
+    AutoRecurringChargeRule updateAutoRecurringFeesRule(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringChargeRule rule) throws RGuestException;
+
+    @POST
+    @Path(APPLICABLE_ARF_RULES)
+    @Requires(Permission.READ_PROPERTY_CONFIG)
+    AutoRecurringChargeRuleResponse getApplicableArfRules(@PathParam(TENANT_ID) String tenantId,
+          @PathParam(PROPERTY_ID) String propertyId, AutoRecurringFeeRuleRequest autoRecurringFeeRuleRequest)
+          throws RGuestException;
 }

@@ -4,6 +4,7 @@
 package com.agilysys.pms.account.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class AutoRecurringChargeRule {
@@ -21,6 +22,10 @@ public class AutoRecurringChargeRule {
     private Set<String> guestTypes;
     private Set<String> marketSegments;
     private boolean applyToDefiniteGroups;
+    private boolean fees;
+    private AutoRecurringFeesCategory category;
+    private Map<AutoRecurringFeesSubCategory, Set<String>> applicableTypes;
+
 
     public String getId() {
         return id;
@@ -124,5 +129,29 @@ public class AutoRecurringChargeRule {
 
     public void setApplyToDefiniteGroups(boolean applyToDefiniteGroups) {
         this.applyToDefiniteGroups = applyToDefiniteGroups;
+    }
+
+    public boolean isFees() {
+        return fees;
+    }
+
+    public void setFees(boolean fees) {
+        this.fees = fees;
+    }
+
+    public AutoRecurringFeesCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(AutoRecurringFeesCategory category) {
+        this.category = category;
+    }
+
+    public Map<AutoRecurringFeesSubCategory, Set<String>> getApplicableTypes() {
+        return applicableTypes;
+    }
+
+    public void setApplicableTypes(Map<AutoRecurringFeesSubCategory, Set<String>> applicableTypes) {
+        this.applicableTypes = applicableTypes;
     }
 }
