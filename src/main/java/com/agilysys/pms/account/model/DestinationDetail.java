@@ -15,8 +15,18 @@ public class DestinationDetail {
     private Integer transactionLimit;
     private int transactionMade;
     private Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount;
+    private Map<LocalDate, Map<String, AccountTransaction>> accountDayWiseTotalTransactedAmount;
     private int priority;
     private String folioName;
+
+    public Map<LocalDate, Map<String, AccountTransaction>> getAccountDayWiseTotalTransactedAmount() {
+        return accountDayWiseTotalTransactedAmount;
+    }
+
+    public void setAccountDayWiseTotalTransactedAmount(
+          Map<LocalDate, Map<String, AccountTransaction>> accountDayWiseTotalTransactedAmount) {
+        this.accountDayWiseTotalTransactedAmount = accountDayWiseTotalTransactedAmount;
+    }
 
     public DestinationDetail(String accountId, String folioId) {
         this.accountId = accountId;
@@ -34,6 +44,21 @@ public class DestinationDetail {
         this.dayWiseTotalTransactedAmount = dayWiseTotalTransactedAmount;
         this.transactionLimit = transactionLimit;
         this.transactionMade = transactionMade;
+        this.priority = priority;
+        this.folioName = folioName;
+    }
+
+    public DestinationDetail(String accountId, String folioId, String value, Integer transactionLimit,
+          int transactionMade,int priority, Map<LocalDate, BigDecimal> dayWiseTotalTransactedAmount,
+          Map<LocalDate, Map<String, AccountTransaction>> accountDayWiseTotalTransactedAmount,
+          String folioName) {
+        this.accountId = accountId;
+        this.folioId = folioId;
+        this.value = value;
+        this.transactionLimit = transactionLimit;
+        this.transactionMade = transactionMade;
+        this.dayWiseTotalTransactedAmount = dayWiseTotalTransactedAmount;
+        this.accountDayWiseTotalTransactedAmount = accountDayWiseTotalTransactedAmount;
         this.priority = priority;
         this.folioName = folioName;
     }
