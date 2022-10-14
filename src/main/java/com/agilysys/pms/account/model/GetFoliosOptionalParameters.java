@@ -5,6 +5,8 @@ public class GetFoliosOptionalParameters {
     private String transactionIds;
     private boolean includePackageFolio;
 
+    private boolean excludeNonGuestFolio;
+
     public boolean isGroupTaxLineItems() {
         return groupTaxLineItems;
     }
@@ -27,5 +29,13 @@ public class GetFoliosOptionalParameters {
 
     public void setIncludePackageFolio(boolean includePackageFolio) {
         this.includePackageFolio = includePackageFolio;
+    }
+
+    public boolean isExcludeNonGuestFolio() {
+        return excludeNonGuestFolio;
+    }
+
+    public void setExcludeNonGuestFolio(boolean excludeNonGuestFolio) {
+        this.excludeNonGuestFolio = excludeNonGuestFolio;
     }
 }
