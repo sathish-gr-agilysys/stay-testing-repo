@@ -47,7 +47,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String END_DATE = "endDate";
     String FEES = "/fees";
     String APPLICABLE_ARC_RULE = "/applicableArcRule";
-    String APPLICABLE_ARF_RULES = "/apllicableArfRules";
+    String APPLICABLE_ARF_RULES = "/applicableArfRules";
     String APPLICABLE_ARC_RULE_BULK = "/applicableArcRuleBulk";
     String RULE = "/rule";
     String RULE_BY_ACCOUNTS = "/ruleByAccounts";
