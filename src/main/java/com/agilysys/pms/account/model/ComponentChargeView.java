@@ -361,7 +361,7 @@ public class ComponentChargeView {
         componentChargeView.setComponentId(componentRateSnapshot.getComponentId());
         componentChargeView.setAmount(componentRateSnapshot.getAmount().setScale(2, RoundingMode.HALF_UP));
         componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
-        componentChargeView.setTotalAmount(ComponentHelper.getTotalAmount(componentRateSnapshot.getTotalQuantity(),
+        componentChargeView.setTotalAmount(ComponentHelper.getTotalAmount(componentChargeView.getTotalQuantity(),
               componentChargeView.getAmount()));
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
