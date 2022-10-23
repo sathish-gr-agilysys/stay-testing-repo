@@ -361,8 +361,8 @@ public class ComponentChargeView {
         componentChargeView.setComponentId(componentRateSnapshot.getComponentId());
         componentChargeView.setAmount(componentRateSnapshot.getAmount().setScale(2, RoundingMode.HALF_UP));
         componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
-        componentChargeView.setTotalAmount(
-              ComponentHelper.getTotalAmount(componentRateSnapshot.getQuantity(), componentChargeView.getAmount()));
+        componentChargeView.setTotalAmount(ComponentHelper.getTotalAmount(componentRateSnapshot.getTotalQuantity(),
+              componentChargeView.getAmount()));
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
         componentChargeView.setAllowanceComponentType(componentRateSnapshot.getAllowanceComponentType());
@@ -383,7 +383,7 @@ public class ComponentChargeView {
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots) {
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        componentRateSnapshots.stream().forEach(
+        componentRateSnapshots.forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
 
         return componentChargeViews;
