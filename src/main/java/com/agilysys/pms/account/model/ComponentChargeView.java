@@ -13,6 +13,7 @@ import com.agilysys.common.model.rate.AllowanceCombination;
 import com.agilysys.common.model.rate.AllowanceFrequencyCustomOptions;
 import com.agilysys.common.model.rate.AllowanceFrequencyOption;
 import com.agilysys.common.model.rate.AllowanceFrequencyType;
+import com.agilysys.common.model.rate.ComponentHelper;
 import com.agilysys.common.model.rate.ComponentRateSnapshot;
 import com.agilysys.common.model.rate.ComponentType;
 import com.agilysys.common.model.rate.RoomChargePostingType;
@@ -360,8 +361,8 @@ public class ComponentChargeView {
         componentChargeView.setComponentId(componentRateSnapshot.getComponentId());
         componentChargeView.setAmount(componentRateSnapshot.getAmount().setScale(2, RoundingMode.HALF_UP));
         componentChargeView.setTotalQuantity(componentRateSnapshot.getRealizedTotalQuantity());
-        componentChargeView
-              .setTotalAmount(componentRateSnapshot.getRealizedTotalAmount().setScale(2, RoundingMode.HALF_UP));
+        componentChargeView.setTotalAmount(ComponentHelper.getTotalAmount(componentChargeView.getTotalQuantity(),
+              componentChargeView.getAmount()));
         componentChargeView.setComponentType(componentRateSnapshot.getComponentType());
         componentChargeView.setRoomChargePostingType(componentRateSnapshot.getRoomChargePostingType());
         componentChargeView.setAllowanceComponentType(componentRateSnapshot.getAllowanceComponentType());
@@ -382,7 +383,7 @@ public class ComponentChargeView {
     public static List<ComponentChargeView> fromComponentRateSnapshots(
           List<ComponentRateSnapshot> componentRateSnapshots) {
         List<ComponentChargeView> componentChargeViews = new ArrayList<>();
-        componentRateSnapshots.stream().forEach(
+        componentRateSnapshots.forEach(
               componentRateSnapshot -> componentChargeViews.add(fromComponentRateSnapshot(componentRateSnapshot)));
 
         return componentChargeViews;
