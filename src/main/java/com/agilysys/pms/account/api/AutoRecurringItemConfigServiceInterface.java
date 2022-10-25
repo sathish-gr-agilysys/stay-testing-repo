@@ -19,6 +19,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.agilysys.common.model.MergeMarketingDetailRequest;
+import com.agilysys.common.model.rate.AutoRecurringSnapshot;
 import com.agilysys.platform.common.rguest.exception.RGuestException;
 import com.agilysys.pms.account.model.AutoRecurringChargeRule;
 import com.agilysys.pms.account.model.AutoRecurringChargeRuleParameters;
@@ -58,6 +59,7 @@ public interface AutoRecurringItemConfigServiceInterface {
     String SHARE_PATH = "/share/{" + SHARE_ID + "}";
     String VALIDATE_RULE_CHANGES = "/validateRuleChanges/{" + ACCOUNT_ID + "}";
     String MERGE_MARKETING_DETAILS = "/mergeMarketingDetails";
+    String RESYNC_AUTO_RECURRING_FEES = "/reSyncARF";
     String UPDATE_ARC_FOR_MODIFIED_SNAPSHOT = "/updateArcForModifiedSnapshot";
     String UPDATE_ARC_DEPOSIT_POLICY = "/updateArcDepositPolicy";
 
@@ -233,5 +235,12 @@ public interface AutoRecurringItemConfigServiceInterface {
     @Requires(Permission.READ_PROPERTY_CONFIG)
     AutoRecurringChargeRuleResponse getApplicableArfRules(@PathParam(TENANT_ID) String tenantId,
           @PathParam(PROPERTY_ID) String propertyId, AutoRecurringFeeRuleRequest autoRecurringFeeRuleRequest)
+          throws RGuestException;
+
+    @POST
+    @Path(RESYNC_AUTO_RECURRING_FEES)
+    @Requires(Permission.READ_PROPERTY_CONFIG)
+    Set<AutoRecurringSnapshot> reSyncAutoRecurringFees(@PathParam(TENANT_ID) String tenantId, @PathParam(PROPERTY_ID) String propertyId,
+          @PathParam(ACCOUNT_ID) String accountId, AutoRecurringFeeRuleRequest autoRecurringFeeRuleRequest)
           throws RGuestException;
 }
