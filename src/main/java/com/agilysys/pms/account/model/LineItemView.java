@@ -125,6 +125,7 @@ public class LineItemView implements Comparable<LineItemView> {
     private String paymentInterfaceId;
     private String paymentTransactionId;
     private List<String> taxClasses;
+    private String invoiceId;
 
     public LineItemView() {
         adjustmentLineItems = new ArrayList<>();
@@ -1225,6 +1226,14 @@ public class LineItemView implements Comparable<LineItemView> {
 
     public void setTaxClasses(List<String> taxClasses) {
         this.taxClasses = taxClasses;
+    }
+
+    public String getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(String invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
     @Override
