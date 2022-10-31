@@ -5,6 +5,7 @@ package com.agilysys.pms.account.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,6 +27,9 @@ import com.agilysys.pms.rates.model.ComponentBundle;
 public class BookingEstimatedChargesRequest {
     private List<OfferSnapshot> offerSnapshots;
     private List<RateDetails> rateSnapshots;
+
+    private Map<String, List<OfferSnapshot>> offerSnapshotsByRoomTypeId = null;
+    private Map<String, List<RateDetails>> rateSnapshotsByRoomTypeId = null;
     private int numberOfAdults;
     private int numberOfChildren;
     private int numberOfAgeCategory1;
@@ -39,6 +43,32 @@ public class BookingEstimatedChargesRequest {
     private List<OfferRecurringCharges> recurringCharges;
     private Map<LocalDate, List<ComponentBundle>> addOns;
     private CompRoutingRuleDetails compRoutingRuleDetails;
+    private String roomTypeId;
+
+    public BookingEstimatedChargesRequest(){
+        this.offerSnapshotsByRoomTypeId = new HashMap<>();
+        this.rateSnapshotsByRoomTypeId = new HashMap<>();
+    }
+
+    public BookingEstimatedChargesRequest(int numberOfAdults, int numberOfChildren, int numberOfAgeCategory1,
+          int numberOfAgeCategory2, int numberOfAgeCategory3, int numberOfAgeCategory4, int numberOfAgeCategory5,
+          int numberOfAgeCategory6, int numberOfAgeCategory7, int numberOfAgeCategory8,
+          CompRoutingRuleDetails compRoutingRuleDetails, Map<String, List<OfferSnapshot>> offerSnapshotsByRoomTypeId,
+          Map<String, List<RateDetails>> rateSnapshotsByRoomTypeId) {
+        this.numberOfAdults = numberOfAdults;
+        this.numberOfChildren = numberOfChildren;
+        this.numberOfAgeCategory1 = numberOfAgeCategory1;
+        this.numberOfAgeCategory2 = numberOfAgeCategory2;
+        this.numberOfAgeCategory3 = numberOfAgeCategory3;
+        this.numberOfAgeCategory4 = numberOfAgeCategory4;
+        this.numberOfAgeCategory5 = numberOfAgeCategory5;
+        this.numberOfAgeCategory6 = numberOfAgeCategory6;
+        this.numberOfAgeCategory7 = numberOfAgeCategory7;
+        this.numberOfAgeCategory8 = numberOfAgeCategory8;
+        this.compRoutingRuleDetails = compRoutingRuleDetails;
+        this.offerSnapshotsByRoomTypeId = offerSnapshotsByRoomTypeId;
+        this.rateSnapshotsByRoomTypeId = rateSnapshotsByRoomTypeId;
+    }
 
     public List<OfferSnapshot> getOfferSnapshots() {
         return offerSnapshots;
@@ -158,6 +188,14 @@ public class BookingEstimatedChargesRequest {
 
     public void setCompRoutingRuleDetails(CompRoutingRuleDetails compRoutingRuleDetails) {
         this.compRoutingRuleDetails = compRoutingRuleDetails;
+    }
+
+    public String getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(String roomTypeId) {
+        this.roomTypeId = roomTypeId;
     }
 
     public static Map<LocalDate, List<RecurringChargeView>> getRecurringChargeFromSnapShot(

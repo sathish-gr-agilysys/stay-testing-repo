@@ -6,10 +6,10 @@ import java.util.Map;
 public class BookingEstimatedChargesRequestBulk {
     private String availableRatePlanId;
     private BookingEstimatedChargesRequest bookingEstimatedChargesRequest;
-    private Map<String, BookingEstimatedChargesRequest> bookingEstimatedChargesRequestByAvailableRatePlanId = null;
+    private Map<String, BookingEstimatedChargesRequest> bookingEstimatedChargesRequestByRoomTypeId = null;
 
     public BookingEstimatedChargesRequestBulk() {
-        bookingEstimatedChargesRequestByAvailableRatePlanId = new HashMap<>();
+        bookingEstimatedChargesRequestByRoomTypeId = new HashMap<>();
     }
 
     public BookingEstimatedChargesRequestBulk(String availableRatePlanId,BookingEstimatedChargesRequest bookingEstimatedChargesRequest) {
@@ -19,7 +19,7 @@ public class BookingEstimatedChargesRequestBulk {
 
     public BookingEstimatedChargesRequestBulk(
           Map<String, BookingEstimatedChargesRequest> bookingEstimatedChargesRequestByAvailableRatePlanId) {
-        this.bookingEstimatedChargesRequestByAvailableRatePlanId = bookingEstimatedChargesRequestByAvailableRatePlanId;
+        this.bookingEstimatedChargesRequestByRoomTypeId = bookingEstimatedChargesRequestByAvailableRatePlanId;
     }
 
     public String getAvailableRatePlanId() {
@@ -38,12 +38,12 @@ public class BookingEstimatedChargesRequestBulk {
         this.bookingEstimatedChargesRequest = bookingEstimatedChargesRequest;
     }
 
-    public Map<String, BookingEstimatedChargesRequest> getBookingEstimatedChargesRequestByAvailableRatePlanId() {
-        return bookingEstimatedChargesRequestByAvailableRatePlanId;
+    public Map<String, BookingEstimatedChargesRequest> getBookingEstimatedChargesRequestByRoomTypeId() {
+        return bookingEstimatedChargesRequestByRoomTypeId;
     }
 
-    public void setBookingEstimatedChargesRequestByAvailableRatePlanId(
-          Map<String, BookingEstimatedChargesRequest> bookingEstimatedChargesRequestByAvailableRatePlanId) {
-        this.bookingEstimatedChargesRequestByAvailableRatePlanId = bookingEstimatedChargesRequestByAvailableRatePlanId;
+    public void setBookingEstimatedChargesRequestByRoomTypeId(
+          Map<String, BookingEstimatedChargesRequest> bookingEstimatedChargesRequestByRoomTypeId) {
+        this.bookingEstimatedChargesRequestByRoomTypeId = bookingEstimatedChargesRequestByRoomTypeId;
     }
 }
