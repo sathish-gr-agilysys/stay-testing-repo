@@ -82,7 +82,7 @@ public class RecurringChargeView {
     private RoomChargePostingType roomChargePostingType;
     private Boolean compRule;
     private String ruleName;
-    private BigDecimal includeTaxAmount;
+    private BigDecimal reverseTaxAmount;
 
     public RecurringChargeView() {
         estimatedTaxInfo = new ChargeTaxAmountInfo();
@@ -437,12 +437,12 @@ public class RecurringChargeView {
         this.ruleName = ruleName;
     }
 
-    public BigDecimal getIncludeTaxAmount() {
-        return includeTaxAmount;
+    public BigDecimal getReverseTaxAmount() {
+        return reverseTaxAmount;
     }
 
-    public void setIncludeTaxAmount(BigDecimal includeTaxAmount) {
-        this.includeTaxAmount = includeTaxAmount;
+    public void setReverseTaxAmount(BigDecimal reverseTaxAmount) {
+        this.reverseTaxAmount = reverseTaxAmount;
     }
 
     private void setAllowanceSetting(ComponentChargeView componentChargeView) {
