@@ -1,5 +1,5 @@
 # Maven
-- task: Npm@1
+- task: Maven@4
   inputs:
     command: 'install'
 # Build your Java project and run tests with Apache Maven.
@@ -7,7 +7,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- main
+- azure-pipelines
 
 pool:
   vmImage: ubuntu-latest
