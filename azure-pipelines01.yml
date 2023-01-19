@@ -26,7 +26,6 @@ steps:
   inputs:
     artifactsFeeds: artifacts-maven
     
-steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
