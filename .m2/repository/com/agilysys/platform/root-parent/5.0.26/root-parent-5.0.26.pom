@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ (C) 2013 Agilysys NV, LLC. All Rights Reserved. Confidential Information of Agilysys NV, LLC. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.agilysys.platform</groupId>
+    <artifactId>root-parent</artifactId>
+    <version>5.0.26</version>
+    <packaging>pom</packaging>
+
+    <name>Platform Service Root Parent</name>
+    <description>
+        This should not be inherited directly by any external projects.
+        This way the code copy-pasted from spring-boot-starter-parent is separated from platform parent code.
+        We cannot use spring-boot-starter-parent directly because it clobbers our dep-man versions.
+        This pom should be kept slim as possible.
+
+        Hierarchy of platform-poms:
+            --service-root  // mostly empty
+            ^-- spring-boot-parent // import spring poms as dependency management, and mimic spring-boot-starter-parent
+            ^-- service-parent // import agilysys dep-man-slim, and has our common dependencies and profiles
+            ^-- service-impl // deployable spring-boot service
+    </description>
+
+    <modules>
+        <module>spring-boot-parent</module>
+        <module>service-parent</module>
+    </modules>
+
+    <properties>
+        <project.scm.id>my-scm-server</project.scm.id>
+    </properties>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>sonar-maven-plugin</artifactId>
+                   <version>3.4.0.905</version>                
+                </plugin>                
+           </plugins>
+        </pluginManagement>
+    </build>  
+    <scm>
+        <connection>scm:git:https://dev.azure.com/agilysys/Core/_git/springbootparentpom</connection>
+        <developerConnection>scm:git:https://dev.azure.com/agilysys/Core/_git/springbootparentpom</developerConnection>
+        <tag>root-parent-5.0.26</tag>
+    </scm>
+</project>

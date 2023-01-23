@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.agilysys.pms.common</groupId>
+    <artifactId>document-toolkit</artifactId>
+    <packaging>jar</packaging>
+    <name>Document Toolkit</name>
+    <parent>
+        <artifactId>pms-common-parent</artifactId>
+        <groupId>com.agilysys.pms</groupId>
+        <version>74.1901.0</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>com.agilysys.pms</groupId>
+            <artifactId>pms-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms</groupId>
+            <artifactId>pms-common</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.pms.common</groupId>
+            <artifactId>audit-toolkit</artifactId>
+        </dependency>
+        <!-- Test -->
+        <dependency>
+            <groupId>com.agilysys.pms</groupId>
+            <artifactId>common-interface</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
