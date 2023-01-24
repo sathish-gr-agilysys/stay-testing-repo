@@ -1,9 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Thu Jan 19 10:50:04 IST 2023
-https\://pkgs.dev.azure.com/agilysys/_packaging/Platform/maven/v1/.lastUpdated=1674105604732
-http\://artifactory.bellevue.agilysys.com/artifactory/repo/.error=
-http\://artifactory.bellevue.agilysys.com/artifactory/repo/.lastUpdated=1674105600913
-https\://pkgs.dev.azure.com/agilysys/Stay/_packaging/PMS/maven/v1/.lastUpdated=1674105602961
-https\://pkgs.dev.azure.com/agilysys/Stay/_packaging/StayProcess/maven/v1/.error=
-https\://pkgs.dev.azure.com/agilysys/Stay/_packaging/PMS/maven/v1/.error=
-https\://pkgs.dev.azure.com/agilysys/Stay/_packaging/StayProcess/maven/v1/.lastUpdated=1674105598403
