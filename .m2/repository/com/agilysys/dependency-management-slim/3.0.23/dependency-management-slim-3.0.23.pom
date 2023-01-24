@@ -1,0 +1,219 @@
+<!-- ~ (C) 2013 Agilysys NV, LLC. All Rights Reserved. Confidential Information of Agilysys NV, LLC. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.agilysys</groupId>
+    <artifactId>dependency-management-slim</artifactId>
+    <version>3.0.23</version>
+    <packaging>pom</packaging>
+
+    <name>Agilysys SLIM Dependency Management</name>
+    <description>
+        This dependency management is meant to be used with spring-boot, where the majority of versions are taken from spring boot.
+        The versions here are either not included in boot or particular versions we need.
+    </description>
+
+<parent>
+    <groupId>com.agilysys</groupId>
+    <artifactId>dependencyManagementBase</artifactId>
+    <version>3.0.23</version>
+</parent>
+    <properties>
+        <apache-commons-io.version>2.4</apache-commons-io.version>
+        <apache-commons-lang.version>3.2</apache-commons-lang.version>
+        <assertj-core.version>3.5.2</assertj-core.version>
+        <google.apis.container.version>v1-rev5-1.21.0</google.apis.container.version>
+        <google.apis.oauth2.version>v1-rev111-1.21.0</google.apis.oauth2.version>
+        <javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
+        <junitparams.version>1.0.5</junitparams.version>
+        <logstash-logback-encoder.version>4.7</logstash-logback-encoder.version>
+        <mockito-core.version>2.2.22</mockito-core.version>
+        <mongo.db.driver.version>3.12.7</mongo.db.driver.version>
+        <mongobee.version>0.13</mongobee.version>
+        <netty.version>4.0.41.Final</netty.version>
+        <opensaml.version>2.6.4</opensaml.version>
+        <org.apache.cxf.version>3.1.15</org.apache.cxf.version>
+        <org.apache-cxf.sso-oidc.version>3.1.7</org.apache-cxf.sso-oidc.version>
+        <!-- Lombok 1.16.20 no longer generates @ConstructorProperties, which breaks Jackson unless you also add @NoArgsConstructor to class,
+        And to support @Builder, you also have to add @AllArgsConstructor. It's doable, but I don't see benefit to this idiosyncrasy. -->
+        <projectlombok.version>1.16.18</projectlombok.version>
+        <swagger2.version>1.5.16</swagger2.version>
+        <wiremock.version>2.8.0</wiremock.version>
+
+        <!-- PLUGINS -->
+        <maven-release-plugin.version>2.2.2</maven-release-plugin.version>
+        <jgitflow-maven-plugin.version>1.0-m4.3</jgitflow-maven-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback-encoder.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <scope>test</scope>
+                <version>${mockito-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-all</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.pragmatists</groupId>
+                <artifactId>JUnitParams</artifactId>
+                <version>${junitparams.version}</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-jaxrs</artifactId>
+                <version>${swagger2.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.ws.rs</groupId>
+                        <artifactId>jsr311-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+                <version>${org.apache.cxf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-rs-security-sso-oidc</artifactId>
+                <version>${org.apache-cxf.sso-oidc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.ws.rs</groupId>
+                <artifactId>javax.ws.rs-api</artifactId>
+                <version>${javax.ws.rs-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache-commons-lang.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>${mongo.db.driver.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.mongobee</groupId>
+                <artifactId>mongobee</artifactId>
+                <version>${mongobee.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${apache-commons-io.version}</version>
+            </dependency>
+
+            <!-- Security Assertion Markup Language (SAML) -->
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.tomakehurst</groupId>
+                <artifactId>wiremock</artifactId>
+                <version>${wiremock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.tomakehurst</groupId>
+                <artifactId>wiremock-standalone</artifactId>
+                <version>${wiremock.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <scope>provided</scope>
+                <version>${projectlombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.apis</groupId>
+                <artifactId>google-api-services-oauth2</artifactId>
+                <version>${google.apis.oauth2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.apis</groupId>
+                <artifactId>google-api-services-container</artifactId>
+                <version>${google.apis.container.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <preparationGoals>clean install</preparationGoals>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <remoteTagging>true</remoteTagging>
+                    <arguments>-Prelease</arguments>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>${jgitflow-maven-plugin.version}</version>
+                <configuration>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>feature/dev</developBranchName>
+                        <versionTagPrefix>version-</versionTagPrefix>
+                    </flowInitContext>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+        <scm>
+        <connection>scm:git:https://dev.azure.com/agilysys/Core/_git/agilysys-dependency-management</connection>
+        <developerConnection>scm:git:https://dev.azure.com/agilysys/Core/_git/agilysys-dependency-management</developerConnection>
+        <tag>HEAD</tag>
+            </scm>
+</project>
+

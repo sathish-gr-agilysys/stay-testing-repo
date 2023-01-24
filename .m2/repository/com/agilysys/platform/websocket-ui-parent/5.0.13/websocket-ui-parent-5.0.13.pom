@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>websocket-ui-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>5.0.13</version>
+    <name>UI Websocket Server Parent</name>
+    <description>Parent POM for UI Websocket Server</description>
+    
+    <modules>
+        <module>interface</module>
+        <module>service</module>
+        <module>integration-test</module>
+    </modules>
+
+    <parent>
+        <groupId>com.agilysys.platform</groupId>
+        <artifactId>service-parent</artifactId>
+        <version>5.0.3</version>
+    </parent>
+
+    <properties>
+        <platform-dependency-management.version>5.0.36</platform-dependency-management.version>
+        <python-startup-user-creator.version>3.20.8</python-startup-user-creator.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.agilysys.platform</groupId>
+                <artifactId>platform-dependency-management</artifactId>
+                <version>${platform-dependency-management.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <scm>
+        <connection>scm:git:ssh://git@stash.agilysys.local:7999/plat/websocketui.git</connection>
+        <developerConnection>scm:git:ssh://git@stash.agilysys.local:7999/plat/websocketui.git</developerConnection>
+      <tag>websocket-ui-parent-5.0.13</tag>
+  </scm>
+</project>

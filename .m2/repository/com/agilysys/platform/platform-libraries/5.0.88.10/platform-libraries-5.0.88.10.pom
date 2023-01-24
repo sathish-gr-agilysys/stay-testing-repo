@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ (C) 2014 Agilysys NV, LLC. All Rights Reserved. Confidential Information
+    of Agilysys NV, LLC. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.agilysys.platform</groupId>
+    <artifactId>platform-libraries</artifactId>
+    <packaging>pom</packaging>
+    <name>Agilysys Platform Libraries Parent</name>
+    <version>5.0.88.10</version>
+    <description>Parent pom for Platform Libraries</description>
+
+    <parent>
+        <groupId>com.agilysys.platform</groupId>
+        <artifactId>parent</artifactId>
+        <version>5.0.18</version>
+    </parent>
+
+    <modules>
+        <module>common</module>
+        <module>security</module>
+        <module>monitoringtoolkit</module>
+        <module>persistencetoolkit</module>
+        <module>resttoolkit</module>
+        <module>messagingtoolkit</module>
+        <module>config</module>
+        <module>ruleenginetoolkit</module>
+    </modules>
+
+    <properties>
+        <project.scm.id>my-scm-server</project.scm.id>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <inherited>true</inherited>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <updateReleaseInfo>true</updateReleaseInfo>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>replacer</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.code.maven-replacer-plugin</groupId>
+                        <artifactId>replacer</artifactId>
+                        <version>1.5.3</version>
+                        <configuration>
+                            <basedir>.</basedir>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>parentpom</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>replace</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>pom.xml</include>
+                                    </includes>
+                                    <regex>true</regex>
+                                    <replacements>
+                                        <replacement>
+                                            <xpath>/project/parent/version/text()</xpath>
+                                            <token>(.+)</token>
+                                            <value>${replacer.parentpom.version}</value>
+                                        </replacement>
+                                    </replacements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+    <scm>
+        <connection>scm:git:https://dev.azure.com/agilysys/Core/_git/platform-libraries</connection>
+        <developerConnection>scm:git:https://dev.azure.com/agilysys/Core/_git/platform-libraries</developerConnection>
+        <tag>platform-libraries-5.0.88.10</tag>
+    </scm>
+
+</project>

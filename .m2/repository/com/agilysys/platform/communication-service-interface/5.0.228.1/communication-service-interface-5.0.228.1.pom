@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Communication Service Interface</name>
+    <artifactId>communication-service-interface</artifactId>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.agilysys.platform</groupId>
+        <artifactId>communication-service-parent</artifactId>
+        <version>5.0.228.1</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>rest-toolkit</artifactId>
+        </dependency>
+      
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.nexmo</groupId>
+            <artifactId>client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <scm>
+        <connection>scm:git:https://dev.azure.com/agilysys/Core/_git/communicationinterface.git</connection>
+        <developerConnection>scm:git:https://dev.azure.com/agilysys/Core/_git/communicationinterface.git</developerConnection>
+        <tag>communication-service-parent-5.0.228.1</tag>
+    </scm>
+</project>

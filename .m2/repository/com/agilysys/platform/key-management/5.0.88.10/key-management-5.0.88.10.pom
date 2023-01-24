@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <!-- Use XSD for documentation of what each element does -->
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>key-management</artifactId>
+    <name>Platform Key Management</name>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.agilysys.platform</groupId>
+        <artifactId>security</artifactId>
+        <version>5.0.88.10</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>crypto-toolkit</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>persistence-toolkit</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.agilysys.platform</groupId>
+                    <artifactId>monitoring-toolkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

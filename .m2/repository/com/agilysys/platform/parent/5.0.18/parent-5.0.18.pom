@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ (C) 2013 Agilysys NV, LLC. All Rights Reserved. Confidential Information
+    of Agilysys NV, LLC. --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.agilysys.platform</groupId>
+    <artifactId>parent</artifactId>
+    <version>5.0.18</version>
+
+    <packaging>pom</packaging>
+
+    <name>Agilysys Platform</name>
+    <description>Parent pom for the Agilysys WS Platform.</description>
+    <organization>
+        <name>Agilysys, Inc.</name>
+    </organization>
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
+
+    <properties>
+        <project.scm.id>my-scm-server</project.scm.id>
+        <java-version>1.8</java-version>
+        <agilysysdependencymanagement.version>3.0.21</agilysysdependencymanagement.version>
+        <!-- Build and plugin properties -->
+        <!--plugin and build versions only. Third party library versions
+            declared in AgilysysDependencyManagement project pom -->
+        <jacoco.version>0.7.1.201405082137</jacoco.version>
+        <sonar-jacoco-listeners.version>3.2</sonar-jacoco-listeners.version>
+        <sonar.plugin.version>3.4.0.905</sonar.plugin.version>
+        <keytool.plugin.version>1.2</keytool.plugin.version>
+        <builder.helper.plugin.version>1.7</builder.helper.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.source.plugin.version>2.2.1</maven.source.plugin.version>
+        <maven.surefire.plugin.version>2.15</maven.surefire.plugin.version>
+        <maven.surefire.plugin.forkCount>1</maven.surefire.plugin.forkCount>
+        <maven.surefire.plugin.reuseForks>true</maven.surefire.plugin.reuseForks>
+        <maven.failsafe.plugin.version>2.14.1</maven.failsafe.plugin.version>
+        <maven.failsafe.plugin.forkCount>1</maven.failsafe.plugin.forkCount>
+        <maven.failsafe.plugin.reuseForks>true</maven.failsafe.plugin.reuseForks>
+        <build.helper.maven.plugin.version>1.8</build.helper.maven.plugin.version>
+        <tomcat7.maven.plugin.version>2.2</tomcat7.maven.plugin.version>
+        <version.owasp-maven-plugin>4.0.2</version.owasp-maven-plugin>
+        <maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
+
+        <!-- Sonar/JaCoCo -->
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
+        <jacoco.ut.file>jacoco-ut.exec</jacoco.ut.file>
+        <jacoco.it.file>jacoco-it.exec</jacoco.it.file>
+        <sonar.jacoco.reportPath>${jacoco.outputDir}/jacoco/${jacoco.ut.file}</sonar.jacoco.reportPath>
+        <sonar.jacoco.itReportPath>${jacoco.outputDir}/jacoco/${jacoco.it.file}</sonar.jacoco.itReportPath>
+
+        <!-- These properties could be in your settings.xml -->
+        <sonar.jdbc.url>jdbc:postgresql://sonar.bellevue.agilysys.com/sonar</sonar.jdbc.url>
+        <sonar.jdbc.username>sonar</sonar.jdbc.username>
+        <sonar.jdbc.password>sonar</sonar.jdbc.password>
+        <!-- Optional URL to server. Default value is http://localhost:9000 -->
+        <sonar.host.url>http://sonar.bellevue.agilysys.com</sonar.host.url>
+        <dockerTomcatBaseImage>docker-registry.bellevue.agilysys.com:5000/official/tomcat:7-20170523-1825</dockerTomcatBaseImage>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <argLine>${jacoco.agent.ut.arg}</argLine>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <argLine>-Xmx1024m -XX:MaxPermSize=256m ${jacoco.agent.it.arg}</argLine>
+                            <!-- Let's put failsafe reports with surefire to have access to tests failures/success reports in sonar -->
+                            <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+                            <!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info to be passed to the JVM hosting the code
+                  being tested. -->
+                            <execution>
+                                <id>prepare-ut-agent</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                                <configuration>
+                                    <destFile>${sonar.jacoco.reportPath}</destFile>
+                                    <propertyName>jacoco.agent.ut.arg</propertyName>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>post-ut-agent</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                                <configuration>
+                                    <dataFile>${sonar.jacoco.reportPath}</dataFile>
+                                    <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
+                                </configuration>
+                            </execution>
+                            <!-- Prepares a variable, jacoco.agent.it.arg, that contains the info to be passed to the JVM hosting the code
+                  being tested. -->
+                            <execution>
+                                <id>prepare-it-agent</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                                <configuration>
+                                    <destFile>${sonar.jacoco.itReportPath}</destFile>
+                                    <propertyName>jacoco.agent.it.arg</propertyName>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>post-it-agent</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                                <configuration>
+                                    <dataFile>${sonar.jacoco.itReportPath}</dataFile>
+                                    <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>coverage-check</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <rule>
+                                            <element>BUNDLE</element>
+                                            <limits>
+                                                <limit>
+                                                    <counter>INSTRUCTION</counter>
+                                                    <value>COVEREDRATIO</value>
+                                                    <minimum>0.70</minimum>
+                                                </limit>
+                                            </limits>
+                                        </rule>
+                                    </rules>
+                                    <dataFile>${sonar.jacoco.reportPath}</dataFile>
+                                    <excludes>
+                                        <exclude>**/*Test.*</exclude>
+                                        <exclude>**/*Interface.*</exclude>
+                                        <exclude>**/*Dao.*</exclude>
+                                        <exclude>**/*Config.*</exclude>
+                                        <exclude>**/model/*.*</exclude>
+                                        <exclude>**/entity/*.*</exclude>
+                                        <exclude>**/*Stub*</exclude>
+                                    </excludes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <append>true</append>
+                            <dumpOnExit>true</dumpOnExit>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+            <dependencies>
+                <dependency>
+                    <groupId>org.codehaus.sonar-plugins.java</groupId>
+                    <artifactId>sonar-jacoco-listeners</artifactId>
+                    <version>${sonar-jacoco-listeners.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>ITEST</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>replacer</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.code.maven-replacer-plugin</groupId>
+                        <artifactId>replacer</artifactId>
+                        <version>1.5.3</version>
+                        <configuration>
+                            <basedir>.</basedir>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>properties</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>replace</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>pom.xml</include>
+                                    </includes>
+                                    <regex>true</regex>
+                                    <replacements>
+                                        <replacement>
+                                            <xpath>/project/properties/agilysysdependencymanagement.version/text()
+                                            </xpath>
+                                            <token>(.+)</token>
+                                            <value>${replacer.agilysysdependencymanagement.version}</value>
+                                        </replacement>
+                                        <replacement>
+                                            <xpath>/project/properties/platform-versions.version/text()</xpath>
+                                            <token>(.+)</token>
+                                            <value>${replacer.platform-versions.version}</value>
+                                        </replacement>
+                                    </replacements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>OWASP</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>${version.owasp-maven-plugin}</version>
+                        <configuration>
+                            <failBuildOnCVSS>8</failBuildOnCVSS>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Sonar -->
+        <dependency>
+            <groupId>org.codehaus.sonar-plugins.java</groupId>
+            <artifactId>sonar-jacoco-listeners</artifactId>
+            <version>${sonar-jacoco-listeners.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+		</dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.agilysys</groupId>
+                <artifactId>dependencyManagement</artifactId>
+                <version>${agilysysdependencymanagement.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+                <reportSets>
+                    <reportSet>
+                        <configuration>
+                            <name>Platform API Docs</name>
+                            <description>Auto-generated REST API Documentation
+                            </description>
+                            <header>&lt;h1&gt;Agilysys Platform API (${project.version})&lt;/h1&gt;</header>
+                            <footer>&lt;div class="footer"&gt;Copyright (c) 2014&lt;/div&gt;</footer>
+                        </configuration>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>fully.qualified.MainClass</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin-version}</version>
+                <configuration>
+                    <fork>true</fork>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-banned-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <dependencyConvergence />
+                            </rules>
+                            <fail>false</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <name>Agilysys Platform API Docs</name>
+                    <description>Auto-generated Platform Documentation</description>
+                    <header>&lt;h1&gt;Agilysys Platform API (${project.version})&lt;/h1&gt;</header>
+                    <footer>&lt;div class="footer"&gt;Copyright (c) 2014&lt;/div&gt;</footer>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m4.3</version>
+                <configuration>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>feature/dev</developBranchName>
+                        <versionTagPrefix>version-</versionTagPrefix>
+                    </flowInitContext>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Build-Job>${env.build-job}</Build-Job>
+                            <Build-Number>${env.build-number}</Build-Number>
+                            <BuildDate>${env.build-timestamp}</BuildDate>
+                            <Build-Url>${env.build-url}</Build-Url>
+                            <Name>${project.name}</Name>
+                            <Version>${project.version}</Version>
+                            <GroupId>${project.groupId}</GroupId>
+                            <ArtifactId>${project.artifactId}</ArtifactId>
+                            <Git-Commit>${env.git-commit}</Git-Commit>
+                            <Git-Branch>${env.git-branch}</Git-Branch>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Build-Job>${env.build-job}</Build-Job>
+                            <Build-Number>${env.build-number}</Build-Number>
+                            <BuildDate>${env.build-timestamp}</BuildDate>
+                            <Build-Url>${env.build-url}</Build-Url>
+                            <Name>${project.name}</Name>
+                            <Version>${project.version}</Version>
+                            <GroupId>${project.groupId}</GroupId>
+                            <ArtifactId>${project.artifactId}</ArtifactId>
+                            <Git-Commit>${env.git-commit}</Git-Commit>
+                            <Git-Branch>${env.git-branch}</Git-Branch>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.8</version>
+                <configuration>
+                    <licenseName>agilysys</licenseName>
+                    <licenseResolver>classpath://license</licenseResolver>
+                    <inceptionYear>2013</inceptionYear>
+                    <projectName>rGuestCore</projectName>
+                    <organizationName>Agilysys</organizationName>
+                    <excludedGroups>com.agilysys</excludedGroups>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- Uncomment to auto-add source file headers -->
+                            <!-- <goal>update-file-header</goal> -->
+                            <goal>update-project-license</goal>
+                            <goal>add-third-party</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.agilysys</groupId>
+                        <artifactId>agilysys_license</artifactId>
+                        <version>0.0.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven.source.plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                    <configuration>
+                        <forkCount>${maven.surefire.plugin.forkCount}</forkCount>
+                        <reuseForks>${maven.surefire.plugin.reuseForks}</reuseForks>
+                        <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                        <!--<useFile>false</useFile>-->
+                        <excludes>
+                            <exclude>**/IT*.java</exclude>
+                        </excludes>
+                        <excludedGroups>com.agilysys.platform.common.junit.IntegrationTestCategory</excludedGroups>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven.failsafe.plugin.version}</version>
+                    <configuration>
+                        <forkCount>${maven.failsafe.plugin.forkCount}</forkCount>
+                        <reuseForks>${maven.failsafe.plugin.reuseForks}</reuseForks>
+                        <groups>com.agilysys.platform.common.junit.IntegrationTestCategory</groups>
+                        <includes>
+                            <include>**/*IT*.java, **/*IntegrationTest*.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.version}</version>
+
+                    <executions>
+                        <execution>
+                            <id>coverage-check</id>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <rule>
+                                        <element>CLASS</element>
+                                        <excludes>
+                                            <exclude>*Test</exclude>
+                                            <exclude>*Interface</exclude>
+                                            <exclude>*Dao</exclude>
+                                        </excludes>
+                                        <limits>
+                                            <limit>
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>0.70</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar.plugin.version}</version>
+                </plugin>
+
+                <!--This plugin's configuration is used to store Eclipse
+                    m2e settings only. It has no influence on the Maven build itself. -->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.jacoco</groupId>
+                                        <artifactId>
+                                            jacoco-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [0.7.1,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>prepare-agent</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>libs</name>
+            <url>http://artifactory.bellevue.agilysys.com/artifactory/repo</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>libs-release</id>
+            <url>http://artifactory.bellevue.agilysys.com/artifactory/libs-release</url>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <downloadUrl>http://artifactory.bellevue.agilysys.com/artifactory/repo</downloadUrl>
+        <repository>
+            <id>artifactory</id>
+            <name>Agilysys Release Repository</name>
+            <uniqueVersion>false</uniqueVersion>
+            <url>http://artifactory.bellevue.agilysys.com/artifactory/libs-release-local</url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <id>artifactory</id>
+            <name>Agilysys Snapshot Repository</name>
+            <uniqueVersion>true</uniqueVersion>
+            <url>http://artifactory.bellevue.agilysys.com/artifactory/libs-snapshot-local</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:https://dev.azure.com/agilysys/Core/_git/ParentPom</connection>
+        <developerConnection>scm:git:https://dev.azure.com/agilysys/Core/_git/ParentPom</developerConnection>
+        <tag>parent-5.0.18</tag>
+    </scm>
+</project>

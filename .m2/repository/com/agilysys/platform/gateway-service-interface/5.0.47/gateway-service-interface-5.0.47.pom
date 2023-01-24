@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>GatewayServiceInterface</name>
+    <packaging>jar</packaging>
+    <artifactId>gateway-service-interface</artifactId>
+	<description>Gateway service interface definition, used by client and service</description>
+
+    <parent>
+        <groupId>com.agilysys.platform</groupId>
+        <artifactId>gateway-service-parent</artifactId>
+        <version>5.0.47</version>
+    </parent>
+
+    <dependencies>
+        <!-- Platform -->
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>appliancecommon</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>common</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>rest-toolkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>persistence-toolkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>crypto-toolkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>messaging-toolkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <scm>
+        <connection>scm:git:ssh://git@stash.agilysys.local:7999/plat/gatewayinterface.git</connection>
+        <developerConnection>scm:git:ssh://git@stash.agilysys.local:7999/plat/gatewayinterface.git
+        </developerConnection>
+      <tag>gateway-service-parent-5.0.47</tag>
+  </scm>
+</project>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ (C) 2013 Agilysys NV, LLC. All Rights Reserved. Confidential Information of Agilysys NV, LLC. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>auth</artifactId>
+    <packaging>jar</packaging>
+    <name>Platform Auth</name>
+
+    <parent>
+        <groupId>com.agilysys.platform</groupId>
+        <artifactId>authparent</artifactId>
+        <version>5.0.28.7</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>common</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>monitoring-toolkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>rest-toolkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>persistence-toolkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>jwt-interface</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>platform-internal-libraries</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>auth-interface</artifactId>
+                    <groupId>com.agilysys.platform</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Auth Service Interface -->
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>auth-interface</artifactId>
+        </dependency>
+
+        <!-- User Service Interface -->
+        <dependency>
+            <groupId>com.agilysys.platform</groupId>
+            <artifactId>user-interface</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>auth-interface</artifactId>
+                    <groupId>com.agilysys.platform</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Servlet API -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <!--  TODO: WHat is this dependency for? why isn't it using DEP MAN?-->
+            <version>1.5.12.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-standalone</artifactId>
+            <version>${wiremock.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <version>1.5.19.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+        </dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>com/agilysys/platform/auth/test/*.class</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

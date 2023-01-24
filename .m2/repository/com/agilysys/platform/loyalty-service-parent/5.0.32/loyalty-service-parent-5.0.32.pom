@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ (C) 2012 Agilysys NV, LLC. All Rights Reserved. Confidential Information of Agilysys NV, LLC. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>loyalty-service-parent</artifactId>
+    <version>5.0.32</version>
+    <packaging>pom</packaging>
+    <name>Loyalty Program Parent</name>
+    <description>Parent pom for Loyalty Program Service</description>
+
+    <parent>
+        <groupId>com.agilysys.platform</groupId>
+        <artifactId>service-parent</artifactId>
+        <version>5.0.3</version>
+    </parent>
+
+    <modules>
+        <module>interface</module>
+        <module>service</module>
+        <module>drury-loyalty-client</module>
+        <module>integration-test</module>
+    </modules>
+
+    <properties>
+        <authservice.version>5.0.1</authservice.version>
+        <userservice.version>5.0.1</userservice.version>
+        <platform-dependency-management.version>5.0.48</platform-dependency-management.version>
+        <python-startup-user-creator.version>3.20.8</python-startup-user-creator.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.agilysys.platform</groupId>
+                <artifactId>platform-dependency-management</artifactId>
+                <version>${platform-dependency-management.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.agilysys.platform</groupId>
+                <artifactId>loyalty-interface</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <scm>
+        <connection>scm:git:ssh://git@stash.agilysys.local:7999/plat/loyaltyservice.git</connection>
+        <developerConnection>scm:git:ssh://git@stash.agilysys.local:7999/plat/loyaltyservice.git</developerConnection>
+      <tag>loyalty-service-parent-5.0.32</tag>
+  </scm>
+</project>
