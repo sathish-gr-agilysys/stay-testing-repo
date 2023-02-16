@@ -1,0 +1,6 @@
+[submodule "stayrootpom"]
+	path = stayrootpom
+	url = https://github.com/sathish-gr-agilysys/stay-testing-repo.git
+[submodule "staysvcbom"]
+	path = staysvcbom
+	url = https://github.com/sathish-gr-agilysys/stay-testing-repo.git
